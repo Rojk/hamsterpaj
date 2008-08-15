@@ -13,13 +13,16 @@
 #
 
 # Directories to exclude
-distribute/
-entertain_tmp/
-music_guess/
-include/cache/
-include/live_chat/
-tmp/avatars/
-photo_upload_tmp/
+distribute/*
+entertain_temp/*
+music_guess/*
+include/cache/*
+include/live_chat/*
+tmp/avatars/*
+photo_upload_tmp/*
 
 # Configuration files
 include/constants.php
+
+# Backups
+hpback.tar
