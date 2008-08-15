@@ -23,4 +23,3 @@ photo_upload_tmp/
 
 # Configuration files
 include/constants.php
-include/core/common.php
