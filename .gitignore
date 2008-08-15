@@ -1,0 +1,26 @@
+# .gitignore
+#
+# This files contains a list of files and directories that should be excepted
+# from version control. The reason for excluding files or directories is
+# either because the files/directories contain large binary blobs such as
+# videos or images that are not required to run the site, or because the files
+# contain sensitive information such as passwords or salts.
+# To override a directory-wide exception for certain files, prepend the
+# filename with !, for example:
+#
+#	directory/*				# ignore all files in directory...
+#	!directory/README		# except for README, which should be versioned.
+#
+
+# Directories to exclude
+distribute/
+entertain_tmp/
+music_guess/
+include/cache/
+include/live_chat/
+tmp/avatars/
+photo_upload_tmp/
+
+# Configuration files
+include/constants.php
+include/core/common.php
