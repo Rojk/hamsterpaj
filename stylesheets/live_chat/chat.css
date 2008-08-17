@@ -1,0 +1,121 @@
+.live_chat_chat .navigation_header
+{
+	float: left;
+}
+
+.live_chat_chat .navigation
+{
+	height: 20px;
+}
+
+.live_chat_chat .navigation li
+{
+	float: left;
+	margin-left: 20px;
+	border: 1px solid #ababab;
+	border-bottom: none;
+	cursor: pointer;
+	list-style-type: none;
+}
+
+/* Entry area */
+.live_chat_chat .entry_area
+{
+	border: 1px solid #ababab;
+	float: left;
+	height: 350px;
+	width: 485px;
+	font-family: monospace;
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	overflow: auto;
+}
+
+.live_chat_chat .entry_area .highlight
+{
+	background: #f6eab0;
+}
+
+.live_chat_chat .entry_area li
+{
+	margin-top: 1px;
+}
+
+.live_chat_chat .entry_area .user_photo
+{
+	display: none;
+}
+
+.live_chat_chat .entry_area .timestamp
+{
+	font-weight: bold;
+	margin-right: 15px;
+}
+
+.live_chat_chat .entry_area .username
+{
+	font-weight: bold;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+.live_chat_chat .entry_area .message
+{
+	display: inline;
+}
+
+.navigation, .navigation_header
+{
+	display: none;
+}
+
+/* User list */
+.live_chat_chat .user_list
+{
+	border: 1px solid #ababab;
+	border-left: none;
+	float: left;
+	height: 350px;
+	width: 150px;
+}
+
+.live_chat_chat .user_list select
+{
+	width: 100%;
+	border: none;
+	height: 325px;
+}
+
+/* Form */
+.live_chat_chat form
+{
+	clear: both;
+}
+
+.live_chat_chat form h5
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.live_chat_chat form .recipient
+{
+	float: left;
+	width: 125px;
+}
+
+.live_chat_chat form .recipient select
+{
+	display: block;
+}
+
+.live_chat_chat form .compose_area
+{
+	float: left;
+}
+
+.live_chat_chat form .message_input
+{
+	width: 293px;
+}

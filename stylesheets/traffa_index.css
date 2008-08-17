@@ -1,0 +1,57 @@
+#new_members
+{
+	overflow: auto;
+	height: 150px;
+	border: 1px solid #efefef;
+}
+#new_members table
+{
+	width: 600px;
+}
+#new_members table tr
+{
+	border-top: 1px solid #efefef;
+}
+
+#chatters
+{
+	height: 150px;
+	overflow: auto;
+}
+
+#scribble_puff
+{
+	background: url('http://images.hamsterpaj.net/login_bar/background.png');
+	border: 1px solid #565656;
+	clear: both;
+	padding: 3px;
+}
+
+#scribble_puff img
+{
+	float: left;
+}
+
+#scribble_puff h2
+{
+	font-weight: bold;
+	width: 500px;
+	margin-top: 2px;
+	margin-bottom: 3px;
+	font-size: 14px;
+}
+
+#scribble_puff p
+{
+	margin: 0px;
+}
+
+#online_people input
+{
+	width: 121px;
+}
+
+#online_people #neighbors
+{
+	width: 99%;
+}

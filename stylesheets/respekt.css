@@ -1,0 +1,81 @@
+#respekt_side_menu
+{
+	background: black;
+	color: yellow;
+	float: left;
+	padding: 10px;
+}
+
+#content
+{
+	background: black;
+	padding: 0px;
+	color: white;
+}
+
+#content a
+{
+	color: white;
+}
+
+.intro_text
+{
+	margin: 10px;
+}
+
+.serie
+{
+	margin-left: 10px;
+}
+
+
+#respekt_side_menu h3
+{
+	font-weight: bold;
+}
+
+#respekt_side_menu a
+{
+	color: white;
+	text-decoration: none;
+}
+
+#respekt_side_menu ul, #respekt_side_menu ol
+{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	padding-left: 5px;
+}
+
+.respekt_qa
+{
+	clear: both;
+	min-height: 126px;
+	width: 630px;
+	margin-top: 5px;
+	border: 1px solid #ababab;
+	padding: 3px;
+}
+
+.respekt_qa p
+{
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+.respekt_qa .question, .respekt_qa .answerer
+{
+	font-weight: bold;
+}
+
+.respekt_qa img
+{
+	float: left;
+	margin-right: 3px;
+}
+
+.serie_top
+{
+	float: left;
+}

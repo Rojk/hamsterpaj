@@ -1,0 +1,43 @@
+#schedule_v2_admin_slot_schema
+{
+	width: 595px;
+	height: 240px;
+	float: left;
+	margin: 1px 0px 0px 1px;
+	background: url(http://images.hamsterpaj.net/schedule_v2/schema_grids.png)
+}
+
+#schedule_v2_admin_slot_schema_hours
+{
+	margin: 1px 0px 0px 1px;
+	border: 0px none;
+	float: left;
+}
+
+.schedule_v2_admin_schema_item
+{
+	position: absolute;
+	width: 85px;
+	background: url(http://images.hamsterpaj.net/schedule_v2/schema_bg.png);
+}
+
+#schedule_v2_admin_slot_selector
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+#schedule_v2_admin_slot_selector li
+{
+	cursor: pointer;
+	margin: 10px;
+	padding: 0px;
+	clear: both;
+	list-style-type: none;
+}
+
+#schedule_v2_admin_slot_config_container
+{
+	display: none;
+	border: 1px solid #333;
+}

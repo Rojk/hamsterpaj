@@ -1,0 +1,21 @@
+.ovlist ul
+{
+	display: inline-block;
+	margin: 0;
+	padding-top: 10px;
+}
+.ovlist ul li
+{
+	float: left;
+	list-style-type: none;
+	text-align: center;
+	border: 1px solid #DFDFDF;
+	margin: 0 10px 10px 10px;
+	padding: 10px 20px 10px 20px;
+}
+
+.ovlist ul li:hover
+{
+	border: 1px solid #BFBFBF;
+	padding: 10px 20px 10px 20px;
+}

@@ -1,0 +1,21 @@
+.profile_lef_91_pinkflower .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_pinkflower/profile_head_bg.png');
+}
+.profile_lef_91_pinkflower .top
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_pinkflower/rounded_corners_top.png') no-repeat top;
+
+}
+.profile_lef_91_pinkflower .repeat
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_pinkflower/presentation_bg.png');
+}
+.profile_lef_91_pinkflower .bottom
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_pinkflower/rounded_corners_bottom.png') no-repeat bottom;
+}
+.profile_lef_91_pinkflower .profile_presentation_text
+{
+	padding: 10px;
+}

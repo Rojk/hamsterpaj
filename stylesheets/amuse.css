@@ -1,0 +1,40 @@
+.amuse_item
+{
+	background: #eceff2;
+	border: 1px solid #a3a7ab;
+	width: 210px;
+	padding: 1px;
+}
+
+.amuse_small_image
+{
+	width: 60px;
+	height: 60px;
+	float: left;
+}
+
+.amuse_item_title
+{
+	clear: right;
+	font-weight: bold;
+	margin-left: 3px;
+}
+
+.amuse_item_description
+{
+	margin: 0px;
+	margin-left: 3px;
+}
+
+.amuse_item_bottom
+{
+	font-style: italic;
+	margin: 0px;
+	float: right;
+	clear: both;
+}
+
+.amuse_full_info
+{
+	padding: 1px;
+}

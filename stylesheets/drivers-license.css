@@ -1,0 +1,110 @@
+.dl_answer_form .image
+{
+	float: right;
+	margin-left: 3px;
+	border: 1px solid #565656;
+}
+
+.dl_answer_form ul
+{
+	list-style-type: none;
+	padding-left: 20px;
+}
+
+.dl_answer_form ul li
+{
+	margin-bottom: 5px;
+}
+
+.dl_answer_form ul input
+{
+	margin-left: -20px;
+}
+
+#dl_admin_form
+{
+	display: none;
+	border: 1px solid #ababab;
+	background: #efefef;
+	margin-top: 100px;
+}
+
+#dl_admin_form textarea
+{
+	width: 500px;
+}
+
+.correct
+{
+	background: #d6eadb url('http://images.hamsterpaj.net/drivers-license/correct.png') 3px 3px no-repeat;
+	border: 1px solid #619f71;
+	padding: 3px;
+	padding-left: 30px;
+}
+
+.incorrect
+{
+	background: #efc7c8 url('http://images.hamsterpaj.net/drivers-license/error.png') 3px 3px no-repeat;
+	border: 1px solid #964041;
+	padding: 3px;
+	padding-left: 30px;
+}
+
+.incorrect .correction
+{
+	background: #fbeff0;
+	padding: 3px;
+}
+
+.dl_category_list
+{
+	margin-left: 0px;
+	padding-left: 5px;
+	list-style-type: none;
+}
+
+.dl_category_list li
+{
+	line-height: 25px;
+	
+}
+
+.how_it_works
+{
+	margin-top: 10px;
+	background: url('http://images.hamsterpaj.net/drivers-license/lamp.png') no-repeat #fffbc9;
+	border: 1px solid #f0dca1;
+	padding: 3px;
+	padding-left: 55px;
+}
+
+.question
+{
+	font-weight: bold;
+}
+
+.dl_category_index .label
+{
+	width: 190px;
+}
+
+.dl_category_index .question_count
+{
+	width: 65px;
+}
+
+.dl_category_index tr:hover
+{
+	background: #efefef;
+}
+
+.dl_category_index a
+{
+	border: none;
+}
+
+.dl_category_index img
+{
+	width: 12px;
+	height: 12px;
+}

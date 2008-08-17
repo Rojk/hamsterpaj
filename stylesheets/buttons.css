@@ -1,0 +1,194 @@
+.button_magnifier, .button_20, .button_30, .button_40, .button_50, .button_60, .button_70, .button_80, .button_90, .button_100, .button_110, .button_120, .button_130, .button_140, .button_150, .blue_button_20, .blue_button_30, .blue_button_40, .blue_button_50, .blue_button_60, .blue_button_70, .blue_button_80, .blue_button_90, .blue_button_100, .blue_button_110, .blue_button_120, .blue_button_130, .blue_button_140, .blue_button_150
+{
+	border: none;
+	height: 20px;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+}
+
+.button_magnifier
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_magnifier.png');
+	width: 16px;
+	height: 16px;
+	margin-top: 3px;
+}
+
+.button_20
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_20.png');
+	width: 20px;
+}
+
+.button_30
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_30.png');
+	width: 30px;
+}
+
+.button_40
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_40.png');
+	width: 40px;
+}
+
+.button_50
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_50.png');
+	width: 50px;
+}
+
+.button_50:hover
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_50_hover.png');
+}
+
+.button_50:active
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_50_active.png');
+}
+
+.button_60
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_60.png');
+	width: 60px;
+}
+
+.button_70
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_70.png');
+	width: 70px;
+}
+
+.button_80
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_80.png');
+	width: 80px;
+}
+
+.button_90
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_90.png');
+	width: 90px;
+}
+
+.button_100
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_100.png');
+	width: 100px;
+}
+
+.button_110
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_110.png');
+	width: 110px;
+}
+
+.button_120
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_120.png');
+	width: 120px;
+}
+
+.button_130
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_130.png');
+	width: 130px;
+}
+
+.button_140
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_140.png');
+	width: 140px;
+}
+
+.button_150
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_150.png');
+	width: 150px;
+}
+
+.blue_button_20
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_20.png');
+	width: 20px;
+}
+
+.blue_button_30
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_30.png');
+	width: 30px;
+}
+
+.blue_button_40
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_40.png');
+	width: 40px;
+}
+
+.blue_button_50
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_50.png');
+	width: 50px;
+}
+
+.blue_button_60
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_60.png');
+	width: 60px;
+}
+
+.blue_button_70
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_70.png');
+	width: 70px;
+}
+
+.blue_button_80
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_80.png');
+	width: 80px;
+}
+
+.blue_button_90
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_90.png');
+	width: 90px;
+}
+
+.blue_button_100
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_100.png');
+	width: 100px;
+}
+
+.blue_button_110
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_110.png');
+	width: 110px;
+}
+
+.blue_button_120
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_120.png');
+	width: 120px;
+}
+
+.blue_button_130
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_130.png');
+	width: 130px;
+}
+
+.blue_button_140
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_140.png');
+	width: 140px;
+}
+
+.blue_button_150
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_150.png');
+	width: 150px;
+}

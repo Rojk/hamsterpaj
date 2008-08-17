@@ -1,0 +1,5 @@
+RewriteEngine On
+
+RewriteBase /rss
+RewriteRule ^([0-9]+)$ rss.php?uid=$1&numeric=true [L]
+RewriteRule ^([a-zA-Z0-9\_\-]+)$ rss.php?uid=$1&numeric=false [L]

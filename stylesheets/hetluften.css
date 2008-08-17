@@ -1,0 +1,47 @@
+#hetluften
+{
+	border: 1px solid #ababab;
+	padding: 3px;
+	height: 135px;	
+}
+
+#hetluft_scroll_left, #hetluft_scroll_right
+{
+	cursor: pointer;
+	float: left;
+	height: 57px;
+	margin-top: 5px;
+	background: #cbdae5;
+	padding-top: 60px;
+	width: 8px;
+	border: 1px solid #565656;
+}
+
+#hetluft_container
+{
+	width: 610px;
+	float: left;
+	height: 130px;
+	overflow: hidden;
+}
+
+#hetluft_scroll
+{
+	width: 2640px;
+}
+
+#hetluft_scroll div
+{
+	text-align: center;
+	font-size: 9px;
+	float: left;
+	margin: 5px;
+	margin-left: 0px;
+	border: 1px solid #ababab;
+	padding: 3px;
+}
+
+#hetluft_scroll a
+{
+	border-bottom: none;
+}

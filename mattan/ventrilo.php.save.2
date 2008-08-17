@@ -1,0 +1,35 @@
+<?php
+  require('../include/core/common.php');
+  $ui_options['menu_path'] = array('mattan', 'ventrilo');
+  $ui_options['title'] = 'Ventrilo';
+  ui_top($ui_options);
+
+	if($_GET['do'] == "check") {
+		if(empty($_POST['channelname']) || empty($_POST['channelpass'])) {
+			$output .= '<p>Du glömde fylla i ett fält.</p>';
+		} else {
+			$query = 'INSERT INTO ventrilo (uid, channelname, channelpass, adminpass, expire) VALUES (' . $_SESSION['login']['id'];
+			$query .= 
+			$output .= '<p>Din kanal är skapad, den kommer aktiveras 04:00 inatt.</p>';
+		}
+	} else {
+
+		$output = '<h1>Ventrilo på Hamsterpaj.net</h1>';
+		$output .= '<p>Så här ansluter du till vent-servern...</p>';
+	
+		if(login_checklogin()) {
+			$output .= '<p>Här under kan du skapa ett eget rum. <br /><br />';
+			$output .= '<form action="?do=check" method="post">';
+			$output .= 'Kanalnamn: <input type="text" name="channelname" /><br />';
+			$output .= 'Kanallösen: <input type="text" name="channelpass" /><br />';
+			$output .= 'Adminlösen: <input type="text" name="adminpass" /><br /></p>';
+			$output .= '<input type="submit" value="Skicka" />';
+			$output .= '</form>';
+		} else {
+			$output .= 'Om du vill ha ett eget rum på Hamsterpajs-vent måste du logga in eller skapa ett konto.<br />';
+		}
+	}
+
+	echo utf8_encode($output);
+  ui_bottom();
+?>

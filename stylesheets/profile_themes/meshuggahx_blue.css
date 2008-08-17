@@ -1,0 +1,50 @@
+.profile_meshuggahx_blue .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/meshuggahx_blue/profile_head_bg.png');
+}
+
+.profile_meshuggahx_blue .profile_head .avatar_passepartout
+{
+	background: transparent;
+	border: none;
+	padding-left: 16px;
+	padding-right: 4px;
+}
+
+.profile_meshuggahx_blue .profile_head .name_asl
+{
+	color: #f1f1f1;
+}
+
+.profile_meshuggahx_blue .profile_head .user_status
+{
+	color: #97d7ff;
+}
+
+.profile_meshuggahx_blue .profile_head .user_action_log
+{
+	color: #f1f1f1;
+}
+
+.profile_meshuggahx_blue .profile_head .user_action_log a
+{
+	color: #eeeeee;
+}
+
+.profile_meshuggahx_blue .top
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/meshuggahx_blue/rounded_corners_top.png') no-repeat top;
+
+}
+.profile_meshuggahx_blue .repeat
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/meshuggahx_blue/presentation_bg.png');
+}
+.profile_meshuggahx_blue .bottom
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/meshuggahx_blue/rounded_corners_bottom.png') no-repeat bottom;
+}
+.profile_meshuggahx_blue .profile_presentation_text
+{
+	padding: 10px;
+}

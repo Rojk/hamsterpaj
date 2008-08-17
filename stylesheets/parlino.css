@@ -1,0 +1,31 @@
+.parlino_div
+{
+	margin: 10px;
+	padding: 5px;
+	border: 1px solid #565656;
+	background: url('http://images.hamsterpaj.net/parlino/bg_tile.png');
+	color: black;
+}
+
+.parlino_div h3
+{
+	margin: 0px;
+	padding: 0px;
+	padding-left: 3px;
+	color: white;
+}
+
+.parlino_div .textbox
+{
+	border: 1px solid #565656;
+}
+
+#small_dwarf
+{
+	float: right;
+}
+
+.error
+{
+	font-weight: bold;
+}

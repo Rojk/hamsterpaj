@@ -1,0 +1,24 @@
+.profile_eye_tux .profile_head 
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/eye_tux/profile_head_bg.png');
+}
+.profile_eye_tux .profile_head .user_status
+{
+	color: #cccccc;
+}
+.profile_eye_tux .profile_head .name_asl span
+{
+	color: #eee;
+}
+.profile_eye_tux .profile_head .user_action_log
+{
+	color:#eddddd;
+}
+.profile_eye_tux .profile_head .user_action_log a
+{
+	color: #ffffff;
+}
+.profile_eye_tux .profile_head .navigation a
+{
+	color: #dddddd;
+}

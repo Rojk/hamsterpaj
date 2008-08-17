@@ -1,0 +1,48 @@
+.contest
+{
+	border: 1px solid #ababab;
+	height: 111px;
+	margin-bottom: 5px;
+}
+
+.contest_freetext
+{
+	float: left;
+	width: 504px;
+	height: 80px;
+	padding: 5px;
+}
+
+.contest_freetext h1
+{
+	display: block;	
+}
+
+.contest_tags
+{
+	float: left;
+	width: 120px;
+}
+
+.contest_footer
+{
+	clear: both;
+	border-top: 1px solid #ababab;
+	height: 20px;
+	line-height: 20px;
+}
+
+.contest_footer span
+{
+	margin-left: 5px;
+	width: 140px;
+	display: block;
+	float: left;
+	padding-right: 10px;
+	border-right: 1px solid #ababab;	
+}
+
+.contests_form .textbox
+{
+	width: 400px;
+}

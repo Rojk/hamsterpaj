@@ -1,0 +1,41 @@
+#music_guess_form label
+{
+	display: block;
+	float: left;
+	width: 280px;
+	font-weight: bold;
+}
+
+#music_guess_form .textbox
+{
+	width: 256px;
+	margin-right: 20px;
+}
+
+#music_guess_earlier
+{
+	width: 300px;
+	float: left;
+	margin-right: 20px;
+}
+
+#music_guess_toplists
+{
+	width: 300px;
+	float: left;
+}
+
+#music_guess_toplists ol
+{
+	margin-bottom: 0;
+}
+
+.music_guess_yourrank
+{
+	margin-left: 10px;
+}
+
+.music_guess_yourrank_divider
+{
+	margin-left: 20px;
+}

@@ -1,0 +1,181 @@
+#sex_and_sense_top
+{
+	margin-top: 5px;
+}
+
+.dark_container
+{
+	background-color: #ffbb18;
+	width: 635px;
+}
+
+.dark_div_top
+{
+	background: url(http://images.hamsterpaj.net/sex_and_sense/dark_div_top.png) no-repeat scroll center top;
+}
+
+.dark_div_content
+{
+	background: url(http://images.hamsterpaj.net/sex_and_sense/dark_div_bottom.png) no-repeat scroll center bottom;
+}
+
+.dark_container p
+{
+	padding: 10px;
+	color: #fff;
+	margin: 7px;
+}
+
+.dark_container form
+{
+	padding: 10px;
+	color: #fff;
+	margin: 7px;
+}
+
+.dark_container form input.button_60
+{
+	color: #000;
+}
+
+
+.dark_container h3
+{
+	padding: 10px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #fff;
+}
+
+.bright_container
+{
+	background-color: #fdebbf;
+	width: 635px;
+	margin-top: 7px;
+}
+
+.bright_div_top
+{
+	background: url(http://images.hamsterpaj.net/sex_and_sense/bright_div_top.png) no-repeat scroll center top;
+}
+
+.bright_div_content
+{
+	background: url(http://images.hamsterpaj.net/sex_and_sense/bright_div_bottom.png) no-repeat scroll center bottom;
+}
+
+.bright_container p
+{
+	padding: 10px;
+	margin: 0;
+}
+
+.bright_container h1
+{
+	padding-top: 5px;
+	padding-left: 10px;
+}
+
+.bubble_container
+{
+	margin-left: 60px;
+	margin-top: 5px;
+	width: 570px;
+	background: url(http://images.hamsterpaj.net/sex_and_sense/bubble_repeat.png);
+}
+
+.bubble_div_top
+{
+	background: url(http://images.hamsterpaj.net/sex_and_sense/bubble_top.png) no-repeat scroll center top;
+}
+
+.bubble_div_content
+{
+	background: url(http://images.hamsterpaj.net/sex_and_sense/bubble_bottom.png) no-repeat scroll center bottom;
+	padding: 3px 0 0 20px;
+}
+
+.bubble_container p
+{
+	min-height: 35px;
+	margin: 0;
+	padding: 4px 10px 10px 10px;
+	left: 20px;
+}
+
+.bubble_container h4
+{
+	font-weight: bold;
+}
+
+.bright_div_content .user_avatar
+{
+	float: left;
+	width: 50px;
+	margin: 2px 0px 0px 5px;
+	height: 63px;
+	
+}
+
+#sex_and_sense_question_form
+{
+	margin: 10px;
+	padding-bottom: 10px;
+}
+
+.hidden_content
+{
+	display: none;
+}
+.sex_sense_post_header
+{
+	cursor: pointer;
+}
+
+.category_list
+{
+	padding: 5px 10px 10px 10px;
+}
+
+.category_list .category
+{
+	clear: both;
+	margin: 0;
+	padding-top: 3px;
+}
+
+.category_list .category_children
+{
+
+}
+
+.category_list h2
+{
+	font-weight: bold;	
+	font-size: 11px;
+}
+
+
+.category_list h3
+{
+	font-size: 11px;
+	float: left;
+}
+
+#article p
+{
+	padding:0;
+	margin: 10px;
+	line-height: 1.3;
+}
+
+.sex_sense_search input
+{
+	display: inline;
+}
+
+.hidden_content button, .content button
+{
+	margin: 5px;
+	float: right;
+}

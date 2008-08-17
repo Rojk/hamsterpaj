@@ -1,0 +1,134 @@
+.guestbook_entries
+{
+	list-style-type: none;
+	margin: 3px 0 0 0;
+	padding: 0px;
+}
+
+.guestbook_entries li
+{
+	margin-top: 15px;
+}
+
+.guestbook_entries li .timestamp
+{
+	float: right;
+}
+
+.guestbook_entries a
+{
+	border: none;
+	color: black;
+}
+
+.guestbook_entries li .unanswered, .guestbook_entries li .private
+{
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.guestbook_entries .user_avatar
+{
+	width: 50px;
+	height: 67px;
+	float: left;
+	clear: left;
+}
+
+.guestbook_entries .gb_entry_controls
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.guestbook_entries .gb_entry_controls a
+{
+	margin-right: 20px;
+}
+/*
+.guestbook_entries .container
+{
+	background: url('http://images.hamsterpaj.net/guestbook/gb_entry_fill.png');
+	margin-left: 45px;
+	width: 590px;
+}
+
+.guestbook_entries .top_bg
+{
+	background: url('http://images.hamsterpaj.net/guestbook/gb_entry_top.png') no-repeat;
+	padding-top: 3px;
+}
+
+.guestbook_entries .bottom_bg
+{
+	padding-bottom: 3px;
+	padding-left: 20px;
+	padding-right: 3px;
+	background: url('http://images.hamsterpaj.net/guestbook/gb_entry_bottom.png') no-repeat left bottom;
+}
+
+.guestbook_entries .unread .container
+{
+	background: url('http://images.hamsterpaj.net/guestbook/gb_unread_entry_fill.png');
+}
+
+.guestbook_entries .unread .top_bg
+{
+	background: url('http://images.hamsterpaj.net/guestbook/gb_unread_entry_top.png') no-repeat;
+}
+
+.guestbook_entries .unread .bottom_bg
+{
+	background: url('http://images.hamsterpaj.net/guestbook/gb_unread_entry_bottom.png') no-repeat left bottom;
+}
+*/
+
+.guestbook_entries .gb_form
+{
+	display: none;
+}
+
+.guestbook_entries .gb_form textarea
+{
+	width: 552px;
+	font-family: verdana, arial, serif;
+	font-size: 11px;
+	padding: 3px;
+}
+
+.gb_form textarea
+{
+	width: 623px;
+	font-family: verdana, arial, serif;
+	font-size: 11px;
+	padding: 3px;
+	margin-top: 5px;
+	margin-bottom: 3px;
+}
+
+#guestbook_zero_unread
+{
+	float: right;
+	clear: none;
+	margin: 5px 0px 0px 3px;
+
+}
+
+#guestbook_remove_all
+{
+	float: right;
+	clear: right;
+	margin: 5px 0px 0px 4px;
+
+}
+
+.guestbook_anti_p12_sign
+{
+	float: left;
+	margin-right: 10px;
+}
+
+.guestbook_anti_p12_header
+{
+	margin-top: 0;
+}

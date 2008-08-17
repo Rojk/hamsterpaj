@@ -1,0 +1,121 @@
+#profile_presentation_change_form
+{
+	margin: 0px;
+	padding: 5px 0 0 0;
+}
+
+#profile_presentation_change_markup_controls
+{
+	margin: 10px 0px 0px 0px;
+}
+
+#profile_presentation_change_form textarea
+{
+	border: 0px none;
+	padding: 0;
+	margin: 5px 0px 5px 0px;
+	width: 624px;
+	height: 500px;	
+	overflow-y: scroll;
+	border: 1px solid #D6D9DB;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#profile_presentation_change_save, #profile_presentation_change_preview_button
+{
+	float: right;
+	margin: 0px 0px 0px 2px;
+}
+
+#profile_presentation_change_bold_control
+{
+	font-weight: bold;
+}
+
+#profile_presentation_change_italic_control
+{
+	font-style: italic;
+}
+
+#profile_presentation_change_markup_properties
+{
+	display: none;
+}
+
+#profile_presentation_change_markup_properties_save
+{
+	display: none;
+}
+#theme_preview
+{
+	padding-top: 1px;
+}
+
+/* Markup properties */
+#profile_presentation_change_markup_properties_image img
+{
+	margin: 5px 30px 5px 0px;
+	border: 1px solid #333;
+	cursor: pointer;
+	float: left;
+}
+
+#profile_presentation_change_markup_properties_poll
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+#profile_presentation_change_markup_properties_poll li
+{
+	cursor: pointer;
+	list-style-type: none;
+	margin: 2px 0px 2px 0px;
+	font-weight: bold;
+}
+#flags_customize
+{
+	
+}	
+
+#flags_customize_navigation
+{
+	padding: 4px 0 0 0;
+	margin: 0px;
+}
+
+#flags_customize_navigation li
+{
+	margin: 0 0px 0 10px;
+	padding: 3px;
+	background: #DCE8F4;
+	cursor: pointer;
+	list-style: none;
+	display: block;	
+	float: left;
+	border: 1px solid #D6D9DB;
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+}
+
+.flags_customize_category
+{
+	display: none;
+	background: #DCE8F4;	
+	padding: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+#flags_customize fieldset
+{	
+	border: 1px solid #D6D9DB;
+}
+#flags_customize fieldset ul li
+{
+	list-style: none;
+}
+#flags_form_politics
+{
+	display: block;
+}

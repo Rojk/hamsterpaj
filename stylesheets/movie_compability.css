@@ -1,0 +1,192 @@
+#movie_compability_review_list
+{
+
+}
+
+#movie_compability_review_list .movie
+{
+	border-bottom: 1px solid #ababab;
+	height: 80px;
+	margin-bottom: 5px;
+}
+
+.movie_compability_vote_not_seen
+{
+	clear: both;
+	float: none;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.movie_compability_vote_not_seen input
+{
+	float: left;
+}
+
+#movie_compability_review_list .movie h3
+{
+	font-weight: bold;
+	margin: 0px;
+	padding: 0px;
+}
+
+#movie_compability_review_list .movie p
+{
+	margin: 3px;
+	width: 450px;
+}
+
+#movie_compability_review_list .movie img
+{
+	float: left;
+	margin: 2px;
+	margin-right: 3px;
+	border: 1px solid #ababab;
+}
+
+#movie_compability_review_list .movie .scoring
+{
+	padding: 5px;
+	text-align: center;
+	background: #eceff2;
+	float: right;
+}
+
+#movie_compability_review_list .movie .scoring div
+{
+	float: left;
+	text-align: center;
+	margin-right: 3px;
+}
+
+#movie_compability_review_list .movie .scoring label
+{
+	display: block;
+}
+
+.bars .bar_1, .bars .bar_2, .bars .bar_3, .bars .bar_4, .bars .bar_5
+{
+	height: 16px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	border: 1px solid #999999;
+	border-right: 1px solid #676767;
+	border-bottom: 1px solid #676767;
+}
+
+.bars .bar_1
+{
+	background: orange url('http://images.hamsterpaj.net/movie_compability/orange_background_fade.png');
+}
+
+.bars .bar_2
+{
+	background: #ababab url('http://images.hamsterpaj.net/movie_compability/grey_background_fade.png');
+}
+
+.bars .bar_3
+{
+	background: #dce1ee url('http://images.hamsterpaj.net/movie_compability/blue_background_fade.png');
+}
+
+.bars .bar_4
+{
+	background: white url('http://images.hamsterpaj.net/movie_compability/green_background_fade.png');
+}
+
+.bars .bar_5
+{
+	background: red url('http://images.hamsterpaj.net/movie_compability/red_background_fade.png');
+}
+
+.bars .person
+{
+	float: left;
+	margin: 3px;
+}
+
+.bars .movie_count
+{
+	float: right;
+	margin: 3px;
+}
+
+.bars .score
+{
+	display: block;
+	float: left;
+	font-size: 10px;
+	clear: left;
+	background: url('http://images.hamsterpaj.net/movie_compability/score_square_bg.png');
+	padding: 2px;
+	height: 13px;
+	width: 15px;
+	margin: 2px;
+	text-align: center;
+}
+
+#movie_compare_categories .bars
+{
+	float: left;
+	padding: 3px;
+	width: 98px;
+}
+
+#movie_compare_score_spread .bars, #movie_compare_most_popular .bars, #movie_compare_most_unpopular .bars
+{
+	float: left;
+	padding: 3px;
+	width: 150px;
+}
+
+#movie_compare_most_popular
+{
+	float: left;
+}
+
+#movie_compability_not_seen_list ul
+{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+#movie_compability_not_seen_list ul li
+{
+	cursor: pointer;
+}
+
+#movie_compability_not_seen_list .movie p
+{
+	margin: 3px;
+	width: 450px;
+}
+
+#movie_compability_not_seen_list .movie img
+{
+	float: left;
+	margin: 2px;
+	margin-right: 3px;
+	border: 1px solid #ababab;
+}
+
+#movie_compability_not_seen_list .movie
+{
+	border-bottom: 1px solid #ababab;
+	height: 80px;
+	margin-bottom: 5px;
+	display: none;
+}
+
+.movie_compability_link
+{
+	padding: 10px;
+	border: 1px solid #b2e4ba;
+	
+	background: #ecf8ee;
+}
+
+#movie_compability_test_link
+{
+	padding: 10px;
+}

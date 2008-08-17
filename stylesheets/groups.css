@@ -1,0 +1,89 @@
+.listgroups .group_thumbnail 
+{
+	width: 180px;
+	height: 50px;
+	float: left;
+	border: 1px solid;
+	margin: 8px;
+	-moz-border-radius: 5px;
+	padding: 5px;
+	background: #fff;
+}
+
+h2
+{
+	margin: 0;
+}
+
+.group_entries
+{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.group_entries li
+{
+	margin-top: 15px;
+}
+
+.group_entries li .timestamp
+{
+	float: right;
+}
+
+.group_entries a
+{
+	border: none;
+	color: black;
+}
+
+.group_entries li .unanswered, .group_entries li .private
+{
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.group_entries .user_avatar
+{
+	width: 50px;
+	height: 67px;
+	float: left;
+	clear: left;
+}
+
+.group_entries .container
+{
+	background: url('http://images.hamsterpaj.net/groups/group_entry_fill.png');
+	margin-left: 48px;
+	width: 590px;
+}
+
+.group_entries .top_bg
+{
+	background: url('http://images.hamsterpaj.net/groups/group_entry_top.png') no-repeat;
+	padding-top: 3px;
+}
+
+.group_entries .bottom_bg
+{
+	padding-bottom: 3px;
+	padding-left: 20px;
+	padding-right: 3px;
+	background: url('http://images.hamsterpaj.net/groups/group_entry_bottom.png') no-repeat left bottom;
+}
+
+.group_entries .unread .container
+{
+	background: url('http://images.hamsterpaj.net/groups/group_unread_entry_fill.png');
+}
+
+.group_entries .unread .top_bg
+{
+	background: url('http://images.hamsterpaj.net/groups/group_unread_entry_top.png') no-repeat;
+}
+
+.group_entries .unread .bottom_bg
+{
+	background: url('http://images.hamsterpaj.net/groups/group_unread_entry_bottom.png') no-repeat left bottom;
+}

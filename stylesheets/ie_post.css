@@ -1,0 +1,25 @@
+.post
+{
+	clear: both;
+}
+
+.post .head
+{
+	border: 1px solid black;
+}
+
+.post .author_pane
+{
+	width: 80px;
+	float: left;
+}
+
+.post .content
+{
+
+}
+
+.post .controls
+{
+	clear: both;
+}

@@ -1,0 +1,32 @@
+.joar_div
+{
+	font: Verdana, sans-serif;
+	background: url(http://images.hamsterpaj.net/mattan/mattan_rounded_corners3.png);
+	height: 124px;
+	width: 618px;
+	padding: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.joar_div .mattan_img img
+{
+	margin: 5px;
+	height: 114px;
+	float: left;
+}
+.joar_div .mattan_img
+{
+	float: left;
+}
+.joar_div .mattan_text
+{
+	height: 124px;
+	margin: 3px;
+}
+.joar_div .mattan_rubrik
+{
+	font-weight: bold;
+	font-size: 16px;
+}

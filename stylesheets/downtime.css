@@ -1,0 +1,34 @@
+body
+{
+	background: #6391b3;
+	margin: 0px;
+	font-family: verdana, arial, "ms trebuchet", sans-serif;
+	color: #454545;
+	font-size: 11px;
+	text-align: center;
+}
+
+#content
+{
+	padding: 50px;
+	border: 1px solid #565656;
+	background: white;
+	margin: 50px auto auto;
+	text-align: left;
+	width: 500px;
+}
+
+#steve
+{
+	position: absolute;
+	top: 30px;
+	cursor: pointer;
+	margin: 0px;
+	border: none;
+}
+
+img
+{
+	margin: 10px;
+	border: 1px solid #565656;
+}

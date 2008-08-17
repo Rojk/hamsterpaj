@@ -1,0 +1,15 @@
+#source_code
+{
+	display: none;
+	cursor: pointer;
+}
+
+#source_code_header
+{
+	cursor: pointer;
+}
+
+dt
+{
+	margin-left: 10px;
+}

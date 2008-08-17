@@ -1,0 +1,44 @@
+.admin_log
+{
+	border-spacing: 5px;
+}
+
+.admin_log td
+{
+}
+
+.admin_log input
+{
+	width: 96%;
+}
+
+.admin_log .event
+{
+	width: 130px;
+}
+
+.admin_log .comment
+{
+	width: 150px;
+}
+
+.admin_log .time
+{
+	width: 105px;
+}
+
+.admin_log .admin
+{
+	width: 80px;
+}
+
+.admin_log .user
+{
+	width: 80px;
+}
+
+.admin_log .item
+{
+	width: 40px;
+}
+

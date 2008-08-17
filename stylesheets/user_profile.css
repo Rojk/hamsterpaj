@@ -1,0 +1,149 @@
+.profile_head
+{
+	margin-top: 5px;
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_1/profile_head_bg.png') no-repeat;
+	padding: 12px;
+	height: 161px;
+	overflow: hidden;
+	clear: left;
+}
+
+.profile_head .avatar_passepartout
+{
+	border: 1px solid #ababab;
+	padding: 10px;
+	float: left;
+	background: white;
+	margin-right: 10px;
+	margin-bottom: 8px;
+}
+
+.profile_head .name_asl
+{
+	font-size: 17px;
+	padding: 3px 0 3px 0;
+}
+
+.profile_head .name_asl .online
+{
+	color: green;
+	text-align: right;
+}
+
+.profile_head .user_status
+{
+	font-style: italic;
+	margin: 0px;
+	padding: 0px;
+	line-height: 20px;
+	overflow: hidden;
+}
+
+.profile_head .user_action_log
+{
+	list-style-type: none;
+}
+
+.profile_head .navigation
+{
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+.profile_head .navigation ul
+{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.profile_head .navigation ul li
+{
+	margin: 6px 0 0 0;
+	padding: 0px;
+	float: left;
+	display: block;
+	width: 150px;
+}
+
+.profile_head .navigation a
+{
+	border: none;
+}
+
+.profile_head .user_status
+{
+	height: 20px;
+}
+
+#user_flags img
+{
+	cursor: pointer;
+}
+
+#profile_change_presentation
+{
+	float: right;
+	clear: both;
+}
+
+.profile_presentation_text h2, .profile_presentation_text h3, .profile_presentation_text h4
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.profile_presentation_text h2
+{
+	font-size: 25px;
+}
+
+.profile_presentation_text h3
+{
+	font-size: 20px;
+}
+
+.profile_presentation_text h4
+{
+	font-size: 15px;
+	font-weight: bold;
+}
+
+/* Presentation elements */
+.profile_presentation_my_friends
+{
+	border: 1px solid #333;
+}
+
+.profile_presentation_my_friends .friends_column
+{
+	width: 190px;
+	float: left;
+}
+
+.profile_presentation_my_friends .friends_column h2
+{
+	font-size: 18px;
+	border-bottom: 1px solid #333;
+}
+
+.profile_presentation_my_friends .friends_column ul
+{
+	margin: 5px;
+	padding: 0px;
+}
+
+.profile_presentation_my_friends .friends_column ul li
+{
+	list-style-type: none;
+	margin: 3px 0px 3px 0px;
+	padding: 0px;
+}
+
+/* Start friendship with user-button */
+.profile_presentation_my_friends button
+{
+	float: right;
+	margin: 4px 2px 0px 0px;
+}

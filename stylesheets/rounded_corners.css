@@ -1,0 +1,208 @@
+.rounded_corners
+{
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+
+.rounded_corners_red_alert_deluxe_full, .rounded_corners_blue_full, .rounded_corners_blue_deluxe_full, .rounded_corners_white_full, .rounded_corners_orange_full, .rounded_corners_orange_deluxe_full, .rounded_corners_green_full, .rounded_corners_red_full
+{
+	width: 626px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.rounded_corners_blue_full
+{
+	border-left: 1px solid #d6d9db;
+	border-right: 1px solid #d6d9db;
+	background: #eceff2;
+}
+
+.rounded_corners_blue_deluxe_full
+{
+	border-left: 1px solid #9e9e9f;
+	border-right: 1px solid #9e9e9f;
+	background: #e3e8ec;
+	width: 626px;
+}
+
+.rounded_corners_red_alert_deluxe_full
+{
+	background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/red_alert_deluxe_full_middle.png');
+	color: #000;
+	width: 628px;
+	padding: 0 5px 0 5px;
+}
+
+
+.rounded_corners_white_full
+{
+	border-left: 1px solid #d6d9db;
+	border-right: 1px solid #d6d9db;
+	background: white;
+}
+
+.rounded_corners_orange_full
+{
+	border-left: 1px solid #b6aea2;
+	border-right: 1px solid #b6aea2;
+	background: #f9cc88;
+}
+
+.rounded_corners_orange_deluxe_full
+{
+	background: #f9cc88 url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/orange_deluxe_full_middle.png');
+}
+
+.rounded_corners_green_full
+{
+	border-left: 1px solid #91be8d;
+	border-right: 1px solid #91be8d;
+	background: #bfe4bc;
+}
+
+.rounded_corners_red_full
+{
+	border-left: 1px solid #c7928b;
+	border-right: 1px solid #c7928b;
+	background: #f1cfc9;
+}
+.rounded_corners_red_alert_full
+{
+	border-left: 1px solid #c7928b;
+	border-right: 1px solid #c7928b;
+	background: #ffcfc9;
+}
+
+.rounded_corners_top_image, .rounded_corners_bottom_image
+{
+	display: block;
+	margin: 0px;
+}
+
+/* red_full */
+	.rounded_corners_beta_red_full .bottom
+	{
+		background-image: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/red_full_bottom.png') non-repeat bottom;
+	}
+	.rounded_corners_beta_red_full .top
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/red_full_top.png') non-repeat top;
+	}
+	.rounded_corners_beta_red_full .repeat
+	{
+		border-left: 1px solid #c7928b;
+		border-right: 1px solid #c7928b;
+		background: #f1cfc9;
+		width: 637px;
+	}
+
+/* Red_alert_deluxe_full */
+	.rounded_corners_beta_red_alert_deluxe_full .bottom
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/red_alert_deluxe_full_bottom.png') non-repeat bottom;
+	}
+	.rounded_corners_beta_red_alert_deluxe_full .top
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/red_alert_deluxe_full_top.png') non-repeat top;
+	}
+	.rounded_corners_beta_red_alert_deluxe_full .content
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/red_alert_deluxe_full_middle.png') repeat;
+	}
+
+/* Blue_full */
+	.rounded_corners_beta_blue_full .bottom
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/blue_full_bottom.png') non-repeat bottom;
+	}
+	.rounded_corners_beta_blue_full .top
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/blue_full_top.png') non-repeat top;
+	}
+	.rounded_corners_beta_blue_full .repeat
+	{
+		border-left: 1px solid #d6d9db;
+		border-right: 1px solid #d6d9db;
+		background: #eceff2;
+		width: 626px;
+	}
+
+/* Blue_deluxe_full */
+	.rounded_corners_beta_blue_deluxe_full .bottom
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/blue_deluxe_full_bottom.png') non-repeat bottom;
+	}
+	.rounded_corners_beta_blue_deluxe_full .top
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/blue_deluxe_full_top.png') non-repeat top;
+	}
+	.rounded_corners_beta_blue_deluxe_full .repeat
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/blue_deluxe_full_middle.png') non-repeat bottom;
+	}
+
+/* White_full */
+	.rounded_corners_beta_white_full .bottom
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/white_full_bottom.png') non-repeat bottom;
+	}
+	.rounded_corners_beta_white_full .top
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/white_full_top.png') non-repeat top;
+	}
+	.rounded_corners_beta_white_full .repeat
+	{
+		border-left: 1px solid #d6d9db;
+		border-right: 1px solid #d6d9db;
+		background: white;
+		width: 636px;
+	}
+
+/* orange_full */
+	.rounded_corners_beta_orange .bottom
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/orange_full_bottom.png') non-repeat bottom;
+	}
+	.rounded_corners_beta_orange .top
+	{
+		background: transparent url(http://images.hamsterpaj.net/profile_themes/lef_91_blueflower/rounded_corners_top.png) no-repeat scroll center top;
+	}
+	.rounded_corners_beta_orange .repeat
+	{
+		border-left: 1px solid #b6aea2;
+		border-right: 1px solid #b6aea2;
+		background: #f9cc88;
+		width: 636px;
+	}
+
+/* orange_deluxe_full */
+	.rounded_corners_beta_orange_deluxe .content
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/orange_deluxe_full_bottom.png') non-repeat bottom;
+	}
+	.rounded_corners_beta_orange_deluxe .top
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/orange_deluxe_full_top.png') non-repeat top;
+	}
+	.rounded_corners_beta_orange_deluxe
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/orange_deluxe_full_middle.png') non-repeat bottom;
+	}
+
+/* green_full */
+	.rounded_corners_beta_green_full .bottom
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/green_full_bottom.png') non-repeat bottom;
+	}
+	.rounded_corners_beta_green_full .top
+	{
+		background: url('http://images.hamsterpaj.net/css_backgrounds/rounded_corners/green_full_top.png') non-repeat top;
+	}
+	.rounded_corners_beta_green_full .repeat
+	{
+		border-left: 1px solid #91be8d;
+		border-right: 1px solid #91be8d;
+		background: #bfe4bc;
+		width: 636px;
+	}

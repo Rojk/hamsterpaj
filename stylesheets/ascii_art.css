@@ -1,0 +1,79 @@
+.ascii_art_div
+{
+	background:#2C3034;
+	color: #79A1CA;//#ADBDCD;
+	margin: 20px;
+	border-top: 3px solid #71777D;
+	border-bottom: 1px solid #71777D;
+	padding: 20px
+}
+
+.ascii_art_div pre
+{
+	margin: 0px;
+}
+
+.ascii_art_div .resources
+{
+	margin: 0px auto 0px auto;
+	background: url(http://images.hamsterpaj.net/ascii_art/resources_bg.png);
+	width: 577px;
+	height: 46px;
+	overflow: hidden;
+}
+
+.ascii_art_div .resources h2
+{
+	color: #79A1CA;
+	font-wight: bold;
+	margin: 10px 0px 0px 20px;
+	float: left;
+}
+
+.ascii_art_div .resources a
+{
+	border: 0px none;
+	color: #79A1CA;
+	margin: 15px 0px 0px 10px;
+	float: left;
+}
+
+.ascii_art_direct_link_input
+{
+	display: none;
+	float: left;
+	height: 14px;
+	width: 200px;
+	margin: 12px 0px 0px 10px;
+	color: #fff;
+	background: transparent;
+	border: 0px none;
+}
+
+.ascii_art_vote
+{
+	width: 100px;
+	height: 15px;
+	margin: 15px 20px 0px 0px;
+	overflow: hidden;
+	background: url(http://images.hamsterpaj.net/ascii_art/vote_pies.png);
+	cursor: pointer;
+	float: right;
+}
+
+.ascii_art_next, .ascii_art_previous
+{
+	font-size: 20px;
+}
+
+.ascii_art_previous
+{
+	float: left;
+	margin-left: 25px;
+}
+
+.ascii_art_next
+{
+	float: right;
+	margin-right: 25px;
+}

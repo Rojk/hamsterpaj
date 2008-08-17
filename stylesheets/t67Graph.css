@@ -1,0 +1,57 @@
+.t67Graph_line
+{
+	margin: 10px;
+	border: 1px solid #e0e0e0;
+	padding: 0px;
+	background: url('/images/t67/graph/line/bar_area_background.png') bottom;
+}
+
+.t67Graph_line h2
+{
+	background: #565656;
+	font-size: 14px;
+	line-height: 18px;
+	height: 18px;
+	color: white;
+	margin: 0px;
+	padding: 2px;
+	padding-left: 4px;
+}
+
+.t65Graph_line_y_labels
+{
+	float: left;
+	position: relative;
+}
+
+.t65Graph_line_y_label
+{
+	font-size: 10px;
+	left: 2px;
+	position: absolute;
+}
+
+.t65Graph_line_bars
+{
+	float: left;
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+}
+
+.t65Graph_line_bars li
+{
+	width: 5px;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	bottom: 0px;
+	background: #8fa739;
+	list-style-type: none;
+}
+
+.t65Graph_line_bars li:hover
+{
+	background: #c8fe1e;
+	cursor: pointer;
+}

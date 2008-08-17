@@ -1,0 +1,20 @@
+.profile_entrero_mintyhax .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/entrero_mintyhax/profile_head_bg.png');
+}
+
+.profile_entrero_mintyhax .profile_head .avatar_passepartout 
+{
+	padding: 0;
+	margin: 2px 30px 30px 7px;
+}
+
+.profile_entrero_mintyhax .profile_head .user_status
+{
+	margin-top: 5px;
+}
+
+.profile_entrero_mintyhax .profile_head .user_action_log
+{
+	margin-top: 11px;
+}

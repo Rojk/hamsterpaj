@@ -1,0 +1,104 @@
+.fp_module
+{
+	padding-bottom: 10px;
+	width: 305px;
+}
+
+#fp_panel_left
+{
+	width: 315px;
+	float: left; 
+	clear: left;
+}
+
+#fp_panel_right
+{
+	width: 315px;
+	float: right;
+}
+
+#fp_panel_left h2, #fp_panel_right h2
+{
+	margin: 0px;
+	color: #000;
+	font-size: 12px;
+	font-family: "trebuchet ms", verdana, arial, helvetica, sans-serif;
+	font-weight: normal; 
+	background: #d3d3d3;
+	margin-bottom: 5px; 
+	padding: 3px;
+	width: 100%; 
+}
+
+#age_limit
+{
+	padding: 3px;
+	margin-bottom: 3px;
+	background: url('http://images.hamsterpaj.net/login_bar/background.png');
+	border: 1px solid #565656;
+}
+
+#age_limit h3
+{
+	font-weight: bold;
+	font-size: 12px;
+}
+
+#age_limit img
+{
+	margin-right: 3px;
+	float: left;
+}
+
+#age_limit p
+{
+	font-size: 11px;
+	margin: 0px;
+}
+
+#skylt
+{
+	float: left;
+}
+
+#fp_amuse_puff
+{
+	border: 1px solid #565656;
+	height: 100px;
+	background: url('http://images.hamsterpaj.net/fp_amuse_item_bg.png')
+}
+
+#fp_amuse_puff h2
+{
+	margin: 2px;
+}
+
+.fp_amuse_item
+{
+	width: 200px;
+	margin: 2px;
+	padding: 2px;
+	height: 60px;
+	float: left;
+	border: 1px solid #565656;
+	background: #d2e1ea;
+}
+
+.fp_amuse_item img
+{
+	float: left;
+	margin-right: 2px;
+}
+
+.fp_amuse_item h5
+{
+	margin: 0px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.fp_amuse_item p
+{
+	font-size: 10px;
+	margin: 0px;
+}

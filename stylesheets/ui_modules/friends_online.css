@@ -1,0 +1,16 @@
+#ui_module_friends_online ul {
+  margin: 0;
+  padding-left: 8px;
+}
+
+#ui_module_friends_online li 
+{
+  list-style: none;
+  font-size: 8pt;
+  margin-top: 5px;
+}
+
+#ui_module_friends_online p
+{
+  margin-bottom: 0;
+}

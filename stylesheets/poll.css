@@ -1,0 +1,110 @@
+.poll_container
+{
+	border: 1px solid #dfdfdf;
+	padding: 5px;
+	background: white;
+	min-height: 210px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.poll_container .graph_area
+{
+	float: left;
+	width: 200px;
+}
+
+.poll_container form
+{
+	float: left;
+	width: 280px;
+}
+
+.poll_container p
+{
+	margin: 0px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+.poll_container form ul
+{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+	line-height: 20px;
+}
+
+.poll_container form ul li
+{
+	height: 25px;
+}
+
+.poll_color_index
+{
+	float: left;
+	padding: 3px;
+	margin-right: 3px;
+}
+
+.poll_container form ul li input
+{
+	display: block;
+	margin: 0px;
+	padding: 0px;
+}
+
+/* Poll creation form */
+.poll_create_form
+{
+	clear: both;
+}
+
+.poll_create_form .column_1
+{
+	float: left;
+	width: 300px;
+}
+
+.poll_create_form .column_2
+{
+	float: left;
+}
+
+.poll_create_form h5
+{
+	margin-bottom: 0px;
+	font-size: 14px;
+}
+
+.poll_create_form ol li
+{
+	margin-bottom: 5px;
+}
+
+.poll_create_form .text_input
+{
+	width: 250px;
+}
+
+.poll_create_form ol li .text_input
+{
+	width: 210px;
+}
+
+.poll_create_form #poll_release_control
+{
+	display: none;
+}
+
+.poll_list li
+{
+	margin-bottom: 10px;
+}
+
+.poll_embed_code
+{
+	width: 610px;
+	padding: 10px;
+	font-size: 11px;
+}

@@ -1,0 +1,131 @@
+<?php
+		require('../include/core/common.php');
+    /* OPEN_SOURCE */
+
+		open_source_top();
+
+		$files[] = 'index.php';
+    $files[] = 'open_source/readfile.php';
+    $files[] = 'open_source/index.php';
+    $files[] = 'open_source/standard.php';
+    $files[] = 'diskussionsforum/index.php';
+    $files[] = 'hamsterpaj/nytt.php';
+    $files[] = 'include/libraries/discussion_forum.lib.php';
+    $files[] = 'include/libraries/photos.lib.php';
+    $files[] = 'include/ui-functions.php';
+    $files[] = 'include/shared-functions.php';
+    $files[] = 'include/libraries/profile.lib.php';
+    $files[] = 'traffa/profile.php';
+    $files[] = 'traffa/photos.php';
+        
+    sort($files);
+    
+    echo '<h2>Koda själv</h2>' . "\n";
+    echo '<h3>Släppta koder</h3>' . "\n";
+    
+    echo '<ul>' . "\n";
+    foreach($files AS $file)
+    {
+        echo '<li><a href="/open_source/readfile.php?file=' . $file . '">' . $file . '</a> <a href="/open_source/readfile.php?download&file=' . $file . '">[DL]</a></li>' . "\n";
+    }
+    echo '</ul>' . "\n";
+
+		echo '<br />' . "\n";
+
+		echo '<h3>Databas</h3>' . "\n";
+		echo '<p>' . "\n";
+		echo '<a href="http://217.118.208.249/phpmyadmin/">http://217.118.208.249/phpmyadmin/</a><br />' . "\n";
+		echo 'Användare: hp_structure<br />' . "\n";
+		echo 'Inget lösenord krävs' . "\n";
+		echo '</p>' . "\n";
+		
+		echo '<br />' . "\n";
+		
+		echo '<h3>När du är klar</h3>' . "\n";
+		echo '<p>' . "\n";
+		echo 'När du pillat färdigt lägger du upp koden i <a href="/diskussionsforum/hamsterpaj/open_source/">Open Source-forumet</a>.' . "\n";
+		echo '</p>' . "\n";
+	
+		open_source_bottom();
+    
+    function open_source_top($options)
+    {
+      global $SIDE_MODULES;
+
+      $options['title'] = (isset($options['title'])) ? $options['title'] : 'Open Source - Hamsterpaj.net';
+      
+      $options['stylesheets'][] = 'open_source.css';
+      $options['stylesheets'][] = 'modules.css';
+      
+      $options['javascripts'][] = 'open_source.js';
+      $options['javascripts'][] = 'scripts.js';
+      $options['javascripts'][] = 'steve.js';
+      array_unshift($options['javascripts'], 'womlib.js');
+
+      echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' . "\n";
+      echo '<html xmlns="http://www.w3.org/1999/xhtml">' . "\n";
+      echo '<head>' . "\n";
+      echo '<meta name="description" content="' . $options['meta_description'] . '" />' . "\n";
+      echo '<meta name="keywords" content="' . $options['meta_keywords'] . '" />' . "\n";
+      echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' . "\n";
+      echo '<title>' . $options['title'] . '</title>' . "\n";
+      echo '<link rel="icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />' . "\n";
+      echo '<link rel="shortcut icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />' . "\n";
+
+		  echo '<style type="text/css">' . "\n";
+      foreach($options['stylesheets'] AS $stylesheet)
+      {
+          echo '@import url(\'/stylesheets/' . $stylesheet . '?version=' . filemtime(PATHS_WEBROOT . 'stylesheets/' . $stylesheet) . '\');' . "\n";
+      }
+      echo '</style>' . "\n";
+
+      foreach($options['javascripts'] AS $javascript)
+      {
+          echo '<script type="text/javascript" language="javascript" ';
+          echo 'src="/javascripts/' . $javascript . '?version=' . filemtime(PATHS_WEBROOT . 'javascripts/' . $javascript) . '"></script>' . "\n";
+      }
+      
+      echo '</head>' . "\n";
+			echo '<body>';
+
+      echo '<div id="hamsterpaj_website">' . "\n";
+      
+      echo '<img src="http://images.hamsterpaj.net/open_source/site_top_rounded_corners.png" id="site_top_rounded_corners" />' . "\n";
+			echo '<div id="site_container">' . "\n";
+
+      echo '<div id="main">' . "\n";
+      
+      echo '<div id="top">' . "\n";      
+      echo '<a href="/"><img src="http://images.hamsterpaj.net/ui/logo.png" id="logo" /></a>' . "\n";
+      
+			echo '<img src="http://images.hamsterpaj.net/steve/steve.gif" id="steve" />' . "\n";
+      echo '<h1>Open Source</h1>' . "\n";
+    
+      echo '&nbsp;<a href="/index.php">&laquo; Tillbaka till Hamsterpaj</a>.' . "\n";
+      echo '<br style="clear: both;" />' . "\n";
+      echo '</div>' ."\n";
+    	        
+    	echo '<div id="middle">' . "\n";
+		}
+
+    function open_source_bottom()
+    {
+        global $SIDE_MODULES;
+        echo '<br style="clear: both;" />' . "\n";
+
+        echo '</div>' . "\n"; // Close site_frame border
+        echo '</div>' . "\n";
+
+        echo '</div>' . "\n";
+        
+        echo '<div id="main_right">' . "\n";
+        echo ui_render_right_module(array('handle' => 'open_source_forum_threads', 'heading' => 'Open Source-forumet'));
+        echo '</div>' . "\n";        
+
+
+        echo '</div>' . "\n"; // Close site_container
+        echo '<img src="http://images.hamsterpaj.net/open_source/site_bottom_rounded_corners.png" id="site_bottom_rounded_corners" />' . "\n";
+        
+        echo '</div>' . "\n"; // Close hamsterpaj_website
+    }
+?>

@@ -1,0 +1,37 @@
+.rank_input_header
+{
+	width: 135px;
+	float: left;
+}
+
+.rank_input_container
+{
+	float: left;
+}
+
+.rank_input
+{
+	float: left;
+	width: 132px;
+	height: 20px;
+	background: no-repeat url(http://images.hamsterpaj.net/common_icons/stars/star_collection.png);
+	cursor: pointer;
+}
+
+.rank_input_part
+{
+	float: left;
+	width: 11px;
+	height: 20px;
+}
+
+#rank_input_part_0
+{
+	width: 22px;
+}
+
+#rank_input_message
+{
+	display: none;
+	color: red;
+}

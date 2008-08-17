@@ -1,0 +1,273 @@
+.filter_settings
+{
+	border-top: 1px solid #ababab;
+	padding: 3px;
+	margin-top: 3px;
+}
+
+.filter_settings h3
+{
+	margin: -3px;
+	margin-bottom: 3px;
+	padding: 3px;
+}
+
+.filter_settings form
+{
+}
+
+.discussion_list
+{
+	border: 1px solid #ababab;
+	padding: 5px;
+}
+
+.discussion_list .headers
+{
+	font-weight: bold;
+}
+
+.discussion_list .headers span
+{
+	display: block;
+	float: left;
+}
+
+.discussion_list .headers .title
+{
+	width: 360px;
+}
+
+.discussion_list .headers .answers
+{
+	width: 50px;
+}
+
+.discussion_list .headers .unread
+{
+	width: 52px;
+}
+
+.discussion_list .headers .author
+{
+	width: 60px;
+}
+
+.discussion_list .expander_button
+{
+	float: right;
+	clear: right;
+}
+
+.discussion_list .discussions
+{
+	height: 140px;
+	width: 100%;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+.discussion_list .discussions .discussion
+{
+	padding: 3px;
+	border: 1px solid white;
+}
+
+.discussion_list .discussion:hover
+{
+	background: #efefef;
+	border: 1px solid #ababab;
+}
+
+.discussion_list .discussion_main
+{
+	height: 15px;
+}
+
+.discussion_list .discussion_main .expand_control
+{
+	float: left;
+	margin-right: 3px;
+	cursor: pointer;
+}
+
+.discussion_list .discussion_main .title
+{
+	float: left;
+	width: 350px;
+}
+
+.discussion_list .discussion_main .title a
+{
+	text-decoration: none;
+}
+
+.discussion_list .discussion_main .answers
+{
+	text-align: right;
+	display: block;
+	width: 35px;
+	float: left;
+}
+
+.discussion_list .discussion_main .unread
+{
+	text-align: right;
+	display: block;
+	width: 45px;
+	font-weight: bold;
+	float: left;
+}
+
+.discussion_list .discussion_main .unread_zero
+{
+	text-align: right;
+	display: block;
+	width: 45px;
+	float: left;
+}
+
+.discussion_list .discussion_main .author
+{
+	display: block;
+	float: left;
+	margin-left: 24px;
+	width: 120px;
+}
+
+.discussion_list .discussion_main .chkbox_remove
+{
+	float: left;
+	display: block;
+	margin-left: 5px;
+}
+
+.discussion_list .discussion_extra
+{
+	display: none;
+	margin-bottom: 5px;
+	padding-left: 20px;
+}
+
+.discussion_list .discussion_extra .time
+{
+	display: block;
+	float: left;
+	width: 135px;
+}
+
+.discussion_list .discussion_extra h5
+{
+	display: inline;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+#discussions_head
+{
+	
+}
+
+#discussions_head .tabs
+{
+	clear: both;
+	height: 22px;
+}
+
+#discussions_head .tabs div
+{
+	float: left;
+	border: 1px solid #ababab;
+	padding: 3px;
+	height: 15px;
+	margin-right: 10px;
+	background: white url('http://images.hamsterpaj.net/ui/submenu_bg.png') repeat-x;
+	cursor: pointer;
+}
+
+#discussions_head .tabs .active
+{
+	height: 16px;
+	border-bottom: none;
+	margin-bottom: -1px;
+	background: white;
+}
+
+
+#discussions_head .tabs div a
+{
+	border-bottom: 0px;
+}
+
+#discussions_head .info_pane
+{
+	display: none;
+}
+
+#discussions_head .info_pane_visible
+{
+	display: block;
+	border: 1px solid #ababab;
+	margin-bottom: 8px;
+	padding: 3px;
+}
+
+
+
+#discussion_head
+{
+	border: 1px solid #ababab;
+	padding: 3px;
+}
+
+#discussion_head.admin
+{
+	cursor: pointer;
+}
+	
+#discussion_head.admin.contracted
+{
+	overflow: hidden;
+	height: 85px;
+}
+
+#discussion_head.admin.expanded
+{
+	overflow: hidden;
+	height: auto;
+}
+
+#discussion_head h1
+{
+	margin: 0px;
+	background: white;
+}
+
+#discussion_admin_message
+{
+	color: red;
+}
+
+#discussions_head .title_short_info
+{
+	font-size: 12px;
+	float: right;
+	clear: both;
+}
+
+#discussion_head.admin.contracted h1
+{
+	background: white url('http://images.hamsterpaj.net/buttons/green_arrow_down_circle.png') top right no-repeat;
+}
+
+#discussion_head.admin.expanded h1
+{
+	background: url('http://images.hamsterpaj.net/buttons/green_arrow_up_circle.png') top right no-repeat;
+}
+
+#discussion_head #expander
+{
+	margin-top: 18px;
+	border-top: 1px solid #ababab;
+}

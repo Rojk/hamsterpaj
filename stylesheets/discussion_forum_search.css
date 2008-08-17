@@ -1,0 +1,32 @@
+// This file is deptrecated, remove it if you can read this line!
+
+#search
+{
+
+}
+	#search .discussionforum_search
+	{
+		width: 500px;
+		height: 20px;
+		float: left;
+		padding: 10px;
+		font-size: 16px;
+		margin-top: 0;
+		-moz-border-radius: 5px;
+		border: 1px solid #aeaeae;
+	}
+	#search .searchbutton
+	{
+		height: 42px;
+		width: 110px;
+		float: right;
+		background-image: url('http://images.hamsterpaj.net/discussion_forum/forum_searchbutton.png');
+		border: none;
+		font-size: 20px;
+		color: #9A9A9A;
+	}
+	#search .searchbutton:hover
+	{
+		background-position: 0px -42px;
+		color: #454545;
+	}

@@ -1,0 +1,257 @@
+/* The view one item */
+/* item display */
+
+h1, h2
+{
+	margin-top: 0px;
+}
+.entertain_player
+{
+	padding: 0px;
+	margin-top: 2px;
+	width: 465px;
+	overflow: hidden;
+}
+.entertain_player object
+{
+	/*
+	margin: 0px;
+	width: 465px;
+	height: 355px;
+	*/
+	margin: 0px;
+	width: 466px;
+	height: 336px;
+}
+
+.game .entertain_player
+{
+	padding: 0px;
+	margin-top: 2px;
+	width: 627px;
+	overflow: hidden;
+}
+
+.game .entertain_player object
+{
+	margin: 0px;
+	width: 627px;
+	height: 470px;
+}
+
+.entertain_item_buttons
+{
+	padding: 3px;
+}
+#entertain_next
+{
+	float: right;
+}
+#entertain_previous
+{
+	float: left;
+}
+
+.entertain_item .entertain_list
+{
+	float: right;
+}
+.entertain_item .entertain_list .entertain_thumbnail
+{
+	float: none;
+}
+.entertain_item .entertain_list h2
+{
+	margin: 0px;
+	margin-left: 10px;
+}
+.entertain_statistics
+{
+	height: 22px;
+	width: 465px;
+}
+
+.game .entertain_statistics
+{
+	width: 627px;
+}
+.entertain_item .entertain_rank
+{
+	float: left;
+}
+.entertain_item .entertain_view_count
+{
+	float: right;
+	padding-top: 7px;
+}
+.entertain_item .entertain_description p
+{
+	margin: 0px;
+}
+.entertain_item .entertain_description 
+{
+	width: 474px;
+	margin-top: 5px;
+}
+.game
+.entertain_item .entertain_description 
+{
+	width: 627px;
+}
+
+/* Start page */
+.entertain_page_info p
+{
+	margin: 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.entertain_page_info img
+{
+	float: left;
+}
+.entertain_page_info h1
+{
+	padding-top: 10px;
+	margin-left: 50px;
+}
+
+/* Search bar */
+.entertain_searchbar ul
+{
+	display: inline;
+	margin: 3px;
+	padding: 0px;
+}
+
+.entertain_searchbar li
+{
+	list-style-type: none;
+	display: inline;
+}
+
+.entertain_searchbar a
+{
+	margin-right: 3px;
+	font-size: 14px;
+	border-bottom: none;
+}
+
+/* Various thumbnails and items in lists */
+.entertain_thumbnail
+{
+	text-align: center;
+	width: 130px;
+	margin: 3px 10px 0px 10px;
+	float: left;
+}
+.entertain_thumbnail a
+{
+	border-bottom: none;
+}
+.entertain_thumbnail h5
+{
+	margin: 5px 0px 0px 0px;
+	font-size: 10px;
+	height: 24px;
+}
+
+/* Various lists */
+.entertain_list
+{
+}
+
+.entertain_list a
+{
+	border: none;
+	font-weight: bold;
+}
+.entertain_list ul
+{
+	float: left;
+	list-style-type: none; 
+}
+.entertain_list_titles
+{
+	float: left;
+	list-style-type: none; 
+}
+.entertain_list_titles h2
+{
+	border-bottom: solid 1px black;
+}
+.list_slot
+{
+	padding: 0px 0px 0px 5px;
+	height: 65px;
+}
+.header_dummy
+{
+	height: 23px;
+	width: 100%;
+}
+
+
+/* list items */
+
+.entertain_full .entertain_full_thumb
+{
+	float: left;
+	width: 130px;
+	height: 100px;
+	_width: 120px;
+	_height: 90px;
+	_border: 1px solid #565656;
+}
+
+.entertain_full .title_and_description
+{
+	float: left;
+	width: 310px;
+	height: 100px;
+	padding-left: 10px;
+}
+
+.entertain_full .statistics
+{
+	float: left;
+	width: 150px;
+	height: 90px;
+	padding-left: 10px;
+}
+
+.entertain_full_footer
+{
+	margin: 0px;
+}
+
+/* Admin sections */
+.admin h2
+{
+	font-size: x-small;
+	font-weight: bold;
+}
+
+/* Search */
+#entertain_search_field
+{
+	
+}
+
+#entertain_search_field h3
+{
+	display: inline;
+}
+
+/* Page navigation */
+.entertain_page_list
+{
+	display: inline;
+}
+
+.entertain_page_list li
+{
+	list-style-type: none;
+	display: inline;
+}
+

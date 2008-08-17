@@ -1,0 +1,160 @@
+#thecontent {
+text-align: center;
+margin: 0;
+padding: 0;
+}
+
+#thecontent a { text-decoration: none; color: #4FB1F5; position: relative; }
+#thecontent a:hover { color: #ACDCFB; background: none; text-decoration: none;}
+
+.menu {
+width: 635px;
+height: 30px;
+list-style: none;
+}
+
+.menu li {
+float: left;
+}
+
+.ilogo {
+margin: 5px 0 0 0;
+width: 635px;
+height: 130px;
+display: block;
+}
+
+.ishout {
+margin: 0 0 0 0;
+width: 635px;
+height: 31px;
+display: block;
+}
+
+.login {
+margin: 0 0 10px 0;
+padding: 20px 0;
+background-image: url(admin/admin.png);
+width: 635px;
+height: 22px;
+color: #FFF;
+text-align: center;
+}
+
+.bubble {
+width: 252px;
+height: 167px;
+position: absolute;
+top: 380px;
+right: 0;
+background-image: url(bubbles.png);
+}
+
+.paper {
+margin: 0 0 10px 0;
+padding: 38px 84px 45px 83px;
+width: 468px;
+height: 60px;
+background-image: url(paper.png);
+}
+
+dt {
+font-family: Arial Narrow, Garamond, sans-serif;
+font-size: 13px;
+color: #000;
+font-weight: bold;
+}
+
+dd {
+font-family: tahoma, verdana, Arial, Arial Narrow, Garamond, sans-serif;
+font-size: 13px;
+color: #111;
+}
+
+.shout {
+margin: 0 0;
+padding: 8px 0;
+width: 635px;
+height: 15px;
+background: #000 url(http://images.hamsterpaj.net/radio/shout.png); color: #FFF;
+font-family: Tahoma, Garamond, sans-serif;
+font-size: 0.8em;
+text-align: center;
+}
+
+.alert {
+color: #F90;
+font-weight: bold;
+}
+
+.center {
+margin: 0 auto;
+text-align: center;
+}
+
+img {
+border: 0;
+}
+
+fieldset {
+border: none;
+position: relative;
+}
+
+.legend {
+position: absolute;
+left: 0;
+}
+
+legend {
+margin: 0;
+padding: 0;
+}
+
+ol {
+list-style:none;
+margin: 0px 20px 10px 20px;
+padding: 0 0 0 0;
+color: #FFF;
+font-size: 12px;
+font-family: Verdana, sans-serif;
+line-height: 1.6;
+}
+
+.left {
+margin: 0px 0px 10px 0px;
+padding: 20px 20px;
+width: 195px;
+height: 220px;
+float: left;
+background: #333 url(left.jpg); color:#FFF;
+font-family: Arial, Garamond, sans-serif;
+font-size: 13px;
+}
+
+.box {
+margin: 10px 0;
+width: 635px;
+}
+
+.object {
+margin: 0 0 10px 0;
+width: 635px;
+text-align: center;
+}
+
+object {
+display: block;
+}
+
+.footer {
+margin: 0 0 10px 0;
+width: 635px;
+}
+
+.menu {
+margin: 0 0;
+padding: 0 0;
+width: 635px;
+height: 29px;
+}

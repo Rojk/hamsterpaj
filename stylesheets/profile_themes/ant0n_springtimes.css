@@ -1,0 +1,21 @@
+.profile_ant0n_springtimes .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/ant0n_springtimes/profile_head_bg.png');
+}
+.profile_ant0n_springtimes .top
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/ant0n_springtimes/rounded_corners_top.png') no-repeat top;
+
+}
+.profile_ant0n_springtimes .repeat
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/ant0n_springtimes/presentation_bg.png');
+}
+.profile_ant0n_springtimes .bottom
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/ant0n_springtimes/rounded_corners_bottom.png') no-repeat bottom;
+}
+.profile_ant0n_springtimes .profile_presentation_text
+{
+	padding: 10px;
+}
