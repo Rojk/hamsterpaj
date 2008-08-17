@@ -26,3 +26,4 @@ include/constants.php
 
 # Backups
 hpback.tar
+open_source/*.zip
