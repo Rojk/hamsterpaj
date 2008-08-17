@@ -1,0 +1,32 @@
+ul.wallpapers_list {
+	margin: 0;
+	padding: 0;
+}
+ul.wallpapers_list li {
+	list-style-type: none;
+	margin-bottom: 1em;
+}
+
+.box_left {
+	float:left;
+	border-right-color: #6e62ff;
+	border-right-width: 1px;
+	border-right-style: solid;
+}
+.box_right {
+	padding-left: 90px;
+}
+ul.no_bullets (
+	margin: 0;
+	padding: 0;
+)
+ul.no_bullets li {
+	list-style-type: none;
+}
+.back_red {
+	background-color: red;
+}
+
+.back_blue {
+	background-color: blue;
+}

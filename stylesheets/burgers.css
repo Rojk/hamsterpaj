@@ -1,0 +1,61 @@
+.burger_correct
+{
+	background: #bfe4bc;
+	border: 1px solid #428a3c;
+	padding: 5px;
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+.burger_incorrect
+{
+	background: #f1c9ca;
+	border: 1px solid #ae3235;
+	padding: 5px;
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+#burger_guess_image
+{
+	border: 1px solid #ababab;
+	float: left;
+	margin-right: 10px;
+}
+
+#hamburger_guessing_pane h3
+{
+	font-weight: bold;
+	padding-top: 5px;
+}
+
+#hamburger_guessing_pane
+{
+
+}
+
+#hamburger_guessing_pane a
+{
+	border: none;
+	margin: 5px;
+	line-height: 20px;
+}
+
+#burger_compare
+{
+	padding-top: 20px;
+}
+
+#burger_compare img
+{
+	border: 1px solid #ababab;
+	margin-left: 10px;
+}
+
+blockqoute
+{
+	display: block;
+	padding-left: 50px;
+	font-family: "times new roman", serif;
+	font-size: 14px;
+}

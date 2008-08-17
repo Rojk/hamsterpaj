@@ -1,0 +1,11 @@
+#user_flags img
+{
+	border: 1px solid #565656;
+	cursor: pointer;
+}
+
+#flag_info .find_others
+{
+	float: right;
+	font-size: 10px;
+}

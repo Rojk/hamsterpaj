@@ -1,0 +1,65 @@
+.survey_container
+{
+
+}
+
+
+.survey_container img
+{
+	float: left;
+}
+
+.survey_container .survey_not_yet_voted li
+{
+	cursor: pointer;
+}
+
+.survey_container .survey_not_yet_voted li:hover
+{
+	font-weight: bold;
+}
+
+.survey_container .survey_not_yet_voted .already_voted
+{
+	display: none;
+	color: blue;
+}
+
+.survey_container ol
+{
+	list-style-type: none;
+}
+
+.survey_container ol li
+{
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
+.survey_container ol li div
+{
+	height: 10px;
+	width: 10px;
+	float: left;
+	margin-right: 5px;
+	border: 1px solid #565656;
+}
+
+#old_surveys ul
+{
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+#old_surveys li
+{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	line-height: 17px;
+}
+
+#old_surveys .date
+{
+	padding-right: 15px;
+}

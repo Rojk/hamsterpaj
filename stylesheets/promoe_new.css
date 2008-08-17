@@ -1,0 +1,126 @@
+#promoe_hype_button, .promoe_already_hyped
+{
+	float: right;	
+}
+
+.promoe_editor
+{
+	border: 1px solid #565656;
+	height: 293px;
+}
+
+.promoe_editor .left
+{
+	float: left;
+	border-right: 1px solid #ababab;
+}
+
+#promoe_paintboard
+{
+	width: 400px;
+	height: 250px;
+	border: 1px solid #565656;
+	margin: 5px;
+	text-align: center;
+	cursor: crosshair;
+}
+
+.pixel
+{
+	width: 10px;
+	height: 10px;
+	float: left;	
+}
+
+
+.promoe_editor .right
+{
+	float: left;
+	width: 223px;
+}
+
+.promoe_save_restart
+{
+	border-top: 1px solid #ababab;
+	height: 20px;
+	padding: 5px;
+}
+
+.promoe_colors
+{
+	border-bottom: 1px solid #ababab;
+	height: 232px;	
+}
+
+.promoe_colors h3
+{
+	margin: 4px;	
+}
+
+.promoe_colors div
+{
+	float: left;
+	height: 10px;
+	width: 10px;
+	border: 1px solid #ababab;
+	margin: 4px;
+	cursor: pointer;
+}
+
+.promoe_colors div:hover
+{
+	border: 2px solid black;
+	width: 8px;
+	height: 8px;	
+}
+
+.promoe_drawing_mode
+{
+	height: 25px;
+	border-bottom: 1px solid #ababab;	
+	line-height: 25px;
+}
+
+.promoe_drawing_mode_pen
+{
+	float: left;
+	width: 50%;	
+}
+
+.promoe_grid_control
+{
+	padding: 5px;
+	height: 20px;	
+}
+
+
+.promoe_thumbs legend
+{
+	font-weight: bold;
+	font-size: 16px;
+	color: black;	
+}
+
+.promoe_thumbs
+{
+	margin-top: 10px;
+	width: 637px;
+	padding: 0px;
+	padding-top: 3px;
+	padding-bottom: 3px;	
+}
+
+.promoe_thumbs div
+{
+	margin-left: 3px;
+	margin-bottom: 3px;
+	float: left;
+	text-align: center;
+	font-size: 10px;
+}
+
+.promoe_thumbs img
+{
+	display: block;
+	border: 1px solid #565656;
+}

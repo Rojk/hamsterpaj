@@ -1,0 +1,76 @@
+#alphabet_list
+{
+	width: 50px;
+	float: left;
+}
+
+#alphabet_list ol
+{
+	list-style-type: none;
+}
+
+#alphabet_list a
+{
+	text-decoration: none;
+}
+
+
+#acronyms
+{
+	height: 450px;
+	overflow: auto;
+}
+
+#acronyms h2
+{
+	font-weight: bold;
+	font-size: 12px;
+	display: inline;
+}
+
+#acronyms h2:after
+{
+	content: ',';
+}
+
+#acronyms h4
+{
+	display: inline;
+	color: #787878;
+}
+
+#acronyms ul
+{
+	list-style-type: none;
+	cursor: pointer;
+}
+
+#acronyms ul li
+{
+	border-bottom: 1px solid #efefef;
+}
+
+#acronyms ul li ul
+{
+	padding-left: 10px;
+}
+
+.contracted ul
+{
+	display: none;
+}
+
+.expanded ul
+{
+	display: block;
+}
+
+.inp_meaning
+{
+	width: 400px;
+}
+
+.txt_explanation
+{
+	width: 400px;
+}

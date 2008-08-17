@@ -1,0 +1,74 @@
+.plump_board
+{
+	font-size: 20px;
+	border-left: 1px solid #565656;
+	border-top: 1px solid #565656;
+	float: left;
+}
+
+.plump_game_info
+{
+	float: right;
+	width: 380px;	
+}
+
+#plump_rules
+{
+	clear: both;
+	border: 1px solid #ababab;
+	padding: 10px;
+}
+
+.plump_error
+{
+	color: black;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.plump_computers_turn
+{
+	border: 1px solid #ababab;
+	background: #efefef;
+	padding: 3px;
+	margin: 5px;
+}
+
+.plump_users_turn
+{
+	border: 1px solid #ababab;	
+	padding: 3px;
+	margin: 5px;
+	background: #fbce8a;	
+}
+
+.plump_score_field
+{
+	border: 1px solid #ababab;	
+	padding: 3px;
+	margin: 5px;
+}
+
+.plump_board td
+{
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	border-right: 1px solid #565656;
+	border-bottom: 1px solid #565656;
+}
+
+.plump_board .vacant:hover
+{
+	background: #dddddd;
+}
+
+.plump_board .vacant a
+{
+	border-bottom: none;
+}
+
+.plump_board .occupied
+{
+	background: #ababab;
+}

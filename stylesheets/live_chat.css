@@ -1,0 +1,9 @@
+@import url('/stylesheets/live_chat/chat.css');
+@import url('/stylesheets/live_chat/scribble_board.css');
+
+.clearboth
+{
+	height: 1px;
+	font-size: 0px;
+	clear: both;
+}

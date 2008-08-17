@@ -1,0 +1,34 @@
+#fun_index .puff
+{
+	border: 1px solid #ababab;
+	margin-bottom: 10px;
+	padding: 5px;
+	background: url('http://images.hamsterpaj.net/login_bar/background.png') repeat-x #fdd495 ;
+}
+
+#fun_index .puff h2
+{
+	background: white;
+	margin: -3px;
+	padding: 3px;
+	margin-bottom: 3px;
+}
+
+#fun_index .puff p
+{
+	margin: 0px;
+}
+
+#fun_index .thumbs
+{
+	float: right;
+	border: 1px solid #ababab;
+	padding: 2px;
+	background: #fdd595;
+}
+
+#snyggve_puff
+{
+	height: 125px;
+	margin-left: 3px;
+}

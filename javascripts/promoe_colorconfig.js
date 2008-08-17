@@ -1,0 +1,395 @@
+var promoe_color_cfg = Array();
+
+/* Hue 0*/
+promoe_color_cfg['00'] = '#403333';
+promoe_color_cfg['01'] = '#402626';
+promoe_color_cfg['02'] = '#401a1a';
+promoe_color_cfg['03'] = '#400d0d';
+promoe_color_cfg['04'] = '#400000';
+promoe_color_cfg['05'] = '#806666';
+promoe_color_cfg['06'] = '#804d4d';
+promoe_color_cfg['07'] = '#803333';
+promoe_color_cfg['08'] = '#801a1a';
+promoe_color_cfg['09'] = '#800000';
+promoe_color_cfg['0a'] = '#bf9999';
+promoe_color_cfg['0b'] = '#bf7373';
+promoe_color_cfg['0c'] = '#bf4d4d';
+promoe_color_cfg['0d'] = '#bf2626';
+promoe_color_cfg['0e'] = '#bf0000';
+promoe_color_cfg['0f'] = '#ffcccc';
+promoe_color_cfg['0g'] = '#ff9999';
+promoe_color_cfg['0h'] = '#ff6666';
+promoe_color_cfg['0i'] = '#ff3333';
+promoe_color_cfg['0j'] = '#ff0000';
+
+/* Hue 0.0625*/
+promoe_color_cfg['0k'] = '#403833';
+promoe_color_cfg['0l'] = '#403026';
+promoe_color_cfg['0m'] = '#40281a';
+promoe_color_cfg['0n'] = '#40200d';
+promoe_color_cfg['0o'] = '#401800';
+promoe_color_cfg['0p'] = '#807066';
+promoe_color_cfg['0q'] = '#80604d';
+promoe_color_cfg['0r'] = '#805033';
+promoe_color_cfg['0s'] = '#80401a';
+promoe_color_cfg['0t'] = '#803000';
+promoe_color_cfg['0u'] = '#bfa799';
+promoe_color_cfg['0v'] = '#bf8f73';
+promoe_color_cfg['0w'] = '#bf784d';
+promoe_color_cfg['0x'] = '#bf6026';
+promoe_color_cfg['0y'] = '#bf4800';
+promoe_color_cfg['0z'] = '#ffdfcc';
+promoe_color_cfg['0A'] = '#ffbf99';
+promoe_color_cfg['0B'] = '#ff9f66';
+promoe_color_cfg['0C'] = '#ff8033';
+promoe_color_cfg['0D'] = '#ff6000';
+
+/* Hue 0.125*/
+promoe_color_cfg['0E'] = '#403d33';
+promoe_color_cfg['0F'] = '#403926';
+promoe_color_cfg['0G'] = '#40361a';
+promoe_color_cfg['0H'] = '#40330d';
+promoe_color_cfg['0I'] = '#403000';
+promoe_color_cfg['0J'] = '#807966';
+promoe_color_cfg['0K'] = '#80734d';
+promoe_color_cfg['0L'] = '#806c33';
+promoe_color_cfg['0M'] = '#80661a';
+promoe_color_cfg['0N'] = '#806000';
+promoe_color_cfg['0O'] = '#bfb699';
+promoe_color_cfg['0P'] = '#bfac73';
+promoe_color_cfg['0Q'] = '#bfa34d';
+promoe_color_cfg['0R'] = '#bf9926';
+promoe_color_cfg['0S'] = '#bf8f00';
+promoe_color_cfg['0T'] = '#fff2cc';
+promoe_color_cfg['0U'] = '#ffe699';
+promoe_color_cfg['0V'] = '#ffd966';
+promoe_color_cfg['0W'] = '#ffcc33';
+promoe_color_cfg['0X'] = '#ffbf00';
+
+/* Hue 0.1875*/
+promoe_color_cfg['0Y'] = '#3e4033';
+promoe_color_cfg['0Z'] = '#3d4026';
+promoe_color_cfg['10'] = '#3b401a';
+promoe_color_cfg['11'] = '#39400d';
+promoe_color_cfg['12'] = '#384000';
+promoe_color_cfg['13'] = '#7c8066';
+promoe_color_cfg['14'] = '#79804d';
+promoe_color_cfg['15'] = '#768033';
+promoe_color_cfg['16'] = '#73801a';
+promoe_color_cfg['17'] = '#708000';
+promoe_color_cfg['18'] = '#babf99';
+promoe_color_cfg['19'] = '#b6bf73';
+promoe_color_cfg['1a'] = '#b1bf4d';
+promoe_color_cfg['1b'] = '#acbf26';
+promoe_color_cfg['1c'] = '#a7bf00';
+promoe_color_cfg['1d'] = '#f9ffcc';
+promoe_color_cfg['1e'] = '#f2ff99';
+promoe_color_cfg['1f'] = '#ecff66';
+promoe_color_cfg['1g'] = '#e6ff33';
+promoe_color_cfg['1h'] = '#dfff00';
+
+/* Hue 0.25*/
+promoe_color_cfg['1i'] = '#394033';
+promoe_color_cfg['1j'] = '#334026';
+promoe_color_cfg['1k'] = '#2d401a';
+promoe_color_cfg['1l'] = '#26400d';
+promoe_color_cfg['1m'] = '#204000';
+promoe_color_cfg['1n'] = '#738066';
+promoe_color_cfg['1o'] = '#66804d';
+promoe_color_cfg['1p'] = '#598033';
+promoe_color_cfg['1q'] = '#4d801a';
+promoe_color_cfg['1r'] = '#408000';
+promoe_color_cfg['1s'] = '#acbf99';
+promoe_color_cfg['1t'] = '#99bf73';
+promoe_color_cfg['1u'] = '#86bf4d';
+promoe_color_cfg['1v'] = '#73bf26';
+promoe_color_cfg['1w'] = '#60bf00';
+promoe_color_cfg['1x'] = '#e6ffcc';
+promoe_color_cfg['1y'] = '#ccff99';
+promoe_color_cfg['1z'] = '#b3ff66';
+promoe_color_cfg['1A'] = '#99ff33';
+promoe_color_cfg['1B'] = '#80ff00';
+
+/* Hue 0.3125*/
+promoe_color_cfg['1C'] = '#354033';
+promoe_color_cfg['1D'] = '#294026';
+promoe_color_cfg['1E'] = '#1e401a';
+promoe_color_cfg['1F'] = '#13400d';
+promoe_color_cfg['1G'] = '#084000';
+promoe_color_cfg['1H'] = '#698066';
+promoe_color_cfg['1I'] = '#53804d';
+promoe_color_cfg['1J'] = '#3d8033';
+promoe_color_cfg['1K'] = '#26801a';
+promoe_color_cfg['1L'] = '#108000';
+promoe_color_cfg['1M'] = '#9ebf99';
+promoe_color_cfg['1N'] = '#7cbf73';
+promoe_color_cfg['1O'] = '#5bbf4d';
+promoe_color_cfg['1P'] = '#39bf26';
+promoe_color_cfg['1Q'] = '#18bf00';
+promoe_color_cfg['1R'] = '#d2ffcc';
+promoe_color_cfg['1S'] = '#a6ff99';
+promoe_color_cfg['1T'] = '#79ff66';
+promoe_color_cfg['1U'] = '#4dff33';
+promoe_color_cfg['1V'] = '#20ff00';
+
+/* Hue 0.375*/
+promoe_color_cfg['1W'] = '#334036';
+promoe_color_cfg['1X'] = '#26402d';
+promoe_color_cfg['1Y'] = '#1a4023';
+promoe_color_cfg['1Z'] = '#0d401a';
+promoe_color_cfg['20'] = '#004010';
+promoe_color_cfg['21'] = '#66806c';
+promoe_color_cfg['22'] = '#4d8059';
+promoe_color_cfg['23'] = '#338046';
+promoe_color_cfg['24'] = '#1a8033';
+promoe_color_cfg['25'] = '#008020';
+promoe_color_cfg['26'] = '#99bfa3';
+promoe_color_cfg['27'] = '#73bf86';
+promoe_color_cfg['28'] = '#4dbf69';
+promoe_color_cfg['29'] = '#26bf4d';
+promoe_color_cfg['2a'] = '#00bf30';
+promoe_color_cfg['2b'] = '#ccffd9';
+promoe_color_cfg['2c'] = '#99ffb3';
+promoe_color_cfg['2d'] = '#66ff8c';
+promoe_color_cfg['2e'] = '#33ff66';
+promoe_color_cfg['2f'] = '#00ff40';
+
+/* Hue 0.4375*/
+promoe_color_cfg['2g'] = '#33403b';
+promoe_color_cfg['2h'] = '#264036';
+promoe_color_cfg['2i'] = '#1a4031';
+promoe_color_cfg['2j'] = '#0d402d';
+promoe_color_cfg['2k'] = '#004028';
+promoe_color_cfg['2l'] = '#668076';
+promoe_color_cfg['2m'] = '#4d806c';
+promoe_color_cfg['2n'] = '#338063';
+promoe_color_cfg['2o'] = '#1a8059';
+promoe_color_cfg['2p'] = '#008050';
+promoe_color_cfg['2q'] = '#99bfb1';
+promoe_color_cfg['2r'] = '#73bfa3';
+promoe_color_cfg['2s'] = '#4dbf94';
+promoe_color_cfg['2t'] = '#26bf86';
+promoe_color_cfg['2u'] = '#00bf78';
+promoe_color_cfg['2v'] = '#ccffec';
+promoe_color_cfg['2w'] = '#99ffd9';
+promoe_color_cfg['2x'] = '#66ffc6';
+promoe_color_cfg['2y'] = '#33ffb3';
+promoe_color_cfg['2z'] = '#00ff9f';
+
+/* Hue 0.5*/
+promoe_color_cfg['2A'] = '#334040';
+promoe_color_cfg['2B'] = '#264040';
+promoe_color_cfg['2C'] = '#1a4040';
+promoe_color_cfg['2D'] = '#0d4040';
+promoe_color_cfg['2E'] = '#004040';
+promoe_color_cfg['2F'] = '#668080';
+promoe_color_cfg['2G'] = '#4d8080';
+promoe_color_cfg['2H'] = '#338080';
+promoe_color_cfg['2I'] = '#1a8080';
+promoe_color_cfg['2J'] = '#008080';
+promoe_color_cfg['2K'] = '#99bfbf';
+promoe_color_cfg['2L'] = '#73bfbf';
+promoe_color_cfg['2M'] = '#4dbfbf';
+promoe_color_cfg['2N'] = '#26bfbf';
+promoe_color_cfg['2O'] = '#00bfbf';
+promoe_color_cfg['2P'] = '#ccffff';
+promoe_color_cfg['2Q'] = '#99ffff';
+promoe_color_cfg['2R'] = '#66ffff';
+promoe_color_cfg['2S'] = '#33ffff';
+promoe_color_cfg['2T'] = '#00ffff';
+
+/* Hue 0.5625*/
+promoe_color_cfg['2U'] = '#333b40';
+promoe_color_cfg['2V'] = '#263640';
+promoe_color_cfg['2W'] = '#1a3140';
+promoe_color_cfg['2X'] = '#0d2d40';
+promoe_color_cfg['2Y'] = '#002840';
+promoe_color_cfg['2Z'] = '#667680';
+promoe_color_cfg['30'] = '#4d6c80';
+promoe_color_cfg['31'] = '#336380';
+promoe_color_cfg['32'] = '#1a5980';
+promoe_color_cfg['33'] = '#005080';
+promoe_color_cfg['34'] = '#99b1bf';
+promoe_color_cfg['35'] = '#73a3bf';
+promoe_color_cfg['36'] = '#4d94bf';
+promoe_color_cfg['37'] = '#2686bf';
+promoe_color_cfg['38'] = '#0078bf';
+promoe_color_cfg['39'] = '#ccecff';
+promoe_color_cfg['3a'] = '#99d9ff';
+promoe_color_cfg['3b'] = '#66c6ff';
+promoe_color_cfg['3c'] = '#33b3ff';
+promoe_color_cfg['3d'] = '#009fff';
+
+/* Hue 0.625*/
+promoe_color_cfg['3e'] = '#333640';
+promoe_color_cfg['3f'] = '#262d40';
+promoe_color_cfg['3g'] = '#1a2340';
+promoe_color_cfg['3h'] = '#0d1a40';
+promoe_color_cfg['3i'] = '#001040';
+promoe_color_cfg['3j'] = '#666c80';
+promoe_color_cfg['3k'] = '#4d5980';
+promoe_color_cfg['3l'] = '#334680';
+promoe_color_cfg['3m'] = '#1a3380';
+promoe_color_cfg['3n'] = '#002080';
+promoe_color_cfg['3o'] = '#99a3bf';
+promoe_color_cfg['3p'] = '#7386bf';
+promoe_color_cfg['3q'] = '#4d69bf';
+promoe_color_cfg['3r'] = '#264dbf';
+promoe_color_cfg['3s'] = '#0030bf';
+promoe_color_cfg['3t'] = '#ccd9ff';
+promoe_color_cfg['3u'] = '#99b3ff';
+promoe_color_cfg['3v'] = '#668cff';
+promoe_color_cfg['3w'] = '#3366ff';
+promoe_color_cfg['3x'] = '#0040ff';
+
+/* Hue 0.6875*/
+promoe_color_cfg['3y'] = '#353340';
+promoe_color_cfg['3z'] = '#292640';
+promoe_color_cfg['3A'] = '#1e1a40';
+promoe_color_cfg['3B'] = '#130d40';
+promoe_color_cfg['3C'] = '#080040';
+promoe_color_cfg['3D'] = '#696680';
+promoe_color_cfg['3E'] = '#534d80';
+promoe_color_cfg['3F'] = '#3d3380';
+promoe_color_cfg['3G'] = '#261a80';
+promoe_color_cfg['3H'] = '#100080';
+promoe_color_cfg['3I'] = '#9e99bf';
+promoe_color_cfg['3J'] = '#7c73bf';
+promoe_color_cfg['3K'] = '#5b4dbf';
+promoe_color_cfg['3L'] = '#3926bf';
+promoe_color_cfg['3M'] = '#1800bf';
+promoe_color_cfg['3N'] = '#d2ccff';
+promoe_color_cfg['3O'] = '#a699ff';
+promoe_color_cfg['3P'] = '#7966ff';
+promoe_color_cfg['3Q'] = '#4d33ff';
+promoe_color_cfg['3R'] = '#2000ff';
+
+/* Hue 0.75*/
+promoe_color_cfg['3S'] = '#393340';
+promoe_color_cfg['3T'] = '#332640';
+promoe_color_cfg['3U'] = '#2d1a40';
+promoe_color_cfg['3V'] = '#260d40';
+promoe_color_cfg['3W'] = '#200040';
+promoe_color_cfg['3X'] = '#736680';
+promoe_color_cfg['3Y'] = '#664d80';
+promoe_color_cfg['3Z'] = '#593380';
+promoe_color_cfg['40'] = '#4d1a80';
+promoe_color_cfg['41'] = '#400080';
+promoe_color_cfg['42'] = '#ac99bf';
+promoe_color_cfg['43'] = '#9973bf';
+promoe_color_cfg['44'] = '#864dbf';
+promoe_color_cfg['45'] = '#7326bf';
+promoe_color_cfg['46'] = '#6000bf';
+promoe_color_cfg['47'] = '#e6ccff';
+promoe_color_cfg['48'] = '#cc99ff';
+promoe_color_cfg['49'] = '#b366ff';
+promoe_color_cfg['4a'] = '#9933ff';
+promoe_color_cfg['4b'] = '#8000ff';
+
+/* Hue 0.8125*/
+promoe_color_cfg['4c'] = '#3e3340';
+promoe_color_cfg['4d'] = '#3d2640';
+promoe_color_cfg['4e'] = '#3b1a40';
+promoe_color_cfg['4f'] = '#390d40';
+promoe_color_cfg['4g'] = '#380040';
+promoe_color_cfg['4h'] = '#7c6680';
+promoe_color_cfg['4i'] = '#794d80';
+promoe_color_cfg['4j'] = '#763380';
+promoe_color_cfg['4k'] = '#731a80';
+promoe_color_cfg['4l'] = '#700080';
+promoe_color_cfg['4m'] = '#ba99bf';
+promoe_color_cfg['4n'] = '#b673bf';
+promoe_color_cfg['4o'] = '#b14dbf';
+promoe_color_cfg['4p'] = '#ac26bf';
+promoe_color_cfg['4q'] = '#a700bf';
+promoe_color_cfg['4r'] = '#f9ccff';
+promoe_color_cfg['4s'] = '#f299ff';
+promoe_color_cfg['4t'] = '#ec66ff';
+promoe_color_cfg['4u'] = '#e633ff';
+promoe_color_cfg['4v'] = '#df00ff';
+
+/* Hue 0.875*/
+promoe_color_cfg['4w'] = '#40333d';
+promoe_color_cfg['4x'] = '#402639';
+promoe_color_cfg['4y'] = '#401a36';
+promoe_color_cfg['4z'] = '#400d33';
+promoe_color_cfg['4A'] = '#400030';
+promoe_color_cfg['4B'] = '#806679';
+promoe_color_cfg['4C'] = '#804d73';
+promoe_color_cfg['4D'] = '#80336c';
+promoe_color_cfg['4E'] = '#801a66';
+promoe_color_cfg['4F'] = '#800060';
+promoe_color_cfg['4G'] = '#bf99b6';
+promoe_color_cfg['4H'] = '#bf73ac';
+promoe_color_cfg['4I'] = '#bf4da3';
+promoe_color_cfg['4J'] = '#bf2699';
+promoe_color_cfg['4K'] = '#bf008f';
+promoe_color_cfg['4L'] = '#ffccf2';
+promoe_color_cfg['4M'] = '#ff99e6';
+promoe_color_cfg['4N'] = '#ff66d9';
+promoe_color_cfg['4O'] = '#ff33cc';
+promoe_color_cfg['4P'] = '#ff00bf';
+
+/* Hue 0.9375*/
+promoe_color_cfg['4Q'] = '#403338';
+promoe_color_cfg['4R'] = '#402630';
+promoe_color_cfg['4S'] = '#401a28';
+promoe_color_cfg['4T'] = '#400d20';
+promoe_color_cfg['4U'] = '#400018';
+promoe_color_cfg['4V'] = '#806670';
+promoe_color_cfg['4W'] = '#804d60';
+promoe_color_cfg['4X'] = '#803350';
+promoe_color_cfg['4Y'] = '#801a40';
+promoe_color_cfg['4Z'] = '#800030';
+promoe_color_cfg['50'] = '#bf99a7';
+promoe_color_cfg['51'] = '#bf738f';
+promoe_color_cfg['52'] = '#bf4d78';
+promoe_color_cfg['53'] = '#bf2660';
+promoe_color_cfg['54'] = '#bf0048';
+promoe_color_cfg['55'] = '#ffccdf';
+promoe_color_cfg['56'] = '#ff99bf';
+promoe_color_cfg['57'] = '#ff669f';
+promoe_color_cfg['58'] = '#ff3380';
+promoe_color_cfg['59'] = '#ff0060';
+
+/* Greyscale */
+promoe_color_cfg['5a'] = '#000000';
+promoe_color_cfg['5b'] = '#0d0d0d';
+promoe_color_cfg['5c'] = '#1a1a1a';
+promoe_color_cfg['5d'] = '#272727';
+promoe_color_cfg['5e'] = '#343434';
+promoe_color_cfg['5f'] = '#414141';
+promoe_color_cfg['5g'] = '#4e4e4e';
+promoe_color_cfg['5h'] = '#5b5b5b';
+promoe_color_cfg['5i'] = '#757575';
+promoe_color_cfg['5j'] = '#828282';
+promoe_color_cfg['5k'] = '#8f8f8f';
+promoe_color_cfg['5l'] = '#9c9c9c';
+promoe_color_cfg['5m'] = '#a9a9a9';
+promoe_color_cfg['5n'] = '#b6b6b6';
+promoe_color_cfg['5o'] = '#c3c3c3';
+promoe_color_cfg['5p'] = '#d0d0d0';
+promoe_color_cfg['5q'] = '#dddddd';
+promoe_color_cfg['5r'] = '#eaeaea';
+promoe_color_cfg['5s'] = '#f7f7f7';
+promoe_color_cfg['5t'] = '#ffffff';
+
+
+var promoe_color_groups = Array();
+promoe_color_groups[0] = Array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '0a', '0b', '0c', '0d', '0e', '0f', '0g', '0h', '0i', '0j', '0k', '0l', '0m', '0n', '0o', '0p', '0q', '0r', '0s', '0t', '0u', '0v', '0w', '0x', '0y', '0z', '0A', '0B', '0C', '0D');
+
+promoe_color_groups[1] = Array('0E', '0F', '0G', '0H', '0I', '0J', '0K', '0L', '0M', '0N', '0O', '0P', '0Q', '0R', '0S', '0T', '0U', '0V', '0W', '0X', '0Y', '0Z', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '1a', '1b', '1c', '1d', '1e', '1f', '1g', '1h');
+
+promoe_color_groups[2] = Array('1i', '1j', '1k', '1l', '1m', '1n', '1o', '1p', '1q', '1r', '1s', '1t', '1u', '1v', '1w', '1x', '1y', '1z', '1A', '1B', '1C', '1D', '1E', '1F', '1G', '1H', '1I', '1J', '1K', '1L', '1M', '1N', '1O', '1P', '1Q', '1R', '1S', '1T', '1U', '1V');
+
+promoe_color_groups[3] = Array('1W', '1X', '1Y', '1Z', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '2a', '2b', '2c', '2d', '2e', '2f', '2g', '2h', '2i', '2j', '2k', '2l', '2m', '2n', '2o', '2p', '2q', '2r', '2s', '2t', '2u', '2v', '2w', '2x', '2y', '2z');
+
+promoe_color_groups[4] = Array('2A', '2B', '2C', '2D', '2E', '2F', '2G', '2H', '2I', '2J', '2K', '2L', '2M', '2N', '2O', '2P', '2Q', '2R', '2S', '2T', '2U', '2V', '2W', '2X', '2Y', '2Z', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '3a', '3b', '3c', '3d');
+
+promoe_color_groups[5] = Array('3e', '3f', '3g', '3h', '3i', '3j', '3k', '3l', '3m', '3n', '3o', '3p', '3q', '3r', '3s', '3t', '3u', '3v', '3w', '3x', '3y', '3z', '3A', '3B', '3C', '3D', '3E', '3F', '3G', '3H', '3I', '3J', '3K', '3L', '3M', '3N', '3O', '3P', '3Q', '3R');
+
+promoe_color_groups[6] = Array('3S', '3T', '3U', '3V', '3W', '3X', '3Y', '3Z', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '4a', '4b', '4c', '4d', '4e', '4f', '4g', '4h', '4i', '4j', '4k', '4l', '4m', '4n', '4o', '4p', '4q', '4r', '4s', '4t', '4u', '4v');
+
+promoe_color_groups[7] = Array('4w', '4x', '4y', '4z', '4A', '4B', '4C', '4D', '4E', '4F', '4G', '4H', '4I', '4J', '4K', '4L', '4M', '4N', '4O', '4P', '4Q', '4R', '4S', '4T', '4U', '4V', '4W', '4X', '4Y', '4Z', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59');
+
+promoe_color_groups[8] = Array('5a', '5b', '5c', '5d', '5e', '5f', '5g', '5h', '5i', '5j', '5k', '5l', '5m', '5n', '5o', '5p', '5q', '5r', '5s', '5t');

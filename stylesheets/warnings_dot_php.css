@@ -1,0 +1,14 @@
+._warning
+{
+	padding: 2px;
+	
+}
+._warning_row
+{
+	
+}
+._warning_row_active
+{
+	background: #ffcf7f;
+	margin: 0px;
+}

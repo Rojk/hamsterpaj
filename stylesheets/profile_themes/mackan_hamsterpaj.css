@@ -1,0 +1,48 @@
+.profile_mackan_hamsterpaj .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/mackan_hamsterpaj/profile_head_bg.png');
+}
+.profile_mackan_hamsterpaj .top
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/mackan_hamsterpaj/rounded_corners_top.png') no-repeat top;
+}
+.profile_mackan_hamsterpaj .repeat
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/mackan_hamsterpaj/presentation_bg.png');
+}
+.profile_mackan_hamsterpaj .bottom
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/mackan_hamsterpaj/rounded_corners_bottom.png') no-repeat bottom;
+}
+.profile_mackan_hamsterpaj .profile_presentation_text
+{
+	padding: 10px;
+	color: #222;
+}
+
+.profile_mackan_hamsterpaj .profile_head, 
+.profile_mackan_hamsterpaj .profile_head a,
+.profile_mackan_hamsterpaj .profile_head .name_as1,
+.profile_mackan_hamsterpaj .profile_head .user_status,
+.profile_mackan_hamsterpaj .profile_head .user_action_log
+{
+	color: #333;
+}
+.profile_mackan_hamsterpaj .profile_head .avatar_passepartout
+{
+	border: none;
+	background: none;
+}
+.profile_mackan_hamsterpaj .profile_head .user_avatar
+{
+	margin-left: 2px;
+	margin-top: 1px;
+}
+.profile_mackan_hamsterpaj .profile_head .user_status
+{
+	margin-top: 5px;
+}
+.profile_mackan_hamsterpaj .navigation a
+{
+	color: #fff;
+}

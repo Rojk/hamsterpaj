@@ -1,0 +1,12 @@
+.ovlist ul
+{
+	display: inline-block;
+	margin: 0px;
+}
+.ovlist ul li
+{
+	width: 117px;
+	height: 150px;
+	float: left;
+	list-style-type: none;
+}

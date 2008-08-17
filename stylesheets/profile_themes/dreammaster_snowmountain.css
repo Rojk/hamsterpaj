@@ -1,0 +1,32 @@
+.profile_dreammaster_snowmountain .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/dreammaster_snowmountain/profile_head_bg.png');
+}
+
+.profile_dreammaster_snowmountain .profile_head
+{
+    color: #000;
+}
+
+.profile_dreammaster_snowmountain .profile_head .user_action_log
+{
+    padding-top: 18px;
+}
+
+.profile_dreammaster_snowmountain .top
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/dreammaster_snowmountain/rounded_corners_top.png') no-repeat top;
+
+}
+.profile_dreammaster_snowmountain .repeat
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/dreammaster_snowmountain/presentation_bg.png');
+}
+.profile_dreammaster_snowmountain .bottom
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/dreammaster_snowmountain/rounded_corners_bottom.png') no-repeat bottom;
+}
+.profile_dreammaster_snowmountain .profile_presentation_text
+{
+	padding: 10px;
+}

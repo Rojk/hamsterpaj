@@ -1,0 +1,45 @@
+.profile_saftkillen_ft_joar_golden .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/saftkillen_ft_joar_golden/profile_head_bg.png');
+}
+.profile_saftkillen_ft_joar_golden .top
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/saftkillen_ft_joar_golden/rounded_corners_top.png') no-repeat top;
+}
+.profile_saftkillen_ft_joar_golden .repeat
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/saftkillen_ft_joar_golden/presentation_bg.png');
+}
+.profile_saftkillen_ft_joar_golden .bottom
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/saftkillen_ft_joar_golden/rounded_corners_bottom.png') no-repeat bottom;
+}
+.profile_saftkillen_ft_joar_golden .profile_presentation_text
+{
+	padding: 10px;
+}
+.profile_saftkillen_ft_joar_golden .profile_head, 
+.profile_saftkillen_ft_joar_golden .profile_head a,
+.profile_saftkillen_ft_joar_golden .profile_head .name_as1,
+.profile_saftkillen_ft_joar_golden .profile_head .user_status,
+.profile_saftkillen_ft_joar_golden .profile_head .user_action_log
+{
+	color: #222;
+}
+{
+	color: #900;
+}
+.profile_saftkillen_ft_joar_golden .profile_head .avatar_passepartout
+{
+	border: none;
+	background: none;
+}
+.profile_saftkillen_ft_joar_golden .profile_head .user_avatar
+{
+	margin-left: 2px;
+	margin-top: 1px;
+}
+.profile_saftkillen_ft_joar_golden .profile_head .user_status
+{
+	margin-top: 5px;
+}

@@ -1,0 +1,21 @@
+body
+{
+	background: #6391b3;
+}
+.forum_post_edit_area
+{
+	padding: 10px;
+	background: #6391b3;
+	width: 600px;
+	margin-top: 10px;
+}
+
+.forum_post_edit_area textarea
+{
+	width: 598px;
+}
+
+.forum_post_edit_area .content_editor
+{
+	height: 300px;
+}

@@ -1,0 +1,36 @@
+#settings
+{
+	display: inline-block;
+	margin: 0;
+	padding-left: 17px;
+	padding-top: 10px;
+}
+
+#settings a
+{
+	display: block;
+}
+#settings li
+{
+	float: left;
+	list-style-type: none;
+	text-align: center;
+	border: 10px solid #DFDFDF;
+	padding: 20px;
+	margin: 20px;
+	height: 100px;
+	width: 100px;
+}
+
+#settings li:hover
+{
+	border: 10px solid #BFBFBF;
+	margin: 10px;
+	height: 120px;
+	width: 120px;
+}
+
+#settings li span
+{
+	display: block;
+}

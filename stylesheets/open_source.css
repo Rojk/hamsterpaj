@@ -1,0 +1,241 @@
+body
+{
+	background: #6391b3;
+	
+	margin: 0px;
+	font-family: verdana, arial, "ms trebuchet", sans-serif;
+	color: #454545;
+	font-size: 11px;
+	padding: 10px;
+	padding-top: 0px;
+	overflow-x: hidden;
+}
+
+a
+{
+	color: black;
+	text-decoration: none;
+	border-bottom: 1px dotted #565656;
+	_border-bottom: 1px solid #ababab;
+}
+
+a p, a h1, a h2, a h3, a h4, a h5, a h6, a img, img
+{
+	text-decoration: none;
+	border: none;
+}
+
+h1, h2, h3, h4
+{
+	font-weight: normal;
+	margin: 3px;
+	margin-left: 0px;
+}
+
+h4
+{
+	font-size: 11px;
+	margin-bottom: 1px;
+}
+
+h3
+{
+	font-size: 13px;
+}
+
+th
+{
+	text-align: left;
+}
+
+h1
+{
+	font-size: 20px;
+}
+
+h2
+{
+	font-size: 17px;
+}
+
+ul
+{
+	margin: 4px;
+	margin-left: 15px;
+}
+
+p
+{
+	margin: 0px;
+}
+
+.button
+{
+	height: 20px;
+	background: url('/images/ui/button_fade.png');
+	margin: 2px;
+	padding-left: 3px;
+	padding-right: 3px;
+	text-indent: 0px;
+}
+
+.button_small
+{
+	background: url('/images/ui/button_fade.png');
+	margin: 1px;
+	padding: 0px;
+	font-size: 9px;
+}
+
+
+
+
+#site_top_rounded_corners
+{
+	display: block;
+	margin-top: 10px;
+}
+
+#site_bottom_rounded_corners
+{
+	clear: left;
+	float: left;
+	margin-bottom: 10px;
+}
+
+#hamsterpaj_website
+{
+	width: 700px;
+}
+
+#site_container
+{
+	width: 442px;/*795px;*/
+	padding: 1px;
+	float: left;
+	background: white url('http://images.hamsterpaj.net/open_source/content_container_bg.png');
+	margin-right: 15px;
+	margin-top: 0px;
+}
+
+#top
+{
+	height: 70px;/*57px;*/
+	border-bottom: 1px solid #ababab;
+}
+
+#top h1
+{
+	text-align: right;
+}
+
+#top .back_to_hamsterpaj
+{
+	margin: 0px;
+	clear: left;
+}
+
+#logo
+{
+	display: block;
+	float: left;
+	margin-top: 3px;
+	margin-left: 5px;
+}
+
+#main_right
+{
+	overflow: hidden;
+	width: 197px;
+	float: left;
+}
+
+.right_module_container
+{
+	background: url('http://images.hamsterpaj.net/right_modules/background.png');
+
+}
+
+.right_module_container h3
+{
+	background: orange url('http://images.hamsterpaj.net/right_modules/top.png');
+	padding-top: 4px;
+	padding-left: 6px;
+	padding-bottom: 2px;
+	margin: 0px;
+	cursor: pointer;
+}
+
+.right_module
+{
+	padding: 4px;
+	width: 185px;
+	background: url('http://images.hamsterpaj.net/right_modules/fade_background.png') no-repeat left bottom;
+}
+
+#right_modules
+{
+	padding-top: 19px;
+}
+
+#middle
+{
+	float: left;
+	width: 424px;/*644px;*/
+	overflow-x: hidden;
+	margin: 10px;
+	margin-bottom: 15px;
+}
+
+#content
+{
+	background: white;
+	padding: 3px;
+	padding-top: 0px;
+	margin-bottom: 10px;
+	overflow-x: hidden;
+}
+
+.avatar
+{
+	border: none;
+	width: 75px;
+	height: 100px;
+	border: 1px solid black;
+}
+
+#steve
+{
+	float: right;
+	cursor: pointer;
+	display: block;
+	margin-right: -2px;
+}
+
+.user_avatar
+{
+	display: block;
+	cursor: pointer;
+	width: 75px;
+	height: 100px;
+}
+
+/* Open-source specific */
+
+#open_source_file_structure h3
+{
+	font-weight: bold;
+}
+
+#open_source_file_structure ul
+{
+	padding: 0px;
+	list-style-type: none;
+	margin: 0px;
+	clear: both;
+}
+
+#open_source_file_structure ul li
+{
+	margin: 3px 0px 3px 15px;
+}

@@ -1,0 +1,72 @@
+.rita_img span
+{
+	color: #000;
+}
+.rita_img strong
+{
+	color: #000;
+}
+.tavling_img img
+{
+	border: 4px green solid;
+}
+.rita_img
+{
+	list-style-type: none;
+	padding: 0 0 0 3px;
+}
+.rita_img li
+{
+	padding: 3px;
+	margin: 1px;
+	float: left;
+	text-align: center;
+}
+
+.no_border a
+{
+	border-bottom: none;
+	text-decoration: none;
+}
+.sysops ul, .latest_tavla ul
+{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding: 10px;
+	margin-left: 0px;
+}
+
+#x18594
+{
+	background-color: #FAC915;
+}
+
+#x18642
+{
+	background-color: #F99900;
+}
+
+#x18754
+{
+	background-color: #6391B3;
+}
+
+#x18812
+{
+	background-color: #F9CC88;
+}
+
+#x19052
+{
+	background-color: #BDD3E3;
+}
+
+#x19132
+{
+	background-color: #565656;
+}
+
+#x20736
+{
+	background-color: #929292;
+}

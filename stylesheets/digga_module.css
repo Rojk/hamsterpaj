@@ -1,0 +1,53 @@
+.digga_module_div
+{
+	border: 1px solid #565656;
+	clear: both;
+	margin-top: 3px;
+	width: 628px;
+}
+
+.digga_module_div h3
+{
+	margin: -1px;
+	padding: 2px;
+	background: #565656;
+	color: white;
+}
+
+.digga_module_div h3 .howto
+{
+	float: right;
+	font-size: 10px;
+	line-height: 16px;
+	color: #ababab;
+}
+
+
+.digga_module_div ul
+{
+	padding: 0px;
+}
+
+.digga_cloud
+{
+	list-style-type: none;
+	margin: 0px;
+}
+
+.digga_cloud a
+{
+	margin: 5px;
+	text-decoration: none;
+	display: block;
+}
+
+.digga_cloud li
+{
+	float: left;
+	margin: 3px;
+}
+
+.digga_cloud .even
+{
+	font-weight: bold;
+}

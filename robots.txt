@@ -1,0 +1,4 @@
+# Fasterfox "förhandshämtar" som en tok för att minska laddtider... CP-idé
+# http://fasterfox.mozdev.org/faq.html
+User-agent: Fasterfox
+Disallow: /

@@ -1,0 +1,47 @@
+.friends_header
+{
+	clear: both;
+}
+
+.friends_list
+{
+	list-style-type: none;
+	padding: 0px;
+}
+
+.friends_list li
+{
+	margin-bottom: 10px;
+	font-size: 15px;
+	float: left;
+	height: 55px;
+	width: 300px;
+}
+
+.friends_list li a
+{
+	border: none;
+}
+
+.friends_list .relation_end_control
+{
+	color: #ababab;
+	font-size: 10px;
+	display: block;
+	margin-top: 5px;
+}
+
+.friends_list .user_avatar
+{
+	width: 37px;
+	height: 50px;
+	display: block;
+	float: left;
+	border: 1px solid #ababab;
+	margin-right: 15px;
+}
+
+.online
+{
+	color: green;
+}

@@ -1,0 +1,53 @@
+.chat_channel
+{
+	border: 1px solid #ababab;
+	width: 300px;
+	padding: 5px;
+	float: left;
+	margin: 3px;
+	height: 134px;
+}
+
+.chat_channel h3
+{
+	background: #fee4ba;
+	margin: -5px;
+	padding: 5px;
+}
+
+.chat_channel .channel
+{
+	float: left;
+}
+
+.chat_channel .client_count
+{
+	text-align: right;
+	color: #fee4ba;
+}
+
+.chat_channel ul
+{
+	padding-left: 3px;
+}
+
+.java_needed
+{
+	background: url('http://images.hamsterpaj.net/login_bar/background.png');
+	padding: 5px;
+	margin: 10px;
+	border: 1px solid #565656;
+}
+
+.java_needed h2
+{
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
+.java_needed p
+{
+	margin: 0px;
+	padding: 0px;
+}

@@ -1,0 +1,179 @@
+/* CSS for the film department of Hamsterpaj */
+
+.film .rounded_corners
+{
+	margin-bottom: 0px;
+}
+
+.film
+{
+}
+.film_play
+{
+}
+.film_header
+{
+}
+
+.film_index_arrow
+{
+	float: left;
+	margin-right: 10px;
+}
+
+.film h1
+{
+	width: 400px;
+	font-size: 14px;
+	margin: 0px 0px 0px 5px;
+	padding: 0px 0px 0px 0px;
+	height: 20px;
+}
+.film h2
+{
+	margin: 0px;
+	padding: 3px 3px 3px 3px;
+	font-size: 12px;
+}
+.film_statistics
+{
+	padding: 3px;
+	height: 20px;
+	width: 450px;
+	float: left;
+}
+.film_statistics .film_rank
+{
+	float: left;
+}
+.film_statistics .film_rank_count
+{
+	margin: 5px 20px 0px 10px;
+	float: left;
+}
+.film_statistics .film_view_count
+{
+	margin: 5px 0px 0px 0px;
+	float: right;
+}
+.film_edit
+{
+	float: left;
+}
+.film_player
+{
+	margin: 0px;
+}
+.film_list, .film_list_compact
+{
+	background: #eceff2;
+}
+.film_list_compact
+{
+	width: 150px;
+	float: right;
+	margin-top: 15px;
+}
+.film_list_thumbnails
+{
+}
+.film_list_titles a
+{
+	border: none;
+	font-weight: bold;
+}
+.film_title_list
+{
+	float: left;
+	list-style-type: none; 
+}
+.list_slot
+{
+	padding: 0px 0px 0px 5px;
+	height: 65px;
+}
+.header_dummy
+{
+	height: 23px;
+	width: 100%;
+}
+.film_list_titles h2
+{
+	border-bottom: solid 1px black;
+}
+.film_list_compact h2
+{
+	width: 150px;
+	margin-left: 10px;
+}
+.film_compact
+{
+	text-align: center;
+	width: 130px;
+	margin: 3px 10px 0px 10px;
+	float: left;
+}
+.film_list .film_compact
+{
+	float: left;
+}
+.film_compact a
+{
+	border: none;
+}
+.film_compact h5
+{
+	margin: 5px 0px 0px 0px;
+	font-size: 10px;
+}
+.film_list_thumbnails
+{
+	padding: 0px;
+}
+.film_list_thumbnails h2
+{
+	margin: 0px 0px 0px 15px;
+	padding-top: 5px;
+}
+.film_list_compact h2
+{
+	margin: 0px 0px 0px 15px;
+	padding-top: 5px;
+}
+
+.film_with_comments
+{
+	background-color: #eceff2;
+}
+.film_page_info p
+{
+	margin: 0px;
+	padding: 5px 0px 5px 0px;
+}
+.film_player
+{
+	float: left;
+	text-align: center;
+	width: 460px;
+	height: 345px;
+}
+
+.film_player object, .film_player embed
+{
+	margin: 0px;
+	width: 460px;
+	height: 345px;
+}
+
+.film_player img
+{
+	margin: 0px;
+}
+
+
+.fun_images_big
+{
+	display: block;
+	margin: 0px;
+}
+

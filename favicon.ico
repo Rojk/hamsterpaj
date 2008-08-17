@@ -1,0 +1,25 @@
+/*  GIMP icon image format -- S. Kimball, P. Mattis  */
+/*  Image name: gicon  */
+
+
+#define gicon_width 16
+#define gicon_height 16
+static char *gicon_bits [] = 
+{
+  "hhhhhhhhhhhhhhhh",
+  "hhhhhhhhhhhhhhhh",
+  "hhhhhhhhhhhhhhhh",
+  "hhhhhhhhhhhhffhh",
+  "hhhhhhhhhhheedhh",
+  "hhfghhhhhhfeedfh",
+  "hheedffeeeeeddeh",
+  "hhcedfeeeddffffe",
+  "hddecedfeffffede",
+  "ecdeefeeeedccccg",
+  "hdcccdcdcdcdccch",
+  "hgccdedededddegh",
+  "hhhfddddddefghhh",
+  "hhhhhhhhhhhhhhhh",
+  "hhhhhhhhhhhhhhhh",
+  "hhhhhhhhhhhhhhhh"
+};

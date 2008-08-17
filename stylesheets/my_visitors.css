@@ -1,0 +1,42 @@
+.my_visitors_list
+{
+	float: left;
+	width: 200px;
+	margin: 5px;
+	border: 1px solid #ababab;
+}
+
+.my_visitors_list h2
+{
+	text-align: center;
+	margin: 3px;
+	background: url('http://images.hamsterpaj.net/login_bar/background.png');
+}
+
+.visitor
+{
+	clear: both;
+	height: 102px;
+	padding: 3px;
+	font-size: 10px;
+	border-top: 1px solid #ababab;
+	overflow: hidden;
+	background: #efefef;
+}
+
+.visitor img
+{
+	float: left;
+	border: 1px solid #ababab;
+	margin-right: 3px;
+}
+
+.visitor a
+{
+	text-decoration: none;
+}
+
+.visitor div
+{
+	background: white;
+}

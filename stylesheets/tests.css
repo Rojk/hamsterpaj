@@ -1,0 +1,147 @@
+#tests_create_title, #tests_create_description, .tests_create_questiondiv input
+{
+	font-size: 12px;
+	background: #eee;
+	border: 1px solid #999;
+	margin: 0px;
+}
+
+/* Styling a label is for some reason not possible... */
+#tests_create_title_label_holder, #tests_create_title, #tests_create_author_label, #tests_create_author
+{
+	width: 150px;
+	float: left;
+}
+
+#tests_create_description, #tests_create_description_label_holder, #tests_create_author_label
+{
+	clear: left;
+}
+
+#tests_create_author
+{
+	text-align: right;
+}
+
+#tests_create_description
+{
+	width: 300px;
+}
+
+.tests_create_questiondiv
+{
+	margin: 5px;
+	border-bottom: 1px solid #ABABAB;
+}
+
+.tests_create_questiondiv .label
+{
+	width: 50px;
+	clear: left;
+}
+
+.tests_create_questiondiv input
+{
+	width: 150px;
+}
+
+.tests_create_questiondiv .answer_type_label, .tests_create_questiondiv .score_label
+{
+	width: 160px;
+	text-align: right;
+	margin-right: 10px;
+}
+
+.tests_create_questiondiv select
+{
+	width: 100px;
+}
+
+.tests_create_questiondiv .answer_type_label, .tests_create_questiondiv .score_label, .tests_create_questiondiv input, .tests_create_questiondiv .label
+{
+	float: left;
+}
+
+#tests_create_save
+{
+	opacity: .5;
+	filter: alpha(50);
+	float: right;
+	margin-right: 5px;
+}
+
+#tests_create_add_question
+{
+	margin-left: 5px;
+}
+
+.tests_index_latest_link, .tests_list_my_test_link
+{
+	font-size: 20px;
+}
+
+.score_meter
+{
+	width: 300px;
+	height: 30px;
+	border: 1px solid #333;
+	margin: 10px 0px 10px 0px;
+	overflow: hidden;
+	background: url(http://images.hamsterpaj.net/tests/score_meters/background.png);
+	float: left;
+	clear: left;
+}
+
+.score_meter div
+{
+	height: 30px;
+	overflow: hidden;
+	margin: 0px;
+	background-repeat: repeat-x;
+	border-right: 1px solid #aaa;
+}
+
+.score_meter div.color_1
+{
+	background: url(http://images.hamsterpaj.net/tests/score_meters/1.png);
+}
+
+.score_meter div.color_2
+{
+	background: url(http://images.hamsterpaj.net/tests/score_meters/2.png);
+}
+
+.score_meter div.color_3
+{
+	background: url(http://images.hamsterpaj.net/tests/score_meters/3.png);
+}
+
+.score_meter div.color_4
+{
+	background: url(http://images.hamsterpaj.net/tests/score_meters/4.png);
+}
+
+.score_meter div.color_5
+{
+	background: url(http://images.hamsterpaj.net/tests/score_meters/5.png);
+}
+
+.score_meter_right
+{
+	margin: 12px 0px 10px 10px;
+	float: left;
+	clear: right;
+}
+
+.comment_input_container
+{
+	display: inline;
+}
+
+.tests_completer /*Ehh...*/
+{
+	width: 25%;
+	overflow: hidden;
+	float: left;
+	text-align: center;
+}

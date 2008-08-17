@@ -1,0 +1,30 @@
+.category_item {
+	height: 80px;
+}
+
+.category_item_textheader {
+	font-family: "trebuchet ms", verdana, arial, helvetica, sans-serif;
+	font-size: 18px;
+	text-decoration: none;
+	color: #000;
+	background: none;
+	margin: 0px;
+}
+
+.category_item_spacer {
+	height:10px;
+	margin-top:1px;
+	margin-bottom:1px;
+	margin-left:3px;
+}
+.category_item_pic {
+	margin-right:3px;
+}
+.intro
+{
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 14px;
+	text-decoration: none;
+	color: #000;
+	background: none;
+}

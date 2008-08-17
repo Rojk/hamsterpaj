@@ -1,0 +1,35 @@
+#flags_customize
+{
+	border: 1px solid #565656;
+}
+
+#flags_customize_navigation
+{
+	width: 75px;
+	float: left;
+	border-right: 1px solid #565656;
+	border-bottom: 1px solid #565656;
+	padding: 0px;
+	margin: 0px;
+
+}
+
+#flags_customize_navigation li
+{
+	margin: 0px;
+	padding: 3px;
+	line-height: 20px;
+	height: 20px;
+	background: orange;
+	border-top: 1px solid #ababab;
+	cursor: pointer;	
+}
+
+.flags_customize_category
+{
+	display: none;
+	float: left;
+	border: 1px solid #ababab;
+	margin: 5px;
+	padding: 5px;
+}

@@ -1,0 +1,51 @@
+/*---Typografi--*/
+
+div#middle h1, h2 {
+	font-family: Georgia, serif;
+}
+
+div#middle h1 {
+	font-size: 24px;
+}
+
+div#middle h2 {
+	font-size: 20px;
+	margin: 20px 0 2px 0;
+}
+
+div#middle h3 {
+	font-size: 14px;
+	margin: 15px 0 2px 0;
+	font-weight: bold;
+}
+
+div#middle h4 {
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+/*#site_container a {
+	border-bottom: 2px solid #999;
+}
+
+div#middle a:hover {
+	border-bottom: 2px solid #777;
+}*/
+
+div#middle p, div#middle ul, div#middle ol {
+	margin: 4px 0 8px 0;
+}
+
+div#middle li a {
+	line-height: 15px;
+}
+
+/*--Annat smått och gott i testsyfte--*/
+
+div#middle fieldset.internal_ad {
+	margin-top: 30px;
+}
+
+div#middle fieldset.internal_ad a {
+	margin: 10px;
+}

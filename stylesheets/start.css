@@ -1,0 +1,178 @@
+#fp_event_list
+{
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	margin-right: 8px;
+	float: left;
+}
+
+#fp_event_list .event
+{
+	width: 312px;
+	height: 55px;
+	background: url('http://images.hamsterpaj.net/fp_update_bg.png') no-repeat;
+	padding: 5px;
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+
+
+#fp_event_list .event .timestamp
+{
+	float: left;
+	width: 57px;
+	height: 49px;
+	margin-right: 15px;
+	background: #ededed url('http://images.hamsterpaj.net/date_stamp_bg.png');
+	text-align: center;
+}
+
+#fp_event_list .event .timestamp .label_today, #fp_event_list .event .timestamp .label_yesterday, #fp_event_list .event .timestamp .label_month
+{
+	padding-top: 3px;
+	padding-bottom: 3px;
+	display: block;
+}
+
+#fp_event_list .event .timestamp .time_today, #fp_event_list .event .timestamp .time_yesterday, #fp_event_list .event .timestamp .time_date
+{
+	font-size: 18px;
+	font-family: georgia, serif;
+	display: block;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#fp_event_list .event .type
+{
+	display: block;
+	margin-top: 1px;
+	margin-bottom: 5px;
+}
+
+#fp_event_list .event .entertain_thumb
+{
+	height: 47px;
+	width: 63px;
+	margin-right: 15px;
+	display: block;
+	float: left;
+}
+
+#fp_event_list .event .entertain_thumb img
+{
+	height: 47px;
+	width: 63px;
+}
+
+#fp_event_list .event .title
+{
+	font-size: 12px;
+	text-decoration: none;
+	border: none;
+	display: block;
+	float: left;
+	width: 150px;
+	overflow: hidden;
+}
+
+#fp_greeting
+{
+	padding-bottom: 10px;
+	font-size: 24px;
+	font-family: Georgia, serif;
+}
+
+#fp_column
+{
+	width: 300px;
+	float: left;
+}
+
+#fp_spotlight_area
+{
+	padding: 12px;
+	background: url('http://images.hamsterpaj.net/fp_spotlight_bg.png') no-repeat;
+}
+
+#fp_spotlight
+{
+	overflow: hidden;
+	width: 275px;
+}
+
+#fp_spotlight_scroller
+{
+	width: 4600px;
+}
+
+.fp_spotlight_profile
+{
+	width: 300px;
+	margin-right: 10px;
+	float: left;
+}
+
+.fp_spotlight_profile h2 a
+{
+	border: none;
+	font-family: arial, verdana, sans-serif;
+	font-weight: normal;
+	color: #454545;
+	font-size: 18px;
+}
+
+.fp_spotlight_profile .user_flags
+{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.fp_spotlight_profile .user_flags li
+{
+	display: block;
+	float: left;
+	margin: 2px;
+	border: 1px solid #ededed;	
+	padding: 0px;
+}
+
+.fp_users_list
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.fp_users_list li
+{
+	display: block;
+	list-style-type: none;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+}
+
+.fp_users_list li img
+{
+	width: 37px;
+	height: 50px;
+	margin: 1px;
+	cursor: pointer;
+}
+
+.fp_column_ad
+{
+	border-bottom: none;
+	margin-top: 30px;
+}
+
+#news
+{
+	background-color: #DCE8F4;
+	border: 1px solid #aeaeae;
+	padding: 10px;
+	overflow: hidden;
+	margin-bottom: 10px;
+}

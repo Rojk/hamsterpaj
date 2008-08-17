@@ -1,0 +1,39 @@
+#fp_recent_updates table
+{
+	width: 100%;
+}
+
+#fp_recent_updates div .timestamp
+{
+	float: left;
+	width: 100px;
+	color: black;
+}
+
+#fp_recent_updates div .clicks
+{
+	float: right;	
+}
+
+#fp_recent_updates div .clicks:before
+{
+	content: '(';	
+}
+
+#fp_recent_updates div .clicks:after
+{
+	content: ')';	
+}
+
+
+#fp_recent_updates div .type_label
+{
+	float: left;
+	width: 150px;
+}
+
+#fp_recent_updates a
+{
+	text-decoration: none;
+	border-bottom: none;
+}
