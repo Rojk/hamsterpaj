@@ -63,7 +63,7 @@
 	$output .= '</div>' . "\n";
 */
 	
-//	$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
+	$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
 
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.28.207.226') ? '<h1>Va? Har ni inte slutat ännu? Kullaviksskolan är alltså före er!</h1>' : '';
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.21.232.204') ? '<h2>En blackebergare? Silfverstolpe is watching you!<h2>' : '';
@@ -78,11 +78,6 @@
 		echo $info2;
 		$output .= rounded_corners_bottom(array('color' => 'orange_deluxe'));
 	}
-
-		$output .= '<a href="http://www.hamsterpaj.net/artiklar/?action=show&id=85">' . "\n";
-		$output .= '<img style="margin-top: 5px; margin-bottom: 10px;" src="http://images.hamsterpaj.net/hp_article.png" />';
-		$output .= '</a>' . "\n";
-		$output .= '<div style="clear: both;"></div>' . "\n";
 	// Old...
 	if(login_checklogin())
 	{
