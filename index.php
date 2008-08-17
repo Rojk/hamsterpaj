@@ -35,6 +35,8 @@
 	$headings[51] = (date('G:i') == '13:37') ? 'Är du en sån där 1337 h4xx0r?' : '';
 	$headings[50] = (date('G') >= 19 && date('G') < 23) ? 'Välkommen hit, ha en skön kväll' : '';
 
+        $headings[6] = (rand(1, 9) == 5) ? '"Tritone, det är helt enkelt du. Söt, inslag utav en jordgubbe, mjuk som vanilj och go som en gelégodis."<br />Galten jämför Tritone med alkoläsk från systemet'
+' : '';
 	$headings[5] = (rand(1, 5) == 4) ? 'Hört hos plastikkirurgen:<br />- <a href="http://excds.ath.cx/fun/other/ektapa/ektapa.html">Dr. Ekta Pattar</a> tar emot!' : '';
 	$headings[4] = (rand(1, 5) == 3) ? 'Visst är 65654 ett fint nummer?' : '';
 	$headings[3] = (rand(1, 5) == 2) ? 'Vet du om att Stora mossen ligger mitt emellan Trosa och Fittja?' : '';
