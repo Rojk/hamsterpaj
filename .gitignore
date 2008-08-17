@@ -21,6 +21,8 @@ include/live_chat/*
 tmp/avatars/*
 photo_upload_temp/*
 kvitton/*
+snyggve_temp/full/*
+snyggve_temp/thumb/*
 
 # Configuration files
 include/constants.php
