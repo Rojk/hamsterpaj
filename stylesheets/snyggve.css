@@ -1,0 +1,55 @@
+#snyggve_album
+{
+	
+}
+
+#snyggve_album div
+{
+	padding: 3px;
+	border: 1px solid #ababab;
+	margin: 5px;
+	width: 140px;
+	height: 105px;
+	text-align: center;
+	display: table-cell;
+	float: left;
+}
+
+#snyggve_album .saveform
+{
+	height: auto;
+}
+
+#snyggve_album .saveform img
+{
+	cursor: pointer;
+}
+
+#snyggve_album div img
+{
+	clear: both;
+}
+
+.snyggve_full
+{
+	text-align: center;
+	padding: 10px;
+	border: 1px solid #ababab;
+	margin: 10px;
+}
+
+.snyggve_full img
+{
+	border: 1px solid #565656;
+}
+
+.snyggve_created_by
+{
+	color: #ababab;
+	text-align: right;
+}
+
+.snyggve_created_by a
+{
+	color: #ababab;
+}

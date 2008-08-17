@@ -1,0 +1,30 @@
+#searchmap
+{
+	width: 250px;
+	float: left;
+	height: 600px;
+}
+
+#sex
+{
+	float: right;
+	width: 350px;
+}
+
+	#sex #male
+	{
+		width: 50px;
+		height: 50px;
+		border: 10px solid;
+		float: left;
+		margin-right: 20px;
+		
+	}
+
+	#sex #female
+	{
+		width: 50px;
+		height: 50px;
+		border: 10px solid;
+		float: left;
+	}

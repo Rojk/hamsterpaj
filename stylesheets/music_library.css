@@ -1,0 +1,109 @@
+#music_library_player
+{
+	width: 640px;
+	height: 200px;
+	background: url(http://images.hamsterpaj.net/music_library/player.png);
+	display: none;
+}
+
+#music_library_player .left, #music_library_player .right
+{
+	float: left;
+	padding: 0px;
+	margin: 0px;
+}
+
+#music_library_player .left .artist_title
+{
+	font-size: 18px;
+	font-weight: bold;
+	color: #000;
+	font-family: Arial, Verdana;
+	margin: 0px 0px 0px 40px;
+	padding: 29px 0px 0px 0px;
+}
+
+#music_library_player .left .artist_text
+{
+	width: 350px;
+	height: 100px;
+	overflow: auto;
+	margin: 0px 0px 0px 40px;
+}
+
+#music_library_player .left .artist_miscellaneous
+{
+	padding: 0px;
+	margin: 6px 0px 0px 40px;
+	font-weight: 14px;
+}
+
+#music_library_player .right .player_playlist
+{
+	margin: 60px 0px 0px 50px;
+	padding: 0px;
+	overflow: auto;
+	width: 160px;
+	height: 90px;
+}
+
+#music_library_player .right .player_playlist ul
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+#music_library_player .right .player_playlist ul li
+{
+	margin: 0px;
+	padding: 1px;
+	list-style-type: none;
+	clear: both;
+	color: #000;
+}
+
+#music_library_player .right .player_playlist ul li.even,
+#music_library_player .right .player_playlist ul li.even_selected
+{
+	background: #666;
+}
+
+#music_library_player .right .player_playlist ul li.odd,
+#music_library_player .right .player_playlist ul li.odd_selected
+{
+	background: #aaa;
+}
+
+#music_library_player .right .player_playlist ul li a
+{
+	border: 0px none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#music_library_player .right .player_playlist ul li.even_selected a,
+#music_library_player .right .player_playlist ul li.odd_selected a
+{
+	color: #333;
+	font-weight: bold;
+}
+
+#music_library_player .right .player_playlist ul li img
+{
+	margin: 0px 5px 0px 0px;
+	padding: 0px;
+	border: 0px;
+	cursor: pointer;
+}
+
+#music_library_player .right .player_playlist ul li.even_selected img,
+#music_library_player .right .player_playlist ul li.odd_selected img
+{
+	cursor: default;
+}
+
+#music_library_player .right .player_player
+{
+	margin: 4px 0px 0px 50px;
+	padding: 0px;
+}

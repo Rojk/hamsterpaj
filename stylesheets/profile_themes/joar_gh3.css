@@ -1,0 +1,27 @@
+.profile_joar_gh3 .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/joar_gh3/profile_head_bg.png');
+}
+
+.profile_joar_gh3 .profile_head .navigation a
+{
+	color: #FFFFFF;
+}
+.profile_joar_gh3 .profile_head .avatar_passepartout
+{
+	background-color: transparent;
+	border: 0px;
+}
+.profile_joar_gh3 .profile_head .user_avatar
+{
+	margin-top: 1px;
+	margin-left: 1px;
+}
+.profile_joar_gh3 .username, .gender, .age, .spot
+{
+	color: white;
+}
+.profile_joar_gh3 .profile_head ul, .time, .user_status, .profile_head a
+{
+	color: white;
+}

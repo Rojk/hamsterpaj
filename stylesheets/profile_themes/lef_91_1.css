@@ -1,0 +1,22 @@
+.profile_lef_91_1 .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_1/profile_head_bg.png');
+	margin-bottom: 10px;
+}
+.profile_lef_91_1 .top
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_1/rounded_corners_top.png') no-repeat top;
+
+}
+.profile_lef_91_1 .repeat
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_1/presentation_bg.png');
+}
+.profile_lef_91_1 .bottom
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_1/rounded_corners_bottom.png') no-repeat bottom;
+}
+.profile_lef_91_1 .profile_presentation_text
+{
+	padding: 10px;
+}

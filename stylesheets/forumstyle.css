@@ -1,0 +1,100 @@
+.forum_post
+{
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	border: 1px solid #d7d7d7;
+}
+
+.forum_post_top
+{
+	background: url('/forum_new/forum_post_top.png');
+	font-weight: bold;
+}
+
+.forum_post_username
+{
+	width: 140px;
+}
+
+.forum_post_timestamp
+{
+	width: 610px;
+}
+
+.forum_post_wrapper
+{
+	width: 100%;
+	overflow: hidden;
+	word-wrap: break-word;
+}
+
+.IE_wrap
+{
+	word-wrap:break-word;
+	width:100%;
+}
+
+.forum_post_content
+{
+	vertical-align: top;
+	background: #e0e7ea;
+}
+
+.forum_post_self
+{
+	vertical-align: top;
+	background: #bdcdd3;
+}
+
+.forum_post_own_name
+{
+	vertical-align: top;
+	background: #ffc777;
+}
+
+.forum_post_userinfo
+{
+	vertical-align: top;
+	background: #cdcdcd;
+}
+
+.forum_post_extra_text
+{
+	color: #565656;
+	font-family: verdana, arial;
+	font-size: 10px;
+}
+
+.forum_post_bottom
+{
+	background: url('/forum_new/forum_post_top.png');
+	margin-bottom: 5px;
+}
+
+.forum_post_spacer
+{
+	height: 5px;
+	background: #8b8b8b;
+}
+
+.forum_thread_list_tr
+{
+	background: #f1f1f1;
+}
+
+.forum_signature
+{
+	border-top: 1px solid grey;
+	font-style: italic;
+	color: grey;
+}
+
+DIV.incqbox {WIDTH: 450px; white-space: nowrap; OVERFLOW: hidden}
+DIV.box, .pun TD, .pun TH, .pun BLOCKQUOTE, DIV.codebox, DIV.forminfo, DIV.blockpost LABEL {
+  BORDER-STYLE: solid;
+  BORDER-WIDTH: 1px
+}
+BLOCKQUOTE, DIV.codebox {MARGIN: 5px 15px 15px 15px; PADDING: 8px}
+SPAN.bbu {TEXT-DECORATION: underline}
+DIV.scrollbox {WIDTH: 100%; OVERFLOW: auto}
+

@@ -1,0 +1,124 @@
+.live_chat_scribble_board .navigation_header
+{
+	float: left;
+}
+
+.live_chat_scribble_board .navigation
+{
+	height: 20px;
+}
+
+.live_chat_scribble_board .navigation li
+{
+	float: left;
+	margin-left: 20px;
+	border: 1px solid #ababab;
+	border-bottom: none;
+	cursor: pointer;
+	list-style-type: none;
+}
+
+/* Entry area */
+.live_chat_scribble_board .entry_area
+{
+	display: block;
+	clear: both;
+	height: 3500px;
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	overflow: auto;
+}
+
+.live_chat_scribble_board .entry_area .highlight
+{
+	background: #f9f1cd url('http://images.hamsterpaj.net/live_chat/live_chat_highlight_bg.png') repeat-x;;
+}
+
+.live_chat_scribble_board .entry_area li
+{
+	margin-top: 5px;
+	padding: 5px;
+	border: 1px solid #a0a0a0;
+	background: #f2f4f8 url('http://images.hamsterpaj.net/live_chat/live_chat_entry_bg.png') repeat-x;
+}
+
+.live_chat_scribble_board .entry_area .user_photo
+{
+	display: block;
+	float: left;
+	width: 37px;
+	border: 1px solid #565656;
+	height: 50px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.live_chat_scribble_board .entry_area .user_photo:hover
+{
+	width: 75px;
+	height: 100px;
+}
+
+
+.live_chat_scribble_board .entry_area .timestamp
+{
+	font-weight: bold;
+	margin-right: 15px;
+}
+
+.live_chat_scribble_board .entry_area .username
+{
+	font-weight: bold;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+.live_chat_scribble_board .entry_area .age
+{
+	margin-right: 15px;
+}
+
+.live_chat_scribble_board .entry_area .message
+{
+
+}
+
+.navigation, .navigation_header
+{
+	display: none;
+}
+
+/* User list */
+.live_chat_scribble_board .user_list
+{
+	display: none;
+}
+
+/* Form */
+.live_chat_scribble_board form
+{
+	display: block;
+}
+
+.live_chat_scribble_board form h5
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.live_chat_scribble_board form .recipient
+{
+	display: none;
+}
+
+.live_chat_scribble_board form .compose_area
+{
+	float: left;
+}
+
+.live_chat_scribble_board form .message_input
+{
+	width: 560px;
+	height: 120x;
+}

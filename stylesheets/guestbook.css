@@ -1,0 +1,78 @@
+#guestbook
+{
+
+}
+
+#guestbook .post_form .content_area textarea
+{
+	height: 75px;
+}
+
+.challenge img
+{
+	float: right;
+	border: 1px solid #aaa;
+	margin: 3px;
+	padding: 1px;
+}
+
+.challenge .challenge_message
+{
+	float: left;
+	width: 420px;
+}
+
+.entry_picture
+{
+	float: left;
+	width: 77px;
+	height: 102px;
+	margin-right: 5px;
+}
+
+.entry_picture .user_avatar
+{
+	border: 1px solid #565656;
+}
+
+.entry_main
+{
+	float: left;
+	width: 540px;
+}
+
+.entry_info
+{
+	margin: 3px;
+}
+
+.entry_info a
+{
+	font-weight: bold;
+	border: none;
+}
+
+.entry_info .timestamp
+{
+	float: right;
+}
+
+.entry_info .gb_private, .entry_info .gb_unanswered
+{
+	font-weight: bold;
+	clear: both;
+	display: block;
+}
+
+.entry_controls
+{
+	padding-top: 5px;
+	padding-left: 80px;
+	clear: both;
+}
+
+.entry_controls button
+{
+	margin-right: 5px;
+	margin-bottom: 0px;
+}

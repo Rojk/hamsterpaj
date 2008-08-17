@@ -1,0 +1,55 @@
+#diary_date_selector
+{
+	float: left;
+}
+
+#diary_date_scroller
+{
+	overflow: hidden;
+	width: 590px;
+	height: 22px;
+}
+
+.diary_date_list
+{
+	margin: 0px;
+	padding: 0px;
+	margin-left: 10px;
+	height: 22px;
+	display: block;
+}
+.diary_date_list li
+{
+	display: block;
+	float: left;
+	margin-left: 5px;
+	font-size: 11px;
+	line-height: 22px;
+	text-align: center;
+	color: #989898;
+}
+
+.diary_date_list li a
+{
+	color: black;
+	border: none;
+}
+
+.diary_form
+{
+	margin-top: 50px;
+}
+
+.diary_form .textbox
+{
+	font-size: 22px;
+	width: 500px;
+}
+
+.diary_form textarea
+{
+	width: 636px;
+	height: 300px;
+	font-family: verdana, arial, serif;
+	font-size: 11px;
+}

@@ -1,0 +1,27 @@
+.profile_blue_flowers .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/blue_flowers/profile_head_bg.png');
+	color: #fff;
+}
+
+.profile_blue_flowers .profile_head .name_asl
+{
+	color: #000;
+}
+.profile_blue_flowers .top
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/blue_flowers/rounded_corners_top.png') no-repeat top;
+
+}
+.profile_blue_flowers .repeat
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/blue_flowers/presentation_bg.png');
+}
+.profile_blue_flowers .bottom
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/blue_flowers/rounded_corners_bottom.png') no-repeat bottom;
+}
+.profile_blue_flowers .profile_presentation_text
+{
+	padding: 10px;
+}

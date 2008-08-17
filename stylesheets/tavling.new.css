@@ -1,0 +1,36 @@
+.tavling_img img
+{
+	border: 4px green solid;
+}
+.rita_img
+{
+	list-style-type: none;
+}
+.rita_img li
+{
+	padding: 12px;
+	float: left;
+	text-align: center;
+}
+.latest_tavla .rita_img li
+{
+	padding: 10px;
+	float: left;
+	text-align: center;
+}
+.latest_tavla ul li img
+{
+	width: 100px;
+} 
+.no_border a
+{
+	border-bottom: none;
+	text-decoration: none;
+}
+.sysops ul, .latest_tavla ul
+{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding: 10px;
+	margin-left: 0px;
+}

@@ -1,0 +1,51 @@
+#ui_business_card {
+	border: 1px solid #c7c7c7;
+	background: #f9f9f9;
+	-moz-border-radius: 5px;
+	width: 300px;
+	position: absolute;
+	padding: 10px;
+}
+
+.ui_business_card {
+	position: relative;
+	top: 3px;
+}
+
+	#ui_business_card_close {
+	 	display: block;
+	 	width: 15px;
+	 	height: 15px;
+		position: absolute;
+		top: -6px;
+		right: -6px;
+		background: transparent url(../images/ui/ui_module_close.png) no-repeat scroll center bottom;
+		text-indent: -10000px;
+		outline: none;
+	}
+	
+	#ui_business_card h1 {
+		margin: 0;
+		font-size: 20px;
+	}
+	
+	#ui_business_card .ui_avatar {
+		float: left;
+		margin: 0 10px 10px 0;
+	}
+	
+	#ui_business_card_about p {
+		margin: 0 0 5px;
+	}
+	
+	#ui_business_card_about img {
+		margin-right: 5px;
+	}
+	
+	#ui_business_card_guestbook textarea {
+		width: 293px;
+	}
+		
+	#ui_business_card_guestbook {
+		clear: both;
+	}

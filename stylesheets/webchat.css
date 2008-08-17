@@ -1,0 +1,53 @@
+.webchat_entry_odd, .webchat_entry_even
+{
+	margin-bottom: 3px;
+	padding: 2px;
+}
+
+.webchat_entry_odd
+{
+	background: #ececec;
+}
+
+.webchat_entry_highlight
+{
+	background: #ffde97;
+	margin-bottom: 3px;
+}
+
+.webchat_entry_odd .text, .webchat_entry_even .text, .webchat_entry_highlight .text
+{
+	float: left;
+	cursor: pointer;
+	width: 480px;
+}	
+
+.webchat_entry_time
+{
+	margin-right: 5px;
+	font-size: 10px;
+}
+
+.webchat_entry_username
+{
+	cursor: pointer;
+}
+
+.webchat_entry_info
+{
+	width: 150px;
+	float: left;
+}
+
+
+#webchat_form_area
+{
+	width: 350px;
+	float: left;
+}
+
+#webchat_user_info
+{
+	border: 1px solid #ababab;
+	float: left;
+}

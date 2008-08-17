@@ -1,0 +1,42 @@
+.profile_pr0n_dark_skull .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/pr0n_dark_skull/profile_head_bg.png');	
+	color: #ffffff;
+}
+.profile_pr0n_dark_skull .user_action_log li a:link, 
+.profile_pr0n_dark_skull .user_action_log li a:active, 
+.profile_pr0n_dark_skull .user_action_log li a:visited
+{
+	color: #FFFfff; 
+	font-weight: bold; 
+	text-decoration: none;
+}
+.profile_pr0n_dark_skull .user_action_log li a:hover 
+{
+	color: #FFfffF;
+	font-weight: bold;
+	text-decoration: none;
+}
+.profile_pr0n_dark_skull .navigation li a:link, 
+.profile_pr0n_dark_skull .navigation li a:active, 
+.profile_pr0n_dark_skull .navigation li a:visited 
+{
+	color: #FFfffF; 
+	text-decoration: none;
+}
+.profile_pr0n_dark_skull .navigation li a:hover 
+{ 
+	color: #FFfffF; 
+	border-bottom: 1px #FFF dashed; 
+	text-decoration: none; 
+}
+.profile_pr0n_dark_skull .profile_head .online 
+{
+	color: #FC2159;
+	/*color: #FF3259;*/
+}
+.profile_pr0n_dark_skull .profile_head .avatar_passepartout
+{
+	background: #555;
+	border: 1px ridge #c44;
+}

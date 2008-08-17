@@ -1,0 +1,138 @@
+.profile_blackwolf
+ .profile_head
+{
+
+	background: url('http://images.hamsterpaj.net/profile_themes/blackwolf/profile_head_bg.png');
+}
+
+.profile_blackwolf a {
+    color: #fff;
+}
+
+
+
+.profile_blackwolf .avatar_passepartout
+
+{
+
+	border: 1px solid #ababab;
+
+	padding: 10px;
+
+	float: left;
+
+	background: white;
+
+	margin-right: 10px;
+
+	margin-bottom: 12px;
+
+}
+
+
+
+.profile_blackwolf .name_asl
+
+{
+
+	font-size: 20px;
+
+}
+
+
+
+.profile_blackwolf .name_asl .online
+
+{
+
+	color: green;
+
+	text-align: right;
+
+}
+
+
+
+.profile_blackwolf .user_status
+{
+
+	font-style: italic;
+
+	color: #fff;
+
+}
+
+
+
+.profile_blackwolf .user_action_log
+{
+
+	list-style-type: none;
+	color:#FFFFFF;
+}
+
+
+
+.profile_blackwolf .navigation ul
+
+{
+
+	list-style-type: none;
+
+	margin: 0px;
+
+	padding: 0px;
+
+	padding-top: 5px;
+
+	clear: both;
+
+}
+
+
+
+.profile_blackwolf .navigation ul li
+
+{
+
+	float: left;
+
+	display: block;
+
+	width: 150px;
+
+	padding: 0px;
+
+	font-size: 11px;
+
+	line-height: 11px;
+
+	margin-bottom: 5px;
+
+	color: #7398ad;
+
+}
+
+
+
+.profile_blackwolf .navigation a
+
+{
+
+	border: none;
+
+	color: #7398ad;
+
+}
+
+
+
+.profile_blackwolf .navigation hover
+{
+	border: none;
+
+	color: #2c96d2;
+
+	text-decoration: underline;
+
+}

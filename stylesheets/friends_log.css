@@ -1,0 +1,12 @@
+.friends_log
+{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.friends_log .photos_list_mini
+{
+	clear: none;
+	padding-top: 5px;
+}

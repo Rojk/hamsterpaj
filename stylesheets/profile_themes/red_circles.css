@@ -1,0 +1,30 @@
+.profile_red_circles .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/red_circles/profile_head_bg.png');
+}
+.profile_red_circles .profile_head .user_action_log, .user_action_log a
+{
+	color: #aaa;
+}
+.profile_red_circles .profile_head .user_status
+{
+	color: #777;
+}
+
+.profile_red_circles .top
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/red_circles/rounded_corners_top.png') no-repeat top;
+
+}
+.profile_red_circles .repeat
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/red_circles/presentation_bg.png');
+}
+.profile_red_circles .bottom
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/red_circles/rounded_corners_bottom.png') no-repeat bottom;
+}
+.profile_red_circles .profile_presentation_text
+{
+	padding: 10px;
+}

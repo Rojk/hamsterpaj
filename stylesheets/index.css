@@ -1,0 +1,106 @@
+.index_module
+{
+	border: 1px solid #ababab;
+}
+
+.index_module h2
+{
+	border-bottom: 1px solid #ababab;
+	background: #f9cc88;
+	margin: 0px;
+	padding: 3px;
+	margin-bottom: 3px;
+}
+
+.index_module .module_content
+{
+	padding: 3px;
+}
+
+.fp_games div, .fp_movies div
+{
+	background: #cbdae5;
+	height: 64px;
+	width: 202px;
+	margin: 3px;
+	float: left;
+	border: 1px solid #ababab;
+	overflow: hidden;
+}
+
+.fp_movies div
+{
+	margin-bottom: 5px;
+}
+
+.fp_games div h4, .fp_movies div h4
+{
+	margin: 0px;
+	padding: 0px;
+	font-weight: bold;
+}
+
+.fp_games div p, .fp_movies div p
+{
+	margin: 0px;
+}
+
+.fp_games div img, .fp_movies div img
+{
+	margin: 2px;
+	float: left;
+}
+
+.welcome h3
+{
+	font-weight: bold;
+	margin-bottom: 2px;
+	margin-top: 5px;
+}
+
+.welcome p
+{
+	margin: 0px;
+}
+
+#fp_highlight_container .fp_highlight
+{
+	padding: 0px;
+	border: 1px solid #ababab;
+	width: 314px;
+	height: 200px;
+	float: left;
+}
+
+#fp_highlight_container
+{
+	height: 210px;
+	margin-top: 8px;
+}
+
+#fp_highlight_container p
+{
+	padding: 5px;	
+}
+
+#index_recent_updates
+{
+	font-size: 10px;
+}
+
+#index_recent_updates .todays_updates, #index_recent_updates .yesterdays_updates
+{
+	float: left;
+	width: 310px;
+}
+
+#index_recent_updates
+{
+	font-size: 10px;
+}
+
+.fp_entertain_heading
+{
+	width: 307px;
+	float: left;
+}

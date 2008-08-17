@@ -1,0 +1,144 @@
+<?php
+	$query = 'SELECT title, position, photos FROM photo_albums WHERE owner = "' . $_SESSION['login']['id'] . '" ORDER BY position ASC';
+	$result = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
+	while($data = mysql_fetch_assoc($result))
+	{
+		$categories[$data['position']]['title'] = $data['title'];
+		$categories[$data['position']]['photos'] = explode(',',$data['photos']);
+	}
+
+	require(PATHS_INCLUDE . 'photoalbum-functions.php');
+	$allowed_extensions = array('jpg', 'png', 'gif', 'bmp', 'tiff', 'jpeg');
+
+	switch($_GET['action'])
+	{
+	case 'upload':
+		if($_GET['perform'] == 'true')
+		{
+			foreach($_FILES AS $input_name => $file)
+			{
+				if(strlen($file['name']) < 1)
+				{
+					continue;
+				}
+				$extension = strtolower(substr($file['name'], strrpos($file['name'], '.')+1));
+				if(!in_array($extension, $allowed_extensions))
+				{
+					if($extension == 'php')
+					{
+						to_logfile('notice', __FILE__, __LINE__, 'User tried to upload php file',  $file['name']);
+					}
+					echo '<p class="error">Filen ' . $file['name'] . ' kunde inte laddas upp, vi tillåter bara de filändelser som visas nedan:<br />';
+					echo implode(', ', $allowed_extensions) . '</p>';
+				}
+				else
+				{
+					if($_POST[$input_name . '_category'] > 0 && $_POST[$input_name . '_category'] < 9 && is_numeric($_POST[$input_name . '_category']))
+					{
+						$options['category'] = $_POST[$input_name . '_category'];
+					}
+					if(strlen($_POST[$input_name . '_description']) > 0)
+					{
+						$options['description'] = $_POST[$input_name . '_description'];
+					}
+					$return = photoalbum_upload_photo($file['tmp_name'], $_SESSION['login']['id'], $options);
+					if($return['status'] != 'success')
+					{
+						echo '<p class="error">' . $file['name'] . ': ' . $return['reason'] . '</p>';
+					}
+				}
+			}
+		}
+		echo '<div class="grey_faded_div" style="height: 400px;">' . "\n";
+		echo '<h2>Ladda upp nya bilder</h2>' . "\n";
+		echo '<div style="width: 360px; float: left;">' . "\n";
+		echo '<form enctype="multipart/form-data" action="' . $_SERVER['PHP_SELF'] . '?id=' . $_GET['id'] . '&action=upload" method="POST">';
+		for($i = 1; $i <= 6; $i++)
+		{
+			if($i == 4)
+			{
+				echo '<div style="width: 360px; float: right;">' . "\n";
+			}
+			echo '<div style="width: 100%; height: 110px;">' . "\n";
+			echo '<img src="/images/photoalbum_upload_preview.png" style="float: right; width: 110px; cursor: pointer; height: 98px; border: 1px solid #40657f;" id="preview_' . $i . '" onclick="alert(\'Firefox tillåter av säkerhetsskäl inte att en websida länkar direkt till en fil på hårddisken, därför fungerar inte förhandsgranskningen i Firefox.\');" />' . "\n";
+			echo '<input name="photo_' . $i . '" style="width: 240px;" type="file" id="imagefile" onchange="document.getElementById(\'preview_' . $i . '\').src = \'file://\' + this.value.replace(/\\\\/g,\'/\');"/><br />' . "\n";
+			echo '<select name="photo_' . $i . '_category" style="width: 240px;">' . "\n";
+			for($j = 1; $j <= 8; $j++)
+			{
+				echo '<option value="' . $j . '">' . $categories[$j]['title'] . ' (' . (10-count($categories[$j]['photos'])) . ' platser)</option>' . "\n";
+			}
+			echo '</select><br />' . "\n";
+			echo '<textarea name="photo_' . $i . '_description" style="width: 234px; height: 50px;" onclick="if(this.value==\'Skriv din beskrivning här...\'){this.value=\'\'};">Skriv din beskrivning här...</textarea>' . "\n";
+			echo '</div>';
+			if($i == 3 || $i == 6)
+			{
+				echo '</div>' . "\n";
+			}
+		}
+		echo '<input type="submit" value="Ladda upp bilder &raquo;" style="float: right;" class="button" />';
+		echo 'Ladda inte upp för stora filer - du kan max ladda upp 8MB åt gången.<br />Format som stöds är ' . implode(', ', $allowed_extensions);
+		echo '</div>' . "\n";
+		echo '</div>';
+		break;
+	case 'remove':
+		if($_GET['perform'] == 'true')
+		{
+
+		}
+		foreach($categories[$_GET['category']]['photos'] AS $photo)
+		{
+			echo '<div style="float: left; margin: 3px;">' . "\n";
+			echo '<img src="/images/photoalbums/images_' . round($photo/1000) . '/' . $photo . '_thumb.jpg" style="width: 60px; height: 45px; display: block; border: 1px solid #3f657a;" />' . "\n";
+			echo '<div style="text-align: center; width: 100%;"><input type="checkbox" name="' . $photo . '" value="remove" /></div>';
+			echo '</div>' . "\n";
+			echo '<input type
+		}
+		break;
+	case 'move':
+		echo 'Moving...';
+		break;
+	case 'sort':
+		echo 'Sorting...';
+		break;
+	case 'organize':
+		echo 'organizing...';
+		break;
+	default:
+		echo '<h2>Vad vill du göra?</h2>';
+		echo '<ul>';
+
+		echo '<li><a href="' . $_SERVER['PHP_SELF'] . '?id=' . $_GET['id'] . '&action=upload">Ladda upp nya bilder</a></li>';
+
+		echo '<li>Ta bort några bilder från ';
+		echo '<select onchange="window.location=\'' . $_SERVER['PHP_SELF'] . '?id=' . $_GET['id'] . '&action=remove&category=\' + this.value;">' . "\n";
+		echo '<option>--Välj en kategori--</option>' . "\n";
+		foreach($categories AS $category_id => $category)
+		{
+			echo '<option value="' . $category_id . '">' . $category['title'] . '</option>' . "\n";
+		}
+		echo '</select></li>' . "\n";
+	
+		echo '<li>Flytta några bilder från ';
+		echo '<select onchange="window.location=\'' . $_SERVER['PHP_SELF'] . '?id=' . $_GET['id'] . '&action=move&category=\' + this.value;">' . "\n";
+		echo '<option>--Välj en kategori--</option>' . "\n";
+		foreach($categories AS $category_id => $category)
+		{
+			echo '<option value="' . $category_id . '">' . $category['title'] . '</option>' . "\n";
+		}
+		echo '</select></li>' . "\n";
+
+		echo '<li>Sortera bilderna i ';
+		echo '<select onchange="window.location=\'' . $_SERVER['PHP_SELF'] . '?id=' . $_GET['id'] . '&action=sort&category=\' + this.value;">' . "\n";
+		echo '<option>--Välj en kategori--</option>' . "\n";
+		foreach($categories AS $category_id => $category)
+		{
+			echo '<option value="' . $category_id . '">' . $category['title'] . '</option>' . "\n";
+		}
+		echo '</select></li>' . "\n";
+	
+		echo '<li><a href="' .  $_SERVER['PHP_SELF'] . '?id=' . $_GET['id'] . '&action=organize">Byta namn och flytta kategorier</a></li>';
+
+		echo '</ul>';
+		break;
+	}
+?>

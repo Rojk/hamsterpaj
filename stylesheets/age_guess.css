@@ -1,0 +1,80 @@
+#age_guess_main
+{
+	width: 320px;
+	border: 1px solid #ababab;
+	float: left;
+}
+
+.age_guess_panel
+{
+	float: left;
+	padding-left: 10px;
+	width: 300px;
+}
+
+#age_guess_toplist, #age_guess_statistics
+{
+	padding: 3px;
+}
+
+/* Inputs */
+#age_guess_inputs
+{
+	height: 98px;
+}
+
+#age_guess_inputs div
+{
+	background: #f9d969 url('http://images.hamsterpaj.net/age_guess/age_guess_input_bg_sprite.png');
+	margin-right: 5px;
+	margin-bottom: 5px;
+	padding: 3px;
+	text-align: center;
+	width: 19px;
+	height: 19px;
+	line-height: 19px;
+	float: left;
+	cursor: pointer;
+}
+
+#age_guess_inputs div:hover
+{
+	background: #f9bf60 url('http://images.hamsterpaj.net/age_guess/age_guess_input_bg_sprite.png') 25px 0px;
+}
+
+#age_guess_result
+{
+	border: 1px solid #ababab;
+	height: 112px;
+	background: #e8e8e8 url('http://images.hamsterpaj.net/age_guess/age_guess_answer_bg.png');
+}
+
+#age_guess_result img
+{
+	float: left;
+	margin: 5px;
+	border: 1px solid #565656;
+}
+
+.age_guess_score_positive, .age_guess_score_unchanged, .age_guess_score_negative
+{
+	float: right;
+	margin-right: 5px;
+	font-weight: bold;
+}
+
+.age_guess_score_positive
+{
+	color: #217c1a;
+}
+
+.age_guess_score_negative
+{
+	color: #982314;
+}
+
+.age_guess_answer_text
+{
+	font-size: 14px;
+	line-height: 17px;
+}

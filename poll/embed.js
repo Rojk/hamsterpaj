@@ -1,0 +1,1 @@
+document.write('Varför får jag inte på mig dina blåjeans?');

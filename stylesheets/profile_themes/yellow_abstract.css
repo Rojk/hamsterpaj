@@ -1,0 +1,21 @@
+.profile_yellow_abstract .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/yellow_abstract/profile_head_bg.png');
+}
+.profile_yellow_abstract .top
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/yellow_abstract/rounded_corners_top.png') no-repeat top;
+
+}
+.profile_yellow_abstract .repeat
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/yellow_abstract/presentation_bg.png');
+}
+.profile_yellow_abstract .bottom
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/yellow_abstract/rounded_corners_bottom.png') no-repeat bottom;
+}
+.profile_yellow_abstract .profile_presentation_text
+{
+	padding: 10px;
+}

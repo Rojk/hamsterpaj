@@ -1,0 +1,85 @@
+a .misc_half_puff
+{
+	text-decoration: none;
+}
+
+.misc_half_puff
+{
+	width: 295px;
+	height: 120px;
+	border: 1px solid #ababab;
+	float: left;
+	margin: 5px;
+	padding: 3px;
+	background: url('http://images.hamsterpaj.net/misc_index/background.png');
+}
+
+.misc_half_puff h2
+{
+	background: white;
+	margin: -3px;
+	margin-bottom: 0px;
+	padding: 3px;
+}
+
+.misc_half_puff h3
+{
+	background: white;
+	margin: -3px;
+	margin-bottom: 0px;
+	padding: 3px;
+}
+
+#misc_wallpaper_puff, #misc_ssn_puff
+{
+	height: 135px;
+}
+
+#misc_wallpaper_puff img
+{
+	margin: 1px;
+	padding: 0px;
+	float: left;
+	display: block;
+	width: 53px;
+	border: 1px solid #565656;
+}
+
+#misc_ssn_puff img
+{
+	float: right;
+}
+
+#misc_yourname_puff
+{
+	clear: both;
+}
+
+#misc_yourname_puff .description
+{
+	float: left;
+	padding-right: 5px;
+	width: 300px;
+	border-right: 1px solid #ababab;
+}
+
+#misc_yourname_puff .inputs
+{
+	float: right;
+	margin-left: 5px;
+}
+
+#misc_yourname_puff .inputs h5
+{
+	margin: 2px;
+	padding: 0px;
+}
+
+#misc_promoe_puff img
+{
+	margin: 2px;
+	margin-top: 4px;
+	margin-right: 5px;
+	border: 1px solid #565656;
+	float: left;
+}

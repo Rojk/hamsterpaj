@@ -1,0 +1,22 @@
+.profile_lef_91_blueflower .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_blueflower/profile_head_bg.png');
+}
+.profile_lef_91_blueflower .top
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_blueflower/rounded_corners_top.png') no-repeat top;
+
+}
+.profile_lef_91_blueflower .repeat
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_blueflower/presentation_bg.png');
+}
+.profile_lef_91_blueflower .bottom
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/lef_91_blueflower/rounded_corners_bottom.png') no-repeat bottom;
+
+}
+.profile_lef_91_blueflower .profile_presentation_text
+{
+	padding: 10px;
+}

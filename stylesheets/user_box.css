@@ -1,0 +1,47 @@
+.user_box_normal_blue
+{
+	width: 160px;
+}
+
+.user_box_normal_blue .user_box_top, .user_box_normal_blue .user_box_bottom
+{
+	width: 160px;
+	height: 10px;
+	overflow: hidden;
+	clear: left;
+	margin: 0px;
+}
+
+.user_box_normal_blue .user_box_top
+{
+	background: url(http://images.hamsterpaj.net/user_box/normal_blue/top.png);
+}
+
+.user_box_normal_blue .user_box_bottom
+{
+	background: url(http://images.hamsterpaj.net/user_box/normal_blue/bottom.png);
+}
+
+.user_box_normal_blue .user_box_content
+{
+	background: #ADD8E6;
+	width: 158px;
+	border-left: 1px solid #6391B3;
+	border-right: 1px solid #6391B3;
+	margin: 0px;
+	padding: 0px;
+}
+
+.user_box_normal_blue .user_box_content .item
+{
+	clear: left;
+	margin: 0px 5px 0px 5px;
+	padding: 0px;
+}
+
+.user_box_normal_blue .user_box_content .item_left_aligned
+{
+	float: left;
+	margin: 0px 5px 0px 5px;
+	padding: 0px;
+}

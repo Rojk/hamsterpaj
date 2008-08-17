@@ -1,0 +1,199 @@
+.photo_list_heading
+{
+	font-size: 14px;
+	margin-top: 25px;
+	border-bottom: 1px solid #efefef;
+}
+
+/* Photo thumbs list */
+.photo_thumbs_list a
+{
+	border: none;
+}
+
+.photo_thumbs_list .thumb
+{
+	height: 100px;
+	width: 100px;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+/* Photo day list */
+.photo_by_day_link
+{
+	float: right;
+}
+
+
+/* Photo week list */
+.photo_week_list a
+{
+	border: none;
+}
+
+.photo_week_list
+{
+	clear: both;
+	height: 50px;
+	width: 616px;
+	margin-left: 0px;
+	padding: 0px;
+	border: 1px solid black;
+	border-right: none;
+}
+
+.photo_week_list .photo_count
+{
+	line-height: 18px;
+}
+
+.photo_week_list .date
+{
+	font-size: 10px;
+}
+
+.photo_week_list li
+{
+	display: block;
+	float: left;
+	width: 87px;
+	height: 50px;
+	border-right: 1px solid black;
+	text-align: center;
+	background: white url('http://images.hamsterpaj.net/photos/system/week_square_bg.png') repeat-x bottom;
+}
+
+.photo_week_list .clickable
+{
+	background: url('http://images.hamsterpaj.net/photos/system/week_square_bg_clickable.png') repeat-x;
+}
+
+.photo_week_list .weekday, .photo_week_list .photo_count, .photo_week_list .date
+{
+	display: block;
+}
+
+/* Photo month list */
+
+.photo_month_list
+{
+	margin-left: 0px;
+	padding: 0px;
+}
+
+
+.photo_month_list li
+{
+	display: block;
+	float: left;
+	width: 20px;
+	height: 15px;
+	margin: 0px;
+	padding: 0px;
+}
+
+/* Photo display */
+.photo_full
+{
+	border: 1px solid #ababab;
+	text-align: center;
+	width: 635px;
+}
+
+.photo_full .head p
+{
+	text-align: left;
+	width: 400px;
+	margin: 15px auto auto;
+}
+
+.photo_full .photo_passepartout_outer
+{
+	position:relative;
+	left:50%;
+	float:left;
+	clear:both;
+	margin:10px 0;
+}
+
+.photo_full .photo_passepartout_inner
+{
+	border:1px solid #565656;
+	padding: 15px;
+	position:relative;
+	left:-50%;
+}
+
+.photo_full .photo_passepartout_inner img
+{
+	border: 1px solid #ababab;
+}
+
+.photo_full .foot
+{
+	clear: both;
+	height: 50px;
+	border-top: 1px solid #ababab;
+}
+
+.photo_full .foot .previous
+{
+	margin-left: 2px;
+	float: left;
+	width: 110px;
+}
+.photo_full .foot .next
+{
+	margin-right: 6px;
+	float: right;
+	width: 110px;
+}
+
+.photo_full .foot button
+{
+	display: block;
+	margin: 3px;
+}
+
+
+/* Photo upload */
+.photo_upload_entry
+{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.photo_upload_entry input
+{
+	width: 300px;
+}
+
+.photo_upload_inputs
+{
+	height: 100px;
+}
+
+.photo_upload_inputs h5
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.photo_upload_inputs .description_input
+{
+	float: left;
+	width: 350px;
+}
+
+.photo_upload_inputs .description_input textarea
+{
+	width: 325px;
+	height: 70px;
+}
+
+.photo_upload_inputs .date_and_album_input
+{
+	float: left;
+}

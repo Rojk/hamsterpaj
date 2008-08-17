@@ -1,0 +1,35 @@
+.bills_postform
+{
+	background: #fdd89d url('http://images.hamsterpaj.net/login_bar/background.png') repeat-x;
+	padding: 5px;
+	width: 400px;
+	border: 1px solid #565656;
+}
+
+.bills_postform .number_input
+{
+	font-family: system, monospace;
+	width: 81px;
+}
+
+.bills_table
+{
+	width: 100%;
+}
+
+.bills_table th
+{
+	text-align: left;
+}
+
+#bills_main
+{
+	width: 400px;
+	float: left;
+}
+
+#bills_left
+{
+	width: 200px;
+	float: right;
+}

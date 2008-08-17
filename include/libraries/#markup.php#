@@ -1,0 +1,89 @@
+<?php
+/*
+	A set of functions to handle our own markup language for forums, guest books etc
+*/
+	
+
+	function post_get_timestamp($post_id)
+	{
+		$query = 'SELECT timestamp FROM posts WHERE id = "' . $matches[2] . '"';
+		$result = mysql_query($query) or die(report_sql_error($query));
+		if($data = mysql_fetch_assoc($result))
+		{
+			$timestamp = $data['timestamp'];
+		}
+		else
+		{
+			$timestamp = null;
+		}
+		return $timestamp;
+	}
+
+	function markup_parse($text)
+	{
+		$text .= "\n";
+		//removes html entities inserted by user
+		$text = htmlentities($text);
+
+		/*
+			The markers are specified in a regexp, replacemant as a normal string
+		*/
+		$markups[1]['marker'] = '\*';
+		$markups[1]['repl']		= 'strong';
+		$markups[0]['marker'] = '_';
+		$markups[0]['repl']		= 'em';
+		
+		//List markers
+		$markups_rep[0]['marker'] = '\*';
+		$markups_rep[0]['surround'] = 'ul';
+		$markups_rep[0]['repl'] = 'li';
+		$markups_rep[1]['marker'] = '#';
+		$markups_rep[1]['surround'] = 'ol';
+		$markups_rep[1]['repl'] = 'li';
+
+		//Replace tags that come in pairs (start and end)
+		foreach($markups as $markup)
+		{
+			$text = preg_replace('/' . $markup['marker'] . '([^\n]*)' . $markup['marker'] . '/',
+								 		'<' . $markup['repl'] . '>$1</' . $markup['repl'] . '>', $text);
+		}
+
+		//Answer tags
+		$text = preg_replace(	'/\[svar:(\w+)=(\d*)\]\s*([^\[]*)\[\/svar\]/m',
+																		'<h3 class=answer_header>Svar till $1s inlÅ‰gg.</h3><div class=answer_text>$3</div>',
+																		$text);
+		$text = preg_replace(	'/\[svar:(\w+)\]\s*([^\[]*)\[\/svar\]/m',
+													'<h3 class=answer_header>Svar till $1s inlÅ‰gg.</h3><div class=answer_text>$2</div>',
+													$text);
+		//Quotes
+		$text = preg_replace(	'/\[citat:(\w+)=(\d*)\]\s*([^\[]*)\[\/citat\]/',
+																		'<h3 class=quote_header>Citerar ur inlÅ‰gg av $1.</h3><div class=quote_text>$3</div>',
+																		$text);
+
+		//Replace repetetive tags (lists)
+		foreach($markups_rep as $markup)
+		{
+			/*First, we find all items in one kind of list. We replace the the users markups
+				with html tags and add an extra, non-html tag.*/
+			$text = preg_replace('/^' . $markup['marker'] . '(.*)$/m',
+													 '<listitem><' . $markup['repl'] . '>$1</' . $markup['repl'] . '>', $text);
+			/*Second, we find the list items we created on the previous row and surround them
+				with a html list tag (either <ul> or <ol>)*/
+			$text = preg_replace('/(^<listitem><' . $markup['repl'] . '>.*<\/' . $markup['repl'] . '>\n)+/m',
+													 '<' . $markup['surround'] . '>$0</' . $markup['surround'] . '>', $text);
+			/*Finally, we remove the temporary tag so that these list items will not be
+				surrounded by extra list tags.*/
+			$text = preg_replace('/<listitem>/', "\t", $text);
+		}
+		//$text = htmlentities($text);
+
+		//Replace image tags
+		$text = preg_replace('/!http:\/\/(.*)!/','<img src="http://$1" />', $text);
+		$text = preg_replace('/!www\.(.*)!/','<img src="http://www.$1" />', $text);
+		$text = preg_replace('/!(.*\.(se|nu|org|com|net)\/.*)!/','<img src="http://$1" />', $text);
+
+		return $text;
+		
+	}
+
+?>

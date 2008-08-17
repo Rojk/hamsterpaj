@@ -1,0 +1,60 @@
+.suggestion
+{
+	background: #fce9b6;
+	padding: 5px;
+	margin-top: 10px;
+}
+
+.suggestion h5
+{
+	margin-bottom: 1px;
+	margin-top: 10px;
+}
+
+.suggestion p
+{
+	margin: 0px;
+}
+
+.suggestion .author_header, .suggestion .responsible_username_header
+{
+	display: inline;
+}
+
+.suggestion_help_text
+{
+	display: none;
+}
+
+#suggestions_form textarea
+{
+	width: 90%;
+	height: 100px;
+}
+
+#suggestion_start_help img
+{
+	float: left;
+	margin-right: 15px;
+}
+
+#suggestion_start_help h1
+{
+	margin-top: 0px;
+}
+
+#suggestion_start_help ol
+{
+	margin-top: 10px;
+	margin-left: 35px;
+}
+
+#suggestion_start_help ol li
+{
+	padding-bottom: 5px;
+}
+
+#suggestion_start_help ol, #suggestion_start_help ul
+{
+	margin-bottom: 0px;
+}

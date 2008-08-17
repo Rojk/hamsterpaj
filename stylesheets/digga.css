@@ -1,0 +1,34 @@
+#digga_top_100
+{
+	overflow: auto;
+	height: 350px;
+	width: 50%;
+	float: left;
+}
+
+#digga_instructions
+{
+	float: left;
+}
+
+#digga_new_artist
+{
+	clear: both;
+	border: 1px solid #565656;
+}
+
+#digga_diggers
+{
+	overflow: auto;
+	height: 300px;
+	width: 300px;
+	float: left;
+}
+
+#digga_songs
+{
+	margin-left: 10px;
+	overflow: auto;
+	height: 300px;
+	width: 300px;
+}

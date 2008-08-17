@@ -1,0 +1,16 @@
+.tavling_img img
+{
+	border: 4px green solid;
+}
+.rita_img li
+{
+	display: inline-table;
+	padding: 5px;
+}
+.sysops ul, latest_tavla ul
+{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding: 10px;
+	margin-left: 0px;
+}

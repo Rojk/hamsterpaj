@@ -1,0 +1,29 @@
+ErrorDocument 404 /404.php
+Options FollowSymLinks
+RewriteEngine On
+Rewritebase /
+
+
+#Rewrite the site in googles eyes
+RewriteCond %{HTTP_HOST} www.pajen.se|www.hamsterpajiskolan.se|www.pajen.net|pajen.se|hamsterpajiskolan.se|pajen.net|www.pajhamster.se|pajhamster.se|www.hamsterpaj.se|hamsterpaj.se|www.rodentmedia.se|rodentmedia.se
+RewriteCond %{HTTP_USER_AGENT} (googlebot) [NC]
+RewriteRule (.*) http://www.hamsterpaj.net/$1 [R=301,L]
+
+
+
+
+#SEO for onlinegames
+
+#RewriteRule ^onlinespel\/bokmaerken$ amusefiles/index.php?show=bookmarks&type=1 [L,NC]
+#RewriteRule ^flashfilmer/bokmaerken(.*)$ amusefiles/index.php?show=bookmarks&type=2 [L,NC]
+#RewriteRule ^filmer/bokmaerken$ amusefiles/index.php?show=bookmarks&type=3 [L,NC]
+#RewriteRule ^vanliga_spel/bokmaerken$ amusefiles/index.php?show=bookmarks&type=4 [L,NC]
+
+#RewriteRule ^onlinespel/?(.*)$ amusefiles/index.php?type=1&category=$1 [L,NC]
+#RewriteRule ^flashfilmer/?(.*)$ amusefiles/index.php?type=2&category=$1 [L,NC]
+#RewriteRule ^filmer/?(.*)$ amusefiles/index.php?type=3&category=$1 [L,NC]
+#RewriteRule ^vanliga_spel/?(.*)$ amusefiles/index.php?type=4&category=$1 [L,NC]
+#RewriteRule ^underhallning/?(.*)$ amusefiles/$1 [L,NC]
+
+
+#RewriteRule (.*) http://www.hamsterpaj.se/$1 [R=302,L]

@@ -1,0 +1,512 @@
+#games_beta
+{
+	font-size: x-large;
+	color: red;
+}
+
+
+/* General styling for game division */
+#games h1
+{
+	font-size: 18px;;
+	padding: 0px;
+	margin: 0px;
+}
+#games p
+{
+	margin: 0px;
+	line-height: 1.3;
+}
+#games ul
+{
+	margin: 0px;
+	padding: 2px;
+}
+
+#games .left a, #games .main a
+{
+	border: none;
+}
+
+#games h3
+{
+	margin-top: 0px;
+}
+
+/* The horizontal list of game tags, 20x20 px png images */
+.games_tag_list
+{
+ 	border: 1px solid #a3a7ab;
+	background: #eceff2;
+	padding: 2px;
+	text-align: right;
+}
+
+.games_tag_list li
+{
+	list-style-type: none;
+	display: inline;
+}
+
+.games_tag_list img
+{
+	width: 20px;
+	height: 20px;
+}
+
+.games_tag_list a
+{
+	border: none;
+}
+
+/*Table listing of tags */
+.games_tag_table
+{
+ 	border: 1px solid #a3a7ab;
+	background: #eceff2;
+	margin-right: 3px;
+}
+.games_tag_table img
+{
+	float: left;
+}
+.games_tag_table label
+{
+	float: left;
+}
+.games_tag_table td
+{
+	width: 150px;
+}
+
+/* game_full is the div used when listing games */
+.game_full
+{
+	width: 618px;
+	height: 100px;
+	padding: 10px;
+	background: #eceff2 url('http://images.hamsterpaj.net/light_blue_div_bg.png') no-repeat;
+	padding-bottom: 3px;
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+
+.game_full img
+{
+
+}
+
+.game_full .left
+{
+	float: left;
+	width: 130px;
+	height: 100px;
+	_width: 120px;
+	_height: 90px;
+	_border: 1px solid #565656;
+}
+
+.game_full .main
+{
+	float: left;
+	width: 310px;
+	height: 100px;
+	padding-left: 10px;
+}
+
+.game_full .right
+{
+	float: left;
+	width: 150px;
+	height: 90px;
+	padding-left: 10px;
+}
+
+.game_full .right .games_tag_list
+{
+	border: none;
+}
+
+.game_full_footer
+{
+	margin: 0px;
+}
+
+.game_list_compact
+{
+	margin-top: 10px;
+	background: #eceff2 url('http://images.hamsterpaj.net/light_blue_div_bg.png') no-repeat;
+}
+
+.game_compact
+{
+	width: 132px;
+	text-align: center;
+	margin: 3px 5px 0px 20px;
+	float: left;
+}
+
+.game_compact a
+{
+	border: none;
+}
+
+.game_compact h5
+{
+	margin: 5px 0px 0px 0px;
+	font-size: 10px;
+}
+
+.game_list_compact h2
+{
+	margin: 0px 0px 0px 15px;
+	padding-top: 5px;
+}
+
+/* The display of a game */
+
+.game_play
+{
+}
+
+.game_play #game_header
+{
+}
+
+.game_play #game_header_main
+{
+	width: 425px;
+	float: left;
+}
+
+.game_play #game_header_main p
+{
+	min-height: 50px;
+}
+
+.game_play #game_header_main #game_buttons .vote
+{
+	float: left;
+}
+
+.game_play #game_header_main #game_buttons button
+{
+	float: left;
+	margin-right: 5px;
+}
+
+.game_play #game_header_info
+{
+	padding-left: 20px;
+	width: 180px;
+	height: 100%;
+	float: left;
+}
+
+.game_play #game_header_info .games_tag_list
+{
+	margin-top: 5px;
+	border: none;
+}
+
+.column_1
+{
+	width: 65px;
+	padding-right: 5px;
+	float: left;
+	text-align: right;
+}
+
+.game_play .game_instructions
+{
+}
+
+.game_play .game_instructions .combination
+{
+	width: 120px;
+}
+
+.game_play .game_instructions .description
+{
+	width: 470px;
+}
+
+.game_play .game
+{
+	border: 1px solid #a3a7ab;
+	margin-top: 3px;
+	background: #eceff2;
+}
+
+.game_play .game object
+{
+	width: 635px;
+	height: 476px;
+}
+
+#game_challenge
+{
+	display: none;
+}
+
+#game_challenge h3
+{
+}
+
+
+#game_challenge textarea
+{
+	width: 400px;
+	height: 60px;
+}
+
+#game_challenge_result
+{
+	display: none;
+}
+
+#game_challenge h5
+{
+	margin: 2px;
+}
+
+.challenge_alternative_a
+{
+	height: 135px;
+}
+.challenge_alternative_a_not_member
+{
+	height: 75px;
+}
+.challenge_alternative_b
+{
+	height: 230px;
+}
+.challenge_alternative_c
+{
+	height: 90px;
+}
+
+.challenge_error
+{
+	color: red;
+}
+
+.challenge_recievers
+{
+	margin-top: 5px;
+	width: 200px;
+	float: left;
+}
+
+.challenge_message
+{
+	margin-top: 5px;
+	width: 400px;
+	float: left;
+}
+
+.security_code
+{
+	width: 200px;
+}
+
+.security_code input
+{
+	width: 144px;
+}
+
+.security_input
+{
+	float: left;
+}
+
+.challenge_sender_name
+{
+	float: left;
+}
+
+.challenge_message button
+{
+	margin: 3px;
+	float: left;
+	vertical-align: bottom;
+}
+
+.input_b
+{
+	height: 30px;	
+}
+
+.challenge_link
+{
+	padding: 10px;
+	clear: both;
+	border: 1px solid #d7d9db;
+	margin: 10px;
+}
+
+#game_challenge hr
+{
+	border: none;
+	border-top: 1px solid #a3a7ab;
+}
+
+#game_challenge_result
+{
+	display: none;
+	padding: 0px 5px 5px 5px;
+	width: 625px;
+	background: #eceff2;
+	border: 1px solid #a3a7ab;
+	margin-top: 3px;
+}
+	
+
+/* Browse bar and paging */
+.games_browse_bar
+{
+	background: url('http://images.hamsterpaj.net/light_blue_div_bg.png') no-repeat;
+	border-bottom: 1px solid #d7d9db;
+	padding: 3px;
+	padding-top: 5px;
+	margin-top: 5px;
+	clear: both;
+}
+
+/* Search bar */
+#game_search_bar ul
+{
+	display: inline;
+	margin: 3px;
+	padding: 0px;
+}
+
+#game_search_bar li
+{
+	list-style-type: none;
+	display: inline;
+}
+
+#game_search_bar a
+{
+	margin-right: 3px;
+	font-size: 14px;
+	border-bottom: none;
+}
+
+.current_selection
+{
+	text-style: bold;
+}
+
+/* Search field and options*/
+#game_search_field
+{
+	margin: 0px;
+	padding: 3px;
+	background: #eceff2;
+	border: 1px solid #a3a7ab;
+	width: 172px;
+}
+
+#game_search_field_text
+{
+	width: 110px;
+}
+
+#game_search_field_and_options
+{
+	float: right;
+	width: 180px;
+}
+
+/* Games search options */
+
+#game_search_options
+{
+	margin-top: 3px;
+	background: #eceff2;
+	border: 1px solid #a3a7ab;
+	float: right;
+	width: 178px;
+}
+
+#game_search_options li a
+{
+	margin-left: 20px;
+}
+
+#game_search_options li
+{
+	list-style-type: none;
+}
+
+/* Games page navigation */
+.games_page_list
+{
+	display: inline;
+}
+
+.games_page_list li
+{
+	list-style-type: none;
+	display: inline;
+}
+
+
+/* Admin functions, adding and editing games */
+#game_edit_form input
+{
+	border: 1px solid #a3a7ab;
+}
+#game_edit_form textarea
+{
+	border: 1px solid #a3a7ab;
+}
+#game_edit_form h5
+{
+	margin: 0px;
+}
+#game_edit_form img
+{
+	width: 20px;
+	height: 20px;
+}
+
+#game_edit_form li
+{
+	float: left;
+	list-style-type: none;
+}
+
+/*new games*/
+#game_preview object
+{
+	width: 635px;
+	height: 476px;
+}
+
+/* Crew rekommenderar */
+.crew_presentation
+{
+	width: 618px;
+	height: 100px;
+	padding: 10px;
+	background: #eceff2 url('http://images.hamsterpaj.net/light_blue_div_bg.png') no-repeat;
+	padding-bottom: 3px;
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+
+.crew_presentation img
+{
+	float: left;
+}
+
+.crew_text
+{
+	margin-left: 20px;
+	float: left;
+	width: 500px;
+}

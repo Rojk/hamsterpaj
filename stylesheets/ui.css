@@ -1,0 +1,413 @@
+/*
+	Mantainer: Patrick Lef
+	
+	Color specifications
+		Text: #454545;
+		Links: #000;
+		border: #d7d8dc;
+		Background: #f9f9f9;
+
+*/
+
+body 
+{
+	background: #8ec0e5 url(http://images.hamsterpaj.net/ui/ui_background_gradient.png) repeat-x;
+	font-family: tahoma, arial, "ms trebuchet", sans-serif;
+	color: #454545;
+	font-size: 0.7em;
+}
+a 
+{ 
+	color: #000;
+	text-decoration: none; 
+}
+a:hover 
+{ 
+	text-decoration: underline; 
+}
+a img
+{
+	border: none;
+}
+h1
+{
+	font-family: Georgia, serif;
+	font-size: 25px;
+	font-weight: normal;
+	margin: 0;
+}
+h2
+{
+	font-weight: normal;
+}
+#ui_wrapper 
+{
+	border: 1px solid #6188A4;
+	-moz-border-radius: 5px;
+	background: #fff;
+	width: 870px;
+}
+#ui_header 
+{
+	margin: -1px -1px 0 -1px;
+	background: url(http://images.hamsterpaj.net/ui/ui_header_right.png) right top no-repeat;
+	height: 73px;
+}
+	#ui_header h1 
+	{
+		margin: 0;
+		background: url(http://images.hamsterpaj.net/ui/ui_header_left.png) left top no-repeat;
+		height: 73px;
+	}
+	#ui_header h1 a 
+	{
+			display: block;
+			background: url(http://images.hamsterpaj.net/ui/ui_logo.png) left 3px no-repeat;
+			height: 73px;
+			text-indent: -10000px;
+			margin-left: 10px;
+	}
+	#ui_header #ui_noticebar 
+	{
+		padding: 7px;
+		margin: -72px 0 0 380px;
+		background: url(http://images.hamsterpaj.net/ui/ui_header_border.png) left top no-repeat;
+		height: 58px;
+	}	
+		#ui_header #ui_noticebar h2
+		{
+			display: none;
+		}
+		
+		#ui_header #ui_noticebar ul 
+		{
+			margin: 0;
+			padding: 45px 0 0 0;
+			list-style-type: none;
+		}
+		
+		#ui_header #ui_noticebar ul li 
+		{
+			display: inline;
+			position: relative;
+		}
+		
+		#ui_header #ui_noticebar ul li a 
+		{
+			margin: 0px;
+			text-align: center;
+			padding: 40px 3px 0 3px;
+			margin: 0 9px 0 9px;
+			color: #717171;
+		}
+		
+		#ui_header #ui_noticebar ul li li a 
+		{
+			color: #4C4C4C;
+		}
+		
+		#ui_header #ui_noticebar #ui_noticebar_guestbook	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_guestbook.png) center top no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_guestbook:hover	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_guestbook.png) center bottom no-repeat; }
+		
+		#ui_header #ui_noticebar #ui_noticebar_forum	{	background: url(http://images.hamsterpaj.net/ui/ui_notices_forum.png) center top no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_forum:hover	{	background: url(http://images.hamsterpaj.net/ui/ui_notices_forum.png) center bottom no-repeat; }
+		
+		#ui_header #ui_noticebar #ui_noticebar_groups	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_groups.png) center top no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_groups:hover	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_groups.png) center bottom no-repeat; }
+		
+		#ui_header #ui_noticebar #ui_noticebar_events	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_events.png) center top no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_events:hover	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_events.png) center bottom no-repeat; }
+
+		#ui_header #ui_noticebar .ui_noticebar_info
+		{
+			display: none;
+			padding: 10px;
+			margin: 0;
+			width: 180px;
+			position: absolute;
+			left: 0;
+			top: 12px;
+			~top: 100px;
+			background: #f9f9f9;
+			border: 1px solid #d7d8dc;
+			-moz-border-radius: 5px;
+		}
+		
+			#ui_header #ui_noticebar .ui_noticebar_info h3
+			{
+				margin: 0 0 10px;
+			}
+			
+			#ui_header #ui_noticebar > ul > li:hover .ui_noticebar_info
+			{
+				display: block;
+				z-index: 100;
+			}
+			
+			#ui_header #ui_noticebar .ui_noticebar_info li
+			{
+				display: block;
+				margin: 0 0 6px;
+			}
+			
+				#ui_header #ui_noticebar .ui_noticebar_info li.ui_noticebar_infoheader
+				{
+					margin: 0;
+					text-align: center;
+				}
+			
+				#ui_header #ui_noticebar .ui_noticebar_info li a
+				{
+					text-align: left;
+					padding: 0;
+					margin: 0;
+				}
+			
+				#ui_header #ui_noticebar .ui_noticebar_info li:hover
+				{
+					
+				}
+				
+
+	#ui_header #ui_statusbar 
+	{
+		margin: -72px 0 0 660px;
+		padding: 8px;
+		background: url(http://images.hamsterpaj.net/ui/ui_header_border.png) left top no-repeat;
+		width: 200px;
+		height: 56px;
+	}
+		#ui_header #ui_statusbar img
+		{
+			margin-right: 5px;
+			float: left;
+			height: 58px;
+			width: 45px;
+			border: 1px solid #d3d3d3;
+		}
+		
+		#ui_header #ui_statusbar #ui_statusbar_username
+		{
+			padding-top: 5px;
+		}
+		
+		#ui_header #ui_statusbar #ui_statusbar_logintime
+		{
+			padding-top: 3px;
+		}
+		
+		#ui_header #ui_statusbar #ui_statusbar_forumstatus
+		{
+			padding-top: 4px;
+			color: #717171;
+		}
+	
+#ui_menu 
+{
+  background: url("http://images.hamsterpaj.net/ui/ui_menu_bg.png") repeat-x;
+  height: 26px;
+  font-size: 8pt;
+  padding-left: 2px;
+  z-index: 1;
+}
+	#ui_menu ul
+	{
+	  padding: 0;
+	  margin: 0;
+	}
+	#ui_menu > ul > li
+	{
+		list-style: none;
+	  float: left;
+	  background: url("http://images.hamsterpaj.net/ui/ui_menu_item_right.png") right top no-repeat;
+	  height: 25px;
+	  margin-right: 1px;
+	}
+	#ui_menu > ul > li > a
+	{
+		display: block;
+  	color: #960;
+  	text-decoration: none;
+  	background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left.png") left top no-repeat;
+ 		height: 25px;
+    padding: 4px 10px 0 10px;
+	}
+	#ui_menu > ul > li:hover > a 
+	{ 
+		background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left_hover.png") left top no-repeat; 
+		color: #630;
+	}
+	#ui_menu > ul > li:hover
+	{ 
+		background: url("http://images.hamsterpaj.net/ui/ui_menu_item_right_hover.png") right top no-repeat; 
+	}
+	#ui_menu li ul 
+	{
+		visibility: hidden;
+  	margin-top: -4px;
+  	list-style: none;
+  	width: 120px;
+ 		background: #f5f5f5;
+	  position: absolute;
+	  border: 1px solid #d7d8dc;
+	  border-top: 0;
+	  padding: 2px 0 2px 38px;
+	  z-index: 1;
+	}
+	#ui_menu li:hover ul li ul
+	{
+		visibility: visible;
+  	margin-top: 0;
+  	list-style: none;
+ 		background: none;
+	  position: relative;
+	  border: none;
+	  border-top: 0;
+	  padding: 2px 0 2px 10px;
+	}
+	#ui_menu li ul li 
+	{
+		padding: 4px 0;
+	}
+	#ui_menu li ul a 
+	{
+	 	margin-left: -30px;
+		text-decoration: none;
+		color: #494949;
+	}
+	#ui_menu li ul a:hover 
+	{
+		color: #000;
+		text-decoration: underline;
+		background: none;
+		display: block;
+	}
+	#ui_menu li ul a:visited 
+	{ 
+		color: #494949;
+	}
+	#ui_menu li:hover ul
+	{
+		visibility: visible;
+
+	}
+
+#ui_modulebar
+{
+	margin-left: 648px;
+	position: relative;
+	padding: 10px;
+	z-index: 0;
+}
+	#ui_modulebar .ui_module
+	{
+		width: 200px;
+		margin-bottom: 10px;
+		color: #717171;
+		border: 1px solid #d7d8dc;
+		-moz-border-radius: 5px;
+		background: #f9f9f9;
+	}
+	#ui_modulebar .ui_module_header
+	{
+		padding: 0.5em 0.5em 0.5em 0.7em;
+	}
+		#ui_modulebar .ui_module h2 
+		{
+			margin: 0;
+		  font-weight: bold;
+		  font-size: 8pt;
+		  color: #4c4c4c;
+		  width: 200px;
+		  display: inline;
+		}
+		.ui_module_minimize
+		{
+			height: 15px;
+			width: 15px;
+		  background: url("http://images.hamsterpaj.net/ui/ui_module_minimize.png") top no-repeat;
+		  display: block;
+		  text-indent: -10000px;
+		  float: right;
+		  outline: none;
+		  margin-top: -1px;
+		}
+		.ui_module_minimize:hover	{	background: url("http://images.hamsterpaj.net/ui/ui_module_minimize.png") bottom no-repeat;	}
+		.ui_module_close
+		{
+			height: 15px;
+			width: 15px;
+		  background: url("http://images.hamsterpaj.net/ui/ui_module_close.png") top no-repeat;
+		  display: block;
+		  text-indent: -10000px;
+		  float: right;
+		  margin-left: 4px;
+		  outline: none;
+		  margin-top: -1px;
+		}
+		.ui_module_close:hover	{	background: url("http://images.hamsterpaj.net/ui/ui_module_close.png") bottom no-repeat;	}
+	.ui_module_content
+	{
+		padding: 0 0.7em 0.7em 0.7em;
+	}
+#ui_content
+{
+	padding: 10px 10px 0 10px;
+	width: 670px; 
+	float: left;
+}
+#ui_content_thin
+{
+	padding: 10px 15px 0 10px;
+	width: 638px; 
+	float: left;
+}
+#ui_break
+{
+	clear: both;
+}
+#ui_business_card {
+	border: 1px solid #c7c7c7;
+	background: #f9f9f9;
+	-moz-border-radius: 5px;
+	width: 300px;
+	position: absolute;
+	padding: 10px;
+}
+.ui_business_card {
+	position: relative;
+	top: 3px;
+}
+	#ui_business_card_close {
+	 	display: block;
+	 	width: 15px;
+	 	height: 15px;
+		position: absolute;
+		top: -6px;
+		right: -6px;
+		background: transparent url(http://images.hamsterpaj.net/ui/ui_module_close.png) no-repeat scroll center bottom;
+		text-indent: -10000px;
+		outline: none;
+	}
+	#ui_business_card h1 {
+		margin: 0;
+		font-size: 20px;
+	}
+	#ui_business_card .ui_avatar {
+		float: left;
+		margin: 0 10px 10px 0;
+	}
+	#ui_business_card_about p {
+		margin: 0 0 5px;
+	}
+	#ui_business_card_about img {
+		margin-right: 5px;
+	}
+
+	#ui_business_card_guestbook textarea {
+		width: 293px;
+	}
+		
+	#ui_business_card_guestbook {
+		clear: both;
+	}

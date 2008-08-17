@@ -1,0 +1,172 @@
+.article_index
+{
+	border: 1px solid #efefef;
+	margin-top: 10px;
+	padding: 3px;
+	height: 104px;
+	background: #dce8f4;
+}
+
+.article_index img
+{
+	margin: 3px;
+	border: 1px solid #ababab;
+	padding: 8px;
+	background: white;
+	float: left;
+}
+
+.article_index p
+{
+	margin: 2px;
+}
+
+.article_index:hover
+{
+	border: 1px solid #D6D9DB;
+}
+
+.article h2
+{
+	font-weight: bold;
+}
+
+.article h3
+{
+	font-weight: bold;
+}
+
+.article ul
+{
+	padding-left: 5px;
+}
+
+.article .draft
+{
+	background: #fbb850 url('http://images.hamsterpaj.net/warning.png') no-repeat;
+	border: 1px solid #741416;
+	padding: 3px;
+	padding-left: 55px;
+	height: 45px;
+}
+
+.article .illustration, .article .left_illustration
+{
+	border: 1px solid #ababab;
+	float: right;
+	text-align: center;
+	background: #fafafa;
+	padding: 8px;
+	margin: 5px;
+	margin-right: 0px;
+}
+
+.article .left_illustration
+{
+	float: left;
+	margin: 5px;
+	margin-left: 0px; 
+}
+
+.article .guitarleft_illustration, .article .guitarright_illustration, .article .guitar_illustration
+{
+	border: 1px solid #ababab;
+	text-align: center;
+	background: #fafafa;
+	padding: 8px;
+	float: left;
+	margin: 2px;
+	margin-left: 0px; 
+}
+
+.article .guitarright_illustration
+{
+	float: right;
+	margin: 2px;
+	margin-right: 0px; 
+}
+
+.article .guitar_illustration
+{
+	float: left;
+	margin: 2px;
+	margin-right: 2px; 
+}
+
+.article .guitarleft_illustration img, .article .guitarright_illustration img, .article .guitar_illustration img
+{
+	display: block;
+	border: 1px solid #565656;
+}
+
+.article .illustration img, .article .left_illustration img
+{
+	border: 1px solid #565656;
+	display: block;
+}
+
+.article .tag_list, .article_index .tag_list
+{
+	padding: 3px;
+	background: #f9cc88;
+}
+
+.article_index .tag_list
+{
+	float: left;
+	width: 520px;
+}
+
+.article .photo
+{
+	margin: 7px;
+	border: 1px solid #565656;
+}
+
+.article .warning
+{
+	background: #f5b5b7 url('http://images.hamsterpaj.net/warning.png') no-repeat;
+	border: 1px solid #741416;
+	padding: 3px;
+	padding-left: 55px;
+}
+
+.article #riddle_answer
+{
+	display: none;
+}
+
+.bad_example
+{
+	margin-bottom: 3px;
+	background: #ffd1d2;
+	border: 1px solid #bebebe;
+}
+
+.good_example
+{
+	margin-bottom: 3px;
+	background: #e6ffe5;
+	border: 1px solid #bebebe;
+}
+
+.article_author
+{
+	padding: 3px;
+	margin-top: 0;
+}
+
+.article_author h3
+{
+	margin: 0px;
+	margin-bottom: 3px;
+	padding: 3px;
+}
+
+.article_author img
+{
+	width: 75px;
+	height: 100px;
+	float: left;
+	margin: 3px 8px 4px 0;
+}

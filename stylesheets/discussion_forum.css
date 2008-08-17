@@ -1,0 +1,531 @@
+.forum_locator
+{
+	font-size: 12px;
+	padding: 3px 0 0 3px;
+}
+
+.forum_locator a
+{
+	text-decoration: underline;
+	color: #454545;
+	
+}
+
+.forum_thread_list
+{
+	border: 1px solid #ababab;
+	width: 636px;
+	padding: 0px;
+	border-collapse: collapse;
+	background: url('http://images.hamsterpaj.net/discussion_forum/thread_list_background.png');
+}
+
+.forum_thread_list .headings
+{
+	background: white;
+}
+
+.forum_thread_list a
+{
+	border-bottom: none;
+}
+
+.forum_thread_list td, .forum_thread_list th
+{
+	padding: 6px;
+	padding-top: 5px;
+}
+
+/* Category listing */
+.forum_category_list
+{
+	width: 636px;
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid #ababab;
+	border-spacing: 0px;
+	background: url('http://images.hamsterpaj.net/discussion_forum/category_list_background.png');
+}
+
+.forum_category_list_parent_heading
+{
+	margin-top: 20px;
+}
+
+.forum_category_list_parent_heading a
+{
+	border-bottom: none;
+}
+
+.forum_category_list tr
+{
+	margin: 0px;
+	padding: 0px;
+	border-bottom: 1px solid #ababab;
+}
+
+.forum_category_list td
+{
+	padding: 5px;
+}
+
+.forum_category_list .name
+{
+	width: 450px;
+	padding: 10px;
+}
+
+.forum_category_list .category_name
+{
+	font-weight: bold;
+	border: none;
+}
+
+.forum_category_list .thread_count, .forum_category_list .new_threads
+{
+	text-align: right;
+	padding-right: 10px;
+}
+
+/* Thread info */
+.forum_thread_info
+{
+	margin-top: 10px;
+	height: 40px;
+}
+
+.forum_thread_info .scoring
+{
+	float: right;
+	text-align: right;
+	font-size: 20px;
+	line-height: 34px;
+	padding: 3px;
+	color: #c0c0c0;
+}
+
+#thread_score
+{
+	color: #f8b61f;
+}
+
+#forum_thread_vote_plus, #forum_thread_vote_minus
+{
+	cursor: pointer;
+}
+
+#forum_thread_vote_minus
+{
+	margin-top: 2px;
+}
+
+.forum_thread_info .score_controls
+{
+	float: right;
+	padding: 3px;
+	width: 16px;
+}
+
+.forum_thread_info .started_at, .forum_thread_info .thread_subscribing, .forum_thread_info .post_count, .forum_thread_info .view_count
+{
+	float: left;
+	width: 150px;
+	height: 14px;
+	padding: 3px;
+}
+
+.forum_thread_info .started_at, .forum_thread_info .view_count
+{
+	width: 270px;
+}
+
+.forum_thread_info .thread_subscription_control
+{
+	margin: 0px;
+	margin-right: 3px;
+	width: 12px;
+	height: 12px;
+	display: block;
+	float: left;
+}
+
+/* Thread listing */
+.forum_post_list
+{
+	width: 636px;
+}
+
+.forum_post_list tr, .forum_post_list td
+{
+	margin: 0px;
+	padding: 2px;
+}
+
+
+/* Forum post */
+.forum_post_container
+{
+	margin-top: 10px;
+}
+
+.forum_post_container .forum_post_top
+{
+	height: 3px;
+	font-size: 0px;
+	background: url('http://images.hamsterpaj.net/discussion_forum/post_normal_top.png') no-repeat;
+}
+
+.forum_post_container .highlight .forum_post_top
+{
+	background: url('http://images.hamsterpaj.net/discussion_forum/post_highlight_top.png') no-repeat;
+}
+
+.forum_post_container .forum_post_bottom
+{
+	font-size: 0px;
+	height: 4px;
+	background: url('http://images.hamsterpaj.net/discussion_forum/post_normal_bottom.png') no-repeat;
+}
+
+.forum_post_container .highlight .forum_post_bottom
+{
+	background: url('http://images.hamsterpaj.net/discussion_forum/post_highlight_bottom.png') no-repeat;
+}
+
+.forum_post, .forum_post_removed
+{
+	padding-left: 10px;
+	padding-right: 10px;
+	background: #d6deea url('http://images.hamsterpaj.net/discussion_forum/post_normal_background.png') repeat-y;
+	color: #272727;
+}
+
+.highlight .forum_post
+{
+	background: #d6deea url('http://images.hamsterpaj.net/discussion_forum/post_highlight_background.png') repeat-y;
+}
+
+.forum_post_removed
+{
+	background: #f7f7f7;
+	border: 1px solid #e5e5e5;
+	color: #b1b1b1;
+	padding: 2px;
+}
+
+.forum_post .author
+{
+	float: left;
+	width: 115px;
+}
+
+.forum_post .author .passepartout
+{
+	padding: 7px;
+	background: white;
+	border: 1px solid #ababab;
+	width: 75px;
+	margin-top: 7px;
+	margin-bottom: 7px;
+	
+	font-size: 20px;
+	color: #ababab;
+	height: 100px;
+	z-index: 0;
+}
+
+.forum_post .author img
+{
+	width: 75px;
+	height: 100px;
+	z-index: 0;
+	position: absolute;
+}
+
+.forum_post .author .bars
+{
+	height: 100px;
+	width: 75px;
+	position: absolute;
+	z-index: 100;
+}
+
+.forum_post .author .username
+{
+	border: none;
+	font-weight: bold;
+}
+
+.forum_post .author .userlevel, .forum_post .author .post_count, .forum_post .author .warned
+{
+	display: block;
+}
+
+.forum_post .author .warned
+{
+	color: red;
+}
+
+.forum_post .author .online_status
+{
+	font-weight: bold;
+	color: #0a980c;
+}
+
+.forum_post .post_info
+{
+
+}
+
+.forum_post .post_content
+{
+	float: left;
+	width: 500px;
+	line-height: 12pt;
+	margin-top: 15px;
+}
+
+.forum_post a img
+{
+	border: 5px solid #fff;
+}
+
+.forum_post .post_content .answer, .forum_post .post_content .post_addition
+{
+	background: #e6eaee;
+	padding: 5px;
+}
+
+.highlight .forum_post .post_content .answer, .highlight .forum_post .post_content .post_addition
+{
+	background: #ffe1a7;
+}
+
+.forum_post .post_content .user_status
+{
+	border-top:1px solid #c4c7c6;
+	font-style:italic;
+	padding-top:5px;
+}
+
+.forum_post .controls
+{
+	clear: both;
+	padding-left: 120px;
+}
+
+.forum_post .gb_form
+{
+	display: none;
+}
+
+.forum_post .gb_form textarea
+{
+	width: 485px;
+}
+
+.forum_post .abuse_button img
+{
+	border: none;
+}
+
+.forum_post .controls button
+{
+	background: none;
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_80.png');
+	width: 80px;
+	height: 20px;
+	border: none;
+}
+
+.forum_post .controls .forum_direct_link_input
+{
+	display: none;
+	width: 80px;
+	height: 15px;
+	clear: none;
+}
+
+.highlight .forum_post .controls button
+{
+	background: url('http://images.hamsterpaj.net/ui/buttons/button_80.png');
+}
+
+.forum_post .controls .forum_user_ro
+{
+	width: 30px;
+	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_30.png');
+}
+
+.forum_post .spoiler
+{
+	border: 1px solid #ababab;
+	padding: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.forum_post .spoiler_content
+{
+	display: none;
+}
+
+.forum_post .code_tag
+{
+	background: #e6eaee;
+	padding: 5px;
+	margin: 5px 0px 5px 0px;
+}
+
+.highlight .forum_post .code_tag
+{
+	background: #ffe1a7;
+}
+
+.forum_post .code_tag pre
+{
+	overflow: auto;
+	width: 100%;
+}
+
+/* Forum post form */
+.forum_post_form
+{
+	border: 1px solid #838383;
+	padding: 10px;
+	background: #f8b51f url('http://images.hamsterpaj.net/discussion_forum/form_background.png');
+	display: block;
+}
+
+/* This is the h2 placed just over the form */
+.forum_post_form_heading
+{
+	margin-top: 25px;
+}
+
+.forum_post_form .column_1
+{
+	float: left;
+}
+
+.forum_post_form .column_2
+{
+	float: left;
+}
+
+/* Theese are input-heading used in the form */
+.forum_post_form .heading
+{
+	width: 455px;
+	float: left;
+}
+
+.forum_post_form h5
+{
+	margin: 0px;
+	padding: 0px;
+	margin-bottom: 2px;
+	margin-top: 2px;
+}
+
+.forum_post_form .heading input
+{
+	width: 445px;
+}
+
+.forum_post_form .reply_mode
+{
+	float: left;
+	padding-left: 10px;
+}
+
+
+.forum_post_form .reply_mode ul, .forum_post_form .reply_mode ul li
+{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.forum_post_form .content_heading
+{
+	clear: both;
+	margin: 0px;
+	padding: 0px;
+	padding-top: 10px;
+}
+
+.forum_post_form .forum_post_form_help_area
+{
+	width: 150px;
+	margin-left: 10px;
+}
+
+#forum_form_help_content
+{
+	background: #fffbc9;
+	padding: 10px;
+	margin-top: 10px;
+}
+
+#forum_form_help_content ul, #forum_form_help_content ol, #forum_form_help_content ul li, #forum_form_help_content ol li
+{
+	margin: 0px;
+	padding: 0px;
+	margin-top: 2px;
+	margin-left: 2px;
+}
+
+.forum_post_form .markup_controls
+{
+	clear: left;
+}
+
+#forum_post_form_content
+{
+	width: 425px;
+	height: 180px;
+	padding: 10px;
+	font-family: verdana, arial, "ms trebuchet", sans-serif;
+	color: #454545;
+	font-size: 11px;
+}
+
+#forum_preview_area
+{
+	display: none;
+}
+
+/* Admin controlls */
+#lock_thread
+{
+	display: inline;
+}
+
+/* Search */
+.discussionforum_searchbox
+{
+	width: 500px;
+	height: 20px;
+	float: left;
+	padding: 10px;
+	font-size: 16px;
+	margin-top: 0;
+	-moz-border-radius: 5px;
+	border: 1px solid #aeaeae;
+}
+.discussionforum_searchbox .search_button
+{
+	height: 42px;
+	width: 110px;
+	float: right;
+	background-image: url('http://images.hamsterpaj.net/discussion_forum/forum_searchbutton.png');
+	border: none;
+	font-size: 20px;
+	color: #9A9A9A;
+}
+.discussionforum_searchbox .search_button:hover
+{
+	background-position: 0px -42px;
+	color: #454545;
+}

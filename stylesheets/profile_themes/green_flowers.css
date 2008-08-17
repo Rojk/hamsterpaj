@@ -1,0 +1,21 @@
+.profile_green_flowers .profile_head
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/green_flowers/profile_head_bg.png');
+}
+.profile_green_flowers .top
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/green_flowers/rounded_corners_top.png') no-repeat top;
+
+}
+.profile_green_flowers .repeat
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/green_flowers/presentation_bg.png');
+}
+.profile_green_flowers .bottom
+{
+	background: url('http://images.hamsterpaj.net/profile_themes/green_flowers/rounded_corners_bottom.png') no-repeat bottom;
+}
+.profile_green_flowers .profile_presentation_text
+{
+	padding: 10px;
+}

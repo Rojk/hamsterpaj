@@ -1,0 +1,141 @@
+#my_visitors_unique_visits
+{
+	float: right;
+	color: #000;
+}
+
+#my_visitors_picholder
+{
+	width: 100%;
+	overflow:hidden;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* Without this all pictures with float:left would wrap to (a) new line... */
+#my_visitors_picholder_expander
+{
+	width: 10000px;
+}
+
+.my_visitors_showinfo_item
+{
+	float: left;
+	width: 140px;
+	overflow: hidden;
+	text-align: center;
+	margin: 20px 0px 0px 0px;
+}
+
+.my_visitors_showinfo_item *
+{
+	cursor: pointer;
+}
+
+.my_visitors_showinfo_item img
+{
+	border: 1px solid #333;
+}
+
+.my_visitors_showinfo_item_active
+{
+	background: #F9C061;
+	border: 1px solid #000;
+}
+
+#my_visitors_userinfo_pane ._user_picture
+{
+	width: 200px; /* Scaling: */
+	height: 266px;/* width: 472px, height: width * 1,33333 */
+	border: 0px none;
+	float: left;
+	clear: left;
+	margin: 15px;
+}
+
+#my_visitors_userinfo_pane ._text_area
+{
+	width: 350px;
+	overflow: hidden;
+	float: left;
+	margin: 10px 0px 0px 0px;
+	padding: 0px;
+}
+
+#my_visitors_userinfo_pane ._text_area ._user_status
+{
+	font-size: 25px;
+	margin: 5px;
+}
+
+#my_visitors_userinfo_pane ._text_area ._details
+{
+	border: 1px solid #000;
+	padding: 20px;
+	margin-top: 5px;
+}
+
+#my_visitors_userinfo_pane ._text_area ._details ._flag
+{
+	border: 1px solid #333;
+	margin: 3px 6px 0px 0px;
+}
+
+#my_visitors_userinfo_pane ._text_area ._details ._compose_gb
+{
+	width: 100%;
+}
+
+#my_visitors_search
+{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+
+#my_visitors_search li
+{
+	list-style-type: none;
+	margin: 0px;
+	padding: 10px 0px 10px 0px;
+	clear: both;
+	border-bottom: 1px solid #C5CED8;
+}
+
+#my_visitors_search ._username_age_gender
+{
+	width: 250px;
+	overflow: hidden;
+	float: left;
+}
+
+#my_visitors_search ._spot
+{
+	width: 200px;
+	overflow: hidden;
+	float: left;
+}
+
+#my_visitors_search ._status_online,
+#my_visitors_search ._status_offline
+{
+	font-weight: bold;
+	width: 50px;
+	overflow: hidden;
+	float: left;
+}
+
+#my_visitors_search ._status_online
+{
+	color: #00ff00;
+}
+
+#my_visitors_search ._status_offline
+{
+	color: #ff0000;
+}
+
+#my_visitors_search ._visit_time
+{
+	float: right;
+}

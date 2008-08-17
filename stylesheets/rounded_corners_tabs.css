@@ -1,0 +1,171 @@
+/* IE on Mac </3 */
+
+/*
+To-do: Create images to the following colors:
+
+white
+	border-left: 1px solid #d6d9db;
+	border-right: 1px solid #d6d9db;
+	background: #fff;
+
+orange
+	border-left: 1px solid #b6aea2;
+	border-right: 1px solid #b6aea2;
+	background: #f9cc88;
+
+green
+	border-left: 1px solid #91be8d;
+	border-right: 1px solid #91be8d;
+	background: #bfe4bc;
+
+red
+	border-left: 1px solid #c7928b;
+	border-right: 1px solid #c7928b;
+	background: #f1cfc9;
+*/
+
+
+
+.rounded_corners_tabs_full_blue,
+.rounded_corners_tabs_full_white,
+.rounded_corners_tabs_full_orange,
+.rounded_corners_tabs_full_green,
+.rounded_corners_tabs_full_red
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	width: 638px;
+}
+
+/* Global settings for all colors and dimensions */
+
+.rounded_corners_tabs_full_blue   ._tab,
+.rounded_corners_tabs_full_white  ._tab,
+.rounded_corners_tabs_full_orange ._tab,
+.rounded_corners_tabs_full_green  ._tab,
+.rounded_corners_tabs_full_red    ._tab
+{
+	margin: 0px 0px 0px 15px;
+	padding: 0px;
+	overflow: hidden;
+	height: 20px;
+	float: left;
+}
+
+.rounded_corners_tabs_full_blue   ._tab ._left,
+.rounded_corners_tabs_full_white  ._tab ._left,
+.rounded_corners_tabs_full_orange ._tab ._left,
+.rounded_corners_tabs_full_green  ._tab ._left,
+.rounded_corners_tabs_full_red    ._tab ._left,
+.rounded_corners_tabs_full_blue   ._tab ._right,
+.rounded_corners_tabs_full_white  ._tab ._right,
+.rounded_corners_tabs_full_orange ._tab ._right,
+.rounded_corners_tabs_full_green  ._tab ._right,
+.rounded_corners_tabs_full_red    ._tab ._right
+{
+	margin: 0px;
+	overflow: hidden;
+	width: 5px;
+	height: 20px;
+	float: left;
+}
+
+.rounded_corners_tabs_full_blue   ._tab ._label,
+.rounded_corners_tabs_full_white  ._tab ._label,
+.rounded_corners_tabs_full_orange ._tab ._label,
+.rounded_corners_tabs_full_green  ._tab ._label,
+.rounded_corners_tabs_full_red    ._tab ._label
+{
+	margin: 0px;
+	overflow: hidden;
+	height: 20px;
+	float: left;
+	padding: 4px;
+}
+
+.rounded_corners_tabs_full_blue   ._tab ._label a,
+.rounded_corners_tabs_full_white  ._tab ._label a,
+.rounded_corners_tabs_full_orange ._tab ._label a,
+.rounded_corners_tabs_full_green  ._tab ._label a,
+.rounded_corners_tabs_full_red    ._tab ._label a
+{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+.rounded_corners_tabs_full_blue    ._tab ._label a._current,
+.rounded_corners_tabs_full_white   ._tab ._label a._current,
+.rounded_corners_tabs_full_orange  ._tab ._label a._current,
+.rounded_corners_tabs_full_green   ._tab ._label a._current,
+.rounded_corners_tabs_full_red     ._tab ._label a._current
+{
+	font-weight: bold;
+}
+
+.rounded_corners_tabs_full_blue   ._top,
+.rounded_corners_tabs_full_white  ._top,
+.rounded_corners_tabs_full_orange ._top,
+.rounded_corners_tabs_full_green  ._top,
+.rounded_corners_tabs_full_red    ._top,
+.rounded_corners_tabs_full_blue   ._bottom,
+.rounded_corners_tabs_full_white  ._bottom,
+.rounded_corners_tabs_full_orange ._bottom,
+.rounded_corners_tabs_full_green  ._bottom,
+.rounded_corners_tabs_full_red    ._bottom
+{
+	margin: 0px;
+	overflow: hidden;
+	width: 638px;
+	clear: both;
+}
+
+.rounded_corners_tabs_full_blue   ._content,
+.rounded_corners_tabs_full_white  ._content,
+.rounded_corners_tabs_full_orange ._content,
+.rounded_corners_tabs_full_green  ._content,
+.rounded_corners_tabs_full_red    ._content
+{
+	margin: 0px;
+	padding: 0px 5px 0px 5px;
+}
+
+
+
+/* Dimension: Full, Color: Blue */
+
+.rounded_corners_tabs_full_blue ._tab ._left
+{
+		background: url(http://images.hamsterpaj.net/css_backgrounds/rounded_corners_tabs/blue_full_tab_left.png);
+}
+
+.rounded_corners_tabs_full_blue ._tab ._label
+{
+	border-top: 1px solid #d6d9db;
+	background: #eceff2;
+}
+
+.rounded_corners_tabs_full_blue ._tab ._right
+{
+		background: url(http://images.hamsterpaj.net/css_backgrounds/rounded_corners_tabs/blue_full_tab_right.png);
+}
+
+.rounded_corners_tabs_full_blue ._top
+{
+	background: url(http://images.hamsterpaj.net/css_backgrounds/rounded_corners_tabs/blue_full_top.png);
+	height: 4px;
+}
+
+.rounded_corners_tabs_full_blue ._content
+{
+	border-left: 1px solid #d6d9db;
+	border-right: 1px solid #d6d9db;
+	background: #eceff2;
+}
+
+.rounded_corners_tabs_full_blue ._bottom
+{
+	background: url(http://images.hamsterpaj.net/css_backgrounds/rounded_corners_tabs/blue_full_bottom.png);
+	height: 7px;
+}
+

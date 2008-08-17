@@ -1,0 +1,69 @@
+#content
+{
+	_height: 5000px;
+}
+.fun_images_thumbnail
+{
+	float: left;
+	width: 130px;	
+	border: none;
+	margin-right: 25px;
+	margin-bottom: 5px;
+}
+
+.fun_images_thumbnail a
+{
+	border: none;	
+}
+
+.fun_images_thumbnail_ie
+{
+	float: left;
+	width: 130px;
+	height: 90px;
+	border: none;
+	margin-right: 40px;
+	margin-bottom: 5px;
+	border: 1px solid #565656;
+	background: white;
+	text-align: center;
+}
+
+.fun_images_thumbnail_ie a
+{
+	border: none;	
+}
+
+
+#fun_images h4
+{
+	font-weight: bold;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #ababab;	
+}
+
+
+.fun_images_display
+{
+	text-align: center;
+	padding: 2px;
+	background: url('http://images.hamsterpaj.net/fun_images/fun_images_bg.png');
+}
+
+.fun_images_display img
+{
+	border: 1px solid #565656;	
+}
+
+.fun_images_display .footer
+{
+	margin: 8px;	
+}
+
+.fun_images_display .footer span
+{
+	margin-right: 5px;
+	padding-right: 5px;
+	border-right: 1px solid #ababab;	
+}
