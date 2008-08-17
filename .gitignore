@@ -20,6 +20,7 @@ include/cache/*
 include/live_chat/*
 tmp/avatars/*
 photo_upload_temp/*
+kvitton/*
 
 # Configuration files
 include/constants.php
