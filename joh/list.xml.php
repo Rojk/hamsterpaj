@@ -1,12 +1,5 @@
 <?php
-	
-	$db_server = '192.168.1.45';
-	$db_username = 'hamsterpaj';
-	$db_password = 'Wn6ntF09IgmOCdZA';
-	$db_database = 'hp';
-	
-	mysql_connect($db_server, $db_username, $db_password);
-	mysql_select_db($db_database);
+	require('../include/core/common.php');
 	
 	$query = 'SELECT * FROM music_guess_songs ORDER BY id DESC LIMIT 1';
 	$result = mysql_query($query);
