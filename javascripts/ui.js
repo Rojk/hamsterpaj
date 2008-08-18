@@ -4,6 +4,7 @@ if(typeof(hp) == 'undefined'){ var hp=new Object(); }
 hp.ui = {
 	init: function()
 	{
+		this.noticebar.init();
 		this.user_search.init();
 		this.hackerlund.init();
 		this.grotescopaj.init();
@@ -109,6 +110,36 @@ hp.ui = {
 		draw_more_powder: function()
 		{
 			document.getElementById('quicksearch').innerHTML += '<img src="http://images.hamsterpaj.net/floor_mjoel.png" style="position: absolute; left: ' + hp.mouse.x + 'px; top: ' + hp.mouse.y + 'px" />';
+		}
+	},
+	
+	noticebar: {
+		init: function()
+		{
+			try
+			{
+				hp.synchronize.add({
+					handle: 'ui_noticebar_guestbook',
+					on_response: function(){
+						$('#ui_noticebar #guestbook a').html(this.json_data);
+					}
+				});
+				
+				hp.synchronize.add({
+					handle: 'ui_noticebar_discussion_forum',
+					on_response: function(){
+						$('#ui_noticebar #discussion_forum a').html(this.json_data);
+					}
+				});
+				
+				hp.synchronize.add({
+					handle: 'ui_noticebar_groups',
+					on_response: function(){
+						$('#ui_noticebar #groups a').html(this.json_data);
+					}
+				});
+			}
+			catch(E){ fel_i_ui_punkt_js_rad_129(); }
 		}
 	}
 }
