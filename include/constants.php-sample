@@ -1,5 +1,17 @@
 <?php
-        
+/*
+*	This file serves as an example for how the constants.php file should
+*	look in a production environment.
+*	
+*	constants.php is in .gitignore and thus is not versioned. Make sure to
+*	reflect all structural changes to your constants.php file in this file,
+*	and vice versa.
+*
+*	If you make a change to this sample file, it's a good idea to mention it
+*	in your commit message, so other developer's can update their
+*	constants.php files.
+*/
+
 	if($_SERVER['SERVER_NAME'] == 'dev.hamsterpaj.net')
 	{
 		$hp_path = '/storage/www/dev.hamsterpaj.net/data/';
@@ -8,16 +20,16 @@
 	{
 	  $hp_path = '/var/www/lef.t67.se/';
 	}
-  $hp_includepath = $hp_path . 'include/';
+	$hp_includepath = $hp_path . 'include/';
 
-  if($_SERVER['SERVER_NAME'] == 'se1.hamsterpaj.net')
-  {
-    $hp_url = 'http://www.hamsterpaj.net/';
-  }
-  else
-  {
-    $hp_url = 'http://' . $_SERVER['SERVER_NAME'] . '/';
-  }
+	if($_SERVER['SERVER_NAME'] == 'se1.hamsterpaj.net')
+	{
+		$hp_url = 'http://www.hamsterpaj.net/';
+	}
+	else
+	{
+		$hp_url = 'http://' . $_SERVER['SERVER_NAME'] . '/';
+	}
 
 	define(PATHS_WEBROOT, '/var/www/lef.t67.se/');
 	define(PATHS_INCLUDE, PATHS_WEBROOT . 'include/');
