@@ -873,7 +873,7 @@
 
 function report_sql_error($query, $file = null, $line = null)
   {
-    echo '<div class="server_message_error"><h2>Joel tar bort massa saker ifrån databasen just nu, och då kan saker gå sönder... För Johan gillar ju det här med live-miljöer...</h2><p>Ett fel på hamsterpaj har inträffat! Utvecklingsansvariga har meddelats om detta, du behöver inte rapportera felet. Vi åtgärdar det snart (om vi kan :P)</p>';
+    echo '<div class="server_message_error"><h2>Såhär skall det ju inte bli, usch!</h2><p>Ett fel på hamsterpaj har inträffat! Utvecklingsansvariga har meddelats om detta, du behöver inte rapportera felet. Vi åtgärdar det snart (om vi kan :P)</p>';
 		echo '<h3 class="server_message_collapse_header" id="server_message_collapse_header_sqlerror">Visa felsökningsinformation</h3>' . "\n";
     echo '<div class="server_message_collapsed_information" id="server_message_collapse_information_sqlerror">' . "\n";
     echo '<br />Felsökningsinformation:<br />' . mysql_error();
