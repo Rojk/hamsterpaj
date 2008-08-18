@@ -40,12 +40,13 @@ function ui_new_top($options = array())
 	$options['javascripts'] = (isset($options['javascripts']) && is_array($options['javascripts'])) ? $options['javascripts'] : array();
 	$options['stylesheets'] = (isset($options['stylesheets']) && is_array($options['stylesheets'])) ? $options['stylesheets'] : array();
 	
-	// Javascripts (Order: jQuery, Womlib (needs jQuery to work properly!), The rest...)
+	// Javascripts (Order: jQuery, Womlib (needs jQuery to work properly!), synchronize, The rest...)
 	$options['javascripts'] = array_merge(array(
 		'jquery.js',
 		'womlib.js',
 		'jquery.dimensions.js',
 		'jquery-ui.js',
+		'synchronize.js'
 	), $options['javascripts']);
 	$options['javascripts'][] = 'ui_server_message.js';
 	$options['javascripts'][] = 'scripts.js';
