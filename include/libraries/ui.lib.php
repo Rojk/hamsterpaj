@@ -94,22 +94,6 @@ function ui_new_top($options = array())
 	// Remove duplicates
 	$options['stylesheets'] = array_unique($options['stylesheets']);
 	$options['javascripts'] = array_unique($options['javascripts']);
-
-	/*
-	$output .= '		<link href="stylesheets/default.css" type="text/css" rel="stylesheet" />' . "\n";
-	$output .= '		<link href="stylesheets/business_card.css" type="text/css" rel="stylesheet" />' . "\n";
-	$output .= '		<link href="stylesheets/ui_modules/friends_online.css" type="text/css" rel="stylesheet" />' . "\n";
-	$output .= '		<link href="stylesheets/ui_modules/friends_notices.css" type="text/css" rel="stylesheet" />' . "\n";
-	$output .= '		<link href="stylesheets/ui_modules/forum_threads.css" type="text/css" rel="stylesheet" />' . "\n";
-	$output .= '		<link href="stylesheets/ui_modules/forum_posts.css" type="text/css" rel="stylesheet" />' . "\n";
-	*/
-	
-	/*
-	$output .= '		<script type="text/javascript" src="javascripts/jquery.js"></script>' . "\n";
-	$output .= '		<script type="text/javascript" src="javascripts/jquery-ui.js"></script>' . "\n";
-	$output .= '		<script type="text/javascript" src="javascripts/modules.js"></script>' . "\n";
-	$output .= '		<script type="text/javascript" src="javascripts/business_card.js"></script>' . "\n";
-	*/
 	
 	$output .= '<style type="text/css">' . "\n";
 	foreach($options['stylesheets'] as $stylesheet)
