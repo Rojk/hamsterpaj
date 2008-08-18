@@ -13,8 +13,6 @@
 
 <img src="http://images.hamsterpaj.net/steve/steve_tombstone.jpg" />
 
-<h1>Nord-kod: 153</h1>
-
 <?php
 		
 	ui_bottom();
