@@ -25,7 +25,14 @@ hp.synchronize = {
 				hp.synchronization.parse_response(eval('(' + loader.responseText + ')'));
 			}
 		}
-		loader.open('GET', '/ajax_gateways/synchronization.json.php', true);
+		
+		var fetch = '';
+		for(var handle in this.synchronized_objects)
+		{
+			fetch += ((fetch == '') ? '' : ',') + handle;
+		} 
+		
+		loader.open('GET', '/ajax_gateways/synchronize.json.php?fetch=' + fetch, true);
 		loader.send(null);
 	},
 	
