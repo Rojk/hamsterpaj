@@ -41,3 +41,5 @@ hp.synchronize = {
 		}
 	}
 };
+
+womAdd('hp.synchronize.init()');
