@@ -680,7 +680,7 @@ function entertain_item_draw($item, $options)
 		switch($item['extension'])
 		{
 			case 'swf':
-				$wrapper = true ? '/entertain/jc_flash.swf?ad_source=' . $current_ad['source'] . '&send_me_to=http%3A%2F%2Fwww.jc-online.com%2Fj-store%2Findex.html%23language%3DSV%26pageId%3D280&swf=' : '';
+				$wrapper = ($item['entertain_type'] == 'clip') ? '/entertain/jc_flash.swf?ad_source=' . $current_ad['source'] . '&send_me_to=http%3A%2F%2Fwww.jc-online.com%2Fj-store%2Findex.html%23language%3DSV%26pageId%3D280&swf=' : '';
 				$output .= '<object type="application/x-shockwave-flash" data="' . $wrapper . $address . '" >
 							<param name="movie" value="' . $wrapper . $address . '" /></object>';
 				$output .= '<img src="' . $current_ad['track'] . '" border="0" width="1" height="1">';
