@@ -1,13 +1,33 @@
 <?php
-	define(PATHS_WEBROOT, '/storage/www/www.hamsterpaj.net/data/');
+        
+	if($_SERVER['SERVER_NAME'] == 'dev.hamsterpaj.net')
+	{
+		$hp_path = '/storage/www/dev.hamsterpaj.net/data/';
+	}
+	else
+	{
+	  $hp_path = '/var/www/lef.t67.se/';
+	}
+  $hp_includepath = $hp_path . 'include/';
+
+  if($_SERVER['SERVER_NAME'] == 'se1.hamsterpaj.net')
+  {
+    $hp_url = 'http://www.hamsterpaj.net/';
+  }
+  else
+  {
+    $hp_url = 'http://' . $_SERVER['SERVER_NAME'] . '/';
+  }
+
+	define(PATHS_WEBROOT, '/var/www/lef.t67.se/');
 	define(PATHS_INCLUDE, PATHS_WEBROOT . 'include/');
 	define(PATHS_CACHE, PATHS_INCLUDE . 'cache/');
 	define(PATHS_LOGS, '/var/log/hamsterpaj/');
 	define(PATHS_IMAGES, '/mnt/images/images/');
 	
 	$db_server = 'localhost';
-	$db_username = 'root';
-	$db_password = '';
+	$db_username = 'hamsterpaj';
+	$db_password = 'random';
 	$db_database = 'hp';
 	
 	define(USER_ID, $_SESSION['login']['id']);

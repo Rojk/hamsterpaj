@@ -23,9 +23,8 @@
 	}
 
 	define('CORE_PATH', substr(__FILE__, 0, strrpos(__FILE__, '/')+1));
-	require(CORE_PATH . 'paths.php');
 
-  require_once($hp_includepath . 'constants.php');
+  require_once(CORE_PATH . '../constants.php');
 	require_once($hp_includepath . 'db-config.php');
   require($hp_includepath . 'login-functions.php');
 
