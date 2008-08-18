@@ -7,7 +7,7 @@ hp.synchronize = {
 	synchronized_objects: new Array(),
 	init: function()
 	{
-		setInterval('hp.synchronize.do_synchronizaion()', this.synchronize_interval * 1000);
+		setInterval('hp.synchronize.do_synchronization()', this.synchronize_interval * 1000);
 	},
 	
 	add: function(params)
