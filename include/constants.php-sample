@@ -20,16 +20,16 @@
 	{
 	  $hp_path = '/var/www/lef.t67.se/';
 	}
-  $hp_includepath = $hp_path . 'include/';
+	$hp_includepath = $hp_path . 'include/';
 
-  if($_SERVER['SERVER_NAME'] == 'se1.hamsterpaj.net')
-  {
-    $hp_url = 'http://www.hamsterpaj.net/';
-  }
-  else
-  {
-    $hp_url = 'http://' . $_SERVER['SERVER_NAME'] . '/';
-  }
+	if($_SERVER['SERVER_NAME'] == 'se1.hamsterpaj.net')
+	{
+		$hp_url = 'http://www.hamsterpaj.net/';
+	}
+	else
+	{
+		$hp_url = 'http://' . $_SERVER['SERVER_NAME'] . '/';
+	}
 
 	define(PATHS_WEBROOT, '/var/www/lef.t67.se/');
 	define(PATHS_INCLUDE, PATHS_WEBROOT . 'include/');
