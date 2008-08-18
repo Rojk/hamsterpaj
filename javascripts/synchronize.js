@@ -22,7 +22,7 @@ hp.synchronize = {
 		{
 			if(loader.readyState == 4 && loader.status == 200)
 			{
-				hp.synchronization.parse_response(eval('(' + loader.responseText + ')'));
+				hp.synchronize.parse_response(eval('(' + loader.responseText + ')'));
 			}
 		}
 		
