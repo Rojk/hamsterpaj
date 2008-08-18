@@ -25,10 +25,10 @@
 	define(PATHS_LOGS, '/var/log/hamsterpaj/');
 	define(PATHS_IMAGES, '/mnt/images/images/');
 	
-	$db_server = 'localhost';
-	$db_username = 'hamsterpaj';
-	$db_password = 'random';
-	$db_database = 'hp';
+	$db_server = 'localhost'; // Database server, standard localhost
+	$db_username = 'hamsterpaj'; // Database username, standard root
+	$db_password = ''; // Database password, leave empty if not configed
+	$db_database = 'hp'; // Database name
 	
 	define(USER_ID, $_SESSION['login']['id']);
 		
