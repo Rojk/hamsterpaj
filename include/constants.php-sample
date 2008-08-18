@@ -1,5 +1,17 @@
 <?php
-        
+/*
+*	This file serves as an example for how the constants.php file should
+*	look in a production environment.
+*	
+*	constants.php is in .gitignore and thus is not versioned. Make sure to
+*	reflect all structural changes to your constants.php file in this file,
+*	and vice versa.
+*
+*	If you make a change to this sample file, it's a good idea to mention it
+*	in your commit message, so other developer's can update their
+*	constants.php files.
+*/
+
 	if($_SERVER['SERVER_NAME'] == 'dev.hamsterpaj.net')
 	{
 		$hp_path = '/storage/www/dev.hamsterpaj.net/data/';
