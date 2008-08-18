@@ -521,6 +521,7 @@ function to_logfile($category, $file, $line, $description, $id = null, $id_2 = n
 
 function cache_update_groups()
 {
+	$totalt = 0;
   foreach($_SESSION['groups_members'] AS $key => $value)
   {
     $query = 'SELECT groups_list.message_count, groups_members.read_msg FROM groups_members, groups_list ';
