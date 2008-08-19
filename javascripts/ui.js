@@ -121,21 +121,21 @@ hp.ui = {
 				hp.synchronize.add({
 					handle: 'ui_noticebar_guestbook',
 					on_response: function(){
-						$('#ui_noticebar #guestbook a').html(this.json_data);
+						$('#ui_noticebar_guestbook').html(this.json_data);
 					}
 				});
 				
 				hp.synchronize.add({
 					handle: 'ui_noticebar_discussion_forum',
 					on_response: function(){
-						$('#ui_noticebar #discussion_forum a').html(this.json_data);
+						$('#ui_noticebar_forum').html(this.json_data);
 					}
 				});
 				
 				hp.synchronize.add({
 					handle: 'ui_noticebar_groups',
 					on_response: function(){
-						$('#ui_noticebar #groups a').html(this.json_data);
+						$('#ui_noticebar_groups').html(this.json_data);
 					}
 				});
 			}catch(E){  }
