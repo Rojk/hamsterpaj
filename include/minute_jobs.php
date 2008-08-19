@@ -22,7 +22,6 @@ while($filename = readdir($dir_handle))
 {
 	if($filename != '.' && $filename != '..')
 	{
-		trace('minute_jobs_running_file', $filename);
 		include(PATHS_INCLUDE . 'minute_jobs/' . $filename);
 	}	
 }
