@@ -1,5 +1,4 @@
 <?php
-/*
         if(isset($_GET['manual']))
         {
                 include('../core/common.php');
@@ -13,5 +12,4 @@
         require_once($hp_includepath . '/libraries/schedule.lib.php');
 
         schedule_releases_do();
-        */
 ?>
