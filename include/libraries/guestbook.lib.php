@@ -150,7 +150,7 @@
 			$out .= '<a href="/traffa/guestbook.php?view=' . $entry['sender'] . '&history=' . $entry['recipient'] . '">Historik</a>' . "\n";
 			$out .= '<a href="/traffa/guestbook.php?view=' . $entry['sender'] . '">Gå till</a>' . "\n";
 
-			$out .= ($entry['recipient'] == $_SESSION['login']['id']) ? '<a href="/traffa/userblocks.php?action=block&username=' . $entry['username'] . '" class="gb_block_control">Blockera</a>' . "\n" : '';
+			$out .= ($entry['recipient'] == $_SESSION['login']['id']) ? '<a href="/installningar/userblock.php?action=block&username=' . $entry['username'] . '" class="gb_block_control">Blockera</a>' . "\n" : '';
 
 
 			if(login_checklogin() && $entry['recipient'] == $_SESSION['login']['id'] && $entry['sender'] != $_SESSION['login']['id'])
