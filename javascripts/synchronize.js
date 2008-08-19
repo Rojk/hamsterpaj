@@ -38,12 +38,15 @@ hp.synchronize = {
 	
 	parse_response: function(json_data)
 	{
-		for(var handle in json_data)
+		for(var obj in json_data)
 		{
-			if(typeof(this.synchronized_objects[handle]) != 'undefined')
+			for(var handle in json_data[obj])
 			{
-				this.synchronized_objects[handle].json_data = json_data[handle];
-				eval(this.synchronized_objects[handle].on_response);
+				if(typeof(this.synchronized_objects[handle]) != 'undefined')
+				{
+					this.synchronized_objects[handle].json_data = json_data[obj][handle];
+					this.synchronized_objects[handle].on_response();
+				}
 			}
 		}
 	}
