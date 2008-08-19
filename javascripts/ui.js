@@ -138,8 +138,7 @@ hp.ui = {
 						$('#ui_noticebar #groups a').html(this.json_data);
 					}
 				});
-			}
-			catch(E){ fel_i_ui_punkt_js_rad_129(); }
+			}catch(E){  }
 		}
 	}
 }
