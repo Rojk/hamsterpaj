@@ -122,7 +122,6 @@ hp.ui = {
 					handle: 'ui_noticebar_guestbook',
 					on_response: function(){
 						$('#ui_noticebar_guestbook').html((this.json_data > 0) ? ((this.json_data == 1) ? 'Ett nytt' : this.json_data + ' nya') : 'Gästbok');
-					}
 				});
 				
 				hp.synchronize.add({
