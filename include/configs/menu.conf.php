@@ -141,6 +141,7 @@
 		$menu['admin']['children']['user_logins'] = array('label' => 'User Logins', 'url' => '/admin/user_logins.php', 'is_privilegied' => 'ip_ban_admin');
 
 		$menu['dev'] = array('label' => 'D', 'url' => '/admin/ajax_handy.php', 'index_label' => 'Handy encoder/decoder', 'is_privilegied' => 'use_debug_tools');
+		$menu['dev']['children']['ajax_handy'] = array('label' => 'Handy encoder/decoder', 'url' => '/admin/ajax_handy.php', 'is_privilegied' => 'use_debug_tools');
 		$menu['dev']['children']['visa_sessionsdata'] = array('label' => 'Visa sessionsdata', 'url' => '/admin/view_session.php', 'is_privilegied' => 'use_debug_tools');
 
 require_once(PATHS_INCLUDE . 'configs/entertain.conf.php');
