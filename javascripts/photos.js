@@ -1,6 +1,6 @@
 $(document).ready(function(){
 var global_photo_id;
-
+var change_photo = true;
 	function updateView(photo_id, initial)
 	{
 	if(photo_id != 'undefined')
@@ -22,7 +22,19 @@ var global_photo_id;
 			     	$('#img_full').fadeIn(400);
 					global_photo_id = photo_id;
 					
-						$('#tha_image').click(
+					$('#comment_input_text').focus(
+					function()
+					{
+						change_photo = false;
+					});
+
+					$('#comment_input_text').blur(
+					function()
+					{
+						change_photo = true;
+					});
+					
+					$('#tha_image').click(
 						function()
 						{
 		  					$.get('/ajax_gateways/photos_fast_load.php', {action: 'get_photo_right', 'id': global_photo_id}, 
@@ -36,7 +48,10 @@ var global_photo_id;
 									$('a#updateviewid_' + data).parent().css('border', '4px solid #ff9c11');
 		  						}
   							});	
-						});
+						}
+					);
+
+
    				}
 			});
 		});
@@ -100,31 +115,37 @@ var global_photo_id;
 	  	{
   		case 37:
   			//left arrow key
-  			$.get('/ajax_gateways/photos_fast_load.php', {action: 'get_photo_left', 'id': global_photo_id}, 
-  			function(data)
+  			if(change_photo)
   			{
-				if(data != "")
-				{
-	  				updateView(data, true);
-			  		global_photo_id = data;
-					$('ul.photos_list_mini li').css('border', '4px solid #ffffff');
-					$('a#updateviewid_' + data).parent().css('border', '4px solid #ff9c11');
-	  			}
-  			});
+	  			$.get('/ajax_gateways/photos_fast_load.php', {action: 'get_photo_left', 'id': global_photo_id}, 
+  				function(data)
+  				{
+					if(data != "")
+					{
+	  					updateView(data, true);
+				  		global_photo_id = data;
+						$('ul.photos_list_mini li').css('border', '4px solid #ffffff');
+						$('a#updateviewid_' + data).parent().css('border', '4px solid #ff9c11');
+	  				}
+	  			});
+	  		}
   		  	break;
 		case 39:
 			//right arrow key
-  			$.get('/ajax_gateways/photos_fast_load.php', {action: 'get_photo_right', 'id': global_photo_id}, 
-  			function(data)
-  			{
-				if(data != "")
-				{
-	  				updateView(data, true);
-			  		global_photo_id = data;
-					$('ul.photos_list_mini li').css('border', '4px solid #ffffff');
-					$('a#updateviewid_' + data).parent().css('border', '4px solid #ff9c11');
-	  			}
-  			});
+			if(change_photo)
+			{
+  				$.get('/ajax_gateways/photos_fast_load.php', {action: 'get_photo_right', 'id': global_photo_id}, 
+	  			function(data)
+  				{
+					if(data != "")
+					{
+	  					updateView(data, true);
+			  			global_photo_id = data;
+						$('ul.photos_list_mini li').css('border', '4px solid #ffffff');
+						$('a#updateviewid_' + data).parent().css('border', '4px solid #ff9c11');
+	  				}
+  				});
+  			}
 			break;
   		}
 	});
