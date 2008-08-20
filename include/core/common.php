@@ -58,8 +58,7 @@
 	}
 	include(PATHS_INCLUDE . 'configs/menu.conf.php');
 	  
-  // New system for IP banning, Proxy banning and Cookie stealer protectioning (<--Ja, det heter s㟳㦥r min engelskal㱡re)
-// 	require('/storage/www/ip_handling.php');
+ 	require(PATHS_INCLUDE . 'core/ip_handling.php');
   
   if(login_checklogin())
   {
