@@ -1,5 +1,5 @@
 <?php
-	require('../include/core/common.php');
+	require('include/core/common.php');
 	require(PATHS_INCLUDE . 'libraries/register.lib.php');
 	
 	if($_GET['action'] == 'tiny_reg_form_show')
