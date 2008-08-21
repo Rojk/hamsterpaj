@@ -125,7 +125,7 @@ h2
 			margin: 0;
 			width: 180px;
 			position: absolute;
-			left: 0;
+			left: -65px;
 			top: 12px;
 			~top: 100px;
 			background: #f9f9f9;
