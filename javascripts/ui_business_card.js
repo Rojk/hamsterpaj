@@ -54,7 +54,7 @@ jQuery.fn.extend({
 				
 				var w = $(window);
 				card.css({
-					'left': ($('#ui_content').width() / 2) - (card.width() / 2),
+					'left': ($('#ui_wrapper').width() / 2) - (card.width() / 2),
 				 	'top': w.scrollTop() + (w.height() / 2) - (card.height() / 2)
 				}).fadeIn(function() {
 					// center avatar
