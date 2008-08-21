@@ -12,15 +12,31 @@
 *	constants.php files.
 */
 
+	// Set this to the path where the code lives on your server
 	$hp_path = '/storage/www/dev.hamsterpaj.net/data/';
 	
+	// Set this to the path where the include directory lives
 	$hp_includepath = $hp_path . 'include/';
-
+	
+	// Set this to your URL
 	$hp_url = 'http://www.hamsterpaj.net/';
 
 	define(PATHS_WEBROOT, '/storage/www/dev.hamsterpaj.net/data/');
+						/*	Should this always be the same as $hp_path?
+							In that case, we should use the variable to
+							define the constant (or rather, define the
+							constant right away instead of wasting cycles
+							on a useless variable) */
+
 	define(PATHS_INCLUDE, PATHS_WEBROOT . 'include/');
+						/*	Same goes for this. Do we really need both
+							a variable and a constant? */
 	define(PATHS_CACHE, PATHS_INCLUDE . 'cache/');
+						/*	And should we really define the cache directory
+							using PATHS_INCLUDE as base? We might want to
+							put cache/ somewhere else in the filesystem, or
+							on a network share in a multi-server
+							environment. */
 	define(PATHS_LOGS, '/var/log/hamsterpaj/');
 	define(PATHS_IMAGES, '/mnt/images/images/');
 	
