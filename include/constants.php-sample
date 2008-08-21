@@ -18,7 +18,7 @@
 
 	$hp_url = 'http://www.hamsterpaj.net/';
 
-	define(PATHS_WEBROOT, '/var/www/lef.t67.se/');
+	define(PATHS_WEBROOT, '/storage/www/dev.hamsterpaj.net/data/');
 	define(PATHS_INCLUDE, PATHS_WEBROOT . 'include/');
 	define(PATHS_CACHE, PATHS_INCLUDE . 'cache/');
 	define(PATHS_LOGS, '/var/log/hamsterpaj/');
