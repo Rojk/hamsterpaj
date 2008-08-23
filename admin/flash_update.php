@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	require('../include/core/common.php');
 	$ui_options['menu_path'] = array('admin', 'flash_update');
 	$ui_options['current_menu'] = 'admin';
