@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	require('../include/core/common.php');
 
 	if(!is_privilegied('use_ghosting_tools') && !isset($_SESSION['ghost']))
