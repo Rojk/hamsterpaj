@@ -9,7 +9,7 @@
 		while($data = mysql_fetch_assoc($result))
 		{
 			$data['onlinestatus'] = login_onlinestatus($data['lastaction'], $data['lastrealaction']);
-			$friends[] = $data; // Save in array
+			$friends[$data['user_id']] = $data; // Save in array
 		}
 		
 		return $friends;
