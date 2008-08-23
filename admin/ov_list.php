@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require('../include/core/common.php');
 require_once(PATHS_INCLUDE . 'libraries/posts.php');
