@@ -281,6 +281,7 @@ function cache_update_lastaction()
 			if($friend['onlinestatus']['handle'] == ('online' || 'idle') && strlen($friend['session_id']) == 32)
 			{
 				$friends_session = session_load($friend['session_id']);
+				$friends_session['friends'][$_SESSION['login']['id']]['session_id'] = $_SESSION['login']['session_id'];
 				$friends_session['friends'][$_SESSION['login']['id']]['lastaction'] = time();
 				$friends_session['friends'][$_SESSION['login']['id']]['onlinestatus'] = login_onlinestatus(time(), time());
 				session_save($friend['session_id'], $friends_session);
