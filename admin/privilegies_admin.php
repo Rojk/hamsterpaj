@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	require('../include/core/common.php');
 	
 	if(!is_privilegied('privilegies_admin'))
