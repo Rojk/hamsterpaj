@@ -282,6 +282,7 @@ function cache_update_lastaction()
 			{
 				$friends_session = session_load($friend['session_id']);
 				$friends_session['friends'][$_SESSION['login']['id']]['lastaction'] = time();
+				$friends_session['friends'][$_SESSION['login']['id']]['onlinestatus'] = login_onlinestatus(time(), time());
 				session_save($friend['session_id'], $friends_session);
 			}
 		}
