@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	require('../include/core/common.php');
 	$ui_options = array();
 	$ui_options['title'] = 'Vi som gör Hamsterpaj';
