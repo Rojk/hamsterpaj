@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	require('../include/core/common.php');
 	include($hp_includepath . 'guestbook-functions.php');
 	
