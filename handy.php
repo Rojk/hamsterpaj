@@ -6,7 +6,7 @@
 		die('Du blev nog utloggad.');
 	}
 	
-	if(!is_privilegied('use_debug_tools') && $_GET['fuling'] != 'japp')
+	if(!is_privilegied('use_debug_tools'))
 	{
 		die('Fisk');
 	}
