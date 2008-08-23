@@ -6,12 +6,11 @@
 		$query .= ' WHERE f.user_id = "' . $options['user_id'] . '" AND l.id = f.friend_id AND u.userid = l.id AND is_removed = 0';
 		$query .= ' ORDER BY l.username ASC';
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);	
-		$friends = mysql_fetch_assoc($result);
-		
-			foreach($friends AS $friend)
-			{
-				$friends['onlinestatus'] = login_onlinestatus($friends['lastaction'], $friends['lastrealaction']);
-			}
+		while($data = mysql_fetch_assoc($result))
+		{
+			$data['onlinestatus'] = login_onlinestatus($data['lastaction'], $data['lastrealaction']);
+			$friends[] = $data; // Save in array
+		}
 		
 		return $friends;
 	}
