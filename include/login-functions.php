@@ -278,10 +278,8 @@ function cache_update_lastaction()
 		$friends = $_SESSION['friends'];
 		foreach($friends as $friend)
 		{
-			jscript_alert('vill uppdatera session för ' . $friend['username'] . '');
 			if($friend['onlinestatus']['handle'] == ('online' || 'idle') && strlen($friend['session_id']) == 32)
 			{
-				jscript_alert('Uppdaterar session för ' . $friend['username'] . '');
 				$friends_session = session_load($friend['session_id']);
 				$friends_session['friends'][$_SESSION['login']['id']]['lastaction'] = time();
 				session_save($friend['session_id'], $friends_session);
