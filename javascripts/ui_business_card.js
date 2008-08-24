@@ -32,7 +32,7 @@ jQuery.fn.extend({
 		 					'<p id="ui_business_card_flags"></p>' +
 		 				'</div>' +
 		 				'<div id="ui_business_card_guestbook">' +
-		 					'<form action="#" method="post">' +
+		 					'<form action="/ajax_gateways/guestbook.json.php" method="post">' +
 		 						'<textarea rows="3"></textarea>' +
 		 						'<input type="submit" value="Skicka g&auml;stboksinl&auml;gg" />' +
 		 					'</form>' +
@@ -114,12 +114,16 @@ jQuery.fn.extend({
 		var submitbtn = $('#ui_business_card_guestbook input[type=submit]');
 		var form = $('#ui_business_card_guestbook form').submit(function(e) {
 			submitbtn.val('Sparar...').attr('disabled', 'true');
+			
 			var data = {
 				action: 'insert',
 				recipient: bc_active_id,
-				message: escape(txtarea.val()),
+		//		message: encodeURIComponent(txtarea.val()),
+				message: txtarea.val(),
 				is_private: false
 			};
+		//	console.dir(data);
+		//	console.log($.param(data));
 			$.post('/ajax_gateways/guestbook.json.php', data, function() {
 				submitbtn.val('Sparat');
 				card.fadeOut();
