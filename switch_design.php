@@ -13,4 +13,6 @@
 	{
 		$_SESSION['new_design']  = true;
 	}
+	
+	header('location: /');
 ?>
