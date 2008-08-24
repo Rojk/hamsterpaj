@@ -128,7 +128,7 @@
 			
 			/* Friends start here */
 			$options['user_id'] = $_SESSION['login']['id'];
-			$_SESSION['friends'] = friends_fetch($options);
+			$_SESSION['friends'] = friends_fetch_online_smart($options);
 
 			$query = 'SELECT DISTINCT(uel.remote_user_id) AS id, uel.timestamp, l.username ';
 			$query .= 'FROM user_event_log AS uel, login AS l, userinfo AS u';
