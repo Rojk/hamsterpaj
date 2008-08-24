@@ -32,7 +32,7 @@ jQuery.fn.extend({
 		 					'<p id="ui_business_card_flags"></p>' +
 		 				'</div>' +
 		 				'<div id="ui_business_card_guestbook">' +
-		 					'<form action="/ajax_gateways/guestbook.json.php" method="post">' +
+		 					'<form action="/ajax_gateways/guestbook.json.php?new_entry" method="post">' +
 		 						'<textarea rows="3"></textarea>' +
 		 						'<input type="submit" value="Skicka g&auml;stboksinl&auml;gg" />' +
 		 					'</form>' +
@@ -50,6 +50,7 @@ jQuery.fn.extend({
 		var flags = $('#ui_business_card_flags');
 		var username = $('#ui_business_card_username');
 		var online = $('#ui_business_card_online');
+		var txtarea = $('#ui_business_card_guestbook textarea');
 			
 		// close
 		close.click(function() {
@@ -92,7 +93,9 @@ jQuery.fn.extend({
 					card.css({
 						'left': ($('#ui_wrapper').width() / 2) - (card.width() / 2),
 						'top': w.scrollTop() + (w.height() / 2) - (card.height() / 2)
-					}).fadeIn();
+					}).fadeIn(function() {
+						txtarea.get(0).focus();
+					});
 				});
 				
 				// close
@@ -110,7 +113,6 @@ jQuery.fn.extend({
 		});
 		
 		// guestbook_form
-		var txtarea = $('#ui_business_card_guestbook textarea');
 		var submitbtn = $('#ui_business_card_guestbook input[type=submit]');
 		var form = $('#ui_business_card_guestbook form').submit(function(e) {
 			submitbtn.val('Sparar...').attr('disabled', 'true');
@@ -118,12 +120,10 @@ jQuery.fn.extend({
 			var data = {
 				action: 'insert',
 				recipient: bc_active_id,
-		//		message: encodeURIComponent(txtarea.val()),
 				message: txtarea.val(),
 				is_private: false
 			};
-		//	console.dir(data);
-		//	console.log($.param(data));
+
 			$.post('/ajax_gateways/guestbook.json.php', data, function() {
 				submitbtn.val('Sparat');
 				card.fadeOut();
