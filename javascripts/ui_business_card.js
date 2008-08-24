@@ -2,19 +2,22 @@ var bc_active_id = 0;
 
 jQuery.fn.extend({
 	// traverses through a node-list to check (and return) an element based on the selectors passed in
- 	isHas: function(selector) {
+ 	isHas: function(selector, returnVal) {
 		var ret = false;
+		var returnv = false;
 		var chk = $(selector);
 		this.each(function() {
 			if ( ! ret ) {
 				var el = this;
 					do {
-					 	if ( chk.index(el) !== -1 )
-					 		ret = true;				
+					 	if ( chk.index(el) !== -1 ) {
+					 		ret = true;
+					 		returnv = el;
+					 	}
 					} while ( el = el.parentNode );
 			}
 		});
-		return ret;
+		return (returnVal) ? returnv : ret;
 	},
 	
 	business_card: function() {
@@ -57,14 +60,14 @@ jQuery.fn.extend({
 		// dcocument.click
 		this.click(function(e) {
 			var target = $(e.target);
-			if ( target.isHas('.ui_business_card') === true ) {
+			if ( target = target.isHas('.ui_business_card', true) ) {
 				// we caught it!
+				target = $(target);
 				var href = target.attr('href');
 				var user_id = 65654;
 				href.replace(/id=([0-9]+)/, function() {
 					user_id = arguments[1];
 				});
-				
 				var w = $(window);			
 				$.getJSON('/ajax_gateways/business_card.json.php?user_id=' + user_id, function(data) {
 					bc_active_id = data.user_id;
