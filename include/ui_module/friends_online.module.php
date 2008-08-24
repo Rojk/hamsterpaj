@@ -1,11 +1,10 @@
 <?php
-	if($_SESSION['friends_lastupdate'] < time() - 10)
+	if($_SESSION['friends_lastupdate'] < time() - 60)
 	{
 		unset($_SESSION['friends']);
 		$options['user_id'] = $_SESSION['login']['id'];
 		$_SESSION['friends'] = friends_fetch_online_smart($options);
 		$_SESSION['friends_lastupdate'] = time();
-		jscript_alert('hej');
 	}
 
 	$friends = $_SESSION['friends'];
