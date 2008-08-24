@@ -10,7 +10,10 @@ var change_photo = true;
 		{
 		
 			$('#loading').html('<div>Laddar...<img src="http://images.hamsterpaj.net/loading_icons/ajax-loader3.gif" alt="Loading" /></div>');
-	
+			//remove the space in the begging that photos_fast_load.php?action=get_photo_(left|right) adds. Where the space comes from is unknown
+			if(photo_id.substr(0,1) == ' ')
+				photo_id = photo_id.substr(1);
+
 			$.ajax({
 				type: 'GET',
 				url: '/ajax_gateways/photos_fast_load.php',
