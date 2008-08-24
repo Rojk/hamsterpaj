@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	require('../include/core/common.php');
 	include(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
 

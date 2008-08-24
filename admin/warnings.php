@@ -1,4 +1,4 @@
-﻿<?
+<?
 	require('/home/www/standard.php');
 	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
 	require(PATHS_INCLUDE . 'libraries/warnings.lib.php');

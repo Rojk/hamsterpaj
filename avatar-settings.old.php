@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 	require('/storage/www/standard.php');
 	$ui_options['menu_path'] = array('installningar', 'byt_visningsbild');

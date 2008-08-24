@@ -65,7 +65,7 @@
 				$out .= sex_sense_bright_container_top();
 					$out .= '<p>Entrero och SheDevil svarar på dina funderingar om sex, kärlek, kroppen 
 					och annat som hör tonåren till. Vill du ställa en fråga? Välj "Ställ en fråga" i 
-					menyn till höger! Givetvis är du helt anonym om du så önskar. 
+					menyn till vänster! Givetvis är du helt anonym om du så önskar. 
 					Våra sexperter får inte se vem som ställt frågan.</p>' . "\n";
 				$out .= sex_sense_bright_container_bottom();
 				

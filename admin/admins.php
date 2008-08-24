@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 	// Note on 2008-04-26: Joel added a grouping system. However, no nasty code was fixed.
 

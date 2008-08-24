@@ -41,8 +41,6 @@
 	$headings[3] = (rand(1, 5) == 2) ? 'Vet du om att Stora mossen ligger mitt emellan Trosa och Fittja?' : '';
 	$headings[2] = (rand(1, 5) == 1) ? '- Varför är det så farligt att sniffa lim?<br />- Man fastnar så lätt' : '';
 
-	$headings[9999] = 'Vår lilla husbög HomoJohan skall hjärtopereras, och nu behöver han lite <a href="/diskussionsforum/hamsterpaj/homojohan_hjaertopereras_paa_fredag/sida_1.php" style="color: #000;font-weight:bold">mentalt stöd ifrån dig</a>!';
-
 	$output .= isset($_GET['ilovemarquee']) ? '<marquee scrolldelay="1" behavior="alternate" direction="right"><div style="width:720px">' : '';
 
 	$headings[1] = 'Hej och välkommen till Hamsterpaj';
