@@ -2,6 +2,16 @@
 	require('../include/core/common.php');
 	$ui_options['menu_path'] = array('chatt', 'regler');
 	$ui_options['title'] = 'Regler för hamsterpajchatten';
+	
+	if(isset($_SESSION['new_design']))
+	{
+		unset($_SESSION['new_design']);
+	}
+	else
+	{
+		$_SESSION['new_design']  = true;
+	}
+	
 	ui_top($ui_options);
 ?>
 
