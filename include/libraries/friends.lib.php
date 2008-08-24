@@ -8,7 +8,6 @@
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);	
 		while($data = mysql_fetch_assoc($result))
 		{
-			$data['onlinestatus'] = login_onlinestatus($data['lastaction'], $data['lastrealaction']);
 			$friends[$data['user_id']] = $data; // Save in array
 		}
 		
