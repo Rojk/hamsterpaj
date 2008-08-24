@@ -117,7 +117,7 @@ jQuery.fn.extend({
 			var data = {
 				action: 'insert',
 				recipient: bc_active_id,
-				message: txtarea.val(),
+				message: escape(txtarea.val()),
 				is_private: false
 			};
 			$.post('/ajax_gateways/guestbook.json.php', data, function() {
