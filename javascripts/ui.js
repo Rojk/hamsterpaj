@@ -8,6 +8,7 @@ hp.ui = {
 		this.user_search.init();
 		this.hackerlund.init();
 		this.grotescopaj.init();
+		this.statusbar.init();
 	},
 	
 	user_search: {
@@ -139,6 +140,28 @@ hp.ui = {
 					}
 				});
 			}catch(E){  }
+		}
+	},
+	
+	statusbar: {
+		init: function() {
+			$('#ui_statusbar_forumstatus').click(function() {
+				var t = $(this);
+				
+				if ( $('span', this).length ) {
+					var inpt = $('<input type="text"/>');
+					inpt.attr('value', $('span', this).html());
+					while ( this.firstChild ) this.removeChild(this.firstChild);
+					inpt.appendTo(t);
+					inpt.focus();
+					inpt.keydown(function(e) {
+						if ( e.keyCode == 13 ) {
+							$.get('/ajax_gateways/set_user_status.php?status=' + encodeURIComponent(this.value));
+							t.html('<span>' + this.value + '</span>');
+						}
+					});
+				}
+			});
 		}
 	}
 }
