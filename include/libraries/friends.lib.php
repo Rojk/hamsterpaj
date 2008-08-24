@@ -21,7 +21,6 @@
 		$query .= ' FROM friendslist AS f, login AS l, userinfo AS u';
 		$query .= ' WHERE f.user_id = "' . $options['user_id'] . '" AND l.id = f.friend_id AND u.userid = l.id AND is_removed = 0 AND l.lastaction >= "' . (time()-600) . '"';
 		$query .= ' ORDER BY l.username ASC';
-		jscript_alert($query);
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);	
 		while($data = mysql_fetch_assoc($result))
 		{
