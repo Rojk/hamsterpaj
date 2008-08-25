@@ -66,6 +66,7 @@ function ui_new_top($options = array())
 	$options['javascripts'][] = 'ui.js';
 	$options['javascripts'][] = 'ui_modules.js';
 	$options['javascripts'][] = 'ui_business_card.js';
+	$options['javascripts'][] = 'ui_multisearch.js';
 	if(!login_checklogin())
 	{
 		$options['javascripts'][] = 'tiny_reg_form.js';
