@@ -1,5 +1,5 @@
 <?php
-	require_once('../libraries/friends.lib.php');
+	//require_once('../libraries/friends.lib.php');
 	if($_SESSION['friends_lastupdate'] < time() - 60)
 	{
 		unset($_SESSION['friends']);
