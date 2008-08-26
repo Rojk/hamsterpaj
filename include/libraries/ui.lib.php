@@ -312,6 +312,22 @@ function ui_new_bottom($options = array())
 	
 	$output .= '<div id="ui_modulebar">' . "\n";
 	
+	foreach(array('discussion_forum_remove_posts', 'discussion_forum_edit_posts', 'discussion_forum_rename_threads', 'discussion_forum_lock_threads', 'discussion_forum_sticky_threads', 'discussion_forum_move_thread', 'discussion_forum_post_addition') as $privilegie)
+	{
+		if (is_privilegied($privilegie))
+		{
+			$ui_administration_module_show = true;
+		}
+	}
+	
+	if ($ui_administration_module_show === true)
+	{
+		$output .= ui_module_render(ui_module_fetch(array(
+			'header' => 'Administration',
+			'handle' => 'administration'
+		)));
+	}
+	
 	$output .= ui_module_render(ui_module_fetch(array(
 		'header' => 'Multi-sök',
 		'handle' => 'multisearch'
