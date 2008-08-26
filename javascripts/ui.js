@@ -149,6 +149,7 @@ hp.ui = {
 				var t = $(this);
 				
 				if ( $('span', this).length ) {
+					var span = $('span', this);
 					var inpt = $('<input type="text"/>');
 					inpt.attr('value', $('span', this).html());
 					while ( this.firstChild ) this.removeChild(this.firstChild);
@@ -156,12 +157,21 @@ hp.ui = {
 					inpt.focus();
 					inpt.keydown(function(e) {
 						if ( e.keyCode == 13 ) {
-							$.get('/ajax_gateways/set_user_status.php?status=' + encodeURIComponent(this.value));
-							t.html('<span>' + this.value + '</span>');
+							hp.ui.statusbar.hideAndSend(inpt.val());
 						}
+					});
+					$(document).bind('click.statusbar', function(e) {
+						if ( inpt.get(0) == e.target || e.target == span.get(0)) return;
+						hp.ui.statusbar.hideAndSend(inpt.val());
+						$(document).unbind('click.statusbar');
 					});
 				}
 			});
+		},
+		
+		hideAndSend: function(value) {
+			$.get('/ajax_gateways/set_user_status.php?status=' + encodeURIComponent(value));
+			$('#ui_statusbar_forumstatus').html('<span>' + value + '</span>');
 		}
 	}
 }
