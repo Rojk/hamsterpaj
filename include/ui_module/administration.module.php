@@ -54,4 +54,5 @@
 			}
 		}
 	}
+	$options['output'] = $return;
 ?>
