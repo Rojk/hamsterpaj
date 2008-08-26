@@ -2,7 +2,7 @@
 	require('../include/core/common.php');
 	if(login_checklogin())
 	{
-		$status = utf8_encode($_GET['status']);
+		$status = $_GET['status'];
 		$not_allowed_in_status = 'tinyurl';
 		if (stristr(strtolower($status), $not_allowed_in_status))
 		{
