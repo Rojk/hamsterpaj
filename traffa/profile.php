@@ -44,7 +44,8 @@
 	$profile = profile_fetch($params);
 	
 	// Introduces the new design!
-	if(login_checklogin() && in_array($profile['username'], array('iPhone' || 'AnoosMonkey')))
+	$new_design = array('iPhone', 'anoosMonkey');
+	if(login_checklogin() && in_array($profile['username'], $new_design))
 	{
 		if(isset($_SESSION['new_design']))
 		{
