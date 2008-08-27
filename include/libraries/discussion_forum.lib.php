@@ -1257,7 +1257,7 @@
 
 				$output .= '<td>' . fix_time($notice['timestamp']) . '</td>' . "\n";		
 				$output .= '<td><a href="' . $url . '">' . $notice['title'] . '</a></td>';
-				$output .= '<td><a href="/traffa/profile.php?id' . $notice['author'] . '">' . $notice['username'] . '</a></td>';
+				$output .= '<td><a href="/traffa/profile.php?id=' . $notice['author'] . '">' . $notice['username'] . '</a></td>';
 			}
 			$output .= '</table>' . "\n";
 		}

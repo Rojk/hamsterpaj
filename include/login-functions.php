@@ -128,7 +128,7 @@
 			
 			/* Friends start here */
 			$options['user_id'] = $_SESSION['login']['id'];
-			$_SESSION['friends'] = friends_fetch($options);
+			$_SESSION['friends'] = friends_fetch_online_smart($options);
 
 			$query = 'SELECT DISTINCT(uel.remote_user_id) AS id, uel.timestamp, l.username ';
 			$query .= 'FROM user_event_log AS uel, login AS l, userinfo AS u';
@@ -274,19 +274,6 @@ function cache_update_lastaction()
 		mysql_query($sql) or die('Ett fel uppstod när databasfrågan kördes: ' . mysql_error());
 		$_SESSION['cache']['lastupdate'] = time();
 		$_SESSION['login']['lastaction'] = time();
-		
-		$friends = $_SESSION['friends'];
-		foreach($friends as $friend)
-		{
-			$friend_onlinestatus = login_onlinestatus($friend['lastaction'], $friend['lastaction']);
-			if($friend_onlinestatus['handle'] == 'online' && strlen($friend['session_id']) == 32)
-			{
-				$friends_session = session_load($friend['session_id']);
-				$friends_session['friends'][$_SESSION['login']['id']]['session_id'] = $_SESSION['login']['session_id'];
-				$friends_session['friends'][$_SESSION['login']['id']]['lastaction'] = time();
-				session_save($friend['session_id'], $friends_session);
-			}
-		}
 	}
 }
 

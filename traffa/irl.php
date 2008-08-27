@@ -92,7 +92,7 @@
 		if($content['update'] == 1)
 		{
 			$query = 'UPDATE irl_attendings SET attending = "' . $content['attending'] . '", has_beds = "' . $content['has_beds'] . '", needs_beds = "' . $content['needs_beds'] . '"';
-			$query .= ' WHERE user_id = "' . $_SESSION['login']['id'] . '" LIMIT 1';
+			$query .= ' WHERE user_id = "' . $_SESSION['login']['id'] . '" AND irl_id = "' . $content['irl_id'] . '" LIMIT 1';
 			mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 		}
 		else

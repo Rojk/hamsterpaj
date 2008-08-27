@@ -66,6 +66,7 @@ function ui_new_top($options = array())
 	$options['javascripts'][] = 'ui.js';
 	$options['javascripts'][] = 'ui_modules.js';
 	$options['javascripts'][] = 'ui_business_card.js';
+	$options['javascripts'][] = 'ui_multisearch.js';
 	if(!login_checklogin())
 	{
 		$options['javascripts'][] = 'tiny_reg_form.js';
@@ -138,10 +139,16 @@ function ui_new_top($options = array())
 	
 	$notices = ui_notices_fetch();
 	
-	$output .= '					<li><a id="ui_noticebar_guestbook" href="/traffa/guestbook.php?user_id=' . $_SESSION['login']['id'] . '">' . (($notices['guestbook'] > 0) ? (($notices['guestbook'] == 1) ? 'Ett nytt' : $notices['guestbook'] . ' nya') : 'Gästbok') . '</a></li>' . "\n";
+	$output .= '					<li>' . "\n";
+	$output .= '						<a id="ui_noticebar_guestbook' . ($notices['guestbook'] > 0 ? '_active' : '') . '" href="/traffa/guestbook.php?user_id=' . $_SESSION['login']['id'] . '">';
+	$output .=								(($notices['guestbook'] > 0) ? (($notices['guestbook'] == 1) ? 'Ett nytt' : $notices['guestbook'] . ' nya') : 'Gästbok');
+	$output .= '						</a>';
+	$output .= '					</li>' . "\n";
 	
 	$output .= '					<li>' . "\n";
-	$output .= '						<a id="ui_noticebar_forum" href="/diskussionsforum/notiser.php">' . (($notices['discussion_forum'] > 0) ? (($notices['discussion_forum'] == 1) ? 'Ny notis' : $notices['discussion_forum'] . ' nya') : 'Forum') . '</a>' . "\n";
+	$output .= '						<a id="ui_noticebar_forum' . ($notices['discussion_forum'] > 0 ? '_active' : '') . '" href="/diskussionsforum/notiser.php">';
+	$output .=								(($notices['discussion_forum'] > 0) ? (($notices['discussion_forum'] == 1) ? 'Ny notis' : $notices['discussion_forum'] . ' nya') : 'Forum');
+	$output .= '						</a>' . "\n";
 	$output .= '						<ul class="ui_noticebar_info">' . "\n";
 	$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina forumnotiser</h3></li>' . "\n";
 	$output .= '							<li><a href="#">Bästa skräckfilmen? (<strong>2 nya</strong>)</a></li>' . "\n";
@@ -153,7 +160,9 @@ function ui_new_top($options = array())
 	$output .= '					</li>' . "\n";
 	
 	$output .= '					<li>' . "\n";
-	$output .= '						<a id="ui_noticebar_groups" href="/traffa/groupnotices.php">' . (($notices['groups'] > 1) ? (($notices['groups'] == 0) ? 'Ett nytt' : $notices['groups'] . ' nya') : 'Grupper') . '</a>' . "\n";
+	$output .= '						<a id="ui_noticebar_groups' . ($notices['groups'] > 0 ? '_active' : '') . '" href="/traffa/groupnotices.php">';
+	$output .= 								(($notices['groups'] > 1) ? (($notices['groups'] == 0) ? 'Ett nytt' : $notices['groups'] . ' nya') : 'Grupper');
+	$output .= '						</a>' . "\n";
 	$output .= '						<ul class="ui_noticebar_info">' . "\n";
 	$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina gruppinl&auml;gg</h3></li>' . "\n";
 	$output .= '						</ul>' . "\n";
@@ -171,7 +180,7 @@ function ui_new_top($options = array())
 	
 	$output .= '			<div id="ui_statusbar">' . "\n";
 	$output .= '				<a href="#" title="Byt visningsbild">' . "\n";
-	$output .= '					<img src="http://images.hamsterpaj.net/images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'' . $hp_url . 'avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
+	$output .= '					<img src="http://images.hamsterpaj.net/images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
 	$output .= '				</a>' . "\n";
 	$output .= '				<div id="ui_statusbar_username">' . "\n";
 	$output .= '					<strong>' . $_SESSION['login']['username'] . '</strong><span> | </span><a href="/logout.php">Logga ut</a><br />' . "\n";
@@ -310,6 +319,22 @@ function ui_new_bottom($options = array())
 	
 	
 	$output .= '<div id="ui_modulebar">' . "\n";
+	
+	foreach(array('discussion_forum_remove_posts', 'discussion_forum_edit_posts', 'discussion_forum_rename_threads', 'discussion_forum_lock_threads', 'discussion_forum_sticky_threads', 'discussion_forum_move_thread', 'discussion_forum_post_addition') as $privilegie)
+	{
+		if (is_privilegied($privilegie))
+		{
+			$ui_administration_module_show = true;
+		}
+	}
+	
+	if ($ui_administration_module_show === true)
+	{
+		$output .= ui_module_render(ui_module_fetch(array(
+			'header' => 'Administration',
+			'handle' => 'administration'
+		)));
+	}
 	
 	$output .= ui_module_render(ui_module_fetch(array(
 		'header' => 'Multi-sök',

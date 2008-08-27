@@ -95,7 +95,7 @@
 		$sql .= ' ' . $_SESSION['login']['id'] . ',';
 		$sql .= ' ' . $unit_1 . ','; 
 		$sql .= ' ' . 0 . ')';
-		mysql_query($sql) or die(mysql_error() . '<br /><br /> Kontakta Joar. det är han som har kodat skiten :S');
+		mysql_query($sql) or die($sql . '<br />' . mysql_error() . '<br /><br /> Kontakta <a href="/joar">Joar</a>. det är han som har kodat skiten :S');
 		
 	}
 	else
@@ -117,16 +117,6 @@
 		$out .= rounded_corners_bottom($void, true);
 	}
 	
-	if (isset($_GET['fullscreen']))
-	{
-		echo '<title>Gästbokshack :: Hamsterpaj.net</title>';
-		echo $out;
-	}
-	else
-	{
-		ui_top($ui_options);
-		echo $out;
-		ui_bottom();
-	}
+	echo $out;
 ?>
 	

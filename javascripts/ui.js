@@ -123,6 +123,7 @@ hp.ui = {
 					handle: 'ui_noticebar_guestbook',
 					on_response: function(){
 						$('#ui_noticebar_guestbook').html((this.json_data > 0) ? ((this.json_data == 1) ? 'Ett nytt' : this.json_data + ' nya') : 'Gästbok');
+						$('#ui_noticebar_guestbook_active').html((this.json_data > 0) ? ((this.json_data == 1) ? 'Ett nytt' : this.json_data + ' nya') : 'Gästbok');
 					}
 				});
 				
@@ -130,6 +131,7 @@ hp.ui = {
 					handle: 'ui_noticebar_discussion_forum',
 					on_response: function(){
 						$('#ui_noticebar_forum').html((this.json_data > 0) ? ((this.json_data == 1) ? 'Ny notis' : this.json_data + ' nya') : 'Forum');
+						$('#ui_noticebar_forum_active').html((this.json_data > 0) ? ((this.json_data == 1) ? 'Ny notis' : this.json_data + ' nya') : 'Forum');
 					}
 				});
 				
@@ -137,6 +139,7 @@ hp.ui = {
 					handle: 'ui_noticebar_groups',
 					on_response: function(){
 						$('#ui_noticebar_groups').html((this.json_data > 0) ? ((this.json_data == 1) ? 'Ett nytt' : this.json_data + ' nya') : 'Grupper');
+						$('#ui_noticebar_groups_active').html((this.json_data > 0) ? ((this.json_data == 1) ? 'Ett nytt' : this.json_data + ' nya') : 'Grupper');
 					}
 				});
 			}catch(E){  }

@@ -673,7 +673,7 @@ function entertain_item_draw($item, $options)
 		$server = distribute_server_get(array('item_handle' => $item['handle'], 'type' => $item['entertain_type']));
 		$address = 'http://' . $server['address'] . '/distribute/' . $item['entertain_type'] . '/' . $item['handle'] . '.' . $item['extension'];
 		
-		$ads = array(array('source' => '/entertain/ad_1.flv', 'track' => 'http://track.adform.net/adfserve/?bn=121081;1x1inv=1;srctype=3;ord=' . time()), array('source' => '/entertain/ad_2.flv', 'track' => 'http://track.adform.net/adfserve/?bn=121082;1x1inv=1;srctype=3;ord=' . time()), array('source' => '/entertain/ad_3.flv', 'track' => 'http://track.adform.net/adfserve/?bn=121083;1x1inv=1;srctype=3;ord=' . time()), array('source' => '/entertain/ad_4.flv', 'track' => 'http://track.adform.net/adfserve/?bn=121080;1x1inv=1;srctype=3;ord=' . time()));
+		$ads = array(array('source' => '/entertain/ad_3.flv', 'track' => 'http://track.adform.net/adfserve/?bn=121083;1x1inv=1;srctype=3;ord=' . time()), array('source' => '/entertain/ad_4.flv', 'track' => 'http://track.adform.net/adfserve/?bn=121080;1x1inv=1;srctype=3;ord=' . time()));
 		shuffle($ads);
 		$current_ad = $ads[0];
 		
