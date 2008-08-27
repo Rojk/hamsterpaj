@@ -108,15 +108,19 @@ h2
 		
 		#ui_header #ui_noticebar #ui_noticebar_guestbook	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_guestbook.png) center top no-repeat; }
 		#ui_header #ui_noticebar #ui_noticebar_guestbook:hover	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_guestbook.png) center bottom no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_guestbook_active	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_guestbook.png) center bottom no-repeat; }
 		
 		#ui_header #ui_noticebar #ui_noticebar_forum	{	background: url(http://images.hamsterpaj.net/ui/ui_notices_forum.png) center top no-repeat; }
 		#ui_header #ui_noticebar #ui_noticebar_forum:hover	{	background: url(http://images.hamsterpaj.net/ui/ui_notices_forum.png) center bottom no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_forum_active	{	background: url(http://images.hamsterpaj.net/ui/ui_notices_forum.png) center bottom no-repeat; }
 		
 		#ui_header #ui_noticebar #ui_noticebar_groups	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_groups.png) center top no-repeat; }
 		#ui_header #ui_noticebar #ui_noticebar_groups:hover	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_groups.png) center bottom no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_groups_active	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_groups.png) center bottom no-repeat; }
 		
 		#ui_header #ui_noticebar #ui_noticebar_events	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_events.png) center top no-repeat; }
 		#ui_header #ui_noticebar #ui_noticebar_events:hover	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_events.png) center bottom no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_events_active	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_events.png) center bottom no-repeat; }
 
 		#ui_header #ui_noticebar .ui_noticebar_info
 		{
