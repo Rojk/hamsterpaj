@@ -65,6 +65,8 @@
 	
 	//$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
 	
+	$output .= '<a href="http://survey.confirmit.com/wix/p699590797.aspx?hid=1" target="_blanc"><h1 id="fp_greeting">Gör en kort liten undersökning så kan du vara med och tävla om 5 presentkort på 1000kr/st hos inWarehouse.se</h1></a>' . "\n";
+	
 	$output .= '<a href="/artiklar/?action=show&id=87"><img src="http://images.hamsterpaj.net/the_sims_competition.png" /></a>';
 
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.28.207.226') ? '<h1>Va? Har ni inte slutat ännu? Kullaviksskolan är alltså före er!</h1>' : '';
