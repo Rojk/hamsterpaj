@@ -190,7 +190,7 @@ function ui_new_top($options = array())
 	$output .= '					<span>' . $time_online_readable . '</span>' . "\n";
 	$output .= '				</div>' . "\n";
 	$output .= '				<div id="ui_statusbar_forumstatus">' . "\n";
-	$output .= '					<span>' . ((strlen(trim($_SESSION['userinfo']['user_status'])) > 0) ? $_SESSION['userinfo']['user_status'] : 'Ingen status') . '</span>' . "\n";
+	$output .= '					<span title="' . $_SESSION['userinfo']['user_status'] . '">' . ((strlen(trim($_SESSION['userinfo']['user_status'])) > 0) ? ((mb_strlen($_SESSION['userinfo']['user_status'], 'UTF8') > 22) ? mb_substr($_SESSION['userinfo']['user_status'], 0, 19, 'UTF8') . '...' : $_SESSION['userinfo']['user_status']) : 'Ingen status') . '</span>' . "\n";
 	$output .= '				</div>' . "\n";
 	$output .= '			</div>' . "\n";
 	$output .= '		</div>' . "\n";

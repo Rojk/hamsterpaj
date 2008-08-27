@@ -151,7 +151,7 @@ hp.ui = {
 				if ( $('span', this).length ) {
 					var span = $('span', this);
 					var inpt = $('<input type="text"/>');
-					inpt.attr('value', $('span', this).html());
+					inpt.attr('value', $('span', this).attr('title'));
 					while ( this.firstChild ) this.removeChild(this.firstChild);
 					inpt.appendTo(t);
 					inpt.focus();
@@ -171,7 +171,7 @@ hp.ui = {
 		
 		hideAndSend: function(value) {
 			$.get('/ajax_gateways/set_user_status.php?status=' + encodeURIComponent(value));
-			$('#ui_statusbar_forumstatus').html('<span>' + value + '</span>');
+			$('#ui_statusbar_forumstatus').html('<span title="' + value + '">' + (value.length > 22 ? value.substring(0, 22) + '...' : value) + '</span>');
 		}
 	}
 }
