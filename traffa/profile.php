@@ -52,8 +52,8 @@
 		}
 		else
 		{
-			jscript_alert('Hey där tjockis! Vet du om att jag har varit med och gjort den nya designen?');
 			$_SESSION['new_design']  = true;
+			jscript_alert('Hey där tjockis! Vet du om att jag har varit med och gjort den nya designen?');
 		}
 	}
 
