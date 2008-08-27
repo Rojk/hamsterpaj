@@ -180,7 +180,7 @@ function ui_new_top($options = array())
 	
 	$output .= '			<div id="ui_statusbar">' . "\n";
 	$output .= '				<a href="#" title="Byt visningsbild">' . "\n";
-	$output .= '					<img src="http://images.hamsterpaj.net/images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'' . $hp_url . 'avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
+	$output .= '					<img src="http://images.hamsterpaj.net/images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
 	$output .= '				</a>' . "\n";
 	$output .= '				<div id="ui_statusbar_username">' . "\n";
 	$output .= '					<strong>' . $_SESSION['login']['username'] . '</strong><span> | </span><a href="/logout.php">Logga ut</a><br />' . "\n";
