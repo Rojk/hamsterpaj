@@ -64,10 +64,6 @@
 */
 	
 	//$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
-	if(!login_checklogin() || $_SESSION['userinfo']['gender'] != 'f')
-	{
-		$output .= '<a href="http://survey.confirmit.com/wix/p699590797.aspx?hid=1" target="_blanc"><h1 id="fp_greeting">Gör en kort liten undersökning så kan du vara med och tävla om 5 presentkort på 1000kr/st hos inWarehouse.se. Gäller endast killar från 15 år och uppåt den här gången!</h1></a>' . "\n";
-	}
 	
 	$output .= '<a href="/artiklar/?action=show&id=87"><img src="http://images.hamsterpaj.net/the_sims_competition.png" /></a>';
 
