@@ -729,4 +729,25 @@ function ui_module_render($options)
 		}
 	}
 	
+	function ui_server_message($options)
+	{
+		$options['title'] = isset($options['title']) ? $options['title'] : 'Title saknas';
+		$options['collapse_link'] = isset($options['collapsed_link']) ? $options['collapse'] : 'Visa mer information';
+		$options['collapse_id'] = rand(100000, 999999);
+		$options['type'] = isset($options['type']) ? $options['type'] : 'notification';
+
+		$output .= '<div class="' . $options['type'] . '">' . "\n";
+			$output .= '<h2>' . $options['title'] . '</h2>' . "\n";
+			$output .= '<p>' . $options['message'] . '</p>' . "\n";
+			if (isset($options['collapse_information']))
+			{
+				$output .= '<h3 class="server_message_collapse_header" id="server_message_collapse_header_' . $options['collapse_id'] . '">' . $options['collapse_link'] . '</h3>' . "\n";
+				$output .= '<div class="server_message_collapsed_information" id="server_message_collapse_information_' . $options['collapse_id'] . '">';
+					$output .= $options['collapse_information'] . "\n";
+				$output .= '</div>' . "\n";
+			}
+		$output .= '</div>' . "\n";
+		return $output;
+	}
+	
 ?>
