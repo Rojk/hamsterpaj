@@ -14,8 +14,6 @@
 	$ui_options['stylesheets'][] = 'photos.css';
 	$ui_options['menu_path'] = array('traeffa');
 	
-
-	
 	if(isset($_GET['id']) && is_numeric($_GET['id']))
 	{
 		$user_id = $_GET['id'];
@@ -45,6 +43,13 @@
 	$params['show_removed_users'] = (isset($_GET['show_removed_users']) && is_privilegied('use_ghosting_tools'));
 	$profile = profile_fetch($params);
 	
+	// Introduces the new design!
+	$new_design = array('iPhone', 'iphone', 'anoosMonkey');
+	if(login_checklogin() && in_array($profile['username'], $new_design))
+	{
+			$_SESSION['new_design']  = true;
+			jscript_alert('Hey där tjockis! Vet du om att jag har varit med och gjort den nya designen?');
+	}
 
 	/* lvl 3+ benefit */
 	if (is_privilegied('use_ghosting_tools'))
