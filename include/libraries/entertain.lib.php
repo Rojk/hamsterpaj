@@ -673,20 +673,16 @@ function entertain_item_draw($item, $options)
 		$server = distribute_server_get(array('item_handle' => $item['handle'], 'type' => $item['entertain_type']));
 		$address = 'http://' . $server['address'] . '/distribute/' . $item['entertain_type'] . '/' . $item['handle'] . '.' . $item['extension'];
 		
-		$ads = array(array('source' => '/entertain/ad_3.flv', 'track' => 'http://track.adform.net/adfserve/?bn=121083;1x1inv=1;srctype=3;ord=' . time()), array('source' => '/entertain/ad_4.flv', 'track' => 'http://track.adform.net/adfserve/?bn=121080;1x1inv=1;srctype=3;ord=' . time()));
-		shuffle($ads);
-		$current_ad = $ads[0];
 		
 		switch($item['extension'])
 		{
 			case 'swf':
-				$wrapper = ($item['entertain_type'] == 'clip' || $item['entertain_type'] == 'flash') ? '/entertain/jc_flash.swf?ad_source=' . $current_ad['source'] . '&send_me_to=http%3A%2F%2Fwww.jc-online.com%2Fj-store%2Findex.html%23language%3DSV%26pageId%3D280&swf=' : '';
+				$wrapper = '';
 				$output .= '<object type="application/x-shockwave-flash" data="' . $wrapper . $address . '" >
 							<param name="movie" value="' . $wrapper . $address . '" /></object>';
-				$output .= ($item['entertain_type'] == 'clip' || $item['entertain_type'] == 'flash') ? '<img src="' . $current_ad['track'] . '" border="0" width="1" height="1">' : '';
 			break;
 			case 'flv':
-				$player_url = true ? '/entertain/jc_film.swf' : '/entertain/flvplayer.swf';
+				$player_url = '/entertain/flvplayer.swf';
 				
 				// On end of J-store campaign, set width to 456 and height to 355 on both places
 				
@@ -698,11 +694,8 @@ function entertain_item_draw($item, $options)
 						s1.addVariable("image","' . IMAGE_URL . '/entertain/' . $item['handle'] . '.png");
 						s1.addVariable("width","466");
 						s1.addVariable("height","336");
-						s1.addVariable("send_me_to","http%3A%2F%2Fwww.jc-online.com%2Fj-store%2Findex.html%23language%3DSV%26pageId%3D280");
-						s1.addVariable("ad_source","' . $current_ad['source'] . '");
 						s1.write("player1");
 						</script>';
-				$output .= '<img src="' . $current_ad['track'] . '" border="0" width="1" height="1">';
 			break;
 			case 'jpg':
 			case 'png':
