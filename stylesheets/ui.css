@@ -310,6 +310,7 @@ h2
 		color: #717171;
 		border: 1px solid #d7d8dc;
 		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
 		background: #f9f9f9;
 	}
 	#ui_modulebar .ui_module_header
