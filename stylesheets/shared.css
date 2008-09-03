@@ -154,6 +154,7 @@
 .server_message_notification, .server_message_warning, .server_message_error, .server_message_system_error
 {
 	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 	padding: 3px;
 	padding-left: 60px;
 	margin-top: 5px;
