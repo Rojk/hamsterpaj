@@ -252,7 +252,6 @@ function ui_new_top($options = array())
 	
 	$output .= '				</ul>' . "\n";
 	$output .= '		</div>' . "\n";
-	$output .= '		<div id="ui_content_thin">' . "\n";
 	
 	/*$output .= 'Rektangel:';
 	$output .= '<script type="text/javascript">CM8ShowAd("Rektangel");</script>' . "\n";
@@ -278,18 +277,20 @@ function ui_new_top($options = array())
 		$content .= '<span class="ui_notice_event">' . $RECENT_UPDATES[$data['type']] . '</span>' . "\n";
 		$content .= '<span class="ui_notice_link"><a href="/recent_updates_redirect.php?id=' . $data['id'] . '&url=' . urlencode($data['url']) . '&source=global_notice">' . $data['label'] . '</a></span>' . "\n";
 		
-		$notices[] = array('html' => $content);
+		$noticemessages[] = array('html' => $content);
 		$_SESSION['recent_update_notifier'][$data['id']]++;
 	}
+	
+		$noticemessages[] = array('html' => $content);
 
-	foreach($notices AS $notice)
+	foreach($noticemessages AS $noticemessage)
 	{
-		$output .= '<div class="ui_notice">' . "\n";
-		if(isset($notice['timestamp']))
+		$output .= '<div id="ui_notice">' . "\n";
+		if(isset($noticemessage['timestamp']))
 		{
-			$output .= '<span class="ui_notice_time">' . date('H:i', $notice['timestamp']) . '</span>' . "\n";
+			$output .= '<span class="ui_notice_time">' . date('H:i', $noticemessage['timestamp']) . '</span>' . "\n";
 		}
-		$output .= $notice['html'];
+		$output .= $noticemessage['html'];
 		$output .= '</div>' . "\n";
 	}
 	
@@ -301,6 +302,8 @@ function ui_new_top($options = array())
 			unset($_SESSION['unread_gb_entries']);
 		}
 	}
+	
+	$output .= '		<div id="ui_content_thin">' . "\n";
 	
 	if(isset($options['return']) && $options['return'] == true)
 	{
