@@ -44,6 +44,7 @@ h2
 {
 	border: 1px solid #6188A4;
 	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px
 	background: #fff;
 	width: 870px;
 }
@@ -135,6 +136,7 @@ h2
 			background: #f9f9f9;
 			border: 1px solid #d7d8dc;
 			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px
 		}
 		
 			#ui_header #ui_noticebar .ui_noticebar_info h3
