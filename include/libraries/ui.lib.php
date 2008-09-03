@@ -280,8 +280,6 @@ function ui_new_top($options = array())
 		$noticemessages[] = array('html' => $content);
 		$_SESSION['recent_update_notifier'][$data['id']]++;
 	}
-	
-		$noticemessages[] = array('html' => $content);
 
 	foreach($noticemessages AS $noticemessage)
 	{
