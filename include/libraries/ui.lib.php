@@ -274,9 +274,9 @@ function ui_new_top($options = array())
 	if($data['timestamp'] > (time() - 1200) && $_SESSION['recent_update_notifier'][$data['id']] < 10)
 	{
 		global $RECENT_UPDATES;								
-		$content = '<span class="time">' . date('H:i', $data['timestamp']) . '</span>' . "\n";
-		$content .= '<span class="event">' . $RECENT_UPDATES[$data['type']] . '</span>' . "\n";
-		$content .= '<span class="link"><a href="/recent_updates_redirect.php?id=' . $data['id'] . '&url=' . urlencode($data['url']) . '&source=global_notice">' . $data['label'] . '</a></span>' . "\n";
+		$content = '<span class="ui_notice_time">' . date('H:i', $data['timestamp']) . '</span>' . "\n";
+		$content .= '<span class="ui_notice_event">' . $RECENT_UPDATES[$data['type']] . '</span>' . "\n";
+		$content .= '<span class="ui_notice_link"><a href="/recent_updates_redirect.php?id=' . $data['id'] . '&url=' . urlencode($data['url']) . '&source=global_notice">' . $data['label'] . '</a></span>' . "\n";
 		
 		$notices[] = array('html' => $content);
 		$_SESSION['recent_update_notifier'][$data['id']]++;
@@ -284,10 +284,10 @@ function ui_new_top($options = array())
 
 	foreach($notices AS $notice)
 	{
-		$output .= '<div class="notice">' . "\n";
+		$output .= '<div class="ui_notice">' . "\n";
 		if(isset($notice['timestamp']))
 		{
-			$output .= '<span class="time">' . date('H:i', $notice['timestamp']) . '</span>' . "\n";
+			$output .= '<span class="ui_notice_time">' . date('H:i', $notice['timestamp']) . '</span>' . "\n";
 		}
 		$output .= $notice['html'];
 		$output .= '</div>' . "\n";
