@@ -45,7 +45,6 @@
 			$friends_notices[$data['user_id']]['actions'][$data['action_id']] = $data; // Save in array
 			$friends_notices[$data['user_id']]['username'] = $data['username'];
 		}
-		jscript_alert($query);
 		return $friends_notices;
 	}
 	
