@@ -1,27 +1,35 @@
 <?php
+	if($_SESSION['friends_actions_lastupdate'] < time() - 60)
+	{
+		unset($_SESSION['friends_actions']);
+		$options['show'] = 'new';
+		$options['user_id'] = $_SESSION['login']['id'];
+		$_SESSION['friends_actions'] = friends_actions_fetch($options);
+		$_SESSION['friends_actions_lastupdate'] = time();
+	}
+
+	$friends = $_SESSION['friends_actions'];
+
 	$options['output'] .= '					<ul>' . "\n";
-	$options['output'] .= '						<li>Johan - 3 nya' . "\n";
-	$options['output'] .= '							<div>' . "\n";
-	$options['output'] .= '								<ul>' . "\n";
-	$options['output'] .= '									<li><a href="#">Ny signatur - Nya grejer på g!</a></li>' . "\n";
-	$options['output'] .= '									<li><a href="#">Ny vänn- Lef-91</a></li>' . "\n";
-	$options['output'] .= '									<li><a href="#">Ny bild - Jag hackar PA</a></li>' . "\n";
-	$options['output'] .= '								</ul>' . "\n";
-	$options['output'] .= '							</div>' . "\n";
-	$options['output'] .= '						</li>' . "\n";
-	$options['output'] .= '						<li>Heggan - 1 ny' . "\n";
-	$options['output'] .= '							<div>' . "\n";
-	$options['output'] .= '								<ul>' . "\n";
-	$options['output'] .= '									<li><a href="#">Ny bild - Min Ida</a></li>' . "\n";
-	$options['output'] .= '								</ul>' . "\n";
-	$options['output'] .= '							</div>' . "\n";
-	$options['output'] .= '						</li>' . "\n";
-	$options['output'] .= '						<li>Soode - 1 ny' . "\n";
-	$options['output'] .= '							<div>' . "\n";
-	$options['output'] .= '								<ul>' . "\n";
-	$options['output'] .= '									<li><a href="#">Ny visningsbild</a></li>' . "\n";
-	$options['output'] .= '								</ul>' . "\n";
-	$options['output'] .= '							</div>' . "\n";
-	$options['output'] .= '						</li>' . "\n";
+	foreach($friends as $friend)
+	{
+		$options['output'] .= '									<li>' . $friend['username'] . ' - ' . count($friend['actions']) . ' nya' . "\n";
+		
+		$options['output'] .= '							<div>' . "\n";
+		$options['output'] .= '								<ul>' . "\n";
+			$friends_actions = $friend['actions'];
+			foreach($friends_actions as $friend_action)
+			{
+				$friend_action['action'] == 'friendship' ? $friend_action_action = 'Ny vän' : '';
+				$friend_action['action'] == 'photos' ? $friend_action_action = 'Nytt foto' : '';
+				$friend_action['action'] == 'diary' ? $friend_action_action = 'Nytt dagboksinlägg' : '';
+				
+				$options['output'] .= '									<li><a href="' . $friend_action['url'] . '">' . $friend_action_action . ': ' . $friend_action['label'] . '</a></li>' . "\n";
+			}
+		$options['output'] .= '								</ul>' . "\n";
+		$options['output'] .= '							</div>' . "\n";
+		$options['output'] .= '						</li>' . "\n";
+	}
+	
 	$options['output'] .= '					</ul>' . "\n";
 ?>

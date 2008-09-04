@@ -252,7 +252,6 @@ function ui_new_top($options = array())
 	
 	$output .= '				</ul>' . "\n";
 	$output .= '		</div>' . "\n";
-	$output .= '		<div id="ui_content_thin">' . "\n";
 	
 	/*$output .= 'Rektangel:';
 	$output .= '<script type="text/javascript">CM8ShowAd("Rektangel");</script>' . "\n";
@@ -274,22 +273,22 @@ function ui_new_top($options = array())
 	if($data['timestamp'] > (time() - 1200) && $_SESSION['recent_update_notifier'][$data['id']] < 10)
 	{
 		global $RECENT_UPDATES;								
-		$content = '<span class="time">' . date('H:i', $data['timestamp']) . '</span>' . "\n";
-		$content .= '<span class="event">' . $RECENT_UPDATES[$data['type']] . '</span>' . "\n";
-		$content .= '<span class="link"><a href="/recent_updates_redirect.php?id=' . $data['id'] . '&url=' . urlencode($data['url']) . '&source=global_notice">' . $data['label'] . '</a></span>' . "\n";
+		$content = '<span class="ui_notice_time">' . date('H:i', $data['timestamp']) . '</span>' . "\n";
+		$content .= '<span class="ui_notice_event">' . $RECENT_UPDATES[$data['type']] . '</span>' . "\n";
+		$content .= '<span class="ui_notice_link"><a href="/recent_updates_redirect.php?id=' . $data['id'] . '&url=' . urlencode($data['url']) . '&source=global_notice">' . $data['label'] . '</a></span>' . "\n";
 		
-		$notices[] = array('html' => $content);
+		$noticemessages[] = array('html' => $content);
 		$_SESSION['recent_update_notifier'][$data['id']]++;
 	}
 
-	foreach($notices AS $notice)
+	foreach($noticemessages AS $noticemessage)
 	{
-		$output .= '<div class="notice">' . "\n";
-		if(isset($notice['timestamp']))
+		$output .= '<div id="ui_notice">' . "\n";
+		if(isset($noticemessage['timestamp']))
 		{
-			$output .= '<span class="time">' . date('H:i', $notice['timestamp']) . '</span>' . "\n";
+			$output .= '<span class="ui_notice_time">' . date('H:i', $noticemessage['timestamp']) . '</span>' . "\n";
 		}
-		$output .= $notice['html'];
+		$output .= $noticemessage['html'];
 		$output .= '</div>' . "\n";
 	}
 	
@@ -301,6 +300,8 @@ function ui_new_top($options = array())
 			unset($_SESSION['unread_gb_entries']);
 		}
 	}
+	
+	$output .= '		<div id="ui_content_thin">' . "\n";
 	
 	if(isset($options['return']) && $options['return'] == true)
 	{

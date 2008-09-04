@@ -44,6 +44,7 @@ h2
 {
 	border: 1px solid #6188A4;
 	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 	background: #fff;
 	width: 870px;
 }
@@ -135,6 +136,7 @@ h2
 			background: #f9f9f9;
 			border: 1px solid #d7d8dc;
 			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px
 		}
 		
 			#ui_header #ui_noticebar .ui_noticebar_info h3
@@ -310,6 +312,7 @@ h2
 		color: #717171;
 		border: 1px solid #d7d8dc;
 		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
 		background: #f9f9f9;
 	}
 	#ui_modulebar .ui_module_header
@@ -354,6 +357,25 @@ h2
 	{
 		padding: 0 0.7em 0.7em 0.7em;
 	}
+#ui_notice
+{
+	border-bottom: 1px solid #b5c0ca;
+	padding: 10px 10px 10px 36px;
+	background: #d5e3ff url(http://images.hamsterpaj.net/famfamfam_icons/comment.png) no-repeat scroll 12px 10px;
+	margin-top: -1px;
+}
+	.ui_notice_time
+	{
+		
+	}
+	.ui_notice_event
+	{
+		
+	}
+	.ui_notice_link
+	{
+		
+	}	
 #ui_content
 {
 	padding: 10px 10px 0 10px;

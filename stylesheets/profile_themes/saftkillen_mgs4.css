@@ -1,0 +1,48 @@
+.profile_saftkillen_mgs4 .profile_head
+{
+	background: transparent url('http://images.hamsterpaj.net/profile_themes/saftkillen_mgs4/profile_head_bg.png');
+	color: #ffffff;
+}
+
+.profile_saftkillen_mgs4 .profile_head a
+{
+	color: #eeeeee;
+}
+.profile_saftkillen_mgs4 .profile_head .name_asl
+{
+	color: #8aba8a;
+}
+.profile_saftkillen_mgs4 .profile_head .name_asl .online
+{
+	color: #aacaaa;
+}
+.profile_saftkillen_mgs4 .profile_head .user_action_log li a, .profile_saftkillen_mgs4 .profile_head .user_action_log li
+{
+	text-decoration: none;
+	color: #cccc99;
+}
+.profile_saftkillen_mgs4 .profile_head .user_action_log li a:hover
+{
+	border-bottom: thin dashed #cccc99;
+}
+.profile_saftkillen_mgs4 .profile_head .user_status
+{
+	color: #d0f0d0;
+}
+.profile_saftkillen_mgs4 .profile_head .navigation a
+{
+	color: #9fcf9f;
+	font-size: 12px;
+	font-weight: normal;
+}
+.profile_saftkillen_mgs4 .profile_head .avatar_passepartout
+{
+	background: none;
+	border: none;
+}
+.profile_saftkillen_mgs4 .profile_head .user_avatar
+{
+	margin-top: 1px;
+	margin-left: 1px;
+}
+

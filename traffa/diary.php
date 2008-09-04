@@ -52,6 +52,11 @@
 			$ualquery = 'INSERT INTO user_action_log (timestamp, user, action, url, label)';
 			$ualquery .= ' VALUES("' . time() . '", "' . $_SESSION['login']['id'] . '", "diary", "/traffa/diary.php?user=' . $_SESSION['login']['id'] . '&entry=' . mysql_insert_id() . '", "' . $_POST['title'] . '")';
 			
+			$options['url'] = '/traffa/diary.php?user=' . $_SESSION['login']['id'] . '&entry=' . mysql_insert_id();
+			$options['action'] = 'diary';
+			$options['label'] = $_POST['title'];
+			friends_actions_insert($options);
+			
 			mysql_query($ualquery) or report_sql_error($ualquery, __FILE__, __LINE__);
 		}
 		else
