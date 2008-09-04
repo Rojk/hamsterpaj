@@ -154,7 +154,14 @@
 				{
 					$query = 'INSERT INTO user_action_log (action, timestamp, user, url, label) VALUES("photos", "' . time() . '", "' . $_SESSION['login']['id'] . '", "/traffa/photos.php?id=' . $photo_id . '", "' . $options['description'] . '")';
 					mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+					
+					friends_actions_insert(array(
+						'action' => 'photos',
+						'url' => '/traffa/photos.php?id=' . $photo_id . '#photo',
+						'label' => $options['description']
+					));
 				}
+
 				$display_successful_message = true;
 			}
 		}
