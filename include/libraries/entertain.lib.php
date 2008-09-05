@@ -701,6 +701,10 @@ function entertain_item_draw($item, $options)
 				$wrapper = '';
 				$output .= '<object type="application/x-shockwave-flash" data="' . $wrapper . $address . '" >
 							<param name="movie" value="' . $wrapper . $address . '" /></object>';
+				if(rand(0, 13) == 5)	
+				{
+						($item['entertain_type'] == 'clip' || $item['entertain_type'] == 'flash') ? event_log_log('jc_ad_after') : '';
+				}
 			break;
 			case 'flv':
 				$player_url = '/entertain/flvplayer.swf';
