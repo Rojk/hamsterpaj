@@ -75,7 +75,7 @@
 		
 		friends_actions_insert(array(
 			'action' => 'friendship',
-			'url' => '/traffa/profile.php?user_id=' . $_GET['user_id'],
+			'url' => '/traffa/profile.php?user_id=' . $_GET['id'],
 			'label' => $user['username']
 		));
 		
