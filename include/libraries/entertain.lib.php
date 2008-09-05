@@ -167,7 +167,14 @@ function entertain_list_by_type_get($type, $list)
 			$options_array[0]['fetch']['entertain_type'] = $type;
 			$options_array[0]['fetch']['order'] = 'view_count';
 			$options_array[0]['fetch']['limit'] = '12';
-			$options_array[0]['list']['headline'] = 'Mest sedda';
+			switch($type)
+			{
+				case 'game':
+					$options_array[0]['list']['headline'] = 'Mest spelade';
+				break;
+				default:
+					$options_array[0]['list']['headline'] = 'Mest sedda';
+			}
 			$options_array[0]['list']['list_style'] = $entertain_types[$type]['default_list_style'];
 			$options_array[1]['fetch']['entertain_type'] = $type;
 			$options_array[1]['fetch']['order'] = 'rank_average';
@@ -177,9 +184,23 @@ function entertain_list_by_type_get($type, $list)
 		break;
 		case 'favorites':
 			$options_array[0]['fetch'] = array('user_id' => $_SESSION['login']['id'], 'entertain_type' => $type, 'order' => 'user_view_date', 'limit' => '4');
-			$options_array[0]['list'] = array('headline' => 'Dina senast sedda ' . $entertain_types[$type]['label_plural'] . '');
+			switch($type)
+			{
+				case 'game':
+					$options_array[0]['list'] = array('headline' => 'Dina senast spelade ' . $entertain_types[$type]['label_plural'] . '');
+				break;
+				default:
+					$options_array[0]['list'] = array('headline' => 'Dina senast sedda ' . $entertain_types[$type]['label_plural'] . '');
+			}
 			$options_array[1]['fetch'] = array('user_id' => $_SESSION['login']['id'], 'entertain_type' => $type, 'order' => 'user_view_count', 'limit' => '4');
-			$options_array[1]['list'] = array('headline' => 'Andra ' . $entertain_types[$type]['label_plural'] . ' du tittat mycket på');
+			switch($type)
+			{
+				case 'game':
+					$options_array[1]['list'] = array('headline' => 'Andra ' . $entertain_types[$type]['label_plural'] . ' du spelat mycket');
+				break;
+				default:
+					$options_array[1]['list'] = array('headline' => 'Andra ' . $entertain_types[$type]['label_plural'] . ' du tittat mycket på');
+			}
 			$options_array[2]['fetch'] = array('user_id' => $_SESSION['login']['id'], 'entertain_type' => $type, 'order' => 'user_rank', 'limit' => '4');
 			$options_array[2]['list'] = array('headline' => 'Andra ' . $entertain_types[$type]['label_plural'] . ' du tycker är bra');
 		break;

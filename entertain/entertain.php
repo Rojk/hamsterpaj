@@ -266,7 +266,7 @@ switch($request['view'])
 				$set[2]['fetch']['order_direction'] = 'DESC';
 				$set[2]['fetch']['limit'] = '8';
 				$set[2]['list']['list_style'] = 'thumbnails';
-				$set[2]['list']['headline'] = 'Mest visade';
+				$set[2]['list']['headline'] = 'Mest spelade';
 				$output .= rounded_corners_top(null, true);
 				$output .= entertain_fetch_and_list($set);
 				$output .= rounded_corners_bottom(null, true);
