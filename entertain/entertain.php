@@ -320,17 +320,6 @@ switch($request['view'])
 				$output .= rounded_corners_top(null, true);
 				$output .= entertain_list($items, $list_options);
 				$output .= rounded_corners_bottom(null, true);
-				//Inforuta om att kategorierna finns till vänster
-				$output .= rounded_corners_top(null, true);
-				$output .= '<div class="entertain_page_info">' . "\n";
-				$output .= '<img src="' . IMAGE_URL . 'entertain/orange_left_arrow.png" class="enertain_index_arrow" />' . "\n";
-				$output .= '<h1>Välj en kul kategori ute till vänster!</h1>' . "\n";
-				$output .= '<br style="clear: both;">' . "\n";
-				$output .= '<p>';
-				$output .= 'Alla våra roliga ' . $entertain_types[$request['entertain_type']]['label_plural'] . ' ligger sorterade i kategorier. Titta i undermenyn och klicka på en rubrik som verkar rolig!<br />Vill du tipsa om något kul eller har du frågor om innehållet? <a href="/hamsterpaj/policies/noejesavdelning.php">Läs mer om Hamsterpajs nöjesavdelning</a>' . "\n";
-				$output .= '</p>' . "\n";
-				$output .= '</div>' . "\n";
-				$output .= rounded_corners_bottom(null, true);
 			
 				//En utvalt item med två kommentarer
 				$output .= rounded_corners_top(null, true);
