@@ -42,7 +42,7 @@
 		$menu['mattan']['children']['ditt_namn'] = array('label' => 'Ditt namn', 'url' => '/mattan/ditt_namn.php');
 		$menu['mattan']['children']['personnummer'] = array('label' => 'Falskt personnummer', 'url' => '/mattan/falskt_personnummer.php');
 		$menu['mattan']['children']['foerkortningar'] = array('label' => 'Förkortningslistan', 'url' => '/mattan/foerkortningar.php');
-		$menu['mattan']['children']['hamburgare'] = array('label' => 'Gissa Hamburgaren', 'url' => '/hamburgare/test.php');
+//		$menu['mattan']['children']['hamburgare'] = array('label' => 'Gissa Hamburgaren', 'url' => '/hamburgare/test.php');
 		$menu['mattan']['children']['hamsterpajfabriken'] = array('label' => 'Hamsterpajfabriken', 'url' => '/mattan/hamsterpajfabriken.php');
 		$menu['mattan']['children']['gissa_laaten'] = array('label' => 'Gissa Låten', 'url' => '/mattan/gissa_laaten.php');
 		$menu['mattan']['children']['gratis_musik'] = array('label' => 'Gratis musik', 'url' => '/mattan/gratis_musik.php');

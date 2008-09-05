@@ -657,7 +657,7 @@
 		
 		echo '<br />';
 		
-		$show_ad = rand(1, 10);		
+		$show_ad = rand(1, 9);		
 		switch($show_ad)
 		{
 		case 1:
@@ -678,12 +678,9 @@
 			$output .= rounded_corners_bottom($internal_ad_params);
 		break;
 		case 3:
-			$output .= rounded_corners_top($internal_ad_params);
-			echo '<h2 style="margin-top: 0;">Gillar du Hamburgare?</h2>' . "\n";
-			echo '<a href="/hamburgare/test.php"><img src="http://images.hamsterpaj.net/hamburgers/gruppfoto_638.jpg" /></a>' . "\n";
-			echo '<p>Vi gav oss ut på stan och köpte 14 hamburgare från kända kedjor. Kan du gissa vilken burgare som är vilken? <a href="/hamburgare/test.php">Gör vårat Hamburgar-test &raquo;</a></p>' . "\n";
-			echo '<br style="clear: both;" />' ."\n";
-			$output .= rounded_corners_bottom($internal_ad_params);
+			echo '<a href="http://www.hamsterpaj.net/artiklar/?action=show&id=84">' . "\n";
+			echo '<img style="margin-top: 5px;" src="http://images.hamsterpaj.net/virtuella_glasogon.png" />' . "\n";
+			echo '</a>' . "\n";
 		break;
 		case 4:
 			$output .= rounded_corners_top($internal_ad_params);
@@ -715,11 +712,6 @@
 		case 9:
 			echo '<a href="http://www.hamsterpaj.net/artiklar/?action=show&id=83">' . "\n";
 			echo '<img style="margin-top: 5px;" src="http://images.hamsterpaj.net/utomjording.png" />' . "\n";
-			echo '</a>' . "\n";
-		break;
-		case 10:
-			echo '<a href="http://www.hamsterpaj.net/artiklar/?action=show&id=84">' . "\n";
-			echo '<img style="margin-top: 5px;" src="http://images.hamsterpaj.net/virtuella_glasogon.png" />' . "\n";
 			echo '</a>' . "\n";
 		break;
 		}
