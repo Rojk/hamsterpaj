@@ -22,7 +22,6 @@
 		}
 		$menu['forum']['children']['new_threads'] = array('label' => 'Nya trådar', 'url' => '/diskussionsforum/nya_traadar.php');
 		$menu['forum']['children']['search'] = array('label' => 'Sök', 'url' => '/diskussionsforum/soek.php');
-		$menu['forum']['children']['support'] = array('label' => 'Hjälp', 'url' => '/diskussionsforum/hjaelp.php');
 		$menu['forum']['children']['rules'] = array('label' => 'Regler', 'url' => '/artiklar/?action=show&id=75');
 	
 	$menu['sex_sense'] = array('label' => 'Sex och sinne', 'url' => '/sex_och_sinne/', 'index_label' => 'Start');
