@@ -23,6 +23,7 @@
 	$screens[15] = '6 oktober 2007';
 	$screens[16] = '30 oktober 2007';
 	$screens[17] = '24 februari 2008';
+	$screens[20] = '5 september 2008';
 	
 	echo '<ol>' . "\n";
 	
