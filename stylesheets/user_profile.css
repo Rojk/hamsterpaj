@@ -18,6 +18,12 @@
 	margin-bottom: 8px;
 }
 
+.profile_head .avatar_passepartout img
+{
+	height: 100px;
+	width: 75px;
+}
+
 .profile_head .name_asl
 {
 	font-size: 17px;
