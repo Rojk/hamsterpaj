@@ -479,14 +479,19 @@ function ui_module_fetch($options)
 
 function ui_module_render($options)
 {
-	$output .= '			<div class="ui_module" id="ui_module_' . $options['handle'] . '">' . "\n";
-	$output .= '				<div class="ui_module_header">' . "\n";
-	$output .= '					<h2>' . $options['header'] . '</h2>' . "\n";
-	$output .= '				</div>' . "\n";
-	$output .= '				<div class="ui_module_content">' . "\n";
-	$output .= $options['output'];
-	$output .= '				</div>' . "\n";
-	$output .= '			</div>	' . "\n";
+	$state = (isset($_SESSION['module_states'][$options['handle']])) ? $_SESSION['module_states'][$options['handle']] : 'max';
+	//if ( $state != 'kill' )
+	//{
+		$class = ($state == 'min') ? 'ui_module_state_min': 'ui_module_state_max';
+		$output .= '			<div class="ui_module ' . $class . '" id="ui_module_' . $options['handle'] . '">' . "\n";
+		$output .= '				<div class="ui_module_header">' . "\n";
+		$output .= '					<h2>' . $options['header'] . '</h2>' . "\n";
+		$output .= '				</div>' . "\n";
+		$output .= '				<div class="ui_module_content">' . "\n";
+		$output .= $options['output'];
+		$output .= '				</div>' . "\n";
+		$output .= '			</div>	' . "\n";
+	//}
 	
 	return $output;
 }

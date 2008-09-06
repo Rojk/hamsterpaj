@@ -1,5 +1,5 @@
 <?php
-	require('..include/core/common.php');
+	require('../include/core/common.php');
 
 	$_SESSION['module_states'][$_GET['module']] = $_GET['state'];
 
