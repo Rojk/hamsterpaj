@@ -342,16 +342,31 @@ function ui_new_bottom($options = array())
 		$modules['administration'] = 'Administration';
 	}
 
-	foreach ( $_SESSION['module_order'] as $handle )
+	if ( is_array($_SESSION['module_order']) && count($_SESSION['module_order']) == count($modules))
 	{
-		if ( isset($modules[$handle]) )
+		foreach ( $_SESSION['module_order'] as $handle )
+		{
+			if ( isset($modules[$handle]) )
+			{
+				$output .= ui_module_render(ui_module_fetch(array(
+					'header' => $modules[$handle],
+					'handle' => $handle
+				)));
+			}
+		}
+	}
+	else
+	{
+		foreach ( $modules as $handle => $header )
 		{
 			$output .= ui_module_render(ui_module_fetch(array(
-				'header' => $modules[$handle],
+				'header' => $header,
 				'handle' => $handle
 			)));
 		}
 	}
+	
+
 	
 	$output .= '		</div>' . "\n";
 	$output .= '	<div id="ui_break"></div> ' . "\n";
