@@ -63,23 +63,22 @@ function doCloseMin() {
 function killModule() {
 	var m = this.parentNode.parentNode;
 	
-	$.post({
-		url: 'close-module.php?id=' + m.getAttribute('id')
-	});
+	$.get('/ajax_gateways/save_module_state.php?module=' + m.getAttribute('id').replace('ui_module_', '') + '&state=kill');
 	
-	$(m).css('overflow', 'hidden').animate({ height: 0 }, function() {
+	$(m).css('overflow', 'hidden').animate({ height: 0, width: 0 }, function() {
 		$(this).remove();
 	});
 }
 
 function minModule() {
 	var m = this.parentNode.parentNode;
+	m = $(m);
 	
-	$.post({
-		url: 'min-module.php?id=' + m.getAttribute('id')
+	m.children('.ui_module_content').slideToggle(null, function() {
+		var state = (m.hasClass('ui_module_state_min')) ? 'max' : 'min';
+		$.get('/ajax_gateways/save_module_state.php?module=' + m.attr('id').replace('ui_module_', '') + '&state=' + state);
+		m.removeClass('ui_module_state_max').removeClass('ui_module_state_min').addClass('ui_module_state_' + state);
 	});
-	
-	$(m).children('*:not(.ui_module_header)').slideToggle();
 }
 
 $(window).ready(function() {
