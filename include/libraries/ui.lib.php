@@ -339,37 +339,8 @@ function ui_new_bottom($options = array())
 	
 	if ($ui_administration_module_show === true)
 	{
-		/*$output .= ui_module_render(ui_module_fetch(array(
-			'header' => 'Administration',
-			'handle' => 'administration'
-		)));*/
 		$modules['administration'] = 'Administration';
 	}
-	
-	/*$output .= ui_module_render(ui_module_fetch(array(
-		'header' => 'Multi-sök',
-		'handle' => 'multisearch'
-	)));
-	
-	$output .= ui_module_render(ui_module_fetch(array(
-		'header' => 'Vänner online',
-		'handle' => 'friends_online'
-	)));
-	
-	$output .= ui_module_render(ui_module_fetch(array(
-		'header' => 'Vänner(s)notiser',
-		'handle' => 'friends_notices'
-	)));
-	
-	$output .= ui_module_render(ui_module_fetch(array(
-		'header' => 'Forumtrådar',
-		'handle' => 'latest_threads'
-	)));
-	
-	$output .= ui_module_render(ui_module_fetch(array(
-		'header' => 'Inlägg i forumet',
-		'handle' => 'latest_posts'
-	)));*/
 
 	foreach ( $_SESSION['module_order'] as $handle )
 	{
