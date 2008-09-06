@@ -321,6 +321,14 @@ function ui_new_bottom($options = array())
 	
 	$output .= '<div id="ui_modulebar">' . "\n";
 	
+	$modules = array(
+		'multisearch' => 'Multi-sök',
+		'friends_online' => 'Vänner online',
+		'friends_notices' => 'Vänner(s)notiser',
+		'latest_threads' => 'Forumtrådar',
+		'latest_posts' => 'Inlägg i forumet'
+	);
+	
 	foreach(array('discussion_forum_remove_posts', 'discussion_forum_edit_posts', 'discussion_forum_rename_threads', 'discussion_forum_lock_threads', 'discussion_forum_sticky_threads', 'discussion_forum_move_thread', 'discussion_forum_post_addition') as $privilegie)
 	{
 		if (is_privilegied($privilegie))
@@ -331,13 +339,14 @@ function ui_new_bottom($options = array())
 	
 	if ($ui_administration_module_show === true)
 	{
-		$output .= ui_module_render(ui_module_fetch(array(
+		/*$output .= ui_module_render(ui_module_fetch(array(
 			'header' => 'Administration',
 			'handle' => 'administration'
-		)));
+		)));*/
+		$modules['administration'] = 'Administration';
 	}
 	
-	$output .= ui_module_render(ui_module_fetch(array(
+	/*$output .= ui_module_render(ui_module_fetch(array(
 		'header' => 'Multi-sök',
 		'handle' => 'multisearch'
 	)));
@@ -360,7 +369,18 @@ function ui_new_bottom($options = array())
 	$output .= ui_module_render(ui_module_fetch(array(
 		'header' => 'Inlägg i forumet',
 		'handle' => 'latest_posts'
-	)));
+	)));*/
+
+	foreach ( $_SESSION['module_order'] as $handle )
+	{
+		if ( isset($modules[$handle]) )
+		{
+			$output .= ui_module_render(ui_module_fetch(array(
+				'header' => $modules[$handle],
+				'handle' => $handle
+			)));
+		}
+	}
 	
 	$output .= '		</div>' . "\n";
 	$output .= '	<div id="ui_break"></div> ' . "\n";
