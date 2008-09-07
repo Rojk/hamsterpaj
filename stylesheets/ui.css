@@ -357,6 +357,11 @@ h2
 	{
 		padding: 0 0.7em 0.7em 0.7em;
 	}
+	
+	.ui_module_state_min .ui_module_content {
+		display: none;
+	}
+	
 #ui_notice
 {
 	border-bottom: 1px solid #b5c0ca;
