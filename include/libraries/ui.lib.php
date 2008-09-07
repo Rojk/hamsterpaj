@@ -359,7 +359,6 @@ function ui_new_bottom($options = array())
 	}
 	else
 	{
-		die();
 		foreach ( $modules as $handle => $header )
 		{
 			$output .= ui_module_render(ui_module_fetch(array(
