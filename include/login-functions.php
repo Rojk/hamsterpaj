@@ -526,29 +526,24 @@ function to_logfile($category, $file, $line, $description, $id = null, $id_2 = n
 
 function cache_update_groups()
 {
-	$totalt = 0;
-  foreach($_SESSION['groups_members'] AS $key => $value)
-  {
-    $query = 'SELECT groups_list.message_count, groups_members.read_msg FROM groups_members, groups_list ';
-    $query .= 'WHERE groups_members.groupid = ' . $value . ' AND groups_list.groupid = ' . $value;
-    $query .= ' AND groups_members.userid =' . $_SESSION['login']['id'] . ' AND groups_members.notices = "Y"';
-    $result = mysql_query($query) or die(report_sql_error($query));
-    $data = mysql_fetch_assoc($result);
-    $totalt += $data['message_count'] - $data['read_msg'];
-  }
-	$_SESSION['cache']['unread_group_notices'] = $totalt;
+	$_SESSION['cache']['group_notices'] = array();
+	$_SESSION['cache']['unread_group_notices'] = 0;
 
-/*	if($totalt == 1)
+	if(!empty($_SESSION['groups_members']))
 	{
-		$_SESSION['bubblemessage'][] = 'Du har en oläst gruppnotis!<br />Klicka <a href"/traffa/groupnotices.php">här</a> för att kolla dina gruppnotiser!';
+		$query = 'SELECT groups_list.groupid, groups_list.message_count, groups_members.read_msg, groups_list.name FROM groups_members, groups_list ';
+		$query .= 'WHERE groups_members.groupid IN(' . implode(', ', $_SESSION['groups_members']) . ') AND groups_list.groupid = groups_members.groupid';
+		$query .= ' AND groups_members.userid =' . $_SESSION['login']['id'] . ' AND groups_members.notices = "Y"';
+		$result = mysql_query($query) or report_sql_error($query);
+		
+		while($data = mysql_fetch_assoc($result))
+		{
+			$message_count = $data['message_count'] - $data['read_msg'];
+			$_SESSION['cache']['unread_group_notices'] += $message_count;
+			$_SESSION['cache']['group_notices'][$data['groupid']] = array('unread_messages' => $message_count, 'title' => $data['name'], 'groupid' => $data['groupid']);
+		}
 	}
-	elseif($totalt > 1)
-	{
-		$_SESSION['bubblemessage'][] = 'Du har ' . $totalt . ' olästa gruppnotiser!<br />Klicka <a href"/traffa/groupnotices.php">här</a> för att kolla dina gruppnotiser!';
-	}
-*/
 }
-
 
 function cache_update_forum_reported()
 {
