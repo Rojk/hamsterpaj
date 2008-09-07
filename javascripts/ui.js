@@ -130,8 +130,14 @@ hp.ui = {
 				hp.synchronize.add({
 					handle: 'ui_noticebar_discussion_forum',
 					on_response: function(){
-						$('#ui_noticebar_forum').html((this.json_data > 0) ? ((this.json_data == 1) ? 'Ny notis' : this.json_data + ' nya') : 'Forum');
-						$('#ui_noticebar_forum_active').html((this.json_data > 0) ? ((this.json_data == 1) ? 'Ny notis' : this.json_data + ' nya') : 'Forum');
+						$('#ui_noticebar_forum').html((this.json_data['new_notices'] > 0) ? ((this.json_data['new_notices'] == 1) ? 'Ny notis' : this.json_data['new_notices'] + ' nya') : 'Forum');
+						$('#ui_noticebar_forum_active').html((this.json_data['new_notices'] > 0) ? ((this.json_data['new_notices'] == 1) ? 'Ny notis' : this.json_data['new_notices'] + ' nya') : 'Forum');
+						for(var subscription = 0; this.json_data['subscriptions'].length < subscription; subscription++)
+						{
+							$('#ui_noticebar_forum_container ul li:not(:first)').remove();
+							var item = this.json_data['subscriptions'][subscription];
+							$('#ui_noticebar_forum_container ul li:last').after('<li><a href="' + item['url'] + '">' + item['title'] + ' (<strong>' + item['unread_posts'] + ' nya</strong>)</a></li>');
+						}
 					}
 				});
 				

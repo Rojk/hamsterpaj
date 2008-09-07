@@ -145,17 +145,16 @@ function ui_new_top($options = array())
 	$output .= '						</a>';
 	$output .= '					</li>' . "\n";
 	
-	$output .= '					<li>' . "\n";
-	$output .= '						<a id="ui_noticebar_forum' . ($notices['discussion_forum'] > 0 ? '_active' : '') . '" href="/diskussionsforum/notiser.php">';
-	$output .=								(($notices['discussion_forum'] > 0) ? (($notices['discussion_forum'] == 1) ? 'Ny notis' : $notices['discussion_forum'] . ' nya') : 'Forum');
+	$output .= '					<li id="ui_noticebar_forum_container">' . "\n";
+	$output .= '						<a id="ui_noticebar_forum' . ($notices['discussion_forum']['new_notices'] > 0 ? '_active' : '') . '" href="/diskussionsforum/notiser.php">';
+	$output .=								(($notices['discussion_forum']['new_notices'] > 0) ? (($notices['discussion_forum']['new_notices'] == 1) ? 'Ny notis' : $notices['discussion_forum']['new_notices'] . ' nya') : 'Forum');
 	$output .= '						</a>' . "\n";
 	$output .= '						<ul class="ui_noticebar_info">' . "\n";
 	$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina forumnotiser</h3></li>' . "\n";
-	$output .= '							<li><a href="#">Bästa skräckfilmen? (<strong>2 nya</strong>)</a></li>' . "\n";
-	$output .= '							<li><a href="#">vad heter filmen? (<strong>1 nya</strong>)</a></li>' . "\n";
-	$output .= '							<li><a href="#">Motivation (<strong>4 nya</strong>)</a></li>' . "\n";
-	$output .= '							<li><a href="#">Roligt klipp (<strong>1 nya</strong>)</a></li>' . "\n";
-	$output .= '							<li><a href="#">CS, hur får man stor snopp? (<strong>1222 nya</strong>)</a></li>' . "\n";
+	foreach($notices['discussion_forum']['subscriptions'] as $subscription)
+	{
+		$output .= '							<li><a href="' . $subscription['url'] . '">' . $subscription['title'] . ' (<strong>' . $subscription['unread_posts'] . ' nya</strong>)</a></li>' . "\n";
+	}
 	$output .= '						</ul>' . "\n";
 	$output .= '					</li>' . "\n";
 	
@@ -460,7 +459,7 @@ function ui_notices_fetch()
 		}
 		
 		$notices['guestbook'] = $_SESSION['notices']['unread_gb_entries'];
-		$notices['discussion_forum'] = $_SESSION['forum']['new_notices'];
+		$notices['discussion_forum'] = array('new_notices' => $_SESSION['forum']['new_notices'], 'subscriptions' => $_SESSION['forum']['subscriptions']);
 		$notices['groups'] = $_SESSION['cache']['unread_group_notices'];
 		
 		return $notices;
