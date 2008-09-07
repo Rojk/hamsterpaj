@@ -144,8 +144,14 @@ hp.ui = {
 				hp.synchronize.add({
 					handle: 'ui_noticebar_groups',
 					on_response: function(){
-						$('#ui_noticebar_groups').html((this.json_data > 0) ? ((this.json_data == 1) ? 'Ett nytt' : this.json_data + ' nya') : 'Grupper');
-						$('#ui_noticebar_groups_active').html((this.json_data > 0) ? ((this.json_data == 1) ? 'Ett nytt' : this.json_data + ' nya') : 'Grupper');
+						$('#ui_noticebar_groups').html((this.json_data['unread_notices'] > 0) ? ((this.json_data['unread_notices'] == 1) ? 'Ett nytt' : this.json_data['unread_notices'] + ' nya') : 'Grupper');
+						$('#ui_noticebar_groups_active').html((this.json_data['unread_notices'] > 0) ? ((this.json_data['unread_notices'] == 1) ? 'Ett nytt' : this.json_data['unread_notices'] + ' nya') : 'Grupper');
+						$('#ui_noticebar_groups_container ul li:not(:first)').remove();
+						for(var group = 0; group < this.json_data['groups'].length; group++)
+						{
+							var item = this.json_data['groups'][group];
+							$('#ui_noticebar_groups_container ul li:last').after('<li><a href="/traffa/groups.php?action=goto&groupid=' + item['group_id'] + '">' + ((item['unread_messages'] > 0) ? '<strong>' : '') + item['title'] + ' (' + item['unread_messages'] + ' nya)' + ((item['unread_messages'] > 0) ? '</strong>' : '') + '</a></li>');
+						}
 					}
 				});
 			}catch(E){  }

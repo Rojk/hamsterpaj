@@ -35,7 +35,12 @@
 				break;
 				
 				case 'ui_noticebar_groups':
-					$data = $notices['groups'];
+					$groups = array();
+					foreach($notices['groups']['groups'] as $group_id => $group)
+					{
+						$groups[] = '{"group_id": ' . $group_id . ', "title": "' . addslashes($group['title']) . '", "unread_messages": ' . $group['unread_messages'] . '}';
+					}
+					$data = '{"unread_notices": ' . $notices['groups']['unread_notices'] . ', "groups": [' . implode(', ', $groups) . ']}';
 				break;
 				default: continue 2;
 			}

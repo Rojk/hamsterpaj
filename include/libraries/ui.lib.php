@@ -158,12 +158,16 @@ function ui_new_top($options = array())
 	$output .= '						</ul>' . "\n";
 	$output .= '					</li>' . "\n";
 	
-	$output .= '					<li>' . "\n";
-	$output .= '						<a id="ui_noticebar_groups' . ($notices['groups'] > 0 ? '_active' : '') . '" href="/traffa/groupnotices.php">';
-	$output .= 								(($notices['groups'] > 1) ? (($notices['groups'] == 0) ? 'Ett nytt' : $notices['groups'] . ' nya') : 'Grupper');
+	$output .= '					<li id="ui_noticebar_groups_container">' . "\n";
+	$output .= '						<a id="ui_noticebar_groups' . ($notices['groups']['unread_notices'] > 0 ? '_active' : '') . '" href="/traffa/groupnotices.php">';
+	$output .= 								(($notices['groups']['unread_notices'] > 1) ? (($notices['groups']['unread_notices'] == 0) ? 'Ett nytt' : $notices['groups']['unread_notices'] . ' nya') : 'Grupper');
 	$output .= '						</a>' . "\n";
 	$output .= '						<ul class="ui_noticebar_info">' . "\n";
 	$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina gruppinl&auml;gg</h3></li>' . "\n";
+	foreach($notices['groups']['groups'] as $group_id => $group)
+	{
+		$output .= '							<li><a href="/traffa/groups.php?action=goto&groupid=' . $group_id . '">' . (($group['unread_messages'] > 0) ? '<strong>' : '') . $group['title'] . ' (' . $group['unread_messages'] . ' nya)' . (($group['unread_messages'] > 0) ? '</strong>' : '') . '</a></li>' . "\n";
+	}
 	$output .= '						</ul>' . "\n";
 	$output .= '					</li>' . "\n";
 	
@@ -467,7 +471,8 @@ function ui_notices_fetch()
 				$notices['discussion_forum']['subscriptions'][] = $subscription;
 			}
 		}
-		$notices['groups'] = $_SESSION['cache']['unread_group_notices'];
+		
+		$notices['groups'] = array('unread_notices' => $_SESSION['cache']['unread_group_notices'], 'groups' => $_SESSION['cache']['group_notices']);
 		
 		return $notices;
 	}
