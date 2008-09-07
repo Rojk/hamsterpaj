@@ -26,7 +26,7 @@
 				break;
 				
 				case 'ui_noticebar_discussion_forum':
-					foreach($_SESSION['forum']['subscriptions'] as $subscription)
+					foreach($notices['discussion_forum']['subscriptions'] as $subscription)
 					{
 						$url = (isset($thread['url'])) ? $thread['url'] : $thread['handle'] . '/sida_1.php';
 						$subscriptions[] = '{"title": "' . addslashes($subscription['title']) . '", "url": "' . urlencode($url) . '", "unread_posts": ' . $subscription['unread_posts'] . '}';
