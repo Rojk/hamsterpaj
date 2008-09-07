@@ -321,8 +321,15 @@ function ui_new_bottom($options = array())
 	$output .= '<br style="clear: both;" />' . "\n";
 	$output .= '</div>' . "\n";
 	
-	
 	$output .= '<div id="ui_modulebar">' . "\n";
+	
+	$modules = array(
+		'multisearch' => 'Multi-sök',
+		'friends_online' => 'Vänner online',
+		'friends_notices' => 'Vänner(s)notiser',
+		'latest_threads' => 'Forumtrådar',
+		'latest_posts' => 'Inlägg i forumet'
+	);
 	
 	foreach(array('discussion_forum_remove_posts', 'discussion_forum_edit_posts', 'discussion_forum_rename_threads', 'discussion_forum_lock_threads', 'discussion_forum_sticky_threads', 'discussion_forum_move_thread', 'discussion_forum_post_addition') as $privilegie)
 	{
@@ -334,36 +341,33 @@ function ui_new_bottom($options = array())
 	
 	if ($ui_administration_module_show === true)
 	{
-		$output .= ui_module_render(ui_module_fetch(array(
-			'header' => 'Administration',
-			'handle' => 'administration'
-		)));
+		$modules['administration'] = 'Administration';
 	}
 	
-	$output .= ui_module_render(ui_module_fetch(array(
-		'header' => 'Multi-sök',
-		'handle' => 'multisearch'
-	)));
-	
-	$output .= ui_module_render(ui_module_fetch(array(
-		'header' => 'Vänner online',
-		'handle' => 'friends_online'
-	)));
-	
-	$output .= ui_module_render(ui_module_fetch(array(
-		'header' => 'Vänner(s)notiser',
-		'handle' => 'friends_notices'
-	)));
-	
-	$output .= ui_module_render(ui_module_fetch(array(
-		'header' => 'Forumtrådar',
-		'handle' => 'latest_threads'
-	)));
-	
-	$output .= ui_module_render(ui_module_fetch(array(
-		'header' => 'Inlägg i forumet',
-		'handle' => 'latest_posts'
-	)));
+	if ( is_array($_SESSION['module_order']) && count($_SESSION['module_order']) == count($modules))
+	{
+		foreach ( $_SESSION['module_order'] as $handle )
+		{
+			if ( isset($modules[$handle]) )
+			{
+				$output .= ui_module_render(ui_module_fetch(array(
+					'header' => $modules[$handle],
+					'handle' => $handle
+				)));
+			}
+		}
+	}
+	else
+	{
+		die();
+		foreach ( $modules as $handle => $header )
+		{
+			$output .= ui_module_render(ui_module_fetch(array(
+				'header' => $header,
+				'handle' => $handle
+			)));
+		}
+	}
 	
 	$output .= '		</div>' . "\n";
 	$output .= '	<div id="ui_break"></div> ' . "\n";
@@ -490,7 +494,9 @@ function ui_module_fetch($options)
 
 function ui_module_render($options)
 {
-	$output .= '			<div class="ui_module" id="ui_module_' . $options['handle'] . '">' . "\n";
+	$state = (isset($_SESSION['module_states'][$options['handle']])) ? $_SESSION['module_states'][$options['handle']] : 'max';
+	$class = ($state == 'min') ? 'ui_module_state_min': 'ui_module_state_max';
+	$output .= '			<div class="ui_module ' . $class . '" id="ui_module_' . $options['handle'] . '">' . "\n";
 	$output .= '				<div class="ui_module_header">' . "\n";
 	$output .= '					<h2>' . $options['header'] . '</h2>' . "\n";
 	$output .= '				</div>' . "\n";
