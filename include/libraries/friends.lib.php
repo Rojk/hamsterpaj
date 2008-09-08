@@ -33,7 +33,9 @@
 	{
 		$query = 'SELECT f.friend_id AS user_id, f.url, f.action_id, f.read, f.action, f.label, l.username';
 		$query .= ' FROM friends_notices AS f, login AS l, userinfo AS u';
-		$query .= ' WHERE f.user_id = "' . $options['user_id'] . '"';
+		$query .= ' WHERE 1 AND';
+		$query .=  isset($options['user_id']) ? ' f.user_id = "' . $options['user_id'] . '"' : '';
+		$query .=  isset($options['friend_id']) ? ' f.friend_id = "' . $options['friend_id'] . '"' : '';
 		$query .= ' AND l.id = f.friend_id';
 		$query .= ' AND u.userid = l.id';
 		$query .= ' AND l.is_removed = 0';
@@ -50,7 +52,7 @@
 	
 	function friends_actions_insert($options)
 	{
-		$friends_options['user_id'] = $_SESSION['login']['id'];
+		$friends_options['friend_id'] = $_SESSION['login']['id'];
 		$friends = friends_fetch($friends_options);
 		foreach($friends as $friend)
 		{
