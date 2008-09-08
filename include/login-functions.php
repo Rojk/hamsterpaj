@@ -1,5 +1,4 @@
 <?php
-	require('/home/www/paths.php');
 	require_once($hp_includepath . 'logging-functions.php');
 
 	function login_dologin($username, $password, $options = array())

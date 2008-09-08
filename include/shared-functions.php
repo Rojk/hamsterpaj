@@ -1,6 +1,5 @@
 <?php
 	/* OPEN_SOURCE */
-	require_once('/home/www/paths.php');
 	
 	function fix_time($timestamp, $day_relative = true, $short_day = false)
 	{
