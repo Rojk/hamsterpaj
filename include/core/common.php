@@ -32,6 +32,7 @@
 	require_once(PATHS_INCLUDE . 'libraries/event_log.lib.php');
 
   require($hp_includepath . 'ui-functions.php');
+  require(PATHS_INCLUDE . 'libraries/cache.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/forum-notices.php');
 	require_once(PATHS_INCLUDE . 'libraries/posts.php');
 
