@@ -435,6 +435,20 @@
 				unset($_SESSION['unread_gb_entries']);
 			}
 		}
+		
+		if(login_checklogin() && $_SESSION['userinfo']['birthday'] != '0000-00-00')
+		{
+			$birthday_parts = explode('-', $_SESSION['userinfo']['birthday']);
+			
+			if(in_array($birthday_parts[0], array(1990, 1991, 1992)) && cache_load('confirmit_survey_p711303687_g') < 800)
+			{
+				echo '<h2>Går du i gymnasiet får du gärna svara på <a href="/confirmit_survey_p711303687.php?school=g">våran undersökning</a> och tävla om fina priser från Stadium, H&M eller inWarehouse.se!</h2>';
+			}
+			else if(in_array($birthday_parts[0], array(1993, 1994, 1995)) && cache_load('confirmit_survey_p711303687_h') < 400)
+			{
+				echo '<h2>Går du i högstadiet får du gärna svara på <a href="/confirmit_survey_p711303687.php?school=h">våran undersökning</a> och tävla om fina priser från Stadium, H&M eller inWarehouse.se!</h2>';
+			}
+		}
 	}
 
 	function ui_menu_recurse($menu, $ui_options, $level)
