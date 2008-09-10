@@ -1,5 +1,5 @@
 <?php
-	require('/home/www/standard.php');
+	require('../include/core/common.php');
 	
 	//$ui_options['current_menu'] = 'annat';
 	$ui_options['menu_path'] = array('fra', 'user_logins');
