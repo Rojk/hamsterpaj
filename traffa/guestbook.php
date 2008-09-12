@@ -106,22 +106,46 @@
 			if($page > 1)
 			{
 				$out .= ' <a href="' . $_SERVER['PHP_SELF'];
-			$out .= (isset($_GET['view'])) ? '?view=' . $_GET['view'] . '&page' : '?page';
-			$out .= '=' . ($page - 1) . '">&laquo; Föregående</a> |';
+				if (!empty($_GET['history']))
+				{
+					$out .= (isset($_GET['view'])) ? '?view=' . $_GET['view'] . '&history=' . $_GET['history'] . '&page' : '?page';
+					$out .= '=' . ($page - 1) . '">&laquo; Föregående</a> |';
+				}
+				else
+				{
+					$out .= (isset($_GET['view'])) ? '?view=' . $_GET['view'] . '&page' : '?page';
+					$out .= '=' . ($page - 1) . '">&laquo; Föregående</a> |';
+				}
 			}
 
 			if($page > 0)
 			{
 				$out .= ' ' . $page . ' | <a href="' . $_SERVER['PHP_SELF'];
-			$out .= (isset($_GET['view'])) ? '?view=' . $_GET['view'] . '&page' : '?page';
-			$out .= '=' . ($page + 1) . '">Nästa &raquo;</a>';
+				if (!empty($_GET['history']))
+				{
+					$out .= (isset($_GET['view'])) ? '?view=' . $_GET['view'] . '&history=' . $_GET['history'] . '&page' : '?page';
+					$out .= '=' . ($page + 1) . '">Nästa &raquo;</a>';
+				}
+				else
+				{
+					$out .= (isset($_GET['view'])) ? '?view=' . $_GET['view'] . '&page' : '?page';
+					$out .= '=' . ($page + 1) . '">Nästa &raquo;</a>';
+				}
 			}
 		}
 		else
 		{
 			$out .= ' <a href="' . $_SERVER['PHP_SELF'];
-			$out .= (isset($_GET['view'])) ? '?view=' . $_GET['view'] . '&page' : '?page';
-			$out .= '=2">Nästa &raquo;</a>';
+			if (!empty($_GET['history']))
+			{
+				$out .= (isset($_GET['view'])) ? '?view=' . $_GET['view'] . '&history=' . $_GET['history'] . '&page' : '?page';
+				$out .= '=2">Nästa &raquo;</a>';
+			}
+			else
+			{
+				$out .= (isset($_GET['view'])) ? '?view=' . $_GET['view'] . '&page' : '?page';
+				$out .= '=2">Nästa &raquo;</a>';
+			}
 		}
 
 		if(login_checklogin())
