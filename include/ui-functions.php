@@ -442,11 +442,11 @@
 			
 			if(in_array($birthday_parts[0], array(1990, 1991, 1992)) && cache_load('confirmit_survey_p711303687_g') < 800)
 			{
-				echo '<h2>Går du i gymnasiet får du gärna svara på <a href="/confirmit_survey_p711303687.php?school=g">våran undersökning</a> och tävla om fina priser från Stadium, H&M eller inWarehouse.se!</h2>';
+				echo '<h2 style="font-weight: 600; text-decoration: underline;">Går du i gymnasiet får du gärna svara på <a href="/confirmit_survey_p711303687.php?school=g">våran undersökning</a> och tävla om fina priser från Stadium, H&M eller inWarehouse.se!</h2>';
 			}
 			else if(in_array($birthday_parts[0], array(1993)) && cache_load('confirmit_survey_p711303687_h') < 400)
 			{
-				echo '<h2>Går du i högstadiet får du gärna svara på <a href="/confirmit_survey_p711303687.php?school=h">våran undersökning</a> och tävla om fina priser från Stadium, H&M eller inWarehouse.se!</h2>';
+				echo '<h2 style="font-weight: 600; text-decoration: underline;">Går du i högstadiet får du gärna svara på <a href="/confirmit_survey_p711303687.php?school=h">våran undersökning</a> och tävla om fina priser från Stadium, H&M eller inWarehouse.se!</h2>';
 			}
 		}
 	}

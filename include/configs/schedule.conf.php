@@ -9,17 +9,9 @@
 	$schedule_slots['poll'][0]['end']					= strtotime('08:30');
 
 	$schedule_slots['sex_sense'][0]['start']		= strtotime('11:00');
-	$schedule_slots['sex_sense'][0]['end']			= strtotime('12:30');
-	$schedule_slots['sex_sense'][1]['start']		= strtotime('13:00');
-	$schedule_slots['sex_sense'][1]['end']			= strtotime('14:30');
-	$schedule_slots['sex_sense'][2]['start']		= strtotime('15:00');
-	$schedule_slots['sex_sense'][2]['end']			= strtotime('16:30');
-	$schedule_slots['sex_sense'][3]['start']		= strtotime('17:00');
-	$schedule_slots['sex_sense'][3]['end']			= strtotime('18:30');
-	$schedule_slots['sex_sense'][4]['start']		= strtotime('19:00');
-	$schedule_slots['sex_sense'][4]['end']			= strtotime('19:30');
-	$schedule_slots['sex_sense'][5]['start']		= strtotime('20:00');
-	$schedule_slots['sex_sense'][5]['end']			= strtotime('21:30');
+	$schedule_slots['sex_sense'][0]['end']			= strtotime('15:30');
+	$schedule_slots['sex_sense'][1]['start']		= strtotime('17:00');
+	$schedule_slots['sex_sense'][1]['end']			= strtotime('21:00');
 
 	$schedule_slots['music_guess'][0]['start']		= strtotime('07:00');
 	$schedule_slots['music_guess'][0]['end']			= strtotime('07:02');

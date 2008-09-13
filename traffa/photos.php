@@ -149,17 +149,23 @@
 					$data = mysql_fetch_assoc($result);
 					$query = 'UPDATE user_action_log SET url = "/traffa/photos.php?id=' . $photo_id . '", label = "' . $options['description'] . '", timestamp = "' . time() . '" WHERE id = "' . $data['id'] . '" LIMIT 1';
 					mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+					
+					// Gives friend a notice of the users action
+					$options['url'] = '/traffa/photos.php?id=' . $photo_id . '#photo';
+					$options['action'] = 'photos';
+					$options['label'] = $options['description'];
+					friends_actions_insert($options);
 				}
 				else
 				{
 					$query = 'INSERT INTO user_action_log (action, timestamp, user, url, label) VALUES("photos", "' . time() . '", "' . $_SESSION['login']['id'] . '", "/traffa/photos.php?id=' . $photo_id . '", "' . $options['description'] . '")';
 					mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-					
-					friends_actions_insert(array(
-						'action' => 'photos',
-						'url' => '/traffa/photos.php?id=' . $photo_id . '#photo',
-						'label' => $options['description']
-					));
+
+					// Gives friend a notice of the users action
+					$options['url'] = '/traffa/photos.php?id=' . $photo_id . '#photo';
+					$options['action'] = 'photos';
+					$options['label'] = $options['description'];
+					friends_actions_insert($options);
 				}
 
 				$display_successful_message = true;
