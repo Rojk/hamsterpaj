@@ -65,7 +65,7 @@
 	
 	//$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
 	
-	$output .= '<img src="http://images.hamsterpaj.net/the_sims_complete.png" />';
+	$output .= '<img src="http://images.hamsterpaj.net/the_sims_result.png" />';
 
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.28.207.226') ? '<h1>Va? Har ni inte slutat ännu? Kullaviksskolan är alltså före er!</h1>' : '';
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.21.232.204') ? '<h2>En blackebergare? Silfverstolpe is watching you!<h2>' : '';
