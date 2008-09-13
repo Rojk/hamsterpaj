@@ -197,7 +197,7 @@
 					$out .= '<h3>' . $question['title'] . '</h3>' . "\n";
 				$out .= sex_sense_dark_container_bottom();
 				$out .= '<p>' . $question['question'];
-			  $out .= '<br /><a style="cursor: pointer" onclick="sex_sense_confirm_removal(' . $question['id'] . ')">Ta bort</a> <a href="/sex_och_sinne/admin.php?id=' . $question['id'] . '">Svara &raquo;</a>' . "\n";
+			  $out .= '<br />			  <a  style="cursor: pointer" onclick="xmlhttp_ping(\'http://www.hamsterpaj.net/sex_och_sinne/admin.php?action=remove&id=' . $question['id'] . '\' + this.href);$(this).parent().hide(\'slow\');return false;"style="cursor: pointer;">Ta bort</a> <a href="/sex_och_sinne/admin.php?id=' . $question['id'] . '">Svara &raquo;</a>' . "\n";
 			  $out .= '</p>' . "\n";
 				/*foreach ($question['answers'] AS $answer)
 				{
