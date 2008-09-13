@@ -61,4 +61,4 @@
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		}
 	}
-?> 
+?>
