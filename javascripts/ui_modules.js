@@ -60,9 +60,9 @@ function doCloseMin() {
 		if ( $(item).children('a').length > 0 ) return;
 		
 		var minimize = $('<a class="ui_module_minimize" href="#">_</a>').prependTo(item);
- 	 	var remove = $('<a class="ui_module_close" href="#">x</a>').prependTo(item);
+ 	 	//var remove = $('<a class="ui_module_close" href="#">x</a>').prependTo(item);
  	 	
- 	 	remove.click(killModule);
+ 	 //	remove.click(killModule);
  	 	minimize.click(minModule);
 	}).css('cursor', 'move');
 }

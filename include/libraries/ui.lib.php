@@ -134,77 +134,92 @@ function ui_new_top($options = array())
 	$output .= '				<a href="/">Hamsterpaj.net</a>' . "\n";
 	$output .= '			</h1>' . "\n";
 	
-	$output .= '			<div id="ui_noticebar">' . "\n";
-	$output .= '				<ul>' . "\n";
-	
-	$notices = ui_notices_fetch();
-	
-	$output .= '					<li>' . "\n";
-	$output .= '						<a id="ui_noticebar_guestbook' . ($notices['guestbook'] > 0 ? '_active' : '') . '" href="/traffa/guestbook.php?user_id=' . $_SESSION['login']['id'] . '">';
-	$output .=								(($notices['guestbook'] > 0) ? (($notices['guestbook'] == 1) ? 'Ett nytt' : $notices['guestbook'] . ' nya') : 'Gästbok');
-	$output .= '						</a>';
-	$output .= '					</li>' . "\n";
-	
-	$output .= '					<li id="ui_noticebar_forum_container">' . "\n";
-	$output .= '						<a id="ui_noticebar_forum' . ($notices['discussion_forum']['new_notices'] > 0 ? '_active' : '') . '" href="/diskussionsforum/notiser.php">';
-	$output .=								(($notices['discussion_forum']['new_notices'] > 0) ? (($notices['discussion_forum']['new_notices'] == 1) ? 'Ny notis' : $notices['discussion_forum']['new_notices'] . ' nya') : 'Forum');
-	$output .= '						</a>' . "\n";
-	$output .= '						<ul class="ui_noticebar_info">' . "\n";
-	$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina forumnotiser</h3></li>' . "\n";
-	foreach($notices['discussion_forum']['subscriptions'] as $subscription)
+	if ( login_checklogin() )
 	{
-		$output .= '							<li><a href="' . $subscription['url'] . '">' . $subscription['title'] . ' (<strong>' . $subscription['unread_posts'] . ' nya</strong>)</a></li>' . "\n";
-	}
-	$output .= '						</ul>' . "\n";
-	$output .= '					</li>' . "\n";
+		$output .= '			<div id="ui_noticebar">' . "\n";
+		$output .= '				<ul>' . "\n";
+		
+		$notices = ui_notices_fetch();
+		
+		$output .= '					<li>' . "\n";
+		$output .= '						<a id="ui_noticebar_guestbook' . ($notices['guestbook'] > 0 ? '_active' : '') . '" href="/traffa/guestbook.php?user_id=' . $_SESSION['login']['id'] . '">';
+		$output .=								(($notices['guestbook'] > 0) ? (($notices['guestbook'] == 1) ? 'Ett nytt' : $notices['guestbook'] . ' nya') : 'Gästbok');
+		$output .= '						</a>';
+		$output .= '					</li>' . "\n";
+		
+		$output .= '					<li id="ui_noticebar_forum_container">' . "\n";
+		$output .= '						<a id="ui_noticebar_forum' . ($notices['discussion_forum']['new_notices'] > 0 ? '_active' : '') . '" href="/diskussionsforum/notiser.php">';
+		$output .=								(($notices['discussion_forum']['new_notices'] > 0) ? (($notices['discussion_forum']['new_notices'] == 1) ? 'Ny notis' : $notices['discussion_forum']['new_notices'] . ' nya') : 'Forum');
+		$output .= '						</a>' . "\n";
+		$output .= '						<ul class="ui_noticebar_info">' . "\n";
+		$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina forumnotiser</h3></li>' . "\n";
+		foreach($notices['discussion_forum']['subscriptions'] as $subscription)
+		{
+			$output .= '							<li><a href="' . $subscription['url'] . '">' . $subscription['title'] . ' (<strong>' . $subscription['unread_posts'] . ' nya</strong>)</a></li>' . "\n";
+		}
+		$output .= '						</ul>' . "\n";
+		$output .= '					</li>' . "\n";
+		
+		$output .= '					<li id="ui_noticebar_groups_container">' . "\n";
+		$output .= '						<a id="ui_noticebar_groups' . ($notices['groups']['unread_notices'] > 0 ? '_active' : '') . '" href="/traffa/groupnotices.php">';
+		$output .= 								(($notices['groups']['unread_notices'] > 1) ? (($notices['groups']['unread_notices'] == 0) ? 'Ett nytt' : $notices['groups']['unread_notices'] . ' nya') : 'Grupper');
+		$output .= '						</a>' . "\n";
+		$output .= '						<ul class="ui_noticebar_info">' . "\n";
+		$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina gruppinl&auml;gg</h3></li>' . "\n";
+		foreach($notices['groups']['groups'] as $group_id => $group)
+		{
+			$output .= '							<li><a href="/traffa/groups.php?action=goto&groupid=' . $group_id . '">' . (($group['unread_messages'] > 0) ? '<strong>' : '') . $group['title'] . ' (' . $group['unread_messages'] . ' nya)' . (($group['unread_messages'] > 0) ? '</strong>' : '') . '</a></li>' . "\n";
+		}
+		$output .= '						</ul>' . "\n";
+		$output .= '					</li>' . "\n";
+		
+		$output .= '					<li>' . "\n";
+		$output .= '						<a id="ui_noticebar_events" href="#">Händelser</a>' . "\n";
+		$output .= '						<ul class="ui_noticebar_info">' . "\n";
+		$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina h&auml;ndelser</h3></li>' . "\n";
+		$output .= '						</ul>' . "\n";
+		$output .= '					</li>' . "\n";
+		
+		$output .= '				</ul>' . "\n";
+		$output .= '			</div>' . "\n";
+		
+		$output .= '			<div id="ui_statusbar">' . "\n";
+		$output .= '				<a href="#" title="Byt visningsbild">' . "\n";
+		$output .= '					<img src="http://images.hamsterpaj.net/images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
+		$output .= '				</a>' . "\n";
+		$output .= '				<div id="ui_statusbar_username">' . "\n";
+		$output .= '					<a href="/traffa/profile.php?user_id=' . $_SESSION['login']['id'] . '"><strong>' . $_SESSION['login']['username'] . '</strong></a><span> | </span><a href="/logout.php">Logga ut</a><br />' . "\n";
+		$output .= '				</div>' . "\n";
+		$output .= '				<div id="ui_statusbar_logintime">' . "\n";
 	
-	$output .= '					<li id="ui_noticebar_groups_container">' . "\n";
-	$output .= '						<a id="ui_noticebar_groups' . ($notices['groups']['unread_notices'] > 0 ? '_active' : '') . '" href="/traffa/groupnotices.php">';
-	$output .= 								(($notices['groups']['unread_notices'] > 1) ? (($notices['groups']['unread_notices'] == 0) ? 'Ett nytt' : $notices['groups']['unread_notices'] . ' nya') : 'Grupper');
-	$output .= '						</a>' . "\n";
-	$output .= '						<ul class="ui_noticebar_info">' . "\n";
-	$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina gruppinl&auml;gg</h3></li>' . "\n";
-	foreach($notices['groups']['groups'] as $group_id => $group)
+		$online_secs = time() - $_SESSION['login']['lastlogon'];
+		$online_days = floor($online_secs/86400);
+		$online_hrs = floor(($online_secs - $online_days*86400)/3600);		
+		$online_mins = floor(($online_secs%3600)/60);
+	
+		$time_online_readable = ($online_days == 1) ? '1 d, ' : (($online_days > 1) ? $online_days . ' d ' : '');
+		$time_online_readable .= ($online_hrs > 0) ? $online_hrs . ' tim ' : '';
+		$time_online_readable .= ($online_mins > 0) ? $online_mins . ' min' : (($online_hrs == 0 && $online_days == 0 && $online_mins == 0) ? '0 min' : '');
+	
+		$output .= '					<span>' . $time_online_readable . '</span>' . "\n";
+		$output .= '				</div>' . "\n";
+		$output .= '				<div id="ui_statusbar_forumstatus">' . "\n";
+		$output .= '					<span title="' . $_SESSION['userinfo']['user_status'] . '">' . ((strlen(trim($_SESSION['userinfo']['user_status'])) > 0) ? ((mb_strlen($_SESSION['userinfo']['user_status'], 'UTF8') > 22) ? mb_substr($_SESSION['userinfo']['user_status'], 0, 19, 'UTF8') . '...' : $_SESSION['userinfo']['user_status']) : 'Ingen status') . '</span>' . "\n";
+		$output .= '				</div>' . "\n";
+
+		$output .= '			</div>' . "\n";
+	}
+	else
 	{
-		$output .= '							<li><a href="/traffa/groups.php?action=goto&groupid=' . $group_id . '">' . (($group['unread_messages'] > 0) ? '<strong>' : '') . $group['title'] . ' (' . $group['unread_messages'] . ' nya)' . (($group['unread_messages'] > 0) ? '</strong>' : '') . '</a></li>' . "\n";
-	}
-	$output .= '						</ul>' . "\n";
-	$output .= '					</li>' . "\n";
+		$output .= '			<div id="ui_login">' . "\n";
+		$output .= '				<form action="/login.php?action=login" method="post">' . "\n";
+		$output .= '					<p><label><strong>Användarnamn:</strong><br /><input type="text" name="username" /></label></p>' . "\n";
+		$output .= '					<p><label><strong>Lösenord:</strong><br /><input type="password" name="password" /></label></p>' . "\n";
+		$output .= '					<p><input id="ui_login_submit" type="submit" value="Logga in" /></p>' . "\n";
+		$output .= '				</form>' . "\n";
+		$output .= '			</div>' . "\n";
+	} // end login_checklogin
 	
-	$output .= '					<li>' . "\n";
-	$output .= '						<a id="ui_noticebar_events" href="#">Händelser</a>' . "\n";
-	$output .= '						<ul class="ui_noticebar_info">' . "\n";
-	$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina h&auml;ndelser</h3></li>' . "\n";
-	$output .= '						</ul>' . "\n";
-	$output .= '					</li>' . "\n";
-	
-	$output .= '				</ul>' . "\n";
-	$output .= '			</div>' . "\n";
-	
-	$output .= '			<div id="ui_statusbar">' . "\n";
-	$output .= '				<a href="#" title="Byt visningsbild">' . "\n";
-	$output .= '					<img src="http://images.hamsterpaj.net/images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
-	$output .= '				</a>' . "\n";
-	$output .= '				<div id="ui_statusbar_username">' . "\n";
-	$output .= '					<a href="/traffa/profile.php?user_id=' . $_SESSION['login']['id'] . '"><strong>' . $_SESSION['login']['username'] . '</strong></a><span> | </span><a href="/logout.php">Logga ut</a><br />' . "\n";
-	$output .= '				</div>' . "\n";
-	$output .= '				<div id="ui_statusbar_logintime">' . "\n";
-
-	$online_secs = time() - $_SESSION['login']['lastlogon'];
-	$online_days = floor($online_secs/86400);
-	$online_hrs = floor(($online_secs - $online_days*86400)/3600);		
-	$online_mins = floor(($online_secs%3600)/60);
-
-	$time_online_readable = ($online_days == 1) ? '1 d, ' : (($online_days > 1) ? $online_days . ' d ' : '');
-	$time_online_readable .= ($online_hrs > 0) ? $online_hrs . ' tim ' : '';
-	$time_online_readable .= ($online_mins > 0) ? $online_mins . ' min' : (($online_hrs == 0 && $online_days == 0 && $online_mins == 0) ? '0 min' : '');
-
-	$output .= '					<span>' . $time_online_readable . '</span>' . "\n";
-	$output .= '				</div>' . "\n";
-	$output .= '				<div id="ui_statusbar_forumstatus">' . "\n";
-	$output .= '					<span title="' . $_SESSION['userinfo']['user_status'] . '">' . ((strlen(trim($_SESSION['userinfo']['user_status'])) > 0) ? ((mb_strlen($_SESSION['userinfo']['user_status'], 'UTF8') > 22) ? mb_substr($_SESSION['userinfo']['user_status'], 0, 19, 'UTF8') . '...' : $_SESSION['userinfo']['user_status']) : 'Ingen status') . '</span>' . "\n";
-	$output .= '				</div>' . "\n";
-	$output .= '			</div>' . "\n";
 	$output .= '		</div>' . "\n";
 	$output .= '		<div id="ui_menu">' . "\n";
 	$output .= '				<ul>' . "\n";
@@ -327,11 +342,15 @@ function ui_new_bottom($options = array())
 	
 	$modules = array(
 		'multisearch' => 'Multi-sök',
-		'friends_online' => 'Vänner online',
-		'friends_notices' => 'Vänner(s)notiser',
 		'latest_threads' => 'Forumtrådar',
 		'latest_posts' => 'Inlägg i forumet'
 	);
+	
+	if ( login_checklogin() )
+	{
+		$modules['friends_online'] = 'Vänner online';
+		$modules['friends_notices'] = 'Vänner(s)notiser'; 
+	}
 	
 	foreach(array('discussion_forum_remove_posts', 'discussion_forum_edit_posts', 'discussion_forum_rename_threads', 'discussion_forum_lock_threads', 'discussion_forum_sticky_threads', 'discussion_forum_move_thread', 'discussion_forum_post_addition') as $privilegie)
 	{
