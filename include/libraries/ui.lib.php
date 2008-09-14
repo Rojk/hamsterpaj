@@ -479,6 +479,9 @@ function ui_notices_fetch()
 		
 		$notices['groups'] = array('unread_notices' => $_SESSION['cache']['unread_group_notices'], 'groups' => $_SESSION['cache']['group_notices']);
 		
+		$notices['photo_comments'] = $_SESSION['cache']['unread_photo_comments'];
+		$notices['messages'] = $_SESSION['notices']['unread_messages'];
+		
 		return $notices;
 	}
 	else
