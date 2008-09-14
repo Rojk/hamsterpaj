@@ -244,6 +244,7 @@ function ui_new_top($options = array())
 			$output .= '					<li>' . "\n";
 			$output .= '						<a href="' . $current_menu['url'] . '" class="root-a"' . $target . '>' . $current_menu['label'] . '</a>' . "\n";
 			$output .= '							<ul>' . "\n";
+			$output .= '								<li><a href="' . $current_menu['url'] . '">Start</a>' . "\n";
 			if(count($current_menu['children']) > 0)
 			{
 				$output .= ui_menu_subcategories_fetch($current_menu['children'], $options);
@@ -254,6 +255,7 @@ function ui_new_top($options = array())
 	}
 	
 	$output .= '				</ul>' . "\n";
+	$output .= '<img src="http://images.hamsterpaj.net/steve/steve.gif" id="steve" />' . "\n";
 	$output .= '		</div>' . "\n";
 	
 	/*$output .= 'Rektangel:';

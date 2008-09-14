@@ -442,3 +442,12 @@ h2
 	#ui_business_card_guestbook {
 		clear: both;
 	}
+
+#steve
+{
+	margin: 2px 0px 0px 0px;
+	float: right;
+	clear: right;
+	cursor: pointer;
+	display: block;
+}
