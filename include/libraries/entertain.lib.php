@@ -716,6 +716,7 @@ function entertain_item_draw($item, $options)
 						s1.addVariable("image","' . IMAGE_URL . '/entertain/' . $item['handle'] . '.png");
 						s1.addVariable("width","466");
 						s1.addVariable("height","336");
+						s1.addVariable("wmode", "transparent");
 						s1.write("player1");
 						</script>';
 			break;
