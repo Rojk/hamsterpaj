@@ -68,6 +68,8 @@ h2
 			text-indent: -10000px;
 			margin-left: 10px;
 	}
+	
+	#ui_header #ui_login,
 	#ui_header #ui_noticebar 
 	{
 		padding: 7px;
@@ -173,8 +175,18 @@ h2
 				{
 					
 				}
-				
 
+	#ui_header #ui_login p
+	{
+		margin-right: 10px;
+		float: left;
+	}
+	
+		#ui_header #ui_login_submit
+		{
+			margin-top: 11px;
+		}
+				
 	#ui_header #ui_statusbar 
 	{
 		margin: -72px 0 0 660px;
