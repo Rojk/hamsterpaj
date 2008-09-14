@@ -174,7 +174,7 @@ function ui_new_top($options = array())
 		$output .= '					</li>' . "\n";
 		
 		$output .= '					<li>' . "\n";
-		$output .= '						<a id="ui_noticebar_events" href="#">Händelser</a>' . "\n";
+		$output .= '						<a id="ui_noticebar_events' . (($notices['photo_comments'] + $notices['messages'] > 0) ? '_active' : '') . '" href="/traffa/events.php">Händelser</a>' . "\n";
 		$output .= '						<ul class="ui_noticebar_info">' . "\n";
 		$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina h&auml;ndelser</h3></li>' . "\n";
 		$output .= '						</ul>' . "\n";
