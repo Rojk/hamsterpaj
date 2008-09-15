@@ -7,7 +7,7 @@
 		$query .=  isset($options['user_id']) ? ' AND f.user_id = "' . $options['user_id'] . '"' : '';
 		$query .=  isset($options['friend_id']) ? ' AND f.friend_id = "' . $options['friend_id'] . '"' : '';
 		$query .= ' AND l.id = f.friend_id';
-		$query .= ' AND u.userid = l.id';
+		$query .= ' AND u.userid = f.friend_id';
 		$query .= ' AND is_removed = 0';
 		$query .= ' ORDER BY l.username ASC';
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);	
