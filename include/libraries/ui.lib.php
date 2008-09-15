@@ -123,6 +123,19 @@ function ui_new_top($options = array())
 	$output .= "\t" . 'var CM8Profile = "hp_age=' . $adtoma_age . '&amp;hp_birthyear=' . $adtoma_birthyear . '&amp;hp_gender=' . $adtoma_gender . '"' . "\n";
 	$output .= '</script>' . "\n";
 	$output .= '<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>' . "\n";
+	
+	// A big notice-bar shown on top, 60px height.
+	$full_page_notice = '<h2>Hamsterpaj testar just nu en betaversion av den nya designen. Som går under utvecklingsnamnet "Amanda".</h2>';
+	$full_page_notice .= '<span>Har du hittat några buggar eller fel i nya designen? Vänligen rapportera dem i <a href="/hamsterpaj/suggestions.php">förslagslådan</a>.</span>';
+	
+	// Don't remove those lines
+	if(isset($full_page_notice))
+	{
+		$output .= '<div id="ui_full_page_notice">' . "\n";
+			$output .= $full_page_notice . "\n";
+		$output .= '</div>' . "\n";
+	}
+	
 	$output .= '<div>' . "\n";
 	$output .= '	<script type="text/javascript">CM8ShowAd("Bigbanner");</script>' . "\n";
 	$output .= '</div>' . "\n";

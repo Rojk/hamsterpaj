@@ -15,6 +15,7 @@ body
 	font-family: tahoma, arial, "ms trebuchet", sans-serif;
 	color: #454545;
 	font-size: 0.7em;
+	margin: 0;
 }
 a 
 { 
@@ -40,6 +41,19 @@ h2
 {
 	font-weight: normal;
 }
+#ui_full_page_notice
+{
+	width: 100%;
+	min-height: 60px;
+	padding: 3px;
+	padding-left: 60px;
+	background: #fffbc9 url('http://images.hamsterpaj.net/common_icons/tips_light_bulb.png') no-repeat 5px 5px;
+	border-bottom: 1px solid #f0dca1;
+}
+	#ui_full_page_notice h2
+	{
+		margin: 8px 0 8px 0;
+	}
 #ui_wrapper 
 {
 	border: 1px solid #6188A4;
@@ -47,6 +61,7 @@ h2
 	-webkit-border-radius: 5px;
 	background: #fff;
 	width: 870px;
+	margin: 10px;
 }
 #ui_header 
 {
