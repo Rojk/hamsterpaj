@@ -128,11 +128,12 @@ function ui_new_top($options = array())
 	// A big notice-bar shown on top, 60px height.
 	$full_page_notice = '<h2>Hamsterpaj testar just nu en betaversion av den nya designen. Som går under utvecklingsnamnet "Amanda".</h2>';
 	$full_page_notice .= '<span>Har du hittat några buggar eller fel i nya designen? Vänligen rapportera dem i <a href="/hamsterpaj/suggestions.php">förslagslådan</a>.</span>';
+	$full_page_notice_id = 's2adasd'; //Set this to a unique ID for this notice
 	
 	// Don't remove those lines
-	if(isset($full_page_notice))
+	if(isset($full_page_notice) && $_COOKIE[$full_page_notice_id] != 'closed')
 	{
-		$output .= '<div id="ui_full_page_notice">' . "\n";
+		$output .= '<div id="ui_full_page_notice" class="' . $full_page_notice_id . '">' . "\n";
 		$output .= '<img src="" alt="[close]" id="ui_full_page_notice_close" />' . "\n";
 			$output .= $full_page_notice . "\n";
 		$output .= '</div>' . "\n";
