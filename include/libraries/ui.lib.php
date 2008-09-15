@@ -321,7 +321,7 @@ function ui_new_top($options = array())
 		}
 	}
 	
-	$output .= '		<div id="ui_content_thin">' . "\n";
+	$output .= '		<div id="ui_content">' . "\n";
 	
 	if(isset($options['return']) && $options['return'] == true)
 	{

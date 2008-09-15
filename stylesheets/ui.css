@@ -396,12 +396,6 @@ h2
 #ui_content
 {
 	padding: 10px 0px 0 10px;
-	width: 670px; 
-	float: left;
-}
-#ui_content_thin
-{
-	padding: 10px 0px 0 10px;
 	width: 638px; 
 	float: left;
 }
