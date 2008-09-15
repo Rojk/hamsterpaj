@@ -1,19 +1,18 @@
 <?php
 	function friends_fetch($options)
 	{
-		$query = 'SELECT f.friend_id AS user_id, f.user_id AS friend_id, l.username, l.lastaction, l.lastrealaction, l.session_id, u.user_status, u.image, u.gender, u.birthday';
+		$query = 'SELECT f.user_id AS user_id, f.friend_id AS friend_id, l.username, l.lastaction, l.lastrealaction, l.session_id, u.user_status, u.image, u.gender, u.birthday';
 		$query .= ' FROM friendslist AS f, login AS l, userinfo AS u';
 		$query .= ' WHERE 1';
 		$query .=  isset($options['user_id']) ? ' AND f.user_id = "' . $options['user_id'] . '"' : '';
 		$query .=  isset($options['friend_id']) ? ' AND f.friend_id = "' . $options['friend_id'] . '"' : '';
 		$query .= ' AND l.id = f.friend_id';
-		$query .= ' AND u.userid = f.friend_id';
 		$query .= ' AND is_removed = 0';
 		$query .= ' ORDER BY l.username ASC';
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);	
 		while($data = mysql_fetch_assoc($result))
 		{
-			$friends[$data['user_id']] = $data; // Save in array
+			$friends[$data['friend_id']] = $data; // Save in array
 		}
 		
 		return $friends;
@@ -57,13 +56,18 @@
 	
 	function friends_actions_insert($options)
 	{
-		$friends_options['friend_id'] = $_SESSION['login']['id'];
-		$friends = friends_fetch($friends_options);
-		foreach($friends as $friend)
+		$query = 'SELECT user_id';
+		$query .= ' FROM friendslist';
+		$query .= ' WHERE';
+		$query .= '	friend_id = "' . $_SESSION['login']['id'] . '"';
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);	
+		while($data = mysql_fetch_assoc($result))
 		{
-			$query = 'INSERT INTO friends_notices (user_id, timestamp, friend_id, action, url, label)';
-			$query .= ' VALUES("' . $friend['friend_id'] . '", "' . time() . '", "' . $_SESSION['login']['id'] . '", "' . $options['action'] . '", "' . $options['url'] . '", "' . $options['label'] . '")';
-			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+			$query_insert = 'INSERT INTO friends_notices (user_id, timestamp, friend_id, action, url, label)';
+			$query_insert .= ' VALUES("' . $data['user_id'] . '", "' . time() . '", "' . $_SESSION['login']['id'] . '", "' . $options['action'] . '", "' . $options['url'] . '", "' . $options['label'] . '")';
+			$result_insert = mysql_query($query_insert) or report_sql_error($query_insert, __FILE__, __LINE__);
+			jscript_alert($data['user_id']);
 		}
+		echo $query;
 	}
 ?>
