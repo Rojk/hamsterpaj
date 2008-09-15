@@ -312,9 +312,9 @@ h2
 
 #ui_modulebar
 {
-	margin-left: 648px;
+	margin-left: 658px;
 	position: relative;
-	padding: 10px;
+	padding: 10px 10px 10px 0;
 	z-index: 0;
 }
 	#ui_modulebar .ui_module
@@ -395,13 +395,13 @@ h2
 	}	
 #ui_content
 {
-	padding: 10px 10px 0 10px;
+	padding: 10px 0px 0 10px;
 	width: 670px; 
 	float: left;
 }
 #ui_content_thin
 {
-	padding: 10px 15px 0 10px;
+	padding: 10px 0px 0 10px;
 	width: 638px; 
 	float: left;
 }
