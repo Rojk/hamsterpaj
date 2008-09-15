@@ -46,6 +46,7 @@ function ui_new_top($options = array())
 		'womlib.js',
 		'jquery.dimensions.js',
 		'jquery-ui.js',
+		'jquery.cookie.js',
 		'synchronize.js'
 	), $options['javascripts']);
 	$options['javascripts'][] = 'ui_server_message.js';
@@ -132,6 +133,7 @@ function ui_new_top($options = array())
 	if(isset($full_page_notice))
 	{
 		$output .= '<div id="ui_full_page_notice">' . "\n";
+		$output .= '<img src="" alt="[close]" id="ui_full_page_notice_close" />' . "\n";
 			$output .= $full_page_notice . "\n";
 		$output .= '</div>' . "\n";
 	}
