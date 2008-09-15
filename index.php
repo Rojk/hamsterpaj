@@ -294,11 +294,6 @@
 	/* Poll */
 	$poll = poll_fetch(array('type' => 'daily'));
 	
-	if($poll[0]['handle'] == 'skulle_du_kunna_taenka_dig_att_dejta_rojk')
-	{
-		$poll[0]['question'] = 'Skulle du kunna tänka dig att dejta <a href="http://www.hamsterpaj.net/traffa/profile.php?id=65654" style="border-bottom: 1px dashed #aaaaaa;">Rojk</a> <img src="http://images.hamsterpaj.net/rojk/rojk.gif" alt="Rojk" />?';
-	}
-	
 	if($poll[0]['can_answer'] == 1 && false)
 	{
 		echo '<a name="poll"></a>' . poll_render($poll[0]);
