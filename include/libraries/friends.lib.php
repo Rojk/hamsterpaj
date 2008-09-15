@@ -65,9 +65,7 @@
 		{
 			$query_insert = 'INSERT INTO friends_notices (user_id, timestamp, friend_id, action, url, label)';
 			$query_insert .= ' VALUES("' . $data['user_id'] . '", "' . time() . '", "' . $_SESSION['login']['id'] . '", "' . $options['action'] . '", "' . $options['url'] . '", "' . $options['label'] . '")';
-			$result_insert = mysql_query($query_insert) or report_sql_error($query_insert, __FILE__, __LINE__);
-			jscript_alert($data['user_id']);
+			$result_insert = mysql_query($query_insert) or report_sql_error($query_insert, __FILE__, __LINE__);			jscript_alert($data['user_id']);
 		}
-		echo $query;
 	}
 ?>
