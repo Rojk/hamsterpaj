@@ -46,6 +46,7 @@ function ui_new_top($options = array())
 		'womlib.js',
 		'jquery.dimensions.js',
 		'jquery-ui.js',
+		'jquery.cookie.js',
 		'synchronize.js'
 	), $options['javascripts']);
 	$options['javascripts'][] = 'ui_server_message.js';
@@ -123,6 +124,21 @@ function ui_new_top($options = array())
 	$output .= "\t" . 'var CM8Profile = "hp_age=' . $adtoma_age . '&amp;hp_birthyear=' . $adtoma_birthyear . '&amp;hp_gender=' . $adtoma_gender . '"' . "\n";
 	$output .= '</script>' . "\n";
 	$output .= '<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>' . "\n";
+	
+	// A big notice-bar shown on top, 60px height.
+	$full_page_notice = '<h2>Hamsterpaj testar just nu en betaversion av den nya designen. Som går under utvecklingsnamnet "Amanda".</h2>';
+	$full_page_notice .= '<span>Har du hittat några buggar eller fel i nya designen? Vänligen rapportera dem i <a href="/hamsterpaj/suggestions.php">förslagslådan</a>.</span>';
+	$full_page_notice_id = 's2adasd'; //Set this to a unique ID for this notice
+	
+	// Don't remove those lines
+	if(isset($full_page_notice) && $_COOKIE[$full_page_notice_id] != 'closed')
+	{
+		$output .= '<div id="ui_full_page_notice" class="' . $full_page_notice_id . '">' . "\n";
+		$output .= '<img src="" alt="[close]" id="ui_full_page_notice_close" />' . "\n";
+			$output .= $full_page_notice . "\n";
+		$output .= '</div>' . "\n";
+	}
+	
 	$output .= '<div>' . "\n";
 	$output .= '	<script type="text/javascript">CM8ShowAd("Bigbanner");</script>' . "\n";
 	$output .= '</div>' . "\n";
@@ -162,7 +178,7 @@ function ui_new_top($options = array())
 		
 		$output .= '					<li id="ui_noticebar_groups_container">' . "\n";
 		$output .= '						<a id="ui_noticebar_groups' . ($notices['groups']['unread_notices'] > 0 ? '_active' : '') . '" href="/traffa/groupnotices.php">';
-		$output .= 								(($notices['groups']['unread_notices'] > 1) ? (($notices['groups']['unread_notices'] == 0) ? 'Ett nytt' : $notices['groups']['unread_notices'] . ' nya') : 'Grupper');
+		$output .= 								(($notices['groups']['unread_notices'] >= 1) ? (($notices['groups']['unread_notices'] == 1) ? 'Ett nytt' : $notices['groups']['unread_notices'] . ' nya') : 'Grupper');
 		$output .= '						</a>' . "\n";
 		$output .= '						<ul class="ui_noticebar_info">' . "\n";
 		$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina gruppinl&auml;gg</h3></li>' . "\n";
@@ -174,7 +190,7 @@ function ui_new_top($options = array())
 		$output .= '					</li>' . "\n";
 		
 		$output .= '					<li>' . "\n";
-		$output .= '						<a id="ui_noticebar_events" href="#">Händelser</a>' . "\n";
+		$output .= '						<a id="ui_noticebar_events' . (($notices['photo_comments'] + $notices['messages'] > 0) ? '_active' : '') . '" href="/traffa/events.php">' . (($notices['photo_comments'] + $notices['messages'] >= 1) ? (($notices['photo_comments'] + $notices['messages'] == 1) ? 'En ny' : ($notices['photo_comments'] + $notices['messages']) . ' nya') : 'Händelser') . '</a>' . "\n";
 		$output .= '						<ul class="ui_noticebar_info">' . "\n";
 		$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina h&auml;ndelser</h3></li>' . "\n";
 		$output .= '						</ul>' . "\n";
@@ -321,7 +337,7 @@ function ui_new_top($options = array())
 		}
 	}
 	
-	$output .= '		<div id="ui_content_thin">' . "\n";
+	$output .= '		<div id="ui_content">' . "\n";
 	
 	if(isset($options['return']) && $options['return'] == true)
 	{
@@ -497,6 +513,9 @@ function ui_notices_fetch()
 		}
 		
 		$notices['groups'] = array('unread_notices' => $_SESSION['cache']['unread_group_notices'], 'groups' => $_SESSION['cache']['group_notices']);
+		
+		$notices['photo_comments'] = $_SESSION['cache']['unread_photo_comments'];
+		$notices['messages'] = $_SESSION['notices']['unread_messages'];
 		
 		return $notices;
 	}

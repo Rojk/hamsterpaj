@@ -9,6 +9,18 @@ hp.ui = {
 		this.hackerlund.init();
 		this.grotescopaj.init();
 		this.statusbar.init();
+		this.full_page_notice.init();
+	},
+	
+	full_page_notice: {	
+		init: function()
+		{
+			$('#ui_full_page_notice_close').click(function()
+			{
+				$('#ui_full_page_notice').slideUp();
+				$.cookie($('#ui_full_page_notice').attr('class'), 'closed', { expires: 30 });
+			});
+		}
 	},
 	
 	user_search: {

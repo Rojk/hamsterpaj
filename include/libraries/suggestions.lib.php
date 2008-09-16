@@ -142,6 +142,7 @@ function suggestion_list($suggestions)
 				echo '<h5>Svar</h5>' . "\n";
 				echo '<textarea cols="75" name="reply">' . htmlspecialchars($suggestion['reply']) . '</textarea>' . "\n";
 				echo '<input type="hidden" name="id" value="' . $suggestion['id'] . '" />' . "\n";
+				echo '<input type="hidden" name="display_level" value="assigned" />' . "\n";
 				echo '<input type="text" style="display: none;" name="responsible_username" value="' . $_SESSION['login']['username'] . '" />' . "\n";
 				echo '<input type="submit" value="Spara" class="button_60" />' . "\n";
 			echo '</form>';

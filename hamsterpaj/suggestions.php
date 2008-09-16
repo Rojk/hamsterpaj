@@ -51,6 +51,8 @@
 		$action = 'start';
 	}
 	
+	$ui_options['title'] = 'Förslag - Hamsterpaj.net';
+	
 	ui_top($ui_options);
 	
 	

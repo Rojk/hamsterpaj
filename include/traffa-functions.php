@@ -1,7 +1,4 @@
 <?php
-	require('/home/www/paths.php');
-	require_once($hp_includepath . 'db-config.php');
-	
 function traffaFetchProfile($userid)
 {
 	$sql = 'SELECT * FROM traffa WHERE userid = "' . $userid . '" LIMIT 1';
