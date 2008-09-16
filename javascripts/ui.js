@@ -178,6 +178,7 @@ hp.ui = {
 				if ( $('span', this).length ) {
 					var span = $('span', this);
 					var inpt = $('<input type="text"/>');
+					inpt.css('width', 140);
 					inpt.attr('value', $('span', this).attr('title'));
 					while ( this.firstChild ) this.removeChild(this.firstChild);
 					inpt.appendTo(t);
