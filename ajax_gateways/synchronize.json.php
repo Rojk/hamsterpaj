@@ -28,7 +28,7 @@
 				case 'ui_noticebar_discussion_forum':
 					foreach($notices['discussion_forum']['subscriptions'] as $subscription)
 					{
-						$url = (isset($thread['url'])) ? $thread['url'] : $thread['handle'] . '/sida_1.php';
+						$url = (isset($subscription['url'])) ? $subscription['url'] : $subscription['handle'] . '/sida_1.php';
 						$subscriptions[] = '{"title": "' . addslashes($subscription['title']) . '", "url": "' . urlencode($url) . '", "unread_posts": ' . $subscription['unread_posts'] . '}';
 					}
 					$data = '{"new_notices": ' . $notices['discussion_forum']['new_notices'] . ', "subscriptions": [' . implode(', ', $subscriptions) . ']}';
