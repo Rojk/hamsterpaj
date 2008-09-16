@@ -18,7 +18,7 @@ hp.ui = {
 			$('#ui_full_page_notice_close').click(function()
 			{
 				$('#ui_full_page_notice').slideUp();
-				$.cookie($('#ui_full_page_notice').attr('class'), 'closed');
+				$.cookie($('#ui_full_page_notice').attr('class'), 'closed', { expires: 30 });
 			});
 		}
 	},
