@@ -5,8 +5,8 @@
 	$schedule_slots['contest'][0]['start']				= strtotime('13:00');
 	$schedule_slots['contest'][0]['end']				= strtotime('15:00');
 	
-	$schedule_slots['poll'][0]['start']				= strtotime('06:00');
-	$schedule_slots['poll'][0]['end']					= strtotime('08:30');
+	$schedule_slots['poll'][0]['start']				= strtotime('16:00');
+	$schedule_slots['poll'][0]['end']					= strtotime('18:30');
 
 	$schedule_slots['sex_sense'][0]['start']		= strtotime('11:00');
 	$schedule_slots['sex_sense'][0]['end']			= strtotime('15:30');
