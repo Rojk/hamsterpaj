@@ -118,11 +118,6 @@
 			$out .= rounded_corners_top(array('color' => 'orange'), true);
 			$out .= '<h1>I artikelarkivet kan man hitta en massa roliga artiklar</h1>' . "\n";
 			$out .= rounded_corners_bottom(array('color' => 'orange'), true);
-			$out .= rounded_corners_top(array('color' => 'blue'), true);
-			$out .= '<img src="http://images.hamsterpaj.net/joar_icons/test.png" style="float: left;"/>' . "\n";
-			$out .= '<h2 style="margin-top: 0;">I menyn till vänster kan du surfa runt bland artikelarkivets olika kategorier</h2>' . "\n";
-			$out .= '<div style="clear: both;"></div>' . "\n";
-			$out .= rounded_corners_bottom(array('color' => 'blue'), true);
 			
 			$articles = articles_fetch();
 			$out .= articles_list($articles);
