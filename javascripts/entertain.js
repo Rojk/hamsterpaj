@@ -47,13 +47,5 @@ function entertain_preview_retry_button_click()
 	xmlhttp_ping('/ajax_gateways/entertain.ajax.php?action=cancel_upload');
 }
 
-$(document).ready(function() {
-	$('#ui_menu > ul > li').hover(function() {
-		$('#ui_content object').css('visibility', 'hidden');
-	}, function() {
-		$('#ui_content object').css('visibility', 'visible');
-	});
-});
-
 womAdd('entertain_upload_form_show_button_enable()');
 womAdd('entertain_preview_buttons_enable()');
