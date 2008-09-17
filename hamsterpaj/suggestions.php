@@ -1,7 +1,7 @@
 <?php
 	require('../include/core/common.php');
 	require(PATHS_INCLUDE . 'libraries/suggestions.lib.php');
-	require(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
+	require_once(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
 	
 	$ui_options['menu_path'] = array('hamsterpaj', 'foerslag');
 	$ui_options['stylesheets'][] = 'suggestions.css';
