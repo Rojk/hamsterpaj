@@ -16,6 +16,7 @@ body
 	color: #454545;
 	font-size: 0.7em;
 	margin: 0;
+	overflow-x: hidden;
 }
 a 
 { 
@@ -76,7 +77,6 @@ h2
 	background: #fff;
 	width: 870px;
 	margin: 10px auto;
-	overflow-x: hidden;
 }
 #ui_header 
 {
