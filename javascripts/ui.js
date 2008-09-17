@@ -201,15 +201,16 @@ hp.ui = {
 		hideAndSend: function(value) {
 			$.get('/ajax_gateways/set_user_status.php?status=' + encodeURIComponent(value));
 			$('#ui_statusbar_forumstatus').html('<span title="' + value + '">' + (value.length > 22 ? value.substring(0, 22) + '...' : value) + '</span>');
-		},
-		
-		flash_menu_fix: function() {
-			$('#ui_menu > ul > li').hover(function() {
-				$('#ui_content object').css('visibility', 'hidden');
-			}, function() {
-				$('#ui_content object').css('visibility', 'visible');
-			});
 		}
+	},
+	
+	flash_menu_fix: function()
+	{
+		$('#ui_menu > ul > li').hover(function() {
+			$('#ui_content object').css('visibility', 'hidden');
+		}, function() {
+			$('#ui_content object').css('visibility', 'visible');
+		});
 	}
 }
 
