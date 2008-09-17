@@ -224,7 +224,7 @@
 	
 	/* Info text */
 	$output .= '<p>Hamsterpaj är en kul sida med filmer, spel och lite chattfunktioner, till för tonåringar som inte orkar skriva skolarbeten utan slösurfar istället.</p>' . "\n";
-	$output .= '<p>Vi håller inte på och tramsar med några betaltjänster eller "nyhetsbrev", allt är gratis. Vi tjänar pengar på annonser och chefen på bygget jobbar som chokladhjulssnurrare på Liseberg.</p>' . "\n";
+	$output .= '<p>Vi håller inte på och tramsar med några betaltjänster eller "nyhetsbrev", allt är gratis. Vi tjänar pengar på annonser och chefen på bygget jobbar även med annat.</p>' . "\n";
 
 
 	/* Drivers license ad */
