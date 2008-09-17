@@ -74,11 +74,6 @@
 	{
 			$output .= '<a href="http://www.hamsterpaj.net/traffa/irl.php?action=show_information&irl=2"><img src="http://images.hamsterpaj.net/' . $kebabad . '.gif" /></a>';
 	}
-
-	if(date('m-d') == '09-14')
-	{
-	$output .= '<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/haer_kan_ni_gratulera_vinnarna_av_simstaevlingen/sida_1.php#post_990422"><img src="http://images.hamsterpaj.net/the_sims_result.png" /></a>';
-	}
 	
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.28.207.226') ? '<h1>Va? Har ni inte slutat ännu? Kullaviksskolan är alltså före er!</h1>' : '';
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.21.232.204') ? '<h2>En blackebergare? Silfverstolpe is watching you!<h2>' : '';
