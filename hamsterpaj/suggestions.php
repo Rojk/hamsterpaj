@@ -55,8 +55,9 @@
 	
 	ui_top($ui_options);
 	
-	
-	
+	rounded_corners_top();
+	echo '<a href="/suggestions.php?action=compose">Skicka in förslag</a> | <a href="/suggestions.php?action=view_waiting">Visa obehandlade</a> | <a href="/suggestions.php?action=view_processed">Visa granskade</a>';	
+	rounded_corners_bottom();
 	switch($action)
 	{
 		case 'create':
