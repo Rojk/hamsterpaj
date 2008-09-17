@@ -262,15 +262,7 @@
 	$out .= '</form>' . "\n";
 	$out .= rounded_corners_tabs_bottom($void, true);
 
-	$noob_pointer .= '<div style="height: 64px;">';
-	$noob_pointer .= '<img style="float:left;" src="http://images.hamsterpaj.net/joar_icons/test.png">';
-	$noob_pointer .= '<h2 style="margin-top: 0px;">Där nere byter man visningsbild</h2>';
-	$noob_pointer .= '<p>';
-	$noob_pointer .= 'Lite strukturändringar har lett till många förvirrade trådar om var man byter visningsbild, men det är där nere :P';
-	$noob_pointer .= '</p>';
-	$noob_pointer .= '</div>';
-
 	ui_top($ui_options);
-	echo rounded_corners($noob_pointer, $void, true).$out;
+	echo $out;
 	ui_bottom();
 ?>
