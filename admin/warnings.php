@@ -47,7 +47,7 @@
 			
 			$out .= '<h2>Aktiva varningar</h1>' . "\n";
 			$out .= '<p>Varningar som har utfärdats inom en vecka tillbaks i tiden</p>' . "\n";
-			$out .= render_warnings_table($result);
+			$out .= warnings_render_table($result);
 		}
 		
 		elseif (THIS_URI == $tab['Välstekta användare'])
@@ -140,7 +140,7 @@
 				
 				$out .= '<h2>Varningshistorik för ' . $username_or_user_id . '.</h2>' . "\n";
 				$out .= '<p>Här ser du alla varningar som ' . $username_or_user_id . ' har fått under sina ' . $time_at_hp . ' dagar på Hamsterpaj :)</p>';
-				$out .= render_warnings_table($result);
+				$out .= warnings_render_table($result);
 				
 			}
 			else
@@ -163,7 +163,7 @@
 				$out .= '<input type="submit" value="Jihad!" />
 				</form>
 				<div style="background: #ccc; height: 1px; margin: 4px 0px 4px 0px;" ></div>';
-				$out .= render_warnings_table($result);
+				$out .= warnings_render_table($result);
 				
 			}
 		}

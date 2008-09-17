@@ -1,9 +1,9 @@
 <?php
-function render_warnings_table($result, $highlight)
+function warnings_render_table($result, $highlight_time)
 {
 	if (!isset($time) || !is_numeric($time))
 	{
-		$highlight = time() - 604800;
+		$highlight_time = time() - 604800;
 	}
 	$out .= '<table style="border: 0px;"><tbody>';
 	$out .= '<tr><td><strong>Varnad</strong></td><td><strong>Av</strong></td><td><strong>Tidpunkt</strong></td><td><strong>Anledning</strong></td></tr>' . "\n";
@@ -11,7 +11,7 @@ function render_warnings_table($result, $highlight)
 	while($data = mysql_fetch_assoc($result))
 	{
 		$found_something = true;
-		$out_later .= ($data['timestamp'] > $highlight) ? '<tr class="_warning_row_active" background: ' . $within_a_week_color . ';">' : '<tr class="_warning_row">' . "\n";
+		$out_later .= ($data['timestamp'] > $highlight_time) ? '<tr class="_warning_row_active" background: ' . $within_a_week_color . ';">' : '<tr class="_warning_row">' . "\n";
 		
 		$out_later .= '<td class="_warning" valign="top" style="text-align: left"><strong>
 		<a href="/traffa/user_facts.php?user_id=' . $data['user_user_id'] . '">' . $data['user_username'] . '</a></strong>'./*(' . $data['user_user_id'] . ')</td>' .*/ "\n"; 
