@@ -700,7 +700,8 @@ function entertain_item_draw($item, $options)
 			case 'swf':
 				$wrapper = '';
 				$output .= '<object type="application/x-shockwave-flash" data="' . $wrapper . $address . '" >
-							<param name="movie" value="' . $wrapper . $address . '" /></object>';
+							<param name="movie" value="' . $wrapper . $address . '" />
+							<param name="wmode" value="transparent" /></object>';
 						($item['entertain_type'] == 'clip' || $item['entertain_type'] == 'flash') ? event_log_log('jc_ad_after') : '';
 			break;
 			case 'flv':
