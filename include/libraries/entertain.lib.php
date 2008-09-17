@@ -700,8 +700,7 @@ function entertain_item_draw($item, $options)
 			case 'swf':
 				$wrapper = '';
 				$output .= '<object type="application/x-shockwave-flash" data="' . $wrapper . $address . '" >
-							<param name="movie" value="' . $wrapper . $address . '" />
-							<param name="wmode" value="transparent" /></object>';
+							<param name="movie" value="' . $wrapper . $address . '" /></object>';
 						($item['entertain_type'] == 'clip' || $item['entertain_type'] == 'flash') ? event_log_log('jc_ad_after') : '';
 			break;
 			case 'flv':
@@ -717,7 +716,6 @@ function entertain_item_draw($item, $options)
 						s1.addVariable("image","' . IMAGE_URL . '/entertain/' . $item['handle'] . '.png");
 						s1.addVariable("width","466");
 						s1.addVariable("height","336");
-						s1.addVariable("wmode", "transparent");
 						s1.write("player1");
 						</script>';
 			break;
