@@ -75,6 +75,8 @@
 			$output .= '<a href="http://www.hamsterpaj.net/traffa/irl.php?action=show_information&irl=2"><img src="http://images.hamsterpaj.net/' . $kebabad . '.gif" /></a>';
 	}
 	
+	$output .= '<a href="/switch_design.php"><img src="http://images.hamsterpaj.net/amanda.png" /></a>';
+	
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.28.207.226') ? '<h1>Va? Har ni inte slutat ännu? Kullaviksskolan är alltså före er!</h1>' : '';
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.21.232.204') ? '<h2>En blackebergare? Silfverstolpe is watching you!<h2>' : '';
 	
