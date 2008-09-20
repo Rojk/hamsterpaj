@@ -11,6 +11,7 @@ hp.ui = {
 		this.statusbar.init();
 		this.full_page_notice.init();
 		this.flash_menu_fix();
+		this.fix_ie6_menu();
 	},
 	
 	full_page_notice: {	
@@ -211,6 +212,18 @@ hp.ui = {
 		}, function() {
 			$('#ui_content object').css('visibility', 'visible');
 		});
+	},
+	
+	fix_ie6_menu: function()
+	{
+		if ( jQuery.browser.version == '6.0' && jQuery.browser.msie )
+		{
+			$('#ui_menu > ul > li').hover(function() {
+				$(this).addClass('hover');
+			}, function() {
+				$(this).removeClass('hover');
+			});
+		}
 	}
 }
 

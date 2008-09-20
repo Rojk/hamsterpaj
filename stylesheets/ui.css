@@ -297,18 +297,36 @@ h2
  		height: 25px;
     padding: 4px 10px 0 10px;
 	}
-		* html #ui_menu .root-a {
+		* html #ui_menu .root-a
+		{
 			float: left;
 		}
-	#ui_menu > ul > li:hover > a 
+		* html #ui_menu li ul
+		{
+			clear: both;
+		}
+	#ui_menu ul li.hover a,
+	#ui_menu ul li:hover a 
 	{ 
 		background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left_hover.png") left top no-repeat; 
 		color: #630;
 	}
-	#ui_menu > ul > li:hover
+		#ui_menu ul li.hover li a,
+		#ui_menu ul li:hover li a
+		{
+			background: transparent;
+			color: #494949;
+		}
+	#ui_menu ul li.hover,
+	#ui_menu ul li:hover
 	{ 
 		background: url("http://images.hamsterpaj.net/ui/ui_menu_item_right_hover.png") right top no-repeat; 
 	}
+		#ui_menu ul li.hover li,
+		#ui_menu ul li:hover li
+		{
+			background: transparent;
+		}
 	#ui_menu li ul 
 	{
 		visibility: hidden;
@@ -322,6 +340,7 @@ h2
 	  padding: 2px 0 2px 38px;
 	  z-index: 1;
 	}
+	#ui_menu li.hover ul li ul,
 	#ui_menu li:hover ul li ul
 	{
 		visibility: visible;
@@ -344,6 +363,18 @@ h2
 		color: #494949;
 		display: block;
 	}
+		/* because instead of removing the initial padding from the ul, someone thought it would be nice to add -30px margin to the a (IE6 is sometimes smarter than other browsers) */
+		* html #ui_menu li ul
+		{
+			padding: 0 5px;
+		}
+			* html #ui_menu li ul ul {
+				padding: 0 10px;
+			}
+		* html #ui_menu li ul a
+		{
+			margin-left: 0;
+		}
 	#ui_menu li ul a:hover 
 	{
 		color: #000;
@@ -354,6 +385,7 @@ h2
 	{ 
 		color: #494949;
 	}
+	#ui_menu li.hover ul,
 	#ui_menu li:hover ul
 	{
 		visibility: visible;
