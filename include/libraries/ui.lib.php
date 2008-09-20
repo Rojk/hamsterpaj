@@ -233,6 +233,7 @@ function ui_new_top($options = array())
 		$output .= '					<p><label><strong>Lösenord:</strong><br /><input type="password" name="password" /></label></p>' . "\n";
 		$output .= '					<p><input id="ui_login_submit" type="submit" value="Logga in" /></p>' . "\n";
 		$output .= '				</form>' . "\n";
+		$output .= '				<p id="ui_login_register"><a href="/register.php"><button>Registrera</button></a></p>';
 		$output .= '			</div>' . "\n";
 	} // end login_checklogin
 	

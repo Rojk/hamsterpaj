@@ -107,16 +107,24 @@ h2
 		background: url(http://images.hamsterpaj.net/ui/ui_header_border.png) left top no-repeat;
 		height: 58px;
 	}	
+		#ui_login form
+		{
+				margin: 0;
+				padding: 0;
+		}
 		#ui_header #ui_login p
 		{
-			margin-right: 10px;
+			margin-right: 5px;
 			float: left;
 		}
-		#ui_header #ui_login_submit
+		#ui_header #ui_login input[type=submit]
 		{
 			margin-top: 11px;
+		}	
+		#ui_header #ui_login_register
+		{
+			padding-top: 11px;
 		}
-		
 		#ui_header #ui_noticebar h2
 		{
 			display: none;
