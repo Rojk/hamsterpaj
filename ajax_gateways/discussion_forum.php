@@ -54,6 +54,7 @@
 		preint_r($guestbook_message);
 		
 		guestbook_insert($guestbook_message);
+		log_admin_event('post removed', $post['removal_comment'], $_SESSION['login']['id'], $post['author'], $_GET['post_id']);
 	}
 
 	if($_GET['action'] == 'unremove_post' && forum_security(array('action' => 'unremove_post', 'post_id' => $_GET['post_id'])))
