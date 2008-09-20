@@ -263,7 +263,7 @@ h2
 	  padding: 0;
 	  margin: 0;
 	}
-	#ui_menu > ul > li
+	#ui_menu ul li
 	{
 		list-style: none;
 	  float: left;
@@ -271,7 +271,16 @@ h2
 	  height: 25px;
 	  margin-right: 1px;
 	}
-	#ui_menu > ul > li > a
+		#ui_menu ul ul li
+		{
+			list-style: none;
+			float: none;
+			background: transparent;
+			height: auto;
+			margin: 0;
+			padding: 4px 0;
+		}
+	#ui_menu .root-a
 	{
 		display: block;
   	color: #960;
@@ -280,6 +289,9 @@ h2
  		height: 25px;
     padding: 4px 10px 0 10px;
 	}
+		* html #ui_menu .root-a {
+			float: left;
+		}
 	#ui_menu > ul > li:hover > a 
 	{ 
 		background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left_hover.png") left top no-repeat; 
