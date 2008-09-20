@@ -42,7 +42,8 @@ jQuery.fn.extend({
 		// save the elements for later use (saves us a bit of time)
 		var card = $(html).hide().appendTo(document.body);
 		var close = $('#ui_business_card_close');
-		
+		card.hide();
+
 		var avatar = $('#ui_business_card_avatar');
 		var profile_links = $('.ui_business_card_profile_link');
 		var userinfo = $('#ui_business_card_userinfo');
