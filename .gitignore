@@ -26,6 +26,7 @@ snyggve_temp/thumb/*
 include/jpgraph-1.20.5/docs/*
 include/jpgraph-1.20.5/src/Examples/*
 include/jpgraph/docs/*
+include/articles/*
 
 # Files to exclude
 admin/validator.txt
