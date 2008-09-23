@@ -108,6 +108,12 @@ function ui_new_top($options = array())
 	{
 		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/' . $javascript . '?version=' . filemtime(PATHS_WEBROOT . 'javascripts/' . $javascript) . '"></script>' . "\n";
 	}
+	if ($_SESSION['login']['id'] == 682454 && rand(1, 21) == 10)
+	{
+		$output .= '<script type="text/javascript">' . "\n";
+		$output .= 'alert("Okej då, Joar är bättre :O ;)");' . "\n";
+		$output .= '</script>' . "\n";
+	}
 	
 	$output .= $options['header_extra'];
 	
