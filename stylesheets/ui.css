@@ -394,11 +394,13 @@ h2
 
 #ui_modulebar
 {
-	margin-left: 658px;
+/*	margin-left: 658px;*/
 	position: relative;
 	padding: 10px 10px 10px 0;
 	z-index: 0;
+	float: right;
 }
+
 	#ui_modulebar .ui_module
 	{
 		width: 200px;
