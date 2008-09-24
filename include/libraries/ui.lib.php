@@ -289,13 +289,6 @@ function ui_top($options = array())
 	$output .= '				</ul>' . "\n";
 	$output .= '<img src="http://images.hamsterpaj.net/steve/steve.gif" id="steve" />' . "\n";
 	$output .= '		</div>' . "\n";
-	
-	/*$output .= 'Rektangel:';
-	$output .= '<script type="text/javascript">CM8ShowAd("Rektangel");</script>' . "\n";
-	$output .= 'Skyscrape (Höger?):';
-	$output .= '<div id="skyscraper">' . "\n";
-	$output .= '<script type="text/javascript">CM8ShowAd("Skyscraper");</script>' . "\n";
-	$output .= '</div>' . "\n";*/
 
 	if(isset($_SESSION['notice_message']))
 	{
@@ -340,6 +333,8 @@ function ui_top($options = array())
 	
 	$output .= '		<div id="ui_content">' . "\n";
 	
+	$output .= '<script type="text/javascript">CM8ShowAd("Rektangel");</script>' . "\n";
+	
 	if(isset($options['return']) && $options['return'] == true)
 	{
 		return $output;
@@ -353,6 +348,10 @@ function ui_top($options = array())
 function ui_bottom($options = array())
 {
 	$output .= '<br style="clear: both;" />' . "\n";
+	$output .= '</div>' . "\n";
+	
+	$output .= '<div id="skyscraper">' . "\n";
+	$output .= '<script type="text/javascript">CM8ShowAd("Skyscraper");</script>' . "\n";
 	$output .= '</div>' . "\n";
 	
 	$output .= '<div id="ui_modulebar">' . "\n";
