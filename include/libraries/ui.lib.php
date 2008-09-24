@@ -1,5 +1,5 @@
 <?php
-function ui_new_top($options = array())
+function ui_top($options = array())
 {
 	/* Den här raden skapades när nya ui_top skapades. Låt den vara kvar, så kommer
 	   man ha något att le åt av nostalgiska syften. 2008-08-15, Joel.
@@ -350,7 +350,7 @@ function ui_new_top($options = array())
 	}
 }
 
-function ui_new_bottom($options = array())
+function ui_bottom($options = array())
 {
 	$output .= '<br style="clear: both;" />' . "\n";
 	$output .= '</div>' . "\n";
