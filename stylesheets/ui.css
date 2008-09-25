@@ -107,24 +107,40 @@ h2
 		background: url(http://images.hamsterpaj.net/ui/ui_header_border.png) left top no-repeat;
 		height: 58px;
 	}	
-		#ui_login form
-		{
-				margin: 0;
-				padding: 0;
-		}
+	
+	#ui_header #ui_login
+	{
+		padding-left: 10px;
+		padding-top: 20px;
+	}
+	
 		#ui_header #ui_login p
 		{
-			margin-right: 5px;
+			margin: 0;
+			margin-right: 10px;
 			float: left;
 		}
-		#ui_header #ui_login input[type=submit]
+		
+		#ui_header #ui_login #ui_login_username
+		{
+				width: 125px;
+		}
+		
+		#ui_header #ui_login #ui_login_password
+		{
+				width: 125px;
+		}
+		
+		#ui_header #ui_login_submit
 		{
 			margin-top: 11px;
-		}	
-		#ui_header #ui_login_register
-		{
-			padding-top: 11px;
 		}
+		
+		#ui_header #ui_login #ui_login_register
+		{
+			margin-top: 11px;
+		}
+		
 		#ui_header #ui_noticebar h2
 		{
 			display: none;
@@ -257,7 +273,7 @@ h2
 			padding-top: 4px;
 			color: #717171;
 		}
-	
+
 #ui_menu 
 {
   background: url("http://images.hamsterpaj.net/ui/ui_menu_bg.png") repeat-x;
@@ -271,7 +287,7 @@ h2
 	  padding: 0;
 	  margin: 0;
 	}
-	#ui_menu ul li
+	#ui_menu > ul > li
 	{
 		list-style: none;
 	  float: left;
@@ -279,16 +295,7 @@ h2
 	  height: 25px;
 	  margin-right: 1px;
 	}
-		#ui_menu ul ul li
-		{
-			list-style: none;
-			float: none;
-			background: transparent;
-			height: auto;
-			margin: 0;
-			padding: 4px 0;
-		}
-	#ui_menu .root-a
+	#ui_menu > ul > li > a
 	{
 		display: block;
   	color: #960;
@@ -297,36 +304,15 @@ h2
  		height: 25px;
     padding: 4px 10px 0 10px;
 	}
-		* html #ui_menu .root-a
-		{
-			float: left;
-		}
-		* html #ui_menu li ul
-		{
-			clear: both;
-		}
-	#ui_menu ul li.hover a,
-	#ui_menu ul li:hover a 
+	#ui_menu > ul > li:hover > a 
 	{ 
 		background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left_hover.png") left top no-repeat; 
 		color: #630;
 	}
-		#ui_menu ul li.hover li a,
-		#ui_menu ul li:hover li a
-		{
-			background: transparent;
-			color: #494949;
-		}
-	#ui_menu ul li.hover,
-	#ui_menu ul li:hover
+	#ui_menu > ul > li:hover
 	{ 
 		background: url("http://images.hamsterpaj.net/ui/ui_menu_item_right_hover.png") right top no-repeat; 
 	}
-		#ui_menu ul li.hover li,
-		#ui_menu ul li:hover li
-		{
-			background: transparent;
-		}
 	#ui_menu li ul 
 	{
 		visibility: hidden;
@@ -340,7 +326,6 @@ h2
 	  padding: 2px 0 2px 38px;
 	  z-index: 1;
 	}
-	#ui_menu li.hover ul li ul,
 	#ui_menu li:hover ul li ul
 	{
 		visibility: visible;
@@ -363,18 +348,6 @@ h2
 		color: #494949;
 		display: block;
 	}
-		/* because instead of removing the initial padding from the ul, someone thought it would be nice to add -30px margin to the a (IE6 is sometimes smarter than other browsers) */
-		* html #ui_menu li ul
-		{
-			padding: 0 5px;
-		}
-			* html #ui_menu li ul ul {
-				padding: 0 10px;
-			}
-		* html #ui_menu li ul a
-		{
-			margin-left: 0;
-		}
 	#ui_menu li ul a:hover 
 	{
 		color: #000;
@@ -385,7 +358,6 @@ h2
 	{ 
 		color: #494949;
 	}
-	#ui_menu li.hover ul,
 	#ui_menu li:hover ul
 	{
 		visibility: visible;
@@ -394,13 +366,11 @@ h2
 
 #ui_modulebar
 {
-/*	margin-left: 658px;*/
+	margin-left: 658px;
 	position: relative;
 	padding: 10px 10px 10px 0;
 	z-index: 0;
-	float: right;
 }
-
 	#ui_modulebar .ui_module
 	{
 		width: 200px;
