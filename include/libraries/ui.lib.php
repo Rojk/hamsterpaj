@@ -92,6 +92,7 @@ function ui_top($options = array())
 	$options['stylesheets'][] = 'ui_modules/friends_notices.css';
 	$options['stylesheets'][] = 'ui_modules/forum_threads.css';
 	$options['stylesheets'][] = 'ui_modules/forum_posts.css';
+	$options['stylesheets'][] = 'ui_modules/multisearch.css';
 	
 	// Remove duplicates
 	$options['stylesheets'] = array_unique($options['stylesheets']);
@@ -332,6 +333,17 @@ function ui_top($options = array())
 	}
 	
 	$output .= '		<div id="ui_content">' . "\n";
+	
+	/* #### COSMOS SURVEY #### */
+		if(login_checklogin() && $_SESSION['userinfo']['birthday'] != '0000-00-00')
+ 		{
+ 			$birthday = substr($_SESSION['userinfo']['birthday'], 0, 4);
+ 			if($birthday <= 1993 && cache_load('confirmit_survey_p720992485') < 100000)
+			{
+				$output .= '<a href="http://survey.confirmit.com/wix2/p720992485.aspx?hid=1"><img src="http://images.hamsterpaj.net/ungdomsbarometern_survey.png" /></a>';
+			}
+		} 
+	/* #### COSMOS SURVEY END #### */
 	
 	$output .= '<script type="text/javascript">CM8ShowAd("Rektangel");</script>' . "\n";
 	
