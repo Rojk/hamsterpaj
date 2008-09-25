@@ -126,7 +126,7 @@ function ui_top($options = array())
 	$output .= '<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>' . "\n";
 	
 	// A big notice-bar shown on top, 60px height.
-	$full_page_notice = '<h2>Hamsterpaj kör nu för första gången den dya designen ("Amanda"), som en del av Hamsterpaj version 3.</h2>';
+	$full_page_notice = '<h2>Hamsterpaj kör nu för första gången den nya designen ("Amanda"), som en del av Hamsterpaj version 3.</h2>';
 	$full_page_notice .= '<span>Har du hittat några buggar eller fel i nya designen? Vänligen rapportera dem i <a href="/hamsterpaj/suggestions.php">förslagslådan</a>.</span>';
 	$full_page_notice_id = 'dynamic01ochumbaaerkaera'; //Set this to a unique ID for this notice
 	
