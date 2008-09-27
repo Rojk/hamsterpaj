@@ -1,5 +1,5 @@
 <?php
-function ui_new_top($options = array())
+function ui_top($options = array())
 {
 	/* Den här raden skapades när nya ui_top skapades. Låt den vara kvar, så kommer
 	   man ha något att le åt av nostalgiska syften. 2008-08-15, Joel.
@@ -92,6 +92,7 @@ function ui_new_top($options = array())
 	$options['stylesheets'][] = 'ui_modules/friends_notices.css';
 	$options['stylesheets'][] = 'ui_modules/forum_threads.css';
 	$options['stylesheets'][] = 'ui_modules/forum_posts.css';
+	$options['stylesheets'][] = 'ui_modules/multisearch.css';
 	
 	// Remove duplicates
 	$options['stylesheets'] = array_unique($options['stylesheets']);
@@ -132,9 +133,9 @@ function ui_new_top($options = array())
 	$output .= '<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>' . "\n";
 	
 	// A big notice-bar shown on top, 60px height.
-	$full_page_notice = '<h2>Hamsterpaj testar just nu en betaversion av den nya designen. Som går under utvecklingsnamnet "Amanda".</h2>';
+	$full_page_notice = '<h2>Hamsterpaj kör nu för första gången den nya designen ("Amanda"), som en del av Hamsterpaj version 3.</h2>';
 	$full_page_notice .= '<span>Har du hittat några buggar eller fel i nya designen? Vänligen rapportera dem i <a href="/hamsterpaj/suggestions.php">förslagslådan</a>.</span>';
-	$full_page_notice_id = 's2adasd'; //Set this to a unique ID for this notice
+	$full_page_notice_id = 'dynamic01ochumbaaerkaera'; //Set this to a unique ID for this notice
 	
 	// Don't remove those lines
 	if(isset($full_page_notice) && $_COOKIE[$full_page_notice_id] != 'closed')
@@ -235,8 +236,8 @@ function ui_new_top($options = array())
 	{
 		$output .= '			<div id="ui_login">' . "\n";
 		$output .= '				<form action="/login.php?action=login" method="post">' . "\n";
-		$output .= '					<p><label><strong>Användarnamn:</strong><br /><input type="text" name="username" /></label></p>' . "\n";
-		$output .= '					<p><label><strong>Lösenord:</strong><br /><input type="password" name="password" /></label></p>' . "\n";
+		$output .= '					<p><label><strong>Användarnamn:</strong><br /><input id="ui_login_username" type="text" name="username" /></label></p>' . "\n";
+		$output .= '					<p><label><strong>Lösenord:</strong><br /><input id="ui_login_password" type="password" name="password" /></label></p>' . "\n";
 		$output .= '					<p><input id="ui_login_submit" type="submit" value="Logga in" /></p>' . "\n";
 		$output .= '				</form>' . "\n";
 		$output .= '				<p id="ui_login_register"><a href="/register.php"><button>Registrera</button></a></p>';
@@ -295,13 +296,6 @@ function ui_new_top($options = array())
 	$output .= '				</ul>' . "\n";
 	$output .= '<img src="http://images.hamsterpaj.net/steve/steve.gif" id="steve" />' . "\n";
 	$output .= '		</div>' . "\n";
-	
-	/*$output .= 'Rektangel:';
-	$output .= '<script type="text/javascript">CM8ShowAd("Rektangel");</script>' . "\n";
-	$output .= 'Skyscrape (Höger?):';
-	$output .= '<div id="skyscraper">' . "\n";
-	$output .= '<script type="text/javascript">CM8ShowAd("Skyscraper");</script>' . "\n";
-	$output .= '</div>' . "\n";*/
 
 	if(isset($_SESSION['notice_message']))
 	{
@@ -346,6 +340,19 @@ function ui_new_top($options = array())
 	
 	$output .= '		<div id="ui_content">' . "\n";
 	
+	/* #### COSMOS SURVEY #### */
+		if(login_checklogin() && $_SESSION['userinfo']['birthday'] != '0000-00-00')
+ 		{
+ 			$birthday = substr($_SESSION['userinfo']['birthday'], 0, 4);
+ 			if($birthday <= 1993 && cache_load('confirmit_survey_p720992485') < 100000)
+			{
+				$output .= '<a href="http://survey.confirmit.com/wix2/p720992485.aspx?hid=1"><img src="http://images.hamsterpaj.net/ungdomsbarometern_survey.png" /></a>';
+			}
+		} 
+	/* #### COSMOS SURVEY END #### */
+	
+	$output .= '<script type="text/javascript">CM8ShowAd("Rektangel");</script>' . "\n";
+	
 	if(isset($options['return']) && $options['return'] == true)
 	{
 		return $output;
@@ -356,9 +363,13 @@ function ui_new_top($options = array())
 	}
 }
 
-function ui_new_bottom($options = array())
+function ui_bottom($options = array())
 {
 	$output .= '<br style="clear: both;" />' . "\n";
+	$output .= '</div>' . "\n";
+	
+	$output .= '<div id="skyscraper">' . "\n";
+	$output .= '<script type="text/javascript">CM8ShowAd("Skyscraper");</script>' . "\n";
 	$output .= '</div>' . "\n";
 	
 	$output .= '<div id="ui_modulebar">' . "\n";
