@@ -567,24 +567,6 @@ function avatar_popup()
 
 womAdd('user_avatars()');
 
-/* Auto-update of the login pane */
-function login_status_bar_ajax(update)
-{
-	if(update == true)
-	{
-		load_login_data('/login_status_bar_ajax.php', 'login_pane');
-	}
-	setTimeout("login_status_bar_ajax(true)", 40000);
-}
-
-function enable_login_status_bar_ajax()
-{
-	if(!document.getElementById('login_form'))
-	{
-		setTimeout("login_status_bar_ajax(true)", 40000);
-	}	
-}
-
 function hide_ie6_warning()
 {
 	document.getElementById('ie6_warning').style.display = 'none';	
