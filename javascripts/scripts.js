@@ -599,4 +599,3 @@ function abuse_buttons_enable()
 
 
 womAdd('abuse_buttons_enable()');
-womAdd('enable_login_status_bar_ajax()');
