@@ -13,11 +13,13 @@
 	if(isset($_GET['fetch']) && !empty($_GET['fetch']))
 	{
 		$objects_to_fetch = explode(',', $_GET['fetch']);
+		$fetched_ui_notices = false;
 		foreach($objects_to_fetch as $object_to_fetch)
 		{
-			if(in_array($object_to_fetch, array('ui_noticebar_guestbook', 'ui_noticebar_discussion_forum', 'ui_noticebar_groups')))
+			if(in_array($object_to_fetch, array('ui_noticebar_guestbook', 'ui_noticebar_discussion_forum', 'ui_noticebar_groups')) && !$fetched_ui_notices)
 			{
 				$notices = ui_notices_fetch();
+				$fetched_ui_notices = true;
 			}
 			switch($object_to_fetch)
 			{				
