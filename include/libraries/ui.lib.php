@@ -41,14 +41,26 @@ function ui_top($options = array())
 	$options['stylesheets'] = (isset($options['stylesheets']) && is_array($options['stylesheets'])) ? $options['stylesheets'] : array();
 	
 	// Javascripts (Order: jQuery, Womlib (needs jQuery to work properly!), synchronize, The rest...)
+	if(login_checklogin())
+	{
 	$options['javascripts'] = array_merge(array(
 		'jquery.js',
 		'womlib.js',
 		'jquery.dimensions.js',
 		'jquery-ui.js',
-		'jquery.cookie.js',
 		'synchronize.js'
 	), $options['javascripts']);
+	}
+	else
+	{
+		$options['javascripts'] = array_merge(array(
+		'jquery.js',
+		'womlib.js',
+		'jquery.dimensions.js',
+		'jquery-ui.js'
+	), $options['javascripts']);
+	}
+	
 	$options['javascripts'][] = 'ui_server_message.js';
 	$options['javascripts'][] = 'scripts.js';
 	$options['javascripts'][] = 'steve.js';
