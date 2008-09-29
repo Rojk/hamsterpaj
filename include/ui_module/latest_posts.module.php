@@ -1,4 +1,5 @@
 <?php
+/*
 	$threads = cache_load('latest_forum_posts');
 	
 	$options['output'] .= '<ul>' . "\n";
@@ -9,4 +10,5 @@
 		$options['output'] .= '<li><span class="ui_module_latest_posts_written">' . date('H:i', $thread['last_post_timestamp']) . '</span> <a title="' . $info . '" href="' . $thread['url'] . '">' . $thread['title'] . '</a></li>' . "\n";
 	}
 	$options['output'] .= '</ul>' . "\n";
+*/
 ?>

@@ -1,4 +1,5 @@
 <?php
+/*
 	$threads = cache_load('latest_forum_threads');
 	
 	$options['output'] .= '<ul>' . "\n";
@@ -14,4 +15,5 @@
 	{
 			$options['output'] .= '<img src="' . IMAGE_URL . 'steve/icon_gun.gif" id="steve_gun" />' . "\n";
 	}
+	*/
 ?>
