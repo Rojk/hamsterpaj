@@ -145,10 +145,11 @@ function ui_top($options = array())
 	$output .= '<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>' . "\n";
 	
 	// A big notice-bar shown on top, 60px height.
+/*	
 	$full_page_notice = '<h2>Något är jävligt fel med Amanda. Lef felsöker, därför kan det vara lite mobbat för stunden</h2>';
 	$full_page_notice .= '<span>Lol</span>';
 	$full_page_notice_id = 'dynamadsic01ochumbaaerkaera'; //Set this to a unique ID for this notice
-	
+*/	
 	// Don't remove those lines
 	if(isset($full_page_notice) && $_COOKIE[$full_page_notice_id] != 'closed')
 	{
