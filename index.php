@@ -2,8 +2,11 @@
 	/* OPEN_SOURCE */
 	
 //	require('include/core/common.php');
+
+	$timer['beginning'] = microtime(true);
 	require('include/core/common.php');
 	require(PATHS_INCLUDE  . 'libraries/photos.lib.php');
+	$timer['after_includes'] = microtime(true);
 	$ui_options['stylesheets'][] = 'start.css';
 	$ui_options['javascripts'][] = 'start.js';
 	$ui_options['stylesheets'][] = 'photos.css';
@@ -11,6 +14,7 @@
 	$ui_options['menu_path'] = array('hamsterpaj');
 	$ui_options['adtoma_category'] = 'start';
 	ui_top($ui_options);
+	$timer['after_ui_top'] = microtime(true);
 	
 	$headings[999] = (date('m-d') == '06-20') ? 'Glad midsommar önskar vi på Hamsterpaj!<br />Och grattis säger vi till <a href="/traffa/profile.php?id=15">Heggan</a> som fyller år idag!' : '';
 	$headings[998] = (date('m-d') == '11-06') ? 'Idag äter man bakelser i Göteborg, i övriga landet flaggar man!' : '';
@@ -300,12 +304,15 @@
 	}
 	
 	$output .= isset($_GET['ilovemarquee']) ? '</div></marquee>' : '';
-	
+	$timer['outputing_content'] = microtime(true);
 	echo $output;
 	/*echo '<img src="http://bloggsok.se/BlogPortal/view/SearchEntry?searchText=fra-lagen" width="0" height="0" />';
 	echo '<img src="http://bloggsok.se/BlogPortal/view/SearchEntry?searchText=string" width="0" height="0" />';
 	echo '<img src="http://bloggsok.se/BlogPortal/view/SearchEntry?searchText=marijuana" width="0" height="0" />';
 	echo '<img src="http://bloggsok.se/BlogPortal/view/SearchEntry?searchText=stay-ups" width="0" height="0" />';
 	*/
+	$timer['content_probably_sent_to_output_buffer'] = microtime(true);
 	ui_bottom();
+	$timer['ui_bottom_done_dumping_results_and_halt'] = microtime(true);
+	preint_r($timer);
 ?>
