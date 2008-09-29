@@ -390,19 +390,19 @@ function ui_bottom($options = array())
 	$output .= '</div>' . "\n";
 	
 	$output .= '<div id="ui_modulebar">' . "\n";
-/*	
+
 	$modules = array(
 		'multisearch' => 'Multi-sök',
 		'latest_threads' => 'Forumtrådar',
 		'latest_posts' => 'Inlägg i forumet'
 	);
-	
+	/*
 	if ( login_checklogin() )
 	{
 		$modules['friends_online'] = 'Vänner online';
 		$modules['friends_notices'] = 'Vänner(s)notiser'; 
 	}
-	
+	*/
 	foreach(array('discussion_forum_remove_posts', 'discussion_forum_edit_posts', 'discussion_forum_rename_threads', 'discussion_forum_lock_threads', 'discussion_forum_sticky_threads', 'discussion_forum_move_thread', 'discussion_forum_post_addition') as $privilegie)
 	{
 		if (is_privilegied($privilegie))
@@ -439,7 +439,7 @@ function ui_bottom($options = array())
 			)));
 		}
 	}
-*/	
+	
 	$output .= '		</div>' . "\n";
 	$output .= '	<div id="ui_break"></div> ' . "\n";
 	$output .= '	</div>' . "\n";
