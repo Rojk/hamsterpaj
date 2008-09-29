@@ -4,7 +4,7 @@ if(typeof(hp) == 'undefined'){ var hp=new Object(); }
 hp.ui = {
 	init: function()
 	{
-		//this.noticebar.init();
+		this.noticebar.init();
 		this.user_search.init();
 		this.hackerlund.init();
 		this.grotescopaj.init();
