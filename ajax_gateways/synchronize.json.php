@@ -1,4 +1,5 @@
 <?php
+die('[]');
 	/*
 		It is very important that output is properly escaped.
 		If not, we may end upp with a XSS-attack.
