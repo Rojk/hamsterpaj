@@ -396,7 +396,7 @@ function ui_bottom($options = array())
 		'latest_threads' => 'Forumtrådar',
 		'latest_posts' => 'Inlägg i forumet'
 	);
-	*/
+	
 	if ( login_checklogin() )
 	{
 		$modules['friends_online'] = 'Vänner online';
@@ -439,7 +439,7 @@ function ui_bottom($options = array())
 			)));
 		}
 	}
-	
+	*/
 	$output .= '		</div>' . "\n";
 	$output .= '	<div id="ui_break"></div> ' . "\n";
 	$output .= '	</div>' . "\n";
