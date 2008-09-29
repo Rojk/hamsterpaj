@@ -207,6 +207,8 @@
 	
 function cache_update_all()
 {
+	// Turning off for debug purposes
+	return;
 	cache_update_bookmarks();
 	cache_update_lastaction();
 	cache_update_groups();
