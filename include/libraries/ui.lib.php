@@ -390,7 +390,7 @@ function ui_bottom($options = array())
 	$output .= '</div>' . "\n";
 	
 	$output .= '<div id="ui_modulebar">' . "\n";
-
+/*
 	$modules = array(
 		'multisearch' => 'Multi-sök',
 		'latest_threads' => 'Forumtrådar',
@@ -439,7 +439,7 @@ function ui_bottom($options = array())
 			)));
 		}
 	}
-	
+	*/
 	$output .= '		</div>' . "\n";
 	$output .= '	<div id="ui_break"></div> ' . "\n";
 	$output .= '	</div>' . "\n";
