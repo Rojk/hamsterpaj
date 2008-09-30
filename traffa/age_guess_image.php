@@ -4,9 +4,9 @@
 	
 	include('../include/core/common.php');
 	
-	$sql = 'SELECT id FROM login WHERE MD5(id) = ' . $_GET['user_hash'];
+	$sql = 'SELECT id FROM login WHERE MD5(id) = "' . $_GET['user_hash'] . '" LIMIT 1;';
 	
-	$result = mysql_query($sql) or die('Dummer, det här fungerar ju inte.');
+	$result = mysql_query($sql) or die('Dummer, det här fungerar ju inte.<br />' . mysql_error());
 	
 	$data = mysql_fetch_assoc($result);
 	
