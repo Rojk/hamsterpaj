@@ -203,7 +203,7 @@
 		$_SESSION['age_guess']['seen_users'][] = $data['id'];
 		$_SESSION['age_guess']['viewed_images']++;
 		
-		$return .= '<img src="' . IMAGE_URL . 'images/users/full/' . $_SESSION['age_guess']['current_user'] . '.jpg" />' . "\n";
+		$return .= '<img src="/traffa/age_guess_image.php?user_hash=' . md5($_SESSION['age_guess']['current_user']) . '" />' . "\n";
 
 		return $return;
 	}
