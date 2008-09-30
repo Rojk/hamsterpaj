@@ -512,3 +512,8 @@ h2
 	cursor: pointer;
 	display: block;
 }
+
+.ui_avatar
+{
+	cursor: pointer;
+}
