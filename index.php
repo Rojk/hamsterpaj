@@ -58,27 +58,11 @@
 		}
 	}
 	
-/*
-	$output .= '<div class="warning">' . "\n";
-	$output .= '<h2>Hamsterpaj är lite buggigt just nu</h2>' . "\n";
-	$output .= '<p>' . "\n";
-	$output .= 'Joel pillar på menyn, så det kan hända sig att sidan buggar just nu. Men vi jobbar på det. Så starta inte massa trådar om det är ni snälla :)' . "\n";
-	$output .= '</p>' . "\n";
-	$output .= '</div>' . "\n";
-*/
-	
 	//$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
-	$kebabad .= (date('m-d') == '09-20') ? '0darkebab' : '';
-	$kebabad .= (date('m-d') == '09-19') ? '1darkebab' : '';
-	$kebabad .= (date('m-d') == '09-18') ? '2darkebab' : '';
-	$kebabad .= (date('m-d') == '09-17') ? '3darkebab' : '';
-	$kebabad .= (date('m-d') == '09-16') ? '4darkebab' : '';
-	$kebabad .= (date('m-d') == '09-15') ? '5darkebab' : '';
-	if(isset($kebabad))
-	{
-			$output .= '<a href="http://www.hamsterpaj.net/traffa/irl.php?action=show_information&irl=2"><img src="http://images.hamsterpaj.net/' . $kebabad . '.gif" /></a>';
-	}
 	
+	/* #### COSMOS SURVEY #### */
+		$output .= '<a href="http://survey.confirmit.com/wix2/p720992485.aspx?hid=1"><img src="http://images.hamsterpaj.net/ungdomsbarometern_survey.png" /></a>';
+	/* #### COSMOS SURVEY END #### */
 	
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.28.207.226') ? '<h1>Va? Har ni inte slutat ännu? Kullaviksskolan är alltså före er!</h1>' : '';
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.21.232.204') ? '<h2>En blackebergare? Silfverstolpe is watching you!<h2>' : '';
