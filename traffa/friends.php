@@ -73,12 +73,6 @@
 		$query .= ' VALUES("' . time() . '", "' . $_SESSION['login']['id'] . '", "friendship", "/traffa/profile.php?id=' . $_GET['id'] . '", "' . $user['username'] . '")';
 		mysql_query($query);
 		
-		friends_actions_insert(array(
-			'action' => 'friendship',
-			'url' => '/traffa/profile.php?user_id=' . $_GET['id'],
-			'label' => $user['username']
-		));
-		
 		$output .= '<form action="/traffa/guestbook.php?action=send_new_message&userid=' . $_GET['user_id'] . '" method="post">' . "\n";
 		$output .= '<p>Vi tänkte att du kanske vill tala om för ' . $user['username'] . ' att du lagt till henne/honom som vän. Här har du ett gästboksformulär</p>' . "\n";
 		$output .= '<textarea name="message" class="textbox" rows="3" cols="75">Hej, jag har lagt till dig som vän nu :)</textarea>' . "\n";
