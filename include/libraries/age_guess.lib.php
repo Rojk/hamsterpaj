@@ -189,7 +189,7 @@
 		
 		$query = 'SELECT l.id, l.username, u.birthday FROM login AS l, userinfo AS u';
 		$query .= ' WHERE l.id NOT IN ("' . implode('", "', $_SESSION['age_guess']['seen_users']) . '")';
-		$query .= ' AND u.birthday != "0000-00-00" AND l.id = u.userid AND u.image = 2 AND l.username NOT LIKE "Borttagen"';
+		$query .= ' AND u.birthday != "0000-00-00" AND l.id = u.userid AND u.image = 2 AND l.is_removed = 0';
 		$query .= ' AND u.birthday > "' . $date_min . '" AND u.birthday < "' . $date_max . '"';
 		$query .= ' ORDER BY l.lastlogon DESC LIMIT ' . rand(0, 100) . ', 1';
 

@@ -178,7 +178,7 @@
 		$y_max = $_SESSION['userinfo']['y_rt90'] + $rt90_close_distance;
 		$y_min = $_SESSION['userinfo']['y_rt90'] - $rt90_close_distance;
 		
-		$query = 'SELECT u.userid, l.username, z.x_rt90, z.y_rt90, u.gender, u.image, u.birthday, l.lastlogon FROM userinfo AS u, login AS l, zip_codes AS z WHERE l.username NOT LIKE "Borttagen" ';
+		$query = 'SELECT u.userid, l.username, z.x_rt90, z.y_rt90, u.gender, u.image, u.birthday, l.lastlogon FROM userinfo AS u, login AS l, zip_codes AS z WHERE l.is_removed = 0 ';
 		$query .= 'AND l.id = u.userid AND z.zip_code = u.zip_code ';
 		$query .= ' AND (z.x_rt90 > ' . $x_min . ' && z.x_rt90 < ' . $x_max . ') ';
 		$query .= ' && (z.y_rt90 > ' . $y_min . ' && z.y_rt90 < ' . $y_max . ') LIMIT 100';

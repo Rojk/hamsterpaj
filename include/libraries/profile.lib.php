@@ -18,7 +18,7 @@
 			$query .= ' WHERE l.id = "' . $options['user_id'] . '" AND u.userid = l.id AND z.zip_code = u.zip_code AND p.userid = l.id';
 			if((!isset($options['show_removed_users'])) || (isset($options['show_removed_users']) && $options['show_removed_users'] == false))
 			{
-				$query .= ' AND l.username NOT LIKE "Borttagen"';
+				$query .= ' AND l.is_removed = 0';
 			}
 			$query .= ' LIMIT 1';
 			

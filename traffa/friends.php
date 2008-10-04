@@ -88,7 +88,7 @@
 	
 	
 	/* Fetch everyone that the user has marked as a friend */
-	$query = 'SELECT f.friend_id AS user_id, l.username, l.lastaction, u.image, u.gender, u.birthday FROM friendslist AS f, login AS l, userinfo AS u WHERE f.user_id = "' . $user_id . '" AND l.id = f.friend_id AND u.userid = l.id AND l.username NOT LIKE "Borttagen" ORDER BY l.username ASC';
+	$query = 'SELECT f.friend_id AS user_id, l.username, l.lastaction, u.image, u.gender, u.birthday FROM friendslist AS f, login AS l, userinfo AS u WHERE f.user_id = "' . $user_id . '" AND l.id = f.friend_id AND u.userid = l.id AND l.is_removed = 0 ORDER BY l.username ASC';
 	$result = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));	
 	while($data = mysql_fetch_assoc($result))
 	{
@@ -96,7 +96,7 @@
 	}
 
 	/* Fetch all users that wants to be the users friend */
-	$query = 'SELECT f.user_id AS user_id, l.username, l.lastaction, u.image, u.gender, u.birthday FROM friendslist AS f, login AS l, userinfo AS u WHERE f.friend_id = "' . $user_id . '" AND l.id = f.user_id AND u.userid = l.id AND l.username NOT LIKE "Borttagen"';
+	$query = 'SELECT f.user_id AS user_id, l.username, l.lastaction, u.image, u.gender, u.birthday FROM friendslist AS f, login AS l, userinfo AS u WHERE f.friend_id = "' . $user_id . '" AND l.id = f.user_id AND u.userid = l.id AND l.is_removed = 0';
 	$result = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 	while($data = mysql_fetch_assoc($result))
 	{

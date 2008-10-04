@@ -2,7 +2,7 @@
 
 unset($info);
 
-$result = mysql_query('SELECT COUNT(*) AS members FROM login WHERE username NOT LIKE "Borttagen"');
+$result = mysql_query('SELECT COUNT(*) AS members FROM login WHERE is_removed = 0');
 $data = mysql_fetch_assoc($result);
 $info['members'] = $data['members'];
 
