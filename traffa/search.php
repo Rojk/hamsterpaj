@@ -17,7 +17,7 @@
 function traffa_make_search()
 {
 
-	$query = 'SELECT login.username, login.id AS userid, login.lastaction, userinfo.gender, userinfo.birthday, userinfo.image, z.spot AS geo_location FROM userinfo, login, zip_codes AS z WHERE userinfo.userid = login.id AND login.username <> "Borttagen" AND z.zip_code = userinfo.zip_code ';
+	$query = 'SELECT login.username, login.id AS userid, login.lastaction, userinfo.gender, userinfo.birthday, userinfo.image, z.spot AS geo_location FROM userinfo, login, zip_codes AS z WHERE userinfo.userid = login.id AND login.is_removed = 0 AND z.zip_code = userinfo.zip_code ';
 
 
 	if (isset($_POST['username']))
