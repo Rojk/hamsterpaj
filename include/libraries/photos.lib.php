@@ -157,7 +157,7 @@
 		$query .= ' FROM user_photos AS up, login AS l';
 		$query .= ' WHERE l.id = up.user';
 		$query .= ' AND up.deleted = 0';
-		$query .= ($_GET['slutatabort'] && is_privilegied('use_ghosting_tools')) ? '' : ' AND l.username NOT LIKE "borttagen"';
+		$query .= ($_GET['slutatabort'] && is_privilegied('use_ghosting_tools')) ? '' : ' AND l.is_removed = 0';
 		$query .= (isset($options['id'])) ? ' AND up.id IN("' . implode('", "', $options['id']) . '")' : '';
 		$query .= (isset($options['user'])) ? ' AND up.user  = "' . $options['user'] . '"' : '';
 		$query .= (isset($options['date'])) ? ' AND up.date IN("' . implode('", "', $options['date']) . '")' : '';
