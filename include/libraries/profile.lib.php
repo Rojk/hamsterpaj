@@ -378,14 +378,4 @@
 		
 		return $return;
 	}
-	
-	/* function profile_new_user_action($options)
-	{
-		$options['user_id'] = isset($options['user_id']) ? $options['user_id'] : $_SESSION['login']['id'];
-		$options[''] = ;
-		
-		$query = 'INSERT INTO user_action_log (timestamp, user, action, url, label)';
-		$query .= ' VALUES("' . time() . '", "' . $options['user_id'] . '", "diary", "/traffa/diary.php?user=' . $options['user_id'] . '&entry=' . $options['entry_id'] . '", "' . $options['title'] . '")';
-		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-	}*/
 ?>
