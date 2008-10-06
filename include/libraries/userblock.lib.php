@@ -3,11 +3,15 @@
 	
 	function userblock_checkblock($object_id)
 	{
+		if (strlen($object_id) === 0 && !is_numeric($object_id))
+		{
+			return false;
+		}
 		$sql = 'SELECT * FROM userblocks WHERE ownerid = ' . $object_id . ' AND blockedid = ' . $_SESSION['userid'] . ' LIMIT 1';
 		$result = mysql_query($sql) or report_sql_error($sql, __FILE__, __LINE__);
 		$data = mysql_fetch_assoc($result);
 		
-		if ($data['blockedid'] === $_SESSION['userid'])
+		if ($data['blockedid'] === $_SESSION['userid'] && !is_privilegied('igotgodmode'))
 		{
 			return true;
 		}
