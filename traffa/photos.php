@@ -5,6 +5,7 @@
 	require(PATHS_INCLUDE . 'libraries/photos.lib.php');
 	require(PATHS_INCLUDE . 'libraries/comments.lib.php');
 	require(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
+	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
 	
 	$ui_options['stylesheets'][] = 'user_profile.css';
 	$ui_options['stylesheets'][] = 'photos.css';
