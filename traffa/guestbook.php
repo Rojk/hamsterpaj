@@ -44,6 +44,14 @@
 			ui_bottom();
 			exit; //Important!
 		}
+		
+		if (userblock_checkblock($fetch['recipient']))
+		{
+			ui_top();
+			echo '<p class="error">IXΘYΣ! Du har blivit blockad, var snel hest så slipper du sånt ;)<br /><em>Visste du förresten att IXΘYΣ betyder Fisk på grekiska?</em></p>';
+			ui_bottom();
+			exit;
+		}
 
 		// Joar är stolt över detta, ge honom en klapp på ryggen.
 		$title_start = $profile['username'];

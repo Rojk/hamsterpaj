@@ -2,7 +2,17 @@
 	require('../include/core/common.php');
 	require(PATHS_INCLUDE . 'libraries/photos.lib.php');
 	require(PATHS_INCLUDE . 'libraries/comments.lib.php');
+	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
 
+
+	if (userblock_checkblock($GET['id']))
+	{
+		ui_top();
+		echo '<p class="error">IXΘYΣ! Du har blivit blockad, var snel hest så slipper du sånt ;)<br /><em>Visste du förresten att IXΘYΣ betyder Fisk på grekiska?</em></p>';
+		ui_bottom();
+		exit;
+	}
+	
 	if(isset($_GET['action']))
 	{
 		switch($_GET['action'])
@@ -10,6 +20,7 @@
 			case 'get_category_photos':
 				$out .= '<a id="photo"></a>' . "\n";
 				$photos = photos_fetch(array('id' => $_GET['id']));
+				
 					if(count($photos) > 0)
 					{
 						$user_id = $photos[0]['user'];

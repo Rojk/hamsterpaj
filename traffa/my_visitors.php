@@ -49,6 +49,14 @@
 	
 	$ui_options['stylesheets'][] = 'profile_themes/' . $profile['profile_theme'] . '.css';
 
+	if (userblock_checkblock($show_user_id))
+	{
+		ui_top();
+		echo '<p class="error">IXΘYΣ! Du har blivit blockad, var snel hest så slipper du sånt ;)<br /><em>Visste du förresten att IXΘYΣ betyder Fisk på grekiska?</em></p>';
+		ui_bottom();
+		exit;
+	}
+	
 	ui_top($ui_options);
 
 	echo profile_mini_page($profile);
