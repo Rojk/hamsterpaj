@@ -5,6 +5,10 @@
 	
 	if($_POST['action'] == 'insert' && login_checklogin())
 	{
+		if (userblock_checkblock($_POST['recipient']))
+		{
+			die('FISK! Du är blockad!');
+		}
 		$entry['sender'] = $_SESSION['login']['id'];
 		$entry['recipient'] = $_POST['recipient'];
 		$entry['message'] = utf8_encode($_POST['message']);
