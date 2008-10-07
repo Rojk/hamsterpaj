@@ -60,7 +60,7 @@
 	
 	//$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
 
-	$output .= '<h2>Grattis till Chaosweaver som fyller 22 år, svårt att tro när han så kort, men men. :)<br />Om ni känner att ni har tid så kan ni antingen sparka på honom eller gratta honom i den <a href="/diskussionsforum/hamsterpaj/grattis_till_chaosweaver/">här tråden.</a></h2>';
+	$output .= '<h2>Grattis till Chaosweaver som fyller 22 år, svårt att tro när han så kort, men men. :)<br />Om ni känner att ni har tid så kan ni antingen sparka på honom eller gratta honom i den <a href="/diskussionsforum/hamsterpaj/grattis_till_chaosweaver/sida1.php">här tråden.</a></h2>';
 	
 	/* #### COSMOS SURVEY #### */
 		$output .= '<a href="http://survey.confirmit.com/wix2/p720992485.aspx?hid=1"><img src="http://images.hamsterpaj.net/ungdomsbarometern_survey.png" /></a>';
