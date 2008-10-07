@@ -1,9 +1,19 @@
 <?php
-	// NEW Standards, always use ?user_id= when retrieving or sending an user id.
 	
 	function userblock_checkblock($object_id)
 	{
-		if (strlen($object_id) === 0 && !is_numeric($object_id))
+		// PREVENT SQL QUERY ERROR DUE TO MISSING OBJECT ID
+		if (strlen($object_id) == 0)
+		{
+			return false;
+		}
+		// PREVENT SQL INJECTIONS VIA INTEGER QUERY OBJECT
+		elseif (!is_numeric($object_id))
+		{
+			return false;
+		}
+		// PREVENT SQL QUERY ERROR DUE TO NOT LOGGED IN USER
+		elseif (!login_checklogin())
 		{
 			return false;
 		}
@@ -15,13 +25,19 @@
 		{
 			return true;
 		}
+		elseif ($data['blockedid'] === $_SESSION['userid'] && is_privilegied('igotgodmode'))
+		{
+			echo '<p class="error"><strong>Den här användaren har blockerat dig!</strong><br />' . "\n";
+			echo 'Men eftersom du är 1337 h4xx0r så kan du se personens presentation i alla fall :)</p>' . "\n";
+		}
 		else
 		{
 			return false;
 		}
-			
+		
 	}
 	
+	// THIS FUNCTION IS NOT USED ANYMORE.
 	function retrieve_userblock()
 	{
 		if(isset($_GET['user_id']) && is_numeric($_GET['user_id']))
