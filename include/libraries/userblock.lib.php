@@ -27,8 +27,8 @@
 		}
 		elseif ($data['blockedid'] === $_SESSION['userid'] && is_privilegied('igotgodmode'))
 		{
-			echo '<p class="error"><strong>Den här användaren har blockerat dig!</strong><br />' . "\n";
-			echo 'Men eftersom du är 1337 h4xx0r så kan du se personens presentation i alla fall :)</p>' . "\n";
+			echo '<p class="error"><strong>Den h&auml;r anv&auml;ndaren har blockerat dig!</strong><br />' . "\n";
+			echo 'Men eftersom du &auml;r 1337 h4xx0r s&aring; kan du se personens presentation i alla fall :)</p>' . "\n";
 		}
 		else
 		{
