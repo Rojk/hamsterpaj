@@ -184,7 +184,7 @@ function ui_top($options = array())
 		$output .= '					</li>' . "\n";
 		
 		$output .= '					<li id="ui_noticebar_forum_container">' . "\n";
-		$output .= '						<a id="ui_noticebar_forum' . ($notices['discussion_forum']['new_notices'] > 0 ? '_active' : '') . '" href="/diskussionsforum/notiser.php">';
+		$output .= '						<a id="ui_noticebar_forum" ' . ($notices['discussion_forum']['new_notices'] > 0 ? 'class="ui_noticebar_active"' : '') . ' href="/diskussionsforum/notiser.php">';
 		$output .=								(($notices['discussion_forum']['new_notices'] > 0) ? (($notices['discussion_forum']['new_notices'] == 1) ? 'Ny notis' : $notices['discussion_forum']['new_notices'] . ' nya') : 'Forum');
 		$output .= '						</a>' . "\n";
 		$output .= '						<ul class="ui_noticebar_info">' . "\n";
@@ -197,7 +197,7 @@ function ui_top($options = array())
 		$output .= '					</li>' . "\n";
 		
 		$output .= '					<li id="ui_noticebar_groups_container">' . "\n";
-		$output .= '						<a id="ui_noticebar_groups' . ($notices['groups']['unread_notices'] > 0 ? '_active' : '') . '" href="/traffa/groupnotices.php">';
+		$output .= '						<a id="ui_noticebar_groups" ' . ($notices['groups']['unread_notices'] > 0 ? 'class="ui_noticebar_active"' : '') . ' href="/traffa/groupnotices.php">';
 		$output .= 								(($notices['groups']['unread_notices'] >= 1) ? (($notices['groups']['unread_notices'] == 1) ? 'Ett nytt' : $notices['groups']['unread_notices'] . ' nya') : 'Grupper');
 		$output .= '						</a>' . "\n";
 		$output .= '						<ul class="ui_noticebar_info">' . "\n";
@@ -210,7 +210,7 @@ function ui_top($options = array())
 		$output .= '					</li>' . "\n";
 		
 		$output .= '					<li>' . "\n";
-		$output .= '						<a id="ui_noticebar_events' . (($notices['photo_comments'] + $notices['messages'] > 0) ? '_active' : '') . '" href="/traffa/events.php">' . (($notices['photo_comments'] + $notices['messages'] >= 1) ? (($notices['photo_comments'] + $notices['messages'] == 1) ? 'En ny' : ($notices['photo_comments'] + $notices['messages']) . ' nya') : 'Händelser') . '</a>' . "\n";
+		$output .= '						<a id="ui_noticebar_events" ' . (($notices['photo_comments'] + $notices['messages'] > 0) ? 'class="ui_noticebar_active"' : '') . ' style="background-image: url(http://images.hamsterpaj.net/ui/events/events' . date('j') . '.png)" href="/traffa/events.php">' . (($notices['photo_comments'] + $notices['messages'] >= 1) ? (($notices['photo_comments'] + $notices['messages'] == 1) ? 'En ny' : ($notices['photo_comments'] + $notices['messages']) . ' nya') : 'Händelser') . '</a>' . "\n";
 		$output .= '						<ul class="ui_noticebar_info">' . "\n";
 		$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina h&auml;ndelser</h3></li>' . "\n";
 		$output .= '						</ul>' . "\n";
