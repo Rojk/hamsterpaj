@@ -37,6 +37,14 @@
 		exit; //Important!
 	}
 	
+	if (userblock_checkblock($user_id))
+	{
+		ui_top();
+		echo '<p class="error">IXΘYΣ! Du har blivit blockad, var snel hest så slipper du sånt ;)<br /><em>Visste du förresten att IXΘYΣ betyder Fisk på grekiska?</em></p>';
+		ui_bottom();
+		exit;
+	}
+	
 	
 	/* Fetch profile data... */
 	$params['user_id'] = $user_id;

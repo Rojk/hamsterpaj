@@ -5,6 +5,7 @@
 	require(PATHS_INCLUDE . 'libraries/photos.lib.php');
 	require(PATHS_INCLUDE . 'libraries/comments.lib.php');
 	require(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
+	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
 	
 	$ui_options['stylesheets'][] = 'user_profile.css';
 	$ui_options['stylesheets'][] = 'photos.css';
@@ -83,13 +84,13 @@
 	{
 	if(isset($_GET['id']))
 	{
-			$query = 'SELECT user FROM user_photos WHERE id = ' . $_GET['id'] . ' LIMIT 1';
-			$result = mysql_query($query);
-			$data = mysql_fetch_assoc($result);
-			if (substr($_SERVER["REQUEST_URI"], 0, 21) != "/traffa/photos.php?ajax")
-			{
-				header('Location: /traffa/photos.php?ajax&user_id=' . $data['user'] . '&image_id=' . $_GET['id'] . '');
-			}
+		$query = 'SELECT user FROM user_photos WHERE id = ' . $_GET['id'] . ' LIMIT 1';
+		$result = mysql_query($query);
+		$data = mysql_fetch_assoc($result);
+		if (substr($_SERVER["REQUEST_URI"], 0, 21) != "/traffa/photos.php?ajax")
+		{
+			header('Location: /traffa/photos.php?ajax&user_id=' . $data['user'] . '&image_id=' . $_GET['id'] . '');
+		}
 	}
 	elseif(isset($_GET['category']))
 	{
@@ -120,6 +121,14 @@
 		$output .= '<h1>Endast medlemmar</h1>';
 	}
 
+	if (userblock_checkblock($user_id))
+	{
+		ui_top();
+		echo '<p class="error">IXΘYΣ! Du har blivit blockad, var snel hest så slipper du sånt ;)<br /><em>Visste du förresten att IXΘYΣ betyder Fisk på grekiska?</em></p>';
+		ui_bottom();
+		exit;
+	}
+	
 	if(isset($user_id))
 	{
 		$profile = profile_fetch(array('user_id' => $user_id));

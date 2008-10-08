@@ -62,9 +62,11 @@ function doCloseMin() {
 		var minimize = $('<a class="ui_module_minimize" href="#">_</a>').prependTo(item);
  	 	//var remove = $('<a class="ui_module_close" href="#">x</a>').prependTo(item);
  	 	
- 	 //	remove.click(killModule);
+ 	 	//remove.click(killModule);
  	 	minimize.click(minModule);
-	}).css('cursor', 'move');
+		
+		$('h2', this).css('cursor', 'move');
+	});
 }
 
 function killModule() {

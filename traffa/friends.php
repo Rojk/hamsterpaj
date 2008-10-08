@@ -26,6 +26,15 @@
 		ui_bottom();
 		exit;
 	}
+	
+	
+	if (userblock_checkblock($user_id))
+	{
+		ui_top();
+		echo '<p class="error">IXΘYΣ! Du har blivit blockad, var snel hest så slipper du sånt ;)<br /><em>Visste du förresten att IXΘYΣ betyder Fisk på grekiska?</em></p>';
+		ui_bottom();
+		exit;
+	}
 		
 	function render_friends_list($friends, $params = array())
 	{
