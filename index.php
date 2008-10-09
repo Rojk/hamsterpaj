@@ -59,8 +59,6 @@
 	}
 	
 	$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
-
-	$output .= '<h2>Grattis till Chaosweaver som fyller 22 år, svårt att tro när han är så kort, men men. :)<br />Om ni känner att ni har tid så kan ni antingen sparka på honom eller gratta honom i den <a href="/diskussionsforum/hamsterpaj/grattis_till_chaosweaver/sida1.php">här tråden.</a></h2>';
 	
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.28.207.226') ? '<h1>Va? Har ni inte slutat ännu? Kullaviksskolan är alltså före er!</h1>' : '';
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.21.232.204') ? '<h2>En blackebergare? Silfverstolpe is watching you!<h2>' : '';
