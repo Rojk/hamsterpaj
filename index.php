@@ -284,15 +284,6 @@
 	}
 	
 	$output .= isset($_GET['ilovemarquee']) ? '</div></marquee>' : '';
-	$timer['outputing_content'] = microtime(true);
 	echo $output;
-	/*echo '<img src="http://bloggsok.se/BlogPortal/view/SearchEntry?searchText=fra-lagen" width="0" height="0" />';
-	echo '<img src="http://bloggsok.se/BlogPortal/view/SearchEntry?searchText=string" width="0" height="0" />';
-	echo '<img src="http://bloggsok.se/BlogPortal/view/SearchEntry?searchText=marijuana" width="0" height="0" />';
-	echo '<img src="http://bloggsok.se/BlogPortal/view/SearchEntry?searchText=stay-ups" width="0" height="0" />';
-	*/
-	$timer['content_probably_sent_to_output_buffer'] = microtime(true);
 	ui_bottom();
-	$timer['ui_bottom_done_dumping_results_and_halt'] = microtime(true);
-	preint_r($timer);
-?>
+	?>
