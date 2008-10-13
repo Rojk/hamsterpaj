@@ -35,19 +35,24 @@
 	$headings[53] = (date('G') >= 5 && date('G') < 6) ? 'Det behövs mycket kaffe för att orka upp vid den här tiden' : '';
 	$headings[49] = (date('G') >= 1 && date('G') < 6) ? 'I Norrland är myggen så stora att det är skönt när de suger' : '';
 	
-	//$headings[7] = (date('G') >= 11 && date('G') < 13 && in_array(date('w'), array(1, 2, 3, 4, 5))) ? 'Tjena, vad sägs om en <a href="/flashfilmer/topplistan/">kul flashfilm</a> nu under lunchrasten?' : '';
+	$headings[7] = (date('G') >= 11 && date('G') < 13 && in_array(date('w'), array(1, 2, 3, 4, 5))) ? 'Tjena, vad sägs om en <a href="/flashfilmer/topplistan/">kul flashfilm</a> nu under lunchrasten?' : '';
 	$headings[51] = (date('G:i') == '13:37') ? 'Är du en sån där 1337 h4xx0r?' : '';
 	$headings[50] = (date('G') >= 19 && date('G') < 23) ? 'Välkommen hit, ha en skön kväll' : '';
 
-  $headings[6] = (rand(1, 9) == 5) ? '"Tritone, det är helt enkelt du. Söt, inslag utav en jordgubbe, mjuk som vanilj och go som en gelégodis."<br />Galten jämför Tritone med alkoläsk från systemet' : '';
-	$headings[5] = (rand(1, 5) == 4) ? 'Hört hos plastikkirurgen:<br />- <a href="http://excds.ath.cx/fun/other/ektapa/ektapa.html">Dr. Ekta Pattar</a> tar emot!' : '';
-	$headings[4] = (rand(1, 5) == 3) ? 'Visst är 65654 ett fint nummer?' : '';
-	$headings[3] = (rand(1, 5) == 2) ? 'Vet du om att Stora mossen ligger mitt emellan Trosa och Fittja?' : '';
-	$headings[2] = (rand(1, 5) == 1) ? '- Varför är det så farligt att sniffa lim?<br />- Man fastnar så lätt' : '';
+	$random_quotes = array(
+		'Hej och välkommen till Hamsterpaj',
+		'"Tritone, det är helt enkelt du. Söt, inslag utav en jordgubbe, mjuk som vanilj och go som en gelégodis."<br />Galten jämför Tritone med alkoläsk från systemet',
+		'Hört hos plastikkirurgen:<br />- <a href="http://excds.ath.cx/fun/other/ektapa/ektapa.html" target="_blank">Dr. Ekta Pattar</a> tar emot!',
+		'Visst är 65654 ett fint nummer?',
+		'Vet du om att Stora mossen ligger mitt emellan Trosa och Fittja?',
+		'Visste du att Tradera har <a href="http://www.google.se/search?rlz=&=&q=johan+h%F6glund" target="_blank">låga priser på Johan Höglund</a> just nu?'
+	);
+	
+	$headings[1] = $random_quotes[array_rand($random_quotes)];
 
 	$output .= isset($_GET['ilovemarquee']) ? '<marquee scrolldelay="1" behavior="alternate" direction="right"><div style="width:720px">' : '';
 
-	$headings[1] = 'Hej och välkommen till Hamsterpaj';
+	
 
 	foreach($headings AS $score => $heading)
 	{
