@@ -24,10 +24,10 @@
 	
 	*/
 
-	define(LOGLEVEL_DEBUG, 3);
-	define(LOGLEVEL_INFO, 2);
-	define(LOGLEVEL_WARN, 1);
-	define(LOGLEVEL_ERROR, 0);
+	define('LOGLEVEL_DEBUG', 3);
+	define('LOGLEVEL_INFO', 2);
+	define('LOGLEVEL_WARN', 1);
+	define('LOGLEVEL_ERROR', 0);
 
 	$loglevels['front_page']		=	LOGLEVEL_ERROR;
 	$loglevels['main']				=	LOGLEVEL_ERROR;
