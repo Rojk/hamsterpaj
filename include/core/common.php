@@ -1,9 +1,8 @@
 <?php
 	header('Content-Type: text/html; charset=UTF-8');
 	error_reporting(E_ERROR);
+	error_reporting(E_ALL);
 	ob_start();
-	
-	$user_id = $_SESSION['login']['id'];
 	
 	// Sanitize POST and GET data
 	foreach($_POST AS $key => $value)

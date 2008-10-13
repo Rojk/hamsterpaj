@@ -24,7 +24,7 @@
 		'game', 'clip', 'flash', 'prank', 'music', 'image', 'background', 'software'
 	*/
 
-	define(ENTERTAIN_ADMIN_LEVEL, 4);
+	define('ENTERTAIN_ADMIN_LEVEL', 4);
 
 	$entertain_adtoma_categories['clip']			= 'amuse.movies';
 	$entertain_adtoma_categories['game']			= 'amuse.games';

@@ -3,17 +3,14 @@
 	
 	define('EMOLAND', 'off');
 	
-	$victims[] = 865900;
 	// Debug, $victims[] = <secret>; ;)
 	
-	if (in_array($_SESSION['login']['id'], $victims) && rand(1, 30) == 15)
+	if (is_array($_SESSION) && array_key_exists('login', $_SESSION))
 	{
-		header("Location: http://smouch.net/lol/");
-		die();
+		// Do everything that has to do with $_SESSION
 	}
 	
-	setlocale(LC_ALL, 'sv_SE.ISO8859-1');
-	session_start();
+	//session_start();
 
 	/* To ip ban user: Use /admin/ip_ban_admin.php */
 	

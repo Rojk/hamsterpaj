@@ -31,6 +31,15 @@
 		$options['category'] = (isset($options['category'])) ? $options['category'] : 'other';
 		$options['max_delay'] = (isset($options['max_delay'])) ? $options['max_delay'] : 300;
 		
+		if (!is_dir(PATHS_INCLUDE . 'cache/'))
+		{
+			mkdir(PATHS_INCLUDE . 'cache/');
+		}
+		if (!is_dir(PATHS_INCLUDE . 'cache/query_cache/'))
+		{
+			mkdir(PATHS_INCLUDE . 'cache/query_cache/');
+		}
+		
 		$path = PATHS_INCLUDE . 'cache/query_cache/' . $options['category'] . '/';
 		$filename = md5($options['query']) . '.phpserialized';
 		
