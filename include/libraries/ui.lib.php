@@ -178,7 +178,7 @@ function ui_top($options = array())
 		$notices = ui_notices_fetch();
 		
 		$output .= '					<li>' . "\n";
-		$output .= '						<a id="ui_noticebar_guestbook' . ($notices['guestbook'] > 0 ? '_active' : '') . '" href="/traffa/guestbook.php?user_id=' . $_SESSION['login']['id'] . '">';
+		$output .= '						<a id="ui_noticebar_guestbook" ' . ($notices['guestbook'] > 0 ? 'class="ui_noticebar_active"' : '') . ' href="/traffa/guestbook.php?user_id=' . $_SESSION['login']['id'] . '">';
 		$output .=								(($notices['guestbook'] > 0) ? (($notices['guestbook'] == 1) ? 'Ett nytt' : $notices['guestbook'] . ' nya') : 'Gästbok');
 		$output .= '						</a>';
 		$output .= '					</li>' . "\n";
