@@ -1,7 +1,7 @@
 <?php
 	header('Content-Type: text/html; charset=UTF-8');
 	error_reporting(E_ERROR);
-	error_reporting(E_ALL);
+	//error_reporting(E_ALL);
 	ob_start();
 	
 	// Sanitize POST and GET data
