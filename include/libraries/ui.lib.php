@@ -135,7 +135,7 @@ function ui_top($options = array())
 	$output .= '<body' . (isset($options['body_extra']) ? ' ' . $options['body_extra'] : '') . '>' . "\n";
 	
 	$output .= '<script type="text/javascript">' . "\n";
-	$adtoma_gender = (in_array(strtolower($_SESSION['userinfo']['gender']), array('M', 'F'))) ? $_SESSION['userinfo']['gender'] : 'xx';
+	$adtoma_gender = (in_array(strtolower($_SESSION['userinfo']['gender']), array('m', 'f'))) ? strtoupper($_SESSION['userinfo']['gender']) : 'xx';
 	$adtoma_age = ($_SESSION['userinfo']['birthday'] != '0000-00-00') ? date_get_age($_SESSION['userinfo']['birthday']) : 'xx';
 	$adtoma_birthyear = ($_SESSION['userinfo']['birthday'] != '0000-00-00') ? substr($_SESSION['userinfo']['birthday'], 0, 4) : 'xx';
 	$output .= "\t" . 'var CM8Server = "ad.adtoma.com";' . "\n";
