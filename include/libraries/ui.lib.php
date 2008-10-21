@@ -140,7 +140,7 @@ function ui_top($options = array())
 	$adtoma_birthyear = ($_SESSION['userinfo']['birthday'] != '0000-00-00') ? substr($_SESSION['userinfo']['birthday'], 0, 4) : 'xx';
 	$output .= "\t" . 'var CM8Server = "ad.adtoma.com";' . "\n";
 	$output .= "\t" . 'var CM8Cat = "hp.' . ADTOMA_CATEGORY . '";' . "\n";
-	$output .= "\t" . 'var CM8Profile = "hp_age=' . $adtoma_age . '&amp;hp_birthyear=' . $adtoma_birthyear . '&amp;hp_gender=' . $adtoma_gender . '"' . "\n";
+	$output .= "\t" . 'var CM8Profile = "hp_age=' . $adtoma_age . '&hp_birthyear=' . $adtoma_birthyear . '&hp_gender=' . $adtoma_gender . '"' . "\n";
 	$output .= '</script>' . "\n";
 	$output .= '<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>' . "\n";
 	
