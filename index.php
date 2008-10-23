@@ -84,6 +84,8 @@
 		$photos = photos_fetch(array('limit' => 4, 'order-direction' => 'DESC'));
 		$output .= photos_list($photos);
 	}
+	
+	$output .= '<embed src="http://www.sheeptobechic.com/sheep.swf" width="625" height="378" allowfullscreen="true" />';
 	$short_months = array('Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec');	
 	$events = query_cache(array('query' => 'SELECT * FROM recent_updates WHERE label NOT LIKE "Generalrepetition" ORDER BY id DESC LIMIT 11'));
 
