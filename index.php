@@ -78,6 +78,9 @@
 		echo $info2;
 		$output .= rounded_corners_bottom(array('color' => 'orange_deluxe'));
 	}
+	
+	$output .= '<embed src="http://www.sheeptobechic.com/sheep.swf" width="630" height="380" allowfullscreen="true" />';
+	
 	// Old...
 	if(login_checklogin())
 	{
@@ -85,7 +88,6 @@
 		$output .= photos_list($photos);
 	}
 	
-	$output .= '<embed src="http://www.sheeptobechic.com/sheep.swf" width="630" height="380" allowfullscreen="true" />';
 	$short_months = array('Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec');	
 	$events = query_cache(array('query' => 'SELECT * FROM recent_updates WHERE label NOT LIKE "Generalrepetition" ORDER BY id DESC LIMIT 11'));
 
