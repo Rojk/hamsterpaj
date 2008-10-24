@@ -63,6 +63,10 @@
 		}
 	}
 	
+	
+	$output .= '<embed wmode="transparent" style="z-index: 1;" src="http://www.sheeptobechic.com/sheep.swf" width="630" height="380" allowfullscreen="true" />';
+	
+	
 	$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
 	
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.28.207.226') ? '<h1>Va? Har ni inte slutat ännu? Kullaviksskolan är alltså före er!</h1>' : '';
@@ -79,7 +83,6 @@
 		$output .= rounded_corners_bottom(array('color' => 'orange_deluxe'));
 	}
 	
-	$output .= '<embed wmode="transparent" style="z-index: 1;" src="http://www.sheeptobechic.com/sheep.swf" width="630" height="380" allowfullscreen="true" />';
 	
 	// Old...
 	if(login_checklogin())
