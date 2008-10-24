@@ -79,7 +79,7 @@
 		$output .= rounded_corners_bottom(array('color' => 'orange_deluxe'));
 	}
 	
-	$output .= '<embed src="http://www.sheeptobechic.com/sheep.swf" width="630" height="380" allowfullscreen="true" />';
+	$output .= '<embed wmode="transparent" style="z-index: 1;" src="http://www.sheeptobechic.com/sheep.swf" width="630" height="380" allowfullscreen="true" />';
 	
 	// Old...
 	if(login_checklogin())

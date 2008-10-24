@@ -293,7 +293,7 @@ function ui_top($options = array())
 		if($is_privilegied == true)	
 		{
 			$target = (isset($current_menu['target'])) ? ' target="' . $current_menu['target'] . '"' : '';
-			$output .= '					<li>' . "\n";
+			$output .= '					<li style="z-index: 3;">' . "\n";
 			$output .= '						<a href="' . $current_menu['url'] . '" class="root-a"' . $target . '>' . $current_menu['label'] . '</a>' . "\n";
 			$output .= '							<ul>' . "\n";
 			$output .= '								<li><a href="' . $current_menu['url'] . '">Start</a>' . "\n";
