@@ -13,9 +13,11 @@
 #ui_multisearch {
 	-moz-border-radius: 5px;
 	border: 1px #fff;
+	padding: 3px;
+	width: 150px;
 }
 
-#ui_multisearch	{
-	padding: 3px;
-	width: 155px;
+#ui_module_multisearch form {
+	margin: 0;
+	padding: 0;
 }
