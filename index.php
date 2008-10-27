@@ -71,7 +71,7 @@
 	
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.28.207.226') ? '<h1>Va? Har ni inte slutat ännu? Kullaviksskolan är alltså före er!</h1>' : '';
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.21.232.204') ? '<h2>En blackebergare? Silfverstolpe is watching you!<h2>' : '';
-	$output .= ($_SERVER['REMOTE_ADDR'] == '90.224.61.189') ? '<h2>Hej Joar!<h2>' : '';
+	$output .= ($_SERVER['REMOTE_ADDR'] == '90.224.61.189') ? '<h2>Hej Joar!</h2>' : '';
 	
 	if(login_checklogin() && date_get_age($_SESSION['userinfo']['birthday']) <= 13)
 	{
