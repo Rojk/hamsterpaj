@@ -283,9 +283,9 @@
 	$output .= '<div class="fp_column_ad">' . "\n";
 	$output .= '<a href="/mattan/ladda_ner_program.php"><img src="' . IMAGE_URL . 'fp_column_ads/downloads.png" /></a>' . "\n";
 	$output .= '</div>' . "\n";
-	
-	$output .= '</div>' . "\n";
 */
+	$output .= '</div>' . "\n";
+
 	/* Poll */
 	$poll = poll_fetch(array('type' => 'daily'));
 	
