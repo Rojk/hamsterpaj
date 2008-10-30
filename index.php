@@ -221,12 +221,13 @@
 	$output .= '<p>Vi håller inte på och tramsar med några betaltjänster eller "nyhetsbrev", allt är gratis. Vi tjänar pengar på annonser och chefen på bygget jobbar även med annat.</p>' . "\n";
 
 
-	/* Drivers license ad */
+	/* Not shown because of AD's
+	// Drivers license ad 
 	$output .= '<div class="fp_column_ad">' . "\n";
 	$output .= '<a href="/mattan/koerkort.php"><img src="' . IMAGE_URL . 'fp_column_ads/drivers_license.png" /></a>' . "\n";
 	$output .= '</div>' . "\n";
 	
-	/* People online, with maps */
+	// People online, with maps 
 	$output .= '<h2>Användare på karta</h2>' . "\n";
 	foreach(array('f', 'm') AS $gender)
 	{
@@ -278,13 +279,13 @@
 		unset($map_points);
 	}
 
-		/* Downloads ad */
+		// Downloads ad 
 	$output .= '<div class="fp_column_ad">' . "\n";
 	$output .= '<a href="/mattan/ladda_ner_program.php"><img src="' . IMAGE_URL . 'fp_column_ads/downloads.png" /></a>' . "\n";
 	$output .= '</div>' . "\n";
 	
 	$output .= '</div>' . "\n";
-
+*/
 	/* Poll */
 	$poll = poll_fetch(array('type' => 'daily'));
 	
