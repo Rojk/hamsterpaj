@@ -517,6 +517,20 @@ h2 {
 	#ui_business_card_guestbook {
 		clear: both;
 	}
+	
+/*
+	################################################################
+	UI RIGHT AD
+	
+	This is called fiskpinne because we don't whish that it should
+	be blocked by ad-block programs.
+	################################################################
+*/
+
+#fiskpinne {
+	float: left;
+	background: white;
+}
 
 /*
 	################################################################

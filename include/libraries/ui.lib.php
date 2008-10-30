@@ -429,7 +429,7 @@ function ui_bottom($options = array())
 	$output .= '	<div id="ui_break"></div> ' . "\n";
 	$output .= '	</div>' . "\n";
 	
-	$output .= '<div style="background: white;">' . "\n";
+	$output .= '<div id="fiskpinne">' . "\n";
 	$output .= '<script type="text/javascript" src="http://www.adtrade.net/ad/p/?id=hamsterpaj_1&size=140x350&ad=001" charset="iso-8859-1"></script>';
 	$output .= '</div>' . "\n";
 	
