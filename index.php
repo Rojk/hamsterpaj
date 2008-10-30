@@ -65,8 +65,9 @@
 	
 	$output .= '<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/kan_hamsterpaj_slaa_bilddagboken/sida_1.php"><img src="http://images.hamsterpaj.net/hamsterblog.png" /></a>' . "\n";
 	
-	$output .= '<embed wmode="transparent" style="z-index: 1;" src="http://www.sheeptobechic.com/sheep.swf" width="630" height="375" allowfullscreen="true" />';
+	$output .= '<embed wmode="transparent" style="z-index: 1; float: left;" src="http://www.sheeptobechic.com/sheep.swf" width="400" height="246" allowfullscreen="true" />';
 	
+		$output .= '<a style="float: right;" href="http://www.hamsterpaj.net/onlinespel/crews_favoritspel/puzzle_farter.html"><img src="http://images.hamsterpaj.net/puzzle_farter.png" /></a>' . "\n";
 	
 	$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
 	
