@@ -78,9 +78,9 @@ h2 {
 	
 /*
 	################################################################
-	UI WRAPPER
-	
-	Wraps the Hamsterpaj layout
+		UI WRAPPER
+		
+		Wraps the Hamsterpaj layout
 	################################################################
 */
 
@@ -96,10 +96,10 @@ h2 {
 
 /*
 	################################################################
-	UI HEADER
-	
-	The top part of the layout. Logo, login-bar, notice-bar and a
-	status-bar
+		UI HEADER
+		
+		The top part of the layout. Logo, login-bar, notice-bar and a
+		status-bar
 	################################################################
 */
 
@@ -245,9 +245,9 @@ h2 {
 
 /*
 	################################################################
-	UI MENU
-	
-	Style for the top menu
+		UI MENU
+		
+		Style for the top menu
 	################################################################
 */
 
@@ -330,12 +330,12 @@ h2 {
 	
 /*
 	################################################################
-	UI MODULEBAR
-	
-	Here is the style for the ui modulebar. It sets som standard
-	rules of style to the modules. Which can be overwritten/added with
-	styling in a stylesheet named as the module placed in
-	stylesheets/ui_modules/ and this file is loaded automaticly.
+		UI MODULEBAR
+		
+		Here is the style for the ui modulebar. It sets som standard
+		rules of style to the modules. Which can be overwritten/added with
+		styling in a stylesheet named as the module placed in
+		stylesheets/ui_modules/ and this file is loaded automaticly.
 	################################################################
 */
 #ui_modulebar
@@ -405,9 +405,9 @@ h2 {
 	
 /* 
 	################################################################
-	STEVE
-	
-	Steve is the dancing maskot att the right side of the menu
+		STEVE
+		
+		Steve is the dancing maskot att the right side of the menu
 	################################################################
 */
 
@@ -421,10 +421,10 @@ h2 {
 	
 /*
 	################################################################
-	UI NOTICE
-	
-	This is a small noticebar which is shown under the menu.
-	It is used to display new events, like stuff uploaded in entertain
+		UI NOTICE
+		
+		This is a small noticebar which is shown under the menu.
+		It is used to display new events, like stuff uploaded in entertain
 	################################################################
 */
 	
@@ -437,9 +437,9 @@ h2 {
 
 /*
 	################################################################
-	UI CONTENT
-	
-	This is the box where all pages are loaded.
+		UI CONTENT
+		
+		This is the box where all pages are loaded.
 	################################################################
 */
 
@@ -452,10 +452,10 @@ h2 {
 
 /*
 	################################################################
-	UI BREAK
-	
-	Clears the float of ui_modulebar and ui_content. Without this
-	the layout would break before the content and modules.
+		UI BREAK
+		
+		Clears the float of ui_modulebar and ui_content. Without this
+		the layout would break before the content and modules.
 	################################################################
 */
 
@@ -465,10 +465,10 @@ h2 {
 
 /*
 	################################################################
-	UI BUSINESS CARD
-	
-	Those are used for the javascript-popup using brief information
-	about a user, and a guestbook form.
+		UI BUSINESS CARD
+		
+		Those are used for the javascript-popup using brief information
+		about a user, and a guestbook form.
 	################################################################
 */
 
@@ -520,10 +520,10 @@ h2 {
 	
 /*
 	################################################################
-	UI RIGHT AD
-	
-	This is called fiskpinne because we don't whish that it should
-	be blocked by ad-block programs.
+		UI RIGHT AD
+		
+		This is called fiskpinne because we don't whish that it should
+		be blocked by ad-block programs.
 	################################################################
 */
 
@@ -534,9 +534,9 @@ h2 {
 
 /*
 	################################################################
-	UI AVATAR
-	
-	Should this really be here?
+		UI AVATAR
+		
+		Should this really be here?
 	################################################################
 */
 .ui_avatar
