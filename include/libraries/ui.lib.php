@@ -98,7 +98,6 @@ function ui_top($options = array())
 	$options['stylesheets'][] = 'new_guestbook.css';
 	$options['stylesheets'][] = 'rounded_corners.css';
 	$options['stylesheets'][] = 'message.css';
-	$options['stylesheets'][] = 'domTT.css';
 	$options['stylesheets'][] = 'poll.css';
 	$options['stylesheets'][] = 'ui_modules/friends_online.css';
 	$options['stylesheets'][] = 'ui_modules/friends_notices.css';

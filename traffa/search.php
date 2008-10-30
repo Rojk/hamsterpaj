@@ -7,6 +7,7 @@
 	$ui_options['header_extra'] .= '<script type="text/javascript" language="javascript" src="/include/kommuner.js"></script>';	
 	$ui_options['header_extra'] .= '<script type="text/javascript" language="javascript" src="/include/landskap.js"></script>';	
 	$ui_options['header_extra'] .= '<script type="text/javascript" language="javascript" src="/include/ortfunktioner.js"></script>';	
+	$ui_options['stylesheets'][] = 'domTT.css';
 	$faq_category = 'traffa_search';
 
 	$ui_options['current_submenu'] = 'Leta';
