@@ -86,7 +86,7 @@
 			$sql .= ' size = "' . $_POST['shop_size'] . '",';
 			$sql .= ' gender = "' . $_POST['shop_gender'] . '",';
 			$sql .= ' phone = "' . $processed_field['shop_phone'] . '"';
-			// mysql_query($sql) or report_sql_error(__FILE__, __LINE__, $sql);
+			mysql_query($sql) or report_sql_error(__FILE__, __LINE__, $sql);
 			
 			$sql = 'SELECT order_id FROM shop_orders WHERE user_id = ' . $_SESSION['login']['id'] . ' LIMIT 1';
 			$result = mysql_query($sql);
