@@ -145,7 +145,7 @@
 
 
 	$output .= '<div id="fp_column">' . "\n";
-	$output .= '<a href="http://www.hamsterpaj.net/diskussionsforum/hamsterpaj/taevling_15/sida_1.php" title="Till t㵬ing"><img src="http://images.hamsterpaj.net/karlek3000.png" /></a>' . "\n";	
+	
 	$query = 'SELECT * FROM nyheter ORDER BY id DESC LIMIT 1';
 	$data = query_cache(array('query' => $query, 'max_delay' => 60));
 	if($data[0]['tstamp'] > time() - 86400)
