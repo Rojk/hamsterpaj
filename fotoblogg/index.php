@@ -1,5 +1,6 @@
 <?php
 	require('../include/core/common.php');
+	require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
 	
 	$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 	
