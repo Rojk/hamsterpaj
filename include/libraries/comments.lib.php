@@ -150,7 +150,6 @@ function comments_list($item_id, $item_type, $options)
 
 function comments_new($item_id, $item_type, $user_id, $comment)
 {
-	$comment = urlencode($comment);
 	$content_check = content_check($comment);
 	if($content_check === 1)
 	{
