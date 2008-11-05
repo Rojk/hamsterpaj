@@ -3,6 +3,7 @@
 	require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
 	
 	$ui_options['stylesheets'][] = 'photoblog.css.php';
+	$ui_options['javascripts'][] = 'photoblog.js';
 	
 	$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 	
@@ -98,6 +99,7 @@
 					Uploaded photos setting
 				########################################################
 			*/
+		$out .= '<div id="photoblog_photo_properties_container">&nbsp;</div>' . "\n";
 			$out .= '<div class="photoblog_photo_properties" id="#">' . "\n";
 				$out .= '<div class="properties">' . "\n";
 					$out .= '<p>Datepicker - save - set today | Select album - Create album</p>';
@@ -147,6 +149,32 @@
 			$out .= 'Välkommen till ' . "\n";
 			$out .= preg_match('/s$/', $uri_parts[2]) ? $uri_parts[2] : $uri_parts[2] . 's';
 			$out .= ' fotoblogg!';
+			$out .= '<h2 id="photoblog_header">iPhone - 2008 September</h2>';
+			$out .= '<div id="photoblog_thumbs">';
+				$out .= '<div id="photoblog_thumbs_container">';
+					$out .= '<dl>';
+					$out .= '<dt><a href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
+					$out .= '<dt>23/11</dt>';
+					$out .= '<dd><a rel="imageid_1" class="photoblog_active" href="gallery.php?id=2232"><img src="thumb.png" alt="Foobar" /></a></dd>';
+					$out .= '<dt><a href="#">N&auml;sta m&aring;nad</a></dt>';
+					$out .= '</dl>';
+				$out .= '</div>';
+			$out .= '</div>';
+			$out .= '<div id="photoblog_image">';
+			$out .= '<p><img src="image.png" alt="" /></p>';
+			$out .= '</div>';
+			$out .= '<div id="photoblog_description">';
+			$out .= '<h2>Foobar</h2>';
+			$out .= '<div id="photoblog_description_text">';
+				$out .= '<p>Jag tänkte att jag skulle kunna äta upp dig.';
+				$out .= '<br />';
+				$out .= '<br />';
+				$out .= 'Not.</p>';
+				$out .= '</div>';
+			$out .= '</div>';
+			$out .= '<div id="photoblog_comments">';
+				$out .= '<h3>Kommentarer</h3>';
+			$out .= '</div>';
 		break;
 	}
 	$out .= '<br /><br />' . preint_r($uri_parts);
