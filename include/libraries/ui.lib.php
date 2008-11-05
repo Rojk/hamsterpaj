@@ -116,6 +116,9 @@ function ui_top($options = array())
 	}
 	$output .= '</style>' . "\n";
 
+	// Create HP namespace...
+	$output .= '<script type="text/javascript" language="javascript">var hp = new Object();</script>' . "\n";
+	
 	foreach($options['javascripts'] as $javascript)
 	{
 		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/' . $javascript . '?version=' . filemtime(PATHS_WEBROOT . 'javascripts/' . $javascript) . '"></script>' . "\n";
