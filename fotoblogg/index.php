@@ -89,10 +89,13 @@
 					Upload form
 				########################################################
 			*/
-			$out .= '<object width="100" height="40">
-							 <param name="movie" value="../upload.swf">
-							 <embed src="../upload.swf" width="100" height="40"></embed>
-								</object>' . "\n";  
+			$out .= '<div id="photoblog_upload_upload_flash_objectarea">&nbsp;</div>' . "\n";
+			$out .= '<script type="text/javascript">
+	   		var so = new SWFObject("../upload.swf", "photoblog_upload_flash_upload", "100", "20", "8", "#ffffff");
+	 		  so.addParam("wmode", "transparent");
+	 		  so.addParam("flashVars", "PHPSESSID=" + document.cookie.split("PHPSESSID=")[1].split("&")[0]);
+	 		  so.write("photoblog_upload_upload_flash_objectarea");
+			</script>' . "\n";
 								
 			/*	
 				########################################################
