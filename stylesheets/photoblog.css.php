@@ -2,6 +2,7 @@
 	border: 1px solid #cfe2f1;
 	-moz-border-radius: 5px;
 	background: #f1f5ff;
+	margin-top: 5px;
 }
 	.photoblog_photo_properties .float {
 		width: 176px;
