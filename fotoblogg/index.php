@@ -3,6 +3,7 @@
 	require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
 	
 	$ui_options['stylesheets'][] = 'photoblog.css.php';
+	$ui_options['javascripts'][] = 'photoblog.js';
 	
 	$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 	
@@ -52,6 +53,8 @@
 					Uploaded photos setting
 				########################################################
 			*/
+			$out .= '<div id="photoblog_photo_properties_container">&nbsp;</div>' . "\n";
+			
 			$out .= '<div class="photoblog_photo_properties" id="#">' . "\n";
 				$out .= '<div class="properties">' . "\n";
 					$out .= '<p>Datepicker - save - set today | Select album - Create album</p>';
