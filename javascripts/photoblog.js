@@ -18,6 +18,14 @@ hp.photoblog = {
 					photo_id: photo_id,
 					progress: progress
 				});
+			},
+			
+			onComplete: function(photo_id)
+			{
+				hp.photoblog.upload.photo_properties.update_photo_status({
+					type: 'upload_complete',
+					photo_id: photo_id
+				});
 			}
 		},
 		
@@ -46,6 +54,21 @@ hp.photoblog = {
 						$('#photoblog_photo_properties_' + params.photo_id + ' .photoblog_photo_properties_uploading_progress_bar')
 							.css('backgroundPosition', (100 - params.progress) + 'px 0px')
 							.html(params.progress + '%');
+					break;
+					
+					case 'upload_complete':
+						$('#photoblog_photo_properties_' + params.photo_id)
+							.html('<div class="properties">'
+								+ '<p>Datepicker - save - set today | Select album - Create album</p><p>WYSIWYG-editor tinymce</p><p>Save</p></div>'
+								+ '<div class="float">'
+								+ '<div class="thumbnail_wrapper">'
+								+ '<img src="http://images.hamsterpaj.net/photos/thumb/8/42818.jpg" class="thumbnail" />'
+								+ '</div>'
+								+ '<div class="rotate">'
+								+ '<img src="" class="rotate_left" />'
+								+ '<img src="" class="rotate_right" />'
+								+ '</div>'
+								+ '</div>');
 					break;
 				}
 			}
