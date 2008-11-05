@@ -44,5 +44,6 @@
 	{
 		header('"HTTP/1.0 500 Internal Server Error');
 		echo $error;
+		trace('photoblog_upload_error', $error);
 	}
 ?>
