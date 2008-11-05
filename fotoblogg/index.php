@@ -21,13 +21,59 @@
 		<a href="/fotoblogg/instaellningar/">Inställningar</a>
 	</li>
 	</ul>
-	
 	' . "\n";
 	
 	switch ($uri_parts[2])
 	{
 		case 'instaellningar':
+			$ui_options['stylesheets'][] = 'colorpicker.css';
+			$ui_options['stylesheets'][] = 'colorpicker_layout.css';
+			$ui_options['javascripts'][] = 'colorpicker.js';
+			$ui_options['javascripts'][] = 'photoblog_settings.js';
+			$ui_options['javascripts'][] = 'colorpicker_eye.js';
+			$ui_options['javascripts'][] = 'colorpicker_layout.js';
+			$ui_options['javascripts'][] = 'colorpicker_utils.js';
+			
+			$params['photoblog_settings_detail_color'] = 'FF00FF';
+			$params['photoblog_settings_main_color'] = 'FFFF00';
+			
 			$out .= '<h2>INSTÄLLNINGAR</h2>' . "\n";
+			$out .= '<div id="test">test</div>' . "\n";
+			$out .= '<form id="photoblog_settings_form" action="/fotoblogg/instaellningar/post_settings.php" method="post">' . "\n";
+			$out .= '<label for="photoblog_is_private">Vill du stänga din fotoblogg för allmänheten och endast visa för inloggade medlemmar?</label>' . "\n";
+			$out .= '<input type="checkbox" name="photoblog_is_private" id="photoblog_is_private" /><br />' . "\n";
+			$save_to_later = $out;
+				$out = '<h2 style="margin-top: 0px;">Färginställningar</h2>';
+				$out .= '<table id="photoblog_settings_color_table">' . "\n";
+					$out .= '<tr>' . "\n";
+						$out .= '<th>' . "\n";
+							$out .= 'Detaljfärg' . "\n";
+						$out .= '</th>' . "\n";
+						$out .= '<th>' . "\n";
+							$out .= 'Bakgrund på element' . "\n";
+						$out .= '</th>' . "\n";
+					$out .= '</tr>' . "\n";
+					$out .= '<tr>' . "\n";
+						$out .= '<td>' . "\n";
+							$out .= '<div class="colorSelector" id="photoblog_settings_detail_color_div"><div style="background-color: ' . $params['photoblog_settings_detail_color'] . ';"/></div></div>' . "\n";
+							$out .= '<input type="hidden" name="photoblog_settings_detail_color" id="photoblog_settings_detail_color" value="' . $params['photoblog_settings_detail_color'] . '" />' . "\n";
+						$out .= '</td>' . "\n";
+						$out .= '<td>' . "\n";
+							$out .= '<div class="colorSelector" id="photoblog_settings_main_color_div"><div style="background-color: ' . $params['photoblog_settings_main_color'] . ';"/></div></div>' . "\n";
+							$out .= '<input type="hidden" name="photoblog_settings_main_color" id="photoblog_settings_main_color" value="' . $params['photoblog_settings_main_color'] . '" />' . "\n";
+						$out .= '</td>' . "\n";
+					$out .= '</tr>' . "\n";
+				$out .= '</table>' . "\n";
+			$save_to_later .= rounded_corners($out, $params, true);
+			$out = $save_to_later;
+			$out .= '<input type="submit" value="Spara inställningar" class="button_130" />' . "\n";
+			$out .= '</form>' . "\n";
+			switch ($uri_parts[3])
+			{
+				case 'post_settings.php':
+					$out .= preint_r($_POST);
+				break;
+			}
 		break;
 		
 		case 'ladda_upp':
@@ -56,8 +102,7 @@
 					Uploaded photos setting
 				########################################################
 			*/
-			$out .= '<div id="photoblog_photo_properties_container">&nbsp;</div>' . "\n";
-			
+		$out .= '<div id="photoblog_photo_properties_container">&nbsp;</div>' . "\n";
 			$out .= '<div class="photoblog_photo_properties" id="#">' . "\n";
 				$out .= '<div class="properties">' . "\n";
 					$out .= '<p>Datepicker - save - set today | Select album - Create album</p>';
@@ -107,35 +152,32 @@
 			$out .= 'Välkommen till ' . "\n";
 			$out .= preg_match('/s$/', $uri_parts[2]) ? $uri_parts[2] : $uri_parts[2] . 's';
 			$out .= ' fotoblogg!';
-
 			$out .= '<h2 id="photoblog_header">iPhone - 2008 September</h2>';
 			$out .= '<div id="photoblog_thumbs">';
-			$out .= '	<div id="photoblog_thumbs_container">';
-			$out .= '		<dl>';
-			$out .= '			<dt><a href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
-			$out .= '			<dt>23/11</dt>';
-			$out .= '			<dd><a rel="imageid_1" class="photoblog_active" href="gallery.php?id=2232"><img src="thumb.png" alt="Foobar" /></a></dd>';
-			$out .= '			<dt><a href="#">N&auml;sta m&aring;nad</a></dt>';
-			$out .= '		</dl>';
-			$out .= '	</div>';
+				$out .= '<div id="photoblog_thumbs_container">';
+					$out .= '<dl>';
+					$out .= '<dt><a href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
+					$out .= '<dt>23/11</dt>';
+					$out .= '<dd><a rel="imageid_1" class="photoblog_active" href="gallery.php?id=2232"><img src="thumb.png" alt="Foobar" /></a></dd>';
+					$out .= '<dt><a href="#">N&auml;sta m&aring;nad</a></dt>';
+					$out .= '</dl>';
+				$out .= '</div>';
 			$out .= '</div>';
 			$out .= '<div id="photoblog_image">';
-			$out .= '	<p><img src="image.png" alt="" /></p>';
+			$out .= '<p><img src="image.png" alt="" /></p>';
 			$out .= '</div>';
 			$out .= '<div id="photoblog_description">';
-			$out .= '	<h2>Foobar</h2>';
-			$out .= '	';
-			$out .= '	<div id="photoblog_description_text">';
-			$out .= '		<p>Jag tänkte att jag skulle kunna äta upp dig.';
-			$out .= '		<br />';
-			$out .= '		<br />';
-			$out .= '		Not.</p>';
-			$out .= '	</div>';
+			$out .= '<h2>Foobar</h2>';
+			$out .= '<div id="photoblog_description_text">';
+				$out .= '<p>Jag tänkte att jag skulle kunna äta upp dig.';
+				$out .= '<br />';
+				$out .= '<br />';
+				$out .= 'Not.</p>';
+				$out .= '</div>';
 			$out .= '</div>';
 			$out .= '<div id="photoblog_comments">';
-			$out .= '	<h3>Kommentarer</h3>';
+				$out .= '<h3>Kommentarer</h3>';
 			$out .= '</div>';
-
 		break;
 	}
 	$out .= '<br /><br />' . preint_r($uri_parts);
