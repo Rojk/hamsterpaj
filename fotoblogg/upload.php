@@ -1,12 +1,12 @@
 <?php
-	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
-	
 	if(isset($_GET['PHPSESSID']))
 	{
 		session_id($_GET['PHPSESSID']);
-	}
+	}	
 	
+	require('../include/core/common.php');
+	require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
+		
 	try
 	{
 		if(is_uploaded_file($_FILES['Filedata']['tmp_name']))
