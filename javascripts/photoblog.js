@@ -52,7 +52,7 @@ hp.photoblog = {
 				{
 					case 'upload_progress':
 						$('#photoblog_photo_properties_' + params.photo_id + ' .photoblog_photo_properties_uploading_progress_bar')
-							.css('backgroundPosition', (100 - params.progress) + 'px 0px')
+							.css('backgroundPosition', (-250 +(params.progress * 2.5)) + 'px 0px')
 							.html(params.progress + '%');
 					break;
 					

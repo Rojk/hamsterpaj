@@ -84,43 +84,7 @@
 				########################################################
 			*/
 			$out .= '<h1>Välkommen att ladda upp bilder i din fotoblogg</h1>' . "\n";
-			
-			/*	
-				########################################################
-					Upload form
-				########################################################
-			*/
-			$out .= '<div id="photoblog_upload_upload_flash_objectarea">&nbsp;</div>' . "\n";
-			$out .= '<script type="text/javascript">
-	   		var so = new SWFObject("../upload.swf", "photoblog_upload_flash_upload", "100", "20", "8", "#ffffff");
-	 		  so.addParam("wmode", "transparent");
-	 		  so.addParam("flashVars", "PHPSESSID=" + document.cookie.split("PHPSESSID=")[1].split("&")[0]);
-	 		  so.write("photoblog_upload_upload_flash_objectarea");
-			</script>' . "\n";
-								
-			/*	
-				########################################################
-					Uploaded photos setting
-				########################################################
-			*/
-		$out .= '<div id="photoblog_photo_properties_container">&nbsp;</div>' . "\n";
-			$out .= '<div class="photoblog_photo_properties" id="#">' . "\n";
-				$out .= '<div class="properties">' . "\n";
-					$out .= '<p>Datepicker - save - set today | Select album - Create album</p>';
-					$out .= '<p>WYSIWYG-editor tinymce</p>';
-					$out .= '<p>Save</p>';
-				$out .= '</div>' . "\n";
-				$out .= '<div class="float">' . "\n";
-					$out .= '<div class="thumbnail_wrapper">' . "\n";
-						$out .= '<img src="http://images.hamsterpaj.net/photos/thumb/8/42818.jpg" class="thumbnail" />' . "\n";
-					$out .= '</div>' . "\n";
-					$out .= '<div class="rotate">' . "\n";
-						$out .= '<img src="" class="rotate_left" />' . "\n";
-						$out .= '<img src="" class="rotate_right" />' . "\n";
-					$out .= '</div>' . "\n";
-				$out .= '</div>' . "\n";
-			$out .= '</div>' . "\n";
-								
+											
 			/*	
 				########################################################
 					How to upload photos
@@ -129,14 +93,37 @@
     	$options['type'] = 'notification';
     	$options['title'] = '';
     	$options['message'] = '<p>Du kan ladda upp flera bilder samtidigt genom att markera flera när du väljer bilder.<br /> Men tänk på att det tar en del tid att ladda upp bilderna, och du bör kanske inte ladda upp så många i taget.</p><p>Fungerar inte bilduppladdningen? Klicka <a href="#">här</a> för att använda en enklare version av uppladdningen</a>';
-    	$out .= ui_server_message($options);   
-    	
+    	$out .= ui_server_message($options);  
+			
+			/*	
+				########################################################
+					Upload form
+				########################################################
+			*/
+			$out .= '<div id="photoblog_upload_wrapper">' . "\n";
+				$out .= '<div id="photoblog_upload_upload_flash_objectarea">&nbsp;</div>' . "\n";
+				$out .= '<script type="text/javascript">
+		   		var so = new SWFObject("../upload.swf", "photoblog_upload_flash_upload", "100", "20", "8", "#ffffff");
+		 		  so.addParam("wmode", "transparent");
+		 		  so.addParam("flashVars", "PHPSESSID=" + document.cookie.split("PHPSESSID=")[1].split("&")[0]);
+		 		  so.write("photoblog_upload_upload_flash_objectarea");
+				</script>' . "\n"; 
+			$out .= '</div>' . "\n";
+    						
+			/*	
+				########################################################
+					Uploaded photos setting
+				########################################################
+			*/
+			$out .= '<div id="photoblog_photo_properties_container">&nbsp;</div>' . "\n";
+
     	/*	
 				########################################################
 					Rules of what to upload
 				########################################################
 			*/
 			$options['type'] = 'warning';
+			$options['id'] = 'photoblog_upload_rules';
 			$options['title'] = 'Att tänka på innan du laddar upp bilder';
 			$options['message'] = '<h3>Du förlorar kontrollen över bilder du laddar upp!</h3>' . "\n";
 			$options['message'] .= '<p>Bilder som en gång laddats upp till Internet kan kopieras och skickas vidare i all evighet. Det gäller på Hamsterpaj såväl som på alla andra webbsajter.</p>' . "\n";
