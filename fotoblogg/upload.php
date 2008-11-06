@@ -1,5 +1,5 @@
 <?php
-	if(isset($_GET['PHPSESSID']))
+	if(isset($_GET['PHPSESSID']) && $_GET['PHPSESSID'] != session_id())
 	{
 		session_destroy();
 		session_id($_GET['PHPSESSID']);
