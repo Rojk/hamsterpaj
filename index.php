@@ -63,77 +63,7 @@
 		}
 	}
 	
-	if (date('m') == 11 && date('d') == 6 && date('H') < 18)
-	{
-		$output .= '<div style="text-align:center;margin:2px; padding:4px;font-size: 36px;color: #fff; background-color: #000;font-weight: bold;">';
-		$output .= '<a style="color: #fff;" href="/diskussionsforum/mellan_himmel_och_jord/oh_my_god_prinsen_och_emma_har_gjort_slut/sida_1.php#post_1165272"><em>SKVALLERPAJ AVSLÖJAR</em></a>';
-		$output .= '</div>';
-	}
 	$output .= '<div>';
-	
-	$output .= '<embed wmode="transparent" style="z-index: 1; float: left;" src="http://www.sheeptobechic.com/sheep.swf" width="317" height="199" allowfullscreen="true" />';
-	
-	// -----------------------
-	// --- SPOTLIGHT START ---
-	// -----------------------
-	//                                     |<---     TEMPORARY STYLE     --->|
-	$output .= '<div id="fp_spotlight_area" style="width: 280px; float:right;">' . "\n";
-		
-	$users = cache_load('hetluften');
-
-	$output .= '<div id="fp_spotlight">' . "\n";
-	$output .= '<div id="fp_spotlight_scroller">' . "\n";
-	foreach($users AS $user)
-	{
-		$output .= '<div class="fp_spotlight_profile">' . "\n";
-		$output .= ui_avatar($user['id'], array('style' => 'float: left; margin-right: 15px; border: 1px solid white;'));
-		$output .= '<h2><a href="/traffa/profile.php?id=' . $user['id'] . '">' . $user['username'] . '</a></h2>' . "\n";
-		$output .= ($user['gender'] == 'f') ? '<p>Tjej' : '<p>Kille';
-		$output .= ($user['birthday'] != '0000-00-00') ? ' ' . date_get_age($user['birthday']) . ' år' : '';
-		$output .= (strlen($user['spot']) > 0) ? ' från ' . $user['spot'] . '</p>' : '</p>';
-		if(count($user['flags']) > 0)
-		{
-			$output .= '<ul class="user_flags">' . "\n";
-			$flag_count = 0;
-			foreach($user['flags'] AS $flag)
-			{
-				if(strlen($flags_by_id[$flag]) > 0)
-				{
-					$output .= '<li><img src="' . IMAGE_URL . '/user_flags/' . $flags_by_id[$flag] . '" /></li>' . "\n";
-					$flag_count++;
-					if($flag_count == 5)
-					{
-						break;
-					}
-				}
-			}
-			$output .= '</ul>' . "\n";
-		}
-		$output .= '</div>' . "\n";
-	}
-	$output .= '</div>' . "\n";
-	$output .= '</div>' . "\n";
-
-
-	$output .= '<ul class="fp_users_list">' . "\n";
-	$count = 0;
-	foreach($users AS $user)
-	{
-		$output .= '<li><img src="' . IMAGE_URL . 'images/users/thumb/' . $user['id'] . '" class="fp_user_list_thumb" id="fp_user_thumb_' . $count . '" /></li>' . "\n";
-		$count++;
-	}
-	$output .= '</ul>' . "\n";
-	
-	
-	$output .= '<p style="clear: both;">Gå till: <a href="/traffa/age_guess.php">Gissa åldern</a> ' . "\n";
-	$output .= '<a href="/traffa/gallery.php">Galleriet</a> ' . "\n";
-	$output .= '<a href="/traffa/klotterplanket.php">klotterplanket</a></p>' . "\n";
-	$output .= '</div>' . "\n";
-	
-	// -----------------------
-	// ---- SPOTLIGHT END ----
-	// -----------------------
-	
 	
 	
 	$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
@@ -230,14 +160,76 @@
 		$output .= '</div>' . "\n";
 	}	
 
-	// SPOTLIGHT GOES HERE
+	
+	// -----------------------
+	// --- SPOTLIGHT START ---
+	// -----------------------
+	//                                     |<---     TEMPORARY STYLE     --->|
+	$output .= '<div id="fp_spotlight_area" style="width: 280px; float:right;">' . "\n";
+		
+	$users = cache_load('hetluften');
+
+	$output .= '<div id="fp_spotlight">' . "\n";
+	$output .= '<div id="fp_spotlight_scroller">' . "\n";
+	foreach($users AS $user)
+	{
+		$output .= '<div class="fp_spotlight_profile">' . "\n";
+		$output .= ui_avatar($user['id'], array('style' => 'float: left; margin-right: 15px; border: 1px solid white;'));
+		$output .= '<h2><a href="/traffa/profile.php?id=' . $user['id'] . '">' . $user['username'] . '</a></h2>' . "\n";
+		$output .= ($user['gender'] == 'f') ? '<p>Tjej' : '<p>Kille';
+		$output .= ($user['birthday'] != '0000-00-00') ? ' ' . date_get_age($user['birthday']) . ' år' : '';
+		$output .= (strlen($user['spot']) > 0) ? ' från ' . $user['spot'] . '</p>' : '</p>';
+		if(count($user['flags']) > 0)
+		{
+			$output .= '<ul class="user_flags">' . "\n";
+			$flag_count = 0;
+			foreach($user['flags'] AS $flag)
+			{
+				if(strlen($flags_by_id[$flag]) > 0)
+				{
+					$output .= '<li><img src="' . IMAGE_URL . '/user_flags/' . $flags_by_id[$flag] . '" /></li>' . "\n";
+					$flag_count++;
+					if($flag_count == 5)
+					{
+						break;
+					}
+				}
+			}
+			$output .= '</ul>' . "\n";
+		}
+		$output .= '</div>' . "\n";
+	}
+	$output .= '</div>' . "\n";
+	$output .= '</div>' . "\n";
+
+
+	$output .= '<ul class="fp_users_list">' . "\n";
+	$count = 0;
+	foreach($users AS $user)
+	{
+		$output .= '<li><img src="' . IMAGE_URL . 'images/users/thumb/' . $user['id'] . '" class="fp_user_list_thumb" id="fp_user_thumb_' . $count . '" /></li>' . "\n";
+		$count++;
+	}
+	$output .= '</ul>' . "\n";
+	
+	
+	$output .= '<p style="clear: both;">Gå till: <a href="/traffa/age_guess.php">Gissa åldern</a> ' . "\n";
+	$output .= '<a href="/traffa/gallery.php">Galleriet</a> ' . "\n";
+	$output .= '<a href="/traffa/klotterplanket.php">klotterplanket</a></p>' . "\n";
+	$output .= '</div>' . "\n";
+	
+	// -----------------------
+	// ---- SPOTLIGHT END ----
+	// -----------------------
+	
+	
 	
 	/* Info text */
 	$output .= '<p>Hamsterpaj är en kul sida med filmer, spel och lite chattfunktioner, till för tonåringar som inte orkar skriva skolarbeten utan slösurfar istället.</p>' . "\n";
 	$output .= '<p>Vi håller inte på och tramsar med några betaltjänster eller "nyhetsbrev", allt är gratis. Vi tjänar pengar på annonser och chefen på bygget jobbar även med annat.</p>' . "\n";
 
 
-	/* Not shown because of AD's
+	
 	// Drivers license ad 
 	$output .= '<div class="fp_column_ad">' . "\n";
 	$output .= '<a href="/mattan/koerkort.php"><img src="' . IMAGE_URL . 'fp_column_ads/drivers_license.png" /></a>' . "\n";
@@ -299,7 +291,7 @@
 	$output .= '<div class="fp_column_ad">' . "\n";
 	$output .= '<a href="/mattan/ladda_ner_program.php"><img src="' . IMAGE_URL . 'fp_column_ads/downloads.png" /></a>' . "\n";
 	$output .= '</div>' . "\n";
-*/
+
 	$output .= '</div>' . "\n";
 
 	/* Poll */
