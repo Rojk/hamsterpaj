@@ -46,6 +46,7 @@ hp.photoblog = {
 					+ '</div>');
 					
 				$('#photoblog_upload_rules').hide();
+				$('#photoblog_photo_properties_save').show();
 			},
 			
 			update_photo_status: function(params)

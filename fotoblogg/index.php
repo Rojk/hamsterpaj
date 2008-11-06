@@ -118,7 +118,11 @@
 					Uploaded photos setting
 				########################################################
 			*/
+			
+			$out .= '<form action="/fotoblogg/ladda_upp/sortering" method="post">' . "\n";
 			$out .= '<div id="photoblog_photo_properties_container">&nbsp;</div>' . "\n";
+			$out .= '<input type="submit" value="Vidare &raquo;" class="button_80" id="photoblog_photo_properties_save" />' . "\n";
+			$out .= '</form>' . "\n";
 
     	/*	
 				########################################################

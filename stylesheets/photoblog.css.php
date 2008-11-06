@@ -6,6 +6,14 @@
 	margin-top: 20px;
 }
 
+#photoblog_photo_properties_save
+{
+	display: none;
+	float: right;
+	clear: both;
+	margin: 10px 0px 10px 0px;
+}
+
 .photoblog_photo_properties {
 	border: 1px solid #cfe2f1;
 	-moz-border-radius: 5px;
