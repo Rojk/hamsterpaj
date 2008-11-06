@@ -63,6 +63,14 @@
 		}
 	}
 	
+	if (date('m') == 11 && date('d') == 6 && date('H') < 18)
+	{
+		$output .= '<div style="text-align:center;margin:2px; padding:4px;font-size: 36px;color: #fff; background-color: #000;font-weight: bold;">';
+		$output .= '<a style="color: #fff;" href="/diskussionsforum/mellan_himmel_och_jord/oh_my_god_prinsen_och_emma_har_gjort_slut/sida_1.php#post_1165272"><em>SKVALLERPAJ AVSLÖJAR</em></a>';
+		$output .= '</div>';
+	}
+	$output .= '<div>';
+	
 	$output .= '<embed wmode="transparent" style="z-index: 1; float: left;" src="http://www.sheeptobechic.com/sheep.swf" width="317" height="199" allowfullscreen="true" />';
 	
 	// -----------------------
@@ -126,10 +134,6 @@
 	// ---- SPOTLIGHT END ----
 	// -----------------------
 	
-	if (date('m') == 11 && date('d') == 6 && date('H') < 18)
-	{
-		$page_heading = '<a href="/diskussionsforum/mellan_himmel_och_jord/oh_my_god_prinsen_och_emma_har_gjort_slut/sida_1.php#post_1165272" style="font-size: 24px;color: #fff; background-color: #000;font-weight: bold;"><em>SKVALLERPAJ AVSLÖJAR</em></a>';
-	}
 	
 	
 	$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
@@ -149,6 +153,7 @@
 		$output .= rounded_corners_bottom(array('color' => 'orange_deluxe'));
 	}
 	
+	$output .= '</div>';
 	// Old...
 	if(login_checklogin())
 	{
