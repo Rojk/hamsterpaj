@@ -3,6 +3,7 @@
 	require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
 	
 	$ui_options['stylesheets'][] = 'photoblog.css.php';
+	$ui_options['javascripts'][] = 'jquery-ui-slider.js';
 	$ui_options['javascripts'][] = 'photoblog.js';
 	
 	$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
@@ -149,6 +150,14 @@
 		break;
 			
 		default:
+			$bogus = array(
+				array('id' => 1),
+				array('id' => 2),
+				array('id' => 3),
+				array('id' => 4),
+				array('id' => 5)
+			);
+		
 			$out .= 'Välkommen till ' . "\n";
 			$out .= preg_match('/s$/', $uri_parts[2]) ? $uri_parts[2] : $uri_parts[2] . 's';
 			$out .= ' fotoblogg!';
@@ -158,7 +167,12 @@
 					$out .= '<dl>';
 					$out .= '<dt><a href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
 					$out .= '<dt>23/11</dt>';
-					$out .= '<dd><a rel="imageid_1" class="photoblog_active" href="gallery.php?id=2232"><img src="thumb.png" alt="Foobar" /></a></dd>';
+					
+					foreach ( $bogus as $image )
+					{
+						$out .= '<dd><a rel="imageid_' . $image['id'] . '" ' . ($image['id'] == 1 ? 'class="photoblog_active"' : '') . ' href="#image-' . $image['id'] . '"><img src="http://i34.tinypic.com/2zss8qg.png" alt="Foobar" /></a></dd>';
+					}
+					
 					$out .= '<dt><a href="#">N&auml;sta m&aring;nad</a></dt>';
 					$out .= '</dl>';
 				$out .= '</div>';
