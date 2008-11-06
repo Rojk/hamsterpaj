@@ -60,18 +60,41 @@ hp.photoblog = {
 					break;
 					
 					case 'upload_complete':
+						var todays_date_readable = new Date().getYear() + '-' + new Date().getMonth() + '-' + new Date().getDay();
+						
 						$('#photoblog_photo_properties_' + params.photo_id)
 							.html('<div class="properties">'
-								+ '<p>Datepicker - save - set today | Select album - Create album</p><p>WYSIWYG-editor tinymce</p><p>Save</p></div>'
+									+ '<h2>Välj när bilden togs:</h2>'
+									+ '<input type="text" name="photoblog_photo_properties_' + params.photo_id + '_date" id="photoblog_photo_properties_' + params.photo_id + '_date" value="' + todays_date_readable + '">'
+									+ '<input type="checkbox" name="photoblog_photo_properties_' + params.photo_id + '_autodate" id="photoblog_photo_properties_' + params.photo_id + '_autodate" value="1" /> <label for="photoblog_photo_properties_' + params.photo_id + '_autodate">Försök avgöra ifrån bilden, annars dagens datum.</label>'
+	
+									+ '<h2>Beskrivning:</h2>'
+									+ '<textarea name="photoblog_photo_properties_' + params.photo_id + '_description"></textarea>'
+								+ '</div>'
+
 								+ '<div class="float">'
-								+ '<div class="thumbnail_wrapper">'
-								+ '<img src="http://images.hamsterpaj.net/photos/thumb/8/42818.jpg" class="thumbnail" />'
-								+ '</div>'
-								+ '<div class="rotate">'
-								+ '<img src="" class="rotate_left" />'
-								+ '<img src="" class="rotate_right" />'
-								+ '</div>'
+									+ '<div class="thumbnail_wrapper">'
+										+ '<img src="http://images.hamsterpaj.net/photos/thumb/8/42818.jpg" class="thumbnail" />'
+									+ '</div>'
+	
+									+ '<div class="rotate">'
+										+ '<img src="http://images.hamsterpaj.net/photoblog/rotate_left.png" class="rotate_left" />'
+										+ '<img src="http://images.hamsterpaj.net/photoblog/rotate_right.png" class="rotate_right" />'
+									+ '</div>'
 								+ '</div>');
+						
+						$('#photoblog_photo_properties_' + params.photo_id + '_autodate').click(function()
+						{
+							var date_field = $('#photoblog_photo_properties_' + $(this).attr('id').split('photoblog_photo_properties_')[1].split('_')[0] + '_date');
+							if(this.checked == true)
+							{
+								date_field.attr('disabled', true);
+							}
+							else
+							{
+								date_field.attr('disabled', false);
+							}
+						});
 					break;
 				}
 			}
