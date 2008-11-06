@@ -4,6 +4,7 @@
 	
 	$ui_options['stylesheets'][] = 'photoblog.css.php';
 	$ui_options['javascripts'][] = 'jquery-ui-slider.js';
+	$ui_options['javascripts'][] = 'jquery-ui-datepicker.js';
 	$ui_options['javascripts'][] = 'photoblog.js';
 	
 	$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
