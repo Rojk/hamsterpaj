@@ -15,16 +15,16 @@
 		{
 			if(login_checklogin())
 			{
-				if(!isset($_GET['upload_id']))
+				if(!isset($_GET['upload_ticket']) || $_GET['upload_ticket'] == -1)
 				{
-					throw new Exception('Invalid upload ticket.');
+					throw new Exception('Invalid upload ticket ' . $_GET['upload_ticket'] . '.');
 				}
 				if(!isset($_GET['current_file_id']))
 				{
 					throw new Exception('Invalid upload ticket.');
 				}
 				
-				if(!isset($_SESSION['photoblog']['upload']['upload_tickets'][$_GET['upload_id']]))
+				if(!isset($_SESSION['photoblog']['upload']['upload_tickets'][$_GET['upload_ticket']]))
 				{
 					throw new Exception('Invalid upload ticket.');
 				}
