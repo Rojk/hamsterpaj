@@ -211,10 +211,10 @@ return $.datepicker['_'+options+'Datepicker'].apply($.datepicker,[this[0]].conca
 jQuery(function($){
     $.datepicker.regional['sv'] = {
 		clearText: 'Rensa', clearStatus: '',
-		closeText: 'Stäng', closeStatus: '',
-        prevText: '&laquo;Förra',  prevStatus: '',
+		closeText: 'StÃ¤ng', closeStatus: '',
+        prevText: '&laquo;FÃ¶rra',  prevStatus: '',
 		prevBigText: '&#x3c;&#x3c;', prevBigStatus: '',
-		nextText: 'Nästa&raquo;', nextStatus: '',
+		nextText: 'NÃ¤sta&raquo;', nextStatus: '',
 		nextBigText: '&#x3e;&#x3e;', nextBigStatus: '',
 		currentText: 'Idag', currentStatus: '',
         monthNames: ['Januari','Februari','Mars','April','Maj','Juni', 
@@ -223,9 +223,9 @@ jQuery(function($){
         'Jul','Aug','Sep','Okt','Nov','Dec'],
 		monthStatus: '', yearStatus: '',
 		weekHeader: 'Ve', weekStatus: '',
-		dayNamesShort: ['Sön','Mån','Tis','Ons','Tor','Fre','Lör'],
-		dayNames: ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'],
-		dayNamesMin: ['Sö','Må','Ti','On','To','Fr','Lö'],
+		dayNamesShort: ['SÃ¶n','MÃ¥n','Tis','Ons','Tor','Fre','LÃ¶r'],
+		dayNames: ['SÃ¶ndag','MÃ¥ndag','Tisdag','Onsdag','Torsdag','Fredag','LÃ¶rdag'],
+		dayNamesMin: ['SÃ¶','MÃ¥','Ti','On','To','Fr','LÃ¶'],
 		dayStatus: 'DD', dateStatus: 'D, M d',
         dateFormat: 'yy-mm-dd', firstDay: 1, 
 		initStatus: '', isRTL: false};
