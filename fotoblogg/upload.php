@@ -49,6 +49,6 @@
 	{
 		header('"HTTP/1.0 500 Internal Server Error');
 		echo $error;
-		trace('photoblog_upload_error', $error);
+		trace('photoblog_upload_error', $error . "\n" . print_r($_GET, true) . "\n" . session_id());
 	}
 ?>
