@@ -815,8 +815,9 @@ function ui_module_render($options)
 		$options['collapse_link'] = isset($options['collapsed_link']) ? $options['collapse'] : 'Visa mer information';
 		$options['collapse_id'] = rand(100000, 999999);
 		$options['type'] = isset($options['type']) ? $options['type'] : 'notification';
+		$options['id'] = isset($options['id']) ? ('id="' . $options['id'] . '"') : '';
 
-		$output .= '<div class="' . $options['type'] . '">' . "\n";
+		$output .= '<div class="' . $options['type'] . '" ' . $options['id'] . '>' . "\n";
 			$output .= '<h2>' . $options['title'] . '</h2>' . "\n";
 			$output .= '<p>' . $options['message'] . '</p>' . "\n";
 			if (isset($options['collapse_information']))
