@@ -74,7 +74,7 @@ hp.photoblog = {
 
 								+ '<div class="float">'
 									+ '<div class="thumbnail_wrapper">'
-										+ '<img src="http://images.hamsterpaj.net/photos/thumb/8/42818.jpg" class="thumbnail" />'
+										+ '<img src="/fotoblogg/upload_redirect_to_thumbnail.php?photo_id=' + params.photo_id + '&upload_ticket=' + $('#photoblog_upload_ticket').attr('value') + '" class="thumbnail" />'
 									+ '</div>'
 	
 									+ '<div class="rotate">'

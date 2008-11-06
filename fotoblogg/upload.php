@@ -35,7 +35,7 @@
 				
 				$photo_id = photoblog_upload_upload($options);
 				
-				$_SESSION['photoblog']['upload']['upload_tickets'][$_GET['upload_id']][$_GET['current_file_id']] = $photo_id;
+				$_SESSION['photoblog']['upload']['upload_tickets'][$_GET['upload_ticket']][$_GET['current_file_id']] = $photo_id;
 			}
 			else
 			{

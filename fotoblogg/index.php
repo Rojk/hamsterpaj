@@ -102,6 +102,7 @@
 			*/
 			$upload_ticket = md5(uniqid(rand()));
 			$_SESSION['photoblog']['upload']['upload_tickets'][$upload_ticket] = array();
+			$out .= '<input type="hidden" value="' . $upload_ticket . '" id="photoblog_upload_ticket" />';
 			
 			$out .= '<div id="photoblog_upload_wrapper">' . "\n";
 				$out .= '<div id="photoblog_upload_upload_flash_objectarea">&nbsp;</div>' . "\n";
