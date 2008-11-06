@@ -1,7 +1,9 @@
 <?php
 	if(isset($_GET['PHPSESSID']))
 	{
+		session_destroy();
 		session_id($_GET['PHPSESSID']);
+		session_start();
 	}	
 	
 	require('../include/core/common.php');
