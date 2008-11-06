@@ -44,6 +44,8 @@ hp.photoblog = {
 						+ '<h2>Laddar upp ' + unescape(params.photo_filename) + '</h2>'
 						+ '<div class="photoblog_photo_properties_uploading_progress_bar">Startar...</div>'
 					+ '</div>');
+					
+				$('#photoblog_upload_rules').hide();
 			},
 			
 			update_photo_status: function(params)
