@@ -126,6 +126,12 @@
 	// ---- SPOTLIGHT END ----
 	// -----------------------
 	
+	if (date('m') == 11 && date('d') == 6 && date('H') < 18)
+	{
+		$page_heading = '<a href="/diskussionsforum/mellan_himmel_och_jord/oh_my_god_prinsen_och_emma_har_gjort_slut/sida_1.php#post_1165272" style="font-size: 18px;color: #fff; background-color: #000;font-weight: bold;"><em>SKVALLERPAJ AVSLÖJAR</em></a>';
+	}
+	
+	
 	$output .= '<h1 id="fp_greeting">' . $page_heading . '</h1>' . "\n";
 	
 	$output .= ($_SERVER['REMOTE_ADDR'] == '217.28.207.226') ? '<h1>Va? Har ni inte slutat ännu? Kullaviksskolan är alltså före er!</h1>' : '';
