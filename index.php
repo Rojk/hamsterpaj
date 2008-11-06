@@ -128,7 +128,7 @@
 	
 	if (date('m') == 11 && date('d') == 6 && date('H') < 18)
 	{
-		$page_heading = '<a href="/diskussionsforum/mellan_himmel_och_jord/oh_my_god_prinsen_och_emma_har_gjort_slut/sida_1.php#post_1165272" style="font-size: 18px;color: #fff; background-color: #000;font-weight: bold;"><em>SKVALLERPAJ AVSLÖJAR</em></a>';
+		$page_heading = '<a href="/diskussionsforum/mellan_himmel_och_jord/oh_my_god_prinsen_och_emma_har_gjort_slut/sida_1.php#post_1165272" style="font-size: 24px;color: #fff; background-color: #000;font-weight: bold;"><em>SKVALLERPAJ AVSLÖJAR</em></a>';
 	}
 	
 	
