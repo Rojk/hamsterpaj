@@ -1,0 +1,32 @@
+fieldset {
+	border: 1px solid #ccc;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 10px;
+	font-size: 14px;
+}
+
+label {
+	font-size: 0.8em;
+	font-weight: bold;
+}
+	label strong {
+		color: red;
+	}
+input {
+	padding: 3px;
+}
+
+input, textarea, select {
+	border: 1px solid #bbb;
+	margin: 5px 0;
+}
+
+.form {
+	width: 100%;
+	border-spacing: 0;
+}
+.form td, .form th {
+	border-bottom: 1px solid #ccc;
+	padding: 5px;
+}

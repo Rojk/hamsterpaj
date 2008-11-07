@@ -7,15 +7,12 @@
 	$acceptance_text = 'Jag accepterar blaha!';
 	try
 	{
-		if (!is_privilegied('igotgodmode'))
-		{
-			throw new Exception('Ajabaja, inte kika än :)');
-		}
 		if (!login_checklogin())
 		{
-			throw new Exception('Du måste vara inloggad för att kika här :(');
+			throw new Exception('Du måste vara inloggad och medlem för att kunna beställa en Hamsterpaj-tröja');
 		}
 		$ui_options['stylesheets'][] = 'shop.css';
+		$ui_options['stylesheets'][] = 'forms.css';
 		$ui_options['javascripts'][] = 'shop.js';
 		$ui_options['title'] = 'Tröjshop - Hamsterpaj.net';
 		$ui_options['menu_path'] = array('hamsterpaj');
@@ -92,18 +89,30 @@
 			$result = mysql_query($sql);
 			$data = mysql_fetch_assoc($result);
 			$out .= '
-				<h2>Bekräfta betalning</h2>
-				<p><strong>För att bekräfta din betalning</strong> så sätter du in <strong>180</strong> SEK på <strong>bankgiro ABC-12345</strong> med kommentaren
+				<h1>Tack för din beställning!</h1>
+				' . rounded_corners_top(array('color' => 'green'), true) . '
+				<h2 style="margin-top: 0;">För att bekräfta betalning</h2>
+				<p><strong>För att bekräfta din betalning</strong> så sätter du in <strong>200</strong> SEK på <strong>bankgiro ABC-12345</strong> med kommentaren
 				<strong>HP-' . $data['order_id'] . '</strong>
 				</p>
+				<p style="margin-bottom: 0;">
+					Din tröja bör efter att du satt in pengarna plumsa ner i din brevlåda om cirka 2-5 arbetsdagar.
+				</p>
+				' . rounded_corners_bottom(array('color' => 'green'), true) . '
 			';
 		}
 		else
 		{
-			$out .= '<form action="?action=submit" method="post">
+			$out .= '
+			<img src="http://images.hamsterpaj.net/shop/hamstershirt.png" />
+			<img id="shirt_boy" src="http://images.hamsterpaj.net/shop/hamstershirt_boy.png" />
+			<img id="shirt_girl" src="http://images.hamsterpaj.net/shop/hamstershirt_girl.png" />
+			<fieldset>
+				<legend>Beställ din helt egna Hamsterpaj-tröja</legend>
+			<form action="?action=submit" method="post">
 			    <div class="form">
 				<div id="shirt">
-				<table>
+				<table class="form">
 			               	<tr>
 			                    <th><label for="shop_gender">Tröjmodell <strong>*</strong></label></th>
 			                    <td>
@@ -126,7 +135,7 @@
 				</table>
 				</div>
 				<div id="address">
-			            <table>
+			            <table class="form">
 			                <tr>
 			                    <th><label for="shop_real_name">Ditt namn <strong>*</strong></label></th>
 			                    <td><input id="shop_real_name" name="shop_real_name" size="20" type="text" /></td>
@@ -157,9 +166,10 @@
 						' . $acceptance_text . '
 					</label>
 				</div>
-				<input class="submit" name="commit" type="submit" value="Skicka" />
+				<input class="button_60" name="commit" type="submit" value="Beställ" />
 			    </div>
-			</form>';
+			</form>
+			</fieldset>';
 		}
 	}
 	catch (Exception $error)
@@ -169,7 +179,7 @@
 		$out .= $error->getMessage();
 		$out .= '</p>';
 		$out .= '<p>';
-		$out .= '<a href="/shop/">&laquo;Bakåt</a>';
+		$out .= '<a href="/shop/">&laquo; Tillbaka</a>';
 		$out .= '</p>';
 		$out .= '</div>';
 	}

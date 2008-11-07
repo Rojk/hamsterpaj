@@ -1,57 +1,10 @@
-.shop_rounded_corners_dark
-{
-	background: #ffbb18 url('http://images.hamsterpaj.net/shop/rounded_corners_dark_top_left.png') top left no-repeat;
-}
-	.shop_rounded_corners_dark > div
-	{
-			background: url('http://images.hamsterpaj.net/shop/rounded_corners_dark_top_right.png') top right no-repeat;
-	}
-	.shop_rounded_corners_dark > div > div
-	{
-			background: url('http://images.hamsterpaj.net/shop/rounded_corners_dark_bottom_left.png') bottom left no-repeat;
-	}
-	.shop_rounded_corners_dark  > div > div > div
-	{
-			background: url('http://images.hamsterpaj.net/shop/rounded_corners_dark_bottom_right.png') bottom right no-repeat;
-	}
-	
-.shop_rounded_corners_bright
-{
-	background: #fdebbf url('http://images.hamsterpaj.net/shop/rounded_corners_bright_top_left.png') top left no-repeat;
-}
-	.shop_rounded_corners_bright > div
-	{
-			background: url('http://images.hamsterpaj.net/shop/rounded_corners_bright_top_right.png') top right no-repeat;
-	}
-	.shop_rounded_corners_bright > div > div
-	{
-			background: url('http://images.hamsterpaj.net/shop/rounded_corners_bright_bottom_left.png') bottom left no-repeat;
-	}
-	.shop_rounded_corners_bright  > div > div > div
-	{
-			background: url('http://images.hamsterpaj.net/shop/rounded_corners_bright_bottom_right.png') bottom right no-repeat;
-	}
-	
-#boys
-{
-	float: left;
-	width: 314px;
-	height: 314px;
+fieldset {
+	width: 613px;
 }
 
-#boys .shop_rounded_corners_dark > div > div > div
-{
-	height: 314px;
+#shirt_boy {
+	margin: 10px 4px 10px 0;
 }
-
-#girls
-{
-	float: right;
-	width: 314px;
-	height: 314px;
-}
-
-#girls .shop_rounded_corners_dark > div > div > div 
-{
-	height: 314px;
+#shirt_girl {
+	margin: 10px 0px 10px 4px;
 }
