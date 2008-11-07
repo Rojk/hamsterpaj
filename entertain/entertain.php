@@ -123,6 +123,12 @@ switch($request['entertain_type'])
 	break;
 }
 ui_top($ui_options);
+
+if(in_array($request['entertain_type'], array('game', 'flash', 'clip')))
+{
+	echo '<img src="http://hejreklam.se/coen.png" />' . "\n";
+}
+
 switch($request['view'])
 {
 	case 'list':
@@ -137,6 +143,7 @@ global $entertain_adtoma_categories;
 $ui_options['adtoma_category'] = $entertain_adtoma_categories[$request['entertain_type']]; 
 
 //preint_r($request);
+
 
 $output .= '<div class="entertain">' . "\n";
 echo rounded_corners_top(array('color' => 'orange'));
