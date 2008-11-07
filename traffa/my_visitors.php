@@ -97,7 +97,7 @@
 		$query  = 'SELECT uv.item_id AS visitor_id, l.username, z.spot';
 		$query .= ' FROM user_visits AS uv, login AS l, userinfo AS u, zip_codes AS z';
 		$query .= ' WHERE uv.user_id = ' . $show_user_id . ' AND l.id = uv.item_id AND uv.type = "profile_visit" AND u.userid = uv.item_id AND z.zip_code = u.zip_code';
-		$query .= ' AND l.username <> "borttagen" AND u.image IN(1, 2)';
+		$query .= ' AND is_removed = 0 AND u.image IN(1, 2)';
 		if(in_array($show_what, array('boys', 'girls')))
 		{
 			$query .= ' AND u.gender = "' . (($_GET['show'] == 'boys') ? 'm' : 'f') . '"';
