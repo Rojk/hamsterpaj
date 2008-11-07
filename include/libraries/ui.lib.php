@@ -373,10 +373,6 @@ function ui_bottom($options = array())
 	$output .= '<br style="clear: both;" />' . "\n";
 	$output .= '</div>' . "\n";
 	
-	$output .= '<div id="skyscraper">' . "\n";
-	$output .= '<script type="text/javascript">CM8ShowAd("Skyscraper");</script>' . "\n";
-	$output .= '</div>' . "\n";
-	
 	$output .= '<div id="ui_modulebar">' . "\n";
 
 	$modules = array(
@@ -431,6 +427,10 @@ function ui_bottom($options = array())
 	$output .= '		</div>' . "\n";
 	$output .= '	<div id="ui_break"></div> ' . "\n";
 	$output .= '	</div>' . "\n";
+	
+	$output .= '<div id="skyscraper">' . "\n";
+	$output .= '<script type="text/javascript">CM8ShowAd("Skyscraper");</script>' . "\n";
+	$output .= '</div>' . "\n";
 	
 	$output .= '<div id="fiskpinne">' . "\n";
 	$output .= '<script type="text/javascript" src="http://www.adtrade.net/ad/p/?id=hamsterpaj_1&size=140x350&ad=001" charset="iso-8859-1"></script>';
