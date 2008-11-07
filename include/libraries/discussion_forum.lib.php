@@ -33,8 +33,6 @@
 		$query .= (!isset($options['disable_forum_lookup'])) ? ', public_forums AS pf' : '';
 		
 		$query .= ' WHERE';
-		$mobboffer = 878224;
-		$query .= USER_ID != $mobboffer ? ' p.author NOT LIKE ' . $mobboffer . ' AND' : '';
 		$query .= ' l.id = p.author AND u.userid = l.id AND z.zip_code = u.zip_code';
 		$query .= (!isset($options['disable_forum_lookup'])) ? ' AND pf.id = p.forum_id' : '';
 		$query .= (isset($options['post_id']) && is_numeric($options['post_id'])) ? ' AND p.id = "' . $options['post_id'] . '"' : '';
