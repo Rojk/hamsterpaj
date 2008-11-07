@@ -91,6 +91,8 @@
 		$output .= photos_list($photos);
 	}
 	
+	$output .= '<a href="http://www.hamsterpaj.net/traffa/guestbook.php?view=896044"><img src="http://hejreklam.se/coen.png" /></a>' . "\n";
+	
 	$short_months = array('Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec');	
 	$events = query_cache(array('query' => 'SELECT * FROM recent_updates WHERE label NOT LIKE "Generalrepetition" ORDER BY id DESC LIMIT 11'));
 
