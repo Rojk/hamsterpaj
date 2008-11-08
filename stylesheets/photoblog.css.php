@@ -52,8 +52,7 @@
 			margin: 10px;
 		}
 		.photoblog_photo_properties .rotate {
-			margin: 0 50px 10px 50px;
-			width: 176px;
+			margin: 0 55px 10px 50px;
 		}
 			.photoblog_photo_properties .rotate_left {
 				margin-right: 10px;
