@@ -79,6 +79,7 @@
 		break;
 		
 		case 'ladda_upp':
+			$ui_options['stylesheets'][] = 'datepicker.css';
 			/*	
 				########################################################
 					Page title

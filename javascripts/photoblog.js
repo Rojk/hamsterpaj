@@ -62,12 +62,10 @@ hp.photoblog = {
 					case 'upload_complete':
 						$('#photoblog_photo_properties_' + params.photo_id)
 							.html('<div class="properties">'
-									+ '<h2>Välj när bilden togs:</h2>'
-									+ '<input type="text" name="photoblog_photo_properties_' + params.photo_id + '_date" id="photoblog_photo_properties_' + params.photo_id + '_date" value="Idag">'
+									+ '<input class="photoblog_photo_properties_date" type="text" name="photoblog_photo_properties_' + params.photo_id + '_date" id="photoblog_photo_properties_' + params.photo_id + '_date" value="Idag">'
 									+ '<input type="checkbox" name="photoblog_photo_properties_' + params.photo_id + '_autodate" id="photoblog_photo_properties_' + params.photo_id + '_autodate" value="1" /> <label for="photoblog_photo_properties_' + params.photo_id + '_autodate">Försök avgöra ifrån bilden, annars dagens datum.</label>'
 	
-									+ '<h2>Beskrivning:</h2>'
-									+ '<textarea name="photoblog_photo_properties_' + params.photo_id + '_description"></textarea>'
+									+ '<textarea class="photoblog_photo_properties_description" name="photoblog_photo_properties_' + params.photo_id + '_description"></textarea>'
 								+ '</div>'
 
 								+ '<div class="float">'
@@ -96,7 +94,7 @@ hp.photoblog = {
 						
 						$('#photoblog_photo_properties_' + params.photo_id + '_date').datepicker({
 							showWeeks: true,
-							dateFormat: 'yy-mm-dd'
+							dateFormat: 'yy-mm-dd',
 						});
 					break;
 				}

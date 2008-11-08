@@ -67,6 +67,15 @@
 		padding: 10px;
 		position: absolute;
 	}
+		.photoblog_photo_properties_date {
+			border: 1px solid #cfe2f1;
+		}
+		.photoblog_photo_properties_description {
+			width: 450px;
+			display: block;
+			height: 130px;
+			border: 1px solid #cfe2f1;
+		}
         
 #photoblog_header {
     margin: 0 0 10px 20px;
