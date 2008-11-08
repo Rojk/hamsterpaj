@@ -94,7 +94,7 @@ hp.photoblog = {
 						
 						$('#photoblog_photo_properties_' + params.photo_id + '_date').datepicker({
 							showWeeks: true,
-							dateFormat: 'yy-mm-dd',
+							dateFormat: 'yy-mm-dd'
 						});
 					break;
 				}
