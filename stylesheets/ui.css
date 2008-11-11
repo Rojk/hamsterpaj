@@ -12,7 +12,7 @@
 
 body {
 	background: #8ec0e5 url(http://images.hamsterpaj.net/ui/ui_background_gradient.png) repeat-x;
-	font-family: tahoma, verdana,  arial, "ms trebuchet", sans-serif, serif;
+	font-family: tahoma, arial, "ms trebuchet", sans-serif, serif;
 	color: #454545;
 	font-size: 0.7em;
 	margin: 0;
@@ -254,7 +254,7 @@ h2 {
 #ui_menu {
   background: url("http://images.hamsterpaj.net/ui/ui_menu_bg.png") repeat-x;
   height: 26px;
-  font-size: 8pt;
+  font-size: 11px;
   padding-left: 2px;
   z-index: 1;
 }
