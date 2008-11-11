@@ -52,6 +52,8 @@
 
 	$output .= isset($_GET['ilovemarquee']) ? '<marquee scrolldelay="1" behavior="alternate" direction="right"><div style="width:720px">' : '';
 
+
+	$output .= '<strong>test</strong>';
 	
 
 	foreach($headings AS $score => $heading)

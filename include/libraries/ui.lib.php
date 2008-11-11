@@ -146,6 +146,7 @@ function ui_top($options = array())
 	$output .= '</script>' . "\n";
 	$output .= '<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>' . "\n";
 	
+	
 	// A big notice-bar shown on top, 60px height.
 /*	
 	$full_page_notice = '<h2>Något är jävligt fel med Amanda. Lef felsöker, därför kan det vara lite mobbat för stunden</h2>';
@@ -160,11 +161,11 @@ function ui_top($options = array())
 			$output .= $full_page_notice . "\n";
 		$output .= '</div>' . "\n";
 	}
-	
+	/*
 	$output .= '<div>' . "\n";
 	$output .= '	<script type="text/javascript">CM8ShowAd("Bigbanner");</script>' . "\n";
 	$output .= '</div>' . "\n";
-	
+	*/
 	
 	$output .= '	<div id="ui_wrapper">' . "\n";
 	$output .= '		<div id="ui_header">' . "\n";
