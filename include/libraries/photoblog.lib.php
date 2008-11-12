@@ -51,6 +51,53 @@
 		return $photo_id;
 	}
 	
+	function photoblog_photos_fetch($options)
+	{
+		if(isset($options['id']))
+		{
+			$options['id'] = (is_array($options['id'])) ? $options['id'] : array($options['id']);
+		}
+		
+		if(isset($options['category']))
+		{
+			$options['category'] = (is_array($options['category'])) ? $options['category'] : array($options['category']);
+		}
+		
+		if(isset($options['date']))
+		{
+			$options['date'] = (is_array($options['date'])) ? $options['date'] : array($options['date']);
+		}
+		
+		$options['order-by'] = (in_array($options['order-by'], array('up.id'))) ? $options['order-by'] : 'up.id';
+		$options['order-direction'] = (in_array($options['order-direction'], array('ASC', 'DESC'))) ? $options['order-direction'] : 'ASC';
+		$options['offset'] = (isset($options['offset']) && is_numeric($options['offset'])) ? $options['offset'] : 0;
+		$options['limit'] = (isset($options['limit']) && is_numeric($options['limit'])) ? $options['limit'] : 9999;
+		
+		$query = 'SELECT up.*, l.username';
+		$query .= ' FROM user_photos AS up, login AS l';
+		$query .= ' WHERE l.id = up.user';
+		$query .= ' AND up.deleted = 0';
+		$query .= (isset($options['include_removed_photos']) && $options['include_removed_photos'] == true) ? '' : ' AND l.is_removed = 0';
+		$query .= (isset($options['id'])) ? ' AND up.id IN("' . implode('", "', $options['id']) . '")' : '';
+		$query .= (isset($options['user'])) ? ' AND up.user  = "' . $options['user'] . '"' : '';
+		$query .= (isset($options['date'])) ? ' AND up.date IN("' . implode('", "', $options['date']) . '")' : '';
+		$query .= (isset($options['category'])) ? ' AND up.category IN("' . implode('", "', $options['category']) . '")' : '';
+		$query .= (isset($options['force_unread_comments']) && $options['force_unread_comments'] == true) ? ' AND up.unread_comments > 0' : '';
+		$query .= ' ORDER BY ' . $options['order-by'] . ' ' . $options['order-direction'] . ' LIMIT ' . $options['offset'] . ', ' . $options['limit'];
+		
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		
+		$photos = array();
+		while($data = mysql_fetch_assoc($result))
+		{
+			$data['description'] = (strlen($data['description']) > 0) ? $data['description'] : 'Ingen beskrivning';
+			$photos[] = $data;
+			$found_something = true;
+		}
+		
+		return $photos;
+	}
+	
 	function photoblog_photos_update($data, $options)
 	{
 		if(isset($data['id']))
