@@ -124,10 +124,6 @@ switch($request['entertain_type'])
 }
 ui_top($ui_options);
 
-if(in_array($request['entertain_type'], array('game', 'flash', 'clip')))
-{
-	echo '<a href="http://www.hamsterpaj.net/traffa/guestbook.php?view=896044"><img src="http://hejreklam.se/coen.png" /></a>' . "\n";
-}
 
 switch($request['view'])
 {
