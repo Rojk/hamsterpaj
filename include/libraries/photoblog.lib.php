@@ -53,12 +53,30 @@
 	
 	function photoblog_sort_module($photos, $options = array())
 	{
+		if(!isset($options['user']))
+		{
+			if(login_checklogin())
+			{
+				$options['user'] = $_SESSION['login']['id'];
+			}
+			else
+			{
+				throw new Exception('No user specified and not logged in.');
+			}
+		}
+		
 		$options['save_path'] = isset($options['save_path']) ? $options['save_path'] : '/fotoblogg/sortera/spara_sortering';
 		$out = '<div class="photoblog_sort_module">' . "\n";
 		$out .= 'Save path: ' . $options['save_path'];
 		
 		$out .= '<ul class="albums">' . "\n";
-		$out .= '<li></li>' . "\n";
+		
+		$categories = photoblog_categories_fetch(array('user' => $options['user']));
+		foreach($categories as $category)
+		{
+			$out .= '<li><pre>' . print_r($category, true) . '</pre></li>' . "\n";
+		}
+		
 		$out .= '</ul>' . "\n";
 		
 		$out .= '<ul class="photos">';
