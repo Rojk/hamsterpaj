@@ -98,7 +98,7 @@
 		return $photos;
 	}
 	
-	function photoblog_photos_update($data, $options)
+	function photoblog_photos_update($data, $options = array())
 	{
 		if(isset($data['id']))
 		{
