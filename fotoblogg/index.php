@@ -156,8 +156,9 @@
 					{
 						foreach($_POST as $key => $value)
 						{
-							if(preg_match('/^photoblog_photo_properties_(<photo_id>\d+)_description$/', $key, $matches))
+							if(preg_match('/^photoblog_photo_properties_(\d+)_description$/', $key, $matches))
 							{
+								$matches['photo_id'] = $matches[1];
 								if(isset($_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_autodate']))
 								{
 									$data['date'] = ('Y-m-d');
