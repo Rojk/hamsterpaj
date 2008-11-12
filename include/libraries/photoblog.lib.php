@@ -51,6 +51,28 @@
 		return $photo_id;
 	}
 	
+	function photoblog_sort_module($photos, $options = array())
+	{
+		$options['save_path'] = isset($options['save_path']) ? $options['save_path'] : '/fotoblogg/sortera/spara_sortering';
+		$out = '<div class="photoblog_sort_module">' . "\n";
+		$out .= 'Save path: ' . $options['save_path'];
+		
+		$out .= '<ul class="albums">' . "\n";
+		$out .= '<li></li>' . "\n";
+		$out .= '</ul>' . "\n";
+		
+		$out .= '<ul class="photos">';
+		foreach($photos as $photo)
+		{
+			$out = '<li id="photoblog_sort_' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photos['id'] / 5000) . '/' . $photos['id'] . '.jpg" alt="Dra till en kategori..." /></li>' . "\n";
+		}
+		$out .= '</ul>' . "\n";
+		
+		$out .= '</div>' . "\n";
+		
+		return $out;
+	}
+	
 	function photoblog_photos_fetch($options)
 	{
 		if(isset($options['id']))

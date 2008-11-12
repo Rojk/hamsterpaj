@@ -150,7 +150,7 @@
 				break;	
 				
 				case 'sortering':
-					$photos = array();
+					$photo_ids = array();
 					
 					if(isset($_POST['photoblog_upload_ticket']) && isset($_SESSION['photoblog']['upload']['upload_tickets'][$_POST['photoblog_upload_ticket']]))
 					{
@@ -188,7 +188,7 @@
 								$data['description'] = $_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_description'];
 								
 								photoblog_photos_update($data);
-								$photos[$data['id']] = $data;
+								$photo_ids[] = $data['id'];
 							}
 						}
 					}
@@ -197,7 +197,20 @@
 						throw new Exception('No ticket id specified or ticket id expired.');
 					}
 					
-					preint_r($photos, 'All photos you uploaded...');
+					if(empty($photo_ids))
+					{
+						$out .= 'Något gick lite snett, vi hittade inga av dina foton du just laddade upp.';
+						throw new Exception('No photos found when counting uploaded ids before fetching them.');
+					}
+					else
+					{
+						$out .= '<h2>Här kan du sortera dina foton</h2>';
+						$out .= 'Att sortera sina foton är självklart frivilligt, men kan vara bra så att man kan hålla koll på dem. Klicka och dra fotona dit du vill ha dem eller spara. Annars kan du <a href="/fotoalbum">gå direkt till ditt album och se bilderna du laddade upp</a>.';
+						
+						$photos = photoblog_photos_fetch(array('id' => $photo_ids), array('save_path' => '/fotoblogg/ladda_upp/spara_sortering'));
+						
+						$out .= photoblog_sort_module($photos);
+					}
 				break;
 			}
 		break;
