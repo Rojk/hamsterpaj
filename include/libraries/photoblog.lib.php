@@ -50,4 +50,46 @@
 		
 		return $photo_id;
 	}
+	
+	function photoblog_photos_update($data, $options)
+	{
+		if(isset($data['id']))
+		{
+			$options['id'] = (isset($options['id']) && is_numeric($options['id'])) ? $options['id'] : $data['id'];
+			unset($data['id']);
+		}
+		
+		if(isset($options['old_data']))
+		{
+			foreach($options['old_data'] as $key => $value)
+			{
+				if(isset($data[$key]) && $data['key'] == $value)
+				{
+					unset($data[$key]);
+				}
+			}
+		}
+		
+		if(!isset($options['id']) || !is_numeric($options['id']))
+		{
+			throw new Exception('Could not find a numeric ID in the $options nor the $data array.');
+		}
+		
+		if(!empty($data))
+		{
+			$update_data = array();
+			foreach($data as $key => $value)
+			{
+				$update_data[] = $key . ' = "' . $value . '"';
+			}
+			
+			$query = 'UPDATE user_photos SET ' . implode(', ', $update_data);
+			$query .= ' WHERE id = "' . $options['id'] . '"';
+			$query .= ' LIMIT 1';// Note: LIMIT 1 is used!
+			
+			mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		}
+		
+		// Add more code for replacing photos etc. later...
+	}
 ?>
