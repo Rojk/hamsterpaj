@@ -64,7 +64,7 @@
 		$out .= '<ul class="photos">';
 		foreach($photos as $photo)
 		{
-			$out = '<li id="photoblog_sort_' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photos['id'] / 5000) . '/' . $photos['id'] . '.jpg" alt="Dra till en kategori..." /></li>' . "\n";
+			$out .= '<li id="photoblog_sort_' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id'] / 5000) . '/' . $photo['id'] . '.jpg" alt="Dra till en kategori..." /></li>' . "\n";
 		}
 		$out .= '</ul>' . "\n";
 		
