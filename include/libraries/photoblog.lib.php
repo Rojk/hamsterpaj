@@ -74,7 +74,7 @@
 		$categories = photoblog_categories_fetch(array('user' => $options['user']));
 		foreach($categories as $category)
 		{
-			$out .= '<li><pre>' . print_r($category, true) . '</pre></li>' . "\n";
+			$out .= '<li id="photoblog_sort_album_' . $category['id'] . '"><pre>' . print_r($category, true) . '</pre></li>' . "\n";
 		}
 		
 		$out .= '</ul>' . "\n";
