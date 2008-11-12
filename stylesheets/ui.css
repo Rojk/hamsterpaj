@@ -254,7 +254,7 @@ h2 {
 #ui_menu {
   background: url("http://images.hamsterpaj.net/ui/ui_menu_bg.png") repeat-x;
   height: 26px;
-  font-size: 11px;
+  font-size: 94%;
   padding-left: 2px;
   z-index: 1;
 }
