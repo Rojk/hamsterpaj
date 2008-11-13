@@ -10,7 +10,16 @@
 	$ui_options['menu_path'] = array('hamsterpaj');
 	$ui_options['adtoma_category'] = 'start';
 	ui_top($ui_options);
-
+	
+	if (!is_privilegied('fp_module_rearrange'))
+	{
+		ui_top($ui_options);
+		echo '<div class="error">';
+		echo '<strong>Du har inte tillåtelse att leka här :)</strong>';
+		echo '</div>';
+		ui_bottom();
+		exit;
+	}
 
 	$filenames = cache_load('fp_module_order');
 
