@@ -1,0 +1,19 @@
+body {
+	
+}
+
+#fp_module_rearrange_list li {
+	width: 500px;
+	height: auto;
+	background-color: #ffaa33;
+	padding: 3px;
+	padding-left: 10px;
+	margin-bottom: 5px;
+	border: 1px solid #ffaa33;
+	-moz-border-radius: 5px;
+}	
+
+#fp_module_rearrange_list {
+	list-style-type: none;
+}		
+	
