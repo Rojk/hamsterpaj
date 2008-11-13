@@ -224,6 +224,8 @@
 	// ---- SPOTLIGHT END ----
 	// -----------------------
 	
+	$output .= '<div><a href="http://www.hamsterpaj.net/traffa/guestbook.php?view=857929"><img src="http://hejreklam.se/tavlingnarnia.png" alt="Tävla med hamstern!" /></a></div>';
+	
 	
 	
 	/* Info text */
