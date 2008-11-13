@@ -50,4 +50,176 @@
 		
 		return $photo_id;
 	}
+	
+	function photoblog_sort_module($photos, $options = array())
+	{
+		if(!isset($options['user']))
+		{
+			if(login_checklogin())
+			{
+				$options['user'] = $_SESSION['login']['id'];
+			}
+			else
+			{
+				throw new Exception('No user specified and not logged in.');
+			}
+		}
+		
+		$options['save_path'] = isset($options['save_path']) ? $options['save_path'] : '/fotoblogg/sortera/spara_sortering';
+		$out = '<div class="photoblog_sort_module">' . "\n";
+		$out .= 'Save path: ' . $options['save_path'];
+		
+		$out .= '<ul class="albums">' . "\n";
+		
+		$categories = photoblog_categories_fetch(array('user' => $options['user']));
+		foreach($categories as $category)
+		{
+			$out .= '<li id="photoblog_sort_album_' . $category['id'] . '"><pre>' . print_r($category, true) . '</pre></li>' . "\n";
+		}
+		
+		$out .= '</ul>' . "\n";
+		
+		$out .= '<ul class="photos">';
+		foreach($photos as $photo)
+		{
+			$out .= '<li id="photoblog_sort_' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id'] / 5000) . '/' . $photo['id'] . '.jpg" alt="Dra till en kategori..." /></li>' . "\n";
+		}
+		$out .= '</ul>' . "\n";
+		
+		$out .= '</div>' . "\n";
+		
+		return $out;
+	}
+	
+	function photoblog_photos_fetch($options)
+	{
+		if(isset($options['id']))
+		{
+			$options['id'] = (is_array($options['id'])) ? $options['id'] : array($options['id']);
+		}
+		
+		if(isset($options['category']))
+		{
+			$options['category'] = (is_array($options['category'])) ? $options['category'] : array($options['category']);
+		}
+		
+		if(isset($options['date']))
+		{
+			$options['date'] = (is_array($options['date'])) ? $options['date'] : array($options['date']);
+		}
+		
+		$options['order-by'] = (in_array($options['order-by'], array('up.id'))) ? $options['order-by'] : 'up.id';
+		$options['order-direction'] = (in_array($options['order-direction'], array('ASC', 'DESC'))) ? $options['order-direction'] : 'ASC';
+		$options['offset'] = (isset($options['offset']) && is_numeric($options['offset'])) ? $options['offset'] : 0;
+		$options['limit'] = (isset($options['limit']) && is_numeric($options['limit'])) ? $options['limit'] : 9999;
+		
+		$query = 'SELECT up.*, l.username';
+		$query .= ' FROM user_photos AS up, login AS l';
+		$query .= ' WHERE l.id = up.user';
+		$query .= ' AND up.deleted = 0';
+		$query .= (isset($options['include_removed_photos']) && $options['include_removed_photos'] == true) ? '' : ' AND l.is_removed = 0';
+		$query .= (isset($options['id'])) ? ' AND up.id IN("' . implode('", "', $options['id']) . '")' : '';
+		$query .= (isset($options['user'])) ? ' AND up.user  = "' . $options['user'] . '"' : '';
+		$query .= (isset($options['date'])) ? ' AND up.date IN("' . implode('", "', $options['date']) . '")' : '';
+		$query .= (isset($options['category'])) ? ' AND up.category IN("' . implode('", "', $options['category']) . '")' : '';
+		$query .= (isset($options['force_unread_comments']) && $options['force_unread_comments'] == true) ? ' AND up.unread_comments > 0' : '';
+		$query .= ' ORDER BY ' . $options['order-by'] . ' ' . $options['order-direction'] . ' LIMIT ' . $options['offset'] . ', ' . $options['limit'];
+		
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		
+		$photos = array();
+		while($data = mysql_fetch_assoc($result))
+		{
+			$data['description'] = (strlen($data['description']) > 0) ? $data['description'] : 'Ingen beskrivning';
+			$photos[] = $data;
+			$found_something = true;
+		}
+		
+		return $photos;
+	}
+	
+	function photoblog_photos_update($data, $options = array())
+	{
+		if(isset($data['id']))
+		{
+			$options['id'] = (isset($options['id']) && is_numeric($options['id'])) ? $options['id'] : $data['id'];
+			unset($data['id']);
+		}
+		
+		if(isset($options['old_data']))
+		{
+			foreach($options['old_data'] as $key => $value)
+			{
+				if(isset($data[$key]) && $data['key'] == $value)
+				{
+					unset($data[$key]);
+				}
+			}
+		}
+		
+		if(!isset($options['id']) || !is_numeric($options['id']))
+		{
+			throw new Exception('Could not find a numeric ID in the $options nor the $data array.');
+		}
+		
+		if(!empty($data))
+		{
+			$update_data = array();
+			foreach($data as $key => $value)
+			{
+				$update_data[] = $key . ' = "' . $value . '"';
+			}
+			
+			$query = 'UPDATE user_photos SET ' . implode(', ', $update_data);
+			$query .= ' WHERE id = "' . $options['id'] . '"';
+			$query .= ' LIMIT 1';// Note: LIMIT 1 is used!
+			
+			mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		}
+		
+		// Add more code for replacing photos etc. later...
+	}
+	
+	function photoblog_categories_fetch($options)
+	{
+		$query = 'SELECT id, name, photo_count, (SELECT GROUP_CONCAT(id) FROM user_photos WHERE user = upc.user AND deleted = 0 AND category = upc.id LIMIT 9) AS photos';
+		$query .= ' FROM user_photo_categories AS upc';
+		$query .= ' WHERE 1';
+		$query .= (isset($options['user'])) ? ' AND user = "' . $options['user'] . '"' : '';
+		$query .= (isset($options['name'])) ? ' AND name LIKE "' . $options['name'] . '"' : '';
+		$query .= (isset($options['id'])) ? ' AND id = "' . $options['id'] . '"' : '';
+		$query .= ' ORDER BY name ASC';
+
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		if(mysql_num_rows($result) == 0 && $options['create_if_not_found'] == true)
+		{
+			$query = 'INSERT INTO user_photo_categories (user, name) VALUES("' . $options['user'] . '", "' . $options['name'] . '")';
+
+			mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+			if(mysql_insert_id() > 0)
+			{
+				$category['id'] = mysql_insert_id();
+				$category['name'] = stripslashes($options['name']);
+				$category['user'] = $options['user'];
+				$category['photo_count'] = 0;
+				$categories[] = $category;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			while($data = mysql_fetch_assoc($result))
+			{
+				if(strlen($data['name']) > 0)
+				{
+					$categories[] = $data;
+				}
+			}
+		}
+				
+		return $categories;
+	}
 ?>
