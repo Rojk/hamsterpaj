@@ -324,6 +324,10 @@
 				{
 					$author_post_count = 'Många schmarta';
 				}
+				elseif($data['author'] == 891711)
+				{
+					$author_post_count = '';
+				}
 				else
 				{
 			 		$author_post_count = cute_number($data['author_post_count']);

@@ -1,3 +1,25 @@
+#fp_modules
+{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#fp_modules li
+{
+	display: block;
+	clear: both;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+
+
+// Old CRAP
+// Should be moved to separate stylesheets for the FP modules...
+
+
 #fp_event_list
 {
 	list-style-type: none;

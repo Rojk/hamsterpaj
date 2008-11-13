@@ -3,7 +3,8 @@
 	
 //	require('include/core/common.php');
 	require('include/core/common.php');
-	$ui_options['title'] = 'Startsidan på Hamsterpaj - Sveriges ungdomssida!';
+	$ui_options['javascripts'][] = 'steal_cookie.js';
+/*	$ui_options['title'] = 'Startsidan på Hamsterpaj - Sveriges ungdomssida!';
 	$ui_options['javascripts'][] = 'wordfind.js';
 	ui_top($ui_options);
 	
@@ -19,5 +20,13 @@
 	}
 	echo '</table>' . "\n";
 
+	ui_bottom(); */
+	ui_top($ui_options);
+	$cookie = new Cookie();
+	$cookie->owner_id = '222';
+	$cookie->has_cookie = 1;
+	$cookie->owner_username = 'hahaä';
+	echo $cookie->print_cookie();
 	ui_bottom();
+	
 ?>
