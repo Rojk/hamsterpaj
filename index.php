@@ -13,7 +13,6 @@
 
 	$fp_modules = cache_load('fp_module_order');
 	
-	$output .= '<ul id="fp_modules">';
 	foreach($fp_modules AS $filename)
 	{
 		$module = cache_load('fp_module_' . $filename);
@@ -22,7 +21,6 @@
 			continue;
 		}
 
-		$output .= '<li>' . "\n";
 		if($module['phpenabled'] == 1)
 		{
 			include(PATHS_INCLUDE . 'fp_modules/' . $filename);
@@ -31,7 +29,6 @@
 		{
 			$output .= file_get_contents(PATHS_INCLUDE . 'fp_modules/' . $filename);
 		}
-		$output .= '</li>' . "\n";
 		
 		foreach($module['stylesheets'] AS $css)
 		{
