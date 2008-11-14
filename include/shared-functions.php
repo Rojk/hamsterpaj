@@ -64,19 +64,6 @@
 		}
 	}
 	
-	class Cookie {
-		public $owner_id, $owner_username, $has_cookie, $output;
-		
-		function print_cookie()
-		{
-			if($this->has_cookie == 1)
-			{
-				$this->output = '<img class="steal_cookie" id="stealcookie_' . $this->owner_id . '" src="http://images.hamsterpaj.net/common_icons/cookie.gif" style="width: 20px; height: 20px; cursor: pointer;" title="Steal ' . $this->owner_username . '\'s cookie!" />';
-			}
-		return $this->output;
-		}		
-	}
-	
 	function dateSplitDate($date) {
 		$datearray = explode('-', $date);
 		
