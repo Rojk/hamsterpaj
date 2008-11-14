@@ -138,6 +138,7 @@
 		$menu['admin']['children']['guestbook_hack'] = array('label' => 'Gästbokshack', 'url' => '/admin/guestbook_hack.php', 'is_privilegied' => 'use_ghosting_tools');
 		$menu['admin']['children']['user_ghost'] = array('label' => 'Ghosta', 'url' => '/admin/user_ghost.php', 'is_privilegied' => 'use_ghosting_tools');
 		$menu['admin']['children']['user_logins'] = array('label' => 'User Logins', 'url' => '/admin/user_logins.php', 'is_privilegied' => 'ip_ban_admin');
+		$menu['admin']['children']['fp_admin'] = array('label' => 'Ordna startsidan', 'url' => '/admin/fp_module_rearrange.php', 'is_privilegied' => 'fp_module_rearrange');
 
 		$menu['dev'] = array('label' => 'D', 'url' => '/admin/ajax_handy.php', 'index_label' => 'Handy encoder/decoder', 'is_privilegied' => 'use_debug_tools');
 		$menu['dev']['children']['ajax_handy'] = array('label' => 'Handy encoder/decoder', 'url' => '/admin/ajax_handy.php', 'is_privilegied' => 'use_debug_tools');
