@@ -211,7 +211,7 @@ hp.photoblog = {
 				var id = t.attr('rel').replace('imageid_', '');
 				
 				setActive('a[rel=imageid_' + id + ']');
-				self.centralize_active();
+				//self.centralize_active();
 				
 				self.set_image(id);
 				
@@ -248,8 +248,9 @@ hp.photoblog = {
 		centralize_active: function() {
 			var thumbsContainer = this.thumbsContainer;
 			var active = $('.photoblog_active', thumbsContainer);
-			var position = ((active.position().left + active.width() / 2 - (thumbsContainer.width() / 2)) / thumbsContainer.container_width()) * 100;
-			this.scroller.slide_slider(position);
+			var position1 = ((active.position().left + active.width() / 2 - (thumbsContainer.width() / 2)) / thumbsContainer.container_width()) * 100;
+			var position2 = ((active.position().left + active.width() / 2 - (thumbsContainer.width() / 2)));
+			this.scroller.slide_slider(position2, position1);
 		},
 		
 		set_data: function(options) {
@@ -272,6 +273,7 @@ hp.photoblog = {
 					self.image.attr('src', src);
 					self.imageContainer.fadeIn();
 					self.centralize_prevnext();
+					self.centralize_active();
 				})
 			}).attr('src', src);
 		}
@@ -284,9 +286,12 @@ hp.photoblog = {
 
 jQuery.fn.extend({
 	// small effects :)
-	slide_slider: function(to) {
+	slide_slider: function(to, toSlidePos) {
 		var slider = $(this);
-		var from = slider.slider('value');
+		var tc = $('#photoblog_thumbs_container');
+		//var from = slider.slider('value');
+		var from = tc.scrollLeft();
+		console.log(to, from);
 		var change = to - from;
 		var duration = 750;
 		var startTime = (new Date().getTime());
@@ -297,15 +302,17 @@ jQuery.fn.extend({
 			// stop
 			if ( delta > 1 ) {
 				clearInterval(slider.slide_interval);
-				slider.slider('moveTo', to);
+				slider.slider('moveTo', toSlidePos);
 				return false;
 			}
 			
 			// transition
 			//delta = Math.pow(delta, 2);
 			
-			slider.slider('moveTo', change * delta + from);
-		}, duration / 50);
+			//slider.slider('moveTo', change * delta + from);
+			tc.scrollLeft(change * delta + from);
+			return true;
+		}, duration / 30);
 	},
 	
 	container_width: function() {
