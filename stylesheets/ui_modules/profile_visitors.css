@@ -1,0 +1,27 @@
+#ui_module_profile_visitors ul
+{
+	margin: 0px;
+	padding: 0px;
+}
+#ui_module_profile_visitors li
+{
+	float: left;
+	list-style-type: none;
+	border: 1px solid #ededed;
+	padding: 2px;
+	background: white;
+	margin: 0 3px 3px 0;
+}
+#ui_module_profile_visitors img
+{
+	width: 37px;
+	height: 50px;
+}
+#ui_module_profile_visitors a
+{
+	border: none;
+}
+#ui_module_profile_visitors .show_more_link
+{
+	display: block;
+}
