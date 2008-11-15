@@ -122,6 +122,7 @@ jQuery.fn.extend({
 		});
 		
 		scroller.centralize_active();
+		scroller.set_scroller_width();
 		
 		return this;
 	},
@@ -171,6 +172,23 @@ jQuery.fn.extend({
 		});
 		
 		return this;
+	},
+	
+	set_scroller_width: function() {
+		var scroller = $(this);
+		var handle = $('#photoblog_thumbs_handle', scroller);
+		var thumbsContainer = $('#photoblog_thumbs_container');
+		var outerWidth = thumbsContainer.width();
+		var innerWidth = thumbsContainer.container_width() + outerWidth;
+		if ( innerWidth <= outerWidth ) {
+			handle.css('width', '100%');
+		} else {
+			var w = outerWidth / innerWidth * outerWidth;
+			var w2 = innerWidth / outerWidth * innerWidth;
+			console.log(w, w2);
+			handle.css('width', Math.max(w, 40));
+		}
+		//console.log(innerWidth, outerWidth);
 	},
 	
 	centralize_prevnext: function() {
