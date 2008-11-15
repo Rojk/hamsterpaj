@@ -100,113 +100,189 @@ hp.photoblog = {
 				}
 			}
 		}
+	},
+	
+	view: {
+		init: function() {
+			this.thumbsContainer = $('#photoblog_thumbs_container');
+			this.thumbs = $('#photoblog_thumbs');
+			
+			this.imageContainer = $('#photoblog_image');
+			this.image = $('img', this.imageContainer);
+			
+			this.make_scroller();
+			this.make_nextprev();
+			this.make_ajax();
+		},
+		
+		make_scroller: function() {
+			var self = this;
+			
+			// create scroller elements		
+			this.thumbs.append('<div id="photoblog_thumbs_scroller"><div class="ui-slider-handle" id="photoblog_thumbs_handle"></div></div>');
+			this.scroller = $('#photoblog_thumbs_scroller');
+			
+			this.scroller.slider({
+				slide: function(e, ui) {
+					var percent = ui.value / 100;
+					var width = self.thumbsContainer.container_width();
+					
+					self.thumbsContainer.scrollLeft(width * percent);
+				}
+			});
+			
+			this.handle = $('#photoblog_thumbs_handle', this.scroller);
+			
+			this.centralize_active();
+			this.set_scroller_width();
+		},
+		
+		make_nextprev: function() {
+			var timer;
+			var self = this;
+			
+			// create next prev elements
+			var html = '<a href="#" id="photoblog_prev">F&ouml;reg&aring;ende</a><a href="#" id="photoblog_next">N&auml;sta</a>';
+			this.imageContainer.append(html);
+			
+			this.prev = $('#photoblog_prev').hide();
+			this.next = $('#photoblog_next').hide();
+			
+			this.prevnext = $('#photoblog_prev, #photoblog_next');
+			
+			var prev = this.prev;
+			var next = this.next;
+			
+			this.imageContainer.mousemove(function(e) {
+				e = e || window.event;
+				var xPos = e.clientX - self.imageContainer.position().left;
+				var half = self.imageContainer.width() / 2;
+				
+				// right (next)
+				if ( xPos > half + 30 && next.css('display') == 'none' ) {
+					next.fadeIn();
+					prev.fadeOut();
+				// left (prev)
+				} else if ( xPos < half - 30 && prev.css('display') == 'none' ) {
+					prev.fadeIn();
+					next.fadeOut();
+				} else if ( xPos > half - 30 && xPos < half + 30 ){
+					next.fadeOut();
+					prev.fadeOut();
+				}
+				clearTimeout(timer);
+			});
+			
+			this.imageContainer.mouseout(function() {
+				timer = setTimeout(function() {
+					next.fadeOut();
+					prev.fadeOut();
+				}, 300)
+			});
+			
+			this.centralize_prevnext();
+		},
+		
+		make_ajax: function() {
+			// things to ajaxify:
+			//		next/prev
+			//		thumbs
+			// things to update
+			//		image
+			// 		description
+			//		comments
+			
+			var self = this;
+			//var thumbsContainer = $('#photoblog_thumbs');
+			//var scroller = $('#photoblog_thumbs_scroller');
+			//var image = $('#photoblog_image img');
+			
+			var setActive = function(active) {
+				$('#photoblog_thumbs .photoblog_active').removeClass('photoblog_active');
+				$(active).addClass('photoblog_active');
+			};
+			
+			var json_callback = function(data) {
+				self.set_data(data[0]);
+			};
+			
+			var click_callback = function(e) {
+				var t = $(this);
+				var id = t.attr('rel').replace('imageid_', '');
+				
+				setActive('a[rel=imageid_' + id + ']');
+				self.centralize_active();
+				
+				self.set_image(id);
+				
+				$.getJSON('/ajax_gateways/photoblog.json.php?id=' + id, json_callback);
+			};
+			
+			var thumbs = $('#photoblog_thumbs a[rel^=imageid_]');
+			thumbs.click(click_callback);
+			
+			this.prevnext.click(click_callback);
+		},
+		
+		set_scroller_width: function() {
+			var outerWidth = this.thumbsContainer.width();
+			var innerWidth = this.thumbsContainer.container_width() + outerWidth;
+			if ( innerWidth <= outerWidth ) {
+				this.handle.css('width', '100%');
+			} else {
+				var w = outerWidth / innerWidth * outerWidth;
+				this.handle.css('width', Math.max(w, 40));
+			}
+		},
+		
+		centralize_prevnext: function() {
+			//var imageContainer = $('#photoblog_image');
+			//var prevnext = $('#photoblog_prev, #photoblog_next');
+			
+			var imgW = this.imageContainer.width() / 2;
+			var top = imgW / 2 - this.prevnext.height() / 2;
+			
+			this.prevnext.css('top', top);
+		},
+		
+		centralize_active: function() {
+			var thumbsContainer = this.thumbsContainer;
+			var active = $('.photoblog_active', thumbsContainer);
+			var position = ((active.position().left + active.width() / 2 - (thumbsContainer.width() / 2)) / thumbsContainer.container_width()) * 100;
+			this.scroller.slide_slider(position);
+		},
+		
+		set_data: function(options) {
+			var description = $('#photoblog_description');
+			
+			//$('h2', description).text(options.header);
+			$('#photoblog_description_text').html(options.description);
+			$('#photoblog_prev').attr('rel', 'imageid_' + options.prev_id);
+			$('#photoblog_next').attr('rel', 'imageid_' + options.next_id);
+		},
+		
+		set_image: function(id) {
+			var src = hp.photoblog.make_name(id);
+			//var container = $('#photoblog_image');
+			//var img = $('img', container);
+			//var slider = $('#photoblog_thumbs_scroller');
+			var self = this;
+			$('<img />').load(function() {
+				self.imageContainer.fadeOut(function() {
+					self.image.attr('src', src);
+					self.imageContainer.fadeIn();
+					self.centralize_prevnext();
+				})
+			}).attr('src', src);
+		}
+	},
+	
+	make_name: function(id) {
+		return 'http://images.hamsterpaj.net/photos/full/' + Math.floor(parseInt(id, 10) / 5000) + '/' + id + '.jpg';
 	}
 };
 
 jQuery.fn.extend({
-	photoblog_scroller: function() {
-		var thumbs = $('#photoblog_thumbs');
-		var thumbsContainer = $('#photoblog_thumbs_container');
-		
-		// create scroller elements		
-		thumbs.append('<div id="photoblog_thumbs_scroller"><div class="ui-slider-handle" id="photoblog_thumbs_handle"></div></div>');
-
-		var scroller = $('#photoblog_thumbs_scroller');
-		
-		scroller.slider({
-			slide: function(e, ui) {
-			 	var percent = ui.value / 100;
-			 	var width = thumbsContainer.container_width();
-				thumbsContainer.scrollLeft(width * percent);
-			}
-		});
-		
-		scroller.centralize_active();
-		scroller.set_scroller_width();
-		
-		return this;
-	},
-	
-	photoblog_nextprev: function() {
-	 	var timer;
-		var imageContainer = $('#photoblog_image');
-	 	
-		// create next prev elements
-		var html = '<a href="#" id="photoblog_prev">F&ouml;reg&aring;ende</a><a href="#" id="photoblog_next">N&auml;sta</a>';
-		imageContainer.append(html);
-		
-		$(this).centralize_prevnext();
-		
-		var prev = $('#photoblog_prev').hide();
-		var next = $('#photoblog_next').hide();
-		
-		var callback = function() {
-		//	$(this).css('display', 'block')
-		}
-		
-		imageContainer.mousemove(function(e) {
-		 	e = e || window.event;
-		 	var xPos = e.clientX - imageContainer.position().left;
-		 	var half = imageContainer.width() / 2;
-		 	
-			// right (next)
-			if ( xPos > half + 30 && next.css('display') == 'none' ) {
-				next.fadeIn(callback);
-				prev.fadeOut();
-			// left (prev)
-			} else if ( xPos < half - 30 && prev.css('display') == 'none' ) {
-				prev.fadeIn(callback);
-				next.fadeOut();
-			} else if ( xPos > half - 30 && xPos < half + 30 ){
-				next.fadeOut();
-				prev.fadeOut();
-			}
-			clearTimeout(timer);
-		});
-		
-		imageContainer.mouseout(function() {
-		 	timer = setTimeout(function() {
-				next.fadeOut();
-				prev.fadeOut();
-			}, 300)
-		});
-		
-		return this;
-	},
-	
-	set_scroller_width: function() {
-		var scroller = $(this);
-		var handle = $('#photoblog_thumbs_handle', scroller);
-		var thumbsContainer = $('#photoblog_thumbs_container');
-		var outerWidth = thumbsContainer.width();
-		var innerWidth = thumbsContainer.container_width() + outerWidth;
-		if ( innerWidth <= outerWidth ) {
-			handle.css('width', '100%');
-		} else {
-			var w = outerWidth / innerWidth * outerWidth;
-			var w2 = innerWidth / outerWidth * innerWidth;
-			handle.css('width', Math.max(w, 40));
-		}
-	},
-	
-	centralize_prevnext: function() {
-		var imageContainer = $('#photoblog_image');
-		var prevnext = $('#photoblog_prev, #photoblog_next');
-		
-		var imgW = imageContainer.width() / 2;
-		var top = imgW / 2 - prevnext.height() / 2;
-		
-		prevnext.css('top', top);
-	},
-	
-	centralize_active: function() {
-	 	var slider = $(this);
-		var thumbsContainer = $('#photoblog_thumbs_container');
-		var active = $('.photoblog_active', thumbsContainer);
-		var position = ((active.position().left + active.width() / 2 - (thumbsContainer.width() / 2)) / thumbsContainer.container_width()) * 100;
-		slider.slide_slider(position);
-	},
-
 	// small effects :)
 	slide_slider: function(to) {
 		var slider = $(this);
@@ -238,61 +314,15 @@ jQuery.fn.extend({
 		var width = lastChild.position().left + lastChild.width() - thumbsContainer.width();
 		window.container_width = width;
 		return width;
-	},
-	
-	photoblog_ajax: function() {
-		// things to ajaxify:
-		//		next/prev
-		//		thumbs
-		// things to update
-		//		image
-		// 		description
-		//		comments
-		
-		var thumbsContainer = $('#photoblog_thumbs');
-		var scroller = $('#photoblog_thumbs_scroller');
-		
-		var setActive = function(active) {
-			$('#photoblog_thumbs .photoblog_active').removeClass('photoblog_active');
-			$(active).addClass('photoblog_active');
-		};
-		
-		var json_callback = function(data) {
-			console.dir(data)
-			photoblog_set(data);
-		};
-		
-		var click_callback = function(e) {
-		 	var t = $(this);
-		 	var id = t.attr('rel').replace('imageid_', '');
-			setActive('a[rel=imageid_' + id + ']');
-			scroller.centralize_active();
-		 	$.getJSON('ajax_gallery.php?id=' + id, json_callback);
-			return false;
-		};
-		
-		var thumbs = $('#photoblog_thumbs a[rel^=imageid_]');
-		thumbs.click(click_callback);
-		
-		var prevNext = $('#photoblog_next, #photoblog_prev');
-		prevNext.click(click_callback);
 	}
 });
 
-function photoblog_set(options) {
-	var description = $('#photoblog_description');
-	
-	$('h2', description).text(options.header);
-	$('#photoblog_description_text').html(options.description);
-	$('#photoblog_prev').attr('rel', 'imageid_' + options.prev_id);
-	$('#photoblog_next').attr('rel', 'imageid_' + options.next_id);
-	$('#photoblog_image img').attr('src', options.src);
-};
-
-$(document).ready(function() {
+$(window).load(function() {
 	if ( $('#photoblog_image').length ) {
-		$().photoblog_scroller()
+		hp.photoblog.view.init();
+		
+		/*$().photoblog_scroller()
 		   .photoblog_nextprev()
-		   .photoblog_ajax();
+		   .photoblog_ajax();*/
 	}
 });

@@ -171,6 +171,8 @@
     width: 600px;
     margin: 10px auto;
     position: relative;
+    background: #000;
+    text-align: center;
 }
 
     #photoblog_next,
@@ -179,7 +181,8 @@
         position: absolute;
         width: 25px;
         height: 80px;
-        background: url(prevnext.png) left top no-repeat;
+	/* prevnext.png is not present yet and I have no idea how to add images to hamsterpaj... */
+        background: #fff url(prevnext.png) left top no-repeat;
         top: 0;
         left: 10px;
         overflow: hidden;

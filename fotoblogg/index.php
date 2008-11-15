@@ -216,14 +216,10 @@
 		break;
 			
 		default:
-			$bogus = array(
-				array('id' => 1),
-				array('id' => 2),
-				array('id' => 3),
-				array('id' => 4),
-				array('id' => 5)
-			);
-		
+			$photos = photoblog_photos_fetch(array(
+				'user' => 879699
+			));
+					
 			$out .= 'Välkommen till ' . "\n";
 			$out .= preg_match('/s$/', $uri_parts[2]) ? $uri_parts[2] : $uri_parts[2] . 's';
 			$out .= ' fotoblogg!';
@@ -234,9 +230,9 @@
 					$out .= '<dt><a href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
 					$out .= '<dt>23/11</dt>';
 					
-					foreach ( $bogus as $image )
+					foreach ( $photos as $photo )
 					{
-						$out .= '<dd><a rel="imageid_' . $image['id'] . '" ' . ($image['id'] == 1 ? 'class="photoblog_active"' : '') . ' href="#image-' . $image['id'] . '"><img src="http://i34.tinypic.com/2zss8qg.png" alt="Foobar" /></a></dd>';
+						$out .= '<dd><a rel="imageid_' . $photo['id'] . '" ' . ($photo['id'] == 147903 ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
 					}
 					
 					$out .= '<dt><a href="#">N&auml;sta m&aring;nad</a></dt>';
@@ -247,7 +243,7 @@
 			$out .= '<p><img src="image.png" alt="" /></p>';
 			$out .= '</div>';
 			$out .= '<div id="photoblog_description">';
-			$out .= '<h2>Foobar</h2>';
+			//$out .= '<h2>Foobar</h2>';
 			$out .= '<div id="photoblog_description_text">';
 				$out .= '<p>Jag tänkte att jag skulle kunna äta upp dig.';
 				$out .= '<br />';
