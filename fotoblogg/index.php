@@ -216,7 +216,7 @@
 		break;
 			
 		default:
-			$user_id = ( isset($_SESSION['login']) ) ? $_SESSION['login']['id'] : 879699;
+			$user_id = ( isset($_SESSION['login']) ) ? $_SESSION['login']['id'] : 557316; // 879699
 			$options = array(
 				'user' => $user_id
 			);
