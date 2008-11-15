@@ -693,7 +693,7 @@ function clickable_links($str)
 	$str = preg_replace('#\[img](.*?)\[/img]#is', '[IMAGE]', $str);
 	
 	// Leta upp länkar
-	$str = preg_replace('#((http://|https://|ftp://|www\.)(www\.)?)([a-z0-9\#_%\?&//=\+@\.:;-]{4,})#eis', 
+	$str = preg_replace('#((http://|https://|ftp://|www\.)(www\.)?)([a-z0-9\#_%\?&//=\+@\.:;-~()]{4,})#eis', 
 						"
 						('$2' != 'http://' && '$2' != 'https://' && '$2' != 'ftp://') ? 
 							'<a href=\"http://$1$4\" target=\"_blank\">' . 
