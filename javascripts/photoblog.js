@@ -185,10 +185,8 @@ jQuery.fn.extend({
 		} else {
 			var w = outerWidth / innerWidth * outerWidth;
 			var w2 = innerWidth / outerWidth * innerWidth;
-			console.log(w, w2);
 			handle.css('width', Math.max(w, 40));
 		}
-		//console.log(innerWidth, outerWidth);
 	},
 	
 	centralize_prevnext: function() {
