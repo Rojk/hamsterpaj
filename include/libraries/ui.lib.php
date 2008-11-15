@@ -320,7 +320,7 @@ function ui_top($options = array())
 	{
 		if(login_checklogin())
 		{
-			$notices[] = array('html' => $_SESSION['notice_message']);
+			$noticemessages[] = array('html' => $_SESSION['notice_message']);
 		}
 		unset($_SESSION['notice_message']);
 	}
