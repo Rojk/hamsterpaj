@@ -17,6 +17,8 @@
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 			$_SESSION['userinfo']['msnbot_msn'] = $_GET['msn'];
 			
+			event_log_log('msnbot_add');
+			
 			echo 'Du är nu registrerad!';
 			/*
 			$_SESSION['msnbot']['register_msn'] = $_GET['msn'];
@@ -35,6 +37,7 @@
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 			$_SESSION['userinfo']['msnbot_msn'] = '';
 			echo 'Du är nu avregistrerad.';
+			event_log_log('msnbot_remove');
 		}
 		else
 		{
