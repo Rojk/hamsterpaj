@@ -1518,7 +1518,7 @@
 					msnbot_queue_add(array(
 						'user_id' => $data['id'],
 						'msn' => $data['msnbot_msn'],
-						'message' => (($options['author'] == $_SESSION['login']['id']) ? $_SESSION['login']['username'] : 'Någon') . ' svarade just på ditt inlägg med sin post \"' . $options['title'] . '\" i forumet på Hamsterpaj.net. Klicka på den här länken för att läsa svaret:' . "\r\n" . 'http://www.hamsterpaj.net/diskussionsforum/gaa_till_post.php?post_id=' . $options['post_id']
+						'message' => (($options['author'] == $_SESSION['login']['id']) ? $_SESSION['login']['username'] : 'Någon') . ' svarade just på ett av dina inlägg i forumet på Hamsterpaj.net. Klicka på den här länken för att läsa svaret:' . "\r\n" . 'http://www.hamsterpaj.net/diskussionsforum/gaa_till_post.php?post_id=' . $options['post_id']
 					));
 				}
 				
