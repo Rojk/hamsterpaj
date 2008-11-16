@@ -1506,11 +1506,20 @@
 
 		foreach($usernames AS $username)
 		{
-			$query = 'SELECT id FROM login WHERE username LIKE "' . $username . '" LIMIT 1';
+			$query = 'SELECT l.id, u.msnbot_msn, l.username FROM login as l, userinfo as u WHERE l.id = u.userid AND username LIKE "' . $username . '" LIMIT 1';
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 
 			if(mysql_num_rows($result) == 1)
 			{
+				if($data['msnbot_msn'] != '')
+				{
+					msnbot_queue_add(array(
+						'user_id' => $data['id'],
+						'msn' => $data['msnbot_msn'],
+						'message' => $data['username'] . ' svarade just på ditt inlägg i forumet på Hamsterpaj.net. Klicka på den här länken för att läsa svaret:' . "\r\n" . 'http://www.hamsterpaj.net/diskussionsforum/gaa_till_post.php?post_id=' . $options['post_id']
+					));
+				}
+				
 				$data = mysql_fetch_assoc($result);
 				$query = 'INSERT INTO forum_notices (post_id, user, type) VALUES("' . $options['post_id'] . '", "' . $data['id'] . '", "reply")';
 				mysql_query($query); //No error-handling, since that would trigger when the same user has multiple replies in one post
