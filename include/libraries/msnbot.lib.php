@@ -1,10 +1,10 @@
 <?php
-	msnbot_is_valid_msn($msn)
+	function msnbot_is_valid_msn($msn)
 	{
 		return preg_match('/$([a-zA-Z0-9_\.-]+)@([a-zA-Z0-9_\.-]+)\.([a-z]+)^/', $msn);
 	}
 	
-	msnbot_is_valid_salt($options)
+	function msnbot_is_valid_salt($options)
 	{
 		if(!defined('MSNBOT_SALT'))
 		{
