@@ -1511,6 +1511,8 @@
 
 			if(mysql_num_rows($result) == 1)
 			{
+				$data = mysql_fetch_assoc($result);
+				
 				if($data['msnbot_msn'] != '')
 				{
 					msnbot_queue_add(array(
@@ -1520,7 +1522,6 @@
 					));
 				}
 				
-				$data = mysql_fetch_assoc($result);
 				$query = 'INSERT INTO forum_notices (post_id, user, type) VALUES("' . $options['post_id'] . '", "' . $data['id'] . '", "reply")';
 				mysql_query($query); //No error-handling, since that would trigger when the same user has multiple replies in one post
 			}
