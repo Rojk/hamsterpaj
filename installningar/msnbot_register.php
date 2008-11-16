@@ -29,6 +29,13 @@
 			echo '</form>' . "\n";
 			*/
 		}
+		else if(isset($_GET['unregister']) && $_GET['unregister'] == $_SESSION['login']['id'])
+		{
+			$query = 'UPDATE userinfo SET msnbot_msn = "" WHERE userid = ' . $_SESSION['login']['id'];
+			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+			$_SESSION['userinfo']['msnbot_msn'] = '';
+			echo 'Du är nu avregistrerad.';
+		}
 		else
 		{
 			if($_SESSION['userinfo']['msnbot_msn'] == '')
@@ -37,7 +44,7 @@
 			}
 			else
 			{
-				echo '<a href="/installningar/msnbot_register.php">Avregistrera mig ifrån vännernotiser på MSN.</a>';
+				echo '<a href="/installningar/msnbot_register.php?unregister=' . $_SESSION['login']['id'] . '">Avregistrera mig ifrån vännernotiser på MSN.</a>';
 			}
 		}
 	}
