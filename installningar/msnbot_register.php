@@ -8,7 +8,7 @@
 	ui_top($ui_options);
 	if(login_checklogin())
 	{
-		if(isset($_GET['msn'], $_GET['salt']) && msnbot_is_valid_msn($_GET['msn']) && msnbot_is_valid_salt($_GET['salt']))
+		if(isset($_GET['msn'], $_GET['salt']) && msnbot_is_valid_msn($_GET['msn']) && msnbot_is_valid_salt(array('salt' => $_GET['salt'], 'msn' => $_GET['msn'])))
 		{
 			$_SESSION['msnbot']['register_msn'] = $_GET['msn'];
 			echo 'Välj vad du vill få ett meddelande på MSN om via msnboten:<br />' . "\n";
