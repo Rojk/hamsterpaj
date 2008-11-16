@@ -21,8 +21,8 @@
 	
 	if(isset($_GET['filename']))
 	{
-		$module_save_path = realpath(PATHS_INCLUDE . 'fp_modules/');
-		if(!file_exists($_GET['filename']) || strncmp(realpath($_GET['filename']), $module_save_path, strlen($module_save_path)) != 0)
+		$module_save_path = realpath(PATHS_INCLUDE . 'fp_modules/') . '/';
+		if(!file_exists($module_save_path . $_GET['filename']) || strncmp(realpath($module_save_path . $_GET['filename']), $module_save_path, strlen($module_save_path)) != 0)
 		{
 			echo 'Tjockis!';
 			ui_bottom();
