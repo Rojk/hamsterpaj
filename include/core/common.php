@@ -46,6 +46,7 @@
 	require_once(PATHS_INCLUDE . 'libraries/ui.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/friends.lib.php');
+	require_once(PATHS_INCLUDE . 'libraries/msnbot.lib.php');
 	
 	require_once($hp_includepath . 'logging-functions.php');
 
