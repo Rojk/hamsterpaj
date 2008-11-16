@@ -12,4 +12,24 @@
 		}
 		return $options['salt'] == sha1(MSNBOT_SALT . md5(strrev(MSNBOT_SALT) . $options['msn']));
 	}
+	
+	function msnbot_queue_add($options)
+	{
+		if(!is_numeric($options['user_id']))
+		{
+			throw new Exception('user_id not numeric');
+		}
+		if(!isset($options['msn']))
+		{
+			$query = 'SELECT msnbot_msn FROM userinfo WHERE userid = ' . $options['user_id'];
+			$result = mysql_query($query) or report_sql_error($query);
+			$data = mysql_fetch_assoc($result);
+			$options['msn'] = $data['msnbot_msn'];
+		}
+		
+		if($options['msn'] != '')
+		{
+			$query = mysql_query('INSERT INTO msnbot (user_id, msn, message) VALUES (' . $options['user_id'] . ', "' . $options['msn'] . '", "' . $options['message'] . '")');
+		}
+	}
 ?>
