@@ -164,7 +164,7 @@
 			mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		}
 		
-		discussion_forum_parse_input(array('text' => $post['content'], 'post_id' => $post_id));
+		discussion_forum_parse_input(array('text' => $post['content'], 'post_id' => $post_id, 'author' => $post['author'], 'title' => $post['title']));
 		
 		if($post['mode'] == 'new_thread')
 		{
@@ -1518,7 +1518,7 @@
 					msnbot_queue_add(array(
 						'user_id' => $data['id'],
 						'msn' => $data['msnbot_msn'],
-						'message' => $data['username'] . ' svarade just på ditt inlägg i forumet på Hamsterpaj.net. Klicka på den här länken för att läsa svaret:' . "\r\n" . 'http://www.hamsterpaj.net/diskussionsforum/gaa_till_post.php?post_id=' . $options['post_id']
+						'message' => $post['author'] . ' svarade just på ditt inlägg \"' . $options['title'] . '\" i forumet på Hamsterpaj.net. Klicka på den här länken för att läsa svaret:' . "\r\n" . 'http://www.hamsterpaj.net/diskussionsforum/gaa_till_post.php?post_id=' . $options['post_id']
 					));
 				}
 				
