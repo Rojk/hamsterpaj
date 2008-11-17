@@ -64,6 +64,8 @@
 
 		$output .= '<input type="submit" value="Spara" />' . "\n";
 		$output .= '</form>' . "\n";
+		
+		$output .= '<a href="/admin/fp_module_preview.php?filename=' . $_GET['filename'] . '">Förhandsgranska</a>' . "\n";
 	}
 
 	echo $output;
