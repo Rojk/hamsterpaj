@@ -693,23 +693,23 @@ function clickable_links($str)
 	$str = preg_replace('#\[img](.*?)\[/img]#is', '[IMAGE]', $str);
 	
 	// Leta upp länkar
-	$str = preg_replace('#((http://|https://|ftp://|www\.)(www\.)?)([a-z0-9åäöÅÄÖ$\#_%\?&//=\+@\.:;-~()]{4,})#eis', 
-						"
-						('$2' != 'http://' && '$2' != 'https://' && '$2' != 'ftp://') ? 
-							'<a href=\"http://$1$4\" target=\"_blank\">' . 
-								(strlen('$1$4') > 40 ? substr('$1$4', 0, (strlen('$1$4') / 2)) . '...' . substr('$1$4', -10) 
-								: 
-								'$1$4') 
-							. '</a>' 
-						: 
-							'<a href=\"$1$4\" target=\"_blank\">' . 
-								(strlen('$1$4') > 40 ? substr('$1$4', 0, (strlen('$1$4') / 2)) . '...' . substr('$1$4', -10) 
-								: 
-								'$1$4') 
-							. '</a>'
-						", 
-					$str
-					);
+		$str = preg_replace('#((http://|https://|ftp://|www\.)(www\.)?)([a-z0-9-åäöÅÄÖ$\#_%\?&\/=\+@\.:-~()]{4,})#eis', 
+							"
+							('$2' != 'http://' && '$2' != 'https://' && '$2' != 'ftp://') ? 
+								'<a href=\"http://$1$4\" target=\"_blank\">' . 
+									(strlen('$1$4') > 40 ? substr('$1$4', 0, (strlen('$1$4') / 2)) . '...' . substr('$1$4', -10) 
+									: 
+									'$1$4') 
+								. '</a>' 
+							: 
+								'<a href=\"$1$4\" target=\"_blank\">' . 
+									(strlen('$1$4') > 40 ? substr('$1$4', 0, (strlen('$1$4') / 2)) . '...' . substr('$1$4', -10) 
+									: 
+									'$1$4') 
+								. '</a>'
+							", 
+						$str
+						);
 					
 	// Lägga tillbaka [img]
 	foreach($matches[0] as $row)
