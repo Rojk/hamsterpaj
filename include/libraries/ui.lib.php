@@ -162,11 +162,10 @@ function ui_top($options = array())
 			$output .= $full_page_notice . "\n";
 		$output .= '</div>' . "\n";
 	}
-	/*
+
 	$output .= '<div>' . "\n";
 	$output .= '	<script type="text/javascript">CM8ShowAd("Bigbanner");</script>' . "\n";
 	$output .= '</div>' . "\n";
-	*/
 	
 	$output .= '	<div id="ui_wrapper">' . "\n";
 	$output .= '		<div id="ui_header">' . "\n";
