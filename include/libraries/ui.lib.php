@@ -105,6 +105,7 @@ function ui_top($options = array())
 	$options['stylesheets'][] = 'ui_modules/forum_posts.css';
 	$options['stylesheets'][] = 'ui_modules/multisearch.css';
 	$options['stylesheets'][] = 'ui_modules/profile_visitors.css';
+	$options['stylesheets'][] = 'ui_modules/site_stats.css';
 	
 	// Remove duplicates
 	$options['stylesheets'] = array_unique($options['stylesheets']);
@@ -375,19 +376,21 @@ function ui_bottom($options = array())
 	$output .= '</div>' . "\n";
 	
 	$output .= '<div id="ui_modulebar">' . "\n";
-
-	$modules = array(
-		'multisearch' => 'Multi-sök',
-		'latest_threads' => 'Forumtrådar',
-		'latest_posts' => 'Inlägg i forumet'
-	);
+	
+	$modules['multisearch'] = 'Multi-sök';
 	
 	if ( login_checklogin() )
 	{
 		$modules['friends_online'] = 'Vänner online';
 		$modules['friends_notices'] = 'Vänner(s)notiser'; 
-		$modules['profile_visitors'] = 'Bes&#246;kare';
+		$modules['profile_visitors'] = 'Besökare';	
 	}
+
+	$modules = array(
+		'latest_threads' => 'Forumtrådar',
+		'latest_posts' => 'Inlägg i forumet',
+		'site_stats' => 'Statistik'
+	);
 	
 	foreach(array('discussion_forum_remove_posts', 'discussion_forum_edit_posts', 'discussion_forum_rename_threads', 'discussion_forum_lock_threads', 'discussion_forum_sticky_threads', 'discussion_forum_move_thread', 'discussion_forum_post_addition') as $privilegie)
 	{
