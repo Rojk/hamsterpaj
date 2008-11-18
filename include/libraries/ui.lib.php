@@ -386,11 +386,9 @@ function ui_bottom($options = array())
 		$modules['profile_visitors'] = 'Besökare';	
 	}
 
-	$modules = array(
-		'latest_threads' => 'Forumtrådar',
-		'latest_posts' => 'Inlägg i forumet',
-		'site_stats' => 'Statistik'
-	);
+	$modules['latest_threads'] = 'Forumtrådar';
+	$modules['latest_posts'] = 'Inlägg i forumet',´;
+	$modules['site_stats'] = 'Statistik';
 	
 	foreach(array('discussion_forum_remove_posts', 'discussion_forum_edit_posts', 'discussion_forum_rename_threads', 'discussion_forum_lock_threads', 'discussion_forum_sticky_threads', 'discussion_forum_move_thread', 'discussion_forum_post_addition') as $privilegie)
 	{
