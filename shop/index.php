@@ -73,6 +73,60 @@
 				throw new Exception('Du måste acceptera avtalet.');
 			}
 			
+			switch ($_POST['shop_gender'])
+			{
+				case 'male':
+					$shop_gender_short = 'm';
+				break;
+				case 'female':
+					$shop_gender_short = 'f';
+				break;
+				default:
+					throw new Exception('Error in defining $shop_gender_short.<br /> Kontakta <a href="/Joar">Joar</a> och försök att beskriva hela händelseförloppet så detaljerat som möjligt.');
+				break;
+			}
+			switch ($_POST['shop_size'])
+			{
+				case 'small':
+					$shop_size_safe = 'small';
+				break;
+				case 'medium':
+					$shop_size_safe = 'medium';
+				break;
+				case 'large':
+					$shop_size_safe = 'large';
+				break;
+				default:
+					throw new Exception('Error in defining $shop_size_safe.<br /> Kontakta <a href="/Joar">Joar</a> och försök att beskriva hela händelseförloppet så detaljerat som möjligt.');
+				break;
+			}
+			
+			$shirt_safe_size_definition = $shop_gender_short . '_' . $shop_size_safe;
+			
+			$check_shirt_availability_sql = 'SELECT ' . $shirt_safe_size_definition . ' FROM shop_shirts_available WHERE handle = "pantone_165"';
+			
+			if (!$check_shirt_availability_result = mysql_query($check_shirt_availability_sql))
+			{
+				 throw new Exception(mysql_error());
+			}
+			if (!$check_shirt_availability_data = mysql_fetch_assoc($check_shirt_availability_result))
+			{
+				 throw new Exception(mysql_error());
+			}
+			
+			print_r($check_shirt_availability_data);
+			if ($check_shirt_availability_data[$shirt_safe_size_definition] > 0)
+			{
+				$shirt_new_quantity = $check_shirt_availability_data[$shirt_safe_size_definition] - 1;
+				$shirt_update_quantity_sql = 'UPDATE shop_shirts_available SET ' . $shirt_safe_size_definition . ' = ' . $shirt_new_quantity . ' WHERE handle = "pantone_165"';
+				mysql_query($shirt_update_quantity_sql);
+			}
+			else
+			{
+				throw new Exception('Det finns tyvärr inga tröjor kvar i den storleken. Det kan dock hända att det blir återbud eller så syr hamstern några till, så håll dig uppdaterad!');
+			}
+			
+			
 			// Om allt är fint så borde man hamna här till slut.
 			$sql = 'INSERT INTO shop_orders SET';
 			$sql .= ' user_id = ' . $_SESSION['login']['id'] . ',';
@@ -82,7 +136,8 @@
 			$sql .= ' city = "' . $_POST['shop_city'] . '",';
 			$sql .= ' size = "' . $_POST['shop_size'] . '",';
 			$sql .= ' gender = "' . $_POST['shop_gender'] . '",';
-			$sql .= ' phone = "' . $processed_field['shop_phone'] . '"';
+			$sql .= ' phone = "' . $processed_field['shop_phone'] . '", ';
+			$sql .= ' timestamp = ' . time() . '';
 			mysql_query($sql) or report_sql_error(__FILE__, __LINE__, $sql);
 			
 			$sql = 'SELECT order_id FROM shop_orders WHERE user_id = ' . $_SESSION['login']['id'] . ' LIMIT 1';
