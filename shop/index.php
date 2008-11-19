@@ -29,7 +29,7 @@ VD<br />
 <a href="mailto:eric@hamsterpaj.net">eric@hamsterpaj.net</a><br />
 0768 999 585<br />
 </p>
-<p>(Hamsterpaj är inget kontorsbolag, vi är mest en hobbysajt. Därför finns det inte något fastnätsnummer, och Eric är inte alltid tillgäng via telefon)</p>
+<p>(Hamsterpaj är inget kontorsbolag, vi är mest en hobbysajt. Därför finns det inte något fastnätsnummer, och Eric är inte alltid tillgänglig via telefon)</p>
 ';
 			/*$time = time();
 			$shirt_excluded_letters = array('1', '0', 'L', 'O', 'I');
