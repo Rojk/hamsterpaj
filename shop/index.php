@@ -4,7 +4,33 @@
 	require('../include/core/common.php');
 	require(PATHS_INCLUDE  . 'libraries/photos.lib.php');
 	
-	$acceptance_text = 'Jag accepterar blaha!';
+	$acceptance_text = '<h3>Att köpa en T-shirt</h3>
+<p>När du lagt en beställning kommer du få ett referensnummer av systemet. Detta nummer måste du ange när du sätter in pengar på Hamsterpajs bankgirokonto.
+Det är mycket viktigt att du anger detta numret och att du skriver rätt, annars kan vi inte se vilken beställning som betalts.</p>
+
+<p>Ett beställningsnummer gäller i fem dagar från det att du fått det, betalar du inte inom denna tid måste du lägga en ny beställning och använda det nya numret du får.</p>
+
+<p>Vi skall försöka skicka tröjan inom två dagar från att vi fått in din betalning, har paketet inte nått dig inom en vecka från att du betalt bör du börja ana ugglor i mossen och kontakta oss.</p>
+
+<p>Skulle du vilja ändra en beställning eller har frågor, ta det direkt med oss. Skriv absolut inte meddelanden i meddelanderaden när du betalar!</p>
+
+<p><strong>Försäljare:</strong><br />
+Hamsterpaj AB<br />
+556697-13<br />
+Bankgiro: 5801-5025<br />
+Vi innehar F-skattebevis<br />
+Alla priser inkluderas 25% moms
+</p>
+
+
+<p><strong>Kontakt:</strong><br />
+Eric Jerlin<br />
+VD<br />
+<a href="mailto:eric@hamsterpaj.net">eric@hamsterpaj.net</a><br />
+0768 999 585<br />
+</p>
+<p>(Hamsterpaj är inget kontorsbolag, vi är mest en hobbysajt. Därför finns det inte något fastnätsnummer, och Eric är inte alltid tillgäng via telefon)</p>
+';
 	try
 	{
 		if (!login_checklogin())
@@ -100,7 +126,14 @@
 					throw new Exception('Error in defining $shop_size_safe.<br /> Kontakta <a href="/Joar">Joar</a> och försök att beskriva hela händelseförloppet så detaljerat som möjligt.');
 				break;
 			}
+			$shirt_order_exists_sql = 'SELECT order_id FROM shop_orders WHERE user_id = ' . $_SESSION['login']['id'];
+			$shirt_order_exists_result = mysql_query($shirt_order_exists_sql);
+			$shirt_order_exists_num_rows = mysql_num_rows($shirt_order_exists_result);
 			
+			if ($shirt_order_exists_num_rows > 0)
+			{
+				throw new Exception('Endast en beställning per person.<br />Smek <a href="/Joar">Joar</a> så kanske du får en extra ;) ');
+			}
 			$shirt_safe_size_definition = $shop_gender_short . '_' . $shop_size_safe;
 			
 			$check_shirt_availability_sql = 'SELECT ' . $shirt_safe_size_definition . ' FROM shop_shirts_available WHERE handle = "pantone_165"';
@@ -114,7 +147,6 @@
 				 throw new Exception(mysql_error());
 			}
 			
-			print_r($check_shirt_availability_data);
 			if ($check_shirt_availability_data[$shirt_safe_size_definition] > 0)
 			{
 				$shirt_new_quantity = $check_shirt_availability_data[$shirt_safe_size_definition] - 1;
@@ -126,9 +158,13 @@
 				throw new Exception('Det finns tyvärr inga tröjor kvar i den storleken. Det kan dock hända att det blir återbud eller så syr hamstern några till, så håll dig uppdaterad!');
 			}
 			
+			$time = time();
+			$order_hash = substr(md5($_SESSION['login']['id'] . $time), 0, 6);
+			var_dump($order_hash);
 			
 			// Om allt är fint så borde man hamna här till slut.
 			$sql = 'INSERT INTO shop_orders SET';
+			$sql .= ' hash = "' . $order_hash . '",';
 			$sql .= ' user_id = ' . $_SESSION['login']['id'] . ',';
 			$sql .= ' real_name = "' . $_POST['shop_real_name'] . '",';
 			$sql .= ' address = "' . $_POST['shop_address'] . '",';
@@ -137,18 +173,19 @@
 			$sql .= ' size = "' . $_POST['shop_size'] . '",';
 			$sql .= ' gender = "' . $_POST['shop_gender'] . '",';
 			$sql .= ' phone = "' . $processed_field['shop_phone'] . '", ';
-			$sql .= ' timestamp = ' . time() . '';
+			$sql .= ' timestamp = ' . $time . '';
 			mysql_query($sql) or report_sql_error(__FILE__, __LINE__, $sql);
 			
-			$sql = 'SELECT order_id FROM shop_orders WHERE user_id = ' . $_SESSION['login']['id'] . ' LIMIT 1';
+			$sql = 'SELECT hash FROM shop_orders WHERE user_id = ' . $_SESSION['login']['id'] . ' LIMIT 1';
 			$result = mysql_query($sql);
 			$data = mysql_fetch_assoc($result);
+			preint_r($data);
 			$out .= '
 				<h1>Tack för din beställning!</h1>
 				' . rounded_corners_top(array('color' => 'green'), true) . '
 				<h2 style="margin-top: 0;">För att bekräfta betalning</h2>
-				<p><strong>För att bekräfta din betalning</strong> så sätter du in <strong>200</strong> SEK på <strong>bankgiro ABC-12345</strong> med kommentaren
-				<strong>HP-' . $data['order_id'] . '</strong>
+				<p><strong>För att bekräfta din betalning</strong> så sätter du in <strong>200</strong> SEK på <strong>bankgiro 5801-5025</strong> med kommentaren
+				<strong>HP-' . $data['hash'] . '</strong>
 				</p>
 				<p style="margin-bottom: 0;">
 					Din tröja bör efter att du satt in pengarna plumsa ner i din brevlåda om cirka 2-5 arbetsdagar.
@@ -216,9 +253,12 @@
 			            </table>
 				</div>
 				<div id="acceptance">
+					<div id="shop_acceptance_text">
+						' . $acceptance_text . '
+					</div>
 					<input id="shop_acceptance" name="shop_acceptance" type="checkbox" value="1" /> 
 					<label for="shop_acceptance">
-						' . $acceptance_text . '
+						Jag accepterar avtalet.
 					</label>
 				</div>
 				<input class="button_60" name="commit" type="submit" value="Beställ" />
