@@ -31,6 +31,14 @@ VD<br />
 </p>
 <p>(Hamsterpaj är inget kontorsbolag, vi är mest en hobbysajt. Därför finns det inte något fastnätsnummer, och Eric är inte alltid tillgäng via telefon)</p>
 ';
+			/*$time = time();
+			$shirt_excluded_letters = array('1', '0', 'L', 'O', 'I');
+			$order_hash = md5($_SESSION['login']['id'] . $time);
+			$order_hash = strtoupper($order_hash);
+			echo $order_hash . "<br />\n";
+			$order_hash = str_replace($shirt_excluded_letters, '', $order_hash);
+			$order_hash = substr($order_hash, 0, 6);
+			echo $order_hash;*/
 	try
 	{
 		if (!login_checklogin())
@@ -39,7 +47,9 @@ VD<br />
 		}
 		$ui_options['stylesheets'][] = 'shop.css';
 		$ui_options['stylesheets'][] = 'forms.css';
+		$ui_options['javascripts'][] = 'jquery.selectboxes.pack.js';
 		$ui_options['javascripts'][] = 'shop.js';
+		
 		$ui_options['title'] = 'Tröjshop - Hamsterpaj.net';
 		$ui_options['menu_path'] = array('hamsterpaj');
 		$post = $_POST;
@@ -159,12 +169,17 @@ VD<br />
 			}
 			
 			$time = time();
-			$order_hash = substr(md5($_SESSION['login']['id'] . $time), 0, 6);
-			var_dump($order_hash);
+			$shirt_excluded_letters = array('1', '0', 'L', 'O', 'I');
+			$order_hash = md5($_SESSION['login']['id'] . $time);
+			$order_hash = strtoupper($order_hash);
+			$order_hash = str_replace($shirt_excluded_letters, '', $order_hash);
+			$order_hash = substr($order_hash, 0, 6);
+			
+			//var_dump($order_hash);
 			
 			// Om allt är fint så borde man hamna här till slut.
 			$sql = 'INSERT INTO shop_orders SET';
-			$sql .= ' hash = "' . $order_hash . '",';
+			$sql .= ' order_hash = "' . $order_hash . '",';
 			$sql .= ' user_id = ' . $_SESSION['login']['id'] . ',';
 			$sql .= ' real_name = "' . $_POST['shop_real_name'] . '",';
 			$sql .= ' address = "' . $_POST['shop_address'] . '",';
@@ -176,16 +191,15 @@ VD<br />
 			$sql .= ' timestamp = ' . $time . '';
 			mysql_query($sql) or report_sql_error(__FILE__, __LINE__, $sql);
 			
-			$sql = 'SELECT hash FROM shop_orders WHERE user_id = ' . $_SESSION['login']['id'] . ' LIMIT 1';
+			$sql = 'SELECT order_hash FROM shop_orders WHERE user_id = ' . $_SESSION['login']['id'] . ' LIMIT 1';
 			$result = mysql_query($sql);
 			$data = mysql_fetch_assoc($result);
-			preint_r($data);
 			$out .= '
 				<h1>Tack för din beställning!</h1>
 				' . rounded_corners_top(array('color' => 'green'), true) . '
 				<h2 style="margin-top: 0;">För att bekräfta betalning</h2>
-				<p><strong>För att bekräfta din betalning</strong> så sätter du in <strong>200</strong> SEK på <strong>bankgiro 5801-5025</strong> med kommentaren
-				<strong>HP-' . $data['hash'] . '</strong>
+				<p><strong>För att bekräfta din betalning</strong> så sätter du in <strong>200 SEK</strong> på <strong>bankgiro 5801-5025</strong> med kommentaren
+				<strong>' . $data['order_hash'] . '</strong>
 				</p>
 				<p style="margin-bottom: 0;">
 					Din tröja bör efter att du satt in pengarna plumsa ner i din brevlåda om cirka 2-5 arbetsdagar.
