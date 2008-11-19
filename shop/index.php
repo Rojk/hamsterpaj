@@ -215,6 +215,8 @@ VD<br />
 			<img id="shirt_girl" src="http://images.hamsterpaj.net/shop/hamstershirt_girl.png" />
 			<fieldset>
 				<legend>Beställ din helt egna Hamsterpaj-tröja</legend>
+				<p>Tjejtröjorna finns i storlek 36, 38 och XX men vi orkade inte göra två system så välj Small om ni vill ha 36 osv. så får moii säga vad hon vill till Ace och Joar!<br /><span style="font-size: 10px;"><em>Skämtade bara, om man väljer "tjej" så får man upp rätt nummer :)</em></span></p>
+				
 			<form action="?action=submit" method="post">
 			    <div class="form">
 				<div id="shirt">
