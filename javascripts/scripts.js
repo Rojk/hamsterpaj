@@ -328,6 +328,14 @@ finalnumber=String(number).substr(0,6)+"-"+String(number).substr(6,9)+String(res
 alert("Ditt falska personnummer är: " + finalnumber + "\n Scriptat för: hamsterpaj.net")//Ge användaren ett meddelande
 }
 
+// Jag lägger det här i mitten :)
+function threads_module_create_thread() {
+	var index = document.getElementById('threads_module_create_thread').selectedIndex;
+	
+	window.location = '/diskussionsforum/' + (document.getElementById('threads_module_create_thread').options[index].value) + '/#new_thread';
+}
+
+
 
 //-------------------------------------------
 //låter folk använda fetstilt, understruken och

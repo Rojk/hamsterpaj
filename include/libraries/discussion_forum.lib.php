@@ -735,6 +735,7 @@
 		$return .= discussion_forum_fetch_moderation_info($options);
 		$return .= '</div>' ."\n";
 		
+		$return .= '<a name="new_thread"></a>' . "\n";
 		$return .= '<h2 class="forum_post_form_heading">' . (isset($options['thread_id']) ? 'Skriv ett nytt inlägg' : 'Starta en ny tråd') . '</h2>' . "\n";
 		$return .= '<form action="/diskussionsforum/nytt_inlaegg.php" method="post" class="forum_post_form" id="forum_post_form">' . "\n";
 		$return .= '<input type="hidden" name="parent" value="' . $options['thread_id'] . '" />' . "\n";
@@ -979,6 +980,7 @@
 		
 		$query = 'SELECT pf.*, t.title AS last_thread_title, t.handle AS last_thread_handle, l.username AS last_thread_username, l.id AS last_thread_author';
 		$query .= ' FROM public_forums AS pf, forum_posts AS t, login AS l WHERE 1';
+//		$query .= ($options['recursive']) ? ' AND pf.parent IS NULL' : '';
 		$query .= (isset($options['parent'])) ? ' AND pf.parent = "' . $options['parent'] . '"' : '';
 		$query .= (isset($options['forum_id'])) ? ' AND pf.id = "' . $options['forum_id'] . '"' : ''; // This exists, I know. But it didn't work, so I made my own
 		$query .= (isset($options['id'])) ? ' AND pf.id IN("' . implode('", "', $options['id']) . '")' : '';

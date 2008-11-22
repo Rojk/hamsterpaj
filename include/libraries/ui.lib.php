@@ -172,8 +172,8 @@ function ui_top($options = array())
 	$output .= '			<h1>' . "\n";
 	$output .= '				<a href="/">Hamsterpaj.net</a>' . "\n";
 	$output .= '			</h1>' . "\n";
-	
-	if ( login_checklogin() )
+
+	if( login_checklogin() )
 	{
 		$output .= '			<div id="ui_noticebar">' . "\n";
 		$output .= '				<ul>' . "\n";
@@ -336,6 +336,7 @@ function ui_top($options = array())
 		$_SESSION['recent_update_notifier'][$data['id']]++;
 	}
 
+
 	foreach($noticemessages AS $noticemessage)
 	{
 		$output .= '<div id="ui_notice">' . "\n";
@@ -346,6 +347,11 @@ function ui_top($options = array())
 		$output .= $noticemessage['html'];
 		$output .= '</div>' . "\n";
 	}
+	
+	
+//		$output .= '			<div id="ui_noticebar">' . "\n";
+//	$output .= 'Nu finns det en risk att forumet (och kanske hela sidan) kommer uppföra sig lite knepigt. Vi behöver rätta till en gammal tankemiss i kategorihanteringen för fourmet... Klagomål hänvisas till <a href="/traffa/profile.php?id=15">heggan</a>. //Johan';
+//	$output .= '			</div>' . "\n";
 	
 	if(login_checklogin())
 	{
