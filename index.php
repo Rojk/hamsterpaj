@@ -32,7 +32,10 @@
 		
 		foreach($module['stylesheets'] AS $css)
 		{
-			$ui_options['stylesheets'][] = $css;			
+			if(!empty($css))
+			{
+				$ui_options['stylesheets'][] = $css;
+			}
 		}
 	}
 	
