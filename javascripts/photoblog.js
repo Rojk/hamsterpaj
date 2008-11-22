@@ -103,6 +103,9 @@ hp.photoblog = {
 	},
 	
 	view: {
+		/*
+			.photoblog_active is always fetched dynamically, because it changes constantly 
+		*/
 		init: function() {
 			this.thumbsContainer = $('#photoblog_thumbs_container');
 			this.thumbs = $('#photoblog_thumbs');
@@ -122,16 +125,23 @@ hp.photoblog = {
 			this.thumbs.append('<div id="photoblog_thumbs_scroller"><div class="ui-slider-handle" id="photoblog_thumbs_handle"></div></div>');
 			this.scroller = $('#photoblog_thumbs_scroller');
 			
+			// this has to be dynamically set because it's (probably) extremely slow
+			this.thumbsContainer.sWidth = this.thumbsContainer.container_width();
+			
 			this.scroller.slider({
+				//animate: true,
 				slide: function(e, ui) {
-					var percent = ui.value / 100;
-					var width = self.thumbsContainer.container_width();
+					// calculate our own percentage, n / 100 is not precise enough
+					var percent = self.handle.position().left;
+					percent = percent / (self.scroller.pWidth);
 					
-					self.thumbsContainer.scrollLeft(width * percent);
-				}
+					self.thumbsContainer.scrollLeft(self.thumbsContainer.sWidth * percent);
+				},
+				steps: 5000
 			});
 			
 			this.handle = $('#photoblog_thumbs_handle', this.scroller);
+			this.scroller.pWidth = this.scroller.width() - this.handle.width();
 			
 			this.centralize_active();
 			this.set_scroller_width();
@@ -236,9 +246,6 @@ hp.photoblog = {
 		},
 		
 		centralize_prevnext: function() {
-			//var imageContainer = $('#photoblog_image');
-			//var prevnext = $('#photoblog_prev, #photoblog_next');
-			
 			var imgW = this.imageContainer.width() / 2;
 			var top = imgW / 2 - this.prevnext.height() / 2;
 			
@@ -248,33 +255,36 @@ hp.photoblog = {
 		centralize_active: function() {
 			var thumbsContainer = this.thumbsContainer;
 			var active = $('.photoblog_active', thumbsContainer);
-			var position1 = ((active.position().left + active.width() / 2 - (thumbsContainer.width() / 2)) / thumbsContainer.container_width()) * 100;
-			var position2 = ((active.position().left + active.width() / 2 - (thumbsContainer.width() / 2)));
-			this.scroller.slide_slider(position2, position1);
+			var position = ((active.position().left + active.width() / 2 - (thumbsContainer.width() / 2)) / thumbsContainer.container_width()) * 100;
+			this.scroller.slide_slider(position);
 		},
 		
 		set_data: function(options) {
 			var description = $('#photoblog_description');
+			var text = $('#photoblog_description_text');
 			
 			//$('h2', description).text(options.header);
-			$('#photoblog_description_text').html(options.description);
+			text.html(options.description);
+			if ( options.description == 'Ingen beskrivning' ) {
+				description.css('display', 'none');
+			} else {
+				description.css('display', 'block');
+			}
+			
 			$('#photoblog_prev').attr('rel', 'imageid_' + options.prev_id);
 			$('#photoblog_next').attr('rel', 'imageid_' + options.next_id);
 		},
 		
 		set_image: function(id) {
 			var src = hp.photoblog.make_name(id);
-			//var container = $('#photoblog_image');
-			//var img = $('img', container);
-			//var slider = $('#photoblog_thumbs_scroller');
 			var self = this;
 			$('<img />').load(function() {
+				self.centralize_active();
 				self.imageContainer.fadeOut(function() {
 					self.image.attr('src', src);
 					self.imageContainer.fadeIn();
 					self.centralize_prevnext();
-					self.centralize_active();
-				})
+				});
 			}).attr('src', src);
 		}
 	},
@@ -286,14 +296,12 @@ hp.photoblog = {
 
 jQuery.fn.extend({
 	// small effects :)
-	slide_slider: function(to, toSlidePos) {
+	slide_slider: function(to) {
 		var slider = $(this);
 		var tc = $('#photoblog_thumbs_container');
-		//var from = slider.slider('value');
-		var from = tc.scrollLeft();
-		console.log(to, from);
+		var from = slider.slider('value');
 		var change = to - from;
-		var duration = 750;
+		var duration = 500;
 		var startTime = (new Date().getTime());
 		slider.slide_interval = setInterval(function() {
 			var nowTime = (new Date().getTime());
@@ -302,24 +310,22 @@ jQuery.fn.extend({
 			// stop
 			if ( delta > 1 ) {
 				clearInterval(slider.slide_interval);
-				slider.slider('moveTo', toSlidePos);
+				slider.slider('moveTo', to);
 				return false;
 			}
 			
 			// transition
 			//delta = Math.pow(delta, 2);
 			
-			//slider.slider('moveTo', change * delta + from);
-			tc.scrollLeft(change * delta + from);
+			slider.slider('moveTo', change * delta + from);
 			return true;
-		}, duration / 30);
+		}, 1000 / 30);
 	},
 	
 	container_width: function() {
 	 	var thumbsContainer = $(this);
 		var lastChild = $('dl > *:last-child', thumbsContainer);
 		var width = lastChild.position().left + lastChild.width() - thumbsContainer.width();
-		window.container_width = width;
 		return width;
 	}
 });
@@ -327,9 +333,5 @@ jQuery.fn.extend({
 $(window).load(function() {
 	if ( $('#photoblog_image').length ) {
 		hp.photoblog.view.init();
-		
-		/*$().photoblog_scroller()
-		   .photoblog_nextprev()
-		   .photoblog_ajax();*/
 	}
 });
