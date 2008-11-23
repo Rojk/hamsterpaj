@@ -254,10 +254,11 @@
 					$out .= '<dl>';
 					$out .= '<dt><a href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
 					$out .= '<dt>23/11</dt>';
-					
+					$is_first = true;
 					foreach ( $photos as $photo )
 					{
-						$out .= '<dd><a rel="imageid_' . $photo['id'] . '" ' . ($photo['id'] == 147903 ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
+						$out .= '<dd><a rel="imageid_' . $photo['id'] . '" ' . ($is_first ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
+						$is_first = false;
 					}
 					
 					$out .= '<dt id="photoblog_nextmonth"><a href="#">N&auml;sta m&aring;nad</a></dt>';
@@ -265,7 +266,8 @@
 				$out .= '</div>';
 			$out .= '</div>';
 			$out .= '<div id="photoblog_image">';
-			$out .= '<p><img src="image.png" alt="" /></p>';
+			$first_photo = $photos[0];
+			$out .= '<p><img src="http://images.hamsterpaj.net/photos/full/' . floor($first_photo['id'] / 5000) . '/' . $first_photo['id'] . '.jpg" alt="" /></p>';
 			$out .= '</div>';
 			$out .= '<div id="photoblog_description">';
 			//$out .= '<h2>Foobar</h2>';

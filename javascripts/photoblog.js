@@ -291,7 +291,7 @@ hp.photoblog = {
 				});
 				
 				self.centralize_active();
-			}).attr('src', src).hide().appendTo(self.imageContainer);
+			}).attr('src', src);//.hide().appendTo(self.imageContainer);
 		}
 	},
 	
