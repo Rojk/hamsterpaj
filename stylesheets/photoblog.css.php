@@ -171,7 +171,7 @@
     width: 600px;
     margin: 10px auto;
     position: relative;
-    background: #000;
+    /*background: #000;*/
     text-align: center;
 }
 
