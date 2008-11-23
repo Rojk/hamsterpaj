@@ -141,10 +141,11 @@ hp.photoblog = {
 			});
 			
 			this.handle = $('#photoblog_thumbs_handle', this.scroller);
-			this.scroller.pWidth = this.scroller.width() - this.handle.width();
 			
 			this.centralize_active();
 			this.set_scroller_width();
+			
+			this.scroller.pWidth = this.scroller.width() - this.handle.width();
 		},
 		
 		make_nextprev: function() {
@@ -265,7 +266,7 @@ hp.photoblog = {
 			
 			//$('h2', description).text(options.header);
 			text.html(options.description);
-			if ( options.description == 'Ingen beskrivning' ) {
+			if ( options.description == 'Ingen beskrivning' || options.description == '' ) {
 				description.css('display', 'none');
 			} else {
 				description.css('display', 'block');
@@ -278,14 +279,19 @@ hp.photoblog = {
 		set_image: function(id) {
 			var src = hp.photoblog.make_name(id);
 			var self = this;
-			$('<img />').load(function() {
-				self.centralize_active();
-				self.imageContainer.fadeOut(function() {
-					self.image.attr('src', src);
-					self.imageContainer.fadeIn();
-					self.centralize_prevnext();
+			var img = $('<img />');
+			img.load(function() {
+				// fadeInOnAnother needs for fixing before it can go public
+				/*img.fadeInOnAnother(self.image, function() {
+					self.image.remove();
+					self.image = img;
+				});*/
+				self.image.fadeOut(function() {
+					self.image.attr('src', src).fadeIn();
 				});
-			}).attr('src', src);
+				
+				self.centralize_active();
+			}).attr('src', src).hide().appendTo(self.imageContainer);
 		}
 	},
 	
@@ -324,9 +330,23 @@ jQuery.fn.extend({
 	
 	container_width: function() {
 	 	var thumbsContainer = $(this);
-		var lastChild = $('dl > *:last-child', thumbsContainer);
+		var lastChild = $('#photoblog_nextmonth');
 		var width = lastChild.position().left + lastChild.width() - thumbsContainer.width();
 		return width;
+	},
+	
+	fadeInOnAnother: function(theOther, callback) {
+		var t = $(this).css({position: 'relative', zIndex: 1});
+		var p = theOther.position();
+		theOther.css({
+			position: 'absolute',
+			top: p.top,
+			left: p.left,
+			zIndex: 0
+		});
+		t.insertBefore(theOther);
+		theOther.fadeOut();
+		t.fadeIn(callback);
 	}
 });
 

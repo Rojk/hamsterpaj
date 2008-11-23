@@ -1,6 +1,7 @@
 <?php
 	require('../include/core/common.php');
 	require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
+	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
 	
 	$ui_options['stylesheets'][] = 'photoblog.css.php';
 	$ui_options['javascripts'][] = 'jquery-ui-slider.js';
@@ -216,17 +217,38 @@
 		break;
 			
 		default:
-			$user_id = ( isset($_SESSION['login']) ) ? $_SESSION['login']['id'] : 557316; // 879699
+			if ( isset($uri_parts[2]) && preg_match('/^[a-zA-Z0-9-_]+$/', $uri_parts[2]) )
+			{
+				$username = $uri_parts[2];	
+			}
+			elseif ( login_checklogin() )
+			{
+				$username = $_SESSION['login']['username'];
+			}
+			else
+			{
+				$username = 'iphone';
+			}
+			
+			// this should probably be added to som .lib
+			$query .= 'SELECT l.id';
+			$query .= ' FROM login AS l';
+			$query .= ' WHERE l.username = "' . $username . '"';
+			$query .= ' LIMIT 1';
+			$result = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
+			$user = mysql_fetch_assoc($result);
+			
+			$user_id = $user['id'];
 			$options = array(
 				'user' => $user_id
 			);
 			
-			$photos = photoblog_photos_fetch($options);
+			$photos = photoblog_photos_fetch($options);			
 					
-			$out .= 'Välkommen till ' . "\n";
+			/*$out .= 'Välkommen till ' . "\n";
 			$out .= preg_match('/s$/', $uri_parts[2]) ? $uri_parts[2] : $uri_parts[2] . 's';
-			$out .= ' fotoblogg!';
-			$out .= '<h2 id="photoblog_header">iPhone - 2008 September</h2>';
+			$out .= ' fotoblogg!';*/
+			$out .= '<h2 id="photoblog_header">' . $username . ' - 2008 September</h2>';
 			$out .= '<div id="photoblog_thumbs">';
 				$out .= '<div id="photoblog_thumbs_container">';
 					$out .= '<dl>';
@@ -238,7 +260,7 @@
 						$out .= '<dd><a rel="imageid_' . $photo['id'] . '" ' . ($photo['id'] == 147903 ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
 					}
 					
-					$out .= '<dt><a href="#">N&auml;sta m&aring;nad</a></dt>';
+					$out .= '<dt id="photoblog_nextmonth"><a href="#">N&auml;sta m&aring;nad</a></dt>';
 					$out .= '</dl>';
 				$out .= '</div>';
 			$out .= '</div>';
@@ -259,7 +281,7 @@
 			$out .= '</div>';
 		break;
 	}
-	$out .= '<br /><br />' . preint_r($uri_parts);
+	//$out .= '<br /><br />' . preint_r($uri_parts);
 	/*
 	/fotoblogg/user/
 	/fotoblogg/instaellningar
