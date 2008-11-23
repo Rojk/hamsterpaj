@@ -45,8 +45,11 @@
 	{
 
 	}
-	$options['output'] .= '<select id="threads_module_create_thread" onchange="threads_module_create_thread()"><option value="false">Starta ny tråd</option>' . "\n";
-	$options['output'] .= recurse_forum_category_specialgrej($categories, 0);
-	$options['output'] .= '</select>';
+	if (login_checklogin())
+	{
+		$options['output'] .= '<select id="threads_module_create_thread" onchange="threads_module_create_thread()"><option value="false">Starta ny tråd</option>' . "\n";
+		$options['output'] .= recurse_forum_category_specialgrej($categories, 0);
+		$options['output'] .= '</select>';
+	}
 	
 ?>
