@@ -29,7 +29,7 @@
 			$out .= '<td><strong>Ta bort</strong></td>' . "\n";
 			
 			$query = 'SELECT i.ip AS ip, i.reason AS reason, i.timestamp AS timestamp, l.username AS banned_by_username, l.id AS banned_by_user_id FROM ip_ban_list AS i, login AS l WHERE i.banned_by = l.id ORDER BY i.timestamp DESC';
-			$query = (!isset($_GET['show_all'])) ? ' LIMIT 30' : '';
+			$query .= (!isset($_GET['show_all'])) ? ' LIMIT 30' : '';
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 			while($data = mysql_fetch_assoc($result))
 			{
