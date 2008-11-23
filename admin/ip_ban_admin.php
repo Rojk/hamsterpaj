@@ -28,7 +28,7 @@
 			$out .= '<td><strong>Utslängd av</strong></td>';
 			$out .= '<td><strong>Ta bort</strong></td>' . "\n";
 			
-			$query = 'SELECT i.ip AS ip, i.reason AS reason, i.timestamp AS timestamp, l.username AS banned_by_username, l.id AS banned_by_user_id FROM ip_ban_list AS i, login AS l WHERE i.banned_by = l.id';
+			$query = 'SELECT i.ip AS ip, i.reason AS reason, i.timestamp AS timestamp, l.username AS banned_by_username, l.id AS banned_by_user_id FROM ip_ban_list AS i, login AS l WHERE i.banned_by = l.id ORDER BY i.ip';
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 			while($data = mysql_fetch_assoc($result))
 			{
@@ -50,13 +50,13 @@
 				$query = 'INSERT INTO ip_ban_list(ip, reason, banned_by, timestamp) VALUES ("' . $_POST['ip'] . '", "' . $_POST['reason'] . '", ' . $_SESSION['login']['id'] . ', ' . time() . ')';
 				if(@mysql_query($query))
 				{
-					echo 'Ip-adressen lades till i systemet! <a href="' . $_SERVER['PHP_SELF'] . '">&laquo; Tillbaka</a>.' . "\n";
+					$out .= 'Ip-adressen lades till i systemet! <a href="' . $_SERVER['PHP_SELF'] . '">&laquo; Tillbaka</a>.' . "\n";
 					log_admin_event('ip banned', $_POST['ip'], $_SESSION['login']['id'], 0, 0);
 				}
 				else
 				{
 					// Primary key...
-					echo 'Ip-adressen kunde inte läggas till i systemet. Om den redan finns i systemet, kontakta en Sysop med information: ' . __FILE__ . ' on line ' . __LINE__;
+					$out .= 'Ip-adressen kunde inte läggas till i systemet. Om den redan finns i systemet, kontakta en Sysop med information: ' . __FILE__ . ' on line ' . __LINE__;
 				}
 			}
 			else
