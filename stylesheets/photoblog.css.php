@@ -1,3 +1,10 @@
+<?php
+	header('Content-type: text/css');
+
+	define('PHOTOBLOG_BACKGROUND_COLOR', '#333');
+	define('PHOTOBLOG_DETAIL_COLOR', 'orange');
+?>
+
 #photoblog_upload_wrapper {
 	border: 1px solid #cfe2f1;
 	-moz-border-radius: 5px;
@@ -81,7 +88,7 @@
 }
 
 #photoblog_thumbs {
-    background: #333 url(scroller-default-bg.png);
+    background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> url(scroller-default-bg.png);
     border-radius: 5px;
     -moz-border-radius: 5px;
     -khtml-border-radius: 5px;
@@ -152,8 +159,10 @@
 
 #photoblog_thumbs_scroller {
     width: 100%;
-    background: #555;
+    background: url(http://images.hamsterpaj.net/photoblog/white-50-percent-opacity.png);
     height: 15px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
     margin-top: 5px;
     position: relative;
 }
@@ -161,7 +170,9 @@
     #photoblog_thumbs_handle {
         display: block;
         width: 40px;
-        background: orange;
+        background: <?php echo PHOTOBLOG_DETAIL_COLOR; ?>;
+        -moz-border-radius: 4px;
+    		-webkit-border-radius: 4px;
         height: 100%;
         cursor: pointer;
         position: absolute;
