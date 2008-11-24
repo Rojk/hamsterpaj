@@ -362,6 +362,11 @@ function ui_top($options = array())
 		}
 	}
 	
+	if(isset($options['xxl']))
+	{
+		$output .= '<div>' . $options['xxl'] . '</div>' . "\n";
+	}
+	
 	$output .= '		<div id="ui_content">' . "\n";
 	$output .= '<script type="text/javascript">CM8ShowAd("Rektangel");</script>' . "\n";
 	
