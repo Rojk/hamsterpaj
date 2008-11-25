@@ -25,11 +25,11 @@
 	$form .= '<input type="submit" value="OK" />' . "\n";
 	$form .= '</form>' . "\n";
 	
-	event_log_log('collage_collision_impression');
+	event_log_log('collage_illusion_impression');
 	
 	if(isset($_FILES['photo']))
 	{
-		event_log_log('collage_collision_upload');
+		event_log_log('collage_illusion_upload');
 		$template = (in_array($_POST['template'], $templates)) ? $_POST['template'] : 'wood_standing';	
 		
 		$work_dir = '/mnt/images/collage_illusion/';
