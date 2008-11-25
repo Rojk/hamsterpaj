@@ -14,4 +14,5 @@
 #collage_illusion_thumbs li img
 {
 	border: 1px solid #ababab;
+	clear: both;
 }
