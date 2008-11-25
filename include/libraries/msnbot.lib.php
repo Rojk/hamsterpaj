@@ -32,4 +32,11 @@
 			$query = mysql_query('INSERT INTO msnbot (user_id, msn, message) VALUES (' . $options['user_id'] . ', "' . $options['msn'] . '", "' . $options['message'] . '")');
 		}
 	}
+	
+	// The quick 'n dirty solution this time... It's called "deadlines", and it's really; really bad...
+	function msnbot_queue_add_everyone($options)
+	{
+		$query = 'INSERT msnbot (user_id, msn, message) SELECT userid AS user_id, msnbot_msn AS msn, "' . $options['message'] . '" AS message FROM userinfo WHERE msnbot_msn IS NOT NULL';
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+	}
 ?>
