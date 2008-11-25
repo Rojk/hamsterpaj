@@ -16,7 +16,7 @@
 	{
 		$form .= '<li>' . "\n";
 		$checked = ($bg == 'wood') ? ' checked="checked"' : '';
-		$form .= '<img src="http://images.hamsterpaj.net/collage_collision/thumbs/' . $bg . '.jpg" />';
+		$form .= '<img src="http://images.hamsterpaj.net/collage_illusion/thumbs/' . $bg . '.jpg" />';
 		$form .= '<input type="radio" name="template" value="' . $bg . '"' . $checked . ' />';
 		$form .= '</li>' . "\n";
 	}

@@ -51,6 +51,7 @@
 		$menu['mattan']['children']['pornalizer'] = array('label' => 'Pornalizer', 'url' => '/mattan/pornalizer.php');
 		$menu['mattan']['children']['promoe'] = array('label' => 'Promoe', 'url' => '/mattan/promoe.php');
 		$menu['mattan']['children']['snyggve'] = array('label' => 'Snyggve', 'url' => '/mattan/snyggve.php');
+		$menu['mattan']['children']['collage_illusion'] = array('label' => 'Kollageapparaten', 'url' => '/mattan/collage_illusion.php');
 
 
 	$menu['traeffa'] = array('label' => 'Träffa', 'url' => '/traffa/');
