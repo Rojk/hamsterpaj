@@ -1,0 +1,17 @@
+#collage_illusion_thumbs
+{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#collage_illusion_thumbs li
+{
+	float: left;
+	padding: 10px;
+}
+
+#collage_illusion_thumbs li img
+{
+	border: 1px solid #ababab;
+}
