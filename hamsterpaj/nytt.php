@@ -64,7 +64,7 @@
 		$query = 'INSERT INTO recent_updates (type, timestamp, url, label) VALUES ("text_news", "' . time() . '", "' . $thread_url . '", "' . $_POST['title'] . '")';
 		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 		
-		msnbot_queue_add_everyone(array('message' => 'Nyhet på www.hamsterpaj.net!' . "\r\n\r\n" . $_POST['body'] . "\r\n\r\n" . 'Klicka på den här länken för att kommentera nyheten:' . "\r\n" . $thread_url));
+		msnbot_queue_add_everyone(array('message' => 'Nyhet på www.hamsterpaj.net!' . "\r\n\r\n" . $_POST['body'] . "\r\n\r\n" . 'Klicka på den här länken för att kommentera nyheten:' . "\r\n" . 'http://www.hamsterpaj.net/' . $thread_url));
 	}
 	else 
 	{
