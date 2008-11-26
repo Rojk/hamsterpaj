@@ -582,7 +582,7 @@
 				break;
 				
 			case 'view_category':
-				if(!is_privilegied('igotgodmode'))
+				if(!is_privilegied('igotgodmode') || $options['category']['userlevel_read'] > $options['userlevel'])
 				{
 					$return .= '<h2>För låg användarnivå för kategori</h2>' . "\n";
 					$return .= '<p>Nae, den kategorin får inte du titta i.</p>' . "\n";
