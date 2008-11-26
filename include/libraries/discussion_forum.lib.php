@@ -507,7 +507,7 @@
 				
 				$category = array_pop($category_tree);
 				
-				if($category['userlevel_create'] > $options['userlevel'])
+				if($category['userlevel_create'] > $options['userlevel'] && !is_privilegied('ov_forum'))
 				{
 					$return .= '<h2>Aja baja, så får man inte göra!</h2>' . "\n";
 					$return .= '<p>Nu försökte du starta en diskussion i en kategori du inte får posta i. Kanske var det någon som lekte hacker?</p>' . "\n";
@@ -561,7 +561,7 @@
 				
 				$category = array_pop($category_tree);
 				
-				if($category['userlevel_post'] > $options['userlevel'])
+				if($category['userlevel_post'] > $options['userlevel'] && !is_privilegied('ov_forum'))
 				{
 					$return .= '<h2>Här får du inte skriva</h2>' . "\n";
 					$return .= '<p>Du får inte posta i den här forumdelen. Ditt inlägg sparades inte. Här är ditt inlägg:</p>' . "\n";
@@ -605,7 +605,7 @@
 				
 				$category = array_pop($category_tree);
 				
-				if($category['userlevel_read'] > $options['userlevel'])
+				if($category['userlevel_read'] > $options['userlevel'] && !is_privilegied('ov_forum'))
 				{
 					$return .= '<h2>Den här diskussionen får du inte läsa!</h2>' . "\n";
 					$return .= '<p>Hemligt, hemligt...</p>' . "\n";
