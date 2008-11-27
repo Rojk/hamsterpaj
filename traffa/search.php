@@ -127,10 +127,10 @@ function traffa_make_search()
 			
 			echo '<tr style="background: ' . $background . ';">';
 			echo '<td>';
-			if ($data['image'] == 1 || $data['image'] == 2)
+			/*if ($data['image'] == 1 || $data['image'] == 2)
 			{
 				echo '<img src="/images/icons/photo.png" />';
-			}
+			}*/
 			echo '<a href="/traffa/profile.php?id=' . $data['userid'] . '" onmouseover="return makeTrue(domTT_activate(this, event, \'content\', \'' . $tooltip . '\', \'trail\', true));">' . $data['username'] . '</a> ' . $data['gender'] . date_get_age($data['birthday']) . '</td>';
 			if ($data['lastaction'] > time() - 900)
 			{
