@@ -272,8 +272,15 @@ hp.photoblog = {
 				description.css('display', 'block');
 			}
 			
-			$('#photoblog_prev').attr('rel', 'imageid_' + options.prev_id);
-			$('#photoblog_next').attr('rel', 'imageid_' + options.next_id);
+			var cimg = 'a[rel=imageid_' + options.id + ']';
+			var current_image = $(cimg);
+			var cp = current_image.parent();
+			
+			var next_image = cp.next().children('a');
+			var prev_image = cp.prev().children('a');
+			
+			$('#photoblog_prev').attr('rel', prev_image.attr('rel'));
+			$('#photoblog_next').attr('rel', next_image.attr('rel'));
 		},
 		
 		set_image: function(id) {
