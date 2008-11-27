@@ -11,6 +11,12 @@
 	$ui_options['menu_path'] = array('hamsterpaj');
 	$ui_options['adtoma_category'] = 'start';
 
+	// Userids: Joel, Joel on developer platform, BuenaVistaDemo
+	if(login_checklogin() && in_array($_SESSION['login']['id'], array(87926, 879697, 899954)))
+	{
+		echo '<center><a href="http://www.hamsterpaj.net/filmklipp/disney__camp_rock.html" style="text-decoration: none; text-align: center">Detta är en reklam (det riktiga klippet eller spelet finns under - scrolla ner!).<br /><img src="http://images.hamsterpaj.net/advertising/camp_rock_film_dummy.png" alt="Camp Rock trailer" /></a></center>';
+	}
+
 	$fp_modules = cache_load('fp_module_order');
 	
 	foreach($fp_modules AS $filename)
