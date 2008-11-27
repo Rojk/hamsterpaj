@@ -60,7 +60,10 @@
 		$ui_options['title'] = $title_start.$title_end;
 
 		$ui_options['stylesheets'][] = 'user_profile.css';
-		$ui_options['stylesheets'][] = 'profile_themes/' . $profile['profile_theme'] . '.css';
+		if (strlen($profile['profile_theme']) > 0)
+		{
+			$ui_options['stylesheets'][] = 'profile_themes/' . $profile['profile_theme'] . '.css';
+		}
 		$out .= profile_mini_page($profile);
 
 		$ui_options['javascripts'][] = 'user_profile.js';

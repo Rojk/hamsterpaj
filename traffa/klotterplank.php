@@ -81,7 +81,7 @@
 			}
 			else
 			{
-				echo '<img src="/images/noimage.png" style="width: 75px; height: 75px; border: 1px solid #cccccc;" alt="Ingen visningsbild"/>' . "\n";
+				echo '<img src="http://images.hamsterpaj.net/images/noimage.png" style="width: 75px; height: 75px; border: 1px solid #cccccc;" alt="Ingen visningsbild"/>' . "\n";
 			}
 			echo '</td><td style="vertical-align: top;">';
 			echo fix_time($data['timestamp']) . ' (inlägg #' . $data['id'] . ') <a style="text-decoration:none;" href="javascript:#;" onclick="javascript:document.gbform.message.value=document.gbform.message.value+\''.$data['username'].' : \';document.gbform.message.focus();">[^]</a><br/>' . "\n";

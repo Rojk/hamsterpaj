@@ -73,8 +73,10 @@
 	/* Set page title */
 	
 	$ui_options['title'] .= $profile['username'] . ' - Hamsterpaj.net';
-	
-	$ui_options['stylesheets'][] = 'profile_themes/' . $profile['profile_theme'] . '.css';
+	if (strlen($profile['profile_theme']) > 0)
+	{
+		$ui_options['stylesheets'][] = 'profile_themes/' . $profile['profile_theme'] . '.css';
+	}
 
 	/* Start of profile */
 	$output .= profile_top($profile);

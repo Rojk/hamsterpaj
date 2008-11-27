@@ -5,7 +5,7 @@
 	$result = mysql_query($sql) or die('Query failed: ' . mysql_error());
 
 
-	$file_content .= '<div style="background: #F7F7F7 url(\'/images/klotterplankbgF.png\') repeat-x; border: 1px solid #CCCCCC;">';
+	$file_content .= '<div style="background: #F7F7F7; border: 1px solid #CCCCCC;">';
 	$file_content .= '<h2 style="margin: 3px;">Flickor</h2>';
 	$file_content .= '<table style="width: 100%"><tr>';
 	$rowcount = 0;	
@@ -39,7 +39,7 @@
 	$file_content .= '</table>';
 	$file_content .= '</div><br />';
 
-	$file_content .= '<div style="background: #F7F7F7 url(\'/images/klotterplankbgP.png\') repeat-x; border: 1px solid #CCCCCC;">';
+	$file_content .= '<div style="background: #F7F7F7; border: 1px solid #CCCCCC;">';
 	$file_content .= '<h2 style="margin: 3px;">Pojkar</h2>';
 
 	$sql = 'SELECT login.id, login.username, userinfo.birthday FROM login, userinfo WHERE userinfo.userid = login.id AND userinfo.gender = "m" && (userinfo.image = "1" || userinfo.image = "2") ORDER BY login.lastlogon DESC LIMIT 21';
