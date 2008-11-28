@@ -75,7 +75,10 @@
 		if(isset($user_id))
 		{
 			$profile = profile_fetch(array('user_id' => $user_id));
-			$ui_options['stylesheets'][] = 'profile_themes/' . $profile['profile_theme'] . '.css';
+			if (strlen($profile['profile_theme']) > 0)
+			{
+				$ui_options['stylesheets'][] = 'profile_themes/' . $profile['profile_theme'] . '.css';
+			}
 		
 			$profile_head .= profile_mini_page($profile);
 		}
