@@ -127,6 +127,7 @@ hp.photoblog = {
 			
 			// this has to be dynamically set because it's (probably) extremely slow
 			this.thumbsContainer.sWidth = this.thumbsContainer.container_width();
+			this.thumbsContainer.real_width = this.thumbsContainer.width();
 			
 			this.scroller.slider({
 				//animate: true,
@@ -247,8 +248,8 @@ hp.photoblog = {
 		},
 		
 		centralize_prevnext: function() {
-			var imgW = this.imageContainer.width() / 2;
-			var top = imgW / 2 - this.prevnext.height() / 2;
+			var imgH = this.image.height() / 2;
+			var top = imgH - this.prevnext.height() / 2;
 			
 			this.prevnext.css('top', top);
 		},
@@ -256,7 +257,7 @@ hp.photoblog = {
 		centralize_active: function() {
 			var thumbsContainer = this.thumbsContainer;
 			var active = $('.photoblog_active', thumbsContainer);
-			var position = ((active.position().left + active.width() / 2 - (thumbsContainer.width() / 2)) / thumbsContainer.container_width()) * 100;
+			var position = ((active.position().left + active.width() / 2 - (thumbsContainer.real_width / 2)) / thumbsContainer.sWidth) * 100;
 			this.scroller.slide_slider(position);
 		},
 		
@@ -272,8 +273,18 @@ hp.photoblog = {
 				description.css('display', 'block');
 			}
 			
-			$('#photoblog_prev').attr('rel', 'imageid_' + options.prev_id);
-			$('#photoblog_next').attr('rel', 'imageid_' + options.next_id);
+			var cimg = 'a[rel=imageid_' + options.id + ']';
+			var current_image = $(cimg);
+			var cp = current_image.parent();
+			
+			var next_image = cp.next().children('a');
+			var prev_image = cp.prev().children('a');
+			
+			var next_id = next_image.attr('rel').replace('imageid_', '');
+			var prev_id = prev_image.attr('rel').replace('imageid_', '');
+			
+			$('#photoblog_prev').attr('rel', prev_image.attr('rel')).attr('href', '#image-' + prev_id);
+			$('#photoblog_next').attr('rel', next_image.attr('rel')).attr('href', '#image-' + next_id);
 		},
 		
 		set_image: function(id) {
@@ -286,11 +297,11 @@ hp.photoblog = {
 					self.image.remove();
 					self.image = img;
 				});*/
-				self.image.fadeOut(function() {
-					self.image.attr('src', src).fadeIn();
-				});
-				
-				self.centralize_active();
+				//self.image.fadeOut(function() {
+					self.image.attr('src', src);//.fadeIn();
+					self.centralize_active();
+					self.centralize_prevnext();
+				//});
 			}).attr('src', src);//.hide().appendTo(self.imageContainer);
 		}
 	},
