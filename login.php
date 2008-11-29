@@ -54,7 +54,7 @@
 				$msg = login_dologin($_POST['username'], $_POST['password']);
 				if ($_SESSION['login']['id'] = 897773)
 				{
-					login_logout();
+					session_destroy();
 					header('Location: http://internetisseriousbusiness.com/');
 				}
 				switch($msg)
