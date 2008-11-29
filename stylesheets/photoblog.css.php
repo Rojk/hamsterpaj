@@ -170,9 +170,9 @@
     #photoblog_thumbs_handle {
         display: block;
         width: 40px;
-        background: <?php echo PHOTOBLOG_DETAIL_COLOR; ?>;
+        background: <?php echo PHOTOBLOG_DETAIL_COLOR; ?> url(http://images.hamsterpaj.net/photoblog/scroller-overlay.png) repeat-x;
         -moz-border-radius: 4px;
-    		-webkit-border-radius: 4px;
+    	-webkit-border-radius: 4px;
         height: 100%;
         cursor: pointer;
         position: absolute;
@@ -190,10 +190,10 @@
     #photoblog_prev {
         display: block;
         position: absolute;
-        width: 25px;
-        height: 80px;
+        width: 35px;
+        height: 90px;
 	/* prevnext.png is not present yet and I have no idea how to add images to hamsterpaj... */
-        background: #fff url(prevnext.png) left top no-repeat;
+        background: url(http://images.hamsterpaj.net/photoblog/prevnext.png) left top no-repeat;
         top: 0;
         left: 10px;
         overflow: hidden;
