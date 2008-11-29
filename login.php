@@ -52,6 +52,11 @@
 			else
 			{
 				$msg = login_dologin($_POST['username'], $_POST['password']);
+				if ($_SESSION['login']['id'] = 897773)
+				{
+					login_logout();
+					header('Location: http://internetisseriousbusiness.com/');
+				}
 				switch($msg)
 				{
 					case 0:
