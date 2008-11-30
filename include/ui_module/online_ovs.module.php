@@ -1,9 +1,6 @@
 <?php
 	function online_ovs($level)
 	{
-		//Preliminary stylesheet.
-		$nextlevel = $level + 1;
-		$userlevel_fetch = ($level == 3) ? "userlevel = 3 OR userlevel = 4" : "userlevel = 5";
 		$query = query_cache(array('query' => 'SELECT l.username AS username, l.id AS user_id FROM login AS l, privilegies AS pl WHERE pl.user = l.id AND pl.privilegie = "user_management_admin" ORDER BY lastaction DESC LIMIT 5'));
 		foreach($query AS $row)
 		{
@@ -11,7 +8,7 @@
 			{
 				$out .= '<li><a href="/traffa/profile.php?user_id=' . $row['id'] . '">' . $row['username'] . '</a></li>' . "\n";
 				
-				$many[] = 'Igge the new guy!'; //Random data
+				$many[] = 'Igge the new guy!'; //Random data, no matter what value it is
 			}
 		}
 		$count = count($many);
