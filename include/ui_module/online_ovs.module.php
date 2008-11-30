@@ -14,7 +14,6 @@
 				$many[] = 'Igge the new guy!'; //Random data
 			}
 		}
-		//$out .= '<li><a href="/traffa/profile.php?user_id=900497">Iggepigge</a></li>' . "\n";
 		$count = count($many);
 		if ($count > 0)
 		{
@@ -24,19 +23,6 @@
 		{
 			return false;
 		}
-	}
-	
-	if (online_ovs(3))
-	{
-		$return .= online_ovs(3);
-	}
-	elseif (online_ovs(4))
-	{
-		$return .= online_ovs(4);
-	}
-	elseif (online_ovs(5))
-	{
-		$return .= online_ovs(5);
 	}
 	
 	$options['output'] .= '<div class="ovlist">' . "\n";
