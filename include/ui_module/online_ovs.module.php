@@ -1,5 +1,5 @@
 <?php
-	function online_ovs($level)
+	function online_ovs()
 	{
 		$query = query_cache(array('query' => 'SELECT l.username AS username, l.id AS user_id FROM login AS l, privilegies AS pl WHERE pl.user = l.id AND pl.privilegie = "user_management_admin" ORDER BY lastaction DESC LIMIT 5'));
 		foreach($query AS $row)
@@ -24,7 +24,7 @@
 	
 	$options['output'] .= '<div class="ovlist">' . "\n";
 	$options['output'] .= '<ul>' . "\n";
-	$options['output'] .= $return . "\n";
+	$options['output'] .= online_osv() . "\n";
 	$options['output'] .= '</ul>' . "\n";
 	$options['output'] .= '</div>' . "\n";
 	?>
