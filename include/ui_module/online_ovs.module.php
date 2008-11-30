@@ -4,7 +4,7 @@
 		//Preliminary stylesheet.
 		$nextlevel = $level + 1;
 		$userlevel_fetch = ($level == 3) ? "userlevel = 3 OR userlevel = 4" : "userlevel = 5";
-		$query = query_cache(array('query' => 'SELECT userlevel, id, username, lastaction FROM login WHERE ' . $userlevel_fetch . ' ORDER BY lastaction DESC LIMIT 5'));
+		$query = query_cache(array('query' => 'SELECT l.username AS username, l.id AS user_id FROM login AS l, privilegies AS pl WHERE pl.user = l.id AND pl.privilegie = "user_management_admin" ORDER BY lastaction DESC LIMIT 5'));
 		foreach($query AS $row)
 		{
 			if($row['lastaction'] > time() - 600)
@@ -44,3 +44,4 @@
 	$options['output'] .= $return . "\n";
 	$options['output'] .= '</ul>' . "\n";
 	$options['output'] .= '</div>' . "\n";
+	?>

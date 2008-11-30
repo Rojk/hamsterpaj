@@ -397,7 +397,7 @@ function ui_bottom($options = array())
 		$modules['profile_visitors'] = 'Besökare';	
 	}
 
-	$modules['latest_threads'] = 'Forumtrådar'; #MARK
+	$modules['latest_threads'] = 'Forumtrådar';
 	$modules['latest_posts'] = 'Inlägg i forumet';
 	$modules['site_stats'] = 'Statistik';
 	
