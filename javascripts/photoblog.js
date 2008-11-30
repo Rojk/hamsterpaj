@@ -127,6 +127,7 @@ hp.photoblog = {
 			
 			// this has to be dynamically set because it's (probably) extremely slow
 			this.thumbsContainer.sWidth = this.thumbsContainer.container_width();
+			this.thumbsContainer.real_width = this.thumbsContainer.width();
 			
 			this.scroller.slider({
 				//animate: true,
@@ -171,11 +172,11 @@ hp.photoblog = {
 				
 				// right (next)
 				if ( xPos > half + 30 && next.css('display') == 'none' ) {
-					next.fadeIn();
+					next.css('display', 'block').animate({opacity: .6});
 					prev.fadeOut();
 				// left (prev)
 				} else if ( xPos < half - 30 && prev.css('display') == 'none' ) {
-					prev.fadeIn();
+					prev.css('display', 'block').animate({opacity: .6});
 					next.fadeOut();
 				} else if ( xPos > half - 30 && xPos < half + 30 ){
 					next.fadeOut();
@@ -247,8 +248,8 @@ hp.photoblog = {
 		},
 		
 		centralize_prevnext: function() {
-			var imgW = this.imageContainer.width() / 2;
-			var top = imgW / 2 - this.prevnext.height() / 2;
+			var imgH = this.image.height() / 2;
+			var top = imgH - this.prevnext.height() / 2;
 			
 			this.prevnext.css('top', top);
 		},
@@ -256,7 +257,7 @@ hp.photoblog = {
 		centralize_active: function() {
 			var thumbsContainer = this.thumbsContainer;
 			var active = $('.photoblog_active', thumbsContainer);
-			var position = ((active.position().left + active.width() / 2 - (thumbsContainer.width() / 2)) / thumbsContainer.container_width()) * 100;
+			var position = ((active.position().left + active.width() / 2 - (thumbsContainer.real_width / 2)) / thumbsContainer.sWidth) * 100;
 			this.scroller.slide_slider(position);
 		},
 		
@@ -272,26 +273,44 @@ hp.photoblog = {
 				description.css('display', 'block');
 			}
 			
-			$('#photoblog_prev').attr('rel', 'imageid_' + options.prev_id);
-			$('#photoblog_next').attr('rel', 'imageid_' + options.next_id);
+			var cimg = 'a[rel=imageid_' + options.id + ']';
+			var current_image = $(cimg);
+			var cp = current_image.parent();
+			
+			var next_image = cp.next();
+			var prev_image = cp.prev();
+						
+			if ( next_image.get(0).tagName == 'DT' ) next_image = next_image.next();
+			if ( prev_image.get(0).tagName == 'DT' ) prev_image = prev_image.prev();
+			
+			next_image = next_image.children('a');
+			prev_image = prev_image.children('a');
+			
+			var next_id = next_image.attr('rel').replace('imageid_', '');
+			var prev_id = prev_image.attr('rel').replace('imageid_', '');
+			
+			$('#photoblog_prev').attr('rel', prev_image.attr('rel')).attr('href', '#image-' + prev_id);
+			$('#photoblog_next').attr('rel', next_image.attr('rel')).attr('href', '#image-' + next_id);
 		},
 		
 		set_image: function(id) {
 			var src = hp.photoblog.make_name(id);
 			var self = this;
 			var img = $('<img />');
+			self.centralize_active();
 			img.load(function() {
 				// fadeInOnAnother needs for fixing before it can go public
-				/*img.fadeInOnAnother(self.image, function() {
+				img.fadeInOnAnother(self.image, function() {
 					self.image.remove();
-					self.image = img;
-				});*/
-				self.image.fadeOut(function() {
-					self.image.attr('src', src).fadeIn();
+					self.image = img.css('zIndex', 0);
+					self.centralize_prevnext();
+					self.imageContainer.height('auto');
 				});
-				
-				self.centralize_active();
-			}).attr('src', src);//.hide().appendTo(self.imageContainer);
+				/*self.image.fadeOut(function() {
+					self.image.attr('src', src).fadeIn();
+					self.centralize_prevnext();
+				});*/
+			}).attr('src', src).hide().appendTo(self.imageContainer);
 		}
 	},
 	
@@ -303,16 +322,19 @@ hp.photoblog = {
 jQuery.fn.extend({
 	// small effects :)
 	slide_slider: function(to) {
-		var slider = $(this);
-		var tc = $('#photoblog_thumbs_container');
+		var slider = $(this).slider('moveTo', to);
+		
+		/*// setup
+		var fps = 20;
+		var duration = 1000;
+		
 		var from = slider.slider('value');
 		var change = to - from;
-		var duration = 500;
-		var startTime = (new Date().getTime());
+		var startTime = new Date().getTime();
+		
 		slider.slide_interval = setInterval(function() {
-			var nowTime = (new Date().getTime());
-			var delta = (nowTime - startTime) / duration;
-			
+			var delta = ((new Date()).getTime() - startTime) / duration;
+				
 			// stop
 			if ( delta > 1 ) {
 				clearInterval(slider.slide_interval);
@@ -325,7 +347,7 @@ jQuery.fn.extend({
 			
 			slider.slider('moveTo', change * delta + from);
 			return true;
-		}, 1000 / 30);
+		}, 1000 / fps);*/
 	},
 	
 	container_width: function() {
@@ -337,6 +359,8 @@ jQuery.fn.extend({
 	
 	fadeInOnAnother: function(theOther, callback) {
 		var t = $(this).css({position: 'relative', zIndex: 1});
+		var h = Math.max(t.height(), theOther.height());
+		t.parent().height(h);
 		var p = theOther.position();
 		theOther.css({
 			position: 'absolute',

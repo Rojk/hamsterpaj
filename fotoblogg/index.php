@@ -231,8 +231,7 @@
 			}
 			
 			// this should probably be added to som .lib
-			$query .= 'SELECT l.id';
-			$query .= ' FROM login AS l';
+			$query .= 'SELECT l.id FROM login AS l';
 			$query .= ' WHERE l.username = "' . $username . '"';
 			$query .= ' LIMIT 1';
 			$result = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
@@ -253,10 +252,17 @@
 				$out .= '<div id="photoblog_thumbs_container">';
 					$out .= '<dl>';
 					$out .= '<dt><a href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
-					$out .= '<dt>23/11</dt>';
+					//$out .= '<dt>23/11</dt>';
 					$is_first = true;
+					$last_day = array('date' => null, 'formatted' => null);
 					foreach ( $photos as $photo )
 					{
+						if ( $last_day['date'] != $photo['date'] )
+						{
+							$last_day['date'] = $photo['date'];
+							$last_day['formatted'] = date('j/n', strtotime($photo['date']));
+							$out .= '<dt>' . $last_day['formatted'] . '</dt>';
+						}
 						$out .= '<dd><a rel="imageid_' . $photo['id'] . '" ' . ($is_first ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
 						$is_first = false;
 					}
@@ -270,7 +276,6 @@
 			$out .= '<p><img src="http://images.hamsterpaj.net/photos/full/' . floor($first_photo['id'] / 5000) . '/' . $first_photo['id'] . '.jpg" alt="" /></p>';
 			$out .= '</div>';
 			$out .= '<div id="photoblog_description">';
-			//$out .= '<h2>Foobar</h2>';
 			$out .= '<div id="photoblog_description_text">';
 				$out .= '<p>Jag tänkte att jag skulle kunna äta upp dig.';
 				$out .= '<br />';
