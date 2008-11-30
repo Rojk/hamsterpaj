@@ -105,6 +105,7 @@ function ui_top($options = array())
 	$options['stylesheets'][] = 'ui_modules/multisearch.css';
 	$options['stylesheets'][] = 'ui_modules/profile_visitors.css';
 	$options['stylesheets'][] = 'ui_modules/site_stats.css';
+	$options['stylesheets'][] = 'ui_modules/online_ovs.css';
 	
 	// Remove duplicates
 	$options['stylesheets'] = array_unique($options['stylesheets']);
@@ -396,7 +397,7 @@ function ui_bottom($options = array())
 		$modules['profile_visitors'] = 'Besökare';	
 	}
 
-	$modules['latest_threads'] = 'Forumtrådar';
+	$modules['latest_threads'] = 'Forumtrådar'; #MARK
 	$modules['latest_posts'] = 'Inlägg i forumet';
 	$modules['site_stats'] = 'Statistik';
 	
@@ -412,6 +413,8 @@ function ui_bottom($options = array())
 	{
 		$modules['administration'] = 'Administration';
 	}
+	
+	$modules['online_ovs'] = 'Inloggade ordningsvakter';
 	
 	if ( is_array($_SESSION['module_order']) && count($_SESSION['module_order']) == count($modules))
 	{
