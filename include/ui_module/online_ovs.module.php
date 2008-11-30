@@ -24,7 +24,7 @@
 	
 	$options['output'] .= '<div class="ovlist">' . "\n";
 	$options['output'] .= '<ul>' . "\n";
-	$options['output'] .= online_osv() . "\n";
+	$options['output'] .= online_ovs() . "\n";
 	$options['output'] .= '</ul>' . "\n";
 	$options['output'] .= '</div>' . "\n";
 	?>
