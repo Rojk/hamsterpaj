@@ -1,0 +1,22 @@
+fieldset {
+	width: 613px;
+}
+#camp_rock_competition {
+	border-collapse: collapse;
+}
+
+#optgroup_bottom, #optgroup_mid, #optgroup_top {
+	padding: 2px;
+	border-left: thin solid #DADADA;
+}
+
+#optgroup_top {
+	border-top: thin solid #DADADA;
+	border-bottom: none;
+}
+#optgroup_mid {
+	border-width: 0 thin 0 thin;
+}
+#optgroup_bottom {
+	border-top: none;
+}
