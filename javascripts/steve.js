@@ -21,7 +21,11 @@
 			
 			function steve_gun()
 			{
-				alert('Snälla, låt mig leva, jag har inget ont gjort!');
+
+alert('Snälla, låt mig leva, jag kidnappa inte hamstern!');
+
+			/*	alert('Snälla, låt mig leva, jag har inget ont gjort!');
+			*/
 				document.body.style.cursor = 'url("http://images.hamsterpaj.net/steve/sniper.png"), crosshair';
 				var overlay_div = document.createElement('div');
 				overlay_div.id = 'gun_div';
@@ -87,8 +91,9 @@ function steve_mouseup()
 	if(steve_long_click == false)
 	{
 		var steve_comments = Array();
-
-		steve_comments[0] = 'Hamsterpaj startades i Oktober 2003';
+	
+	 steve_comments[0] = 'Var e min kompis?';
+/*		steve_comments[0] = 'Hamsterpaj startades i Oktober 2003';
 		steve_comments[1] = 'Mitt namn är Steve, och jag är importerad från den gamla webbsiten megadomain';
 		steve_comments[2] = 'Hamsterpaj består av över tjugo tusen rader programkod';
 		steve_comments[3] = '.... . .- ...- . -. /  .. ... /  .- /  .--. .-.. .- -.-. . /  --- -. /  . .- .-. - .... ';
@@ -144,7 +149,7 @@ function steve_mouseup()
 		steve_comments[53] = 'Joar: Ligger inte Sarajevo i lappland?';
 		steve_comments[54] = 'Lef-91: Varför är det så svårt att få upp saker ibland?';
 		steve_comments[55] = 'Felstvaningarna är en del av skärmen med Hamsterpaj';
-		
+*/	
 		var quote = Math.round(Math.random()*(steve_comments.length-1));
 
 		alert(steve_comments[quote]);
