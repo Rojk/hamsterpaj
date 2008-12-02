@@ -142,7 +142,7 @@
 			
 			$out .= '<input type="submit" id="submit" id="camp_rock_competition_submit" value="Sänd" />' . "\n";
 			$out .= '</form>';
-			$out .= '<!--<p>Camp Rock i mobilen – SMSa ”CAMP ROCK” till 72790. Kostar som ett vanligt SMS.--></p>' . "\n";
+			$out .= '<p>Camp Rock i mobilen – SMSa ”CAMP ROCK” till 72790. Kostar som ett vanligt SMS.</p>' . "\n";
 			$out .= '</fieldset>' . "\n";
 		}
 	}
