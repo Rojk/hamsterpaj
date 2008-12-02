@@ -608,12 +608,21 @@ function shorten_string($string, $max_length, $options)
 	}
 }
 
-function preint_r($array, $label = null)
+function preint_r($array, $bool_return = false)
 {
-	echo (isset($label)) ? '<h3>' . $label . '</h3>' : '';
-	echo '<pre>' . "\n";
-	print_r($array);
-	echo '</pre>' . "\n";
+	if ($bool_return)
+	{
+		$return = '<pre>' . "\n";
+		$return .= print_r($array, true);
+		$return .= '</pre>' . "\n";
+		return $return;
+	}
+	else
+	{
+		echo '<pre>' . "\n";
+		print_r($array);
+		echo '</pre>' . "\n";
+	}
 }
 
 function url_secure_string($label)
