@@ -3,7 +3,6 @@
 	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
 	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
 	require(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
-
 	$ui_options['stylesheets'][] = 'user_profile.css';
 	$ui_options['stylesheets'][] = 'rounded_corners_tabs.css';
 	$ui_options['stylesheets'][] = 'discussion_forum.css';
@@ -132,6 +131,9 @@
 			{
 				$out_ip .= '<a href="http://www.hamsterpaj.net/traffa/profile.php?user_id=' . $ip_user['id'] . '">' . $ip_user['username'] . '</a>' . "\n";
 			}
+		$out_ip .= '<br /><a href="/admin/ip_ban_admin.php?handy_link_auto_ip=' . $user_ips['lastip'] . '">Till IP-ban via senaste ip</a>' . "\n";
+		$out_ip .= '<br /><a href="/admin/ip_ban_admin.php?handy_link_auto_ip=' . $user_ips['regip'] . '">Till IP-ban via regip</a>' . "\n";
+		
 		echo rounded_corners($out_ip, $void, true);
 	}
 
