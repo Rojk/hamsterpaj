@@ -107,7 +107,7 @@
 
 //				$_SESSION['preferences']['forum_favourite_categories'] = unserialize($_SESSION['preferences']['forum_favourite_categories']);
 			$_SESSION['module_states'] = unserialize($_SESSION['preferences']['module_states']);
-			$_SESSION['module_order'] = explode('|', $_SESSION['preferences']['module_order']);
+			$_SESSION['module_order'] = unserialize($_SESSION['preferences']['module_order']);
 
 			/* Notes in the note-module */
 			$query = 'SELECT text FROM notes WHERE id = "' . $_SESSION['login']['id'] . '" LIMIT 1';

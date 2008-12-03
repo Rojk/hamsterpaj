@@ -174,19 +174,19 @@ h2 {
 		#ui_header #ui_noticebar #ui_noticebar_guestbook	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_guestbook.png) center top no-repeat; }
 		#ui_header #ui_noticebar #ui_noticebar_guestbook:hover	{ background-position: center bottom; }
 		
-		#ui_header #ui_noticebar #ui_noticebar_forum		{	background: url(http://images.hamsterpaj.net/ui/ui_notices_forum.png) center top no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_forum		{ background: url(http://images.hamsterpaj.net/ui/ui_notices_forum.png) center top no-repeat; }
 		#ui_header #ui_noticebar #ui_noticebar_forum:hover 	{ background-position: center bottom; }
 			
 		#ui_header #ui_noticebar #ui_noticebar_groups		{ background: url(http://images.hamsterpaj.net/ui/ui_notices_groups.png) center top no-repeat; }
 		#ui_header #ui_noticebar #ui_noticebar_groups:hover 	{ background-position: center bottom; }
 		
 		#ui_header #ui_noticebar #ui_noticebar_events		{ background: url(http://images.hamsterpaj.net/ui/ui_notices_events.png) center top no-repeat; }
-		#ui_header #ui_noticebar #ui_noticebar_events:hover	{ background-position: center -82px; } /* -82 because the images have a different height than the others */
+		#ui_header #ui_noticebar #ui_noticebar_events:hover,
+		#ui_header #ui_noticebar #ui_noticebar_events.ui_noticebar_active  { background-position: center -82px; }/* -82 because the images have a different height than the others */
 	
 		#ui_header #ui_noticebar #ui_noticebar_guestbook.ui_noticebar_active,
 		#ui_header #ui_noticebar #ui_noticebar_forum.ui_noticebar_active,
-		#ui_header #ui_noticebar #ui_noticebar_groups.ui_noticebar_active,
-		#ui_header #ui_noticebar #ui_noticebar_events.ui_noticebar_active { 
+		#ui_header #ui_noticebar #ui_noticebar_groups.ui_noticebar_active{ 
 			background-position: center bottom; 
 		}
 		#ui_header #ui_noticebar .ui_noticebar_info {
