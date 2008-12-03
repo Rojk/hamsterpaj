@@ -27,7 +27,7 @@
 			$out .= '</form>' . "\n";
 			$out .= rounded_corners_bottom(array(), true);
 			
-			$out .= '<table>' . "\n";
+			$out .= '<table style="width: 638px">' . "\n";
 			
 			$out .= '<td><strong>Datum</strong></td>';
 			$out .= '<td><strong>IP</strong></td>';
