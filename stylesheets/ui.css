@@ -174,19 +174,19 @@ h2 {
 		#ui_header #ui_noticebar #ui_noticebar_guestbook	{ background: url(http://images.hamsterpaj.net/ui/ui_notices_guestbook.png) center top no-repeat; }
 		#ui_header #ui_noticebar #ui_noticebar_guestbook:hover	{ background-position: center bottom; }
 		
-		#ui_header #ui_noticebar #ui_noticebar_forum		{	background: url(http://images.hamsterpaj.net/ui/ui_notices_forum.png) center top no-repeat; }
+		#ui_header #ui_noticebar #ui_noticebar_forum		{ background: url(http://images.hamsterpaj.net/ui/ui_notices_forum.png) center top no-repeat; }
 		#ui_header #ui_noticebar #ui_noticebar_forum:hover 	{ background-position: center bottom; }
 			
 		#ui_header #ui_noticebar #ui_noticebar_groups		{ background: url(http://images.hamsterpaj.net/ui/ui_notices_groups.png) center top no-repeat; }
 		#ui_header #ui_noticebar #ui_noticebar_groups:hover 	{ background-position: center bottom; }
 		
 		#ui_header #ui_noticebar #ui_noticebar_events		{ background: url(http://images.hamsterpaj.net/ui/ui_notices_events.png) center top no-repeat; }
-		#ui_header #ui_noticebar #ui_noticebar_events:hover	{ background-position: center -82px; } /* -82 because the images have a different height than the others */
+		#ui_header #ui_noticebar #ui_noticebar_events:hover,
+		#ui_header #ui_noticebar #ui_noticebar_events.ui_noticebar_active  { background-position: center -82px; }/* -82 because the images have a different height than the others */
 	
 		#ui_header #ui_noticebar #ui_noticebar_guestbook.ui_noticebar_active,
 		#ui_header #ui_noticebar #ui_noticebar_forum.ui_noticebar_active,
-		#ui_header #ui_noticebar #ui_noticebar_groups.ui_noticebar_active,
-		#ui_header #ui_noticebar #ui_noticebar_events.ui_noticebar_active { 
+		#ui_header #ui_noticebar #ui_noticebar_groups.ui_noticebar_active{ 
 			background-position: center bottom; 
 		}
 		#ui_header #ui_noticebar .ui_noticebar_info {
@@ -274,14 +274,32 @@ h2 {
 	  height: 25px;
 	  margin-right: 1px;
 	}
+		/* internet explorer 6 is cute */
+		* html #ui_menu ul li {
+			list-style: none;
+			float: left;
+			background: url("http://images.hamsterpaj.net/ui/ui_menu_item_right.png") right top no-repeat;
+			height: 25px;
+			margin-right: 1px;
+		}
 	#ui_menu > ul > li > a {
-		display: block;
+	display: block;
   	color: #960;
   	text-decoration: none;
   	background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left.png") left top no-repeat;
- 		height: 25px;
-    padding: 4px 10px 0 10px;
+ 	height: 25px;
+	padding: 4px 10px 0 10px;
 	}
+		/* internet explorer 6 is still cute */
+		* html #ui_menu ul li a {
+			display: block;
+			color: #960;
+			text-decoration: none;
+			background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left.png") left top no-repeat;
+			height: 25px;
+			float: left;
+			padding: 4px 10px 0 10px;
+		}
 	#ui_menu > ul > li:hover > a { 
 		background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left_hover.png") left top no-repeat; 
 		color: #630;
@@ -350,6 +368,12 @@ h2 {
 	padding: 10px 10px 10px 0;
 	z-index: 0;
 }
+	/* this I would like to add for every browser, but because it might cause
+	   errors it is only applied for IE6 because it works for her. */
+	* html #ui_modulebar {
+		float: left;
+		margin-left: 18px;
+	}
 	#ui_modulebar .ui_module
 	{
 		width: 200px;
@@ -360,6 +384,12 @@ h2 {
 		-webkit-border-radius: 5px;
 		background: #f9f9f9;
 	}
+		/* iefix */
+		* html #ui_modulebar .ui_module {
+			width: 190px;
+			float: left;
+			clear: both;
+		}
 	#ui_modulebar .ui_module_header
 	{
 		padding: 0.5em 0.5em 0.5em 0.7em;

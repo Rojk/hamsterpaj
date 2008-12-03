@@ -7,7 +7,10 @@
 
 	if(login_checklogin())
 	{
-		$query = 'UPDATE preferences SET module_order = "' . mysql_escape_string($order) . '"WHERE userid = "' . $_SESSION['login']['id'] . '" LIMIT 1';
-		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
+		$query = 'UPDATE preferences';
+		$query .= ' SET module_order = "' . mysql_escape_string(serialize($order)) . '"';
+		$query .= ' WHERE userid = ' . $_SESSION['login']['id'] . ' LIMIT 1';
+		$query = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
+		echo mysql_affected_rows();
 	}
 ?>

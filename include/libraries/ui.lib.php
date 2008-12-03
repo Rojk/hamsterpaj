@@ -416,7 +416,7 @@ function ui_bottom($options = array())
 	
 	$modules['online_ovs'] = 'Inloggade ordningsvakter';
 	
-	if ( is_array($_SESSION['module_order']) && count($_SESSION['module_order']) == count($modules))
+	if ( is_array($_SESSION['module_order']) )
 	{
 		foreach ( $_SESSION['module_order'] as $handle )
 		{
