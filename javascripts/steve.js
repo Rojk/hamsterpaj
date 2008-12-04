@@ -92,7 +92,7 @@ function steve_mouseup()
 	{
 		var steve_comments = Array();
 	
-	 steve_comments[0] = 'Var e min kompis?';
+steve_comments[0] = 'Välkommen till Kaninpar..�h.';
 /*		steve_comments[0] = 'Hamsterpaj startades i Oktober 2003';
 		steve_comments[1] = 'Mitt namn är Steve, och jag är importerad från den gamla webbsiten megadomain';
 		steve_comments[2] = 'Hamsterpaj består av över tjugo tusen rader programkod';
