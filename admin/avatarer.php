@@ -154,23 +154,19 @@ function preform_avatar_action($data, $validator)
 //Skriver userid och en timestamp till filen
 function timestamp_to_file($userid)
 {
-	$filename = 'validator.txt';
-	$timestamp = time();
-	$new_file_content = $timestamp . "\n" . $userid;
-	$file = fopen($filename, 'w+') or die('Couldn\'t open file!');
-	fwrite($file, $new_file_content) or die('Couldn\'t write contents!');
-	fclose($file);
-
+	cache_save('admin_image_validation', array('user_id' => $userid, 'timestamp' => date()));
 }
 
 //returnerar 1 om användern får validera avtarer eller 0 om vi inte får validera
 function timestamp_from_file($user)
 {
-	$filename = 'validator.txt';
-	$filecontent = file_get_contents('validator.txt');
-	$filerows = explode("\n", $filecontent);
-	$timestamp = $filerows[0];
-	$userid = $filerows[1];
+	$last_admin = cache_load('admin_image_validation');
+	if(!$last_admin)
+	{
+		return 1;
+	}
+	$timestamp = $last_admin['timestamp'];
+	$userid = $last_admin['user_id'];
 	$checktime = time();
 	if (($timestamp + 90) > $checktime)
 	{
