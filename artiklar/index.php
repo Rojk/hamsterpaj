@@ -17,7 +17,7 @@
 	$ui_options['javascripts'][] = 'comments.js';
 	$ui_options['javascripts'][] = 'rank.js';
 	$ui_options['stylesheets'][] = 'photos.css';
-	$ui_options['javascripts'][] = 'photos.js';
+	//$ui_options['javascripts'][] = 'photos.js';
 	
 	if($_GET['category'] == 'create' && isset($_POST["category_name"]) && is_privilegied('articles_admin')) // I can probably make this in a better way. I will have to ask Joel about that...
 	{
