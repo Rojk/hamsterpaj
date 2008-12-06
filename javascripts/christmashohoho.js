@@ -13,49 +13,41 @@ var hamstermas = {
         inner.width(scroll);
         list.width(scroll);
         
+        // fix bar for IE
+        if ( jQuery.browser.msie ) {
+            list.css('margin-top', -100);
+        }
+        
         hamstermas.scroll();
     },
     
     scroll: function() {
-        var scroll = $('<div id="christmas_scroll"><div class="ui-slider-handle" id="christmas_handle"></div></div>').insertBefore(hamstermas.calendar);
-        
-        hamstermas.scroller = $('#christmas_scroll');
-        hamstermas.handle   = $('#christmas_handle');
-        
-        // apply styles
-        hamstermas.scroller.css({
-           width: '100%',
-           height: 20,
-           background: '#f2d2e1',
-           position: 'relative'
-        });
-        
-        hamstermas.handle.css({
-            width: 50,
-            height: 20,
-            position: 'absolute',
-            background: '#3d3dff'
-        });
-        
-        hamstermas.scroller.slider({
-            animate: true,
-            slide: function(e, ui) {
-                var percent = ui.value / 100;
-                hamstermas.calendar.scrollLeft(hamstermas.calendar.scrollWidth * percent);
-            },
-            steps: 5000
-        });
+        hamstermas.calendar.hover(hamstermas.on, hamstermas.out);
+        hamstermas.calendar.mousemove(hamstermas.mousemove);
     },
     
-    include_script: function(src, callback) {
-        var js = $('<sc' + 'ript />');
-        js.load(callback);
-        js.attr('src', src);
-        js.attr('type', 'text/javascript');
-        document.body.appendChild(js.get(0));
+    on: function() {
+        if (hamstermas.interval) hamstermas.out();
+        hamstermas.interval = setInterval(hamstermas.move, 15);
+    },
+    
+    out: function() {
+        clearInterval(hamstermas.interval);
+    },
+    
+    mousemove: function(e) {
+        e = e || window.event;
+        var xpos = e.pageX - hamstermas.calendar.position().left;
+        hamstermas.from_middle = xpos - hamstermas.calendar.width() / 2;
+        hamstermas.to_move = (hamstermas.from_middle/12);
+    },
+    
+    move: function() {
+        var from_middle = hamstermas.from_middle;
+        if (from_middle > 150 || from_middle < -150 ) {
+            hamstermas.calendar.scrollLeft(hamstermas.calendar.scrollLeft() + hamstermas.to_move);
+        }
     }
 };
 
-hamstermas.include_script('/javascripts/jquery-ui-slider.js', function() {
-    hamstermas.init();
-});
+hamstermas.init();
