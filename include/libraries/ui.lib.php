@@ -107,6 +107,12 @@ function ui_top($options = array())
 	$options['stylesheets'][] = 'ui_modules/site_stats.css';
 	$options['stylesheets'][] = 'ui_modules/online_ovs.css';
 	
+	$today_day = date('j');
+	if ( date('m') == 12 && $today_day >= 1 && $today_day <= 24 )
+	{
+		$options['stylesheets'][] = 'ui_christmas.css';
+	}
+	
 	// Remove duplicates
 	$options['stylesheets'] = array_unique($options['stylesheets']);
 	$options['javascripts'] = array_unique($options['javascripts']);

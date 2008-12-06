@@ -1,0 +1,123 @@
+body {
+    background: #74addc url(http://images.hamsterpaj.net/ui/christmas/bg_christmas.png) repeat-x;
+}
+
+#ui_wrapper {
+    border: none;
+    width: 872px;
+}
+
+#ui_modulebar .ui_module {
+    border: 1px solid #eed2d2;
+}
+
+#ui_modulebar #ui_module_multisearch {
+    background: url(http://images.hamsterpaj.net/ui/christmas/searchmodulebg_christmas.png);
+}
+
+#ui_header {
+    padding-left: 10px;
+    margin-left: -10px;
+    margin-top: -10px;
+    height: 89px;
+    width: 880px;
+    background: url(http://images.hamsterpaj.net/ui/christmas/header_christmas.png) left -3px no-repeat;
+}
+
+#ui_header #ui_noticebar,
+#ui_header #ui_statusbar {
+    background: transparent;
+}
+
+#ui_header #ui_noticebar ul {
+    margin: 5px 0 0;
+}
+
+#ui_header #ui_statusbar img {
+    border: 0;
+}
+
+#ui_header #ui_statusbar img {
+    background: #fff;
+}
+
+#ui_header h1 {
+    background: transparent;
+}
+
+#ui_header h1 a {
+    background: url(http://images.hamsterpaj.net/ui/christmas/logo_christmas.png) no-repeat 4px 24px;
+}
+
+    * html #ui_header h1 a {
+        background-position: 4px 30px;
+    }
+
+#ui_menu {
+    background: url(http://images.hamsterpaj.net/ui/christmas/header_christmas.png) left bottom no-repeat;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: -10px;
+    width: 880px;
+}
+
+    * html #ui_menu {
+        background-position: left -92px;
+    }
+
+    #ui_menu > ul > li > a {
+        color: #ffd3d3;
+    }
+
+    #ui_menu > ul > li:hover {
+        background: url(http://images.hamsterpaj.net/ui/christmas/menu_left_christmas.png) left 2px no-repeat;
+    }
+
+    #ui_menu > ul > li:hover > a{
+        background: url(http://images.hamsterpaj.net/ui/christmas/menu_right_christmas.png) right 2px no-repeat;
+        color: #fff;
+    }
+    
+    #ui_menu > ul > li > a { 
+        background: transparent; 
+        margin-right: -6px;
+    }
+        * html #ui_menu ul li a {
+            background: transparent;
+            color: #fff;
+        }
+    #ui_menu > ul > li { 
+            background: transparent;
+            padding-left: 1px;
+    }
+        * html #ui_menu ul li { 
+                background: transparent;
+        }
+    
+#ui_header #ui_statusbar #ui_statusbar_forumstatus,
+#ui_statusbar_username a {
+    color: #fff;
+}
+
+#ui_statusbar_username strong {
+    color: #ca0000;
+}
+
+#ui_header #ui_login {
+    background: transparent;
+    color: #fff;
+}
+
+#ui_header #ui_noticebar #ui_noticebar_guestbook {
+    background-image: url(http://images.hamsterpaj.net/ui/christmas/ui_notices_guestbook_christmas.png); 
+}
+#ui_header #ui_noticebar #ui_noticebar_forum {
+    background-image: url(http://images.hamsterpaj.net/ui/christmas/ui_notices_forum_christmas.png); 
+}
+#ui_header #ui_noticebar #ui_noticebar_groups {
+    background-image: url(http://images.hamsterpaj.net/ui/christmas/ui_notices_groups_christmas.png); 
+}
+
+#steve {
+    margin-right: 10px;
+}
