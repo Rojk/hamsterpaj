@@ -35,6 +35,8 @@
 			
 		break;
 		case 'insert':
+		if (is_privilegied('developer_blog_admin'))
+		{
 		$query = 'INSERT INTO developer_blog (timestamp, author, header, content) VALUES (' . time() . ', ' . $_SESSION['login']['id'] . ', "' . $_POST['header'] . '", "' . $_POST['content'] . '")';
 		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 		
@@ -47,6 +49,12 @@
 		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 		
 		header('Location: ' . $blogpost_url);
+		}
+		else
+		{
+			jscript_alert('nehedu, den gick inte');
+			jscript_location('/');	
+		}
 		break;
 		
 		case 'update':
