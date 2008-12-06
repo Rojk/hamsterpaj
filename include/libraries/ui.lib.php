@@ -261,10 +261,10 @@ function ui_top($options = array())
 		$output .= '				<form action="/login.php?action=login" method="post">' . "\n";
 		$output .= '					<p><label><strong>Användarnamn:</strong><br /><input id="ui_login_username" type="text" name="username" /></label></p>' . "\n";
 		$output .= '					<p><label><strong>Lösenord:</strong><br /><input id="ui_login_password" type="password" name="password" /></label></p>' . "\n";
-		$output .= '					<p><input id="ui_login_submit" type="submit" value="Logga in" /></p>' . "\n";
+		$output .= '					<p><input class="ui_login_submit" type="submit" value="Logga in" /></p>' . "\n";
 		$output .= '				</form>' . "\n";
 		$output .= '				<form action="/register.php" method="get">' . "\n";
-		$output .= '					<input id="ui_login_submit" type="submit" value="Registrera" />' . "\n";
+		$output .= '					<p><input class="ui_login_submit" type="submit" value="Registrera" /></p>' . "\n";
 		$output .= '				</form>' . "\n";
 		$output .= '			</div>' . "\n";
 	} // end login_checklogin
@@ -308,7 +308,7 @@ function ui_top($options = array())
 			$output .= '					<li style="z-index: 3;">' . "\n";
 			$output .= '						<a href="' . $current_menu['url'] . '" class="root-a"' . $target . '>' . $current_menu['label'] . '</a>' . "\n";
 			$output .= '							<ul>' . "\n";
-			$output .= '								<li><a href="' . $current_menu['url'] . '">Start</a>' . "\n";
+			$output .= '								<li><a href="' . $current_menu['url'] . '">Start</a></li>' . "\n";
 			if(count($current_menu['children']) > 0)
 			{
 				$output .= ui_menu_subcategories_fetch($current_menu['children'], $options);
@@ -319,7 +319,7 @@ function ui_top($options = array())
 	}
 	
 	$output .= '				</ul>' . "\n";
-	$output .= '<img src="http://images.hamsterpaj.net/steve/steve.gif" id="steve" />' . "\n";
+	$output .= '<img src="http://images.hamsterpaj.net/steve/steve.gif" alt="" id="steve" />' . "\n";
 	$output .= '		</div>' . "\n";
 
 	if(isset($_SESSION['notice_message']))
