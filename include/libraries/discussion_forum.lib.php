@@ -1477,7 +1477,7 @@
 
 //		$text = ($_SESSION['preferences']['forum_enable_smilies'] == 1) ? setSmilies($text) : $text;
 		
-		if(isset($options['post']['quality_level']) && $options['post']['quality_level'] <= 3)
+		if(isset($options['post']['quality_level']) && $options['post']['quality_level'] <= 3 && $_SESSION['preferences']['forum_enable_smilies'] == 1)
 		{
 			$text = setSmilies($text);
 		}

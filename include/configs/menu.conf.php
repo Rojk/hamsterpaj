@@ -109,6 +109,7 @@
 	$menu['installningar'] = array('label' => 'Inställningar', 'url' => '/installningar/generalsettings.php', 'index_label' => 'Generella');
 		$menu['installningar']['children']['byt_namn'] = array('label' => 'Byt namn', 'url' => '/installningar/changename.php');
 		$menu['installningar']['children']['profil'] = array('label' => 'Presentation', 'url' => '/installningar/profilesettings.php');
+		$menu['installningar']['children']['forum_installningar'] = array('label' => 'Foruminställningar', 'url' => '/installningar/forum_settings.php');
 		$menu['installningar']['children']['byt_visningsbild'] = array('label' => '<strong>Byt visningsbild</strong>', 'url' => '/avatar-settings.php');
 		$menu['installningar']['children']['blockera'] = array('label' => 'Blockera', 'url' => '/installningar/userblock.php');
 		$menu['installningar']['children']['avregistrera'] = array('label' => 'Avregistrera', 'url' => '/installningar/unregister.php');
