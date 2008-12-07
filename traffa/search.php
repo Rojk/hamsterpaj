@@ -3,10 +3,6 @@
 	require('../include/core/common.php');
 	$ui_options['menu_path'] = array('traeffa', 'soek');
 	$ui_options['dom_tt_lib'] = true;
-	$ui_options['header_extra'] = '<script type="text/javascript" language="javascript" src="/include/orter.js"></script>';	
-	$ui_options['header_extra'] .= '<script type="text/javascript" language="javascript" src="/include/kommuner.js"></script>';	
-	$ui_options['header_extra'] .= '<script type="text/javascript" language="javascript" src="/include/landskap.js"></script>';	
-	$ui_options['header_extra'] .= '<script type="text/javascript" language="javascript" src="/include/ortfunktioner.js"></script>';	
 	$ui_options['stylesheets'][] = 'domTT.css';
 	$faq_category = 'traffa_search';
 
