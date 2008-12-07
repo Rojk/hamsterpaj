@@ -1,7 +1,7 @@
 <?php
 
 	require('../include/core/common.php');
-	require(INCLUDE_PATH.'libraries/christmas_avatars_polls.lib.php');
+	require(PATHS_INCLUDE . 'libraries/christmas_avatars_polls.lib.php');
 		
 	if(!is_privilegied('christmas_avatar_poll'))
 	{
@@ -10,7 +10,7 @@
 	}
 	
 	####  UI-options ####
-	$ui_options['title'] = 'Julavataromröstning - Administration - Hamsterpaj.net';
+	$ui_options['title'] = 'JulavataromrÃ¶stning - Administration - Hamsterpaj.net';
 	$ui_options['stylesheets'][] = 'rounded_corners_tabs.css';
 	$ui_options['stylesheets'][] = 'rounded_corners.css';
 	$ui_options['javascripts'][] = 'christmas_avatar_admin.js';

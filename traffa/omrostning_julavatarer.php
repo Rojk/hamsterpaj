@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(INCLUDE_PATH.'libraries/christmas_avatars_polls.lib.php');
+	require(PATHS_INCLUDE . 'libraries/christmas_avatars_polls.lib.php');
 	
 	if(rand(0, 24) == 6)
 	{
@@ -10,11 +10,11 @@
 	####  UI-options ####
 	$ui_options['stylesheets'][] = 'christmas_avatar_poll.css';
 	$ui_options['javascripts'][] = 'christmas_avatar_poll.js';
-	$ui_options['title'] = 'Vem har bäst julavatar? Rösta nu! - Hamsterpaj.net';
+	$ui_options['title'] = 'Vem har bÃ¤st julavatar? RÃ¶sta nu! - Hamsterpaj.net';
 	$ui_options['menu_path'] = array('traeffa', 'christmas_avatars_poll');
 	ui_top($ui_options);
 	
-	echo '<h1>Omröstning: Bästa julavatar!';
+	echo '<h1>OmrÃ¶stning: BÃ¤sta julavatar!';
 	if(is_privilegied('christmas_avatar_poll'))
 	{
 		echo ' - <a href="/admin/christmas_avatar_poll_admin.php" title="Administration">admin</a>';
@@ -31,6 +31,6 @@
 	echo '<br />'."\n";
 	
 	//list all results from previous polls. Polls that have not expired are *NOT* displayed here.
-	echo '<h1>Tidigare omröstningar</h1>'."\n";
+	echo '<h1>Tidigare omrÃ¶stningar</h1>'."\n";
 	echo christmas_avatar_results_list();
 ?>

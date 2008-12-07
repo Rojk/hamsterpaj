@@ -72,7 +72,7 @@
 					}
 					else
 					{
-						$output .= 'Hittade inga tomtar här!';
+						$output .= 'Hittade inga tomtar hÃ¤r!';
 					}
 				}
 				else
@@ -91,7 +91,7 @@
 				while($data = mysql_fetch_assoc($result))
 				{
 					$output .= "\t".'<li>'."\n";
-							$output .= "\t".'<a href="/traffa/profile.php?user_id='.$data['contender'].'" title="Gå till '.rtrim($data['username'], 's').'s'.' profil!">'.$data['username'].'</a>'."\n";
+							$output .= "\t".'<a href="/traffa/profile.php?user_id='.$data['contender'].'" title="GÃ¥ till '.rtrim($data['username'], 's').'s'.' profil!">'.$data['username'].'</a>'."\n";
 							$genders = array('f' => 'F', 'm' => 'P', 'u' => '');
 							$output .= "\t".$genders[$data['gender']];
 							$output .= ' ';
@@ -106,7 +106,7 @@
 					$output .= "\n"."\t".'</li>'."\n";
 				}
 			$output .= '</ul>'."\n";
-			$output .= '<input type="submit" class="button_150" value="Rösta på bästa julavatar!" />'."\n";
+			$output .= '<input type="submit" class="button_150" value="RÃ¶sta pÃ¥ bÃ¤sta julavatar!" />'."\n";
 		$output .= '</form>'."\n";
 		return $output;
 	}
@@ -122,7 +122,7 @@
 		$query_title = 'SELECT poll_title FROM christmas_avatars_polls WHERE poll_id = '.$options['poll_id'].' AND is_removed = 0 LIMIT 1';
 		$result_title = mysql_query($query_title) or report_sql_error($query_title, __FILE__, __LINE__);
 		$data_title = mysql_fetch_assoc($result_title);
-		$output .= '<h2 id="poll_'.$options['poll_id'].'">Resultat för '.$data_title['poll_title'].'</h2>'."\n";
+		$output .= '<h2 id="poll_'.$options['poll_id'].'">Resultat fÃ¶r '.$data_title['poll_title'].'</h2>'."\n";
 		
 		//fetch contenders
 		$query = 'SELECT c.id AS contender_id, c.contender AS contender_uid FROM christmas_avatars_contenders AS c WHERE c.parent_poll = '.$options['poll_id'].' AND c.is_removed = 0';
@@ -155,7 +155,7 @@
 			}
 			else
 			{
-				$output .= 'Inga har röstat!';
+				$output .= 'Inga har rÃ¶stat!';
 			}
 			
 		}
@@ -170,7 +170,7 @@
 	{
 		if(!is_numeric($options['contender_id']))
 		{
-			return 'Fel datatyp på användarid:et. Avbryter.';
+			return 'Fel datatyp pÃ¥ anvÃ¤ndarid:et. Avbryter.';
 		}
 		else
 		{
@@ -179,7 +179,7 @@
 		
 		if(!is_numeric($options['poll_id']))
 		{
-			return 'Fel datatyp på poll_id. Avbryer.';
+			return 'Fel datatyp pÃ¥ poll_id. Avbryer.';
 		}
 		else
 		{
@@ -196,7 +196,7 @@
 		
 			if(mysql_num_rows($result) > 0)
 			{
-				return 'Du har redan röstat på den här omröstningen! Fy på dig! Inget fuskande!';
+				return 'Du har redan rÃ¶stat pÃ¥ den hÃ¤r omrÃ¶stningen! Fy pÃ¥ dig! Inget fuskande!';
 			}
 		}
 
@@ -208,7 +208,7 @@
 		$query .= ')';
 		
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-		return '<span style="color:#FF0000;">Tack för din röst!</span>';
+		return '<span style="color:#FF0000;">Tack fÃ¶r din rÃ¶st!</span>';
 	}
 	
 	function christmas_avatar_current_polls_list($options=null)
@@ -221,7 +221,7 @@
 		
 		if(mysql_num_rows($result) > 0)
 		{
-			$output .= '<h2>Just nu pågår...</h2>'."\n";
+			$output .= '<h2>Just nu pÃ¥gÃ¥r...</h2>'."\n";
 			$output .= '<ul>'."\n";
 			while($data = mysql_fetch_assoc($result))
 			{
@@ -237,13 +237,13 @@
 					$output .= '#poll_'.$data['poll_id'];
 				}
 				
-				$output .= '" title="Gå till omröstningen nedan">'.$data['poll_title'].' - går ut '.$poll_expire_readable_date.'</a></li>'."\n";
+				$output .= '" title="GÃ¥ till omrÃ¶stningen nedan">'.$data['poll_title'].' - gÃ¥r ut '.$poll_expire_readable_date.'</a></li>'."\n";
 			}
 			$output .= '</ul>'."\n";
 		}
 		else
 		{
-			$output .= '<h2>Inga omröstningar för tillfället!</h2>'."\n";
+			$output .= '<h2>Inga omrÃ¶stningar fÃ¶r tillfÃ¤llet!</h2>'."\n";
 		}
 		
 		return $output;
@@ -266,7 +266,7 @@
 		}
 		else
 		{
-			$output .= '<h2>Inga omröstningar för tillfället!</h2>'."\n";
+			$output .= '<h2>Inga omrÃ¶stningar fÃ¶r tillfÃ¤llet!</h2>'."\n";
 		}
 		
 		return $output;
@@ -289,7 +289,7 @@
 		}
 		else
 		{
-			$output .= '<h2>Resultat för tillfället!</h2>'."\n";
+			$output .= '<h2>Resultat fÃ¶r tillfÃ¤llet!</h2>'."\n";
 		}
 		return $output;
 	}
@@ -300,7 +300,7 @@
 		$menu[0]['href'] = '?action=home';
 		$menu[0]['label'] = 'Start';
 		$menu[1]['href'] = '?action=add';
-		$menu[1]['label'] = 'Lägg till omröstning';
+		$menu[1]['label'] = 'LÃ¤gg till omrÃ¶stning';
 		$menu[2]['href'] = '?action=edit';
 		$menu[2]['label'] = 'Redigera / ta bort';
   
@@ -318,7 +318,7 @@
 	
 	function christmas_avatar_admin_add()
 	{
-		$output = '<h1>Lägg till omrÃ¶stning</h1>'."\n";
+		$output = '<h1>LÃ¤gg till omrÃ¶stning</h1>'."\n";
 		
 		$output .= '<form action="/ajax_gateways/christmas_avatars_poll.php?action=admin_add_vote" method="post" id="christmas_avatar_form">'."\n";
 			$output .= '<h2>AllmÃ¤n info om omrÃ¶stningen</h2>'."\n";
@@ -330,19 +330,19 @@
 			
 			$output .= '<h2>Deltagare (UID)</h2>'."\n";
 			$output .= '<input type="hidden" id="number_of_contenders" />'."\n";
-			$output .= '<p>Användarna måste anges som användarid (userid, UID). Det finns i länken till användarens presentation <a href="/traffa/profile.php?user_id=225454">http://www.hamsterpaj.net/traffa/profile.php?user_id=<strong>225454</strong></a> (länken går till wallys presenation).<br /><br />De <strong>kan inte ändras i efterhand</strong> eftersom rösterna skulle bli felberäknade då.</p>'."\n";
+			$output .= '<p>AnvÃ¤ndarna mÃ¥ste anges som anvÃ¤ndarid (userid, UID). Det finns i lÃ¤nken till anvÃ¤ndarens presentation <a href="/traffa/profile.php?user_id=225454">http://www.hamsterpaj.net/traffa/profile.php?user_id=<strong>225454</strong></a> (lÃ¤nken gÃ¥r till wallys presenation).<br /><br />De <strong>kan inte Ã¤ndras i efterhand</strong> eftersom rÃ¶sterna skulle bli felberÃ¤knade dÃ¥.</p>'."\n";
 			$output .= '<ol id="contenders">'."\n";
 			$output .= '<li id="contender_0">'."\n";
 			$output .= '<input type="text" id="contender_input_0" name="contenders[]" /><img class="link_images" onclick="add_link();" src="http://links.guida.nu/img/add.png" alt="Add link" width="16" height="16" />'."\n";
 			$output .= '</li>'."\n";
 			$output .= '</ol>'."\n";
 
-			$output .= '<input type="submit" value="Lägg till omröstning!" class="button_130" />'."\n";
+			$output .= '<input type="submit" value="LÃ¤gg till omrÃ¶stning!" class="button_130" />'."\n";
 			$output .= '<div id="form_error" class="error"></div>';
 		$output .= '</form>'."\n";
 		
 		$output .= '<div id="form_result"></div>'."\n";
-		$output .= '<a id="show_form_again">Visa formulär igen</a>'."\n";
+		$output .= '<a id="show_form_again">Visa formulÃ¤r igen</a>'."\n";
 
 		return $output;
 	}
@@ -351,12 +351,12 @@
 	{
 		if(empty($data['poll_title']))
 		{
-			return 'Titeln får inte vara tom!';
+			return 'Titeln fÃ¥r inte vara tom!';
 		}
 		
 		if(count($data['contenders']) < 2)
 		{
-			return 'Du måste ange några (mer än 1) deltagare!';
+			return 'Du mÃ¥ste ange nÃ¥gra (mer Ã¤n 1) deltagare!';
 		}
 		
 		if(empty($data['poll_publish']) && !isset($data['release_immediately']))
@@ -416,7 +416,7 @@
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		}
 
-		return 'Tillagt! Den kommer att släppas '.$publish_date_text.'.';
+		return 'Tillagt! Den kommer att slÃ¤ppas '.$publish_date_text.'.';
 	}
 	
 	function christmas_avatar_admin_edit_list()
@@ -431,7 +431,7 @@
 			while($data = mysql_fetch_assoc($result))
 			{
 				$output .= '<h2>'.$data['poll_title'].'</h2>'."\n";
-				$output .= '<a href="?action=edit&poll_id='.$data['poll_id'].'" title="Redigera omröstningen">Redigera</a> - <a href="?action=remove_poll&poll_id='.$data['poll_id'].'" onclick="return confirm(\'Ã„r du sÃ¤ker pÃ¥ att du vill radera omrÃ¶stningen?\')">Radera</a>'."\n";
+				$output .= '<a href="?action=edit&poll_id='.$data['poll_id'].'" title="Redigera omrÃ¶stningen">Redigera</a> - <a href="?action=remove_poll&poll_id='.$data['poll_id'].'" onclick="return confirm(\'Ã„r du sÃ¤ker pÃ¥ att du vill radera omrÃ¶stningen?\')">Radera</a>'."\n";
 			}
 		}
 		
@@ -449,14 +449,14 @@
 		if(mysql_num_rows($result) == 1)
 		{
 			$data = mysql_fetch_assoc($result);
-			$output .= '<h1>Redigera omröstning</h1>'."\n";
+			$output .= '<h1>Redigera omrÃ¶stning</h1>'."\n";
 			$output .= '<form action="/ajax_gateways/christmas_avatars_poll.php?action=admin_edit_poll&poll_id='.$options['poll_id'].'" method="post" id="christmas_avatar_form">'."\n";
 				$output .= "<br />\n";
 				$output .= 'Titel: <input type="text" name="poll_title" value="'.$data['poll_title'].'" />'."\n";
 				$output .= "<br />\n";
 				$output .= 'Publiseringsdatum: <input type="text" name="poll_publish" value="'.date('Y/m/d H:i', $data['poll_publish']).'" />'."\n";
 				$output .= "<br />\n";
-				$output .= 'Utgångsdatum: <input type="text" name="poll_expire" value="'.date('Y/m/d H:i', $data['poll_expire']).'" />'."\n";
+				$output .= 'UtgÃ¥ngsdatum: <input type="text" name="poll_expire" value="'.date('Y/m/d H:i', $data['poll_expire']).'" />'."\n";
 				
 				$query = 'SELECT c.*, l.username FROM christmas_avatars_contenders AS c, login AS l WHERE l.id = c.contender AND c.parent_poll = '.$options['poll_id'];
 				$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
@@ -473,18 +473,18 @@
 				}
 				else
 				{
-					$output .= 'Det finns inga tomtar till denna omröstning!<br />'."\n";
+					$output .= 'Det finns inga tomtar till denna omrÃ¶stning!<br />'."\n";
 				}
 				$output .= '<input type="submit" value="Spara" class="button_50" />'."\n";
 			$output .= '</form>'."\n";
 			$output .= '<div id="form_result"></div>'."\n";
-			$output .= '<a id="show_form_again">Visa formulär igen</a>'."\n";
+			$output .= '<a id="show_form_again">Visa formulÃ¤r igen</a>'."\n";
 
 		}
 		else
 		{
 			$output .= $query;
-			$output .= 'Kunde inte hitta omröstningen!'."\n";
+			$output .= 'Kunde inte hitta omrÃ¶stningen!'."\n";
 		}
 		
 		return $output;
@@ -496,13 +496,13 @@
 
 		if(!isset($options['poll_id']) || !is_numeric($options['poll_id']))
 		{
-			$output .= 'Poll_id är av fel datatyp.';
+			$output .= 'Poll_id Ã¤r av fel datatyp.';
 		}
 		else
 		{
 			if(!isset($options['data']))
 			{
-				$output .= 'Det finns ingen data att uppdatera omröstningen med.';
+				$output .= 'Det finns ingen data att uppdatera omrÃ¶stningen med.';
 			}
 			else
 			{
@@ -535,13 +535,13 @@
 	{
 		if(!isset($poll_id) || !is_numeric($poll_id))
 		{
-			return 'Poll_id är inte av rätt datatyp!';
+			return 'Poll_id Ã¤r inte av rÃ¤tt datatyp!';
 		}
 		else
 		{
 			$query = 'UPDATE christmas_avatars_polls SET is_removed = 1 WHERE poll_id = '.$poll_id.' LIMIT 1';
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-			return '<h1>Omröstning borttagen!</h1>'."\n";
+			return '<h1>OmrÃ¶stning borttagen!</h1>'."\n";
 		}
 	}
 ?>
