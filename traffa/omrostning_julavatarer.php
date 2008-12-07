@@ -33,4 +33,5 @@
 	//list all results from previous polls. Polls that have not expired are *NOT* displayed here.
 	echo '<h1>Tidigare omröstningar</h1>'."\n";
 	echo christmas_avatar_results_list();
+	ui_bottom();
 ?>
