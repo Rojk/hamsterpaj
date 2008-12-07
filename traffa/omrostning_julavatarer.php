@@ -17,7 +17,7 @@
 	echo '<h1>Omröstning: Bästa julavatar!';
 	if(is_privilegied('christmas_avatar_poll'))
 	{
-		echo ' - <a href="/admin/christmas_avatar_poll_admin.php" title="Administration">admin</a>';
+		echo ' - <a href="/admin/christmas_avatars_poll_admin.php" title="Administration">admin</a>';
 	}
 	echo '</h1>'."\n";
 	

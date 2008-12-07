@@ -4,7 +4,7 @@ $(document).ready(function()
 	{
 		this_form = $(this);
 		var ajax_href = this_form.attr('action');
-		ajax_href = ajax_href.substr(15);
+		
 		var inputs = $(this).find(':radio');
 		var inputs_array = jQuery.makeArray(inputs);
 
@@ -12,7 +12,7 @@ $(document).ready(function()
 
 		if(jQuery.inArray(true, inputs_array) == -1)
 		{
-			alert('Du har inte kryssat i någon bild!');
+			alert('Du har inte kryssat i nÃ¥gon bild!');
 		}
 		else
 		{

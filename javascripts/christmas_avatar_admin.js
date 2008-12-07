@@ -14,7 +14,6 @@ function add_link()
  
 function remove_link(divNum)
 {
- 
    var the_div = document.getElementById('contenders');
    var num = document.getElementById('number_of_contenders');
    var num_last = num.value - 1;
@@ -35,17 +34,16 @@ $(document).ready(function()
 		$('#form_error, #form_result, #show_form_again').hide();
 		
 		var ajax_href = $(this).attr('action');
-		ajax_href = ajax_href.substr(15);
 		
 		if($('#poll_title').val() == '')
 		{
-			$('#form_error').html('Du har inte fyllt i <strong>omröstningens titel</strong>!').fadeIn('normal');
+			$('#form_error').html('Du har inte fyllt i <strong>omrÃ¶stningens titel</strong>!').fadeIn('normal');
 		}
 		else
 		{
 			if($('#contender_input_0').val() == '')
 			{
-				$('#form_error').html('Du har inte fyllt i <strong>några deltagare</strong>!').fadeIn('normal');
+				$('#form_error').html('Du har inte fyllt i <strong>nÃ¥gra deltagare</strong>!').fadeIn('normal');
 			}
 			else
 			{
