@@ -65,6 +65,7 @@
 		$menu['traeffa']['children']['gamla_klotterplanket'] = array('label' => 'Gamla klotterplanket', 'url' => '/traffa/klotterplank.php');
 		$menu['traeffa']['children']['tester'] = array('label' => 'Tester', 'url' => '/tests/index.php');
 		$menu['traeffa']['children']['new_photos'] = array('label' => 'Nya foton', 'url' => '/traffa/new_photos.php');
+		$menu['traeffa']['children']['christmas_avatars_poll'] = array('label' => 'Julavataromröstning', 'url' => '/traffa/omrostning_julavatarer.php');
 
 //	$menu['grupper'] = array('label' => 'Grupper', 'url' => '/grupper/', 'is_privilegied' => 'groups_superadmin');
 		
