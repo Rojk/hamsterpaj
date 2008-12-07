@@ -1,0 +1,34 @@
+ul.avatar_christmas_poll {
+	padding-left: 25px;
+}
+ul.avatar_christmas_poll li
+{
+	display: inline-table;
+	margin-right: 40px;
+	margin-bottom: 10px;
+}
+/*
+	This is from http://doesthismakesense.org/examples/jquery/percentage/percentage.css
+	Only the colours are changed
+*/
+.zero
+{
+	width	: 0;
+}
+
+.box
+{
+	width	: 250px;
+	border	: 1px solid #984c00;
+	height	: 17px;
+	margin	: 4px 0;
+}
+
+.bar
+{
+	background	: #ff8000;
+	height		: 14px;
+	color		: #000;
+	text-align	: right;
+	padding		: 3px 0px 0px 0px;
+}
