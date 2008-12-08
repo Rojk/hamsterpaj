@@ -15,5 +15,6 @@
 	$RECENT_UPDATES['new_function'] = 'Ny funktion';
 	$RECENT_UPDATES['sex_sense'] = 'Nytt i Sex och sinne';
 	$RECENT_UPDATES['blog_post'] = 'Bloggpost';
+	$RECENT_UPDATES['christmas_avatar_poll'] = 'Julavatarsomröstning';
 	
 ?>

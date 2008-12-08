@@ -7,7 +7,7 @@
 	$ui_options['stylesheets'][] = 'photos.css';
 	$ui_options['stylesheets'][] = 'start.css';
 
-	$ui_options['title'] = 'Startsidan på Hamsterpaj - Tillfredsställelse utan sex!';
+	$ui_options['title'] = 'Startsidan på Hamsterpaj';
 	$ui_options['menu_path'] = array('hamsterpaj');
 	$ui_options['adtoma_category'] = 'start';
 
