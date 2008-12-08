@@ -1,4 +1,5 @@
 <?php
+	error_reporting(E_ALL);
 	require('../include/core/common.php');
 	require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
 	require(PATHS_INCLUDE . 'libraries/photoblog_preferences.lib.php');
@@ -39,8 +40,7 @@
 			$ui_options['javascripts'][] = 'colorpicker_eye.js';
 			$ui_options['javascripts'][] = 'colorpicker_layout.js';
 			$ui_options['javascripts'][] = 'colorpicker_utils.js';
-			
-			
+			$photoblog_preferences = new photoblog_preferences();
 			
 			$params['photoblog_preferences_color_detail'] = isset($_POST['photoblog_preferences_color_detail']) ? $_POST['photoblog_preferences_color_detail'] : 'FF00FF';
 			$params['photoblog_preferences_color_main'] = isset($_POST['photoblog_preferences_color_main']) ? $_POST['photoblog_preferences_color_main'] : 'FFFF00';
