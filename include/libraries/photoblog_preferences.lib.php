@@ -1,5 +1,6 @@
 <?php
-echo 'fuck';
+	class photoblog_preferences
+	{
 		$photoblog_preferences_default_values['color_main'] = 'FFFF00';
 		$photoblog_preferences_default_values['color_detail'] = 'FF00FF';
 		$photoblog_preferences_default_values['hamster_guard'] = 0;
@@ -48,5 +49,5 @@ echo 'fuck';
 		{
 			$photoblog_preferences_save_sql = 'UPDATE ';
 		}
-	
+	}
 ?>
