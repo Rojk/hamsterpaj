@@ -1,4 +1,4 @@
-fieldset {
+#ui_content fieldset {
 	border: 1px solid #ccc;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -6,27 +6,28 @@ fieldset {
 	font-size: 14px;
 }
 
-label {
+#ui_contentlabel {
 	font-size: 0.8em;
 	font-weight: bold;
 }
-	label strong {
+	#ui_content	label strong {
 		color: red;
 	}
-input {
+	
+#ui_content input {
 	padding: 3px;
 }
 
-input, textarea, select {
+#ui_content input, #ui_content textarea, #ui_content select {
 	border: 1px solid #bbb;
 	margin: 5px 0;
 }
 
-.form {
+#ui_content .form {
 	width: 100%;
 	border-spacing: 0;
 }
-.form td, .form th {
+#ui_content .form td, #ui_content .form th {
 	border-bottom: 1px solid #ccc;
 	padding: 5px;
 }
