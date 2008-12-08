@@ -1,160 +1,208 @@
-#thecontent {
-text-align: center;
-margin: 0;
-padding: 0;
+#radio_playing {
+	background: transparent url(http://images.hamsterpaj.net/radio/playing.png) no-repeat top;
+	height: 24px;
+	margin-bottom: 10px;
 }
 
-#thecontent a { text-decoration: none; color: #4FB1F5; position: relative; }
-#thecontent a:hover { color: #ACDCFB; background: none; text-decoration: none;}
+	#radio_playing span {
+		display: block;
+		color: #dcdcdc;
+		padding-top: 5px;
+		font-size: 12px;
+		margin-left: 100px;
+	}
 
-.menu {
-width: 635px;
-height: 30px;
-list-style: none;
+#radio_menu {
+	height: 60px;
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
 }
 
-.menu li {
-float: left;
+#radio_menu li {
+	float: left;
+}
+#radio_menu a {
+	display: block;
+	text-indent: -1000px;
+}
+	#radio_menu_01, #radio_menu_01_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_01.png) no-repeat top;
+		height: 60px;
+		width: 105px;
+	}
+	#radio_menu_01:hover, #radio_menu_01_active {
+		background-position: bottom;
+	}
+	#radio_menu_02, #radio_menu_02_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_02.png) no-repeat top;
+		height: 60px;
+		width: 70px;
+	}
+	#radio_menu_02:hover, #radio_menu_02_active {
+		background-position: bottom;
+	}
+	#radio_menu_03, #radio_menu_03_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_03.png) no-repeat top;
+		height: 60px;
+		width: 94px;
+	}
+	#radio_menu_03:hover, #radio_menu_03_active {
+		background-position: bottom;
+	}
+	#radio_menu_04, #radio_menu_04_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_04.png) no-repeat top;
+		height: 60px;
+		width: 90px;
+	}
+	#radio_menu_04:hover, #radio_menu_04_active {
+		background-position: bottom;
+	}
+	#radio_menu_05, #radio_menu_05_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_05.png) no-repeat top;
+		height: 60px;
+		width: 73px;
+	}
+	#radio_menu_05:hover, #radio_menu_05_active {
+		background-position: bottom;
+	}
+	#radio_menu_06, #radio_menu_06_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_06.png) no-repeat top;
+		height: 60px;
+		width: 78px;
+	}
+	#radio_menu_06:hover, #radio_menu_06_active {
+		background-position: bottom;
+	}
+	#radio_menu_07, #radio_menu_07_active {
+		background: transparent url(http://images.hamsterpaj.net/radio/menu_07.png) no-repeat top;
+		height: 60px;
+		width: 128px;
+	}
+	#radio_menu_07:hover, #radio_menu_07_active {
+		background-position: bottom;
+	}
+.radio_inactive_link {
+	cursor: default;
+}
+	
+#radio_sending {
+	background-image: url(http://images.hamsterpaj.net/radio/program_sending_template.png);
+	width: 314px;
+	margin-right: 10px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
+}
+	#radio_sending .radio_about {
+		margin-left: 97px;
+	}
+		#radio_sending img {
+			margin-left: 11px;
+			margin-top: 11px;
+			float: left;
+		}
+		#radio_sending .radio_about h2 {
+			color: orange;
+			top: 15px;
+			position: relative;
+		}
+		#radio_sending .radio_about span, #radio_sending .radio_about strong {
+			color: #adadad;
+			top: 35px;
+			left: 70px;
+			position: relative;
+		}
+		
+#radio_sending_slinga {
+	background-image: url(http://images.hamsterpaj.net/radio/program_slingan.png);
+	width: 314px;
+	margin-right: 10px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
+}
+#radio_sending_inactive {
+	background-image: url(http://images.hamsterpaj.net/radio/program_offline.png);
+	width: 314px;
+	margin-right: 10px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
 }
 
-.ilogo {
-margin: 5px 0 0 0;
-width: 635px;
-height: 130px;
-display: block;
+
+#radio_next_program {
+	background-image: url(http://images.hamsterpaj.net/radio/program_next_template.png);
+	width: 314px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
+}
+	#radio_next_program .radio_about {
+		margin-left: 97px;
+	}
+		#radio_next_program img {
+			margin-left: 11px;
+			margin-top: 11px;
+			float: left;
+		}
+		#radio_next_program .radio_about h2 {
+			color: orange;
+			top: 15px;
+			position: relative;
+		}
+		#radio_next_program .radio_about span,#radio_next_program .radio_about strong {
+			color: #adadad;
+			top: 35px;
+			left: 70px;
+			position: relative;
+		}
+#radio_next_program_inactive {
+	background-image: url(http://images.hamsterpaj.net/radio/program_next_non.png);
+	width: 314px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
+}
+		 
+#choose_player {
+	clear: both;
+	height: 156px;
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
 }
 
-.ishout {
-margin: 0 0 0 0;
-width: 635px;
-height: 31px;
-display: block;
+#choose_player li {
+	float: left;
 }
-
-.login {
-margin: 0 0 10px 0;
-padding: 20px 0;
-background-image: url(admin/admin.png);
-width: 635px;
-height: 22px;
-color: #FFF;
-text-align: center;
+#choose_player a {
+	display: block;
+	text-indent: -1000px;
 }
-
-.bubble {
-width: 252px;
-height: 167px;
-position: absolute;
-top: 380px;
-right: 0;
-background-image: url(bubbles.png);
-}
-
-.paper {
-margin: 0 0 10px 0;
-padding: 38px 84px 45px 83px;
-width: 468px;
-height: 60px;
-background-image: url(paper.png);
-}
-
-dt {
-font-family: Arial Narrow, Garamond, sans-serif;
-font-size: 13px;
-color: #000;
-font-weight: bold;
-}
-
-dd {
-font-family: tahoma, verdana, Arial, Arial Narrow, Garamond, sans-serif;
-font-size: 13px;
-color: #111;
-}
-
-.shout {
-margin: 0 0;
-padding: 8px 0;
-width: 635px;
-height: 15px;
-background: #000 url(http://images.hamsterpaj.net/radio/shout.png); color: #FFF;
-font-family: Tahoma, Garamond, sans-serif;
-font-size: 0.8em;
-text-align: center;
-}
-
-.alert {
-color: #F90;
-font-weight: bold;
-}
-
-.center {
-margin: 0 auto;
-text-align: center;
-}
-
-img {
-border: 0;
-}
-
-fieldset {
-border: none;
-position: relative;
-}
-
-.legend {
-position: absolute;
-left: 0;
-}
-
-legend {
-margin: 0;
-padding: 0;
-}
-
-ol {
-list-style:none;
-margin: 0px 20px 10px 20px;
-padding: 0 0 0 0;
-color: #FFF;
-font-size: 12px;
-font-family: Verdana, sans-serif;
-line-height: 1.6;
-}
-
-.left {
-margin: 0px 0px 10px 0px;
-padding: 20px 20px;
-width: 195px;
-height: 220px;
-float: left;
-background: #333 url(left.jpg); color:#FFF;
-font-family: Arial, Garamond, sans-serif;
-font-size: 13px;
-}
-
-.box {
-margin: 10px 0;
-width: 635px;
-}
-
-.object {
-margin: 0 0 10px 0;
-width: 635px;
-text-align: center;
-}
-
-object {
-display: block;
-}
-
-.footer {
-margin: 0 0 10px 0;
-width: 635px;
-}
-
-.menu {
-margin: 0 0;
-padding: 0 0;
-width: 635px;
-height: 29px;
-}
+	#choose_player_01 {
+		background: transparent url(http://images.hamsterpaj.net/radio/choose_player_01.png) no-repeat top;
+		height: 156px;
+		width: 203px;
+	}
+	#choose_player_01:hover {
+		background-position: bottom;
+	}
+	#choose_player_02 {
+		background: transparent url(http://images.hamsterpaj.net/radio/choose_player_02.png) no-repeat top;
+		height: 156px;
+		width: 290px;
+	}
+	#choose_player_02:hover {
+		background-position: bottom;
+	}
+	#choose_player_03 {
+		background: transparent url(http://images.hamsterpaj.net/radio/choose_player_03.png) no-repeat top;
+		height: 156px;
+		width: 145px;
+	}
+	#choose_player_03:hover {
+		background-position: bottom;
+	}
+	

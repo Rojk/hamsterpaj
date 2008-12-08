@@ -1,0 +1,11 @@
+<ASX version = "3.0">
+	<Entry>
+	<REF HREF="http://kaizoku.se:8000" />
+	</Entry>
+	<Entry>
+	<REF HREF="http://s3.neradio.fm:8000" />
+	</Entry>
+	<Entry>
+	<REF HREF="http://s2.neradio.fm:80" />
+	</Entry>
+</ASX>
