@@ -1,6 +1,7 @@
 <?php
 	require('../include/core/common.php');
 	require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
+	require(PATHS_INCLUDE . 'libraries/photoblog_preferences.lib.php');
 	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
 	
 	$ui_options['stylesheets'][] = 'photoblog.css.php';
@@ -51,12 +52,15 @@
 				$out .= '<table class="form" id="photoblog_preferences_color_table">' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th>' . "\n";
-							$out .= '<label for="photoblog_is_private">Vakthamster</label>' . "\n";
+							$out .= '<label for="photoblog_is_private">Vakthamster <strong>*</strong></label>' . "\n";
 						$out .= '</th>' . "\n";
 						$out .= '<td>' . "\n";
-							// $out .= '<input type="checkbox" name="photoblog_is_private" id="photoblog_is_private" />' . "\n";
 							$out .= '<input type="radio" name="photoblog_preferences_hamster_guard" id="photoblog_preferences_hamster_guard" value="1" />På<br />' . "\n";
 							$out .= '<input type="radio" name="photoblog_preferences_hamster_guard" id="photoblog_preferences_hamster_guard" value="0" />Av' . "\n";
+						$out .= '</td>' . "\n";
+					$out .= '</tr>' . "\n";
+					$out .= '<tr>' . "\n";
+						$out .= '<td colspan="2">' . "\n";
 						$out .= '</td>' . "\n";
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
