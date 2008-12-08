@@ -831,6 +831,10 @@ function ui_module_render($options)
 		}
 	}
 	
+	// REQUEST: Varför alla variabler med så lika namn? 
+	// Explain functions with comments or please make it more simple to understand!
+	// Can't understand nuthin'
+	// Love, Joar.
 	function ui_server_message($options)
 	{
 		$options['title'] = isset($options['title']) ? $options['title'] : 'Title saknas';
