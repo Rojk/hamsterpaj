@@ -31,45 +31,55 @@
 		case 'instaellningar':
 			$ui_options['stylesheets'][] = 'colorpicker.css';
 			$ui_options['stylesheets'][] = 'colorpicker_layout.css';
+			$ui_options['stylesheets'][] = 'forms.css';
+			
 			$ui_options['javascripts'][] = 'colorpicker.js';
-			$ui_options['javascripts'][] = 'photoblog_settings.js';
+			$ui_options['javascripts'][] = 'photoblog_preferences.js';
 			$ui_options['javascripts'][] = 'colorpicker_eye.js';
 			$ui_options['javascripts'][] = 'colorpicker_layout.js';
 			$ui_options['javascripts'][] = 'colorpicker_utils.js';
 			
-			$params['photoblog_settings_detail_color'] = 'FF00FF';
-			$params['photoblog_settings_main_color'] = 'FFFF00';
 			
-			$out .= '<h2>INSTÄLLNINGAR</h2>' . "\n";
-			$out .= '<div id="test">test</div>' . "\n";
-			$out .= '<form id="photoblog_settings_form" action="/fotoblogg/instaellningar/post_settings.php" method="post">' . "\n";
-			$out .= '<label for="photoblog_is_private">Vill du stänga din fotoblogg för allmänheten och endast visa för inloggade medlemmar?</label>' . "\n";
-			$out .= '<input type="checkbox" name="photoblog_is_private" id="photoblog_is_private" /><br />' . "\n";
-			$save_to_later = $out;
-				$out = '<h2 style="margin-top: 0px;">Färginställningar</h2>';
-				$out .= '<table id="photoblog_settings_color_table">' . "\n";
+			
+			$params['photoblog_preferences_color_detail'] = isset($_POST['photoblog_preferences_color_detail']) ? $_POST['photoblog_preferences_color_detail'] : 'FF00FF';
+			$params['photoblog_preferences_color_main'] = isset($_POST['photoblog_preferences_color_main']) ? $_POST['photoblog_preferences_color_main'] : 'FFFF00';
+			
+			// Debug $out .= '<div id="test"></div>' . "\n";
+			$out .= '<form id="photoblog_preferences_form" action="/fotoblogg/instaellningar/post_settings.php" method="post">' . "\n";
+			$out .= '<fieldset>' . "\n";
+			$out .= '<legend>INSTÄLLNINGAR</legend>' . "\n";
+				$out .= '<table class="form" id="photoblog_preferences_color_table">' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th>' . "\n";
-							$out .= 'Detaljfärg' . "\n";
+							$out .= '<label for="photoblog_is_private">Vakthamster</label>' . "\n";
 						$out .= '</th>' . "\n";
-						$out .= '<th>' . "\n";
-							$out .= 'Bakgrund på element' . "\n";
-						$out .= '</th>' . "\n";
+						$out .= '<td>' . "\n";
+							// $out .= '<input type="checkbox" name="photoblog_is_private" id="photoblog_is_private" />' . "\n";
+							$out .= '<input type="radio" name="photoblog_preferences_hamster_guard" id="photoblog_preferences_hamster_guard" value="1" />På<br />' . "\n";
+							$out .= '<input type="radio" name="photoblog_preferences_hamster_guard" id="photoblog_preferences_hamster_guard" value="0" />Av' . "\n";
+						$out .= '</td>' . "\n";
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
+						$out .= '<th>' . "\n";
+							$out .= '<label for="photoblog_preferences_color_detail">Detaljfärg</label>' . "\n";
+						$out .= '</th>' . "\n";
 						$out .= '<td>' . "\n";
-							$out .= '<div class="colorSelector" id="photoblog_settings_detail_color_div"><div style="background-color: ' . $params['photoblog_settings_detail_color'] . ';"/></div></div>' . "\n";
-							$out .= '<input type="hidden" name="photoblog_settings_detail_color" id="photoblog_settings_detail_color" value="' . $params['photoblog_settings_detail_color'] . '" />' . "\n";
+							$out .= '<div class="colorSelector" id="photoblog_preferences_color_detail_div"><div style="background-color: ' . $params['photoblog_preferences_color_detail'] . ';"/></div></div>' . "\n";
+							$out .= '<input type="hidden" name="photoblog_preferences_color_detail" id="photoblog_preferences_color_detail" value="' . $params['photoblog_preferences_color_detail'] . '" />' . "\n";
 						$out .= '</td>' . "\n";
+					$out .= '</tr>' . "\n";
+					$out .= '<tr>' . "\n";
+						$out .= '<th>' . "\n";
+							$out .= '<label for="photoblog_preferences_color_main">Bakgrund på element</label>' . "\n";
+						$out .= '</th>' . "\n";
 						$out .= '<td>' . "\n";
-							$out .= '<div class="colorSelector" id="photoblog_settings_main_color_div"><div style="background-color: ' . $params['photoblog_settings_main_color'] . ';"/></div></div>' . "\n";
-							$out .= '<input type="hidden" name="photoblog_settings_main_color" id="photoblog_settings_main_color" value="' . $params['photoblog_settings_main_color'] . '" />' . "\n";
+							$out .= '<div class="colorSelector" id="photoblog_preferences_color_main_div"><div style="background-color: ' . $params['photoblog_preferences_color_main'] . ';"/></div></div>' . "\n";
+							$out .= '<input type="hidden" name="photoblog_preferences_color_main" id="photoblog_preferences_color_main" value="' . $params['photoblog_preferences_color_main'] . '" />' . "\n";
 						$out .= '</td>' . "\n";
 					$out .= '</tr>' . "\n";
 				$out .= '</table>' . "\n";
-			$save_to_later .= rounded_corners($out, $params, true);
-			$out = $save_to_later;
-			$out .= '<input type="submit" value="Spara inställningar" class="button_130" />' . "\n";
+			$out .= '<input type="submit" value="Spara inställningar" />' . "\n";
+			$out .= '</fieldset>' . "\n";
 			$out .= '</form>' . "\n";
 			switch ($uri_parts[3])
 			{
