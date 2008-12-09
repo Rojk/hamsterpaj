@@ -3,7 +3,6 @@
 	require(PATHS_INCLUDE . 'libraries/radio.lib.php');
 	include_once('shoutcast/ShoutcastInfo.class.php');
 	require(PATHS_INCLUDE . 'libraries/articles.lib.php');
-	$ui_options['stylesheets'][] = 'articles.css';
 	$ui_options['stylesheets'][] = 'radio.css';
 	
 	$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
@@ -63,30 +62,173 @@
 	switch ($uri_parts[2])
 	{
 		case 'crew':
+			$options['order-by'] = 'username';
+			//$radio_djs = radio_djs_fetch($options);
+			$out .= '<table>' . "\n";
+			foreach($radio_djs as $radio_dj)
+			{
+				$out .= '<tr>' . "\n";
+				$out .= '<td>' . $radio_dj['username'] . '</td>' . "\n";
+				$out .= '<td>' . $radio_dj['information'] . '</td>' . "\n"; // substr to fitting characters
+				if(is_privilegied('dj_admin'))
+				{
+					$out .= '<td><a href="#" title="Ändra DJ">Ändra</a></td>' . "\n"; // När man klickar edit ska formuläret för att lägga till sändning användas för att ändra sändningen.
+					$out .= '<td><a href="#" title="Ta bort DJ">Ta bort</a></td>' . "\n"; // Ajax, popup-accept
+				}
+				$out .= '</tr>' . "\n";
+			}
+			$out .= '</table>' . "\n";
+			if(is_privilegied('dj_admin'))
+			{
+				$ui_options['stylesheets'][] = 'forms.css'; // Inkluderar stilmall för formuläret
+				
+				$out .= '<fieldset>' . "\n";
+				$out .= '<legend>Lägg till DJ</legend>' . "\n";
+				$out .= '<form action="?action=submit" method="post">';
+				$out .= '<table class="form">' . "\n";
+				$out .= '<tr>' . "\n";
+					$out .= '<th><label for="name">Användarnamn <strong>*</strong></label></th>' . "\n";
+					$out .= '<td><input type="text" name="name" /></td>' . "\n";
+				$out .= '</tr>' . "\n";
+				$out .= '<tr>' . "\n";
+					$out .= '<th><label for="information">Information <strong>*</strong></label></th>' . "\n"; 
+					$out .= '<td><textarea name="formation" cols="45" rows="5"></textarea></td>' . "\n";
+				$out .= '</tr>' . "\n";				
+				$out .= '</table>' . "\n";
+				$out .= '<input type="submit" id="submit" value="Spara" />' . "\n"; // Ajax
+				$out .= '</form>';
+				$out .= '</fieldset>' . "\n";
+			}	
 		break;
 		
-		case 'program':		
+		case 'program':	
+			$options['order-by']= 'name';
+			//$radio_programs = radio_programs_fetch($options);
+			$out .= '<table>' . "\n";
+			foreach($radio_programs as $radio_program)
+			{
+				$out .= '<tr>' . "\n";
+				$out .= '<td>' . $radio_program['name'] . '</td>' . "\n";
+				$out .= '<td>' . $radio_program['dj'] . '</td>' . "\n";
+				$out .= '<td>' . $radio_program['sendtime'] . '</td>' . "\n";
+				$out .= '<td>' . $radio_program['information'] . '</td>' . "\n"; // substr to fitting characters
+				if(is_privilegied('dj_sender'))
+				{
+					$out .= '<td><a href="#" title="Ändra program">Ändra</a></td>' . "\n"; // När man klickar edit ska formuläret för att lägga till sändning användas för att ändra sändningen.
+					$out .= '<td><a href="#" title="Ta bort program">Ta bort</a></td>' . "\n"; // Ajax, popup-accept
+				}
+				$out .= '</tr>' . "\n";
+			}
+			$out .= '</table>' . "\n";
+			if(is_privilegied('dj_sender'))
+			{
+				//$radio_djs = radio_djs_fetch(); // Hämtar DJ's till select'en i formuläret
+				$ui_options['stylesheets'][] = 'forms.css'; // Inkluderar stilmall för formuläret
+				
+				$out .= '<fieldset>' . "\n";
+				$out .= '<legend>Lägg till program</legend>' . "\n";
+				$out .= '<form action="?action=submit" method="post">';
+				$out .= '<table class="form">' . "\n";
+				$out .= '<tr>' . "\n";
+					$out .= '<th><label for="name">Namn <strong>*</strong></label></th>' . "\n";
+					$out .= '<td><input type="text" name="name" /></td>' . "\n";
+				$out .= '</tr>' . "\n";
+				$out .= '<tr>' . "\n";
+					$out .= '<th><label for="dj">DJ <strong>*</strong></label></th>' . "\n";
+					$out .= '<td><select name="dj">' . "\n";
+										foreach($radio_djs as $radio_dj)
+										{
+											$out .= '<option value="' . $radio_dj['id'] . '">' . $radio_dj['username'] . '</option>' ."\n";
+										}
+					$out .= '</select>' . "\n";
+					$out .= '</td>' . "\n";
+				$out .= '</tr>' . "\n";
+				$out .= '<tr>' . "\n";
+					$out .= '<th><label for="sendtime">Sändningstid/Övrigt </label></th>' . "\n";
+					$out .= '<td><input type="text" name="sendtime" /></td>' . "\n";
+				$out .= '</tr>' . "\n";
+				$out .= '<tr>' . "\n";
+					$out .= '<th><label for="information">Information <strong>*</strong></label></th>' . "\n"; 
+					$out .= '<td><textarea name="formation" cols="45" rows="10"></textarea></td>' . "\n";
+				$out .= '</tr>' . "\n";				
+				$out .= '</table>' . "\n";
+				$out .= '<input type="submit" id="submit" value="Spara" />' . "\n"; // Ajax
+				$out .= '</form>';
+				$out .= '</fieldset>' . "\n";
+			}	
 		break;
 		
-		case 'schema':		
+		case 'schema':	
+			$options['limit'] = 30; 
+			$options['order-direction']= 'DESC'; // Vi vill de kommande
+			$radio_events = radio_schedule_fetch($options);
+			$out .= '<table>' . "\n";
+			foreach($radio_events as $radio_event)
+			{
+				$out .= '<tr>' . "\n";
+				$out .= '<td>' . $radio_event['name'] . '</td>' . "\n";
+				$out .= '<td>' . $radio_event['username'] . '</td>' . "\n";
+				$out .= '<td>' . $radio_event['starttime'] . '</td>' . "\n"; // Snygga till datumet så det står: Imorgon 22:00 Eller ngt sådant snyggt
+				if(is_privilegied('dj_sender'))
+				{
+					$out .= '<td><a href="#" title="Ändra sändning">Ändra</a></td>' . "\n"; // När man klickar edit ska formuläret för att lägga till sändning användas för att ändra sändningen.
+					$out .= '<td><a href="#" title="Ta bort sändning">Ta bort</a></td>' . "\n"; // Ajax
+				}
+				$out .= '</tr>' . "\n";
+			}
+			$out .= '</table>' . "\n";
+			if(is_privilegied('dj_sender'))
+			{
+				$ui_options['stylesheets'][] = 'forms.css'; // Inkluderar stilmall för formuläret
+				
+				$out .= '<fieldset>' . "\n";
+				$out .= '<legend>Lägg till sändning</legend>' . "\n";
+				$out .= '<form action="?action=submit" method="post">';
+				$out .= '<table class="form">' . "\n";
+				$out .= '<tr>' . "\n";
+					$out .= '<th><label for="program">Program <strong>*</strong></label></th>' . "\n";
+					//Fetch items from radio_programs table
+					$out .= '<td><select name="program"> // 
+												<option value="1">Stöna med fnas</option>
+												<option value="2">Johan leker med bilarb</option>
+											 </select>
+									</td>' . "\n";
+				$out .= '</tr>' . "\n";
+				$out .= '<tr>' . "\n";
+					$out .= '<th><label for="starttime">Starttid <strong>*</strong></label></th>' . "\n"; // Jquery calendar?
+					$out .= '<td><input type="text" name="starttime" /></td>' . "\n";
+				$out .= '</tr>' . "\n";
+				$out .= '<tr>' . "\n";
+					$out .= '<th><label for="endtime">Sluttid <strong>*</strong></label></th>' . "\n"; // jquery calendar?
+					$out .= '<td><input type="text" name="endtime" /></td>' . "\n";
+				$out .= '</tr>' . "\n";				
+				$out .= '</table>' . "\n";
+				$out .= '<input type="submit" id="submit" value="Spara" />' . "\n"; // Ajax
+				$out .= '</form>';
+				$out .= '</fieldset>' . "\n";
+			}
+			
 		break;
 		
 		case 'om_radion':		
+			$ui_options['stylesheets'][] = 'articles.css'; // Inkluderar stilmall för artikeln
 			$article = articles_fetch(array('id' => '96'));
 			$out .= render_full_article($article);
 		break;
 			
 		default:
-			// $radio_sending = radio_sending_fetch();
-			//$radio_sending['dj'] = 'lef';
-			if (isset($radio_sending) && $radioinfo['status'] == 1) // If the program is sent when watching
+			$options['broadcasting'] = 'yes'; // Det ska sändas just nu
+			$options['limit'] = 1; // Vi vill bara se ett
+			$options['order-direction']= 'DESC'; // Vi vill ha det senaste
+			$radio_sending = radio_schedule_fetch($options);
+			if (isset($radio_sending[0]) && $radioinfo['status'] == 1) // If the program is sent when watching
 			{
 				$out .= '<div id="radio_sending">' . "\n";
-					$out .= '<img src="http://images.hamsterpaj.net/images/users/thumb/772209.jpg" />' . "\n";
+					$out .= '<img src="http://images.hamsterpaj.net/images/users/thumb/' . $radio_sending[0]['user_id'] . '.jpg" />' . "\n";
 					$out .= '<div class="radio_about">' . "\n";
-					$out .= '<h2>Stöna med fnas</h2>' . "\n";
-					$out .= '<strong>DJ: Fnas</strong><br />' . "\n";
-					$out .= '<span>Varje torsdag 20-22</span>' . "\n";
+					$out .= '<h2>' . $radio_sending[0]['name'] . '</h2>' . "\n";
+					$out .= '<strong>DJ: ' . $radio_sending[0]['username'] . '</strong><br />' . "\n";
+					$out .= '<span>' . $radio_sending[0]['sendtime'] . '</span>' . "\n";
 					$out .= '</div>' . "\n";
 				$out .= '</div>' . "\n";
 			}
@@ -104,19 +246,18 @@
 				}
 			}
 			
-			// $options['broadcasting'] = false; // Det ska inte sändas just nu
-			// $options['limit'] = 1; // Vi vill bara se det kommande
-			// $options['order']= 'DESC'; // Vi vill ha det senaste
-			// $radio_next_program = radio_schedule_fetch($options);
-			// $radio_next_program['dj'] = 'lef';
-			if (isset($radio_next_program)) // If there are any next program
+			$options['broadcasting'] = 'no'; // Det ska inte sändas just nu
+			$options['limit'] = 1; // Vi vill bara se det kommande
+			$options['order-direcion']= 'DESC'; // Vi vill ha det senaste
+			$radio_next_program = radio_schedule_fetch($options);
+			if (isset($radio_next_program[0])) // If there are any next program
 			{
 				$out .= '<div id="radio_next_program">' . "\n";
-					$out .= '<img src="http://images.hamsterpaj.net/images/users/thumb/625058.jpg" />' . "\n";
+					$out .= insert_avatar($radio_next_program[0]['user_id']) . "\n";
 					$out .= '<div class="radio_about">' . "\n";
-					$out .= '<h2>Kodarsnack</h2>' . "\n";
-					$out .= '<strong>DJ: Lef</strong><br />' . "\n";
-					$out .= '<span>Varje fredag 02-03</span>' . "\n";
+					$out .= '<h2>' . $radio_next_program[0]['name'] . '</h2>' . "\n";
+					$out .= '<strong>DJ: ' . $radio_next_program[0]['username'] . '</strong><br />' . "\n";
+					$out .= '<span>' . $radio_next_program[0]['sendtime'] . '</span>' . "\n";
 					$out .= '</div>' . "\n";
 				$out .= '</div>' . "\n";
 			}
