@@ -42,9 +42,7 @@
 		
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		$data = mysql_fetch_assoc($result);
-/*
-	show result if poll expired
-*/
+
 		if(mysql_num_rows($result) > 0)
 		{
 			if($data['poll_expire'] < time())
@@ -53,22 +51,41 @@
 			}
 			else
 			{
-				$query = 'SELECT NULL FROM christmas_avatars_votes WHERE poll_id = '.$options['poll_id'].' AND voter = ';
-				$query .= login_checklogin() ? intval($_SESSION['login']['id']) : 0;
-				$query .= ' AND is_removed = 0';
-				$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-				
-				if(mysql_num_rows($result) == 0)
-				
+				$user_has_voted = false;
+				if(login_checklogin())
 				{
-					$query = 'SELECT ca.contender, ca.id AS contender_id, l.username, u.gender, u.birthday FROM christmas_avatars_contenders AS ca, userinfo AS u, login AS l WHERE u.image = 2 AND u.userid = ca.contender AND l.id = ca.contender AND l.is_removed = 0 AND ca.is_removed = 0 AND ca.parent_poll = '.$options['poll_id'].' LIMIT '.$options['num_avatars'];
+					$query = 'SELECT NULL FROM christmas_avatars_votes WHERE poll_id = '.$options['poll_id'];
+					$query .= ' AND voter = ';
+					$query .= intval($_SESSION['login']['id']);			
+					$query .= ' AND is_removed = 0';
 					$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-					
+					if(mysql_num_rows($result) == 0)
+					{
+						$user_has_voted = false;
+					}
+					else
+					{
+						$user_has_voted = true;
+					}
+				}
+				
+				if(!$user_has_voted)
+				{
+					/*
+						If the user hasn't voted, show the form. Show from to non-logged in people
+					*/
+					$query = 'SELECT ca.contender, ca.id AS contender_id, l.username, u.gender, u.birthday FROM christmas_avatars_contenders AS ca, userinfo AS u, login AS l WHERE u.userid = ca.contender AND l.id = ca.contender AND l.is_removed = 0 AND ca.is_removed = 0 AND ca.parent_poll = '.$options['poll_id'];
+					$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+
 					$output .= '<h2 id="poll_'.$data['poll_id'].'">'.$data['poll_title'].'</h2>'."\n";				
 					
 					if(mysql_num_rows($result) > 0)
 					{
 						$output .= christmas_avatar_draw_poll($data, $result);
+						if(!login_checklogin())
+						{
+							$output .= '<p><em>Resultaten visas om du är inloggad och har röstat.</em></p>'."\n";
+						}
 					}
 					else
 					{
@@ -84,9 +101,9 @@
 		return $output;
 	}
 	
-	function christmas_avatar_draw_poll($data, $result)
+	function christmas_avatar_draw_poll($poll, $result)
 	{
-		$output = '<form method="post" action="/ajax_gateways/christmas_avatars_poll.php?action=vote&poll_id='.$data['poll_id'].'" class="christmas_avatar_poll" id="christmas_avatar_poll_'.$data['poll_id'].'">'."\n";
+		$output = '<form method="post" action="/ajax_gateways/christmas_avatars_poll.php?action=vote&poll_id='.$poll['poll_id'].'" class="christmas_avatar_poll" id="christmas_avatar_poll_'.$poll['poll_id'].'">'."\n";
 			$output .= '<ul class="avatar_christmas_poll">'."\n";
 				while($data = mysql_fetch_assoc($result))
 				{
@@ -125,7 +142,7 @@
 		$output .= '<h2 id="poll_'.$options['poll_id'].'">Resultat för '.$data_title['poll_title'].'</h2>'."\n";
 		
 		//fetch contenders
-		$query = 'SELECT c.id AS contender_id, c.contender AS contender_uid FROM christmas_avatars_contenders AS c WHERE c.parent_poll = '.$options['poll_id'].' AND c.is_removed = 0';
+		$query = 'SELECT c.id AS contender_id, c.contender AS contender_uid, l.username FROM christmas_avatars_contenders AS c, login AS l WHERE c.parent_poll = '.$options['poll_id'].' AND l.id = c.contender AND c.is_removed = 0';
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		$number_of_contenders = mysql_num_rows($result);
 
@@ -137,7 +154,7 @@
 
 				$result_votes = mysql_query($query_votes) or report_sql_error($query_votes, __FILE__, __LINE__);
 				$contenders_votes = mysql_num_rows($result_votes);
-				$poll_list[] = array('votes'=>$contenders_votes, 'contender'=>$data['contender_uid']);
+				$poll_list[] = array('votes'=>$contenders_votes, 'contender'=>$data['contender_uid'], 'username'=>$data['username']);
 				$total_votes += $contenders_votes;
 			}
 
@@ -147,10 +164,13 @@
 				{
 					$per_cent = round(($contender['votes']/$total_votes)*100, 2);
 					
+					$output .= '<a href="/traffa/profile.php?user_id='.$contender['contender'].'">'.$contender['username'].'</a>'."\n";				
+					$output .= '<br />'."\n";
 					$output .= ui_avatar($contender['contender'], array('style'=>'height: 67;width: 50.25px'))."\n";
 					$output .= '<div class="box">'."\n";
 						$output .= '<div class="bar" title="'.$per_cent.'"></div>'."\n";
 					$output .= '</div>'."\n";
+					$output .= '<br />'."\n";
 				}
 			}
 			else
@@ -179,7 +199,7 @@
 		
 		if(!is_numeric($options['poll_id']))
 		{
-			return 'Fel datatyp på poll_id. Avbryer.';
+			return 'Fel datatyp på poll_id. Avbryter.';
 		}
 		else
 		{
@@ -190,7 +210,7 @@
 		
 			$query = 'SELECT NULL FROM christmas_avatars_votes WHERE poll_id = '.$poll_id;
 			$query .= ' AND voter = '.intval($_SESSION['login']['id']);
-			$query .= ' LIMIT 1';
+			$query .= ' AND voter != 0 LIMIT 1';
 
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		
@@ -289,7 +309,7 @@
 		}
 		else
 		{
-			$output .= '<h2>Resultat för tillfället!</h2>'."\n";
+			$output .= '<h2>Inga resultat för tillfället!</h2>'."\n";
 		}
 		return $output;
 	}
@@ -332,14 +352,21 @@
 			$output .= '<input type="hidden" id="number_of_contenders" />'."\n";
 			$output .= '<p>Användarna måste anges som användarid (userid, UID). Det finns i länken till användarens presentation <a href="/traffa/profile.php?user_id=225454">http://www.hamsterpaj.net/traffa/profile.php?user_id=<strong>225454</strong></a> (länken går till wallys presenation).<br /><br />De <strong>kan inte ändras i efterhand</strong> eftersom rösterna skulle bli felberäknade då.</p>'."\n";
 			$output .= '<ol id="contenders">'."\n";
+			/*
 			$output .= '<li id="contender_0">'."\n";
 			$output .= '<input type="text" id="contender_input_0" name="contenders[]" /><img class="link_images" onclick="add_link();" src="http://links.guida.nu/img/add.png" alt="Add link" width="16" height="16" />'."\n";
 			$output .= '</li>'."\n";
+			*/
+			for($i=0;$i<30;$i++)
+			{
+				$output .= '<li><input type="text" name="contender_'.$i.'" /></li>'."\n";
+			}
+			
 			$output .= '</ol>'."\n";
 
 			$output .= '<input type="submit" value="Lägg till omröstning!" class="button_130" />'."\n";
 			$output .= '<div id="form_error" class="error"></div>';
-		$output .= '</form>'."\n";
+			$output .= '</form>'."\n";
 		
 		$output .= '<div id="form_result"></div>'."\n";
 		$output .= '<a id="show_form_again">Visa formulär igen</a>'."\n";
@@ -354,11 +381,23 @@
 			return 'Titeln får inte vara tom!';
 		}
 		
-		if(count($data['contenders']) < 2)
+		$data['contenders'] = array();
+		
+		for($i=0;$i<30;$i++)
 		{
-			return 'Du måste ange några (mer än 1) deltagare!';
+			if(isset($data['contender_'.$i]) && is_numeric($data['contender_'.$i]))
+			{
+				$data['contenders'][] = intval($data['contender_'.$i]);
+			}
+
+			unset($data['contender_'.$i]);
 		}
 		
+		if(count($data['contenders']) < 2)
+		{
+			return 'Du måste ange några (mer än 1) deltagare! Hittade endast '.count($data['contenders']).'.';
+		}
+
 		if(empty($data['poll_publish']) && !isset($data['release_immediately']))
 		{
 			return 'Det finns inget utgivningsdatum!';

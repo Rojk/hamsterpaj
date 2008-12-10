@@ -2,9 +2,9 @@ $(document).ready(function()
 {
 	$('form.christmas_avatar_poll').submit(function()
 	{
-		this_form = $(this);
+		var this_form = $(this);
 		var ajax_href = this_form.attr('action');
-		
+
 		var inputs = $(this).find(':radio');
 		var inputs_array = jQuery.makeArray(inputs);
 
@@ -15,19 +15,30 @@ $(document).ready(function()
 			alert('Du har inte kryssat i någon bild!');
 		}
 		else
-		{
+		{			
+			var post_data = inputs.serialize();
+
 			this_form.slideUp('normal', function()
 			{
 				this_form.html('<img src="http://images.hamsterpaj.net/loading_icons/ajax-loader3.gif" alt="Laddar..." style="margin: 0 330px;" />');
 				this_form.slideDown('fast', function()
 				{
-					//user has checked an image
-					$.post(ajax_href, inputs.serialize(), function(msg)
-					{
-						this_form.slideUp('fast', function()
-						{
-							this_form.html(msg).slideDown('normal');
-						});
+					$.ajax({
+						type: "POST",
+						url: ajax_href,
+						data: post_data,
+						success: function(msg, textStatus)
+								{
+									this_form.slideUp('fast', function()
+									{
+										this_form.html(msg).slideDown('normal');
+									});
+								},
+						dataType: 'html',
+						error: function (xhr, textStatus, errorThrown)
+								{
+									alert('Ett ospecificerat fel uppstod! Var god kontakta wally');
+								}
 					});
 				});
 			});
