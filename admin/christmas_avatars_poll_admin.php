@@ -9,7 +9,7 @@
 		exit;
 	}
 	
-	####  UI-options ####
+	//  UI-options
 	$ui_options['title'] = 'Julavataromröstning - Administration - Hamsterpaj.net';
 	$ui_options['stylesheets'][] = 'rounded_corners_tabs.css';
 	$ui_options['stylesheets'][] = 'rounded_corners.css';
@@ -41,6 +41,7 @@
 			{
 				echo christmas_avatar_admin_edit_list();
 			}
+			break;
 		case 'remove_poll':
 			if(isset($_GET['poll_id']) && is_numeric($_GET['poll_id']))
 			{

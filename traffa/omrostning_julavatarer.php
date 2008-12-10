@@ -2,7 +2,7 @@
 	require('../include/core/common.php');
 	require(PATHS_INCLUDE . 'libraries/christmas_avatars_polls.lib.php');
 	
-	if(rand(0, 24) == 6)
+	if(rand(0, 3) == 1 || is_privilegied('christmas_avatar_poll'))
 	{
 		christmas_avatar_recent_updates_check_new();
 	}

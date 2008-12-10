@@ -2,7 +2,7 @@
 
 	require('../include/core/common.php');
 	require(PATHS_INCLUDE . 'libraries/christmas_avatars_polls.lib.php');
-	
+
 	switch(isset($_GET['action']) ? $_GET['action'] : 'home')
 	{
 		case 'vote':
@@ -29,6 +29,10 @@
 						echo christmas_avatar_poll_vote(array('contender_id'=>$_POST['avatar_christmas_id'], 'poll_id'=>intval($_GET['poll_id'])));
 					}
 				}
+				else
+				{
+					echo 'Inget POST-data kom med!'."\n";
+				}
 			}
 		}
 		break;
@@ -54,7 +58,7 @@
 					}
 					else
 					{
-						echo 'Poll_id finns inte eller är av fel datatyp.';
+						echo 'Poll_id finns inte eller Ã¤r av fel datatyp.';
 					}
 				}
 				else
