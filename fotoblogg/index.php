@@ -9,26 +9,33 @@
 		
 		$ui_options['stylesheets'][] = 'photoblog.css.php';
 		$ui_options['javascripts'][] = 'jquery-ui-slider.js';
-		$ui_options['javascripts'][] = 'jquery-ui-datepicker.js';
+		$ui_options['javascripts'][] = 'jquery-ui-datepicker.js';	
 		$ui_options['javascripts'][] = 'photoblog.js';
 		
 		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 		
-		$out .= '<ul>
+		$out .= '<div id="photoblog_menu">
+		<ul>
 		<li>
-			<a href="/fotoblogg/">Min dagbok</a>
+			<a href="/fotoblogg/">
+			<img src="http://images.hamsterpaj.net/photoblog/menu_my_diary.png" alt="Min dagbok" />
+			</a>
 		</li>
-		<li>
+		<!--<li>
 			<a href="/fotoblogg/Lef/">Lefs dagbok</a>
+		</li>-->
+		<li>
+			<a href="/fotoblogg/ladda_upp/">
+			<img src="http://images.hamsterpaj.net/photoblog/menu_upload.png" alt="Ladda upp" />
+			</a>
 		</li>
 		<li>
-			<a href="/fotoblogg/ladda_upp/">Ladda upp</a>
-		</li>
-		<li>
-			<a href="/fotoblogg/instaellningar/">Inställningar</a>
+			<a href="/fotoblogg/instaellningar/">
+			<img src="http://images.hamsterpaj.net/photoblog/menu_settings.png" alt="Inställningar" />
+			</a>
 		</li>
 		</ul>
-		' . "\n";
+		</div>' . "\n";
 		
 		switch ($uri_parts[2])
 		{
@@ -273,8 +280,7 @@
 				$out .= '<div id="photoblog_thumbs">';
 					$out .= '<div id="photoblog_thumbs_container">';
 						$out .= '<dl>';
-						$out .= '<dt><a href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
-						//$out .= '<dt>23/11</dt>';
+						$out .= '<dt id="photoblog_prevmonth"><a title="F&ouml;reg&aring;ende m&aring;nad" href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
 						$is_first = true;
 						$last_day = array('date' => null, 'formatted' => null);
 						foreach ( $photos as $photo )
@@ -285,11 +291,11 @@
 								$last_day['formatted'] = date('j/n', strtotime($photo['date']));
 								$out .= '<dt>' . $last_day['formatted'] . '</dt>';
 							}
-							$out .= '<dd><a rel="imageid_' . $photo['id'] . '" ' . ($is_first ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
+							$out .= '<dd><a title="' . $photo['date'] . '" rel="imageid_' . $photo['id'] . '" ' . ($is_first ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
 							$is_first = false;
 						}
 						
-						$out .= '<dt id="photoblog_nextmonth"><a href="#">N&auml;sta m&aring;nad</a></dt>';
+						$out .= '<dt id="photoblog_nextmonth"><a title="N&auml;sta m&aring;nad" href="#">N&auml;sta m&aring;nad</a></dt>';
 						$out .= '</dl>';
 					$out .= '</div>';
 				$out .= '</div>';
