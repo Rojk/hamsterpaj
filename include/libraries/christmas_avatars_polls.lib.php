@@ -69,7 +69,7 @@
 					}
 				}
 				
-				if(!$user_has_voted)
+				if(!$user_has_voted && login_checklogin())
 				{
 					/*
 						If the user hasn't voted, show the form. Show from to non-logged in people
@@ -95,6 +95,10 @@
 				else
 				{
 					$output .= christmas_avatar_draw_result(array('poll_id'=>$options['poll_id']));
+					if(!login_checklogin())
+					{
+						$output .= '<p><em>För att kunna rösta måste du vara inloggad! <a href="/register.php" title="Registrera dig nu!">Registrera dig</a> nu, det går jättesnabbt!</em></p>'."\n";
+					}
 				}
 			}
 		}
@@ -139,7 +143,6 @@
 		$query_title = 'SELECT poll_title FROM christmas_avatars_polls WHERE poll_id = '.$options['poll_id'].' AND is_removed = 0 LIMIT 1';
 		$result_title = mysql_query($query_title) or report_sql_error($query_title, __FILE__, __LINE__);
 		$data_title = mysql_fetch_assoc($result_title);
-		$output .= '<h2 id="poll_'.$options['poll_id'].'">Resultat för '.$data_title['poll_title'].'</h2>'."\n";
 		
 		//fetch contenders
 		$query = 'SELECT c.id AS contender_id, c.contender AS contender_uid, l.username FROM christmas_avatars_contenders AS c, login AS l WHERE c.parent_poll = '.$options['poll_id'].' AND l.id = c.contender AND c.is_removed = 0';
@@ -150,7 +153,7 @@
 		{
 			while($data = mysql_fetch_assoc($result))
 			{
-				$query_votes = 'SELECT NULL FROM christmas_avatars_votes AS v, christmas_avatars_contenders AS c WHERE v.poll_id = '.$options['poll_id'].' AND v.contender_id = '.$data['contender_id'].'';
+				$query_votes = 'SELECT NULL FROM christmas_avatars_votes AS v, christmas_avatars_contenders AS c WHERE v.poll_id = '.$options['poll_id'].' AND v.contender_id = '.$data['contender_id'].' AND v.voter != 0 AND v.is_removed = 0';
 
 				$result_votes = mysql_query($query_votes) or report_sql_error($query_votes, __FILE__, __LINE__);
 				$contenders_votes = mysql_num_rows($result_votes);
@@ -158,6 +161,8 @@
 				$total_votes += $contenders_votes;
 			}
 
+			$output .= '<h2 id="poll_'.$options['poll_id'].'">Resultat för '.$data_title['poll_title'].' - '.$total_votes.' röst'.($total_votes == 1 ? '' : 'er').'</h2>'."\n";
+			
 			if($total_votes > 0)
 			{
 				foreach($poll_list as $contender)
