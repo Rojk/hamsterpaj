@@ -202,7 +202,7 @@
 			break;
 			
 			case 'schema':	
-				$options['show_sent'] = 'no'; 
+				$options['show_sent'] = false; 
 				$options['limit'] = 30; 
 				$options['order-direction']= 'DESC'; // We want them in order by which is coming first
 				$radio_events = radio_schedule_fetch($options);
@@ -267,7 +267,7 @@
 			break;
 				
 			default:
-				$options['broadcasting'] = 'yes'; // It should be broadcasting right now
+				$options['broadcasting'] = true; // It should be broadcasting right now
 				$options['limit'] = 1; // We only wish to have one
 				$options['order-direction']= 'DESC'; // We want the latest
 				$radio_sending = radio_schedule_fetch($options);
@@ -296,7 +296,7 @@
 					}
 				}
 				
-				$options['broadcasting'] = 'no'; // It shouldn't be broadcasting right now
+				$options['broadcasting'] = false; // It shouldn't be broadcasting right now
 				$options['limit'] = 1; // We only want the coming one
 				$options['order-direcion']= 'DESC'; // We want the coming one
 				$radio_next_program = radio_schedule_fetch($options);
