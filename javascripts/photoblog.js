@@ -227,6 +227,7 @@ hp.photoblog = {
 				
 				self.set_image(id);
 				
+				self.create_load();
 				$.getJSON('/ajax_gateways/photoblog.json.php?id=' + id, json_callback);
 			};
 			
@@ -248,10 +249,10 @@ hp.photoblog = {
 		},
 		
 		centralize_prevnext: function() {
-			var imgH = this.image.height() / 2;
-			var top = imgH - this.prevnext.height() / 2;
+			//var imgH = this.image.height() / 2;
+			//var top = imgH - this.prevnext.height() / 2;
 			
-			this.prevnext.css('top', top);
+			//this.prevnext.animate({'background-position': '(top)'});
 		},
 		
 		centralize_active: function() {
@@ -299,7 +300,7 @@ hp.photoblog = {
 			var img = $('<img />');
 			self.centralize_active();
 			img.load(function() {
-				// fadeInOnAnother needs for fixing before it can go public
+				self.remove_load();
 				img.fadeInOnAnother(self.image, function() {
 					self.image.remove();
 					self.image = img.css('zIndex', 0);
@@ -311,6 +312,31 @@ hp.photoblog = {
 					self.centralize_prevnext();
 				});*/
 			}).attr('src', src).hide().appendTo(self.imageContainer);
+		},
+		
+		create_load: function() {
+			var self = this;
+			
+			if ( self.loader ) {
+				self.loader.css('top', self.image.height() / 2);
+				self.loader.css('visibility', 'visible');
+			} else {
+				self.loader = $('<img id="photoblog_loading" />').attr('src', 'http://images.hamsterpaj.net/photoblog/loading.gif');
+				self.loader.css({
+					zIndex: 100,
+					position: 'absolute',
+					top: self.image.height() / 2,
+					left: self.imageContainer.width() / 2
+				});
+				
+				self.loader.appendTo(self.imageContainer);
+			}
+		},
+		
+		remove_load: function() {
+			if ( this.loader ) {
+				this.loader.css('visibility', 'hidden');
+			}
 		}
 	},
 	

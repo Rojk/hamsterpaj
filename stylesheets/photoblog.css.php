@@ -88,20 +88,19 @@
 }
 
 #photoblog_thumbs {
-    background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> url(scroller-default-bg.png);
+    /* if the background image just looks weird just remove it */
+    background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> repeat-x;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -khtml-border-radius: 5px;
     padding: 5px 10px;
     color: #fff;
-    width: 580px;
     margin: 0 auto;
 }
 
     #photoblog_thumbs_container {
         overflow: hidden;
         position: relative;
-        width: 560px;
     }
 
     div#photoblog_thumbs dl {
@@ -149,6 +148,9 @@
 	
     .photoblog_active img {
         border: 2px solid yellow;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
     }
 	
 	
@@ -179,7 +181,7 @@
     }
 	
 #photoblog_image {
-    width: 600px;
+    /*width: 600px;*/
     margin: 10px auto;
     position: relative;
     /*background: #000;*/
@@ -190,25 +192,41 @@
     #photoblog_prev {
         display: block;
         position: absolute;
-        width: 35px;
-        height: 90px;
-	/* prevnext.png is not present yet and I have no idea how to add images to hamsterpaj... */
-        background: url(http://images.hamsterpaj.net/photoblog/prevnext.png) left top no-repeat;
+        width: 50%;
+        height: 100%;
         top: 0;
-        left: 10px;
+        left: 0;
         overflow: hidden;
         text-indent: -10000px;
+	outline: none;
     }
 	
     #photoblog_next {
-        right: 10px;
+        right: 0;
         left: auto;
-        background-position: right top;
+        background: url(http://images.hamsterpaj.net/photoblog/next.png) right center no-repeat;
     }
+    
+    #photoblog_prev {
+        background: url(http://images.hamsterpaj.net/photoblog/prev.png) left center no-repeat;
+    }
+
+#photoblog_nextmonth a,
+#photoblog_prevmonth a {
+	text-indent: -10000px;
+	display: block;
+	width: 8px;
+	overflow: hidden;
+	height: 38px;
+	background: url(http://images.hamsterpaj.net/photoblog/nextprev-month.png) left center no-repeat;
+}
+
+#photoblog_nextmonth a {
+	background-position: right center;
+}
 
 #photoblog_comments,
 #photoblog_description {
-    width: 580px;
     margin: 0 auto 10px;
     border: 1px solid #ccc;
     background: #f9f9f9;
@@ -219,3 +237,21 @@
         text-align: center;
         margin: 0;
     }
+    
+#photoblog_loading {
+	opacity: .6;
+	filter: alpha(opacity=60);
+	padding: 5px;
+	border: 1px solid #333;
+	background: #fff;
+}
+
+#photoblog_menu {
+	background: url(http://images.hamsterpaj.net/photoblog/line-gradient.png) center bottom no-repeat;
+	padding-bottom: 21px;
+	text-align: center;
+}
+
+	#photoblog_menu li {
+		display: inline;
+	}
