@@ -85,7 +85,7 @@
 	
 	function radio_dj_add($dj_user_id, $dj_information)
 	{
-		$radio_djs_add_sql = 'INSERT INTO radio_djs SET information = "' . $dj_information . '", user_id = ' . $dj_user_id . '';
+		$radio_djs_add_sql = 'INSERT INTO radio_djs (information, user_id) VALUES("' . $dj_information . '", ' . $dj_user_id . ')';
 		if (mysql_query($radio_djs_add_sql))
 		{
 			return true;
