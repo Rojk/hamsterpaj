@@ -1,5 +1,6 @@
 <?php
-	function radio_shoutcast_fetch() {
+	function radio_shoutcast_fetch()
+	{
 		$scs = &new ShoutcastInfo(RADIO_SERVER);
 		if($scs->connect())
 		{
@@ -82,6 +83,7 @@
 			return false;
 		}
 	}
+	
 	function radio_dj_add($dj_user_id, $dj_information)
 	{
 		$radio_djs_add_sql = 'INSERT INTO radio_djs SET information = "' . $dj_information . '", user_id = ' . $dj_user_id . '';
@@ -128,7 +130,8 @@
 		}
 	}
 	
-	function radio_sending_fetch() {
+	function radio_sending_fetch()
+	{
 		return true;
 	}
 ?>

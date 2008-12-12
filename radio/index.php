@@ -71,12 +71,21 @@
 						case 'radio_dj_add':
 							
 							$dj_username = $_POST['radio_dj_add_name'];
-							$sql = 'SELECT id FROM login WHERE username = "' . $dj_username . '" LIMIT 1';
-							$result = mysql_query($sql) or report_sql_error($sql, __FILE__, __LINE__);
+							if(strtolower($dj_username) == 'borttagen')
+							{
+								throw new Exception('Jävla tjockis');
+								trace('tjockis_live_at_radio', __FILE__ . ' line ' . __LINE__ . ' : ' . $_SESSION['login']['username']);
+							}
+							$query = 'SELECT id FROM login WHERE username = "' . $dj_username . '" AND is_removed != 1 LIMIT 1';
+							$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+							if(mysql_num_rows($result) != 1)
+							{
+								throw new Exception('Den fanns det två av... :D (=det finns fler än en användare med det användarnamnet eller så finns det inga användare med det användarnamnet, vilket inte är så bra...).');
+							}
 							$data = mysql_fetch_assoc($result);
 							$dj_user_id = $data['id'];
 							$dj_information = $_POST['radio_dj_add_information'];
-							if (strlen($dj_user_id) > 0 && strlen($dj_information) > 0)
+							if (intval($dj_user_id) > 0 && strlen($dj_information) > 0)
 							{
 								radio_dj_add($dj_user_id, $dj_information);
 							}
