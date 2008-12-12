@@ -1,13 +1,18 @@
 <?php
 	function radio_shoutcast_fetch() {
-		$scs = &new ShoutcastInfo('sekz.se:8000');
+		$scs = &new ShoutcastInfo(RADIO_SERVER);
 		if($scs->connect())
 		{
 			$scs->send();
 			$data = $scs->parse();
 			$scs->close();
+			
+			return $data;
 		}
-		return $data;
+		else
+		{
+			return false;
+		}
 	}
 	
 	function radio_schedule_fetch($options)
@@ -36,7 +41,14 @@
 			$found_something = true;
 		}
 		
-		return $schedule;
+		if ($found_something)
+		{
+			return $schedule;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	function radio_djs_fetch($options)
@@ -61,7 +73,27 @@
 			$found_something = true;
 		}
 		
-		return $schedule;
+		if ($found_something)
+		{
+			return $schedule;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function radio_dj_add($dj_user_id, $dj_information)
+	{
+		$radio_djs_add_sql = 'INSERT INTO radio_djs SET information = "' . $dj_information . '", user_id = ' . $dj_user_id . '';
+		if (mysql_query($radio_djs_add_sql))
+		{
+			return true;
+		}
+		else
+		{
+			report_sql_error($radio_djs_add_sql, __FILE__, __LINE__);
+			throw new Exception('Något gick fel i ett MySQL-query.<br />' . mysql_error() . '');
+		}
 	}
 	
 	function radio_programs_fetch($options)
@@ -86,7 +118,14 @@
 			$found_something = true;
 		}
 		
-		return $schedule;
+		if ($found_something)
+		{
+			return $schedule;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	function radio_sending_fetch() {
