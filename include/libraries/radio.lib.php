@@ -129,6 +129,24 @@
 		}
 	}
 	
+	function radio_program_add($options)
+	{
+		if(!isset($options['user_id']) && isset($options['dj']))
+		{
+			$dj = array_pop(radio_djs_fetch(array('id' => array($options['dj']))));
+			$options['user_id'] = $dj['user_id'];
+		}
+		
+		$query = 'INSERT INTO radio_programs (user_id, name, information, sendtime) VALUES("' . implode('", "', array($options['user_id'], $options['name'], $options['information'], $options['sendtime'])) . '")';
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+	}
+	
+	function radio_schedule_add($options)
+	{		
+		$query = 'INSERT INTO radio_schedule (program_id, starttime, endtime) VALUES("' . implode('", "', array($options['program_id'], $options['starttime'], $options['endtime'])) . '")';
+		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+	}
+	
 	function radio_sending_fetch()
 	{
 		return true;

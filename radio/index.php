@@ -94,6 +94,45 @@
 								throw new Exception('Det går inte för sig. Skräddaren säger NEJ!<br />Du _måste_ fylla i formuläret helt och hållet ditt blindstyre.<br /><em>Love, Joar</em>');
 							}
 						break;
+						
+						case 'program_add':
+							
+							if(!isset($_POST['name'], $_POST['dj'], $_POST['sendtime'], $_POST['information']))
+							{
+								throw new Exception('Getmjölk?');
+							}
+							
+							if(strlen($_POST['name']) < 0 || !is_numeric($_POST['dj']) || strlen($_POST['information']) < 0)
+							{
+								throw new Exception('Något fält var ju INTE korrekt ifyllt säger jag ju då.');
+							}
+							
+							radio_program_add(array(
+								'name' => $_POST['name'],
+								'sendtime' => $_POST['sendtime'],
+								'information' => $_POST['information'],
+								'dj' => $_POST['dj']
+							));
+						break;
+						
+						case 'schedule_add':
+							
+							if(!isset($_POST['program'], $_POST['starttime'], $_POST['endtime']))
+							{
+								throw new Exception('Getmjölk i soppan?');
+							}
+							
+							if(strlen($_POST['starttime']) < 0 || !is_numeric($_POST['program']) || strlen($_POST['endtime']) < 0)
+							{
+								throw new Exception('Något fält var ju INTE korrekt ifyllt säger jag ju då.');
+							}
+							
+							radio_schedule_add(array(
+								'program_id' => $_POST['program'],
+								'starttime' => $_POST['starttime'],
+								'endtime' => $_POST['endtime']
+							));
+						break;
 					}
 				}
 				else
@@ -170,7 +209,7 @@
 					
 					$out .= '<fieldset>' . "\n";
 					$out .= '<legend>Lägg till program</legend>' . "\n";
-					$out .= '<form action="?action=submit" method="post">';
+					$out .= '<form action="/radio/post_settings/program_add" method="post">';
 					$out .= '<table class="form">' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="name">Namn <strong>*</strong></label></th>' . "\n";
@@ -232,7 +271,7 @@
 					
 					$out .= '<fieldset>' . "\n";
 					$out .= '<legend>Lägg till sändning</legend>' . "\n";
-					$out .= '<form action="?action=submit" method="post">';
+					$out .= '<form action="/radio/post_settings/schedule_add" method="post">';
 					$out .= '<table class="form">' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="program">Program <strong>*</strong></label></th>' . "\n";
