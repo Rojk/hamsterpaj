@@ -134,7 +134,7 @@
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="radio_dj_add_information">Information <strong>*</strong></label></th>' . "\n"; 
-						$out .= '<td><textarea name="radio_dj_add_formation" cols="45" rows="5"></textarea></td>' . "\n";
+						$out .= '<td><textarea name="radio_dj_add_information" cols="45" rows="5"></textarea></td>' . "\n";
 					$out .= '</tr>' . "\n";				
 					$out .= '</table>' . "\n";
 					$out .= '<input type="submit" id="radio_dj_add_submit" value="Spara" />' . "\n"; // Ajax, privilegiet radio_sender ska ges till personen
@@ -192,7 +192,7 @@
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="information">Information <strong>*</strong></label></th>' . "\n"; 
-						$out .= '<td><textarea name="formation" cols="45" rows="10"></textarea></td>' . "\n";
+						$out .= '<td><textarea name="information" cols="45" rows="10"></textarea></td>' . "\n";
 					$out .= '</tr>' . "\n";				
 					$out .= '</table>' . "\n";
 					$out .= '<input type="submit" id="submit" value="Spara" />' . "\n"; // Ajax
