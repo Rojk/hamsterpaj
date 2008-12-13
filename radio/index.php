@@ -148,8 +148,7 @@
 				foreach($radio_djs as $radio_dj)
 				{
 					$out .= '<div class="radio_crew">' . "\n";
-					//$out .= insert_avatar($radio_dj['user_id']) . "\n";
-					$out .= insert_avatar('625058') . "\n";
+					$out .= insert_avatar($radio_dj['user_id']) . "\n";
 					$out .= '<h2>' . $radio_dj['username'] . '</h2>' . "\n";
 					if(is_privilegied('radio_admin'))// Only administrators for the whole radio can edit/remove DJs
 					{
