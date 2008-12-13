@@ -69,7 +69,7 @@
 					}
 				}
 				
-				if(!$user_has_voted && login_checklogin())
+				if(!$user_has_voted && login_checklogin()) // <-- bajs woot.
 				{
 					/*
 						If the user hasn't voted, show the form. Show from to non-logged in people
@@ -153,7 +153,7 @@
 		{
 			while($data = mysql_fetch_assoc($result))
 			{
-				$query_votes = 'SELECT NULL FROM christmas_avatars_votes AS v, christmas_avatars_contenders AS c WHERE v.poll_id = '.$options['poll_id'].' AND v.contender_id = '.$data['contender_id'].' AND v.voter != 0 AND v.is_removed = 0';
+				$query_votes = 'SELECT NULL FROM christmas_avatars_votes AS v WHERE v.poll_id = '.$options['poll_id'].' AND v.contender_id = '.$data['contender_id'].' AND v.voter != 0 AND v.is_removed = 0';
 
 				$result_votes = mysql_query($query_votes) or report_sql_error($query_votes, __FILE__, __LINE__);
 				$contenders_votes = mysql_num_rows($result_votes);
