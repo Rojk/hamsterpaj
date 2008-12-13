@@ -145,20 +145,21 @@
 				$options['order-by'] = 'username';
 				$options['order-direction']= 'ASC';
 				$radio_djs = radio_djs_fetch($options);
-				$out .= '<table>' . "\n";
 				foreach($radio_djs as $radio_dj)
 				{
-					$out .= '<tr>' . "\n";
-					$out .= '<td>' . $radio_dj['username'] . '</td>' . "\n";
-					$out .= '<td>' . $radio_dj['information'] . '</td>' . "\n"; // substr to fitting characters
+					$out .= '<div class="radio_crew">' . "\n";
+					$out .= insert_avatar($radio_dj['user_id']) . "\n";
+					$out .= '<h2>' . $radio_dj['username'] . '</h2>' . "\n";
 					if(is_privilegied('radio_admin'))// Only administrators for the whole radio can edit/remove DJs
 					{
-						$out .= '<td><a href="#" title="Ändra DJ">Ändra</a></td>' . "\n"; // När man klickar edit ska formuläret för att lägga till sändning användas för att ändra sändningen.
-						$out .= '<td><a href="#" title="Ta bort DJ">Ta bort</a></td>' . "\n"; // Ajax, popup-accept
+						$out .= '<div class="admin_tools">' . "\n";
+						$out .= '<a href="#" title="Ändra DJ">Ändra</a> | ' . "\n"; // När man klickar edit ska formuläret för att lägga till sändning användas för att ändra sändningen.
+						$out .= '<a href="#" title="Ta bort DJ">Ta bort</a>' . "\n"; // Ajax, popup-accept
+						$out .= '</div>' . "\n";
 					}
-					$out .= '</tr>' . "\n";
+					$out .= '<p>' . $radio_dj['information'] . '</p>' . "\n"; // substr to fitting characters
+					$out .= '</div>' . "\n";
 				}
-				$out .= '</table>' . "\n";
 				if(is_privilegied('radio_admin')) // Only administrators for the whole radio can edit/add DJs
 				{
 					$ui_options['stylesheets'][] = 'forms.css'; // Includes stylesheet for form.
@@ -285,11 +286,11 @@
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="starttime">Starttid <strong>*</strong></label></th>' . "\n"; // Jquery calendar?
-						$out .= '<td><input type="text" name="starttime" /></td>' . "\n";
+						$out .= '<td><input type="text" name="starttime" value="' . date( 'Y-m-d') . ' 00:00:00" /></td>' . "\n";
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="endtime">Sluttid <strong>*</strong></label></th>' . "\n"; // jquery calendar?
-						$out .= '<td><input type="text" name="endtime" /></td>' . "\n";
+						$out .= '<td><input type="text" name="endtime" value="' . date( 'Y-m-d') . ' 00:00:00" /></td>' . "\n";
 					$out .= '</tr>' . "\n";				
 					$out .= '</table>' . "\n";
 					$out .= '<input type="submit" id="submit" value="Spara" />' . "\n"; // Ajax
@@ -395,7 +396,13 @@
 	}
 	catch (Exception $error)
 	{
-		
+		$options['type'] = 'error';
+    $options['title'] = 'Nu blev det fel här';
+    $options['message'] = $error -> getMessage();
+    $options['collapse_link'] = 'Visa felsökningsinformation';
+    $options['collapse_information'] = preint_r($error, true);
+    $out .= ui_server_message($options);
+		preint_r($error);
 	}
 	ui_top($ui_options);
 	echo $out;

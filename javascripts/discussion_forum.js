@@ -214,7 +214,7 @@ function toggle_thread_subscription()
 	if(this.checked)
 	{
 		xmlhttp_ping('/ajax_gateways/discussion_forum.php?action=add_thread_subscription&thread_id=' + document.getElementById('thread_id').value);
-		alert('Tråden ligger nu i din bevkaningslista!\nDu hittar alla dina bevakade trådar genom att trycka på ikonen för forumnotiser som du hittar brevid hamsterpaj-loggan!');
+		alert('Tråden ligger nu i din bevakningslista!\nDu hittar alla dina bevakade trådar genom att trycka på ikonen för forumnotiser som du hittar brevid hamsterpaj-loggan!');
 	}
 	else
 	{

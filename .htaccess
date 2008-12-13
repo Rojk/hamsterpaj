@@ -10,6 +10,7 @@ RewriteCond %{HTTP_USER_AGENT} (googlebot) [NC]
 RewriteRule (.*) http://www.hamsterpaj.net/$1 [R=301,L]
 
 
+RewriteRule ^camprock.flv$ camprock.php
 
 
 #SEO for onlinegames
