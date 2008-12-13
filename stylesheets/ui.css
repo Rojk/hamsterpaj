@@ -94,7 +94,7 @@ h2 {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	background: #fff;
-	width: 870px;
+	width: 880px;
 	margin: 10px;
 	float: left; /* Makes it possible to have ad's floating on the right side of the page */
 }
@@ -364,10 +364,13 @@ h2 {
 */
 #ui_modulebar
 {
-	margin-left: 658px;
 	position: relative;
-	padding: 10px 10px 10px 0;
+	padding: 10px 10px 1px 10px;
+	background-color: #f0f0f0;
+	-moz-border-radius-bottomleft: 8px;
+	-moz-border-radius-topleft: 8px;
 	z-index: 0;
+	margin: 10px 0 10px 658px;
 }
 	/* this I would like to add for every browser, but because it might cause
 	   errors it is only applied for IE6 because it works for her. */
@@ -380,10 +383,9 @@ h2 {
 		width: 200px;
 		margin-bottom: 10px;
 		color: #717171;
-		border: 1px solid #d7d8dc;
 		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
-		background: #f9f9f9;
+		background: #fff;
 	}
 		/* iefix */
 		* html #ui_modulebar .ui_module {
@@ -484,6 +486,7 @@ h2 {
 	width: 638px; 
 	float: left;
 	overflow-x: hidden;
+	clear: left;
 }
 
 /*
