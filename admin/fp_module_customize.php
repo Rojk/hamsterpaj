@@ -57,7 +57,7 @@
 		$output .= '<input name="display" type="checkbox"' . $module['display'] . ' id="view_control" value="1" /><label for="view_control">Visa på förstasidan</label><br />';
 		$output .= '<input name="phpenabled" type="checkbox"' . $module['phpenabled'] . ' id="php_control" value="1" /><label for="php_control">Kör som PHP-fil (script = kryssa, enkel HTML = kryssa inte)</label><br />';
 		
-		$output .= '<br /><label>CSS-filer (ange bara filnamn, inklusive filändelse, separera med mellanslag)</label><br />' . "\n";
+		$output .= '<br /><label>CSS-filer (ange bara filnamn, inklusive filändelse, separera med mellanslag)<br /><strong>Stilmallarna ska ligga i stylesheets/fp_modules/</strong> Lef kommer att ge dig spö annars. Srsly. Den mappen är gitignorad. Sedan hämtas stilmallen med fp_modules/stilmallsnamn.css</label><br />' . "\n";
 		$output .= '<input type="text" name="stylesheets" style="width: 600px;" value="' . implode(' ', $module['stylesheets']) . '" /><br />';
 		
 		$output .= '<textarea name="code" style="width: 630px; height: 500px; font-size: 11px;">' . htmlspecialchars($module['code']) . '</textarea>' . "\n";
