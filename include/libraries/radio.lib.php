@@ -1,13 +1,19 @@
 <?php
-	function radio_shoutcast_fetch() {
-		$scs = &new ShoutcastInfo('sekz.se:8000');
+	function radio_shoutcast_fetch()
+	{
+		$scs = &new ShoutcastInfo(RADIO_SERVER);
 		if($scs->connect())
 		{
 			$scs->send();
 			$data = $scs->parse();
 			$scs->close();
+			
+			return $data;
 		}
-		return $data;
+		else
+		{
+			return false;
+		}
 	}
 	
 	function radio_schedule_fetch($options)
@@ -23,9 +29,8 @@
 		$query .= ' AND rp.id = rs.program_id';
 		$query .= (isset($options['id'])) ? ' AND rs.id IN("' . implode('", "', $options['id']) . '")' : '';
 		$query .= (isset($options['user'])) ? ' AND rp.user_id  = "' . $options['user'] . '"' : '';
-		$query .= ($options['broadcasting'] == 'yes') ? ' AND NOW() BETWEEN rs.starttime AND rs.endtime' : '';
-		$query .= ($options['broadcasting'] == 'no') ? ' AND NOW() NOT BETWEEN rs.starttime AND rs.endtime' : '';
-		$query .= ($options['show_sent'] == no) ? ' AND NOW() < rs.starttime ' : ''; // Show programs that already been sent?
+		$query .= ($options['broadcasting']) ? ' AND NOW() BETWEEN rs.starttime AND rs.endtime' : ' AND NOW() NOT BETWEEN rs.starttime AND rs.endtime';
+		$query .= (!$options['show_sent']) ? ' AND NOW() < rs.starttime ' : ''; // Show programs that already been sent?
 		$query .= ' ORDER BY ' . $options['order-by'] . ' ' . $options['order-direction'] . ' LIMIT ' . $options['offset'] . ', ' . $options['limit'];
 			
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
@@ -36,7 +41,14 @@
 			$found_something = true;
 		}
 		
-		return $schedule;
+		if ($found_something)
+		{
+			return $schedule;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	function radio_djs_fetch($options)
@@ -61,7 +73,28 @@
 			$found_something = true;
 		}
 		
-		return $schedule;
+		if ($found_something)
+		{
+			return $schedule;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	function radio_dj_add($dj_user_id, $dj_information)
+	{
+		$radio_djs_add_sql = 'INSERT INTO radio_djs (information, user_id) VALUES("' . $dj_information . '", ' . $dj_user_id . ')';
+		if (mysql_query($radio_djs_add_sql))
+		{
+			return true;
+		}
+		else
+		{
+			report_sql_error($radio_djs_add_sql, __FILE__, __LINE__);
+			throw new Exception('Något gick fel i ett MySQL-query.<br />' . mysql_error() . '');
+		}
 	}
 	
 	function radio_programs_fetch($options)
@@ -86,10 +119,36 @@
 			$found_something = true;
 		}
 		
-		return $schedule;
+		if ($found_something)
+		{
+			return $schedule;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
-	function radio_sending_fetch() {
+	function radio_program_add($options)
+	{
+		if(!isset($options['user_id']) && isset($options['dj']))
+		{
+			$dj = array_pop(radio_djs_fetch(array('id' => array($options['dj']))));
+			$options['user_id'] = $dj['user_id'];
+		}
+		
+		$query = 'INSERT INTO radio_programs (user_id, name, information, sendtime) VALUES("' . implode('", "', array($options['user_id'], $options['name'], $options['information'], $options['sendtime'])) . '")';
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+	}
+	
+	function radio_schedule_add($options)
+	{		
+		$query = 'INSERT INTO radio_schedule (program_id, starttime, endtime) VALUES("' . implode('", "', array($options['program_id'], $options['starttime'], $options['endtime'])) . '")';
+		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+	}
+	
+	function radio_sending_fetch()
+	{
 		return true;
 	}
 ?>

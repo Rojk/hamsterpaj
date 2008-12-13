@@ -11,6 +11,31 @@
 	$ui_options['menu_path'] = array('hamsterpaj');
 	$ui_options['adtoma_category'] = 'start';
 
+	// Added by Joel (backup found cached on google ^^)
+	$ui_options['xxl'] = '<div><div style="margin: 10px;">
+	<h1 style="font-size: 42px; font-family: verdana, arial;""><a href="http://www.icloud.com/hamsterpaj/" style="text-decoration: underline;">Testa icloud - vinn en ASUS Eee PC! &raquo;</a></h1>
+	
+	<a href="http://www.icloud.com/hamsterpaj/"><img src="http://images.hamsterpaj.net/eeepc.jpg" style="float: right; margin-right: -10px;" /></a>
+	
+	<p style="font-size: 15px;">
+		Tänk dig en framtid där du kommer åt ditt skrivbord, dina filer, dina bilder, dina skolarbeten och dina vänner - från vilken dator som helst.
+		Drömmen kallas <b style="color:black;background-color:#a0ffff">Cloud</b> <b style="color:black;background-color:#99ff99">Computing</b>, Xcerion AB i Linköping är ett av de bolag i världen som kommit längst med att förverkliga den.<br />
+
+		Nu vill vi testa hur bra icloud funkar med riktiga användare, fastän vi inte är riktigt klara. Än så länge fungerar icloud bara i Internet Explorer, 
+		men vi jobbar hårt med att få Firefox-stöd till mars 2009.
+	</p>
+	<p style="font-size: 15px;">
+		Ta chansen att få en försmak på <a href="http://en.wikipedia.org/wiki/Cloud_computing" target="_blank"><b style="color:black;background-color:#a0ffff">cloud</b> <b style="color:black;background-color:#99ff99">computing</b></a> och framtiden! Delta i tävlingen 
+		och du kan bli en av tre lyckliga vinnare. Vi har lagt upp ett gäng bilder i icloud, ditt uppdrag är att gissa vart i världen bilderna är tagna. De som placerar pilarna närmast på vår världskarta vinner!
+	</p>
+	<a href="http://www.icloud.com/hamsterpaj/" style="margin-top: -5px; margin-bottom: 5px;"><img src="http://xcerion.com/images/stories/company/lcloud_logo200.jpg" /></a>
+	<br style="clear: both;" />
+
+	<h1 style="font-family: verdana, arial; background: black; margin: -10px; margin-bottom: 10px; margin-top: 0px; text-style: italic; font-size: 35px; font-weight: bold; padding: 10px;"><a style="color: white;" href="http://www.icloud.com/hamsterpaj/">Kolla in <b style="color:black;background-color:#ffff66">Hamsterpaj</b>-grundarens nya jobb &raquo;</a></h1>	
+	</div>
+		</div>';
+
+
 	$fp_modules = cache_load('fp_module_order');
 	
 	foreach($fp_modules AS $filename)
