@@ -1,7 +1,7 @@
 <?php
 
 	$abuse_headers['forum_post'] = 'Anmäl ett inlägg i forumet';
-	$abuse_info['forum_post'] = '<p>Kontrollera att du inte anmäler ett spaminlägg i spamforumet, vi tar inte bort inlägg som inte håller sig till trådens ämnde där.</p> <b>Trådar låses bara om de spårat ur!</b>';
+	$abuse_info['forum_post'] = '<b>Trådar låses bara om de spårat ur!</b>';
 
 	$abuse_headers['guestbook_entry'] = 'Rapportera ett gästboksinlägg';
 	$abuse_info['guestbook_entry'] = '<p>Anmäl inte dina klasskompisar eller personer du känner IRL. Använd blockeringsfunktionen och prata med dina föräldrar istället!</p>';
@@ -25,7 +25,7 @@
 	$abuse_types['ref']['description'] = '';
 	
 	$abuse_types['spam']['label'] = 'Spam';
-	$abuse_types['spam']['description'] = 'Spam är nonsenstext eller annat skräp som inte hör hemma i annat än Skräp & SPAM-forumet.';
+	$abuse_types['spam']['description'] = 'Spam är nonsenstext eller annat skräp som inte hör hemma på Hamsterpaj.';
 	
 	$abuse_types['posthunt']['label'] = 'Posthunting';
 	$abuse_types['posthunt']['description'] = 'Posthunting är när någon vill få upp sin inläggsräknare lite, och skriver en massa skräp i förumet. Jobbigt, och inte tillåtet på Hamsterpaj.';
