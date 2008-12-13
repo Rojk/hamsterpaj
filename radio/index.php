@@ -285,11 +285,11 @@
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="starttime">Starttid <strong>*</strong></label></th>' . "\n"; // Jquery calendar?
-						$out .= '<td><input type="text" name="starttime" /></td>' . "\n";
+						$out .= '<td><input type="text" name="starttime" value="' . date( 'Y-m-d') . ' 00:00:00" /></td>' . "\n";
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="endtime">Sluttid <strong>*</strong></label></th>' . "\n"; // jquery calendar?
-						$out .= '<td><input type="text" name="endtime" /></td>' . "\n";
+						$out .= '<td><input type="text" name="endtime" value="' . date( 'Y-m-d') . ' 00:00:00" /></td>' . "\n";
 					$out .= '</tr>' . "\n";				
 					$out .= '</table>' . "\n";
 					$out .= '<input type="submit" id="submit" value="Spara" />' . "\n"; // Ajax
@@ -395,7 +395,13 @@
 	}
 	catch (Exception $error)
 	{
-		
+		$options['type'] = 'error';
+    $options['title'] = 'Nu blev det fel här';
+    $options['message'] = $error -> getMessage();
+    $options['collapse_link'] = 'Visa felsökningsinformation';
+    $options['collapse_information'] = preint_r($error, true);
+    $out .= ui_server_message($options);
+		preint_r($error);
 	}
 	ui_top($ui_options);
 	echo $out;
