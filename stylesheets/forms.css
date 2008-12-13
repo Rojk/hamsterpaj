@@ -14,13 +14,14 @@
 		color: red;
 	}
 	
-#ui_content input {
+#ui_content input, #ui_content select, #ui_content textarea {
 	padding: 3px;
 }
 
 #ui_content input, #ui_content textarea, #ui_content select {
 	border: 1px solid #bbb;
 	margin: 5px 0;
+	-moz-border-radius: 3px;
 }
 
 #ui_content .form {
