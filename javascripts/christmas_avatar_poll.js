@@ -1,5 +1,8 @@
 $(document).ready(function()
 {
+	/*
+		Submit vote
+	*/
 	$('form.christmas_avatar_poll').submit(function()
 	{
 		var this_form = $(this);
