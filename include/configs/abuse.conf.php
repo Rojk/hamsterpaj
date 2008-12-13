@@ -7,7 +7,7 @@
 	$abuse_info['guestbook_entry'] = '<p>Anmäl inte dina klasskompisar eller personer du känner IRL. Använd blockeringsfunktionen och prata med dina föräldrar istället!</p>';
 
 	$abuse_alternatives_by_type['forum_post'] = array('hmf', 'off_topic', 'hot', 'kedjebrev', 'spam', 'posthunt');
-	$abuse_alternatives_by_type['guestbook_entry'] = array('hmf', 'hot', 'kedjebrev');
+	$abuse_alternatives_by_type['guestbook_entry'] = array('hmf', 'hot', 'kedjebrev','cammsn');
 	
 	$abuse_types['hmf']['label'] = 'Hets mot folkgrupp';
 	$abuse_types['hmf']['description'] = 'Brottsbalken, 16 kapitlet, Om brott mot allmän ordning, paragraf 8:<br />Den som i uttalande eller i annat meddelande som sprids hotar eller uttrycker missaktning för folkgrupp eller annan sådan grupp av personer med anspelning på ras, hudfärg, nationellt eller etniskt ursprung, trosbekännelse eller sexuell läggning, döms för hets mot folkgrupp';
@@ -29,5 +29,8 @@
 	
 	$abuse_types['posthunt']['label'] = 'Posthunting';
 	$abuse_types['posthunt']['description'] = 'Posthunting är när någon vill få upp sin inläggsräknare lite, och skriver en massa skräp i förumet. Jobbigt, och inte tillåtet på Hamsterpaj.';
+
+	$abuse_types['cammsn']['label'] = 'Cam/msn förfrågan';
+	$abuse_types['cammsn']['description'] = 'Har du P12-skölden aktiverad i gästboken, och frågar folk fortfarande om msn eller cam?';
 
 ?>
