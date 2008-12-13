@@ -1,3 +1,3 @@
 <?php
-	define('RADIO_SERVER', 'sekz.se:8000');
+	define('RADIO_SERVER', 'vi.har.inte.någon.STIM-licens.nu:8000');
 ?>
