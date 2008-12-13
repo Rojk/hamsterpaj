@@ -28,6 +28,7 @@ include/jpgraph-1.20.5/src/Examples/*
 include/jpgraph/docs/*
 include/articles/*
 include/fp_modules/*
+stylesheets/fp_modules/*
 
 # Files to exclude
 admin/validator.txt
