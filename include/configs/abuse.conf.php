@@ -1,4 +1,10 @@
 <?php
+	/* ###############################################################
+				When adding a new abuse_type you also have to add it
+				in the database. 
+				Table:	Abuse
+				Column: abuse_Type
+		 ############################################################### */
 
 	$abuse_headers['forum_post'] = 'Anmäl ett inlägg i forumet';
 	$abuse_info['forum_post'] = '<b>Trådar låses bara om de spårat ur!</b>';
