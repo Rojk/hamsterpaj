@@ -16,7 +16,7 @@
 	height: 60px;
 	list-style: none;
 	padding-left: 0;
-	margin-left: 0;
+	margin: 10px 0 10px 0;
 }
 
 #radio_menu li {
@@ -206,3 +206,37 @@
 		background-position: bottom;
 	}
 	
+.radio_crew {
+	background-image: url(http://images.hamsterpaj.net/radio/crew.png);
+	height: 159px;
+	margin-bottom: 10px;
+}
+	.radio_crew img {
+		float: left;
+		position: relative;
+		top: 30px;
+		left: 23px;
+	}
+	.radio_crew h2 {
+		position: relative;
+		top: 29px;
+		left: 60px;
+		font-size: 1.4em;
+		color: orange;
+		margin-top: 0;
+	}
+	.radio_crew p {
+		position: relative;
+		top: 28px;
+		left: 55px;
+		font-size: 1.1em;
+	}
+	.radio_crew .admin_tools {
+		position: relative;
+		font-size: 1.1em;
+		float: right;
+		margin-right: 30px;
+	}
+		.radio_crew .admin_tools a {
+			color: #fff;
+		}

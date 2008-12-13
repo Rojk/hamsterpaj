@@ -145,20 +145,22 @@
 				$options['order-by'] = 'username';
 				$options['order-direction']= 'ASC';
 				$radio_djs = radio_djs_fetch($options);
-				$out .= '<table>' . "\n";
 				foreach($radio_djs as $radio_dj)
 				{
-					$out .= '<tr>' . "\n";
-					$out .= '<td>' . $radio_dj['username'] . '</td>' . "\n";
-					$out .= '<td>' . $radio_dj['information'] . '</td>' . "\n"; // substr to fitting characters
+					$out .= '<div class="radio_crew">' . "\n";
+					//$out .= insert_avatar($radio_dj['user_id']) . "\n";
+					$out .= insert_avatar('625058') . "\n";
+					$out .= '<h2>' . $radio_dj['username'] . '</h2>' . "\n";
 					if(is_privilegied('radio_admin'))// Only administrators for the whole radio can edit/remove DJs
 					{
-						$out .= '<td><a href="#" title="Ändra DJ">Ändra</a></td>' . "\n"; // När man klickar edit ska formuläret för att lägga till sändning användas för att ändra sändningen.
-						$out .= '<td><a href="#" title="Ta bort DJ">Ta bort</a></td>' . "\n"; // Ajax, popup-accept
+						$out .= '<div class="admin_tools">' . "\n";
+						$out .= '<a href="#" title="Ändra DJ">Ändra</a> | ' . "\n"; // När man klickar edit ska formuläret för att lägga till sändning användas för att ändra sändningen.
+						$out .= '<a href="#" title="Ta bort DJ">Ta bort</a>' . "\n"; // Ajax, popup-accept
+						$out .= '</div>' . "\n";
 					}
-					$out .= '</tr>' . "\n";
+					$out .= '<p>' . $radio_dj['information'] . '</p>' . "\n"; // substr to fitting characters
+					$out .= '</div>' . "\n";
 				}
-				$out .= '</table>' . "\n";
 				if(is_privilegied('radio_admin')) // Only administrators for the whole radio can edit/add DJs
 				{
 					$ui_options['stylesheets'][] = 'forms.css'; // Includes stylesheet for form.
