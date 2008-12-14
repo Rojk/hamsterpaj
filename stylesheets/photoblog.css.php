@@ -184,9 +184,15 @@
     /*width: 600px;*/
     margin: 10px auto;
     position: relative;
-    /*background: #000;*/
+    background: #000;
     text-align: center;
+    -moz-border-radius: 4px;
+  	-webkit-border-radius: 4px;
 }
+	#photoblog_image p {
+		margin: 0;
+   	padding: 4px 0 2px 0;
+	}
 
     #photoblog_next,
     #photoblog_prev {
