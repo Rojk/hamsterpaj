@@ -231,13 +231,13 @@
 	background-position: right center;
 }
 
-#photoblog_comments,
+/*#photoblog_comments,
 #photoblog_description {
     margin: 0 auto 10px;
     border: 1px solid #ccc;
     background: #f9f9f9;
     padding: 10px;
-}
+}*/
 
     #photoblog_description h2 {
         text-align: center;
@@ -260,4 +260,69 @@
 
 	#photoblog_menu li {
 		display: inline;
+	}
+
+/* comments */
+
+#photoblog_comments {
+	
+}
+
+#photoblog_comments h3 { display: none; }
+
+#photoblog_comments form,
+#photoblog_comments form * {
+	margin: 0;
+	padding: 0;
+}
+
+#photoblog_comments form div {
+	width: 90%;
+	height: 49px;
+	margin: 10px auto;
+	background: url(http://images.hamsterpaj.net/photoblog/comment_right.png) right top no-repeat;
+}
+
+#photoblog_comments form p {
+	display: block;
+	height: 49px;
+	line-height: 36px;
+	padding-left: 7px;
+	background: url(http://images.hamsterpaj.net/photoblog/comment_left.png) left top no-repeat;
+}
+
+	#photoblog_comments form span { display: none; }
+	
+	#photoblog_comments form label input {
+		width: 80%;
+		border: none;
+	}
+	
+	#photoblog_comments form .submit {
+		border: 1px solid #c6c6c6;
+		background: #e6e6e6;
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+	}
+	
+#photoblog_comments .photoblog_comment {
+	width: 48%;
+	margin-left: 1%;
+	float: left;
+}
+
+	#photoblog_comments .photoblog_comment h4 {
+		background: #999;
+		margin: 0;
+		padding: 5px;
+		font-size: 14px;
+	}
+	
+	#photoblog_comments .photoblog_comment .comment {
+		float: left;
+	}
+	
+	#photoblog_comments .photoblog_comment .avatar {
+		float: right;
+		margin-top: -27px;
 	}

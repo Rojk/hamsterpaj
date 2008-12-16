@@ -305,8 +305,8 @@ hp.photoblog = {
 					self.image.remove();
 					self.image = img.css('zIndex', 0);
 					self.centralize_prevnext();
-					self.imageContainer.height('auto');
-				});
+					self.image.parent().height('auto');
+				}, self.image.parent());
 				/*self.image.fadeOut(function() {
 					self.image.attr('src', src).fadeIn();
 					self.centralize_prevnext();
@@ -383,10 +383,11 @@ jQuery.fn.extend({
 		return width;
 	},
 	
-	fadeInOnAnother: function(theOther, callback) {
+	fadeInOnAnother: function(theOther, callback, a_parent) {
 		var t = $(this).css({position: 'relative', zIndex: 1});
 		var h = Math.max(t.height(), theOther.height());
-		t.parent().height(h);
+		var parent = a_parent || t.parent();
+		parent.animate({'height': h + 2});
 		var p = theOther.position();
 		theOther.css({
 			position: 'absolute',

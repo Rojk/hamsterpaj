@@ -313,6 +313,31 @@
 				$out .= '</div>';
 				$out .= '<div id="photoblog_comments">';
 					$out .= '<h3>Kommentarer</h3>';
+					$out .= '
+						<form action="#" method="post">
+							<div>
+								<p><label><span>Kommentar:</span> <input type="text" value="Kommentar..." name="comment" /></label> <input class="submit" type="submit" value="Skicka" /></p>
+							</div>
+						</form>
+						
+						<div id="photoblog_comments_container">
+							<div class="photoblog_comment">
+								<h4><a href="#">iPhone (P16)</a></h4>
+								<p class="comment">Lorem ipsum dolar sit amet.</p>
+								<p class="avatar"><a href="#"><img src="http://images.hamsterpaj.net/images/users/thumb/557316.jpg" alt="iPhone" /></a></p>
+							</div>
+							<div class="photoblog_comment">
+								<h4><a href="#">iPhone (P16)</a></h4>
+								<p class="comment">Lorem ipsum dolar sit amet.</p>
+								<p class="avatar"><a href="#"><img src="http://images.hamsterpaj.net/images/users/thumb/557316.jpg" alt="iPhone" /></a></p>
+							</div>
+							<div class="photoblog_comment">
+								<h4><a href="#">iPhone (P16)</a></h4>
+								<p class="comment">Lorem ipsum dolar sit amet.</p>
+								<p class="avatar"><a href="#"><img src="http://images.hamsterpaj.net/images/users/thumb/557316.jpg" alt="iPhone" /></a></p>
+							</div>
+						</div>
+					';
 				$out .= '</div>';
 			break;
 		}
