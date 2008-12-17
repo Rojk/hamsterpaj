@@ -385,7 +385,6 @@ h2 {
 		color: #717171;
 		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
-		behavior: url('/border-radius.htc');
 		background: #fff;
 	}
 		/* iefix */
@@ -516,7 +515,6 @@ h2 {
 	border: 1px solid #c7c7c7;
 	background: #f9f9f9;
 	-moz-border-radius: 5px;
-	behavior: url('/border-radius.htc');
 	-webkit-border-radius: 5px;
 	width: 300px;
 	position: absolute;
