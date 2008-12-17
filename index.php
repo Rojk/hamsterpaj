@@ -12,6 +12,7 @@
 	$ui_options['adtoma_category'] = 'start';
 
 	// Added by Joel (backup found cached on google ^^)
+/*
 	$ui_options['xxl'] = '<div><div style="margin: 10px;">
 	<h1 style="font-size: 42px; font-family: verdana, arial;""><a href="http://www.icloud.com/hamsterpaj/" style="text-decoration: underline;">Testa icloud - vinn en ASUS Eee PC! &raquo;</a></h1>
 	
@@ -34,7 +35,7 @@
 	<h1 style="font-family: verdana, arial; background: black; margin: -10px; margin-bottom: 10px; margin-top: 0px; text-style: italic; font-size: 35px; font-weight: bold; padding: 10px;"><a style="color: white;" href="http://www.icloud.com/hamsterpaj/">Kolla in <b style="color:black;background-color:#ffff66">Hamsterpaj</b>-grundarens nya jobb &raquo;</a></h1>	
 	</div>
 		</div>';
-
+*/
 
 	$fp_modules = cache_load('fp_module_order');
 	
