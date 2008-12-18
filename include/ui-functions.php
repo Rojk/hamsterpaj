@@ -51,15 +51,15 @@
 		$return.= '>' . "\n";
 		$return.= '<div class="droptitle" onclick="collapse_expand(\'' . $rand . '\');">' . "\n";
 	  	$return.= '<h2 style="margin-top: 0;">' . $title . '</h2>' . "\n";
-		$return.= '<img class="dropimage" id="dropbox_image_' . $rand . '" src="/images/';
-		if (isset($expanded)) {
-			$return.= 'collapse';
-		}
-		else
-			{
-			$return.= 'expand';
-		}
-		$return.= '.png" alt="" />' . "\n";
+//		$return.= '<img class="dropimage" id="dropbox_image_' . $rand . '" src="http://images.hamsterpaj.net/famfamfam_icons/bullet_toggle_';
+//		if (isset($expanded)) {
+//			$return.= 'minus';
+//		}
+//		else
+//			{
+//			$return.= 'plus';
+//		}
+//		$return.= '.png" alt="" />' . "\n";
 		$return.= '</div>' . "\n";
 		$return.= '<div id="dropbox_' . $rand . '"';
 		if (!isset($expanded))
