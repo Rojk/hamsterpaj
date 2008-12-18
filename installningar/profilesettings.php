@@ -19,7 +19,7 @@
 	$ui_options['stylesheets'][] = 'profile_presentation_change.css';
 	$ui_options['stylesheets'][] = 'photos.css';
 	$ui_options['stylesheets'][] = 'rounded_corners_tabs.css';
-	$ui_options['stylesheets'][] = 'flags_customize.css';
+	//$ui_options['stylesheets'][] = 'flags-customize.css';
 	
 	$ui_options['javascripts'][] = 'profile.js';
 	$ui_options['javascripts'][] = 'flags-customize.js';

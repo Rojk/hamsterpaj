@@ -14,7 +14,6 @@
 
 <!-- Load stylesheets, version is timestamp of last file modification. Current timestamp is: 1203276417 -->
 <style type="text/css">
-@import url('/stylesheets/ui.css.johan.php?version=1203098768');
 @import url('/stylesheets/forum_post_edit.css');
 </style>
 
