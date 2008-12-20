@@ -4,7 +4,7 @@
 	{
 		$categories = photos_get_categories(array('user' => $options['user']));
 		
-		$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+		$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 		$output .= '<button id="photos_upload_form_toggle">Ladda upp bilder</button>' . "\n";
 		$output .= '<form method="post" enctype="multipart/form-data" id="photos_upload_form">' . "\n";
 		$output .= '<span class="file_upload_label">Välj fil</span>' . "\n";
@@ -35,7 +35,7 @@
 		$output .= '</ul>' . "\n";
 		$output .= '<input type="submit" value="Ladda upp" class="photo_upload_submit" />' . "\n";
 		$output .= '</form>' . "\n";
-		$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+		$output .= rounded_corners_bottom();
 		
 		return $output;
 	}
@@ -326,7 +326,7 @@
 			
 				$categories = photos_get_categories(array('user' => $photo['user']));
 				
-				$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+				$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 				$output .= '<form class="photo_edit" method="post">' . "\n";
 				$output .= '<input type="hidden" name="action" value="update" />' . "\n";
 				$output .= '<input type="hidden" name="photo_id" value="' . $photo['id'] . '" />' . "\n";
@@ -346,12 +346,12 @@
 				$output .= '<input type="hidden" name="photo_id" value="' . $photo['id'] . '" />' . "\n";
 				$output .= '<input type="submit" value="Radera" class="photo_delete" />' . "\n";
 				$output .= '</form>' . "\n";				
-				$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+				$output .= rounded_corners_bottom();
 				// KOMMENTERING FÖR ÄGAREN
-				$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+				$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 				$output .= 'Kommentera: ';
 				$output .= comments_input_draw($photo['id'], 'photos');
-				$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+				$output .= rounded_corners_bottom();
 				
 				// BILDTÄVLINGEN
 				//$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
@@ -384,10 +384,10 @@
 				}
 				
 				
-				$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+				$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 				$output .= 'Kommentera: ';
 				$output .= comments_input_draw($photo['id'], 'photos');
-				$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+				$output .= rounded_corners_bottom();
 			}
 			
 			$output .= comments_list($photo['id'], 'photos', $comment_list_options);
@@ -406,7 +406,7 @@
 			$months[date('Y-m', strtotime($data['date']))][date('j', strtotime($data['date']))] = $data['date'];
 		}
 		
-		$out .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+		$out .= rounded_corners_top(array('color' => 'blue_deluxe'));
 		$out .= '<select id="photos_date_scroller_dropdown">'  . "\n";
 		foreach(array_keys($months) AS $month)
 		{
@@ -443,7 +443,7 @@
 		}
 		$out .= '</div>' . "\n";
 		
-		$out .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+		$out .= rounded_corners_bottom();
 		
 		return $out;
 	}

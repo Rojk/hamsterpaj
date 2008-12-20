@@ -51,9 +51,9 @@
 			}
 			if($display_successful_message)
 			{
-				$upload_form .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+				$upload_form .= rounded_corners_top(array('color' => 'blue_deluxe'));
 				$upload_form .= 'Bilderna är uppladdade!';
-				$upload_form .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+				$upload_form .= rounded_corners_bottom();
 			}
 			$upload_form .= photos_upload_form(array('user' => 2348));
 	}

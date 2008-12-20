@@ -57,7 +57,7 @@ echo '<span class="rubrik">Testmiljö för profilteman BETA,</span><br />';
 
 if (!file_exists(IMAGE_PATH."profile_bg_candidates/".$uid.".png"))
 {
-$output .= rounded_corners_top(array('color' => 'orange_deluxe'), true);
+$output .= rounded_corners_top(array('color' => 'orange_deluxe'));
 
 $output .= '
 <div class="imgdiv">
@@ -67,7 +67,7 @@ $output .= '
 <b>OBS!!! Man kan bara ha ett profiltema uppe i taget</b>
 </div>';
 
-$output .= rounded_corners_bottom(array('color' => 'orange_deluxe'), true);
+$output .= rounded_corners_bottom();
 }
 if ($ul > 0)
 {
@@ -75,11 +75,11 @@ if ($ul > 0)
 	{
 		
 		
-		$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+		$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 		$output .= '
 		<b>När du tycker att du är färdig med ditt tema så kan du skicka in det för validering och bedömning.</b><br />
 		<a href="/profilteman/ptsubmit.php">Skicka in ditt tema.</a>';
-		$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+		$output .= rounded_corners_bottom();
 		
 $out .= '
 <div class="profile_head">
@@ -172,9 +172,9 @@ echo $output;
 }
 if (is_privilegied('profile_theme_admin'))
 {
-	$output = rounded_corners_top(array('color' => 'blue_deluxe'), true);
+	$output = rounded_corners_top(array('color' => 'blue_deluxe'));
 	$output .= '<a href="/profilteman/ptadmin.php">Till administratörssidan.</a>';
-	$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+	$output .= rounded_corners_bottom();
 	echo $output;
 }
 ui_bottom();

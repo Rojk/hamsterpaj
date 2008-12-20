@@ -101,11 +101,11 @@
 		$photos = photos_fetch(array('date' =>  $data['date'], 'user' => $user_id));
 		if(isset($photos))
 		{
-			$entry .= rounded_corners_top(array(), true);
+			$entry .= rounded_corners_top();
 			$entry .= '<h2 style="margin-top: 0;">Foton från samma datum</h2>' . "\n";
 			$entry .= photos_list_mini($photos);
 			$entry .= '<div style="clear: both;"></div>' . "\n";
-			$entry .= rounded_corners_bottom(array(), true);
+			$entry .= rounded_corners_bottom();
 		}
 		
 		$entry .= '<p>' . nl2br($data['text']) . '</p>' . "\n";
@@ -116,10 +116,10 @@
 		}
 		
 		// Comments
-		$entry .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+		$entry .= rounded_corners_top(array('color' => 'blue_deluxe'));
 		$entry .= comments_input_draw($data['id'], 'blog');
 		$entry .= '<div style="clear: both;"></div>' . "\n";
-		$entry .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+		$entry .= rounded_corners_bottom(array('color' => 'blue_deluxe'));
 		$entry .= comments_list($data['id'], 'blog');
 	}
 	
@@ -138,7 +138,7 @@
 		}
 	}
 	
-	$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+	$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 	$output .= '<select id="diary_date_selector">' . "\n";
 	$i = 0;
 	foreach($months AS $ymd => $month)
@@ -173,7 +173,7 @@
 	}
 	$output .= '</div>' . "\n";
 	
-	$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+	$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'));
 	
 
 	if($_SESSION['login']['id'] == $user_id)

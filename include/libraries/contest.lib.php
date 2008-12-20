@@ -16,7 +16,7 @@ function echo_sysop_images($params)
 	{
 		$out .= '<h1>Våra soeta Sysops</h1>';
 		$out .= '<div id="sysops" class="sysops">';
-		$out .= rounded_corners_top(array("color" => "blue_deluxe"), true);
+		$out .= rounded_corners_top(array("color" => "blue_deluxe"));
 		$out .= '<ul class="rita_img">';
 	
 		$query = 'SELECT `id`, `username` FROM login WHERE `userlevel` = \'5\' LIMIT 20';

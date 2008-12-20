@@ -61,7 +61,7 @@
 				$out_on_top .= '<a href="/admin/privilegies_admin.php">&laquo;Tillbaka</a>';
 				$output .= '<h2>' . $username . ' (user id #' . $user_id . ')</h2>' . "\n";
 				
-				$output .= rounded_corners_top(array('color' => 'blue_delux', 'return' => true));
+				$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 				
 				$output .= '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?action=change_privilegies">' . "\n";
 				$output .= '<input type="hidden" name="user_id" value="' . $user_id . '" />' . "\n";
@@ -89,11 +89,11 @@
 				$output .= '</form>' . "\n";
 				
 				
-				$output .= rounded_corners_bottom(array('color' => 'blue_delux', 'return' => true));
+				$output .= rounded_corners_bottom();
 
 
 
-				$output .= rounded_corners_top(array('color' => 'blue_delux', 'return' => true));
+				$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 
 				$output .= '<form action="' . $_SERVER['PHP_SELF'] . '?action=add_privilegie" method="post">' . "\n";
 				$output .= '<input type="hidden" name="user_id" value="' . $user_id . '" />' . "\n";
@@ -111,13 +111,13 @@
 				
 				$output .= '</form>' . "\n";
 				
-				$output .= rounded_corners_bottom(array('color' => 'blue_delux', 'return' => true));
+				$output .= rounded_corners_bottom();
 			}
 			else
 			{
-				$output .= rounded_corners_top(array('color' => 'blue_delux', 'return' => true));
+				$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 				$output .= 'Kunde inte hitta användaren.';
-				$output .= rounded_corners_bottom(array('color' => 'blue_delux', 'return' => true));
+				$output .= rounded_corners_bottom();
 			}
 						
 		break;
@@ -172,7 +172,7 @@
 		case 'view_users_by_privilegie':
 
 			$output .= '<h2>Listar användare med privilegien ' . $_GET['privilegie'] . '</h2>' . "\n";
-			$output .= rounded_corners_top(array('color' => 'blue_delux', 'return' => true));
+			$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 
 			if(in_array($_GET['privilegie'], $available_privilegies))
 			{
@@ -200,7 +200,7 @@
 				$output .= 'Den privilegien hittade vi tyvärr inte!' . "\n";
 			}
 			
-			$output .= rounded_corners_bottom(array('color' => 'blue_delux', 'return' => true));
+			$output .= rounded_corners_bottom();
 			
 		break;
 		
@@ -275,13 +275,13 @@ skickas med till is_privilegied() så kommer man alltså få tillbaka true om an
 		// Index page...
 		default:
 		
-			$output .= rounded_corners_top(array('color' => 'red', 'return' => true));
+			$output .= rounded_corners_top(array('color' => 'red'));
 			$output .= '<strong>Pilla inte på det nya privilegiesystemet innan du pratat med Joel. Under tiden kan du läsa <a href="?action=document">det här dokümentet</a>!</strong>';
-			$output .= rounded_corners_bottom(array('color' => 'red', 'return' => true));
+			$output .= rounded_corners_bottom();
 
 		
 			$output .= '<h2>Ladda användare...</h2>' . "\n";
-			$output .= rounded_corners_top(array('color' => 'blue_deluxe', 'return' => true));
+			$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 		
 			$output .= '<form action="' . $_SERVER['PHP_SELF'] . '" method="get">' . "\n";
 			$output .= '<input type="hidden" name="action" value="load_user" />' . "\n";
@@ -289,12 +289,12 @@ skickas med till is_privilegied() så kommer man alltså få tillbaka true om an
 			$output .= '<input type="submit" value="Ladda användare..." class="button_140" />' . "\n";
 			$output .= '</form>' . "\n";
 			
-			$output .= rounded_corners_bottom(array('color' => 'blue_deluxe', 'return' => true));
+			$output .= rounded_corners_bottom();
 			
 			
 			
 			$output .= '<h2>Lista användare med en viss privilegie</h2>' . "\n";
-			$output .= rounded_corners_top(array('color' => 'blue_delux', 'return' => true));
+			$output .= rounded_corners_top(array('color' => 'blue_delux'));
 
 			$output .= '<ul>' . "\n";
 			foreach($available_privilegies AS $privilegie)
@@ -303,7 +303,7 @@ skickas med till is_privilegied() så kommer man alltså få tillbaka true om an
 			}
 			$output .= '</ul>' . "\n";
 
-			$output .= rounded_corners_bottom(array('color' => 'blue_delux', 'return' => true));
+			$output .= rounded_corners_bottom();
 
 		break;
 	}

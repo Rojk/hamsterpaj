@@ -112,7 +112,7 @@
 			jscript_location('ascii_art.php');
 		}
 		
-		rounded_corners_top(array('color' => 'white'));
+		echo rounded_corners_top(array('color' => 'white'));
 		?>
 		<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 			<input type="text" name="title" /> (titel)<br />
@@ -120,7 +120,7 @@
 			<input type="submit" value="Skapa" class="button_80" />
 		</form>
 		<?php
-		rounded_corners_bottom(array('color' => 'white'));
+		echo rounded_corners_bottom());
 	}
 	
 	ui_bottom();

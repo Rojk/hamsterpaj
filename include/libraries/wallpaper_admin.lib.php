@@ -294,7 +294,7 @@ function wallpapers_admin_wallpapers_verify_list()
 		while($data = mysql_fetch_assoc($result))
 		{
 			$out .= "\t".'<li id="li_'.$data['id'].'">';
-			$out .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+			$out .= rounded_corners_top(array('color' => 'blue_deluxe'));
 			$out .= '<br style="clear:both" />';
 			$out .= '<h3 id="head_'.$data['id'].'" style="font-weight: bold;"><img src="'.IMAGE_URL.'/loading_icons/ajax-loader1.gif" alt="Laddar..." id="ajax_icon_'.$data['id'].'" style="display:none;" />'."\n";
 			$out .= '<a href="#" class="box_link" id="link_'.$data['id'].'"><img src="'.IMAGE_URL.'plus.gif" alt="Expandera/Kollapsa" id="image_'.$data['id'].'" /> '.$data['title'].'</a><span style="color:#aaa"> - '.fix_time($data['timestamp']).' - '.$data['username'].'</span>'."\n";
@@ -304,7 +304,7 @@ function wallpapers_admin_wallpapers_verify_list()
 			$out .= '</div>';
 
 			$out .= '<br style="clear:both" />';
-			$out .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+			$out .= rounded_corners_bottom();
 			$out .= '</li>'."\n";
 		}
 		$out .= '</ul>'."\n";

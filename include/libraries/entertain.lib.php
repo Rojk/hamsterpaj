@@ -321,7 +321,7 @@ function entertain_list($items, $options)
 			case 'full':
 				foreach($items as $item)
 				{
-					$output .= rounded_corners_top(array('return' => true));
+					$output .= rounded_corners_top();
 					$output .= '<div class="entertain_full" id="entertain_full_' . $item['handle'] . '" >' . "\n";
 					if(!strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 6.0'))
 					{
@@ -354,7 +354,7 @@ function entertain_list($items, $options)
 					$output .= '</div>' . "\n"; // end statistics
 					$output .= '</div>' . "\n"; // end entertain_full
 					$output .= '<br style="clear: both;">' . "\n";
-					$output .= rounded_corners_bottom(array('return' => true));
+					$output .= rounded_corners_bottom();
 				}
 			break;
 			case 'half':

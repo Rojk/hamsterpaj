@@ -18,7 +18,6 @@
 		while($data = mysql_fetch_assoc($result))
 		{
 			$out .= '<div id="abuse_report_' . $data['id'] . '">';
-			$options['return'] = true;
 			$options['color'] = 'blue_deluxe';
 			$out .= rounded_corners_top($options);
 			switch($data['report_type'])
@@ -49,7 +48,7 @@
 					break;
 			}
 			$out .= '<p style="margin-bottom: 0px;"><a style="cursor:pointer" onclick="handleReport(' . $data['id'] . ')">Hantera denna rapport</a></p>' . "\n";
-			$out .= rounded_corners_bottom($options);
+			$out .= rounded_corners_bottom();
 			$out .= '</div>';
 		}
 		$out .= '</div>' . "\n";

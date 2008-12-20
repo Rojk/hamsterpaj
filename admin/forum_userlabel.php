@@ -9,7 +9,7 @@
 	}
 	
 	$out .= '<h1>Ändra forumsstatus</h1> <br style="clear: both;" />';
-	$out .= rounded_corners_top(array(), true);
+	$out .= rounded_corners_top();
 	$out .= '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?action=view">' . "\n";
 	$out .= '<br /><h2> Användarnamn</h2><input type="text" name="username" />' . "\n";
 	$out .= '<input type="submit" value="Visa" class="button_60" />';
@@ -79,7 +79,7 @@
 		$out .= 'Ändrat';
 	}
 	
-	$out .= rounded_corners_bottom(array(), true);
+	$out .= rounded_corners_bottom();
 	
 	ui_top($ui_options);
 	echo $out;

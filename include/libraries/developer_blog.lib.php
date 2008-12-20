@@ -22,10 +22,10 @@ function render_entries($entries, $options)
 		$content .= message_bottom();
 		if ($options['enable_comments'] == true)
 		{
-			$content .= rounded_corners_top(array('color' => 'blue'), true);
+			$content .= rounded_corners_top();
 			$content .= '<label>Kommentera:</label>' . "\n";
 			$content .= comments_input_draw($entry['id'], 'developer_blog');
-			$content .= rounded_corners_bottom(array('color' => 'blue'), true);
+			$content .= rounded_corners_bottom();
 			$content .= '<div style="clear: both;"></div>' . "\n";
 			$content .= comments_list($entry['id'], 'developer_blog');
 		}

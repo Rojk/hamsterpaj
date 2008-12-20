@@ -637,7 +637,7 @@ function ui_module_render($options)
 
 
 
-	function rounded_corners_top($options, $return = false)
+	function rounded_corners_top($options)
 	{
 		global $ROUNDED_CORNERS;
 		
@@ -650,33 +650,15 @@ function ui_module_render($options)
 		$id = (isset($options['id'])) ? ' id="' . $options['id'] . '"': '';
 		$content_id = (isset($options['id'])) ? ' id="' . $options['id'] . '_content"': '';
 		
-		$output .= "\n\n";
-		if(!isset($options['new_layout_beta']))
-		{		
-			$output .= '<!-- Rounded corners div. Color: ' . $color . ', dimension: ' . $dimension . '-->' . "\n";
-			$output .= '<div class="rounded_corners"' . $style . $id .'>' . "\n";
-			$output .= '<img src="' . IMAGE_URL . 'css_backgrounds/rounded_corners/' . $options['color'] . '_' . $options['dimension'] . '_top.png"  class="rounded_corners_top_image" />' . "\n";
-			$output .= '<div class="rounded_corners_' . $options['color'] . '_' . $options['dimension'] . '"' . $content_id . '>' . "\n";
-		}
-		else
-		{
-			$output .= '<div class="rounded_corners_beta_' . $options['color'] . '"' . $style . $id . '>';
-			$output .= '<div class="top">' . "\n";
-			$output .= '<div class="content">' . "\n";
-		}
+		$output .= '<div class="rounded_corners_' . $options['color'] . '_' . $options['dimension'] . ' rounded_corners"' . $style . $id . '>';
+		$output .= '<div class="top">' . "\n";
+		$output .= '<div class="bottom">' . "\n";
+		$output .= '<div class="content">' . "\n";
 		
-		
-		if($return || $options['return'])
-		{
-			return $output;
-		}
-		else
-		{
-			echo $output;
-		}
+		return $output;
 	}
 	
-	function rounded_corners_bottom($options, $return = false)
+	function rounded_corners_bottom($options)
 	{
 		global $ROUNDED_CORNERS;
 		
@@ -689,43 +671,21 @@ function ui_module_render($options)
 		$options['color'] = (in_array($options['color'], $ROUNDED_CORNERS['colors'])) ? $options['color'] : 'blue';
 		$options['dimension'] = (in_array($options['dimension'], $ROUNDED_CORNERS['dimensions'])) ? $options['dimension'] : 'full';
 
-		if(!isset($options['new_layout_beta']))		
-		{
-			$output .= '</div>' . "\n";
-			$output .= '<img src="' . IMAGE_URL . 'css_backgrounds/rounded_corners/' . $options['color'] . '_' . $options['dimension'] . '_bottom.png" class="rounded_corners_bottom_image"/>' . "\n";
-			$output .= '</div>' . "\n\n";
-		}
-		else
-		{
-			$output .= "\n";
-			$output .= '</div>' . "\n";
-			$output .= '</div>' . "\n";
-			$output .= '</div>' . "\n";
-		}
+		$output .= "\n";
+		$output .= '</div>' . "\n";
+		$output .= '</div>' . "\n";
+		$output .= '</div>' . "\n";
+		$output .= '</div>' . "\n";
 		
-		if($return || $options['return'])
-		{
 			return $output;
-		}
-		else
-		{
-			echo $output;
-		}
 	}
 
-	function rounded_corners($content, $options, $do_return)
+	function rounded_corners($content, $options)
 	{
-		$return .= rounded_corners_top($options, $do_return);
+		$return .= rounded_corners_top($options);
 		$return .= $content;
-		$return .= rounded_corners_bottom($options, $do_return);
-		if($do_return)
-		{
-			return $return;
-		}
-		else
-		{
-			echo $return;
-		}
+		$return .= rounded_corners_bottom($options);
+		return $return;
 	}
 	
 	function rounded_corners_tabs_top($options, $return = false)

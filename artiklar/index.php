@@ -50,48 +50,48 @@
 				// Use of privilegies. Which I don't know anything about. ---------------------------------------------------------------
 				if(!is_privilegied('articles_admin'))
 				{
-					$out .= rounded_corners_top(array('color' => 'red'), true);
+					$out .= rounded_corners_top(array('color' => 'red'));
 					$out .= '<h1>Den här delen är endast till för de med privilegier till artikelsystemet</h1>' . "\n";
 					$out .= '<a href="?action=list"><< Gå till listan över artiklar</a>' . "\n";
-					$out .= rounded_corners_bottom(array('color' => 'red'), true);
+					$out .= rounded_corners_bottom();
 					break;
 				}
 				if($_GET['article'] == 'create')
 				{
 					$out .= '<h1>Skapa artikel</h1>' . "\n";
-					$out .= rounded_corners_top(array('color' => 'blue'), true);
+					$out .= rounded_corners_top();
 					$out .= article_form($_POST);
-					$out .= rounded_corners_bottom(array('color' => 'blue'), true);
+					$out .= rounded_corners_bottom();
 					$out .= '<a href="?action=admin"><< Gå till administrationsindex</a>' . "\n";
 					break;
 				}
 				if($_GET['article'] == 'edit' && isset($_GET['id']))
 				{
 					$out .= '<h1>Ändra artikel</h1>' . "\n";
-					$out .= rounded_corners_top(array('color' => 'blue'), true);
+					$out .= rounded_corners_top();
 					$article = articles_fetch(array('id' => $_GET['id'], 'show' => 'all'));
 					$out .= article_form($article);
-					$out .= rounded_corners_bottom(array('color' => 'blue'), true);
+					$out .= rounded_corners_bottom();
 					$out .= '<a href="?action=admin"><< Gå till administrationsindex</a>' . "\n";
 					break;
 				}
 				
 				$out .= render_article_admin($_SESSION['login']['id']);
 				
-				$out .= rounded_corners_top(array(), true);
+				$out .= rounded_corners_top();
 				$out .= '<strong>Om du vill att kategorierna ska dyka upp i menyn så måste det fixas i config filen</strong>' . "\n";
 				$out .= '<form action="?action=admin&category=create" method="post">' . "\n";
 				$out .= '<input type="text" name="category_name" maxlength="20">' . "\n";
 				$out .= '<input type="submit" class="button_100" value="Skapa kategori" />' . "\n";
 				$out .= '</form>' . "\n";
-				$out .= rounded_corners_bottom(array(), true);
+				$out .= rounded_corners_bottom();
 				
-				$out .= rounded_corners_top(array(), true);
+				$out .= rounded_corners_top();
 				$out .= '<form action="?action=admin&article=create" method="post">' . "\n";
 				$out .= '<input type="text" name="title" maxlength="100">' . "\n";
 				$out .= '<input type="submit" class="button_100" value="Skapa artikel" />' . "\n";
 				$out .= '</form>' . "\n";
-				$out .= rounded_corners_bottom(array(), true);
+				$out .= rounded_corners_bottom();
 			break;
 		case 'show': //If the user wish to see only one article
 			$article = articles_fetch(array('id' => $_GET['id']));
@@ -115,9 +115,9 @@
 		
 		default:
 			$ui_options['menu_path'] = array('artiklar', 'start');
-			$out .= rounded_corners_top(array('color' => 'orange'), true);
+			$out .= rounded_corners_top(array('color' => 'orange'));
 			$out .= '<h1>I artikelarkivet kan man hitta en massa roliga artiklar</h1>' . "\n";
-			$out .= rounded_corners_bottom(array('color' => 'orange'), true);
+			$out .= rounded_corners_bottom(array('color' => 'orange'));
 			
 			$articles = articles_fetch();
 			$out .= articles_list($articles);

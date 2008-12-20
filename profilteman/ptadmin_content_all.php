@@ -8,7 +8,7 @@
 		}
 	array_multisort($files);
 	$many = count($files);
-	$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+	$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 	$output .= '<form name="form" action="/profilteman/ptadmin.php?showall=yes" method="post">
 	<select name="view" onchange="this.form.submit()">
 	<option value="V&auml;lj anv&auml;ndare">V&auml;lj anv&auml;ndare</option>';
@@ -43,7 +43,7 @@
 	
 
 
-$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+$output .= rounded_corners_bottom();
 	
 	
 	if (isset($_POST["view"]))
@@ -100,10 +100,10 @@ $output .= '<div class="profile_head">
 Bildadress: <a href="'.$imgadress.'">'.$imgadress.'</a><br />
 Stilmallsadress: <a href="'.$styleadress.'">'.$styleadress.'</a>';
 }
-$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 $output .= '<a href="/profilteman/ptadmin.php">G&aring; till inskickade teman</a>';
-$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
-$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+$output .= rounded_corners_bottom();
+$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 $output .= '<a href="/profilteman">G&aring; till huvudsidan</a>';
-$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+$output .= rounded_corners_bottom();
 ?>

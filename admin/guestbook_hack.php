@@ -100,7 +100,7 @@
 	}
 	else
 	{
-		$out .= rounded_corners_top($void, true);
+		$out .= rounded_corners_top($void);
 		$out .= '<h2>Hacka GB! (OBS! integritetskränkande)</h2>' . "\n";
 		$out .= '<p>Det GÅR att skriva in EN användare i "ID 1"-fältet, 
 		men det kan bli en ganska tung process om det är något spamtroll.</p><p>
@@ -114,7 +114,7 @@
 		$out .= '<input type="text" name="unit_2" />' . "\n";
 		$out .= '<input type="submit" value="FRA!" class="button_60" />' . "\n";
 		$out .= '</form>' . "\n";
-		$out .= rounded_corners_bottom($void, true);
+		$out .= rounded_corners_bottom($void);
 	}
 	
 	echo $out;

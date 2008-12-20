@@ -196,7 +196,7 @@ VD<br />
 			$data = mysql_fetch_assoc($result);
 			$out .= '
 				<h1>Tack för din beställning!</h1>
-				' . rounded_corners_top(array('color' => 'green'), true) . '
+				' . rounded_corners_top(array('color' => 'green')) . '
 				<h2 style="margin-top: 0;">För att bekräfta betalning</h2>
 				<p><strong>För att bekräfta din betalning</strong> så sätter du in <strong>200 SEK</strong> på <strong>bankgiro 5801-5025</strong> med kommentaren
 				<strong>' . $data['order_hash'] . '</strong>
@@ -204,7 +204,7 @@ VD<br />
 				<p style="margin-bottom: 0;">
 					Din tröja bör efter att du satt in pengarna plumsa ner i din brevlåda om cirka 2-5 arbetsdagar.
 				</p>
-				' . rounded_corners_bottom(array('color' => 'green'), true) . '
+				' . rounded_corners_bottom() . '
 			';
 		}
 		else

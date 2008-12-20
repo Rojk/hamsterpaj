@@ -232,9 +232,9 @@
 		HÄR SLUTAR FUNKTIONERNA OCH KODEN SOM KÖRS DIREKT BÖRJAR HÄR!
 	*/
 	
-	rounded_corners_top(array('color' => 'orange'));
+	echo rounded_corners_top(array('color' => 'orange'));
 	echo '.<h1>Eyy, detta är gamla klotterplanket...</h1>...gå till <a href="http://www.hamsterpaj.net/traffa/klotterplanket.php">det nya klotterplanket</a> istället!';
-	rounded_corners_bottom(array('color' => 'orange'));
+	echo rounded_corners_bottom(array('color' => 'orange'));
 	
 	if (isset($_GET['reload']) && $_GET['reload']!="0") {
 		if ($_GET['reload']!="10" && $_GET['reload']!="30" && $_GET['reload']!="60") { echo 'ogiltigt'; die; }

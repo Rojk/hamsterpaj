@@ -20,7 +20,7 @@
 	else
 	{
 		$data = mysql_fetch_assoc($result);
-		rounded_corners_top(array('color' => 'orange_deluxe'));
+		echo rounded_corners_top(array('color' => 'orange_deluxe'));
 		$swf_url = 'http://hamsterpaj.net/xspf/xspf_player_slim.swf?playlist_url=/mattan/music_guess_playlists/latest.xml.php&player_title=nyaste+gissa+laten';
 		$swf_w = '500';
 		$swf_h = '15';
@@ -45,7 +45,7 @@
 			</object>';
 		
 		echo '<a href="http://images.hamsterpaj.net/music_guess_mp3/' . $data['secret_id']. '.mp3"><button class="button_50">MP3-fil</button></a>' . "\n";
-		rounded_corners_bottom(array('color' => 'orange_deluxe'));
+		echo rounded_corners_bottom();
 		
 		if(login_checklogin())
 		{

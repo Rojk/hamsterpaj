@@ -88,9 +88,9 @@
 
 		if(isset($options['error_message']) && $options['error_message'] == 0)
 		{
-			rounded_corners_top(array('color' => 'orange'));
+			echo rounded_corners_top(array('color' => 'orange'));
 				echo 'Fel: ' . $options['error_message'];
-			rounded_corners_bottom(array('color' => 'orange'));
+			echo rounded_corners_bottom(array('color' => 'orange'));
 		}
 		
 		echo '<p>';
@@ -114,7 +114,7 @@
 		{
 			
 			
-			rounded_corners_top();
+			echo rounded_corners_top();
 			
 			echo '<br />';
 			echo '<a href="/tests/' . $data['handle'] . '.html" class="tests_index_latest_link">' . $data['title'] . '</a><br />' . "\n";
@@ -124,7 +124,7 @@
 			
 			echo '<br /><br />';
 			
-			rounded_corners_bottom();
+			echo rounded_corners_bottom();
 		}
 		
 		echo '</p>';	
@@ -137,15 +137,15 @@
 		$ui_options['stylesheets'][] = 'tests.css';
 		ui_top($ui_options);
 		
-		rounded_corners_top(array('color' => 'green'));
+		echo rounded_corners_top(array('color' => 'green'));
 		echo 'Du kan också <a href="/tests/index.php">gå till testernas förstasida</a>.';
-		rounded_corners_bottom(array('color' => 'green'));
+		echo rounded_corners_bottom(array('color' => 'green'));
 		
 		if(login_checklogin())
 		{
 			//echo 'Running tests_create_test()...' . serialize(array(array('A 1', 1), array('A 2', 2), array('A 3', 3)));
 			echo '<h2>Skapa test</h2>' . "\n";
-			rounded_corners_top(array('color' => 'white'));
+			echo rounded_corners_top(array('color' => 'white'));
 	
 			echo '<div id="tests_create_title_label_holder"><label for="tests_create_title" id="tests_create_title_label">Namn:</label></div>';
 			echo '<input type="text" id="tests_create_title" maxlength="80" />' . "\n";
@@ -157,7 +157,7 @@
 			
 			echo '<br style="clear: both" />';
 	
-			rounded_corners_bottom(array('color' => 'white'));
+			echo rounded_corners_bottom(array('color' => 'white'));
 
 			echo '<div id="tests_create_actions">&nbsp;</div><br />' . "\n";
 			echo '<button id="tests_create_add_question" class="button_110">Lägg till fråga...</button><br />' . "\n";
@@ -165,12 +165,12 @@
 		
 		echo '<br /><br />';
 			
-		rounded_corners_top();
+		echo rounded_corners_top();
 		echo '<br /><h2>Hur fungrar det här nu då?</h2>';
 		echo 'Börja med att lägga till en fråga genom att trycka på [Lägg till fråga...]-knappen. Det bör dyka upp en ruta. I den kan man sedan fylla i en fråga och ett antal svar. Med <button class="button_20">X</button>-knapparna tar du bort frågor eller svar.<br /><br />';
 		echo 'Efter det är det dags att välja om man skall kunna svara med ett (<input type="radio" />) eller flera (<input type="checkbox" />) svar.<br />';
 		echo 'Till sist skall du poängsätta dina svar. Om en person sedan väljer ett svar med 5 poäng, läggs 5 poäng på till slutpoängen personen får när han/hon gjort testet.<br /><br />';
-		rounded_corners_bottom();
+		echo rounded_corners_bottom();
 			
 		}
 		else
@@ -344,19 +344,19 @@
 		global $ui_options;
 		ui_top($ui_options);
 		
-		rounded_corners_top(array('color' => 'green'));
+		echo rounded_corners_top(array('color' => 'green'));
 		echo 'Du kan också <a href="/tests/index.php">gå till testernas förstasida</a> eller <a href="/tests/create.html">skapa ett eget test</a>.';
-		rounded_corners_bottom(array('color' => 'green'));
+		echo rounded_corners_bottom(array('color' => 'green'));
 		
 		echo '<h1>Gör test</h1>';
 		
 		
-		rounded_corners_top(array('color' => 'blue'));
+		echo rounded_corners_top(array('color' => 'blue'));
 			echo 'Namn: ' . $test_info['title'] . "<br />\n";
 			echo 'Skapare: <a href="/traffa/profile.php?id=' . $test_info['author_userid'] . '">' . $test_info['author_username'] . '</a>' . "<br />\n";
 			echo 'Länk: http://www.hamsterpaj.net/tests/' . $test_info['handle'] . '.html' . "<br />\n";
 			echo 'Beskrivinig: ' . $test_info['description'];
-		rounded_corners_bottom(array('color' => 'blue'));
+		echo rounded_corners_bottom(array('color' => 'blue'));
 		
 		echo '<form method="post" action="/tests/' . $test_info['handle'] . '/save.html" id="tests_save_answer_form">' . "\n";
 		
@@ -559,15 +559,15 @@
 			echo '</p><br /><br />' . "\n";
 			
 			echo '<h2>Folk som gjort testet</h2>';
-			rounded_corners_top();
+			echo rounded_corners_top();
 			echo tests_get_last_test_completers(array('test_id' => $test_id, 'limit' => 4));
 			echo '<br style="clear: both" />';
-			rounded_corners_bottom();
+			echo rounded_corners_bottom();
 				
-			rounded_corners_top();
+			echo rounded_corners_top();
 				echo 'Kommentera testet: ' . comments_input_draw($test_id, 'tests');
 				echo comments_list($test_id, 'tests');
-			rounded_corners_bottom();
+			echo rounded_corners_bottom();
 			
 			echo '<p>';
 			echo '<a href="/tests/">Tillbaka till testernas förstasida.</a>';
@@ -606,12 +606,12 @@
 		echo '<h1>Dina tester</h1>';
 		while($data = mysql_fetch_assoc($result))
 		{
-			rounded_corners_top();
+			echo rounded_corners_top();
 			echo '<br />';
 			echo '<a href="/tests/' . $data['handle'] . '.html" class="tests_list_my_test_link">' . $data['title'] . '</a> - <a href="/tests/' . $data['handle'] . '/list_users.html">Visa folk som gjort testet och deras poäng.</a><br />' . "\n";
 			echo 'Beskrivning: ' . $data['description'] . "\n";
 			echo '<br /><br />';
-			rounded_corners_bottom();
+			echo rounded_corners_bottom();
 		}
 	}
 	

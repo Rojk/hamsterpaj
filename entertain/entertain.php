@@ -232,15 +232,15 @@ switch($request['view'])
 		$fetch_result = entertain_fetch(array('user_id' => $_SESSION['login']['id'], 'handle' => $request['handle'], 'limit' => '1', 'entertain_type' => $request['entertain_type']));
 		$items = $fetch_result['items'];
 		$page_title = $items[$request['handle']]['title'];
-		$output .= rounded_corners_top(null, true);
+		$output .= rounded_corners_top();
 		$output .= entertain_item_draw($items[$request['handle']]);
-		$output .= rounded_corners_bottom(null, true);
+		$output .= rounded_corners_bottom();
 	
 		$options_array[0]['fetch'] = array('entertain_type' => $request['entertain_type'], 'limit' => 8, 'order' => 'random', 'min_rank' => 3.5);
 		$options_array[0]['list'] = array('headline' => 'Fler ' . $entertain_types[$request['entertain_type']]['label_plural']);
-		$output .= rounded_corners_top(null, true);
+		$output .= rounded_corners_top();
 		$output .= entertain_fetch_and_list($options_array);
-		$output .= rounded_corners_bottom(null, true);
+		$output .= rounded_corners_bottom();
 	break;
 	case 'category_list':
 		$output .= '<h1>' . $entertain_types[$request['entertain_type']]['label_capitol'] . ' - ' . $entertain_categories[$request['category_id']]['title'] . '</h1>' . "\n";
@@ -275,9 +275,9 @@ switch($request['view'])
 				$set[2]['fetch']['limit'] = '8';
 				$set[2]['list']['list_style'] = 'thumbnails';
 				$set[2]['list']['headline'] = 'Mest spelade';
-				$output .= rounded_corners_top(null, true);
+				$output .= rounded_corners_top();
 				$output .= entertain_fetch_and_list($set);
-				$output .= rounded_corners_bottom(null, true);
+				$output .= rounded_corners_bottom();
 			
 				break;
 			case 'software':
@@ -297,9 +297,9 @@ switch($request['view'])
 				$set[1]['list']['list_style'] = 'thumbnails';
 				$set[1]['list']['headline'] = 'Högst poängsatta';
 
-				$output .= rounded_corners_top(null, true);
+				$output .= rounded_corners_top();
 				$output .= entertain_fetch_and_list($set);
-				$output .= rounded_corners_bottom(null, true);
+				$output .= rounded_corners_bottom();
 				break;
 			default:
 		//Todo Här skall vi ha något system för att definiera olika startsidor för olika innehållstyper
@@ -325,12 +325,12 @@ switch($request['view'])
 				$items = $fetch_result['items'];
 		//	preint_r($items);
 				$list_options['list_style'] = 'thumbnails';
-				$output .= rounded_corners_top(null, true);
+				$output .= rounded_corners_top();
 				$output .= entertain_list($items, $list_options);
-				$output .= rounded_corners_bottom(null, true);
+				$output .= rounded_corners_bottom();
 			
 				//En utvalt item med två kommentarer
-				$output .= rounded_corners_top(null, true);
+				$output .= rounded_corners_top();
 				$fetch['entertain_type'] = $request['entertain_type'];
 				$fetch['order'] = 'random';
 				$fetch['limit'] = '1';
@@ -344,7 +344,7 @@ switch($request['view'])
 				$output .= comments_list($item['id'], 'entertain', $comments_options);
 				$output .= '<br style="clear: both;" />' . "\n";
 				$output .= '</div>' . "\n";
-				$output .= rounded_corners_bottom(null, true);
+				$output .= rounded_corners_bottom();
 				
 				// Visa en slumpvald item
 				$fetch['entertain_type'] = $request['entertain_type'];

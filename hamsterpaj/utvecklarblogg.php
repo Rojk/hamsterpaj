@@ -20,7 +20,7 @@
 		else
 		{
 			$out .= '<h2>Skriv nytt inlägg i utvecklarbloggen :)</h2>';
-			$out .= rounded_corners_top($void, true);
+			$out .= rounded_corners_top();
 			$out .= '<form action="' . $_SERVER['PHP_SELF'] . '?action=insert" method="post">' . "\n";
 			$out .= '<label for="header">Rubrik</label><br />' . "\n";
 			$out .= '<input type="text" name="header" /><br />' . "\n";
@@ -30,7 +30,7 @@
 			$out .= '<input type="submit" value="Skriv" class="button_60" />' . "\n";
 			$out .= '' . "\n";
 			$out .= '</form>' . "\n";
-			$out .= rounded_corners_bottom($void, true);
+			$out .= rounded_corners_bottom();
 		}
 			
 		break;

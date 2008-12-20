@@ -52,9 +52,9 @@ if ($go)
 			{
 				$user = $innerrow["username"];
 			}
-			$output .= rounded_corners_top(array('color' => 'orange_deluxe'), true);
+			$output .= rounded_corners_top(array('color' => 'orange_deluxe'));
 			$output .= '<div class="name">'.$user.'</div><div style="margin-top: -14px; height: 14px;text-align: right; width: auto;">'.$row["status"].'</div>';
-			$output .= rounded_corners_bottom(array('color' => 'orange_deluxe'), true);
+			$output .= rounded_corners_bottom();
 			$output .= '
 <div class="profile_head">
 <div class="avatar_passepartout">
@@ -87,7 +87,7 @@ if ($go)
 </div>';
 
 			$date = getdate($row["timestamp"]);
-			$output .= rounded_corners_top(array('color' => 'orange_deluxe'), true);
+			$output .= rounded_corners_top(array('color' => 'orange_deluxe'));
 			$submit_date = $date[hours].':'.$date[minutes].' - '.$date[mday].' '.$date[month].' '.$date[year];
 			$output .= 'CSS: <a href="'.$submitadress.$row["user_id"].'.css">'.$submitadress.$row["user_id"].'.css</a><br />
 			Bild: <a href="'.$submitadress.$row["user_id"].'.png">'.$submitadress.$row["user_id"].'.png</a>
@@ -95,7 +95,7 @@ if ($go)
 			.'<a href="/profilteman/ptadmin_submits.php?theme_user_id='.$row["user_id"].'&setlvl=2">Godk&auml;nn</a>
 			<a href="/profilteman/ptadmin_submits.php?theme_user_id='.$row["user_id"].'&setlvl=1">Avb&ouml;j</a>'.
 			'</div><div style="margin-top: -14px; height: 14px;text-align: right; width: auto;">'.$submit_date.'</div>';
-			$output .= rounded_corners_bottom(array('color' => 'orange_deluxe'), true);
+			$output .= rounded_corners_bottom();
 			
 		}
 		$output .= '</div>';
@@ -103,9 +103,9 @@ if ($go)
 }
 else
 {
-	$output .= rounded_corners_top(array('color' => 'orange_deluxe'), true);
+	$output .= rounded_corners_top(array('color' => 'orange_deluxe'));
 	$output .= 'Den h&auml;r sidan &auml;r tyvv&auml;r bara tillg&auml;nglig f&ouml;r anv&auml;ndare med speciella r&auml;ttigheter, men om du vill s&aring; kan du kolla vad som h&auml;nder hos <a href="/traffa/profile.php?user_id=3">Johan</a>.';
-	$output .= rounded_corners_bottom(array('color' => 'orange_deluxe'), true);
+	$output .= rounded_corners_bottom();
 }
 
 

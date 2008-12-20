@@ -52,10 +52,10 @@ if ($ul > 0)
 		
 		if (file_exists($img_path."submits/".$uid.".png") && file_exists($img_path."submits/".$uid.".css"))
 		{
-			$output .= rounded_corners_top(array('color' => 'orange_deluxe'), true);
+			$output .= rounded_corners_top(array('color' => 'orange_deluxe'));
 			$output .= 'Allt gick fint, vi meddelar dig n&auml;r vi har tittat p&aring; ditt tema.<br />
 			<a href="/profilteman">G&aring; tillbaka.</a>';
-			$output .= rounded_corners_bottom(array('color' => 'orange_deluxe'), true);
+			$output .= rounded_corners_bottom();
 			
 			$query = "INSERT INTO `profile_bg_candidates_submits` (`user_id`, `timestamp`, `status`, `theme_name`) 
 			VALUES ('$uid', '".date("U")."', '0', '".$_POST['theme_name']."')";
@@ -65,12 +65,12 @@ if ($ul > 0)
 	}
 	else
 	{
-		$output .= rounded_corners_top(array('color' => 'orange_deluxe'), true);
+		$output .= rounded_corners_top(array('color' => 'orange_deluxe'));
 		$output .= '<form action="/profilteman/ptsubmit.php" method="post">
 		V&auml;lj ett namn f&ouml;r ditt tema:<input name="theme_name" type="text" /><input type="submit" value="Ok" /><br />
 		<a href="/profilteman">G&aring; tillbaka.</a>
 		</form>';
-		$output .= rounded_corners_bottom(array('color' => 'orange_deluxe'), true);
+		$output .= rounded_corners_bottom();
 	}
 }
 

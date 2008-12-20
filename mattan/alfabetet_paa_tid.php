@@ -77,7 +77,7 @@
 </div>
 
 <?php
-	echo rounded_corners_bottom(array('color' => 'blue'));
+	echo rounded_corners_bottom();
 	ui_bottom();
 ?>
 

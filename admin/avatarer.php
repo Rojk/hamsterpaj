@@ -70,7 +70,7 @@ function list_avatars()
 		echo ' | <a onclick="alert(\'Nehejdu :P det går inte ;)\')" style="cursor: pointer;">Döda deras mammor.</a>';
 		echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="post" name="avatarform">';
 		$columns = 0;
-		rounded_corners_top();
+		echo rounded_corners_top();
 		echo '<table class="body"><tr>';
 		while($data = mysql_fetch_assoc($result))
 		{
@@ -115,7 +115,7 @@ function list_avatars()
 		}
 		echo '</tr>';
 		echo '</table>';
-		rounded_corners_bottom();
+		echo rounded_corners_bottom();
 		echo '<input type="submit" value="Korsfäst!" class="button_80">';
 		echo '</form>';
 	}

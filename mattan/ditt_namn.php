@@ -216,7 +216,7 @@ function getAllaBarnen($name){
 	}
 }
 
-echo rounded_corners_top(array('color' => 'blue'));
+echo rounded_corners_top();
 ?>
 <h1>Ditt namn</h1>
 <p class="intro">
@@ -252,7 +252,7 @@ Fyll bara i ditt namn och tryck på "Konvertera" så får du ditt namn skrivet p
 		echo '<i>Ditt namn skrivet <b>baklänges</b>:</i><br />' . strrev($_POST['name']) . '<br /><br />';
 		echo '</div>';
 	}
-echo rounded_corners_bottom(array('color' => 'blue'));
+echo rounded_corners_bottom();
 
 	ui_bottom();
 ?>

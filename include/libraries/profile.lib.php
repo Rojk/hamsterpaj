@@ -234,7 +234,6 @@
 		mysql_query($query) or report_sql_error($update_query, __FILE__, __LINE__);
 		
 		$rounded_corners_config['color'] = 'orange_deluxe';
-		$rounded_corners_config['return'] = true;
 		
 		$return .= rounded_corners_top($rounded_corners_config);
 		$return .= 'Presentationen sparades, så varför inte <a href="/traffa/profile.php?show_change_profile_notice=true">ta en titt på den</a>?';
@@ -355,7 +354,6 @@
 		
 		unset($rounded_corners_config);
 		$rounded_corners_config['color'] = 'blue_deluxe';
-		$rounded_corners_config['return'] = true;
 		$rounded_corners_config['id'] = 'profile_presentation_change_markup_properties';
 		
 		$return .= rounded_corners_top($rounded_corners_config) . "\n";		

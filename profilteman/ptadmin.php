@@ -62,11 +62,11 @@ if ($go)
 //echo "<br />".$imgadress.$styleadress;
 else
 {
-	$output .= rounded_corners_top(array('color' => 'orange_deluxe'), true);
+	$output .= rounded_corners_top(array('color' => 'orange_deluxe'));
 	$out = 'Den h&auml;r sidan &auml;r tyvv&auml;r bara tillg&auml;nglig f&ouml;r anv&auml;ndare med speciella r&auml;ttigheter, men om du vill s&aring; kan du kolla vad som h&auml;nder hos <a href="/traffa/profile.php?user_id=3">Johan</a>.';
 	$out = 
 	$output .= $out;
-	$output .= rounded_corners_bottom(array('color' => 'orange_deluxe'), true);
+	$output .= rounded_corners_bottom();
 }
 
 

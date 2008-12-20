@@ -185,9 +185,9 @@ function schedule_admin_parse_request($options)
 		
 		case 'main':
 			ui_top($ui_options);
-			rounded_corners_top(array('color' => 'orange'));
+			echo rounded_corners_top(array('color' => 'orange'));
 			echo 'Note: Schemat är både fult, snett och går en timma fel.';
-			rounded_corners_bottom(array('color' => 'orange'));
+			echo rounded_corners_bottom();
 			
 			if(
 					isset($options['source']['create_slot_save'])
@@ -235,9 +235,9 @@ function schedule_admin_parse_request($options)
 function schedule_admin_error($options)
 {
 	$rounded_corners_options['color'] = 'orange';
-	rounded_corners_top($rounded_corners_options);
+	echo rounded_corners_top($rounded_corners_options);
 	echo 'Ett fel har inträffat: ' . $options['error'];
-	rounded_corners_bottom($rounded_corners_options);
+	echo rounded_corners_bottom($rounded_corners_options);
 }
 
 function schedule_week_minutes_readable($minutes, $format = 'readable_string')

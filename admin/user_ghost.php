@@ -59,9 +59,9 @@
 	
 	echo '<h1>Ghostning</h1>' . "\n";
 	
-	rounded_corners_top();
+	echo rounded_corners_top();
 	echo 'OBS! För att få ghosta måste du ha godkännande av Ace och ghostningen måste följa våran <a href="#">policy för ghostning</a>. <strong>Alla ghostningar loggas</strong>.' . "\n";
-	rounded_corners_bottom();
+	echo rounded_corners_bottom();
 	
 	echo $output;
 	

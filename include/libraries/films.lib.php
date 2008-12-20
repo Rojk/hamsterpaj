@@ -346,7 +346,7 @@ function films_film_play_draw($film, $options)
 	film_view_count($film['id']);
 	echo '<div class="film_play" id="film_play">' . "\n";
 
-	rounded_corners_top();
+	echo rounded_corners_top();
 
 	$related_films = films_fetch(array('released' => true, 'film_type' => $film['film_type'], 'exclude' => array($film['id']), 'limit' => 3, 'order' => 'random'));
 	films_list($related_films, array('list_type' => 'film_list_compact', 'headline' => 'Fler ' . $film['film_type']));
@@ -440,13 +440,13 @@ function films_film_play_draw($film, $options)
 	comments_input_draw($film['id'], 'film');
 	echo '<br style="clear: both;" />' . "\n";
 	echo '</div>' . "\n"; // film_comments
-	rounded_corners_bottom();
+  echo rounded_corners_bottom();
 	$options['comments'] = isset($options['comments']) ? $options['comments'] : 'yes';
 	if($options['comments'] == 'yes')
 	{
-		rounded_corners_top();
+		echo rounded_corners_top();
 		echo comments_list($film['id'], 'film');
-		rounded_corners_bottom();
+		echo rounded_corners_bottom();
 	}
 	echo '</div>' . "\n"; // film_play
 }
@@ -485,7 +485,7 @@ function films_category_selection_draw($options)
  */
 function films_admin_form_draw($film_type, $film = null, $options)
 {
-	rounded_corners_top();
+	echo rounded_corners_top();
 	if(isset($film))
 	{
 //		preint_r($film);
@@ -584,7 +584,7 @@ function films_admin_form_draw($film_type, $film = null, $options)
 	echo '<label for="chk_film_delete">Ta bort film</label>' . "\n";
 	echo '<input class="button_50" type="submit" value="Spara" />' . "\n";
 	echo '</form>' . "\n";
-	rounded_corners_bottom();
+	echo rounded_corners_bottom();
 }
 
 function films_film_delete($film_id, $film_type)

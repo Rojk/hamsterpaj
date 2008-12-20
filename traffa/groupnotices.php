@@ -10,7 +10,7 @@ if(login_checklogin() != 1)
 	jscript_location('index.php');
 }
 
-$output .= rounded_corners_top(array('color' => 'blue'));
+echo rounded_corners_top(array('color' => 'blue'));
 echo '<h2 style="margin-top: 0px;">Nya inlägg i dina grupper</h2>';
  foreach($_SESSION['groups_members'] AS $key => $value)
  {
@@ -46,7 +46,7 @@ echo '<h2 style="margin-top: 0px;">Nya inlägg i dina grupper</h2>';
 	}
 
 echo '<br /><a href="/traffa/groups.php">Till alla dina grupper >></a><br />';
-$output .= rounded_corners_bottom(array('color' => 'blue'));
+echo rounded_corners_bottom(array('color' => 'blue'));
 
 
 cache_update_groups();

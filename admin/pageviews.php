@@ -51,7 +51,7 @@
 			
 			echo '<h1>Visa statistik, sidvisningar (pageviews)</h1>' . "\n";
 			echo '<h2>1. Välj periodicitet</h2>' . "\n";
-			rounded_corners_top();
+			echo rounded_corners_top();
 			
 			$query = 'SELECT MIN(date) AS min_date, MAX(date) AS max_date FROM pageviews';
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
@@ -103,7 +103,7 @@
 				echo 'Error on line ' . __LINE__;
 			}
 			
-			rounded_corners_bottom();
+			echo rounded_corners_bottom();
 			
 			ui_bottom();
 	}

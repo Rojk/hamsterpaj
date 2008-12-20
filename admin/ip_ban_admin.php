@@ -12,7 +12,7 @@
 	{
 		default:
 		case 'home':
-			$out .= rounded_corners_top(array(), true);
+			$out .= rounded_corners_top();
 			$out .= '<form method="post" action="' . $_SERVER['PHP_SELF'] . '?action=add">' . "\n";
 			if (preg_match('/^((1?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(1?\d{1,2}|2[0-4]\d|25[0-5]){1}$/', $_GET['handy_link_auto_ip']))
 			{
@@ -25,7 +25,7 @@
 			$out .= 'Anledning på max 255 tecken: <input type="text" name="reason">' . "\n";
 			$out .= '<input type="submit" value="IP-banna!" class="button_80" />';
 			$out .= '</form>' . "\n";
-			$out .= rounded_corners_bottom(array(), true);
+			$out .= rounded_corners_bottom();
 			
 			$out .= '<table style="width: 638px">' . "\n";
 			

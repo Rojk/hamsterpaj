@@ -55,9 +55,9 @@
 	
 	ui_top($ui_options);
 	
-	rounded_corners_top();
+	echo rounded_corners_top();
 	echo '<a href="/hamsterpaj/suggestions.php?action=compose">Skicka in förslag</a> | <a href="/hamsterpaj/suggestions.php?action=view_waiting">Visa obehandlade</a> | <a href="/hamsterpaj/suggestions.php?action=view_processed">Visa granskade</a>';	
-	rounded_corners_bottom();
+	echo rounded_corners_bottom();
 	switch($action)
 	{
 		case 'create':

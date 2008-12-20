@@ -114,7 +114,7 @@
 		</div>
 		<br style="clear: both;" />
 <?php
-echo rounded_corners_bottom(array('color' => 'orange'));
+echo rounded_corners_bottom();
 echo rounded_corners_top(array('color' => 'blue'));
 ?>
 
@@ -158,7 +158,7 @@ echo rounded_corners_top(array('color' => 'blue'));
 	Nu har du ett falskt personnummer som kommer fungera på diverse communities på Internet och mängder med olika ålderskontroller! Testa gärna att göra detta med ditt egna personnummer, du kan räkna ut sista siffran själv!
 
 <?php
-echo rounded_corners_bottom(array('color' => 'blue'));
+echo rounded_corners_bottom();
 echo rounded_corners_top(array('color' => 'red'));
 ?>
 <h2 style="margin-top: 0;">Vad säger lagen om detta?</h2>
@@ -168,7 +168,7 @@ echo rounded_corners_top(array('color' => 'red'));
 	Vi gör i vilket fall inget olagligt, nummren skapas i din webbläsare och inte på vår server, vi ser aldrig personnummren du skapar.
 
 <?php
-echo rounded_corners_bottom(array('color' => 'red'));
+echo rounded_corners_bottom();
 	ui_bottom();
 ?>
 

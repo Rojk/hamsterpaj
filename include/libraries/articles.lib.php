@@ -93,20 +93,20 @@
 			}
 		}
 
-		$output .=  rounded_corners_top(array('color' => 'orange'), true);
+		$output .=  rounded_corners_top(array('color' => 'orange'));
 		$output .=  '<div id="author">' . "\n";
 		$output .=  '<img class="author" src="http://images.hamsterpaj.net/article_authors/' . $author['image'] . '" />' . "\n";
 		$output .=  '<h3>Upphovsman: ' . $author['name'] . '</h3>' . "\n";
 		$output .=  '<p>' . $author['description']. '</p>' . "\n";
 		$output .=  '<div style="clear: both;"></div>' . "\n";
 		$output .=  '</div>' . "\n";
-		$output .=  rounded_corners_bottom(array('color' => 'orange'), true);
+		$output .=  rounded_corners_bottom();
 		return $output;
 	}
 	
 	function render_article_list_item($article)
 	{
-		$output .= rounded_corners_top(array(), true);
+		$output .= rounded_corners_top();
 		$output .= '<div class="article_list_item">' . "\n";
 		$output .= '<a href="?action=show&id=' . $article['id'] . '">' . "\n";
 		$output .= get_thumbnail($article['id']);
@@ -114,7 +114,7 @@
 		$output .= '<p>' . $article['summary'] .'</p>' . "\n";
 		$output .= '</a>' . "\n";
 		$output .= '</div>' . "\n";
-		$output .= rounded_corners_bottom(array(), true);
+		$output .= rounded_corners_bottom();
 		return $output;
 	}
 	
@@ -266,7 +266,7 @@
 	
 	function render_article_admin()
 	{
-		$output .= rounded_corners_top(array(), true);
+		$output .= rounded_corners_top();
 		$categories = categories_fetch();
 		
 		$output .= '<ul>' . "\n";
@@ -311,7 +311,7 @@
 		$output .= '</li>' . "\n";
 		$output .= '</ul>' . "\n";
 		$output .= '<span>* De röda är icke publicerade artiklar</span>' . "\n";
-		$output .= rounded_corners_bottom(array(), true);
+		$output .= rounded_corners_bottom();
 		return $output;
 	}
 	
@@ -441,10 +441,10 @@
 	{
 		if(empty($article)) // Checks if any article was found.
 		{
-			$out .= rounded_corners_top(array('color' => 'red'), true);
+			$out .= rounded_corners_top(array('color' => 'red'));
 			$out .= '<h1>Den här artikeln kunde tyvärr inte hittas</h1>' . "\n";
 			$out .= '<a href="?action=list"><< Gå till listan över artiklar</a>' . "\n";
-			$out .= rounded_corners_bottom(array('color' => 'red'), true);
+			$out .= rounded_corners_bottom(array('color' => 'red'));
 		}
 		else
 		{
@@ -500,14 +500,14 @@
 			
 			if($article['commentable'] == 1)
 			{
-					$out .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+					$out .= rounded_corners_top(array('color' => 'blue_deluxe'));
 				if($article['rankable'] == 1)
 				{
 					$out .= rank_input_draw($article['id'], 'articles');
 				}
 			$out .= comments_input_draw($article['id'], 'articles');
 			$out .= '<div style="clear: both;"></div>' . "\n";
-			$out .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+			$out .= rounded_corners_bottom();
 			$out .= comments_list($article['id'], 'articles');
 			}
 		}

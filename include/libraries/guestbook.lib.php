@@ -255,7 +255,6 @@
 		if($display == 'on')
 		{
 			$options['color'] = 'orange';
-			$options['return'] = true;
 			$out .= rounded_corners_top($options);
 				$out .= '<img class="guestbook_anti_p12_sign" src="http://images.hamsterpaj.net/anti_p12_sign.png" />' . "\n";
 				$out .= '<h2 class="guestbook_anti_p12_header">Anti P12-skylt</h2>' . "\n";
@@ -265,7 +264,7 @@
 				$out .= '<p style="margin-bottom: 0;">Det äcklet som skriver och frågar mig om sex och sådant kommer att bli rapporterad och en Ordningsvakt 
 										kommer att granska gästboksinlägget som skrevs till mig. Sedan kommer Ordningsvakter antagligen att radera äcklets användarkonto 
 										och stänga av denne ifrån sajten ifall denne förtjänar det.</p>' . "\n";
-			$out .= rounded_corners_bottom($options);
+			$out .= rounded_corners_bottom();
 		}
 		return $out;
 	}

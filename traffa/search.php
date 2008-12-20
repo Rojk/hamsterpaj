@@ -10,7 +10,7 @@
 	ui_top($ui_options);
 	echo '<div style="overflow: hidden; width: 637px;">';
 
-	echo rounded_corners_top(array('color' => 'blue_deluxe'), true);
+	echo rounded_corners_top(array('color' => 'blue_deluxe'));
 function traffa_make_search()
 {
 
@@ -275,7 +275,7 @@ function traffa_show_search($post_startage = 0, $post_endage = 0, $post_imgstatu
 
 <?php
 
-	echo rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+	echo rounded_corners_bottom(array('color' => 'blue_deluxe'));
 	echo '</div>';
 	ui_bottom();
 ?>

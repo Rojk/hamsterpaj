@@ -89,7 +89,6 @@
 	if(isset($_GET['show_change_profile_notice']))
 	{
 		$rounded_corners_config['color'] = 'orange_deluxe';
-		$rounded_corners_config['return'] = true;
 		$output .= rounded_corners_top($rounded_corners_config);
 		$output .= 'Blev det inte riktigt som du hade tänkt dig? Gå tillbaka och 
 		<a href="/installningar/profilesettings.php">ändra din presentation</a> igen!';

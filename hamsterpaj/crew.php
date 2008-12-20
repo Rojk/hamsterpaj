@@ -19,14 +19,14 @@
 	
 	while($data = mysql_fetch_assoc($result))
 	{
-		rounded_corners_top();
+		echo rounded_corners_top();
 			echo (( in_array($data['image'], array(1, 2)) ) ? ui_avatar($data['userid'], array('style' => 'float: left; margin: 10px')) : '<img src="' . IMAGE_URL . 'images/noimage.png" alt="Ingen visninsbild" style="float: left;clear: left; margin: 10px" />');
 			echo '<div style="float: left; width: 500px;margin-left: 10px">';
 			echo '<h2 style="font-size: 20px; font-family: georgia, serif;"><a href="/traffa/profile.php?id=' . $data['userid'] . '">' . $data['real_name'] . '</a> ' . (($data['birthday'] != '0000-00-00') ? date_get_age($data['birthday']) : '') . ' - ' . htmlspecialchars($data['task']) . '</h2>' . "\n";
 			echo htmlspecialchars($data['info_text']);
 			echo '</div>';
 			echo '<br style="clear: both" />';
-		rounded_corners_bottom();
+		echo rounded_corners_bottom();
 	}
 	
 	ui_bottom();

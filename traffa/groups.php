@@ -455,9 +455,9 @@ function group_draw_add_form()
 	$drop_data .= ' Tar ej emot ansökningar<br /><br />';
 	$drop_data .= '<input type="submit" value="Skapa grupp" name="submit_new" class="button" /><br />';
 	$drop_data .= '</form>';
-	echo rounded_corners_top($none, true);
+	echo rounded_corners_top();
 	echo ui_dropbox($drop_title, $drop_data, $drop_style, $drop_expanded);
-	echo rounded_corners_bottom($none, true);
+	echo rounded_corners_bottom();
 }
 
 function group_draw_post_form($groupid)
@@ -708,9 +708,9 @@ function group_start_list()
 	group_draw_add_form();
 
 	
-	echo rounded_corners_top($none, true);
+	echo rounded_corners_top();
 	echo '<a href="' . $_SERVER['php_self'] . '?action=list_groups"><h2 style="margin: 0px;">Sök grupper &raquo;</h2></a>';
-	echo rounded_corners_bottom($none, true);
+	echo rounded_corners_bottom();
 
 	if (is_privilegied('groups_superadmin'))
 	{

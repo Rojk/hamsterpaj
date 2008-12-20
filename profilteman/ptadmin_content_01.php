@@ -2,7 +2,7 @@
 //  ORDER BY `timestamp` DESC LIMIT 100
 	$view = $_POST["view"];
 	$output .= '<h1>Inskickade teman</h1>';
-	$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+	$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 	
 	$output .= '<form name="form" action="/profilteman/ptadmin.php" method="post">
 	<select name="view" onchange="this.form.submit()">
@@ -45,7 +45,7 @@
 		
 	$output .= '</form>';
 	
-	$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+	$output .= rounded_corners_bottom();
 	
 	
 	if (isset($view_id))
@@ -89,7 +89,7 @@
 			</div>';
 
 			$date = getdate($view_time);
-			$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+			$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 			
 			$submit_date = $date[hours].':'.$date[minutes].' - '.$date[mday].' '.$date[month].' '.$date[year];
 			
@@ -104,18 +104,18 @@
 			
 		
 			
-			$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+			$output .= rounded_corners_bottom();
 			
 			$output .= 'CSS: <a href="'.$submitadress.$view_id.'.css">'.$submitadress.$view_id.'.css</a><br />
 			Bild: <a href="'.$submitadress.$view_id.'.png">'.$submitadress.$view_id.'.png</a>';
 		
 			}
-			$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+			$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 			$output .= '<a href="/profilteman/ptadmin.php?showall=yes">G&aring; till alla teman</a><br />';
-			$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
-			$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+			$output .= rounded_corners_bottom();
+			$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 			$output .= '<a href="/profilteman">G&aring; till huvudsidan</a>';
-			$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+			$output .= rounded_corners_bottom();
 			
 			
 			if (isset($_GET["setlvl"]) && isset($_GET["theme_user_id"]))

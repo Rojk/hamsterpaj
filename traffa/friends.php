@@ -127,15 +127,15 @@
 	{
 		if(!isset($friends[$_SESSION['login']['id']]) && !isset($fans[$_SESSION['login']['id']]))
 		{
-			$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+			$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 			$output .= $user['username'] . ' ligger inte på din vännerlista, <a href="?id=' . $_GET['user_id'] . '&action=addfriend">lägg till</a>';
-			$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+			$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), tru);
 		}
 		if(isset($friends[$_SESSION['login']['id']]) || isset($fans[$_SESSION['login']['id']]))
 		{
-			$output .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
+			$output .= rounded_corners_top(array('color' => 'blue_deluxe'));
 			$output .= 'Du har lagt till ' . $user['username'] . ' i din vännerlista, <a href="?id=' . $_GET['user_id'] . '&action=removefriend">ta bort från vännerlistan</a>';
-			$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
+			$output .= rounded_corners_bottom(array('color' => 'blue_deluxe'));
 		}
 		
 
