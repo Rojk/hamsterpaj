@@ -400,7 +400,7 @@ if($_SESSION['login']['id'] == '148153') //för att vara säker på att inte dö
  			$div_code = ($count_read < $new_messages ? 'orange' : 'blue');
 			if (preg_match("/(".$_SESSION['login']['username']."|Magic word: igotgodmodeigotgubbmode)/i", $data['text'])) 
 			{
-					$div_code = 'red_alert_deluxe';
+					$div_code = 'orange';
 			}
 	
 			echo rounded_corners_top(array('color' => $div_code));
