@@ -96,14 +96,7 @@ function ui_top($options = array())
 	$options['stylesheets'][] = 'rounded_corners.css';
 	$options['stylesheets'][] = 'message.css';
 	$options['stylesheets'][] = 'poll.css';
-	$options['stylesheets'][] = 'ui_modules/friends_online.css';
-	$options['stylesheets'][] = 'ui_modules/friends_notices.css';
-	$options['stylesheets'][] = 'ui_modules/forum_threads.css';
-	$options['stylesheets'][] = 'ui_modules/forum_posts.css';
-	$options['stylesheets'][] = 'ui_modules/multisearch.css';
-	$options['stylesheets'][] = 'ui_modules/profile_visitors.css';
-	$options['stylesheets'][] = 'ui_modules/site_stats.css';
-	$options['stylesheets'][] = 'ui_modules/online_ovs.css';
+	$options['stylesheets'][] = 'ui_modules.css';
 	
 	$today_day = date('j');
 	if ( date('m') == 12 && $today_day >= 1 && $today_day <= 24 )
