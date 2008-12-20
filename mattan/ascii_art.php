@@ -120,7 +120,7 @@
 			<input type="submit" value="Skapa" class="button_80" />
 		</form>
 		<?php
-		echo rounded_corners_bottom());
+		echo rounded_corners_bottom();
 	}
 	
 	ui_bottom();
