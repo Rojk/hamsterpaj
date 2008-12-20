@@ -723,10 +723,8 @@ function clickable_links($str)
 	// Lägga tillbaka [img]
 	foreach($matches[0] as $row)
 	{
-		if($pos = strpos($str, '[IMAGE]'))
-		{
-			$str = substr_replace($str, $row, $pos, strlen('[IMAGE]'));
-		}
+		$pos = strpos($str, '[IMAGE]');
+		$str = substr_replace($str, $row, $pos, strlen('[IMAGE]'));
 	}
 	
 	return $str;
