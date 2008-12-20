@@ -92,7 +92,6 @@ function ui_top($options = array())
 	array_unshift($options['stylesheets'], 'ui.css');
 	$options['stylesheets'][] = 'tiny_reg_form.css';
 	$options['stylesheets'][] = 'shared.css';
-	$options['stylesheets'][] = 'buttons.css';
 	$options['stylesheets'][] = 'new_guestbook.css';
 	$options['stylesheets'][] = 'rounded_corners.css';
 	$options['stylesheets'][] = 'message.css';
