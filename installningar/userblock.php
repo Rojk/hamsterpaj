@@ -1,5 +1,6 @@
 <?php
 
+	die('Funktionen aer fulkodad, den kommer vara nere tills den aer hackersaker.');
 
 	/* Fulhack, systemet använder $_POST men gästboken skickar data i $_GET */
 	if($_GET['action'] == 'block')

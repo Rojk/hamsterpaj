@@ -1,6 +1,6 @@
 #!/usr/bin/php -q
 <?php
-	require('/storage/www/standard.php');
+	require('core/common.php');
 
 	$dir_handle = opendir(PATHS_INCLUDE . 'daily_jobs/');
 	while($filename = readdir($dir_handle))
