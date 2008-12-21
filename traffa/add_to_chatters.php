@@ -9,7 +9,6 @@
 <html>
 	<head>
 		<title>Svara</title>
-		<link href="/include/style_2.css" rel="stylesheet" type="text/css">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	</head>
 	<body>
