@@ -1,6 +1,5 @@
 /*
 	################################################################
-	START
 	This is great hack of southern khazakstan to make hilarious 
 	round corners!
 	################################################################
@@ -8,12 +7,13 @@
 .corners, #corners {
 	behavior: url('/border-radius.htc');
 }
+
 /*
 	################################################################
-	END
+	Those faded div's are old, and we should use the rounded_corners
+	functions.
 	################################################################
 */
-
 .grey_faded_div
 {
 	width: 628px;
@@ -23,7 +23,6 @@
 	border: 1px solid #CCCCCC;
 	background: #F7F7F7 url('http://images.hamsterpaj.net/images/div_fades/grey_fade.png') repeat-x;
 }
-
 .blue_faded_div
 {
 	width: 628px;
@@ -33,7 +32,6 @@
 	border: 1px solid #CCCCCC;
 	background: #F7F7F7 url('http://images.hamsterpaj.net/images/div_fades/blue_fade.png') repeat-x;
 }
-
 .pink_faded_div
 {
 	width: 628px;
@@ -43,7 +41,6 @@
 	border: 1px solid #CCCCCC;
 	background: #F7F7F7 url('http://images.hamsterpaj.net/images/div_fades/pink_fade.png') repeat-x;
 }
-
 .orange_faded_div
 {
 	width: 628px;
@@ -53,7 +50,6 @@
 	border: 1px solid #CCCCCC;
 	background: #F7F7F7 url('http://images.hamsterpaj.net/images/div_fades/orange_fade.png') repeat-x;
 }
-
 .red_faded_div
 {
 	width: 628px;
@@ -63,7 +59,6 @@
 	border: 1px solid #CCCCCC;
 	background: #F7F7F7 url('http://images.hamsterpaj.net/images/div_fades/red_fade.png') repeat-x;
 }
-
 .green_faded_div
 {
   width: 628px;
@@ -73,7 +68,6 @@
   border: 1px solid #CCCCCC;
   background: #F7F7F7 url('http://images.hamsterpaj.net/images/div_fades/green_fade.png') repeat-x;
 }
-
 .droptitle
 {
   width: 100%;
@@ -102,7 +96,11 @@
 	color: #4ba71e;
 }
 
-
+/*
+	################################################################
+	Those stylings are deprecated.
+	################################################################
+*/
 .tips /*.notification should be used */
 {
 	background: #fffbc9 url('http://images.hamsterpaj.net/common_icons/tips_light_bulb.png') no-repeat 5px 5px;
@@ -113,7 +111,6 @@
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
-
 .notification, .warning, .error, .system_error
 {
 	-moz-border-radius: 5px;
@@ -123,52 +120,48 @@
 	margin-bottom: 5px;
 	min-height: 60px;
 }
-
 .notification .server_message_collapsed_information
 {
 	display: none;
 }
-
 .notification
 {
 	background: #fffbc9 url('http://images.hamsterpaj.net/common_icons/tips_light_bulb.png') no-repeat 5px 5px;
 	border: 1px solid #f0dca1;
 }
-
 .warning
 {
 	background: #ffff99 url('http://images.hamsterpaj.net/common_icons/warning_sign.png') no-repeat 5px 5px;
 	border: 1px solid #facd00;
 }
-
 .error
 {
 	background: #FFE3E0 url('http://images.hamsterpaj.net/common_icons/error_sign.png') no-repeat 5px 5px;
 	border: 1px solid #DC6E66;
 }
-
 .system_error
 {
 	background: #FF6666 url('http://images.hamsterpaj.net/common_icons/error_sign.png') no-repeat 5px 5px;
 	border: 1px solid #FF1A1A;
 }
-
 .warning h2, .notification h2, .error h2, .system_error h2
 {
 	font-size: 17px;
 	font-weight: normal;
 	margin: 3px 3px 3px 0;
 }
-
 .warning p, .notification p, .error p, .system_error p
 {
 	font-size: 11px;
 }
 
 
-/* Never version */
-.server_message_notification, .server_message_warning, .server_message_error, .server_message_system_error
-{
+/*
+	################################################################
+	Use the function ui_server_message() for these stylings.
+	################################################################
+*/
+.server_message_notification, .server_message_warning, .server_message_error, .server_message_system_error {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	padding: 3px;
@@ -177,55 +170,37 @@
 	margin-bottom: 5px;
 	min-height: 60px;
 }
-
- .server_message_collapsed_information
-{
+.server_message_collapsed_information {
 	display: none;
 }
-
-.server_message_collapsed_information
-{
+.server_message_collapsed_information {
 	padding: 1px 0 1px 0;
 }
-
-.server_message_notification
-{
+.server_message_notification {
 	background: #fffbc9 url('http://images.hamsterpaj.net/common_icons/tips_light_bulb.png') no-repeat 5px 5px;
 	border: 1px solid #f0dca1;
 }
-
-.server_message_warning
-{
+.server_message_warning {
 	background: #ffff99 url('http://images.hamsterpaj.net/common_icons/warning_sign.png') no-repeat 5px 5px;
 	border: 1px solid #facd00;
 }
-
-.server_message_error
-{
+.server_message_error {
 	background: #FFE3E0 url('http://images.hamsterpaj.net/common_icons/error_sign.png') no-repeat 5px 5px;
 	border: 1px solid #DC6E66;
 }
-
-.server_message_system_error
-{
+.server_message_system_error {
 	background: #FF6666 url('http://images.hamsterpaj.net/common_icons/error_sign.png') no-repeat 5px 5px;
 	border: 1px solid #FF1A1A;
 }
-
-.server_message_warning h2, .server_message_notification h2, .server_message_error h2, .server_message_system_error h2
-{
+.server_message_warning h2, .server_message_notification h2, .server_message_error h2, .server_message_system_error h2 {
 	font-size: 17px;
 	font-weight: normal;
 	margin: 3px 3px 3px 0;
 }
-
-.server_message_warning p, .server_message_notification p, .server_message_error p, .server_message_system_error p
-{
+.server_message_warning p, .server_message_notification p, .server_message_error p, .server_message_system_error p {
 	font-size: 11px;
 }
-
-.server_message_collapse_header
-{
+.server_message_collapse_header {
 	font-size: 11px;
 	font-weight: normal;
 	border: none;
@@ -433,6 +408,11 @@
 	width: 150px;
 }
 
+/*
+	################################################################
+	Tiny_reg_form. This is called from a javascript.
+	################################################################
+*/
 #tiny_reg_form
 {
 	display: none;
