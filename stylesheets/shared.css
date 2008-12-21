@@ -432,3 +432,21 @@
 	background: url('http://images.hamsterpaj.net/ui/buttons/blue_button_150.png');
 	width: 150px;
 }
+
+#tiny_reg_form
+{
+	display: none;
+	width: 500px;
+	background: white;
+	border: 1px solid white;
+	margin: 50px auto auto;
+	border: 1px solid #565656;
+	padding: 10px;	
+}
+#tiny_reg_form_close
+{
+	float: right;
+	cursor: pointer;
+	margin-top: -10px;
+	margin-right: -10px;
+}
