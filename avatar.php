@@ -33,7 +33,7 @@
 
 <style type="text/css">
 	@import url('/stylesheets/avatar.css');
-	@import url('/stylesheets/buttons.css');
+	@import url('/stylesheets/shared.css');
 </style>
 
 <script type="text/javascript" language="javascript" src="/javascripts/avatar.js"></script>

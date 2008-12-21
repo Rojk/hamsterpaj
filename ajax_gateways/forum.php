@@ -35,7 +35,6 @@
 						echo '<style type="text/css">
 							@import url(\'/stylesheets/ui.css.johan.php\');
 							@import url(\'/stylesheets/shared.css\');
-							@import url(\'/stylesheets/buttons.css\');
 							@import url(\'/stylesheets/posts.css\');
 							</style>' . "\n";
 						echo '<form method="post" action="/ajax_gateways/forum.php">' . "\n";

@@ -15,7 +15,7 @@
 	
 	echo '<html><head><title>Svara</title>';
 	echo '<link href="/stylesheets/ui.css.php" rel="stylesheet" type="text/css">';
-	echo '<link href="/stylesheets/buttons.css" rel="stylesheet" type="text/css">';
+	echo '<link href="/stylesheets/shared.css" rel="stylesheet" type="text/css">';
 	echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 	
 	echo '</head>';
