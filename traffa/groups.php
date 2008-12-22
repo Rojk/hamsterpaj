@@ -71,9 +71,9 @@ function group_list_groups($userid, $search)
 		$selectquery = 'SELECT groupid FROM groups_members WHERE userid = ' . $userid;
 		$result = mysql_query($selectquery) or die(report_sql_error($selectquery));
 		while ($data = mysql_fetch_assoc($result))
-	  {
-    	$query .= ' AND g.groupid <> ' . $data['groupid'];
-  	}			
+		{
+    		$query .= ' AND g.groupid <> ' . $data['groupid'];
+  		}			
 	}
 	else 
 	{
@@ -417,7 +417,7 @@ if($_SESSION['login']['id'] == '148153') //för att vara säker på att inte dö
       echo '</td><td style="vertical-align: top;">';
       echo fix_time($data['timestamp']) . ' <a href="javascript:void(0);" onclick="javascript:document.postform.group_message.value=document.postform.group_message.value + \''.$data['username'].': \';document.postform.group_message.focus();">[^]</a><br/>'; 
 			echo '<a href="' . $hp_url . '/traffa/profile.php?id=' . $data['userid'] . '">';
-      echo '<b>' . (($data['userid'] == 43273) ? '<span style="color: #FF60B6">SuwpahGhey</span>' : $data['username'])  . '</b></a> ';
+      echo '<b>' . (($data['userid'] == 43273) ? '<span style="color: #FF60B6">GheyAtrapp</span>' : $data['username'])  . '</b></a> ';
 
       if ($owner == $_SESSION['login']['id'])
       {

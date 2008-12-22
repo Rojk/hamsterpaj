@@ -1,6 +1,5 @@
 <?php
 
-	die('Funktionen aer fulkodad, den kommer vara nere tills den aer hackersaker.');
 
 	/* Fulhack, systemet använder $_POST men gästboken skickar data i $_GET */
 	if($_GET['action'] == 'block')
@@ -27,7 +26,7 @@
 	echo '<h1 style="margin-top: 0;">Användarblockering</h1>';	
 	echo '<p>Ibland kan någon bli riktigt, riktigt jobbig. Då är det enkelt att blockera personen, så kan han eller hon inte skicka varken meddelanden eller gästboksinlägg till dig.</p>';
 
-	if( isset($_GET['delete']) AND (is_numeric($_GET['delete']) OR $_GET['id'] == '%') )
+	if(isset($_GET['delete']) && is_numeric($_GET['delete']))
 	{
 		$query = 'DELETE FROM userblocks WHERE ownerid = ' . $_SESSION['login']['id'] . ' AND blockedid = ' . $_GET['delete'];
 		mysql_query($query);

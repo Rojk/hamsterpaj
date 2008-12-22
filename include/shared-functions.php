@@ -696,13 +696,16 @@ function clickable_links($str)
 
 	// Lagra [img] i array
 	$matches = array();
-	preg_match_all('#\[img](.*?)\[/img]#is', $str, $matches);
+	
+	$forum_image_regex = '#\[img](.*?)\[/img]#is';
+	
+	preg_match_all($forum_image_regex, $str, $matches);
 	
 	// Byta ut [img] mot  markör
-	$str = preg_replace('#\[img](.*?)\[/img]#is', '[IMAGE]', $str);
+	$str = preg_replace($forum_image_regex, '[IMAGE]', $str);
 	
 	// Leta upp länkar
-		$str = preg_replace('#((http://|https://|ftp://|www\.)(www\.)?)([a-z0-9-åäöÅÄÖ$\#_%\?&\/=\+@\.:-~()]{4,})#eis', 
+		$str = preg_replace('#((http://|https://|ftp://|www\.)(www\.)?)([a-z0-9-åäöÅÄÖ$\#_%?&/=+@.:-~()]{4,})#eis', 
 							"
 							('$2' != 'http://' && '$2' != 'https://' && '$2' != 'ftp://') ? 
 								'<a href=\"http://$1$4\" target=\"_blank\">' . 

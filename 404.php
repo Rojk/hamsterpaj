@@ -22,6 +22,12 @@
 		header("HTTP/1.0 404 Not Found");
 		exit;
 	}
+	if ($username == 'id')
+	{
+		preg_match('/^[0-9]+$/', $action, $matches_a);
+		header('Location: /traffa/user_facts.php?user_id=' . $matches_a[0]);
+		exit;
+	}
 	if(preg_match("/^[0-9a-zA-Z_-]+$/i", $username))
 	{
 		$query = 'SELECT id FROM login WHERE username = "' . $username . '" LIMIT 1';
