@@ -279,8 +279,12 @@ function cache_update_lastaction()
 
 function login_remove_user($user_id)
 {
-		$query = 'UPDATE login SET lastusernamechange = ' . time() . ', lastusername = username, username = "Borttagen", is_removed = 1 WHERE id = "' . $user_id . '" LIMIT 1';
-		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+	$sql = 'SELECT username FROM login WHERE id = ' . $user_id . ' LIMIT 1';
+	$result = mysql_query($sql);
+	$data = mysql_fetch_assoc($result);
+	
+	$query = 'UPDATE login SET lastusernamechange = ' . time() . ', lastusername = "' . $data['username'] . '", username = "Borttagen", is_removed = 1 WHERE id = "' . $user_id . '" LIMIT 1';
+	mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 }
 
 function session_add_key($sessid, $key, $value)
