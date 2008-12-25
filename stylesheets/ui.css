@@ -289,7 +289,7 @@ h2 {
   	text-decoration: none;
   	background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left.png") left top no-repeat;
  	height: 25px;
-	padding: 4px 10px 0 10px;
+	padding: 4px 9px 0 9px;
 	}
 		/* internet explorer 6 is still cute */
 		* html #ui_menu ul li a {
@@ -299,7 +299,7 @@ h2 {
 			background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left.png") left top no-repeat;
 			height: 25px;
 			float: left;
-			padding: 4px 10px 0 10px;
+			padding: 4px 9px 0 9px;
 		}
 	#ui_menu > ul > li:hover > a { 
 		background: url("http://images.hamsterpaj.net/ui/ui_menu_item_left_hover.png") left top no-repeat; 
