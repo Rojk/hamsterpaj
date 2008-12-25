@@ -408,14 +408,15 @@ h2 {
 		}
 		.ui_module_minimize
 		{
-			height: 15px;
-			width: 15px;
+			height: 7px;
+			width: 7px;
 		  background: url("http://images.hamsterpaj.net/ui/ui_module_minimize.png") top no-repeat;
 		  display: block;
 		  text-indent: -10000px;
-		  float: right;
+		  float: left;
 		  outline: none;
-		  margin-top: -1px;
+		  margin-top: 3px;
+		  margin-right: 5px;
 		}
 		.ui_module_minimize:hover	{	background: url("http://images.hamsterpaj.net/ui/ui_module_minimize.png") bottom no-repeat;	}
 		
