@@ -934,7 +934,6 @@
 	function discussion_forum_category_head($options)
 	{
 		$output .=  '<p class="category_description">' . $options['category']['description'] . '</p>' . "\n";
-		$output .=  '<strong>Modereringsnivå: ' . $options['category']['quality_level'] . '</strong><br style="clear: both;" />' . "\n";
 		if(login_checklogin())
 		{
 			$checked = ($_SESSION['forum']['categories'][$options['category']['id']]['subscribing'] == 1) ? ' checked="checked"' : '';
