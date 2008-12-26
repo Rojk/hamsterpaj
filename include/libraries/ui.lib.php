@@ -782,20 +782,21 @@ function ui_module_render($options)
 		}
 		$img_path = IMAGE_PATH . 'images/users/thumb/' . $user_id . '.jpg';
 		$style = (isset($options['style'])) ? ' style="' . $options['style'] . '"' : '';
+		$size = (isset($options['size'])) ? $options['size'] : 'mini';
 		if (file_exists($img_path))
 		{
 			return '<img src="' . IMAGE_URL . 'images/users/thumb/' . $user_id . '.jpg?cache_prevention=' . filemtime($img_path) . '" class="user_avatar"' . $style . ' />' . "\n";
 		}
 		else
 		{
-			return '<img src="' . IMAGE_URL . '/images/users/no_image_mini.png" class="user_avatar"' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" class="user_avatar"' . $style . ' />' . "\n";
 		}
 	}
 	
 	
 	function ui_server_message($options)
 	{
-		$options['title'] = isset($options['title']) ? $options['title'] : 'Title saknas';
+		$options['title'] = isset($options['title']) ? $options['title'] : 'Titel saknas';
 		$options['collapse_link'] = isset($options['collapsed_link']) ? $options['collapse'] : 'Visa mer information';
 		$options['collapse_id'] = rand(100000, 999999);
 		$options['type'] = isset($options['type']) ? $options['type'] : 'notification';
