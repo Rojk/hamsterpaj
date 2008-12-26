@@ -140,7 +140,7 @@
 		if($content['create_forum_category'] == 1)
 		{
 			$category['title'] = $content['title'];
-			$category['parent'] = 90;
+			$category['parent'] = 112;
 			$category['quality_level'] = 4;
 			$category['title'] = $content['title'];
 			$category['description'] = 'För diskussioner länkade till artikeln: ' . $content['title'];
