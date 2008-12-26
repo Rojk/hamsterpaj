@@ -1064,7 +1064,6 @@
 				}
 				
 				$output .= '<tr class="' . $zebra . '">' . "\n";
-				$output .= '	<td class="quality_slot">' . $category['quality_level'] . $category['id'] . '</td>' . "\n";
 				$output .= '	<td class="name"><a href="' . $category['url'] . '" class="category_name">' . $category['title'] . '</a><br />' . "\n";
 				$category['last_thread_title'] = (strlen($category['last_thread_title']) > 45) ? substr($category['last_thread_title'], 0, 35) . '...' : $category['last_thread_title'];
 				$output .= '	Senaste tråden <a href="' . $category['url'] . $category['last_thread_handle'] . '/sida_1.php">' . $category['last_thread_title'] . '</a> av <a href="/traffa/profile.php?id=' . $category['last_thread_author'] . '">' . $category['last_thread_username'] . '</a></td>' . "\n";
