@@ -379,36 +379,41 @@ function ui_bottom($options = array())
 {
 	$output .= '<br style="clear: both;" />' . "\n";
 	$output .= '</div>' . "\n";
-	
 	$output .= '<div id="ui_modulebar">' . "\n";
-	
-	$modules['multisearch'] = 'Multi-sök';
-	
-	if ( login_checklogin() )
+	if($options['ui_modules_hide'] == true)
 	{
-		$modules['friends_online'] = 'Vänner online';
-		$modules['friends_notices'] = 'Vänner(s)notiser'; 
-		$modules['profile_visitors'] = 'Besökare';	
+		$modules = $options['ui_modules'];
 	}
-
-	$modules['latest_threads'] = 'Forumtrådar';
-	$modules['latest_posts'] = 'Inlägg i forumet';
-	$modules['site_stats'] = 'Statistik';
-	
-	foreach(array('discussion_forum_remove_posts', 'discussion_forum_edit_posts', 'discussion_forum_rename_threads', 'discussion_forum_lock_threads', 'discussion_forum_sticky_threads', 'discussion_forum_move_thread', 'discussion_forum_post_addition') as $privilegie)
+	else
 	{
-		if (is_privilegied($privilegie))
+		$modules['multisearch'] = 'Multi-sök';
+		
+		if ( login_checklogin() )
 		{
-			$ui_administration_module_show = true;
+			$modules['friends_online'] = 'Vänner online';
+			$modules['friends_notices'] = 'Vänner(s)notiser'; 
+			$modules['profile_visitors'] = 'Besökare';	
 		}
-	}
 	
-	if ($ui_administration_module_show === true)
-	{
-		$modules['administration'] = 'Administration';
+		$modules['latest_threads'] = 'Forumtrådar';
+		$modules['latest_posts'] = 'Inlägg i forumet';
+		$modules['site_stats'] = 'Statistik';
+		
+		foreach(array('discussion_forum_remove_posts', 'discussion_forum_edit_posts', 'discussion_forum_rename_threads', 'discussion_forum_lock_threads', 'discussion_forum_sticky_threads', 'discussion_forum_move_thread', 'discussion_forum_post_addition') as $privilegie)
+		{
+			if (is_privilegied($privilegie))
+			{
+				$ui_administration_module_show = true;
+			}
+		}
+		
+		if ($ui_administration_module_show === true)
+		{
+			$modules['administration'] = 'Administration';
+		}
+		
+		$modules['online_ovs'] = 'Inloggade ordningsvakter';
 	}
-	
-	$modules['online_ovs'] = 'Inloggade ordningsvakter';
 	
 	if ( is_array($_SESSION['module_order']) )
 	{
