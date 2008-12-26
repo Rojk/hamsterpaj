@@ -3,13 +3,37 @@
 
 	function login_dologin($username, $password, $options = array())
 	{	
+		
 		$ghost = (isset($options['ghost']) && $options['ghost'] == true);
+		
+		// Check if the user has been removed, and then display the removal message. 
+		// This row also pretends removed users from creating new accounts with the 
+		// same name and password as the previous account. Unintentionally, but now permanent
+		// as i think that it's nuthin' but fair play.
+		// START die-by-removed-user-and-display-message-block
+		$query = 'SELECT is_removed, removal_message FROM login WHERE lastusername = "' . trim($username) . '" AND password_hash = "' . sha1($password . PASSWORD_SALT) . '" LIMIT 1';
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		$data = mysql_fetch_assoc($result);
+		
+		if (!$options['ghost'] && $data['is_removed'] == 1)
+		{
+			$removal_string = 'Du är borttagen med anledningen: ' . $data['removal_message'];
+			die($removal_string);
+			exit;
+		}
+		else 
+		{
+			// DEBUG
+			//die($options['ghost'] . ' - ' . $data['is_removed'] . '<br />' . $username . '<br />' . $password . '<br />' . sha1($password . PASSWORD_SALT));
+		}
+		// END die-by-removed-user-and-display-message-block
 		
 		if(strtolower($username) == 'borttagen')
 		{
 			header('Location: http://disneyworld.disney.go.com/wdw/index?bhcp=1');
 			exit;
 		}
+		
 		
 		if($ghost)
 		{
@@ -22,7 +46,7 @@
 			
 			// Test for SHA1 with hash
 			$query = 'SELECT id, lastaction, lastlogon, session_id FROM login WHERE username = "' . $username . '" AND password_hash = "' . sha1($password . PASSWORD_SALT) . '" LIMIT 1';
-
+			
 			$loginquery = mysql_query($query) or report_sql_error($query);
 			if(mysql_num_rows($loginquery) == 0)
 			{
@@ -38,7 +62,7 @@
 
 					// Load data using the SHA1-hash
 					$query = 'SELECT id, lastaction, lastlogon, session_id FROM login WHERE username = "' . $username . '" AND password_hash = "' . sha1($password . PASSWORD_SALT) . '" LIMIT 1';			
-					$loginquery = mysql_query($query) or die('Query failed: ' . mysql_error());					
+					$loginquery = mysql_query($query) or die('Query failed: ' . mysql_error());
 				}
 			}
 		}
