@@ -1,3 +1,146 @@
+//Configuration variables
+var steve_byeMsg = "Håll käften. Tror du att jag är nåt jävla uppslagsverk eller?"; //Message displayed if the number of mouse steve_clicks exceed the max steve_clicks limit
+var steve_helpMsg = "Snälla, låt mig leva, jag har inget ont gjort!"; //Message displayed when Steve is shot.
+var steve_fadeTime = 70; //Time between each opacity change in miliseconds. Lower value causes faster fade, and contrary.
+var steve_maxClicks = 5; //Number of maximum steve_clicks until steve_byeMsg
+var steve_delayPerChar = 80; //Times the number of characters constitutes the total delay of Steve's comment
+var steve_minimumDelay = 2000; //A message with too few characters will be displayed in at least this amount of time
+
+// Do not change any of the variables below
+var steve_steveWidth = 22;
+var steve_steveCurWidth = steve_steveWidth;
+var steve_startDelay = 0;
+var steve_fadeamount = 10;
+var steve_clicks = 0;
+var steve_startInt;
+var steve_usingIE = getBrowserName() == "msie" ? true : false;
+var steve_bubbleTopFix = steve_usingIE ? -67 : 23;
+
+function fixBubbleHeight(bubble)
+{
+	var bubbleInner = bubble.getElementsByTagName("div")[2];
+	bubbleInner.style.height = bubbleInner.offsetHeight - (10) + "px";
+}
+
+function checkMaxClicks(inputTxt)
+{
+	if(steve_clicks >= steve_maxClicks)
+	{
+		steve_walk();
+		return steve_byeMsg;
+	}
+	else
+	{
+		return inputTxt;
+	}
+}
+
+function bubble(inputTxt)
+{
+	var steve = document.getElementById('steve');
+	if(!document.getElementById("steve_bubble"))
+	{
+		inputTxt = checkMaxClicks(inputTxt);
+		steve_clicks++;
+		setStartDelay(inputTxt);
+		var bubble = document.createElement('div');
+		bubble.id = 'steve_bubble';
+		bubble.innerHTML = '<div class="steve_top"></div><div class="steve_inner"><div class="steve_content"><div class="steve_text">' + inputTxt + '</div></div></div><div class="steve_bottom"></div>';
+		document.body.appendChild(bubble);
+		fixBubbleHeight(bubble);
+		bubble.style.left = steve.offsetLeft - 240 + "px";
+		bubble.style.top = steve.offsetTop - (steve_bubbleTopFix + bubble.getElementsByTagName("div")[1].getElementsByTagName("div")[0].getElementsByTagName("div")[0].offsetHeight) + "px";
+		steve_startInt = startFadeOut();
+	}
+	else
+	{
+		destroyBubble();
+		steve_fadeamount = 10;
+		window.clearTimeout(steve_startInt);
+	}
+}
+
+function startFadeOut()
+{
+	return setTimeout("fadeOut()", steve_startDelay);
+}
+
+function fadeOut()
+{
+	if(steve_usingIE)
+	{
+		destroyBubble();
+	}
+	else
+	{
+		if(steve_fadeamount > 0)
+		{
+			steve_fadeamount--;
+			setOpacity(document.getElementById("steve_bubble"), steve_fadeamount);
+			setTimeout("fadeOut()", steve_fadeTime);
+		}
+		else if(steve_fadeamount <= 0)
+		{
+			steve_fadeamount = 10;
+			document.getElementById("steve_bubble").style.display = "none";
+			setOpacity(document.getElementById("steve_bubble"), 10);
+			destroyBubble();
+		}
+	}
+}
+
+function setOpacity(inputobj, value)
+{
+	inputobj.style.filter = "alpha(opacity="+value*10+")";
+	inputobj.style.opacity = value/10;
+	inputobj.style.MozOpacity = value/10;
+}
+
+function destroyBubble()
+{
+	if(document.getElementById("steve_bubble"))
+	{
+   var obj = document.getElementById("steve_bubble");
+   document.body.removeChild(obj);
+ }
+}
+
+function setStartDelay(inputTxt)
+{
+	steve_startDelay = inputTxt.length * steve_delayPerChar;
+	steve_startDelay = steve_startDelay < steve_minimumDelay ? steve_minimumDelay : steve_startDelay;
+}
+
+function getBrowserName()
+{
+	var browserName = "";
+	var ua = navigator.userAgent.toLowerCase();
+	if(ua.indexOf("msie") != -1)
+	{
+		browserName = "msie";
+	}
+	else
+	{
+		browserName = "other";
+	}
+	return browserName;
+}
+
+function steve_walk()
+{
+	var steve = document.getElementById("steve");
+	if(steve_steveCurWidth > 0)
+	{
+		steve.style.width = steve_steveCurWidth + "px";
+		steve_steveCurWidth--;
+		setTimeout("steve_walk()", 100);
+	}
+	else
+	{
+		steve.style.display = "none";
+	}
+}
+
 			function steve_gun_trigger(e)
 			{
 				var posX = e.pageX;
@@ -15,17 +158,13 @@
 			
 			function steve_shot()
 			{
-				alert('Aaargh!');
+				bubble('Aaargh!');
 				window.location = '/rip_steve.php';
 			}
 			
 			function steve_gun()
 			{
-
-alert('Snälla, låt mig leva, jag kidnappa inte hamstern!');
-
-			/*	alert('Snälla, låt mig leva, jag har inget ont gjort!');
-			*/
+				bubble(steve_helpMsg);
 				document.body.style.cursor = 'url("http://images.hamsterpaj.net/steve/sniper.png"), crosshair';
 				var overlay_div = document.createElement('div');
 				overlay_div.id = 'gun_div';
@@ -60,19 +199,21 @@ function steve_activate()
 
 var steve_long_click = false;
 var steve_mouse = false;
+var click_timeout;
 
 function steve_mousedown()
 {
 	steve_long_click = false;
 	steve_mouse = true;
-	setTimeout('steve_click_check()', 1500);
+	click_timeout = setTimeout('steve_click_check()', 1500);
 }
 
 function steve_click_check()
 {
 	if(steve_mouse == true)
 	{
-		alert('Oh shit, jordbävning!');
+		destroyBubble();
+		bubble('Oh shit, jordbävning!');
 		stop_start_wave_effect();
 		steve_long_click = true;
 	}
@@ -81,19 +222,20 @@ function steve_click_check()
 
 function buzz()
 {
-		alert('Oh shit, jordbävning!');
+	  destroyBubble();
+		bubble('Oh shit, jordbävning!');
 		stop_start_wave_effect();
 }
 
 function steve_mouseup()
 {
 	steve_mouse = false;
+	clearTimeout(click_timeout);
 	if(steve_long_click == false)
 	{
 		var steve_comments = Array();
 	
-steve_comments[0] = 'Välkommen till Kaninpar..�h.';
-/*		steve_comments[0] = 'Hamsterpaj startades i Oktober 2003';
+		steve_comments[0] = 'Hamsterpaj startades i Oktober 2003';
 		steve_comments[1] = 'Mitt namn är Steve, och jag är importerad från den gamla webbsiten megadomain';
 		steve_comments[2] = 'Hamsterpaj består av över tjugo tusen rader programkod';
 		steve_comments[3] = '.... . .- ...- . -. /  .. ... /  .- /  .--. .-.. .- -.-. . /  --- -. /  . .- .-. - .... ';
@@ -149,10 +291,10 @@ steve_comments[0] = 'Välkommen till Kaninpar..�h.';
 		steve_comments[53] = 'Joar: Ligger inte Sarajevo i lappland?';
 		steve_comments[54] = 'Lef-91: Varför är det så svårt att få upp saker ibland?';
 		steve_comments[55] = 'Felstvaningarna är en del av skärmen med Hamsterpaj';
-*/	
+	
 		var quote = Math.round(Math.random()*(steve_comments.length-1));
 
-		alert(steve_comments[quote]);
+		bubble(steve_comments[quote]);
 	}
 }
 

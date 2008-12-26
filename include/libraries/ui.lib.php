@@ -307,7 +307,7 @@ function ui_top($options = array())
 	}
 	
 	$output .= '				</ul>' . "\n";
-	$output .= '<img src="http://images.hamsterpaj.net/steve/steve.gif" alt="" id="steve" />' . "\n";
+	$output .= '<img src="http://images.hamsterpaj.net/steve/empty.gif" id="steve" />' . "\n";
 	$output .= '		</div>' . "\n";
 
 	if(isset($_SESSION['notice_message']))
