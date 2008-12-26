@@ -142,30 +142,34 @@ function groups_create_form($options)
 	return $output;
 }
 
-function render_group_entries($entries)
+function groups_entries_fetch($options)
 {
-	$content .= '<ul class="group_entries">' . "\n";
+	if (!is_numeric($options['group_id']))
+	{
+		throw new Exception('Bananfisk. <br />group_id måste vara numeriskt.');
+	}
+	$sql = 'SELECT * FROM groups_messages WHERE group_id = ' . $options['group_id'] . ' AND is_removed = 0';
+	$result = mysql_query($sql) or report_sql_error($sql, __FILE__, __LINE__);
+	while ($data = mysql_fetch_assoc($result))
+	{
+		$return[] = $data;
+	}
+	return $return;
+}
+
+function groups_entries_render($entries)
+{
+	$out .= '<ul class="group_entries">' . "\n";
 	foreach ($entries AS $entry)
 	{
-		$content .= '<li>' . "\n";
-			$content .= '<img src="http://images.hamsterpaj.net/images/users/thumb/625058.jpg" class="user_avatar" />' . "\n";
-				$content .= '<div class="container">' . "\n";
-					$content .= '<div class="top_bg">' . "\n";
-						$content .= '<div class="bottom_bg">' . "\n";
-							$content .= '<div>' . "\n";
-								$content .= '<span class="timestamp">' . $entry['timestamp'] . '</span>' . "\n";
-								$content .= '<a href="/traffa/profile.php?id=625058">Lef-91</a> ' . "\n";
-								$content .= $entry['gender'];
-								$content .= $entry['birthday'];
-								$content .= '<p>' . "\n";
-								$content .= 'Haha, fail' . "\n";
-							$content .= '</p>' . "\n";
-						$content .= '</div>' . "\n";
-					$content .= '</div>' . "\n";
-				$content .= '</div>' . "\n";
-			$content .= '</div>' . "\n";
-		$content .= '</li>' . "\n";
+		$options['user_id'] = $entry['user_id'];
+		$options['type'] = ($entry['read'] == 0) ? 'unread': 'standard';
+		$out .= message_top($options);
+		$out .= nl2br(trim($entry['message']))  . "\n";
+		$out .= message_bottom();
 	}
-	$content .= '</ul>' . "\n";
+	$out .= '</ul>' . "\n";
+	$out .= '<br style="clear: both;" />' . "\n";
+	return $out;
 }
 ?>

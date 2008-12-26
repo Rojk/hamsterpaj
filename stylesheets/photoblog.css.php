@@ -12,6 +12,13 @@
 	padding: 10px;
 	margin-top: 20px;
 }
+	#photoblog_upload_upload_flash_objectarea {
+		float: left;
+	}
+	#photoblog_upload_hq {
+		float: left;
+		margin-left: 20px;
+	}
 
 #photoblog_photo_properties_save
 {
@@ -84,8 +91,21 @@
 		}
         
 #photoblog_header {
-    margin: 0 0 10px 20px;
+	background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> repeat-x;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	padding: 5px 10px;
+	color: #fff;
+	margin-bottom: 10px;
+	width: 200px;
 }
+	#photoblog_select_year, #photoblog_select_month {
+		margin-right: 10px;
+	}
+	#photoblog_select_today {
+		
+	}
 
 #photoblog_thumbs {
     /* if the background image just looks weird just remove it */
@@ -147,12 +167,11 @@
     }
 	
     .photoblog_active img {
-        border: 2px solid yellow;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+       border: 2px solid yellow;
+			-moz-border-radius: 3px;
+			-khtml-border-radius: 3px;
+			border-radius: 3px;
     }
-	
 	
     .photoblog_active {
         position: relative;
@@ -264,8 +283,10 @@
 
 /* comments */
 
-#photoblog_comments {
-	
+#photoblog_comments ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 #photoblog_comments h3 { display: none; }
@@ -275,27 +296,15 @@
 	margin: 0;
 	padding: 0;
 }
-
-#photoblog_comments form div {
-	width: 90%;
-	height: 49px;
-	margin: 10px auto;
-	background: url(http://images.hamsterpaj.net/photoblog/comment_right.png) right top no-repeat;
-}
-
-#photoblog_comments form p {
-	display: block;
-	height: 49px;
-	line-height: 36px;
-	padding-left: 7px;
-	background: url(http://images.hamsterpaj.net/photoblog/comment_left.png) left top no-repeat;
-}
-
 	#photoblog_comments form span { display: none; }
 	
-	#photoblog_comments form label input {
-		width: 80%;
+	#photoblog_comments form label textarea {
+		width: 550px;
 		border: none;
+		margin: 7px 0 3px 0;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		padding: 5px;
 	}
 	
 	#photoblog_comments form .submit {
@@ -305,24 +314,16 @@
 		-webkit-border-radius: 2px;
 	}
 	
-#photoblog_comments .photoblog_comment {
-	width: 48%;
-	margin-left: 1%;
-	float: left;
+#photoblog_comments_container {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
-
+	#photoblog_comments .photoblog_comment {
+	
+	}
 	#photoblog_comments .photoblog_comment h4 {
-		background: #999;
 		margin: 0;
 		padding: 5px;
 		font-size: 14px;
-	}
-	
-	#photoblog_comments .photoblog_comment .comment {
-		float: left;
-	}
-	
-	#photoblog_comments .photoblog_comment .avatar {
-		float: right;
-		margin-top: -27px;
 	}

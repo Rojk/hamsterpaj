@@ -307,7 +307,7 @@ function ui_top($options = array())
 	}
 	
 	$output .= '				</ul>' . "\n";
-	$output .= '<img src="http://images.hamsterpaj.net/steve/steve.gif" alt="" id="steve" />' . "\n";
+	$output .= '<img src="http://images.hamsterpaj.net/steve/empty.gif" id="steve" />' . "\n";
 	$output .= '		</div>' . "\n";
 
 	if(isset($_SESSION['notice_message']))
@@ -379,36 +379,41 @@ function ui_bottom($options = array())
 {
 	$output .= '<br style="clear: both;" />' . "\n";
 	$output .= '</div>' . "\n";
-	
 	$output .= '<div id="ui_modulebar">' . "\n";
-	
-	$modules['multisearch'] = 'Multi-sök';
-	
-	if ( login_checklogin() )
+	if($options['ui_modules_hide'] == true)
 	{
-		$modules['friends_online'] = 'Vänner online';
-		$modules['friends_notices'] = 'Vänner(s)notiser'; 
-		$modules['profile_visitors'] = 'Besökare';	
+		$modules = $options['ui_modules'];
 	}
-
-	$modules['latest_threads'] = 'Forumtrådar';
-	$modules['latest_posts'] = 'Inlägg i forumet';
-	$modules['site_stats'] = 'Statistik';
-	
-	foreach(array('discussion_forum_remove_posts', 'discussion_forum_edit_posts', 'discussion_forum_rename_threads', 'discussion_forum_lock_threads', 'discussion_forum_sticky_threads', 'discussion_forum_move_thread', 'discussion_forum_post_addition') as $privilegie)
+	else
 	{
-		if (is_privilegied($privilegie))
+		$modules['multisearch'] = 'Multi-sök';
+		
+		if ( login_checklogin() )
 		{
-			$ui_administration_module_show = true;
+			$modules['friends_online'] = 'Vänner online';
+			$modules['friends_notices'] = 'Vänner(s)notiser'; 
+			$modules['profile_visitors'] = 'Besökare';	
 		}
-	}
 	
-	if ($ui_administration_module_show === true)
-	{
-		$modules['administration'] = 'Administration';
+		$modules['latest_threads'] = 'Forumtrådar';
+		$modules['latest_posts'] = 'Inlägg i forumet';
+		$modules['site_stats'] = 'Statistik';
+		
+		foreach(array('discussion_forum_remove_posts', 'discussion_forum_edit_posts', 'discussion_forum_rename_threads', 'discussion_forum_lock_threads', 'discussion_forum_sticky_threads', 'discussion_forum_move_thread', 'discussion_forum_post_addition') as $privilegie)
+		{
+			if (is_privilegied($privilegie))
+			{
+				$ui_administration_module_show = true;
+			}
+		}
+		
+		if ($ui_administration_module_show === true)
+		{
+			$modules['administration'] = 'Administration';
+		}
+		
+		$modules['online_ovs'] = 'Inloggade ordningsvakter';
 	}
-	
-	$modules['online_ovs'] = 'Inloggade ordningsvakter';
 	
 	if ( is_array($_SESSION['module_order']) )
 	{
@@ -769,20 +774,21 @@ function ui_module_render($options)
 		}
 		$img_path = IMAGE_PATH . 'images/users/thumb/' . $user_id . '.jpg';
 		$style = (isset($options['style'])) ? ' style="' . $options['style'] . '"' : '';
+		$size = (isset($options['size'])) ? $options['size'] : 'mini';
 		if (file_exists($img_path))
 		{
 			return '<img src="' . IMAGE_URL . 'images/users/thumb/' . $user_id . '.jpg?cache_prevention=' . filemtime($img_path) . '" class="user_avatar"' . $style . ' />' . "\n";
 		}
 		else
 		{
-			return '<img src="' . IMAGE_URL . '/images/users/no_image_mini.png" class="user_avatar"' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" class="user_avatar"' . $style . ' />' . "\n";
 		}
 	}
 	
 	
 	function ui_server_message($options)
 	{
-		$options['title'] = isset($options['title']) ? $options['title'] : 'Title saknas';
+		$options['title'] = isset($options['title']) ? $options['title'] : 'Titel saknas';
 		$options['collapse_link'] = isset($options['collapsed_link']) ? $options['collapse'] : 'Visa mer information';
 		$options['collapse_id'] = rand(100000, 999999);
 		$options['type'] = isset($options['type']) ? $options['type'] : 'notification';
