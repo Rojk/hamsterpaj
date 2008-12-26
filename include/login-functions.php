@@ -283,6 +283,10 @@ function login_remove_user($user_id)
 	$result = mysql_query($sql);
 	$data = mysql_fetch_assoc($result);
 	
+	if (strtolower($data['username']) == 'borttagen')
+	{
+		throw new Exception('Inte så hastigt!<br />Det räcker med att ta bort användaren <strong>en</strong> gång :D');
+	}
 	$query = 'UPDATE login SET lastusernamechange = ' . time() . ', lastusername = "' . $data['username'] . '", username = "Borttagen", is_removed = 1 WHERE id = "' . $user_id . '" LIMIT 1';
 	mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 }
