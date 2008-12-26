@@ -1,5 +1,5 @@
 //Configuration variables
-var steve_byeMsg = "Håll käften. Tror du att jag är nåt jävla uppslagsverk eller?"; //Message displayed if the number of mouse steve_clicks exceed the max steve_clicks limit
+var steve_byeMsg = "Men ge dig, tjockis. Jag kommer tillbaka när du blivit snäll igen."; //Message displayed if the number of mouse steve_clicks exceed the max steve_clicks limit
 var steve_helpMsg = "Snälla, låt mig leva, jag har inget ont gjort!"; //Message displayed when Steve is shot.
 var steve_fadeTime = 70; //Time between each opacity change in miliseconds. Lower value causes faster fade, and contrary.
 var steve_maxClicks = 5; //Number of maximum steve_clicks until steve_byeMsg
