@@ -443,19 +443,6 @@ function ui_bottom($options = array())
 	$output .= '</div>' . "\n";
 	
 	$output .= '<div id="fiskpinne" style="background: none;">' . "\n";
-	$output .= '<embed style="margin: 0px;" src="http://images.hamsterpaj.net/cloudad.swf" quality="high"
-             width="160" height="600" type="application/x-shockwave-flash" wmode="transparent" transparent="true"
-             pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></embed> ';
-/*
-	$output .= '<div id="cloudad" style="background: none;"></div>
-						<script type="text/javascript">
-						var s1 = new SWFObject("http://images.hamsterpaj.net/cloudad.swf","single","160","600","7");
-						s1.addVariable("width","160");
-						s1.addVariable("height","600");
-						s1.write("cloudad");
-						</script>';
-*/
-	$output .= '<div style="height: 50px;"></div>' . "\n";
 	$output .= '<script type="text/javascript" src="http://www.adtrade.net/ad/p/?id=hamsterpaj_1&size=140x350&ad=001" charset="iso-8859-1"></script>';
 	$output .= '</div>' . "\n";
 	
