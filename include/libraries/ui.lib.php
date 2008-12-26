@@ -448,19 +448,6 @@ function ui_bottom($options = array())
 	$output .= '</div>' . "\n";
 	
 	$output .= '<div id="fiskpinne" style="background: none;">' . "\n";
-	$output .= '<embed style="margin: 0px;" src="http://images.hamsterpaj.net/cloudad.swf" quality="high"
-             width="160" height="600" type="application/x-shockwave-flash" wmode="transparent" transparent="true"
-             pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></embed> ';
-/*
-	$output .= '<div id="cloudad" style="background: none;"></div>
-						<script type="text/javascript">
-						var s1 = new SWFObject("http://images.hamsterpaj.net/cloudad.swf","single","160","600","7");
-						s1.addVariable("width","160");
-						s1.addVariable("height","600");
-						s1.write("cloudad");
-						</script>';
-*/
-	$output .= '<div style="height: 50px;"></div>' . "\n";
 	$output .= '<script type="text/javascript" src="http://www.adtrade.net/ad/p/?id=hamsterpaj_1&size=140x350&ad=001" charset="iso-8859-1"></script>';
 	$output .= '</div>' . "\n";
 	
@@ -787,20 +774,21 @@ function ui_module_render($options)
 		}
 		$img_path = IMAGE_PATH . 'images/users/thumb/' . $user_id . '.jpg';
 		$style = (isset($options['style'])) ? ' style="' . $options['style'] . '"' : '';
+		$size = (isset($options['size'])) ? $options['size'] : 'mini';
 		if (file_exists($img_path))
 		{
 			return '<img src="' . IMAGE_URL . 'images/users/thumb/' . $user_id . '.jpg?cache_prevention=' . filemtime($img_path) . '" class="user_avatar"' . $style . ' />' . "\n";
 		}
 		else
 		{
-			return '<img src="' . IMAGE_URL . '/images/users/no_image_mini.png" class="user_avatar"' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" class="user_avatar"' . $style . ' />' . "\n";
 		}
 	}
 	
 	
 	function ui_server_message($options)
 	{
-		$options['title'] = isset($options['title']) ? $options['title'] : 'Title saknas';
+		$options['title'] = isset($options['title']) ? $options['title'] : 'Titel saknas';
 		$options['collapse_link'] = isset($options['collapsed_link']) ? $options['collapse'] : 'Visa mer information';
 		$options['collapse_id'] = rand(100000, 999999);
 		$options['type'] = isset($options['type']) ? $options['type'] : 'notification';
