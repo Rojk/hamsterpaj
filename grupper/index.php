@@ -9,6 +9,7 @@
 	switch($request['action'])
 	{
 		case 'view_group':
+			$ui_options['title'] = $request['group']['name'] . ' - Grupper på Hamsterpaj.net';
 			$content .= '<h1>' . $request['group']['name'] . '</h1>' . "\n";
 				$content .= rounded_corners_top();
 					$content .= '<form action="' . $_SERVER['php_self'] . '?action=new_post&amp;groupid=' . $groupid . '" method="post" name="postform">' . "\n";
@@ -18,85 +19,15 @@
 					$content .= '</form>' . "\n";
 				$content .= rounded_corners_bottom();
 				
-			$content .= '<ul class="group_entries">' . "\n";
-				$content .= '<li>' . "\n";
-					$content .= '<img src="http://images.hamsterpaj.net/images/users/thumb/625058.jpg" class="user_avatar" />' . "\n";
-					$content .= '<div class="container">' . "\n";
-						$content .= '<div class="top_bg">' . "\n";
-							$content .= '<div class="bottom_bg">' . "\n";
-								$content .= '<div>' . "\n";
-									$content .= '<span class="timestamp">Idag 00:37</span>' . "\n";
-									$content .= '<a href="/traffa/profile.php?id=625058">Lef-91</a> ' . "\n";
-									$genders = array('f' => 'F', 'm' => 'P');
-									$content .= $genders[m];
-									$content .= 15;
-									$content .= '<p>' . "\n";
-										$content .= 'Haha, fail' . "\n";
-									$content .= '</p>' . "\n";
-								$content .= '</div>' . "\n";
-							$content .= '</div>' . "\n";
-						$content .= '</div>' . "\n";
-					$content .= '</div>' . "\n";
-				$content .= '</li>' . "\n";
-				$content .= '<li>' . "\n";
-					$content .= '<img src="http://images.hamsterpaj.net/images/users/thumb/625058.jpg" class="user_avatar" />' . "\n";
-					$content .= '<div class="container">' . "\n";
-						$content .= '<div class="top_bg">' . "\n";
-							$content .= '<div class="bottom_bg">' . "\n";
-								$content .= '<div>' . "\n";
-									$content .= '<span class="timestamp">Idag 00:37</span>' . "\n";
-									$content .= '<a href="/traffa/profile.php?id=625058">Lef-91</a> ' . "\n";
-									$genders = array('f' => 'F', 'm' => 'P');
-									$content .= $genders[m];
-									$content .= 15;
-									$content .= '<p>' . "\n";
-										$content .= 'För att Joar smakar mer jordgubbe, lol.' . "\n";
-									$content .= '</p>' . "\n";
-								$content .= '</div>' . "\n";
-							$content .= '</div>' . "\n";
-						$content .= '</div>' . "\n";
-					$content .= '</div>' . "\n";
-				$content .= '</li>' . "\n";
-				$content .= '<li>' . "\n";
-					$content .= '<img src="http://images.hamsterpaj.net/images/users/thumb/625058.jpg" class="user_avatar" />' . "\n";
-					$content .= '<div class="container">' . "\n";
-						$content .= '<div class="top_bg">' . "\n";
-							$content .= '<div class="bottom_bg">' . "\n";
-								$content .= '<div>' . "\n";
-									$content .= '<span class="timestamp">Idag 00:37</span>' . "\n";
-									$content .= '<a href="/traffa/profile.php?id=625058">Lef-91</a> ' . "\n";
-									$genders = array('f' => 'F', 'm' => 'P');
-									$content .= $genders[m];
-									$content .= 15;
-									$content .= '<p>' . "\n";
-										$content .= 'Varför skulle jag vara avis?' . "\n";
-									$content .= '</p>' . "\n";
-								$content .= '</div>' . "\n";
-							$content .= '</div>' . "\n";
-						$content .= '</div>' . "\n";
-					$content .= '</div>' . "\n";
-				$content .= '</li>' . "\n";
-				$content .= '<li>' . "\n";
-					$content .= '<img src="http://images.hamsterpaj.net/images/users/thumb/625058.jpg" class="user_avatar" />' . "\n";
-					$content .= '<div class="container">' . "\n";
-						$content .= '<div class="top_bg">' . "\n";
-							$content .= '<div class="bottom_bg">' . "\n";
-								$content .= '<div>' . "\n";
-									$content .= '<span class="timestamp">Idag 00:37</span>' . "\n";
-									$content .= '<a href="/traffa/profile.php?id=625058">Lef-91</a> ' . "\n";
-									$genders = array('f' => 'F', 'm' => 'P');
-									$content .= $genders[m];
-									$content .= 15;
-									$content .= '<p>' . "\n";
-										$content .= 'Joar är så söt när han är sur, som en fullvuxen jordgubbe<br /><br /><br /> Eric är nog lite avundsjuk.' . "\n";
-									$content .= '</p>' . "\n";
-								$content .= '</div>' . "\n";
-							$content .= '</div>' . "\n";
-						$content .= '</div>' . "\n";
-					$content .= '</div>' . "\n";
-				$content .= '</li>' . "\n";
-			$content .= '</ul>' . "\n";
+				unset($options);
+				$options['group_id'] = 1;
 				
+				$entries = groups_entries_fetch($options);
+				preint_r($entries);
+				
+				$content .= groups_entries_render($entries);
+				
+									
 			$content .= ($request['group']['founder'] == $_SESSION['login']['id']) ? '<h2>Du är administratör för den här gruppen.</h2>' . "\n" : '';
 			$content .= '<p>' . nl2br($request['group']['description']) . '</p>' . "\n";
 			break;
