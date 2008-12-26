@@ -11,6 +11,9 @@
 		// same name and password as the previous account. Unintentionally, but now permanent
 		// as i think that it's nuthin' but fair play.
 		// START die-by-removed-user-and-display-message-block
+		/*
+		
+		FUCK IT.
 		$query = 'SELECT is_removed, removal_message FROM login WHERE lastusername = "' . trim($username) . '" AND password_hash = "' . sha1($password . PASSWORD_SALT) . '" LIMIT 1';
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		$data = mysql_fetch_assoc($result);
@@ -25,7 +28,7 @@
 		{
 			// DEBUG
 			//die($options['ghost'] . ' - ' . $data['is_removed'] . '<br />' . $username . '<br />' . $password . '<br />' . sha1($password . PASSWORD_SALT));
-		}
+		}*/
 		// END die-by-removed-user-and-display-message-block
 		
 		if(strtolower($username) == 'borttagen')
