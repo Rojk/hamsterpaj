@@ -63,6 +63,12 @@
 	{
 		case 'post_settings.php':
 		$out .= preint_r($_POST);
+		$options = array(
+			'color_main' => strtoupper($_POST['photoblog_preferences_color_main']),
+			'color_detail' => strtoupper($_POST['photoblog_preferences_color_detail']),
+			'hamster_guard_on' => $_POST['photoblog_preferences_hamster_guard_on']
+		);
+		$photoblog_preferences->save($options);
 		break;
 	}
 ?>

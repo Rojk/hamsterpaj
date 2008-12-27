@@ -1,5 +1,4 @@
 <?php
-	error_reporting(E_ALL);
 	require('../include/core/common.php');
 	try
 	{
@@ -49,16 +48,37 @@
 			break;
 				
 			default:
-				if ( isset($uri_parts[2]) && preg_match('/^[a-zA-Z0-9-_]+$/', $uri_parts[2]) )
+				if ( isset($uri_parts[2]) && preg_match('/^[a-zA-Z0-9-_]+$/', $uri_parts[2]) && strtolower($uri_parts[2]) != 'borttagen' )
 				{
-					$username = $uri_parts[2];	
+					$username = $uri_parts[2];
+					$sql = 'SELECT pp.*, l.id, l.username';
+					$sql .= ' FROM login AS l, photoblog_preferences AS pp';
+					$sql .= ' WHERE pp.user_id = l.id AND l.username = "' . $uri_parts[2] . '"';
+					$sql .= ' LIMIT 1';
+					$result = mysql_query($sql) or report_sql_error($sql, __FILE__, __LINE__);
+					$data = mysql_fetch_assoc($result);
+					if ( strlen($data['id']) == 0 )
+					{
+						throw new Exception('Användaren verkar inte finnas i databasen *sadface*<br /><a href="/fotoblogg/">Tillbaka</a>');
+					}
+					else
+					{
+						preint_r($data);
+					}
+				}
+				// If this is true, it means that $uri_parts[2] is'nt a valid username
+				elseif ( strlen($uri_parts[2]) > 0 )
+				{
+					throw new Exception('Användarnamnet var fail :P, ett användarnamn kan bara använda atillzetaATILLZETAnolltillniobindestreckochunderstreck.');
 				}
 				elseif ( login_checklogin() )
 				{
-					jscript_location('/fotoblogg/' . $_SESSION['login']['username']);
+					header('Location: /fotoblogg/' . $_SESSION['login']['username']);
 				}
 				else
 				{
+					echo strlen($uri_parts[2]);
+					var_dump($uri_parts[2]);
 					$username = 'iphone';
 				}
 				
