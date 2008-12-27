@@ -68,7 +68,21 @@
 					$data = mysql_fetch_assoc($result);
 					$user_id = $data['id'];
 					
-					$sql = 'SELECT user_id FROM photoblog_preferences WHERE user_id = ';
+					$sql = 'SELECT user_id FROM photoblog_preferences WHERE user_id = ' . $user_id . ' LIMIT 1';
+					$result = mysql_query($sql);
+					if (mysql_num_rows($result) == 0)
+					{
+						
+						$sql = 'INSERT INTO photoblog_preferences SET ';
+						$sql .= ' color_main = "' . $photoblog_preferences_default_values['color_main'] . '"';
+						$sql .= ' color_detail = "' . $photoblog_preferences_default_values['color_detail'] . '"';
+						$sql .= ' hamster_guard_on = ' . $photoblog_preferences_default_values['hamster_guard_on'];
+						if (!mysql_query($sql))
+						{
+							report_sql_error($sql);
+						}
+					}
+					
 					$sql = 'SELECT pp.*, l.id, l.username';
 					$sql .= ' FROM login AS l, photoblog_preferences AS pp';
 					$sql .= ' WHERE pp.user_id = l.id AND l.username = "' . $uri_parts[2] . '"';
