@@ -49,7 +49,29 @@
 			break;
 				
 			default:
-				require('blogg.php');
+				if ( isset($uri_parts[2]) && preg_match('/^[a-zA-Z0-9-_]+$/', $uri_parts[2]) )
+				{
+					$username = $uri_parts[2];	
+				}
+				elseif ( login_checklogin() )
+				{
+					jscript_location('/fotoblogg/' . $_SESSION['login']['username']);
+				}
+				else
+				{
+					$username = 'iphone';
+				}
+				
+				switch ($uri_parts[3])
+				{
+					case 'album':
+						require('album.php');
+					break;
+					
+					default:
+						require('blogg.php');
+					break;
+				}
 			break;
 		}
 	}
