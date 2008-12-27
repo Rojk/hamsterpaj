@@ -415,7 +415,7 @@ function ui_bottom($options = array())
 		$modules['online_ovs'] = 'Inloggade ordningsvakter';
 	}
 	
-	if ( is_array($_SESSION['module_order']) )
+	if ( is_array($_SESSION['module_order']) && $options['ui_modules_hide'] == false )
 	{
 		foreach ( $_SESSION['module_order'] as $handle )
 		{
