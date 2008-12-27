@@ -119,6 +119,8 @@ hp.photoblog = {
 			this.make_nextprev();
 			this.make_ajax();
 			this.make_keyboard();
+			
+			this.load_hashimage();
 		},
 		
 		make_scroller: function() {
@@ -231,23 +233,11 @@ hp.photoblog = {
 			//var scroller = $('#photoblog_thumbs_scroller');
 			//var image = $('#photoblog_image img');
 			
-			var setActive = hp.photoblog.view.set_active;
-			
-			var json_callback = function(data) {
-				self.set_data(data[0]);
-			};
-			
 			var click_callback = function(e) {
 				var t = $(this);
 				var id = t.attr('rel').replace('imageid_', '');
 				
-				setActive('a[rel=imageid_' + id + ']');
-				//self.centralize_active();
-				
-				self.set_image(id);
-				
-				self.create_load();
-				$.getJSON('/ajax_gateways/photoblog.json.php?id=' + id, json_callback);
+				self.load_image(id);
 			};
 			
 			var thumbs = $('#photoblog_thumbs a[rel^=imageid_]');
@@ -273,14 +263,23 @@ hp.photoblog = {
 				switch (key) {
 					case 'left':
 						self.prev.click();
+						return false;
 					break;
 				
 					case 'right':
 						self.next.click();
+						return false;
 					break;
 				}
-				return false;
 			});
+		},
+		
+		make_cache: function() {
+			var cache = $('<div id="photoblog_cache"></div>').appendTo(document.body);
+		},
+		
+		add_to_cache: function() {
+			
 		},
 		
 		set_active: function(active) {
@@ -400,6 +399,31 @@ hp.photoblog = {
 		remove_load: function() {
 			if ( this.loader ) {
 				this.loader.css('visibility', 'hidden');
+			}
+		},
+		
+		load_image: function(id) {
+			var self = this;
+			var json_callback = function(data) {
+				self.set_data(data[0]);
+			};
+			
+			this.set_active('a[rel=imageid_' + id + ']');
+			this.set_image(id);
+			this.create_load();
+			$.getJSON('/ajax_gateways/photoblog.json.php?id=' + id, json_callback);
+
+		},
+		
+		load_hashimage: function() {
+			var hash = window.location.hash;
+			if ( hash.indexOf('#image-') != -1 ) {
+				var id = parseInt(hash.replace('#image-', ''), 10);
+				if ( isNaN(id) ) {
+					alert('Erronous image #ID');
+					return;
+				}
+				this.load_image(id);
 			}
 		}
 	},
