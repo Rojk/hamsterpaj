@@ -18,26 +18,26 @@
 			$photoblog_preferences_fetch_result = mysql_query($photoblog_preferences_fetch_sql);
 			if (mysql_num_rows($photoblog_preferences_fetch_result) == 0)
 			{
-				$photoblog_preferences_init_sql = 'INSERT INTO photoblog_preferences SET';
+				$sql = 'INSERT INTO photoblog_preferences SET';
 				$photoblog_preferences_default_values_count = count($photoblog_preferences_default_values);
 				$count = 0;
 				foreach ($photoblog_preferences_default_values as $default_key => $default_val)
 				{
 					if (is_numeric($default_val))
 					{
-						$photoblog_preferences_init_sql .= ' ' . $default_key . ' = ' . $default_val;
+						$sql .= ' ' . $default_key . ' = ' . $default_val;
 					}
 					else
 					{
-						$photoblog_preferences_init_sql .= ' ' . $default_key . ' = "' . $default_val . '"';
+						$sql .= ' ' . $default_key . ' = "' . $default_val . '"';
 					}
 					$count++;
 					if ($count != $photoblog_preferences_default_values_count)
 					{
-						$photoblog_preferences_init_sql .= ',';
+						$sql .= ',';
 					}
 				}
-				mysql_query($photoblog_preferences_init_sql) or report_sql_error($photoblog_preferences_init_sql, __FILE__, __LINE__);
+				mysql_query($sql) or report_sql_error($sql, __FILE__, __LINE__);
 				$photoblog_preferences_fetch_data = $photoblog_preferences_default_values;
 			}
 			else
@@ -48,34 +48,30 @@
 			return $photoblog_preferences_fetch_data;
 		}
 		
-		function save($photoblog_preferences_save_values)
+		function save($values)
 		{
-			$photoblog_preferences_save_sql = 'UPDATE photoblog_preferences WHERE user_id = ' . $_SESSION['login']['id'] . ' SET';
-			$photoblog_preferences_save_values_count = count($photoblog_preferences_save_values);
+			$sql = 'UPDATE photoblog_preferences SET';
+			$values_count = count($values);
+			//UPDATE photoblog_preferences SET color_main = "FFFFFF", color_detail = "FFFFFF", hamster_guard_on = 1 WHERE user_id = 879696 LIMIT 1
 			$count = 0;
-			foreach ($photoblog_preferences_save_values as $values_key => $values_val)
+			foreach ($values as $values_key => $values_val)
 			{
-				if (is_numeric($values_val))
-				{
-					$photoblog_preferences_save_sql .= ' ' . $values_key . ' = ' . $values_val;
-				}
-				else
-				{
-					$photoblog_preferences_save_sql .= ' ' . $values_key . ' = "' . $values_val . '"';
-				}
+				$sql .= ' ' . $values_key . ' = "' . $values_val . '"';
 				$count++;
-				if ($count != $photoblog_preferences_save_values_count)
+				if ($count != $values_count)
 				{
-					$photoblog_preferences_save_sql .= ',';
+					$sql .= ',';
 				}
 			}
-			if (mysql_query($photoblog_preferences_save_sql))
+			$sql .= ' WHERE user_id = ' . $_SESSION['login']['id'] . '';
+
+			if (mysql_query($sql))
 			{
 				return true;
 			}
 			else
 			{
-				report_sql_error($photoblog_preferences_save_sql, __FILE__, __LINE__);
+				report_sql_error($sql, __FILE__, __LINE__);
 				return false;
 			}
 		}

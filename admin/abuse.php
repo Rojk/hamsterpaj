@@ -36,7 +36,7 @@
 					$out .= '<br /><a href="' . $url . '">Gå till inlägget</a>' . "\n";
 					break;
 				case 'guestbook_entry':
-					$entry_query = 'SELECT message, sender FROM traffa_guestbooks WHERE id = "' . $data['reference_id'] . '" LIMIT 1';;
+					$entry_query = 'SELECT message, sender FROM traffa_guestbooks WHERE id = "' . $data['reference_id'] . '" LIMIT 1';
 					$entry_result = mysql_query($entry_query) or report_sql_error($entry_query, __FILE__, __LINE__);
 					$entry = mysql_fetch_assoc($entry_result);
 					$entry_poster_query = 'SELECT username, id FROM login WHERE id = ' . $entry['sender'] . ' LIMIT 1';
@@ -46,6 +46,17 @@
 					$out .= '<p style="font-style: italic">' . $data['freetext'] . '</p>' . "\n";
 					$out .= '<p>'. ((strlen($entry['message']) > 1000) ? substr($entry['message'], 0, 1000) . ' [INLÄGGET HAR KAPATS AV]' : $entry['message']) . '</p>' . "\n";
 					break;
+				case 'photo':
+					$photo_query = 'SELECT user FROM user_photos WHERE id = ' . $data['reference_id'] . ' LIMIT 1';
+					$photo_result = mysql_query($photo_query) or report_sql_error($entry_query, __FILE__, __LINE__);
+					$photo = mysql_fetch_assoc($photo_result);
+					$photo_poster_query = 'SELECT username FROM login WHERE id = ' . $photo['user'] . ' LIMIT 1';
+					$photo_poster_result = mysql_query($photo_poster_query) or report_sql_error($photo_poster_query, __FILE__, __LINE__);
+					$photo_poster = mysql_fetch_assoc($photo_poster_result);
+					$out .= '<strong>Bild uppladdad av <a href="/traffa/user_facts.php?user_id=' . $photo['user'] . '">' . $photo_poster['username'] . '</a> - Rapporterat av <a href="/traffa/guestbook.php?view=' . $data['reporter'] . '">' . $data['report_username'] . '</a> <a href="/admin/user_management.php?username=' . $data['report_username'] . '">[UA]</a> ' . fix_time($data['timestamp']) . '</strong>: ' . $abuse_types[$data['abuse_type']]['label'] . '<br />' . "\n";
+					$out .= '<p style="font-style: italic">' . $data['freetext'] . '</p>' . "\n";
+					$out .= '<a href="http://www.hamsterpaj.net/traffa/photos.php?ajax&user_id=' . $photo['user'] . '&image_id=' . $data['reference_id'] . '#photo"><img src="http://images.hamsterpaj.net/photos/thumb/' . floor($data['reference_id'] / 5000) . '/' . $data['reference_id'] . '.jpg" />';
+				break;
 			}
 			$out .= '<p style="margin-bottom: 0px;"><a style="cursor:pointer" onclick="handleReport(' . $data['id'] . ')">Hantera denna rapport</a></p>' . "\n";
 			$out .= rounded_corners_bottom();

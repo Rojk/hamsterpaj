@@ -6,6 +6,11 @@
 		require(PATHS_INCLUDE . 'libraries/photoblog_preferences.lib.php');
 		require(PATHS_INCLUDE . 'libraries/profile.lib.php');
 		
+		if (!is_privilegied('igotgodmode'))
+		{
+			throw new Exception('Den här delen är inte uppe för allmänheten än ;)');
+		}
+		
 		$ui_options['stylesheets'][] = 'photoblog.css.php';
 		$ui_options['javascripts'][] = 'jquery-ui-slider.js';
 		$ui_options['javascripts'][] = 'jquery-ui-datepicker.js';	
@@ -40,7 +45,14 @@
 		switch ($uri_parts[2])
 		{
 			case 'instaellningar':
-				require('instaellningar.php');
+				if ( login_checklogin() )
+				{
+					require('instaellningar.php');
+				}
+				else
+				{
+					throw new Exception('Inga inställningar för dig!<br />Logga in så kanske det går bättre ;)');
+				}
 			break;
 			
 			case 'ladda_upp':		
@@ -51,6 +63,27 @@
 				if ( isset($uri_parts[2]) && preg_match('/^[a-zA-Z0-9-_]+$/', $uri_parts[2]) && strtolower($uri_parts[2]) != 'borttagen' )
 				{
 					$username = $uri_parts[2];
+					$sql = 'SELECT id FROM login WHERE username = "' . $username . '" LIMIT 1';
+					$result = mysql_query($sql);
+					$data = mysql_fetch_assoc($result);
+					$user_id = $data['id'];
+					
+					$sql = 'SELECT user_id FROM photoblog_preferences WHERE user_id = ' . $user_id . ' LIMIT 1';
+					$result = mysql_query($sql);
+					if (mysql_num_rows($result) == 0)
+					{
+						
+						$sql = 'INSERT INTO photoblog_preferences SET ';
+						$sql .= ' user_id = ' . $user_id . ',';
+						$sql .= ' color_main = "' . $photoblog_preferences_default_values['color_main'] . '",';
+						$sql .= ' color_detail = "' . $photoblog_preferences_default_values['color_detail'] . '",';
+						$sql .= ' hamster_guard_on = ' . $photoblog_preferences_default_values['hamster_guard_on'];
+						if (!mysql_query($sql))
+						{
+							report_sql_error($sql);
+						}
+					}
+					
 					$sql = 'SELECT pp.*, l.id, l.username';
 					$sql .= ' FROM login AS l, photoblog_preferences AS pp';
 					$sql .= ' WHERE pp.user_id = l.id AND l.username = "' . $uri_parts[2] . '"';

@@ -66,13 +66,25 @@
 	switch ($uri_parts[3])
 	{
 		case 'post_settings.php':
-		$out .= preint_r($_POST);
+		//$out .= preint_r($_POST);
 		$options = array(
 			'color_main' => strtoupper($_POST['photoblog_preferences_color_main']),
 			'color_detail' => strtoupper($_POST['photoblog_preferences_color_detail']),
 			'hamster_guard_on' => $_POST['photoblog_preferences_hamster_guard_on']
 		);
+		$options_check_strlen_len_6_array = array(
+			'color_main',
+			'color_detail'
+		);
+		foreach ($options_check_strlen_len_6_array as $key)
+		{
+			if (strlen($options[$key]) != 6)
+			{
+				throw new Exception('Fel i postfunktionen... klaga på <a href="/joar/gb">Joar</a>');
+			}
+		}
 		$photoblog_preferences->save($options);
+		header('Location: /fotoblogg/instaellningar/');
 		break;
 	}
 ?>
