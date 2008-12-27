@@ -6,6 +6,11 @@
 		require(PATHS_INCLUDE . 'libraries/photoblog_preferences.lib.php');
 		require(PATHS_INCLUDE . 'libraries/profile.lib.php');
 		
+		if (!is_privilegied('igotgodmode'))
+		{
+			throw new Exception('Den här delen är inte uppe för allmänheten än ;)');
+		}
+		
 		$ui_options['stylesheets'][] = 'photoblog.css.php';
 		$ui_options['javascripts'][] = 'jquery-ui-slider.js';
 		$ui_options['javascripts'][] = 'jquery-ui-datepicker.js';	
