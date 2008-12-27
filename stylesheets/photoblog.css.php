@@ -104,7 +104,8 @@
 		margin-right: 10px;
 	}
 	#photoblog_select_today {
-		
+		position: relative;
+		top: 4px;
 	}
 
 #photoblog_thumbs {
