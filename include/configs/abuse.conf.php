@@ -3,7 +3,7 @@
 				When adding a new abuse_type you also have to add it
 				in the database. 
 				Table:	Abuse
-				Column: abuse_Type
+				Column: abuse_type
 		 ############################################################### */
 
 	$abuse_headers['forum_post'] = 'Anmäl ett inlägg i forumet';
@@ -12,8 +12,12 @@
 	$abuse_headers['guestbook_entry'] = 'Rapportera ett gästboksinlägg';
 	$abuse_info['guestbook_entry'] = '<p>Anmäl inte dina klasskompisar eller personer du känner IRL. Använd blockeringsfunktionen och prata med dina föräldrar istället!</p>';
 
+	$abuse_headers['photo'] = 'Anmäl en bild i fotoalbumet';
+	$abuse_info['photo'] = '<p>Bilder som är pornografiska, rasistiska eller på något annat sätt upplevs som stötande plockas bort.</p>';
+
 	$abuse_alternatives_by_type['forum_post'] = array('hmf', 'off_topic', 'hot', 'kedjebrev', 'spam', 'posthunt');
 	$abuse_alternatives_by_type['guestbook_entry'] = array('hmf', 'hot', 'kedjebrev','cammsn');
+	$abuse_alternatives_by_type['photo'] = array('offensive', 'nudity');
 	
 	$abuse_types['hmf']['label'] = 'Hets mot folkgrupp';
 	$abuse_types['hmf']['description'] = 'Brottsbalken, 16 kapitlet, Om brott mot allmän ordning, paragraf 8:<br />Den som i uttalande eller i annat meddelande som sprids hotar eller uttrycker missaktning för folkgrupp eller annan sådan grupp av personer med anspelning på ras, hudfärg, nationellt eller etniskt ursprung, trosbekännelse eller sexuell läggning, döms för hets mot folkgrupp';
@@ -39,4 +43,9 @@
 	$abuse_types['cammsn']['label'] = 'Cam/msn förfrågan';
 	$abuse_types['cammsn']['description'] = 'Har du P12-skölden aktiverad i gästboken, och frågar folk fortfarande om msn eller cam?';
 
+	$abuse_types['offensive']['label'] = 'Stötande bilder';
+	$abuse_types['offensive']['description'] = 'Rasistiska, nazistiska eller på något annat sätt upplevs som kränkande.';
+	
+	$abuse_types['nudity']['label'] = 'Nakenbilder';
+	$abuse_types['nudity']['description'] = 'Bilder som är lite för lättklädda.';
 ?>

@@ -306,7 +306,7 @@
 		{
 			$output .= '<div class="photo_full">' . "\n";
 			$output .= '<div class="passepartout">' . "\n";
-			$output .= '<p>' . $photo['date'] . ': <a href="/traffa/photos.php?ajax&user_id='.$photo['user'].'&image_id='.$photo['id'].'#photo" title="Länk till bilden">'.$photo['description'].'</a>';
+			$output .= '<p>' . $photo['date'] . ': <a href="/traffa/photos.php?ajax&user_id='.$photo['user'].'&image_id='.$photo['id'].'#photo" title="Länk till bilden">'.$photo['description'].'</a><a href="/hamsterpaj/abuse.php?report_type=photo&reference_id='.$photo['id'].'" class="abuse_button"><img src="http://images.hamsterpaj.net/abuse.png" /></a>';
 			if ($_SESSION['login']['id'] == 774586)
 			{
 				$output .= ' <img src="http://images.hamsterpaj.net/abuse.png" alt="Din mamma ;)" onclick=" /><br style="clear:both;" />';
