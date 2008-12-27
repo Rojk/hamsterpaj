@@ -74,8 +74,9 @@
 					{
 						
 						$sql = 'INSERT INTO photoblog_preferences SET ';
-						$sql .= ' color_main = "' . $photoblog_preferences_default_values['color_main'] . '"';
-						$sql .= ' color_detail = "' . $photoblog_preferences_default_values['color_detail'] . '"';
+						$sql .= ' user_id = ' . $user_id . ',';
+						$sql .= ' color_main = "' . $photoblog_preferences_default_values['color_main'] . '",';
+						$sql .= ' color_detail = "' . $photoblog_preferences_default_values['color_detail'] . '",';
 						$sql .= ' hamster_guard_on = ' . $photoblog_preferences_default_values['hamster_guard_on'];
 						if (!mysql_query($sql))
 						{
