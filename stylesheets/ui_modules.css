@@ -223,6 +223,9 @@
 	}
 	#ui_module_photoblog_user .user_avatar {
 	  position: absolute;
+	  border: 1px solid gray;
+	  width: 37px;
+	  height: 50px;
 	}
 
 /*
@@ -247,12 +250,8 @@
 	################################################################
 */
 #ui_module_photoblog_albums .ui_module_header {
-  display: none;
+  
 }
 	#ui_module_photoblog_albums .ui_module_content {
-	  padding: 10px;
-	  height: 220px;
-	  background: #333;
-	  color: #fff;
-	  -moz-border-radius: 5px;
+
 	}
