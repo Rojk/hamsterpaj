@@ -44,6 +44,10 @@
 				{
 					require('instaellningar.php');
 				}
+				else
+				{
+					throw new Exception('Inga inställningar för dig!<br />Logga in så kanske det går bättre ;)');
+				}
 			break;
 			
 			case 'ladda_upp':		
