@@ -120,6 +120,7 @@
 				{
 					$active_user_data = photoblog_fetch_active_user_data($uri_parts[2]);
 					preint_r($active_user_data);
+					$username = $active_user_data['username'];
 					$ui_options['photoblog_current_view_username'] = $active_user_data['username'];
 					$ui_options['photoblog_current_view_user_id'] = $active_user_data['user_id'];
 				}
