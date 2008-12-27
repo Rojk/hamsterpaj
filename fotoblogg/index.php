@@ -65,21 +65,64 @@
 				
 			default:
 				
-				
+				if ( isset($username) && preg_match('/^[a-zA-Z0-9-_]+$/', $username) && strtolower($username) != 'borttagen' )
+				{
+					$sql = 'SELECT id FROM login WHERE username = "' . $username . '" LIMIT 1';
+					$result = mysql_query($sql);
+					$data = mysql_fetch_assoc($result);
+					$user_id = $data['id'];
+					
+					$sql = 'SELECT user_id FROM photoblog_preferences WHERE user_id = ' . $user_id . ' LIMIT 1';
+					$result = mysql_query($sql);
+					if (mysql_num_rows($result) == 0)
+					{
+						
+						$sql = 'INSERT INTO photoblog_preferences SET ';
+						$sql .= ' user_id = ' . $user_id . ',';
+						$sql .= ' color_main = "' . $photoblog_preferences_default_values['color_main'] . '",';
+						$sql .= ' color_detail = "' . $photoblog_preferences_default_values['color_detail'] . '",';
+						$sql .= ' hamster_guard_on = ' . $photoblog_preferences_default_values['hamster_guard_on'];
+						if (!mysql_query($sql))
+						{
+							report_sql_error($sql);
+						}
+					}
+					
+					$sql = 'SELECT pp.*, l.id, l.username';
+					$sql .= ' FROM login AS l, photoblog_preferences AS pp';
+					$sql .= ' WHERE pp.user_id = l.id AND l.username = "' . $username . '"';
+					$sql .= ' LIMIT 1';
+					$result = mysql_query($sql) or report_sql_error($sql, __FILE__, __LINE__);
+					$data = mysql_fetch_assoc($result);
+					if ( mysql_num_rows($result) == 1 )
+					{
+						return $data;
+					}
+					else
+					{
+						throw new Exception('Användaren verkar inte finnas i databasen *sadface*<br /><a href="/fotoblogg/">Tillbaka</a>');
+					}
+				}
 				// If this is true, it means that $uri_parts[2] is'nt a valid username
 				
-				if ( $_SERVER['REQUEST_URI'] == '/fotoblogg/' && login_checklogin() )
+				if ( $_SERVER['REQUEST_URI'] == '/fotoblogg/')
 				{
-					header('Location: /fotoblogg/' . $_SESSION['login']['username']);
+					if ( login_checklogin() )
+					{
+						header('Location: /fotoblogg/' . $_SESSION['login']['username']);
+					}
+					else
+					{
+						throw new Exception('Du är inte inloggad och kan därför inte se din egen fotoblogg.');
+					}
 				}
-				else
+				elseif ( strlen($uri_parts[2]) > 0 )
 				{
-					$current_view = photoblog_fetch_current_view_data($uri_parts[2]);
-					preint_r($current_view);
-					$ui_options['photoblog_current_view_username'] = $current_view['username'];
-					$ui_options['photoblog_current_view_user_id'] = $current_view['user_id'];
+					$active_user_data = photoblog_fetch_active_user_data($uri_parts[2]);
+					preint_r($active_user_data);
+					$ui_options['photoblog_current_view_username'] = $active_user_data['username'];
+					$ui_options['photoblog_current_view_user_id'] = $active_user_data['user_id'];
 				}
-				
 				switch ($uri_parts[3])
 				{
 					case 'album':

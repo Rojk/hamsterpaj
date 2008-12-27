@@ -1,5 +1,5 @@
 <?php
-	function photoblog_fetch_current_view_data($username)
+	function photoblog_fetch_active_user_data($username)
 	{
 		global $photoblog_preferences_default_values;
 		if ( isset($username) && preg_match('/^[a-zA-Z0-9-_]+$/', $username) && strtolower($username) != 'borttagen' )
@@ -41,6 +41,7 @@
 			}
 		}
 	}
+	
 	function photoblog_upload_upload( $options )
 	{
 		if( !isset( $options['user'] ) )
