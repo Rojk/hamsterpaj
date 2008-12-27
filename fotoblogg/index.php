@@ -40,7 +40,10 @@
 		switch ($uri_parts[2])
 		{
 			case 'instaellningar':
-				require('instaellningar.php');
+				if ( login_checklogin() )
+				{
+					require('instaellningar.php');
+				}
 			break;
 			
 			case 'ladda_upp':		
@@ -51,6 +54,12 @@
 				if ( isset($uri_parts[2]) && preg_match('/^[a-zA-Z0-9-_]+$/', $uri_parts[2]) && strtolower($uri_parts[2]) != 'borttagen' )
 				{
 					$username = $uri_parts[2];
+					$sql = 'SELECT id FROM login WHERE username = "' . $username . '" LIMIT 1';
+					$result = mysql_query($sql);
+					$data = mysql_fetch_assoc($result);
+					$user_id = $data['id'];
+					
+					$sql = 'SELECT user_id FROM photoblog_preferences WHERE user_id = ';
 					$sql = 'SELECT pp.*, l.id, l.username';
 					$sql .= ' FROM login AS l, photoblog_preferences AS pp';
 					$sql .= ' WHERE pp.user_id = l.id AND l.username = "' . $uri_parts[2] . '"';
