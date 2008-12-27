@@ -1,0 +1,45 @@
+#fp_module_list
+{
+	padding: 0px;
+}
+
+#fp_module_list li
+{
+	display: block;
+	list-style-type: none;
+	margin-left: 0px;
+	border: 3px solid white;
+	-moz-border-radius: 8px;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+
+#fp_module_list li .controls
+{
+	height: 20px;
+	line-height: 20px;
+	margin: -5px;
+	margin-top: 5px;
+	padding-left: 5px;
+}
+
+#fp_module_list li .controls a, #fp_module_list li .controls img, #fp_module_list li .controls p
+{
+	display: none;
+}
+
+/* Hover effects */
+#fp_module_list li:hover
+{
+	border: 3px solid #829dbc;
+}
+
+#fp_module_list li:hover .controls
+{
+	background: #829dbc;
+}
+
+#fp_module_list li:hover .controls a, #fp_module_list li:hover .controls img, #fp_module_list li:hover .controls p
+{
+	display: inline;
+}

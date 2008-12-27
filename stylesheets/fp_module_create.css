@@ -1,0 +1,64 @@
+textarea
+{
+	display: block;
+	width: 600px;
+	height: 200px;
+}
+
+
+#fp_admin_labels, #fp_admin_fields, #fp_admin_options
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+#fp_admin_labels li, #fp_admin_fields li, #fp_admin_options li
+{
+	list-style-type: none;
+	float: left;
+	display: block;
+	width: 210px;
+}
+
+.fp_admin_code_label
+{
+	display: block;
+	font-size: 16px;
+	clear: both;
+}
+
+
+#fp_module_list li
+{
+	display: block;
+	background: #f3daa9;
+	-moz-border-radius: 8px;
+	width: 300px;
+	list-style-tpe: none;
+	border: none;
+}
+
+#fp_module_list li:hover
+{
+	border: none;
+}
+
+#fp_module_list li label
+{
+	display: block;
+	width: 100px;
+	float: left;
+}
+
+#fp_module_list li input
+{
+	font-size: 11px;
+	width: 91px;
+	margin-right: 5px;
+	border: none;
+}
+
+#fp_module_list .prio
+{
+	text-align: center;
+}

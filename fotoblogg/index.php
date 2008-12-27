@@ -58,6 +58,10 @@
 			case 'ladda_upp':		
 				require('ladda_upp.php');
 			break;
+			
+			case 'ordna':
+				require('ordna.php');
+			break;
 				
 			default:
 				if ( isset($uri_parts[2]) && preg_match('/^[a-zA-Z0-9-_]+$/', $uri_parts[2]) && strtolower($uri_parts[2]) != 'borttagen' )
