@@ -167,6 +167,9 @@ hp.photoblog = {
 			var prev = this.prev;
 			var next = this.next;
 			
+			var active_id = $('.photoblog_active', this.thumbsContainer).attr('rel').replace('imageid_', '');
+			this.set_prevnext(active_id);
+			
 			this.imageContainer.mousemove(function(e) {
 				e = e || window.event;
 				var xPos = e.clientX - self.imageContainer.position().left;
@@ -213,6 +216,11 @@ hp.photoblog = {
 			this.centralize_prevnext();
 		},
 		
+		set_active: function(active) {
+			$('#photoblog_thumbs .photoblog_active').removeClass('photoblog_active');
+			$(active).addClass('photoblog_active');
+		},
+		
 		make_ajax: function() {
 			// things to ajaxify:
 			//		next/prev
@@ -227,10 +235,7 @@ hp.photoblog = {
 			//var scroller = $('#photoblog_thumbs_scroller');
 			//var image = $('#photoblog_image img');
 			
-			var setActive = function(active) {
-				$('#photoblog_thumbs .photoblog_active').removeClass('photoblog_active');
-				$(active).addClass('photoblog_active');
-			};
+			var setActive = hp.photoblog.view.set_active;
 			
 			var json_callback = function(data) {
 				self.set_data(data[0]);
@@ -292,24 +297,7 @@ hp.photoblog = {
 				description.css('display', 'block');
 			}
 			
-			var cimg = 'a[rel=imageid_' + options.id + ']';
-			var current_image = $(cimg);
-			var cp = current_image.parent();
-			
-			var next_image = cp.next();
-			var prev_image = cp.prev();
-						
-			if ( next_image.get(0).tagName == 'DT' ) next_image = next_image.next();
-			if ( prev_image.get(0).tagName == 'DT' ) prev_image = prev_image.prev();
-			
-			next_image = next_image.children('a');
-			prev_image = prev_image.children('a');
-			
-			var next_id = next_image.attr('rel').replace('imageid_', '');
-			var prev_id = prev_image.attr('rel').replace('imageid_', '');
-			
-			$('#photoblog_prev').attr('rel', prev_image.attr('rel')).attr('href', '#image-' + prev_id);
-			$('#photoblog_next').attr('rel', next_image.attr('rel')).attr('href', '#image-' + next_id);
+			this.set_prevnext(options.id);
 		},
 		
 		set_image: function(id) {
@@ -330,6 +318,36 @@ hp.photoblog = {
 					self.centralize_prevnext();
 				});*/
 			}).attr('src', src).hide().appendTo(self.imageContainer);
+		},
+		
+		set_prevnext: function(id) {
+			var cimg = 'a[rel=imageid_' + id + ']';
+			var prevnext = this.get_prevnext_a(cimg);
+			
+			var prev_image = prevnext[0];
+			var next_image = prevnext[1];
+			
+			var next_id = next_image.attr('rel').replace('imageid_', '');
+			var prev_id = prev_image.attr('rel').replace('imageid_', '');
+			
+			this.prev.attr('rel', prev_image.attr('rel')).attr('href', '#image-' + prev_id);
+			this.next.attr('rel', next_image.attr('rel')).attr('href', '#image-' + next_id);
+		},
+		
+		get_prevnext_a: function(from) {
+			var current_image = $(from);
+			var cp = current_image.parent();
+			
+			var prev_image = cp.prev();
+			var next_image = cp.next();
+						
+			if ( prev_image.get(0).tagName == 'DT' ) prev_image = prev_image.prev();
+			if ( next_image.get(0).tagName == 'DT' ) next_image = next_image.next();
+			
+			prev_image = prev_image.children('a');
+			next_image = next_image.children('a');
+			
+			return [prev_image, next_image];
 		},
 		
 		create_load: function() {
