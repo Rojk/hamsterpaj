@@ -16,24 +16,6 @@
 		);
 		
 		$photos = photoblog_photos_fetch($options);			
-				
-		$out .= '<div id="photoblog_header">';
-		$out .= '<select id="photoblog_select_year">';
-		$years = array('2007', '2008');
-		foreach ($years as $year)
-		{
-			$out .= '<option value="' . $year . '">' . $year . '</option>';
-		}
-		$out .= '</select>';
-		$out .= '<select id="photoblog_select_month">';
-		$months = array('Maj', 'November', 'December');
-		foreach ($months as $month)
-		{
-			$out .= '<option value="' . $month . '">' . $month . '</option>';
-		}
-		$out .= '</select>';
-		$out .= '<a href="#" id="photoblog_select_today"><img src="http://images.hamsterpaj.net/famfamfam_icons/house.png" alt="Idag" title="Till dagens datum" /></a>' . "\n";
-		$out .= '</div>';
 		$out .= '<div id="photoblog_thumbs">';
 			$out .= '<div id="photoblog_thumbs_container">';
 				$out .= '<dl>';

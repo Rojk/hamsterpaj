@@ -1,4 +1,8 @@
 <?php
+	$ui_options['ui_modules']['photoblog_user'] = 'User';
+	$ui_options['ui_modules']['photoblog_calendar'] = 'Kalender';
+	$ui_options['ui_modules']['photoblog_albums'] = 'Album';
+	
 	$ui_options['stylesheets'][] = 'colorpicker.css';
 	$ui_options['stylesheets'][] = 'colorpicker_layout.css';
 	$ui_options['stylesheets'][] = 'forms.css';
