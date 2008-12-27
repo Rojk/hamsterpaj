@@ -6,32 +6,32 @@
 	font-size: 14px;
 }
 
-#ui_contentlabel {
+#ui_content fieldset label {
 	font-size: 0.8em;
 	font-weight: bold;
 }
-	#ui_content	label strong {
+	#ui_content fieldset	label strong {
 		color: red;
 	}
 	
-#ui_content input, #ui_content select, #ui_content textarea {
+#ui_content fieldset input, #ui_content fieldset select, #ui_content fieldset textarea {
 	padding: 3px;
 }
 
-#ui_content input, #ui_content textarea, #ui_content select {
+#ui_content fieldset input, #ui_content fieldset textarea, #ui_content fieldset select {
 	border: 1px solid #bbb;
 	margin: 5px 0;
 	-moz-border-radius: 3px;
 }
 
-#ui_content .form {
+#ui_content fieldset .form {
 	width: 100%;
 	border-spacing: 0;
 }
-#ui_content .form td, #ui_content .form th {
+#ui_content fieldset .form td, #ui_content fieldset .form th {
 	border-bottom: 1px solid #ccc;
 	padding: 5px;
 }
-.form_readonly {
+fieldset .form_readonly {
 	background: #eee;
 }
