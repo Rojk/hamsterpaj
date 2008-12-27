@@ -102,6 +102,8 @@ hp.photoblog = {
 		}
 	},
 	
+	mousepos: {x: 0, y: 0},
+	
 	view: {
 		/*
 			.photoblog_active is always fetched dynamically, because it changes constantly 
@@ -185,10 +187,26 @@ hp.photoblog = {
 				clearTimeout(timer);
 			});
 			
-			this.imageContainer.mouseout(function() {
+			$(document).mousemove(function(e) {
+				e = jQuery.event.fix(e || window.event);
+				hp.photoblog.mousepos = {
+					x: e.pageX,
+					y: e.pageY
+				};
+			});
+			
+			this.imageContainer.mouseout(function(e) {
 				timer = setTimeout(function() {
-					next.fadeOut();
-					prev.fadeOut();
+					var pos = hp.photoblog.mousepos;
+					var el = self.imageContainer;
+					var elPos = el.position();
+					if (
+						(pos.x < elPos.left || pos.x > elPos.left + el.width())
+						&& (pos.y < elPos.top || pos.y > elPos.top + el.height())
+					) {
+						next.fadeOut();
+						prev.fadeOut();
+					}
 				}, 300)
 			});
 			
