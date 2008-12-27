@@ -118,6 +118,7 @@ hp.photoblog = {
 			this.make_scroller();
 			this.make_nextprev();
 			this.make_ajax();
+			this.make_keyboard();
 		},
 		
 		make_scroller: function() {
@@ -216,11 +217,6 @@ hp.photoblog = {
 			this.centralize_prevnext();
 		},
 		
-		set_active: function(active) {
-			$('#photoblog_thumbs .photoblog_active').removeClass('photoblog_active');
-			$(active).addClass('photoblog_active');
-		},
-		
 		make_ajax: function() {
 			// things to ajaxify:
 			//		next/prev
@@ -258,6 +254,38 @@ hp.photoblog = {
 			thumbs.click(click_callback);
 			
 			this.prevnext.click(click_callback);
+		},
+		
+		make_keyboard: function() {
+			var self = this;
+			
+			var table = {
+				37: 'left',
+				38: 'up',
+				39: 'right',
+				40: 'down'
+			};
+			
+			$(document).keydown(function(e) {
+				e = e || window.event;
+				var key = table[e.keyCode];
+				
+				switch (key) {
+					case 'left':
+						self.prev.click();
+					break;
+				
+					case 'right':
+						self.next.click();
+					break;
+				}
+				return false;
+			});
+		},
+		
+		set_active: function(active) {
+			$('#photoblog_thumbs .photoblog_active').removeClass('photoblog_active');
+			$(active).addClass('photoblog_active');
 		},
 		
 		set_scroller_width: function() {
