@@ -223,6 +223,9 @@
 	}
 	#ui_module_photoblog_user .user_avatar {
 	  position: absolute;
+	  border: 1px solid gray;
+	  width: 37px;
+	  height: 50px;
 	}
 
 /*
