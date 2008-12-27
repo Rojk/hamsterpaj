@@ -48,8 +48,8 @@
 					break;
 				case 'photo':
 					$photo_query = 'SELECT user FROM user_photos WHERE id = ' . $data['reference_id'] . ' LIMIT 1';
-					$photo_result = mysql_query($entry_query) or report_sql_error($entry_query, __FILE__, __LINE__);
-					$photo = mysql_fetch_assoc($entry_result);
+					$photo_result = mysql_query($photo_query) or report_sql_error($entry_query, __FILE__, __LINE__);
+					$photo = mysql_fetch_assoc($photo_result);
 					$photo_poster_query = 'SELECT username FROM login WHERE id = ' . $photo['user'] . ' LIMIT 1';
 					$photo_poster_result = mysql_query($photo_poster_query) or report_sql_error($photo_poster_query, __FILE__, __LINE__);
 					$photo_poster = mysql_fetch_assoc($photo_poster_result);
