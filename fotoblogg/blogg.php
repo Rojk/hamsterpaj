@@ -12,7 +12,8 @@
 		
 		$user_id = $user['id'];
 		$options = array(
-			'user' => $user_id
+			'user' => $user_id//,
+			//'month' => date('Ym', mktime(0, 0, 0, 11, 1, 2008)) use this to specify month
 		);
 		
 		$photos = photoblog_photos_fetch($options);			
