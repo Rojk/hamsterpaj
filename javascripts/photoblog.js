@@ -229,9 +229,6 @@ hp.photoblog = {
 			//		comments
 			
 			var self = this;
-			//var thumbsContainer = $('#photoblog_thumbs');
-			//var scroller = $('#photoblog_thumbs_scroller');
-			//var image = $('#photoblog_image img');
 			
 			var click_callback = function(e) {
 				var t = $(this);
@@ -515,7 +512,7 @@ jQuery.fn.extend({
 	
 	fadeInOnAnother: function(theOther, callback, a_parent) {
 		var t = $(this).css({position: 'relative', zIndex: 1});
-		var h = Math.max(t.height(), theOther.height());
+		var h = t.height();//Math.max(t.height(), theOther.height());
 		var parent = a_parent || t.parent();
 		parent.animate({'height': h + 2});
 		var p = theOther.position();
