@@ -222,4 +222,61 @@
 				
 		return $categories;
 	}
+	
+	function photoblog_comments_fetch($options = array())
+	{
+		$options['order_by_field'] = isset($options['order_by_field']) ? $options['order_by_field'] : 'c.id';
+		$options['order_by_order'] = (isset($options['order_by_order']) && in_array($options['order_by_order'], array('ASC', 'DESC'))) ? $options['order_by_order'] : 'DESC';
+		
+		$options['limit_start'] = (isset($options['limit_start']) && is_numeric($options['limit_start'])) ? $options['limit_start'] : 0;
+		$options['limit_end'] = (isset($options['limit_end']) && is_numeric($options['limit_end'])) ? $options['limit_end'] : 100;
+		
+		$query  = 'SELECT c.*, l.username';
+		$query .= ' FROM photoblog_comments AS c, login AS l';
+		$query .= ' WHERE l.id = c.author';
+		$query .= ' AND c.is_removed = 0';
+		$query .= (isset($options['photo_id']) && is_numeric($options['photo_id'])) ? ' AND c.photo_id = ' . $options['photo_id'] : '';
+		$query .= (isset($options['author']) && is_numeric($options['author'])) ? ' AND c.author = ' . $options['author'] : '';
+		$query .= ' ORDER BY ' . $options['order_by_field'] . ' ' . $options['order_by_order'];
+		$query .= ' LIMIT ' . $options['limit_start'] . ', ' . $options['limit_end'];
+				
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		
+		$comments = array();
+		while($data = mysql_fetch_assoc($result))
+		{
+			$comments[] = $data;
+		}
+		
+		return $comments;
+	}
+	
+	function photoblog_comments_add($comment)
+	{
+		if(isset($comment['comment']))
+		{
+			throw new Exception('Server error: No comment passed to function in options array. Terminating!');// Because "terminating" is such a cool word *NOT*
+		}
+		if(empty($comment['comment']))
+		{
+			throw new Exception('User error: Comment was empty, aborting.');
+		}
+		
+		if(!login_checklogin() && !(isset($comment['author']) && is_numeric($comment['author'])))
+		{
+			throw new Exception('Server error: No author specified and user not logged on. Cannot post - aborting.');
+		}
+		
+		if(!(isset($comment['photo_id']) && is_numeric($comment['photo_id'])))
+		{
+			throw new Exception('Server error: No photo_id specified, aborting.');
+		}
+		
+		$query =  'INSERT INTO photoblog_comments(photo_id, author, comment)';
+		$query .= ' VALUES ' . '(' . $comment['photo_id'] . ', ' . $comment['author'] . ' , "' . $comment['comment'] . '")';
+		
+		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		
+		return mysql_insert_id();
+	}
 ?>
