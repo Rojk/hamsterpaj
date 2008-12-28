@@ -324,7 +324,6 @@ hp.photoblog = {
 			var thumbsContainer = this.thumbsContainer;
 			var active = $('.photoblog_active', thumbsContainer);
 			var position = ((active.position().left + active.width() / 2 - (thumbsContainer.real_width / 2)) / thumbsContainer.sWidth) * 100;
-			console.log(position);
 			this.scroller.slide_slider(position);
 		},
 		
