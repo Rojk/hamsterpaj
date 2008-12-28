@@ -163,6 +163,7 @@
 		$query .= (isset($options['include_removed_photos']) && $options['include_removed_photos'] == true) ? '' : ' AND l.is_removed = 0';
 		$query .= (isset($options['id'])) ? ' AND up.id IN("' . implode('", "', $options['id']) . '")' : '';
 		$query .= (isset($options['user'])) ? ' AND up.user  = "' . $options['user'] . '"' : '';
+		$query .= (isset($options['month'])) ? ' AND DATE_FORMAT(up.date, "%Y%m") = "' . $options['month'] . '"' : '';
 		$query .= (isset($options['date'])) ? ' AND up.date IN("' . implode('", "', $options['date']) . '")' : '';
 		$query .= (isset($options['category'])) ? ' AND up.category IN("' . implode('", "', $options['category']) . '")' : '';
 		$query .= (isset($options['force_unread_comments']) && $options['force_unread_comments'] == true) ? ' AND up.unread_comments > 0' : '';
