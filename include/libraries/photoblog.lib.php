@@ -323,4 +323,24 @@
 		
 		return mysql_insert_id();
 	}
+	
+	function photoblog_dates_fetch($options)
+	{
+		$photo_options = array(
+			'user_id' => $options['user_id']
+		);
+		$photos = photoblog_photos_fetch($options);
+		
+		$return = array();
+		foreach ( $photos as $photo )
+		{
+			$time = strtotime($photo['date']);
+
+			list($year, $month, $day) = explode('-', date('Y-m-d', $time));
+
+			$return[$year][$month][$day] = true;
+		}
+		natsort($return);
+		return $return;
+	}
 ?>

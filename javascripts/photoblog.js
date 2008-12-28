@@ -438,6 +438,38 @@ hp.photoblog = {
 		}
 	},
 	
+	year_month: {
+		years: [],
+		
+		init: function() {
+			if ( ! $('#photoblog_select_year') ) return;
+			
+			var self = this;
+			
+			var year = $('#photoblog_select_year');
+			var months = $('#photoblog_select_months').children('select');
+			
+			months.each(function() {
+				self.years[self.years.length] = $(this);
+			});
+			
+			this.show(year.get(0).value);
+			year.change(function() {
+				self.show(this.value);
+			});			
+		},
+		
+		show: function(new_year) {
+			for ( var i = 0, year; year = this.years[i]; i++ ) {
+				if ( year.attr('id') == 'photoblog_select_month_' + new_year ) {
+					year.css('display', 'inline');
+				} else {
+					year.css('display', 'none');
+				}
+			}
+		}
+	},
+	
 	make_name: function(id) {
 		return 'http://images.hamsterpaj.net/photos/full/' + Math.floor(parseInt(id, 10) / 5000) + '/' + id + '.jpg';
 	}
@@ -503,4 +535,6 @@ $(window).load(function() {
 	if ( $('#photoblog_image').length ) {
 		hp.photoblog.view.init();
 	}
+	
+	hp.photoblog.year_month.init();
 });
