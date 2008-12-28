@@ -323,8 +323,6 @@ hp.photoblog = {
 			} else {
 				description.css('display', 'block');
 			}
-			
-			this.set_prevnext(options.id);
 		},
 		
 		set_image: function(id) {
@@ -354,11 +352,23 @@ hp.photoblog = {
 			var prev_image = prevnext[0];
 			var next_image = prevnext[1];
 			
-			var next_id = next_image.attr('rel').replace('imageid_', '');
-			var prev_id = prev_image.attr('rel').replace('imageid_', '');
+			if ( ! prev_image.attr('rel') ) {
+				this.prev.css('visibility', 'hidden');
+			} else {
+				this.prev.css('visibility', 'visible');
+				
+				var prev_id = prev_image.attr('rel').replace('imageid_', '');
+				this.prev.attr('rel', prev_image.attr('rel')).attr('href', '#image-' + prev_id);
+			}
 			
-			this.prev.attr('rel', prev_image.attr('rel')).attr('href', '#image-' + prev_id);
-			this.next.attr('rel', next_image.attr('rel')).attr('href', '#image-' + next_id);
+			if ( ! next_image.attr('rel') ) {
+				this.next.css('visibility', 'hidden');
+			} else {
+				this.next.css('visibility', 'visible');
+				
+				var next_id = next_image.attr('rel').replace('imageid_', '');
+				this.next.attr('rel', next_image.attr('rel')).attr('href', '#image-' + next_id);
+			}
 		},
 		
 		get_prevnext_a: function(from) {
@@ -367,11 +377,11 @@ hp.photoblog = {
 			
 			var prev_image = cp.prev();
 			var next_image = cp.next();
-						
-			if ( prev_image.get(0).tagName == 'DT' ) prev_image = prev_image.prev();
-			if ( next_image.get(0).tagName == 'DT' ) next_image = next_image.next();
 			
+			if ( prev_image.get(0).tagName == 'DT' ) prev_image = prev_image.prev();
 			prev_image = prev_image.children('a');
+		
+			if ( next_image.get(0).tagName == 'DT' ) next_image = next_image.next();
 			next_image = next_image.children('a');
 			
 			return [prev_image, next_image];
@@ -408,11 +418,11 @@ hp.photoblog = {
 				self.set_data(data[0]);
 			};
 			
+			this.set_prevnext(id);
 			this.set_active('a[rel=imageid_' + id + ']');
 			this.set_image(id);
 			this.create_load();
 			$.getJSON('/ajax_gateways/photoblog.json.php?id=' + id, json_callback);
-
 		},
 		
 		load_hashimage: function() {
