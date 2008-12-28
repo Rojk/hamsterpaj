@@ -19,28 +19,28 @@
 		
 		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 		
-		$out .= '<div id="photoblog_header">';
-			$out .= '<div id="photoblog_select">';
-				$out .= '<select id="photoblog_select_year">';
-				$years = array('2007', '2008');
-				foreach ($years as $year)
-				{
-					$out .= '<option value="' . $year . '">' . $year . '</option>';
-				}
-				$out .= '</select>';
-				$out .= '<select id="photoblog_select_month">';
-				$months = array('Maj', 'November', 'December');
-				foreach ($months as $month)
-				{
-					$out .= '<option value="' . $month . '">' . $month . '</option>';
-				}
-				$out .= '</select>';
-				$out .= '<a href="#" id="photoblog_select_today"><img src="http://images.hamsterpaj.net/famfamfam_icons/house.png" alt="Idag" title="Till dagens datum" /></a>' . "\n";
-			$out .= '</div>';
-			$out .= '<div id="photoblog_user_header">';
-				$out .= '<a href="/fotoblogg/">Min fotoblogg</a><a href="/fotoblogg/ladda_upp">Ladda upp</a><a href="/fotoblogg/ordna">Sortera mina foton</a><a href="/fotoblogg/instaellningar">Inställningar</a>' . "\n";
-			$out .= '</div>';
-		$out .= '</div>';
+		$out .= '<div id="photoblog_menu">
+		<ul>
+		<li>
+			<a href="/fotoblogg/">
+			<img src="http://images.hamsterpaj.net/photoblog/menu_my_diary.png" alt="Min dagbok" />
+			</a>
+		</li>
+		<!--<li>
+			<a href="/fotoblogg/Lef/">Lefs dagbok</a>
+		</li>-->
+		<li>
+			<a href="/fotoblogg/ladda_upp/">
+			<img src="http://images.hamsterpaj.net/photoblog/menu_upload.png" alt="Ladda upp" />
+			</a>
+		</li>
+		<li>
+			<a href="/fotoblogg/instaellningar/">
+			<img src="http://images.hamsterpaj.net/photoblog/menu_settings.png" alt="Inställningar" />
+			</a>
+		</li>
+		</ul>
+		</div>' . "\n";
 		
 		switch ($uri_parts[2])
 		{
@@ -64,61 +64,25 @@
 			break;
 				
 			default:
-				if ( isset($uri_parts[2]) && preg_match('/^[a-zA-Z0-9-_]+$/', $uri_parts[2]) && strtolower($uri_parts[2]) != 'borttagen' )
+				
+				// If this is true, it means that $uri_parts[2] is'nt a valid username
+				if ( $_SERVER['REQUEST_URI'] == '/fotoblogg/')
 				{
-					$username = $uri_parts[2];
-					$sql = 'SELECT id FROM login WHERE username = "' . $username . '" LIMIT 1';
-					$result = mysql_query($sql);
-					$data = mysql_fetch_assoc($result);
-					$user_id = $data['id'];
-					
-					$sql = 'SELECT user_id FROM photoblog_preferences WHERE user_id = ' . $user_id . ' LIMIT 1';
-					$result = mysql_query($sql);
-					if (mysql_num_rows($result) == 0)
+					if ( login_checklogin() )
 					{
-						
-						$sql = 'INSERT INTO photoblog_preferences SET ';
-						$sql .= ' user_id = ' . $user_id . ',';
-						$sql .= ' color_main = "' . $photoblog_preferences_default_values['color_main'] . '",';
-						$sql .= ' color_detail = "' . $photoblog_preferences_default_values['color_detail'] . '",';
-						$sql .= ' hamster_guard_on = ' . $photoblog_preferences_default_values['hamster_guard_on'];
-						if (!mysql_query($sql))
-						{
-							report_sql_error($sql);
-						}
-					}
-					
-					$sql = 'SELECT pp.*, l.id, l.username';
-					$sql .= ' FROM login AS l, photoblog_preferences AS pp';
-					$sql .= ' WHERE pp.user_id = l.id AND l.username = "' . $uri_parts[2] . '"';
-					$sql .= ' LIMIT 1';
-					$result = mysql_query($sql) or report_sql_error($sql, __FILE__, __LINE__);
-					$data = mysql_fetch_assoc($result);
-					if ( strlen($data['id']) == 0 )
-					{
-						throw new Exception('Användaren verkar inte finnas i databasen *sadface*<br /><a href="/fotoblogg/">Tillbaka</a>');
+						header('Location: /fotoblogg/' . $_SESSION['login']['username']);
 					}
 					else
 					{
-						preint_r($data);
+						throw new Exception('Du är inte inloggad och kan därför inte se din egen fotoblogg.');
 					}
 				}
-				// If this is true, it means that $uri_parts[2] is'nt a valid username
 				elseif ( strlen($uri_parts[2]) > 0 )
 				{
-					throw new Exception('Användarnamnet var fail :P, ett användarnamn kan bara använda atillzetaATILLZETAnolltillniobindestreckochunderstreck.');
+					$active_user_data = photoblog_fetch_active_user_data($uri_parts[2]);
+					preint_r($active_user_data);
+					$username = $active_user_data['username'];
 				}
-				elseif ( login_checklogin() )
-				{
-					header('Location: /fotoblogg/' . $_SESSION['login']['username']);
-				}
-				else
-				{
-					echo strlen($uri_parts[2]);
-					var_dump($uri_parts[2]);
-					$username = 'iphone';
-				}
-				
 				switch ($uri_parts[3])
 				{
 					case 'album':
