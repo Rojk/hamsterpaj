@@ -730,10 +730,13 @@
 			return $return;
 		}
 		
-		$return .= '<div class="server_message_notification">' . "\n";
-		$options['quality_level'] = $target_forum['quality_level'];
-		$return .= discussion_forum_fetch_moderation_info($options);
-		$return .= '</div>' ."\n";
+		if($target_forum['quality_level'] != 3)
+		{
+			$return .= '<div class="server_message_notification">' . "\n";
+			$options['quality_level'] = $target_forum['quality_level'];
+			$return .= discussion_forum_fetch_moderation_info($options);
+			$return .= '</div>' ."\n";
+		}
 		
 		$return .= '<a name="new_thread"></a>' . "\n";
 		$return .= '<h2 class="forum_post_form_heading">' . (isset($options['thread_id']) ? 'Skriv ett nytt inlägg' : 'Starta en ny tråd') . '</h2>' . "\n";
@@ -931,7 +934,6 @@
 	function discussion_forum_category_head($options)
 	{
 		$output .=  '<p class="category_description">' . $options['category']['description'] . '</p>' . "\n";
-		$output .=  '<strong>Modereringsnivå: ' . $options['category']['quality_level'] . '</strong><br style="clear: both;" />' . "\n";
 		if(login_checklogin())
 		{
 			$checked = ($_SESSION['forum']['categories'][$options['category']['id']]['subscribing'] == 1) ? ' checked="checked"' : '';

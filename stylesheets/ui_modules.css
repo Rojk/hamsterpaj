@@ -195,3 +195,63 @@
 {
 	margin: 5px 0 2px 0;
 }
+
+/*
+	################################################################
+		Photoblog_user
+	################################################################
+*/
+#ui_module_photoblog_user .ui_module_header {
+  display: none;
+}
+	#ui_module_photoblog_user .ui_module_content {
+	  padding: 10px;
+	  height: 50px;
+	  background: #333;
+	  color: #fff;
+	  -moz-border-radius: 5px;
+	}
+	#ui_module_photoblog_user h3 {
+	  margin:	0;
+	  margin-left: 50px;
+	}
+	#ui_module_photoblog_user a {
+	  margin: 30px 0 0 50px;
+	  text-decoration: underline;
+	  color: orange;	
+	  
+	}
+	#ui_module_photoblog_user .user_avatar {
+	  position: absolute;
+	  border: 1px solid gray;
+	  width: 37px;
+	  height: 50px;
+	}
+
+/*
+	################################################################
+		Photoblog_calendar
+	################################################################
+*/
+#ui_module_photoblog_calendar .ui_module_header {
+  display: none;
+}
+	#ui_module_photoblog_calendar .ui_module_content {
+	  padding: 10px;
+	  height: 160px;
+	  background: #333;
+	  color: #fff;
+	  -moz-border-radius: 5px;
+	}
+
+/*
+	################################################################
+		Photoblog_albums
+	################################################################
+*/
+#ui_module_photoblog_albums .ui_module_header {
+  
+}
+	#ui_module_photoblog_albums .ui_module_content {
+
+	}

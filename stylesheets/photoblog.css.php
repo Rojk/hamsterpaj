@@ -91,20 +91,44 @@
 		}
         
 #photoblog_header {
-	background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> repeat-x;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	padding: 5px 10px;
-	color: #fff;
-	margin-bottom: 10px;
-	width: 200px;
+	width: 638px;
 }
-	#photoblog_select_year, #photoblog_select_month {
-		margin-right: 10px;
+	#photoblog_select {
+		background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> repeat-x;
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		-khtml-border-radius: 5px;
+		padding: 5px 10px;
+		color: #fff;
+		margin-bottom: 10px;
+		width: 200px;
+		position: absolute;
 	}
-	#photoblog_select_today {
-		
+		#photoblog_select_year, #photoblog_select_month {
+			margin-right: 10px;
+		}
+		#photoblog_select_today {
+			position: relative;
+			top: 4px;
+		}
+	#photoblog_user_header {
+		background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> repeat-x;
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		-khtml-border-radius: 5px;
+		padding: 5px 10px;
+		color: orange;
+		margin-bottom: 10px;
+		margin-left: 230px;
+		width: 388px;
+		height: 21px;	
+	}
+	#photoblog_user_header a {
+		color: orange;
+		margin: 0 15px;
+		padding-top: 3px;
+		display: block;
+		float: left;
 	}
 
 #photoblog_thumbs {
