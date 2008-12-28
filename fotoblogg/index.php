@@ -8,7 +8,7 @@
 		
 		if (!is_privilegied('igotgodmode'))
 		{
-			throw new Exception('Den här delen är inte uppe för allmänheten än ;)');
+			//throw new Exception('Den här delen är inte uppe för allmänheten än ;)');
 		}
 		
 		$ui_options['stylesheets'][] = 'photoblog.css.php';
@@ -19,7 +19,7 @@
 		
 		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 		
-		$photos_by_year = photoblog_dates_fetch(array('user_id' => $_SESSION['login']['id']));
+		$photos_by_year = photoblog_dates_fetch(array('user' => $_SESSION['login']['id']));
 		
 		$month_table = array(
 			'01' => 'Januari',

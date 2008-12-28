@@ -325,12 +325,12 @@
 	}
 	
 	function photoblog_dates_fetch($options)
-	{
+	{		
 		$photo_options = array(
-			'user_id' => $options['user_id']
+			'user' => $options['user']
 		);
-		$photos = photoblog_photos_fetch($options);
-		
+		$photos = photoblog_photos_fetch($photo_options);
+
 		$return = array();
 		foreach ( $photos as $photo )
 		{

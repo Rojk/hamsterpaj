@@ -111,6 +111,7 @@ hp.photoblog = {
 		init: function() {
 			this.thumbsContainer = $('#photoblog_thumbs_container');
 			this.thumbs = $('#photoblog_thumbs');
+			this.thumbsList = $('dl', this.thumbsContainer);
 			
 			this.imageContainer = $('#photoblog_image');
 			this.image = $('img', this.imageContainer);
@@ -219,7 +220,7 @@ hp.photoblog = {
 			this.centralize_prevnext();
 		},
 		
-		make_ajax: function() {
+		make_ajax: function(thumbsOnly) {
 			// things to ajaxify:
 			//		next/prev
 			//		thumbs
@@ -240,7 +241,13 @@ hp.photoblog = {
 			var thumbs = $('#photoblog_thumbs a[rel^=imageid_]');
 			thumbs.click(click_callback);
 			
-			this.prevnext.click(click_callback);
+			if ( ! thumbsOnly) {
+				this.prevnext.click(click_callback);
+			}
+		},
+		
+		make_ajax_thumbs: function() {
+			this.make_ajax(true);
 		},
 		
 		make_keyboard: function() {
@@ -272,11 +279,22 @@ hp.photoblog = {
 		},
 		
 		make_cache: function() {
-			var cache = $('<div id="photoblog_cache"></div>').appendTo(document.body);
+			this.cache = $('<div style="display: none" id="photoblog_cache"></div>').appendTo(document.body);
 		},
 		
-		add_to_cache: function() {
-			
+		add_to_cache: function(id, image, description) {
+			var cacheElement = $('<div id="photoblog_cache_' + id + '"></div>').appendTo(this.cache);
+			image.clone().appendTo(cacheElement);
+			description.clone().appendTo(cacheElement);
+		},
+		
+		in_cache: function(id) {
+			var cache = $('#photoblog_cache_' + id);
+			if ( ! cache.length ) return false;
+			return {
+				'image': $('img', cache),
+				'description': $('div', cache)
+			};
 		},
 		
 		set_active: function(active) {
@@ -306,6 +324,7 @@ hp.photoblog = {
 			var thumbsContainer = this.thumbsContainer;
 			var active = $('.photoblog_active', thumbsContainer);
 			var position = ((active.position().left + active.width() / 2 - (thumbsContainer.real_width / 2)) / thumbsContainer.sWidth) * 100;
+			console.log(position);
 			this.scroller.slide_slider(position);
 		},
 		
@@ -432,6 +451,37 @@ hp.photoblog = {
 				}
 				this.load_image(id);
 			}
+		},
+		
+		load_month: function(user_id, month) {
+			var self = this;
+			$.getJSON('/ajax_gateways/photoblog.json.php?id=' + user_id + '&month=' + month, function(data) {
+				self.thumbsList.empty();
+				
+				var lastDay = null;
+				console.dir(new Date());
+				$.each(data, function(i, item) {
+					var date = item.date.split('-');
+					if ( date[2] != lastDay ) {
+						lastDay = date[2];
+						$('<dt>' + parseInt(date[1], 10) + '/' + parseInt(date[2], 10) + '</dt>').appendTo(self.thumbsList);
+					}
+					var photoname = hp.photoblog.make_thumbname(item.id);
+					var dd = $('<dd><a rel="imageid-' + item.id + '" href="#image-' + item.id + '"></a></dd>').appendTo(self.thumbsList);
+					var img = $('<img alt="" />');
+					
+					if ( i == data.length - 1 ) {
+						$('img', dd).load(function() {
+							self.thumbsContainer.sWidth = self.thumbsContainer.container_width();
+							self.set_scroller_width();
+						});
+					}
+					
+					img.attr('src', photoname);
+					img.appendTo(dd.children('a'))
+				});
+				self.make_ajax_thumbs();
+			});
 		}
 	},
 	
@@ -453,10 +503,15 @@ hp.photoblog = {
 			this.show(year.get(0).value);
 			year.change(function() {
 				self.show(this.value);
-			});			
+			});
+			
+			months.change(function() {
+				hp.photoblog.view.load_month(879699, self.current_year.toString() + this.value.toString());
+			});
 		},
 		
 		show: function(new_year) {
+			this.current_year = new_year;
 			for ( var i = 0, year; year = this.years[i]; i++ ) {
 				if ( year.attr('id') == 'photoblog_select_month_' + new_year ) {
 					year.css('display', 'inline');
@@ -469,6 +524,10 @@ hp.photoblog = {
 	
 	make_name: function(id) {
 		return 'http://images.hamsterpaj.net/photos/full/' + Math.floor(parseInt(id, 10) / 5000) + '/' + id + '.jpg';
+	},
+	
+	make_thumbname: function(id) {
+		return 'http://images.hamsterpaj.net/photos/mini/' + Math.floor(parseInt(id, 10) / 5000) + '/' + id + '.jpg';
 	}
 };
 
