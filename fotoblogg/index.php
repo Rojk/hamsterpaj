@@ -19,28 +19,28 @@
 		
 		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 		
-		$out .= '<div id="photoblog_menu">
-		<ul>
-		<li>
-			<a href="/fotoblogg/">
-			<img src="http://images.hamsterpaj.net/photoblog/menu_my_diary.png" alt="Min dagbok" />
-			</a>
-		</li>
-		<!--<li>
-			<a href="/fotoblogg/Lef/">Lefs dagbok</a>
-		</li>-->
-		<li>
-			<a href="/fotoblogg/ladda_upp/">
-			<img src="http://images.hamsterpaj.net/photoblog/menu_upload.png" alt="Ladda upp" />
-			</a>
-		</li>
-		<li>
-			<a href="/fotoblogg/instaellningar/">
-			<img src="http://images.hamsterpaj.net/photoblog/menu_settings.png" alt="Inställningar" />
-			</a>
-		</li>
-		</ul>
-		</div>' . "\n";
+		$out .= '<div id="photoblog_header">';
+			$out .= '<div id="photoblog_select">';
+				$out .= '<select id="photoblog_select_year">';
+				$years = array('2007', '2008');
+				foreach ($years as $year)
+				{
+					$out .= '<option value="' . $year . '">' . $year . '</option>';
+				}
+				$out .= '</select>';
+				$out .= '<select id="photoblog_select_month">';
+				$months = array('Maj', 'November', 'December');
+				foreach ($months as $month)
+				{
+					$out .= '<option value="' . $month . '">' . $month . '</option>';
+				}
+			 $out .= '</select>';
+			$out .= '<a href="#" id="photoblog_select_today"><img src="http://images.hamsterpaj.net/famfamfam_icons/house.png" alt="Idag" title="Till dagens datum" /></a>' . "\n";
+			$out .= '</div>';
+			$out .= '<div id="photoblog_user_header">';
+				$out .= '<a href="/fotoblogg/">Min fotoblogg</a><a href="/fotoblogg/ladda_upp">Ladda upp</a><a href="/fotoblogg/ordna">Sortera mina foton</a><a href="/fotoblogg/instaellningar">Inställningar</a>' . "\n";
+			$out .= '</div>';
+		$out .= '</div>';
 		
 		switch ($uri_parts[2])
 		{
