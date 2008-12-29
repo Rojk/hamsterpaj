@@ -162,6 +162,7 @@
 			$query .= ' WHERE uel.action = "profile_visit" AND uel.user = "' . $_SESSION['login']['id'] . '" AND l.id = uel.remote_user_id AND (u.image = 1 OR u.image = 2) AND u.userid = uel.remote_user_id';
 			$query .= ' GROUP BY uel.remote_user_id ORDER BY timestamp DESC LIMIT 8';
 			$result = mysql_query($query) OR die(report_sql_error($query, __FILE__, __LINE__));
+			$_SESSION['visitors_with_image'] = '';
 			while($data = mysql_fetch_assoc($result))
 			{
 				$_SESSION['visitors_with_image'][] = $data;
