@@ -1,8 +1,7 @@
 <?php
 	header('Content-type: text/css');
-
-	define('PHOTOBLOG_BACKGROUND_COLOR', '#333');
-	define('PHOTOBLOG_DETAIL_COLOR', 'orange');
+	$main_color = '#' . (isset($photoblog_user_data['main_color']) ? $photoblog_user_data['main_color'] : '333');
+	$detail_color = '#' . (isset($photoblog_user_data['detail_color']) ? $photoblog_user_data['detail_color'] : 'FF8040');
 ?>
 
 #photoblog_upload_wrapper {
@@ -94,7 +93,7 @@
 	width: 638px;
 }
 	#photoblog_select {
-		background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> repeat-x;
+		background: <?php echo $main_color; ?> repeat-x;
 		border-radius: 5px;
 		-moz-border-radius: 5px;
 		-khtml-border-radius: 5px;
@@ -112,7 +111,7 @@
 			top: 4px;
 		}
 	#photoblog_user_header {
-		background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> repeat-x;
+		background: <?php echo $main_color; ?> repeat-x;
 		border-radius: 5px;
 		-moz-border-radius: 5px;
 		-khtml-border-radius: 5px;
@@ -133,7 +132,7 @@
 
 #photoblog_thumbs {
     /* if the background image just looks weird just remove it */
-    background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> repeat-x;
+    background: <?php echo $main_color; ?> repeat-x;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -khtml-border-radius: 5px;
