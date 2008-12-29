@@ -3,6 +3,10 @@ Options FollowSymLinks
 RewriteEngine On
 Rewritebase /
 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^stylesheets/photoblog_?(.*)_?(.*)_.css$ stylesheets/photoblog.css.php?$1 [L]
+RewriteRule ^stylesheets/photoblog.css$ stylesheets/photoblog.css.php?$1 [L]
 
 #Rewrite the site in googles eyes
 RewriteCond %{HTTP_HOST} www.pajen.se|www.hamsterpajiskolan.se|www.pajen.net|pajen.se|hamsterpajiskolan.se|pajen.net|www.pajhamster.se|pajhamster.se|www.hamsterpaj.se|hamsterpaj.se|www.rodentmedia.se|rodentmedia.se
