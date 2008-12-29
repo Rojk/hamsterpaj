@@ -17,6 +17,6 @@
 		}
 		else
 		{		
-				$out .= 'Listar ' . $username . 's foton.';
+				$out .= 'Listar ' . $photoblog_user['username'] . 's foton.';
 		}
 ?>
