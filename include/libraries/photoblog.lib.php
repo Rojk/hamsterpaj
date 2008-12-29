@@ -1,7 +1,6 @@
 <?php
 	function photoblog_fetch_active_user_data($username)
 	{
-		global $photoblog_preferences_default_values;
 		if ( isset($username) && preg_match('/^[a-zA-Z0-9-_]+$/', $username) && strtolower($username) != 'borttagen' )
 		{
 			$sql = 'SELECT id FROM login WHERE username = "' . $username . '" LIMIT 1';
@@ -20,9 +19,9 @@
 				
 				$sql = 'INSERT INTO photoblog_preferences SET ';
 				$sql .= ' user_id = ' . $user_id . ',';
-				$sql .= ' color_main = "' . $photoblog_preferences_default_values['color_main'] . '",';
-				$sql .= ' color_detail = "' . $photoblog_preferences_default_values['color_detail'] . '",';
-				$sql .= ' hamster_guard_on = ' . $photoblog_preferences_default_values['hamster_guard_on'];
+				$sql .= ' color_main = "333333",';
+				$sql .= ' color_detail = "FF8040",';
+				$sql .= ' hamster_guard_on = 0';
 				if (!mysql_query($sql))
 				{
 					report_sql_error($sql);

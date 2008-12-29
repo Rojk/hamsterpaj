@@ -36,7 +36,7 @@
 		$ui_options['javascripts'][] = 'photoblog.js';
 		$ui_options['ui_modules_hide'] = true;
 		
-		$photos_by_year = photoblog_dates_fetch(array('user' => $_SESSION['login']['id']));
+		$photos_by_year = photoblog_dates_fetch(array('user' => $photoblog_user['id']));
 		
 		$month_table = array(
 			'01' => 'Januari',

@@ -3,14 +3,7 @@
 		$ui_options['ui_modules']['photoblog_calendar'] = 'Kalender';
 		$ui_options['ui_modules']['photoblog_albums'] = 'Album';
 		
-		// this should probably be added to som .lib
-		$query .= 'SELECT l.id FROM login AS l';
-		$query .= ' WHERE l.username = "' . $username . '"';
-		$query .= ' LIMIT 1';
-		$result = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
-		$user = mysql_fetch_assoc($result);
-		
-		$user_id = $user['id'];
+		$user_id = $photoblog_user['id'];
 		$options = array(
 			'user' => $user_id,
 			'month' => date('Ym', time())
