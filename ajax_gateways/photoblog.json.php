@@ -8,9 +8,24 @@
         die;
     }
     
-    $options = array(
-        'id' => $_GET['id']
-    );
+    if ( ! isset($_GET['month']) )
+    {
+        $options = array(
+            'id' => $_GET['id']
+        );
+    }
+    else
+    {
+        if ( ! is_numeric($_GET['month']) )
+        {
+            die('Faulty month');
+        }
+        
+        $options = array(
+            'user' => $_GET['id'],
+            'month' => $_GET['month']
+        );
+    }
     
     $photo = photoblog_photos_fetch($options);
     echo json_encode($photo);

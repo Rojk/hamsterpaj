@@ -6,20 +6,37 @@
 		require(PATHS_INCLUDE . 'libraries/photoblog_preferences.lib.php');
 		require(PATHS_INCLUDE . 'libraries/profile.lib.php');
 		
-		if (!is_privilegied('igotgodmode'))
+		// If this is true, it means that $uri_parts[2] isn't a valid username
+		if ( $_SERVER['REQUEST_URI'] == '/fotoblogg/')
 		{
-			throw new Exception('Den här delen är inte uppe för allmänheten än ;)');
+			if ( login_checklogin() )
+			{
+				header('Location: /fotoblogg/' . $_SESSION['login']['username']);
+			}
+			else
+			{
+				throw new Exception('Du är inte inloggad och kan därför inte se din egen fotoblogg.');
+			}
 		}
 		
-		$ui_options['stylesheets'][] = 'photoblog.css.php';
+		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
+		
+		if(login_checklogin())
+		{
+			$photoblog_user = photoblog_fetch_active_user_data($_SESSION['login']['username']);
+		}
+		if(photoblog_fetch_active_user_data($uri_parts[2]))
+		{
+			$photoblog_user = photoblog_fetch_active_user_data($uri_parts[2]);
+		}
+		
+		$ui_options['stylesheets'][] = 'photoblog_' . $photoblog_user['color_main'] . '_' . $photoblog_user['color_detail'] . '_.css';
 		$ui_options['javascripts'][] = 'jquery-ui-slider.js';
 		$ui_options['javascripts'][] = 'jquery-ui-datepicker.js';	
 		$ui_options['javascripts'][] = 'photoblog.js';
 		$ui_options['ui_modules_hide'] = true;
 		
-		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
-		
-		$photos_by_year = photoblog_dates_fetch(array('user_id' => $_SESSION['login']['id']));
+		$photos_by_year = photoblog_dates_fetch(array('user' => $_SESSION['login']['id']));
 		
 		$month_table = array(
 			'01' => 'Januari',
@@ -88,25 +105,6 @@
 			break;
 				
 			default:
-				
-				// If this is true, it means that $uri_parts[2] isn't a valid username
-				if ( $_SERVER['REQUEST_URI'] == '/fotoblogg/')
-				{
-					if ( login_checklogin() )
-					{
-						header('Location: /fotoblogg/' . $_SESSION['login']['username']);
-					}
-					else
-					{
-						throw new Exception('Du är inte inloggad och kan därför inte se din egen fotoblogg.');
-					}
-				}
-				elseif ( strlen($uri_parts[2]) > 0 )
-				{
-					$active_user_data = photoblog_fetch_active_user_data($uri_parts[2]);
-					preint_r($active_user_data);
-					$username = $active_user_data['username'];
-				}
 				switch ($uri_parts[3])
 				{
 					case 'album':
