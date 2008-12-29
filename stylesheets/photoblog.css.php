@@ -1,7 +1,11 @@
 <?php
 	header('Content-type: text/css');
-	$main_color = '#' . (isset($photoblog_user_data['main_color']) ? $photoblog_user_data['main_color'] : '333');
-	$detail_color = '#' . (isset($photoblog_user_data['detail_color']) ? $photoblog_user_data['detail_color'] : 'FF8040');
+	
+	$req_uri = $_SERVER['REQUEST_URI'];
+	$uri_parts = explode('_', $_SERVER['REQUEST_URI']);
+	
+	$main_color = '#' . ((strlen($uri_parts[1]) > 2) ? $uri_parts[1] : '333');
+	$detail_color = '#' . ((strlen($uri_parts[2]) > 2) ? $uri_parts[2] : 'FF8040');
 ?>
 
 #photoblog_upload_wrapper {
@@ -116,14 +120,14 @@
 		-moz-border-radius: 5px;
 		-khtml-border-radius: 5px;
 		padding: 5px 10px;
-		color: orange;
+		color: <?php echo $detail_color; ?>;
 		margin-bottom: 10px;
 		margin-left: 230px;
 		width: 388px;
 		height: 21px;	
 	}
 	#photoblog_user_header a {
-		color: orange;
+		color: <?php echo $detail_color; ?>;
 		margin: 0 15px;
 		padding-top: 3px;
 		display: block;
@@ -190,7 +194,7 @@
     }
 	
     .photoblog_active img {
-       border: 2px solid yellow;
+       border: 2px solid <?php echo $detail_color; ?>;
 			-moz-border-radius: 3px;
 			-khtml-border-radius: 3px;
 			border-radius: 3px;
@@ -203,7 +207,7 @@
 
 #photoblog_thumbs_scroller {
     width: 100%;
-    background: url(http://images.hamsterpaj.net/photoblog/white-50-percent-opacity.png);
+    background: <?php echo $main_color; ?> url(http://images.hamsterpaj.net/photoblog/white-50-percent-opacity.png);
     height: 15px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -214,7 +218,7 @@
     #photoblog_thumbs_handle {
         display: block;
         width: 40px;
-        background: <?php echo PHOTOBLOG_DETAIL_COLOR; ?> url(http://images.hamsterpaj.net/photoblog/scroller-overlay.png) repeat-x;
+        background: <?php echo $detail_color; ?> url(http://images.hamsterpaj.net/photoblog/scroller-overlay.png) repeat-x;
         -moz-border-radius: 4px;
     	-webkit-border-radius: 4px;
         height: 100%;
@@ -273,13 +277,9 @@
 	background-position: right center;
 }
 
-/*#photoblog_comments,
 #photoblog_description {
-    margin: 0 auto 10px;
-    border: 1px solid #ccc;
-    background: #f9f9f9;
-    padding: 10px;
-}*/
+	text-align: center;
+}
 
     #photoblog_description h2 {
         text-align: center;
@@ -290,7 +290,6 @@
 	opacity: .6;
 	filter: alpha(opacity=60);
 	padding: 5px;
-	border: 1px solid #333;
 	background: #fff;
 }
 
@@ -349,4 +348,68 @@
 		margin: 0;
 		padding: 5px;
 		font-size: 14px;
+	}
+	
+/* ########################################################
+		MODULER
+	 ###################################################### */
+	 
+/*
+	################################################################
+		Photoblog_user
+	################################################################
+*/
+#ui_module_photoblog_user .ui_module_header {
+  display: none;
+}
+	#ui_module_photoblog_user .ui_module_content {
+	  padding: 10px;
+	  height: 50px;
+	  background: <?php echo $main_color; ?>;
+	  color: #fff;
+	  -moz-border-radius: 5px;
+	}
+	#ui_module_photoblog_user h3 {
+	  margin:	0;
+	  margin-left: 50px;
+	}
+	#ui_module_photoblog_user a {
+	  margin: 30px 0 0 50px;
+	  text-decoration: underline;
+	  color: <?php echo $detail_color; ?>;	
+	  
+	}
+	#ui_module_photoblog_user .user_avatar {
+	  position: absolute;
+	  border: 1px solid gray;
+	  width: 37px;
+	  height: 50px;
+	}
+
+/*
+	################################################################
+		Photoblog_calendar
+	################################################################
+*/
+#ui_module_photoblog_calendar .ui_module_header {
+  display: none;
+}
+	#ui_module_photoblog_calendar .ui_module_content {
+	  padding: 10px;
+	  height: 160px;
+	  background: <?php echo $main_color; ?>;
+	  color: #fff;
+	  -moz-border-radius: 5px;
+	}
+
+/*
+	################################################################
+		Photoblog_albums
+	################################################################
+*/
+#ui_module_photoblog_albums .ui_module_header {
+  
+}
+	#ui_module_photoblog_albums .ui_module_content {
+
 	}

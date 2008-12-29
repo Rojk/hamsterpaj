@@ -8,6 +8,10 @@
 			$result = mysql_query($sql);
 			$data = mysql_fetch_assoc($result);
 			$user_id = $data['id'];
+			if(!isset($user_id))
+			{
+				return false;
+			}
 			
 			$sql = 'SELECT user_id FROM photoblog_preferences WHERE user_id = ' . $user_id . ' LIMIT 1';
 			$result = mysql_query($sql);
@@ -37,7 +41,7 @@
 			}
 			else
 			{
-				throw new Exception('Användaren verkar inte finnas i databasen *sadface*<br /><a href="/fotoblogg/">Tillbaka</a>');
+				return false;
 			}
 		}
 	}
