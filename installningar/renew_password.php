@@ -5,12 +5,12 @@
 	
 	if(isset($_POST['username']) && strtolower($_POST['username']) == 'borttagen')
 	{
-		die('Men gå och lägg dig jävla tomte.');
+		die('Men gÃ¥ och lÃ¤gg dig jÃ¤vla tomte.');
 	}
 	
 	if(login_checklogin())
 	{
-		echo 'Det kanske låter konstigt, men du måste <a href="/logout.php">logga ut</a> för att byta lösenord.';
+		echo 'Det kanske lÃ¥ter konstigt, men du mÃ¥ste <a href="/logout.php">logga ut</a> fÃ¶r att byta lÃ¶senord.';
 	}
 	else
 	{
@@ -27,44 +27,45 @@
 						$data = mysql_fetch_assoc($result);
 						$query = 'UPDATE login SET password_hash = "", password = "' . hamsterpaj_password(utf8_decode($_POST['new_password'])) . '" WHERE id = ' . $data['is'];
 						mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+						echo 'Det dÃ¤r gick ju bra, logga in dÃ¤r uppe nu tjockis!';
 					}
 					else
 					{
-						echo 'Användaren hittades inte eller så var <i>det gamla lösenordet<i> inte rätt.';
+						echo 'AnvÃ¤ndaren hittades inte eller sÃ¥ var <i>det gamla lÃ¶senordet<i> inte rÃ¤tt.';
 					}
 				}
 				else
 				{
-					echo 'Du måste ange ett nytt lösenord. Och lösenordssäkerhet är inte något fjolligt "kanel" som lösenord - det är STORA och små bokstäver blandat med s1ffr0r och krum€|ur€r.';
+					echo 'Du mÃ¥ste ange ett nytt lÃ¶senord. Och lÃ¶senordssÃ¤kerhet Ã¤r inte nÃ¥got fjolligt "kanel" som lÃ¶senord - det Ã¤r STORA och smÃ¥ bokstÃ¤ver blandat med s1ffr0r och krumâ‚¬|urâ‚¬r.';
 				}
 			}
 			else
 			{
-				echo 'Lösenorden stämmde inte överens med varandra :/. Försök igen.';
+				echo 'LÃ¶senorden stÃ¤mmde inte Ã¶verens med varandra :/. FÃ¶rsÃ¶k igen.';
 			}
 		}
 		else
 		{
-			// Fulkod? JAG BRYR MIG FAN INTE SÅHÄR DAGS!
+			// Fulkod? JAG BRYR MIG FAN INTE SÃ…HÃ„R DAGS!
 			?>
-			<h1>Förnya lösenord</h1>
+			<h1>FÃ¶rnya lÃ¶senord</h1>
 			<p>
-				Du kan ha hamnat på den här sidan av två skäl:
+				Du kan ha hamnat pÃ¥ den hÃ¤r sidan av tvÃ¥ skÃ¤l:
 				<ul>
-					<li>Du försökte byta lösenord.</li>
-					<li>Du hade ett lösenord krypterat med den gamla krypteringen.</li>
+					<li>Du fÃ¶rsÃ¶kte byta lÃ¶senord.</li>
+					<li>Du hade ett lÃ¶senord krypterat med den gamla krypteringen.</li>
 				</ul>
 				
-				Om det är det senare orkar jag inte förklara, bara byt. Klockan är 04:20 och då skriver man inte små söta pedagogiska texter. Punkt. /Joel
+				Om det Ã¤r det senare orkar jag inte fÃ¶rklara, bara byt. Klockan Ã¤r 04:20 och dÃ¥ skriver man inte smÃ¥ sÃ¶ta pedagogiska texter. Punkt. /Joel
 			</p>
 			
 			<p>
 				<form method="post">
-					<input type="text" name="username" /><br />
-					<input type="password" name="old_password" /><br />
-					<input type="password" name="new_password" /><br />
-					<input type="password" name="new_password_repeat" /><br />
-					<input type="submit" value="Byt" /><br />
+					AnvÃ¤ndarnamn: <input type="text" name="username" /><br />
+					Gammalt lÃ¶senord: <input type="password" name="old_password" /><br />
+					Nytt lÃ¶senord: <input type="password" name="new_password" /><br />
+					Nytt lÃ¶senord (FÃ¶rklaring fÃ¶r blondiner: upprepat) <input type="password" name="new_password_repeat" /><br />
+					<input type="submit" value="Byt" /> (&raquo; BlondinfÃ¶rklaring: Tryck pÃ¥ den orange knappen som inte Ã¤r orange, fÃ¶r det orkar jag inte koda nu).<br />
 				</form>
 			</p>
 			<?php
