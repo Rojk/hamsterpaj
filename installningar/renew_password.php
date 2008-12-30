@@ -22,10 +22,10 @@
 				{
 					$query = 'SELECT id FROM login WHERE username = "' . $_POST['username'] . '" AND password_hash = "' . sha1(utf8_decode($_POST['old_password']) . PASSWORD_SALT) . '" LIMIT 1';
 					$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-					if(mysql_num_rows($old_result) == 1)
+					if(mysql_num_rows($result) == 1)
 					{
 						$data = mysql_fetch_assoc($result);
-						$query = 'UPDATE login SET password_hash = "", password = "' . hamsterpaj_password(utf8_decode($_POST['new_password'])) . '" WHERE id = ' . $data['is'];
+						$query = 'UPDATE login SET password_hash = "", password = "' . hamsterpaj_password(utf8_decode($_POST['new_password'])) . '" WHERE id = ' . $data['id'];
 						mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 						echo 'Det där gick ju bra, logga in där uppe nu tjockis!';
 					}

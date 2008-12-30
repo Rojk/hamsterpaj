@@ -49,16 +49,16 @@
 			
 			// Test with new hash
 			$query = 'SELECT id, lastaction, lastlogon, session_id FROM login WHERE username = "' . $username . '" AND password = "' . hamsterpaj_password($password) . '" LIMIT 1';
-			
 			$loginquery = mysql_query($query) or report_sql_error($query);
 			if(mysql_num_rows($loginquery) != 1)
 			{
+				jscript_alert('hej');
 				// New hash not found, test the old hash
 				$old_query = 'SELECT id FROM login WHERE username = "' . $username . '" AND password_hash = "' . sha1($password . PASSWORD_SALT) . '" LIMIT 1';
 				$old_result = mysql_query($old_query) or report_sql_error($old_query);
 				if(mysql_num_rows($old_result) == 1)
 				{
-					return 1337;
+					return 3;
 				}
 			}
 		}
