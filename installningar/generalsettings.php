@@ -109,6 +109,10 @@
 				jscript_go_back();
 				exit;
 			}
+			// Temporary fix
+			jscript_location('/installningar/renew_password.php');
+			exit;
+			
 			$newdata['login']['password_hash'] = sha1(utf8_decode($_POST['password_new']) . PASSWORD_SALT);
 		break;
 		}
@@ -251,7 +255,7 @@
 	$out .= '<a name="change_password"></a>';
 	$out .= rounded_corners_tabs_top($void, true);
 	$out .= '<h2 style="margin-top: 0px;">Byt lösenord</h2>' . "\n";
-	$out .= '<form action="' . $_SERVER['PHP_SELF'] . '?action=perform_changes&type=password" method="post">' . "\n";
+	/*$out .= '<form action="' . $_SERVER['PHP_SELF'] . '?action=perform_changes&type=password" method="post">' . "\n";
 	$out .= '<table><tr style="font-weight: bold;"><td>Nuvarande lösenord</td><td>Nytt lösenord</td><td>Upprepa nytt lösenord</td></tr>' . "\n";
 	$out .= '<tr>' . "\n";
 	$out .= '<td><input type="password" name="password_old" class="textbox" /></td>' . "\n";
@@ -259,7 +263,8 @@
 	$out .= '<td><input type="password" name="password_verify" class="textbox" /></td>' . "\n";
 	$out .= '</tr></table><br />' . "\n";
 	$out .= '<input type="submit" class="button_80" value="Byt lösenord &raquo;" />' . "\n";
-	$out .= '</form>' . "\n";
+	$out .= '</form>' . "\n";*/
+	$out .= 'Detta gör du under <a href="">Byt lösenord</a> numera.';
 	$out .= rounded_corners_tabs_bottom($void, true);
 
 	ui_top($ui_options);

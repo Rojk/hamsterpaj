@@ -11,7 +11,8 @@
 	ui_top($ui_options);
 	
 	$register_suspend = cache_load('register_suspend');
-	if($register_suspend == 'disabled')
+	// We need to use the new method... bla bla bla... I'm tired. Clock is 04:16 after a hard day. Blöh!
+	if($register_suspend == 'disabled' || true)
 	{
 		echo '<h1>Registreringsfunktionen är tillfälligt avstängd</h1>' . "\n";
 		echo '<p>Det här händer jäkligt sällan, men nu har vi stängt av registreringen - det går inte att skapa konton på Hamsterpaj just nu. Funktionen är antagligen igång inom en timma, titta hit igen då!</p>' . "\n";

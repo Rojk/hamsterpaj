@@ -9,6 +9,9 @@
 		die();
 	}
 
+// We need to use the new method... bla bla bla... I'm tired. Clock is 04:16 after a hard day. Blöh!
+// This function is by the way fulkodad.
+die('Denna funktion är temporärt avstängd. Var god gnäll på LordDanne - det är antagligen hans fel.');
 
 	if($_GET['verify'] == 1)
 	{

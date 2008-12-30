@@ -47,25 +47,18 @@
 		{
 			$password = utf8_decode($password);
 			
-			// Test for SHA1 with hash
-			$query = 'SELECT id, lastaction, lastlogon, session_id FROM login WHERE username = "' . $username . '" AND password_hash = "' . sha1($password . PASSWORD_SALT) . '" LIMIT 1';
+			// Test with new hash
+			$query = 'SELECT id, lastaction, lastlogon, session_id FROM login WHERE username = "' . $username . '" AND password = "' . hamsterpaj_password($password) . '" LIMIT 1';
 			
 			$loginquery = mysql_query($query) or report_sql_error($query);
-			if(mysql_num_rows($loginquery) == 0)
+			if(mysql_num_rows($loginquery) != 1)
 			{
-				// SHA1 not found, try the old MD5
-				$md5_query = 'SELECT id FROM login WHERE username = "' . $username . '" AND password = "' . md5($password) . '" LIMIT 1';
-				$md5_result = mysql_query($md5_query) or report_sql_error($md5_query);
-				if(mysql_num_rows($md5_result) == 1)
+				// New hash not found, test the old hash
+				$old_query = 'SELECT id FROM login WHERE username = "' . $username . '" AND password_hash = "' . sha1($password . PASSWORD_SALT) . '" LIMIT 1';
+				$old_result = mysql_query($old_query) or report_sql_error($old_query);
+				if(mysql_num_rows($old_result) == 1)
 				{
-					// MD5 found, update to SHA1
-					$data = mysql_fetch_assoc($md5_result);
-					$md5_to_sha1_query = 'UPDATE login SET password = "", password_hash = "' . sha1($password . PASSWORD_SALT) . '" WHERE id = "' . $data['id'] . '" LIMIT 1';
-					mysql_query($md5_to_sha1_query);
-
-					// Load data using the SHA1-hash
-					$query = 'SELECT id, lastaction, lastlogon, session_id FROM login WHERE username = "' . $username . '" AND password_hash = "' . sha1($password . PASSWORD_SALT) . '" LIMIT 1';			
-					$loginquery = mysql_query($query) or die('Query failed: ' . mysql_error());
+					return 1337;
 				}
 			}
 		}

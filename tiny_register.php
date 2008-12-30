@@ -14,6 +14,11 @@
 	
 	$error = false;
 	$info = $_GET;
+	
+	// We need to use the new method... bla bla bla... I'm tired. Clock is 04:16 after a hard day. Blöh!
+	$error = true;
+	echo 'Stängd på obestämd tid.';
+	
 	if(!preg_match("/^[0-9a-zA-Z_-]+$/i", $info['username']))
 	{
 		$error = true;

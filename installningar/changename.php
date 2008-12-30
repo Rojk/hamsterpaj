@@ -10,7 +10,8 @@ $ui_options['stylesheets'][] = 'rounded_corners_tabs.css';
     die();
   }
 
-
+// We need to use the new method... bla bla bla... I'm tired. Clock is 04:16 after a hard day. Blöh!
+die('Denna funktion är temporärt avstängd. Var god gnäll på LordDanne - det är antagligen hans fel.');
 ui_top($ui_options);
 
 if(isset($_POST['new_username']))

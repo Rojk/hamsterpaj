@@ -1,7 +1,6 @@
 <?php
 	require('include/core/common.php');
 
-	session_start();
 	
 	switch($_GET['action'])
 	{
@@ -82,6 +81,9 @@
 						break;
 					case 2:
 						header('Location: /msg.php?message=login_invalidlogin');
+						break;
+					case 1337:
+						header('Location: /installningar/renew_password.php');
 						break;
 					default:
 						header('Location: /msg.php?message=error');
