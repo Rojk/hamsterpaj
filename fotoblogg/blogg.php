@@ -73,12 +73,12 @@
 						
 						$out .= '<div class="photoblog_comment_bubble_pointer">' . "\n";
 							$out .= '<div class="photoblog_comment_text">' . "\n";
-							$out .= '<p>' . $comment['comment'] . '</p>' . "\n";
+							$out .= '<p>' . nl2br($comment['comment']) . '</p>' . "\n";
 								if(isset($comment['answer']))
 								{
 									$out .= '<div class="photoblog_comment_answer">' . "\n";
 										$out .= '<span>Svar av: ' . $photoblog_user['username'] . '</span>' . "\n";
-										$out .= '<p>' . $comment['answer'] . '</p>' . "\n";
+										$out .= '<p>' . nl2br($comment['answer']) . '</p>' . "\n";
 									$out .= '</div>' . "\n";
 								}
 							$out .= '</div' . "\n";

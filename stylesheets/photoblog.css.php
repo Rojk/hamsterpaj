@@ -305,6 +305,7 @@
 
 /* comments */
 #photoblog_comments {
+	margin-top: 10px;
 	background: <?php echo $main_color; ?>;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
