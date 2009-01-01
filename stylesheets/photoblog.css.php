@@ -435,12 +435,45 @@
   display: none;
 }
 	#ui_module_photoblog_calendar .ui_module_content {
-	  padding: 10px;
-	  height: 160px;
-	  background: <?php echo $main_color; ?>;
+	  height: 190px;
+	  background: <?php echo $main_color; ?> url(http://images.hamsterpaj.net/photoblog/calendar_fade.png);
 	  color: #fff;
 	  -moz-border-radius: 5px;
+	  padding: 0;
 	}
+		#photoblog_calendar_month {
+			padding: 8px 12px 16px 12px;
+			height: 11px;
+			font-size: 14px;
+			text-align: center;
+		}
+			#photoblog_calendar_month a {
+				color: <?php echo $detail_color; ?>;
+			}	
+		#ui_module_photoblog_calendar table {
+		  margin: 0 11px;
+		  width: 180px;
+		}
+			#ui_module_photoblog_calendar th {
+			  color: <?php echo $detail_color; ?>;
+			  text-align: center;
+			}
+			#ui_module_photoblog_calendar td {
+			  color: white;
+			  text-align: center;
+			  height: 19px;
+			  padding: 2px;
+			}
+			#photoblog_calendar_year {
+				color: orange;
+				padding: 10px 15px 0 15px;
+			}
+				.photoblog_calendar_year_after {
+					float: right;
+				}
+				.photoblog_calendar_year_pre {
+					float: left;
+				}
 
 /*
 	################################################################
