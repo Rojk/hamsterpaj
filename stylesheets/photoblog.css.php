@@ -465,7 +465,7 @@
 			  padding: 2px;
 			}
 			#photoblog_calendar_year {
-				color: orange;
+				color: <?php echo $detail_color; ?>;
 				padding: 10px 15px 0 15px;
 			}
 				.photoblog_calendar_year_after {
