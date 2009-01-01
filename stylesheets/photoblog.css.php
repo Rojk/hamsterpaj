@@ -304,20 +304,74 @@
 	}
 
 /* comments */
-
-#photoblog_comments ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+#photoblog_comments {
+	background: <?php echo $main_color; ?>;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 15px 15px 0 15px;
 }
-
-#photoblog_comments h3 { display: none; }
-
-#photoblog_comments form,
-#photoblog_comments form * {
-	margin: 0;
-	padding: 0;
-}
+	#photoblog_comments ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+		.photoblog_comment {
+			min-height: 155px;
+		}
+			.photoblog_comment_userinfo {
+				position: absolute;
+				width: 75px;
+			}
+				.photoblog_comment .user_avatar {
+					height: 100px;
+					width: 75px;
+				}
+				.photoblog_comment_userinfo a {
+					display: block;
+					padding: 4px 0 2px 0;
+					color: <?php echo $detail_color; ?>;
+				}
+				.photoblog_comment_userinfo span {
+					display: block;
+					color: #fff;
+					opacity: .5;
+					filter: alpha(opacity=50);
+				}
+			.photoblog_comment_bubble_pointer {
+				width: 503px;
+				padding: 0;
+				background: url(http://images.hamsterpaj.net/photoblog/comment_bubble_pointer.png) no-repeat left top;
+				margin-left: 90px;
+			}
+			.photoblog_comment_text {
+				background: #fff;
+				width: 459px;
+				padding: 15px;
+				margin-left: 30px;
+				min-height: 60px;
+			}
+				.photoblog_comment_text p {
+					margin: 0;
+				}	
+				.photoblog_comment_answer {
+					margin-top: 15px;
+					border: 1px solid #d3d3d3;
+					background: #eeeeee;
+					padding: 10px;
+				}
+					.photoblog_comment_answer span {
+						color: #737272;
+						margin-bottom: 8px;
+						display: block;
+					}
+	
+	#photoblog_comments h3 { display: none; }
+	
+	#photoblog_comments form,
+	#photoblog_comments form * {
+		margin: 0;
+		padding: 0;
+	}
 	#photoblog_comments form span { display: none; }
 	
 	#photoblog_comments form label textarea {
@@ -334,20 +388,6 @@
 		background: #e6e6e6;
 		-moz-border-radius: 2px;
 		-webkit-border-radius: 2px;
-	}
-	
-#photoblog_comments_container {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-	#photoblog_comments .photoblog_comment {
-	
-	}
-	#photoblog_comments .photoblog_comment h4 {
-		margin: 0;
-		padding: 5px;
-		font-size: 14px;
 	}
 	
 /* ########################################################
