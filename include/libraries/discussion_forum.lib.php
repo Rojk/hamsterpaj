@@ -310,22 +310,22 @@
 			{
 				switch ($data['author'])
 				{
-					case 15:
+					case '15':
 						$author_post_count = 'Några osöta';
 					break;
-					case 87926:
+					case '87926':
 						$author_post_count = 'Många söta';
 					break;
-					case 774586:
+					case '774586':
 						$author_post_count = 'Inte många';
 					break;
-					case 787082:
+					case '787082':
 						$author_post_count = 'Många schmarta';
 					break;
-					case 891711:
+					case '891711':
 						$author_post_count = '';
 					break;
-					case 73144:
+					case '73144':
 						author_post_count = '/dev/null';
 					break;
 					default:
