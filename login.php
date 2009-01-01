@@ -82,7 +82,7 @@
 					case 2:
 						header('Location: /msg.php?message=login_invalidlogin');
 						break;
-					case 1337:
+					case 3:
 						header('Location: /installningar/renew_password.php');
 						break;
 					default:

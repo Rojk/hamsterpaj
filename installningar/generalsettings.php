@@ -264,7 +264,7 @@
 	$out .= '</tr></table><br />' . "\n";
 	$out .= '<input type="submit" class="button_80" value="Byt lösenord &raquo;" />' . "\n";
 	$out .= '</form>' . "\n";*/
-	$out .= 'Detta gör du under <a href="">Byt lösenord</a> numera.';
+	$out .= 'Just nu går det inte att byta lösenord. Joel ska jobba på det så fort han vaknar.';
 	$out .= rounded_corners_tabs_bottom($void, true);
 
 	ui_top($ui_options);
