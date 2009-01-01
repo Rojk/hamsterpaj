@@ -308,29 +308,29 @@
 			}
 			else
 			{
-				if($data['author'] == 15)
+				switch ($data['author'])
 				{
-					$author_post_count = 'Några osöta';
-				}
-				elseif($data['author'] == 87926)
-				{
-					$author_post_count = 'Många söta';
-				}
-				elseif($data['author'] == 774586)
-				{
-					$author_post_count = 'Inte många';
-				}
-				elseif($data['author'] == 787082)
-				{
-					$author_post_count = 'Många schmarta';
-				}
-				elseif($data['author'] == 891711)
-				{
-					$author_post_count = '';
-				}
-				else
-				{
-			 		$author_post_count = cute_number($data['author_post_count']);
+					case 15:
+						$author_post_count = 'Några osöta';
+					break;
+					case 87926:
+						$author_post_count = 'Många söta';
+					break;
+					case 774586:
+						$author_post_count = 'Inte många';
+					break;
+					case 787082:
+						$author_post_count = 'Många schmarta';
+					break;
+					case 891711:
+						$author_post_count = '';
+					break;
+					case 73144:
+						author_post_count = '/dev/null';
+					break;
+					default:
+				 		$author_post_count = cute_number($data['author_post_count']);
+					break;
 				}
 				$return .= '<span class="post_count">' . $author_post_count . ' inlägg</span>' . "\n";
 			}
