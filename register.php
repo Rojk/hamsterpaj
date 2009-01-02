@@ -11,8 +11,7 @@
 	ui_top($ui_options);
 	
 	$register_suspend = cache_load('register_suspend');
-	// We need to use the new method... bla bla bla... I'm tired. Clock is 04:16 after a hard day. Blöh!
-	if($register_suspend == 'disabled' || true)
+	if($register_suspend == 'disabled')
 	{
 		echo '<h1>Registreringsfunktionen är tillfälligt avstängd</h1>' . "\n";
 		echo '<p>Det här händer jäkligt sällan, men nu har vi stängt av registreringen - det går inte att skapa konton på Hamsterpaj just nu. Funktionen är antagligen igång inom en timma, titta hit igen då!</p>' . "\n";
@@ -40,7 +39,7 @@
 			event_log_log('classic_reg_form_sign_up');
 			/* Input from user is OK, create rows in required tables */
 			$query = 'INSERT INTO login(username, password, regtimestamp, regip, lastlogon) ';
-			$query .= 'VALUES ("' . $_POST['username'] . '", "' . md5(utf8_decode($_POST['password'])) . '", "';
+			$query .= 'VALUES ("' . $_POST['username'] . '", "' . hamsterpaj_password(utf8_decode($_POST['password'])) . '", "';
 			$query .= time() . '", "' . $_SERVER['REMOTE_ADDR'] . '", "")';
 			mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 			$user_id = mysql_insert_id();
