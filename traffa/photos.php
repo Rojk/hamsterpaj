@@ -87,7 +87,8 @@
 	{
 	if(isset($_GET['id']))
 	{
-		$query = 'SELECT user FROM user_photos WHERE id = ' . $_GET['id'] . ' LIMIT 1';
+		$_GET['id'] = intval($_GET['id']);
+		$query = 'SELECT user FROM user_photos WHERE id = "' . $_GET['id'] . '" LIMIT 1';
 		$result = mysql_query($query);
 		$data = mysql_fetch_assoc($result);
 		if (substr($_SERVER["REQUEST_URI"], 0, 21) != "/traffa/photos.php?ajax")

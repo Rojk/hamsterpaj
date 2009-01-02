@@ -128,7 +128,9 @@ hp.photoblog = {
 			var self = this;
 			
 			// create scroller elements		
-			this.thumbs.append('<div id="photoblog_thumbs_scroller"><div class="ui-slider-handle" id="photoblog_thumbs_handle"></div></div>');
+			this.thumbs.append('<div id="photoblog_thumbs_scroller">'
+						+ '<div class="ui-slider-handle" id="photoblog_thumbs_handle"></div>'
+					    +'</div>');
 			this.scroller = $('#photoblog_thumbs_scroller');
 			
 			// this has to be dynamically set because it's (probably) extremely slow
@@ -323,7 +325,12 @@ hp.photoblog = {
 		centralize_active: function() {
 			var thumbsContainer = this.thumbsContainer;
 			var active = $('.photoblog_active', thumbsContainer);
-			var position = ((active.position().left + active.width() / 2 - (thumbsContainer.real_width / 2)) / thumbsContainer.sWidth) * 100;
+			if ( ! active ) alert('no active thumb.');
+			if ( thumbsContainer.sWidth > thumbsContainer.real_width ) {
+				this.scroller_scroll(1);
+				return;
+			}
+			var position = ((active.position().left + (active.width() / 2) - (thumbsContainer.real_width / 2)) / thumbsContainer.sWidth) * 100;
 			this.scroller.slide_slider(position);
 		},
 		
@@ -353,10 +360,6 @@ hp.photoblog = {
 					self.centralize_prevnext();
 					self.image.parent().height('auto');
 				}, self.image.parent());
-				/*self.image.fadeOut(function() {
-					self.image.attr('src', src).fadeIn();
-					self.centralize_prevnext();
-				});*/
 			}).attr('src', src).hide().appendTo(self.imageContainer);
 		},
 		
@@ -454,23 +457,25 @@ hp.photoblog = {
 		
 		load_month: function(user_id, month) {
 			var self = this;
+			var nextMonth = $('#photoblog_nextmonth');
 			$.getJSON('/ajax_gateways/photoblog.json.php?id=' + user_id + '&month=' + month, function(data) {
-				self.thumbsList.empty();
-				
+				self.thumbsList.children().not('#photoblog_prevmonth, #photoblog_nextmonth').remove();
 				var lastDay = null;
-				console.dir(new Date());
 				$.each(data, function(i, item) {
 					var date = item.date.split('-');
 					if ( date[2] != lastDay ) {
 						lastDay = date[2];
-						$('<dt>' + parseInt(date[1], 10) + '/' + parseInt(date[2], 10) + '</dt>').appendTo(self.thumbsList);
+						var dt = $('<dt>' + parseInt(date[1], 10) + '/' + parseInt(date[2], 10) + '</dt>')
+						nextMonth.before(dt);
 					}
 					var photoname = hp.photoblog.make_thumbname(item.id);
-					var dd = $('<dd><a rel="imageid-' + item.id + '" href="#image-' + item.id + '"></a></dd>').appendTo(self.thumbsList);
+					var dd = $('<dd><a rel="imageid-' + item.id + '" href="#image-' + item.id + '"></a></dd>');
+					nextMonth.before(dd);
 					var img = $('<img alt="" />');
 					
 					if ( i == data.length - 1 ) {
-						$('img', dd).load(function() {
+						img.load(function() {
+							console.log('done load');
 							self.thumbsContainer.sWidth = self.thumbsContainer.container_width();
 							self.set_scroller_width();
 						});
