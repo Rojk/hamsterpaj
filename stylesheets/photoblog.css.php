@@ -346,6 +346,8 @@
 			}
 			.photoblog_comment_text {
 				background: #fff;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
 				width: 459px;
 				padding: 15px;
 				margin-left: 30px;
@@ -359,6 +361,8 @@
 					border: 1px solid #d3d3d3;
 					background: #eeeeee;
 					padding: 10px;
+					-moz-border-radius: 5px;
+					-webkit-border-radius: 5px;
 				}
 					.photoblog_comment_answer span {
 						color: #737272;
