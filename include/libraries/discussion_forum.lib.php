@@ -247,6 +247,10 @@
 			$return .= '<div class="forum_post_top"></div>' . "\n";
 			$return .= '<div class="forum_post" id="forum_post_' . $data['id'] . '">' . "\n";
 			$return .= '<div class="author">' . "\n";
+			if (strtolower($data['username']) == 'vit_seger')
+			{
+				$data['username'] = 'Vit_neger';
+			}
 			$return .= '<a class="username" href="/traffa/profile.php?id=' . $data['author'] . '">' . $data['username'];
 			$return .= '</a>' . "\n";
 			$return .= ($data['author'] == 2) ? '&nbsp;<a href="/diskussionsforum/hamsterpaj/veckans_ros/" title="Veckans ros"><img src="http://images.hamsterpaj.net/ros.png" alt="Ros" style="width: 11px; height: 17px;border:0;" /></a><br style="clear: both;" />' . "\n" : '';
