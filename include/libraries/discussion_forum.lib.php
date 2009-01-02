@@ -249,7 +249,7 @@
 			$return .= '<div class="author">' . "\n";
 			if (strtolower($data['username']) == 'vit_seger')
 			{
-				$data['username'] = 'Vit_neger';
+				$data['username'] = 'Vit_Neger';
 			}
 			$return .= '<a class="username" href="/traffa/profile.php?id=' . $data['author'] . '">' . $data['username'];
 			$return .= '</a>' . "\n";
