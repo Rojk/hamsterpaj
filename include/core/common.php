@@ -25,6 +25,7 @@
 
   require_once(CORE_PATH . '../constants.php');
 	require_once($hp_includepath . 'db-config.php');
+	require_once($hp_includepath . 'logging-functions.php');
   require(PATHS_INCLUDE . 'libraries/login.lib.php');
 
 	// Needs to be loaded before ui-functions.php (tele2 fullscreen ad)
@@ -48,7 +49,6 @@
 	require_once(PATHS_INCLUDE . 'libraries/friends.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/msnbot.lib.php');
 	
-	require_once($hp_includepath . 'logging-functions.php');
 
 	/* Include all config files */
 	$dir = opendir(PATHS_INCLUDE . 'configs/');
