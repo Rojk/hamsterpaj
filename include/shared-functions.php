@@ -353,7 +353,7 @@
 			'page.php?id=',
 			'vinnpris.se', 
 			'/skiten/lur.php?id=',
-			'sexyemelie'
+			'sexyemilie'
 			);
 		foreach($banned_strings AS $banned)
 		{

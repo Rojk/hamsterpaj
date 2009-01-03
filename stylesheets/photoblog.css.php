@@ -489,8 +489,26 @@
 	################################################################
 */
 #ui_module_photoblog_albums .ui_module_header {
-  
+  display: none;
 }
 	#ui_module_photoblog_albums .ui_module_content {
-
+		padding: 10px;
+	  background: <?php echo $main_color; ?>;
+	  color: #fff;
+	  -moz-border-radius: 5px;
+	}
+	#ui_module_photoblog_albums h3 {
+		margin-top: 8px;
+		text-align: center;
+	}
+	#ui_module_photoblog_albums img {
+		margin: 12px 25px 0 25px;
+		-moz-border-radius: 4px;
+  	-webkit-border-radius: 4px;
+  	border: 4px solid black;
+  	width: 120px;
+  	height: 90px;
+	}
+	#ui_module_photoblog_albums a {
+		color: <?php echo $detail_color; ?>;
 	}
