@@ -20,7 +20,7 @@
 			$out .= '<div id="photoblog_thumbs_container">';
 				$out .= '<div id="photoblog_thumbs_inner">';
 					$out .= '<dl>';
-					$out .= '<dt id="photoblog_prevmonth"><a title="F&ouml;reg&aring;ende m&aring;nad" href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
+					$out .= '<dt id="photoblog_prevmonth"><a rel="prev-month" title="F&ouml;reg&aring;ende m&aring;nad" href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
 					$is_first = true;
 					$last_day = array('date' => null, 'formatted' => null);
 					if ( ! count($photos) )
@@ -40,7 +40,7 @@
 						$is_first = false;
 					}
 					
-					$out .= '<dt id="photoblog_nextmonth"><a title="N&auml;sta m&aring;nad" href="#">N&auml;sta m&aring;nad</a></dt>';
+					$out .= '<dt id="photoblog_nextmonth"><a rel="next-month" title="N&auml;sta m&aring;nad" href="#">N&auml;sta m&aring;nad</a></dt>';
 					$out .= '</dl>';
 				$out .= '</div>';
 			$out .= '</div>';
@@ -71,7 +71,7 @@
 				$out .= '<div id="photoblog_comments_container">' . "\n";
 					$out .= '<ul>' . "\n";
 					$comment1 = array('user_id' => 625058, 'username' => 'Lef', 'comment' => 'Din mamma är så fet!');
-					$comment2 = array('user_id' => 3, 'answer' => 'Jag bryr mig inte!', 'username' => 'Johan', 'comment' => 'Din med! :( ');
+					$comment2 = array('user_id' => 3, 'answer' => 'Jag bryr mig <del>inte</del> visst! Det gör ont när du säger sånt...', 'username' => 'Johan', 'comment' => 'Din med! :( ');
 					$comments = array($comment1, $comment2);
 					foreach ($comments as $comment)
 					{

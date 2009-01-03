@@ -143,7 +143,6 @@ hp.photoblog = {
 					// calculate our own percentage, n / 100 is not precise enough
 					var percent = self.handle.position().left;
 					percent = percent / (self.scroller.pWidth);
-					console.log(self.thumbsContainer.sWidth * percent);
 					self.thumbsContainer.scrollLeft(self.thumbsContainer.sWidth * percent);// - self.thumbsContainer.real_width);
 				},
 				steps: 5000
@@ -327,10 +326,8 @@ hp.photoblog = {
 		centralize_active: function() {
 			var thumbsContainer = this.thumbsContainer;
 			var active = $('.photoblog_active', thumbsContainer);
-			console.log('sWidth vs real_width', thumbsContainer.sWidth, thumbsContainer.real_width)
 			if ( ! active.length || thumbsContainer.sWidth < thumbsContainer.real_width ) {
 				this.scroller.slide_slider(0);
-				console.log('no need to centralize_active');
 				return;
 			}
 			var position = ((active.position().left + (active.width() / 2) - (thumbsContainer.real_width / 2)) / thumbsContainer.sWidth) * 100;
@@ -377,8 +374,14 @@ hp.photoblog = {
 			} else {
 				this.prev.css('visibility', 'visible');
 				
-				var prev_id = prev_image.attr('rel').replace('imageid_', '');
-				this.prev.attr('rel', prev_image.attr('rel')).attr('href', '#image-' + prev_id);
+				var rel = prev_image.attr('rel');
+				if (rel.indexOf('imageid') != -1 ) {
+					var prev_id = rel.replace('imageid_', '');
+					var url = '#image-' + prev_id
+				} else {
+					var url = '#month-';
+				}
+				this.prev.attr('rel', rel).attr('href', url);
 			}
 			
 			if ( ! next_image.attr('rel') ) {
@@ -386,8 +389,14 @@ hp.photoblog = {
 			} else {
 				this.next.css('visibility', 'visible');
 				
-				var next_id = next_image.attr('rel').replace('imageid_', '');
-				this.next.attr('rel', next_image.attr('rel')).attr('href', '#image-' + next_id);
+				var rel = next_image.attr('rel');
+				if ( rel.indexOf('imageid') != -1 ) {
+					var next_id = rel.replace('imageid_', '');
+					var url = '#image-' + next_id;
+				} else {
+					var url = '#month-';
+				}
+				this.next.attr('rel', rel).attr('href', url);
 			}
 		},
 		
@@ -476,13 +485,8 @@ hp.photoblog = {
 					var img = $('<img alt="" />');
 					
 					if ( i == data.length - 1 ) {
-						console.log('add load-event');
-						console.log(img.get(0));
 						img.load(function() {
-							console.log('-- new month --');
-							console.log('sWidth before:', self.thumbsContainer.sWidth);
 							self.thumbsContainer.sWidth = self.thumbsContainer.container_width();
-							console.log('sWidth after:', self.thumbsContainer.sWidth);
 							self.set_scroller_width();
 							self.scroller.pWidth = self.scroller.width() - self.handle.width();
 						});
@@ -513,7 +517,7 @@ hp.photoblog = {
 			this.show(year.get(0).value);
 			year.change(function() {
 				self.show(this.value);
-				self.load(months.get(0).value);
+				self.load(self.current_month_select.get(0).value);
 			});
 			
 			months.change(function() {
@@ -522,6 +526,7 @@ hp.photoblog = {
 		},
 		
 		load: function(month) {
+			this.current_month = month;
 			hp.photoblog.view.load_month(hp.photoblog.current_user.id, this.current_year.toString() + month);
 		},
 		
@@ -530,6 +535,7 @@ hp.photoblog = {
 			for ( var i = 0, year; year = this.years[i]; i++ ) {
 				if ( year.attr('id') == 'photoblog_select_month_' + new_year ) {
 					year.css('display', 'inline');
+					this.current_month_select = year;
 				} else {
 					year.css('display', 'none');
 				}
@@ -580,7 +586,6 @@ jQuery.fn.extend({
 	container_width: function() {
 	 	var thumbsContainer = $(this);
 		var lastChild = $('#photoblog_nextmonth');
-		console.log('lastChild.left:', lastChild.position().left);
 		var width = lastChild.position().left + lastChild.width() - thumbsContainer.width();
 		return width;
 	},
