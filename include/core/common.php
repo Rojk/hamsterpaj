@@ -26,6 +26,7 @@
   require_once(CORE_PATH . '../constants.php');
 	require_once($hp_includepath . 'db-config.php');
 	require_once($hp_includepath . 'logging-functions.php');
+	require_once($hp_includepath . 'message-functions.php');
   require(PATHS_INCLUDE . 'libraries/login.lib.php');
 
 	// Needs to be loaded before ui-functions.php (tele2 fullscreen ad)
