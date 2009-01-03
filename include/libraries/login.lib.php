@@ -111,7 +111,6 @@
 			$guestbook_data = mysql_fetch_assoc($guestbook_result);
 			$_SESSION['notices']['unread_gb_entries'] = $guestbook_data['unread'];
 
-			require_once($hp_includepath . 'message-functions.php');
 			$message_status = messages_count_unread($_SESSION['login']['id']);
 			$_SESSION['notices']['unread_messages'] = $message_status;
 
