@@ -143,8 +143,8 @@ hp.photoblog = {
 					// calculate our own percentage, n / 100 is not precise enough
 					var percent = self.handle.position().left;
 					percent = percent / (self.scroller.pWidth);
-					
-					self.thumbsContainer.scrollLeft(self.thumbsContainer.sWidth * percent);
+					console.log(self.thumbsContainer.sWidth * percent);
+					self.thumbsContainer.scrollLeft(self.thumbsContainer.sWidth * percent);// - self.thumbsContainer.real_width);
 				},
 				steps: 5000
 			});
@@ -173,8 +173,11 @@ hp.photoblog = {
 			var prev = this.prev;
 			var next = this.next;
 			
-			var active_id = $('.photoblog_active', this.thumbsContainer).attr('rel').replace('imageid_', '');
-			this.set_prevnext(active_id);
+			var active_id = $('.photoblog_active', this.thumbsContainer);
+			if ( active_id.length ) {
+				active_id = active_id.attr('rel').replace('imageid_', '');
+				this.set_prevnext(active_id);
+			}
 			
 			this.imageContainer.mousemove(function(e) {
 				e = e || window.event;
@@ -271,7 +274,6 @@ hp.photoblog = {
 						self.prev.click();
 						return false;
 					break;
-				
 					case 'right':
 						self.next.click();
 						return false;
@@ -325,9 +327,10 @@ hp.photoblog = {
 		centralize_active: function() {
 			var thumbsContainer = this.thumbsContainer;
 			var active = $('.photoblog_active', thumbsContainer);
-			if ( ! active ) alert('no active thumb.');
-			if ( thumbsContainer.sWidth > thumbsContainer.real_width ) {
-				this.scroller_scroll(1);
+			console.log('sWidth vs real_width', thumbsContainer.sWidth, thumbsContainer.real_width)
+			if ( ! active.length || thumbsContainer.sWidth < thumbsContainer.real_width ) {
+				this.scroller.slide_slider(0);
+				console.log('no need to centralize_active');
 				return;
 			}
 			var position = ((active.position().left + (active.width() / 2) - (thumbsContainer.real_width / 2)) / thumbsContainer.sWidth) * 100;
@@ -338,7 +341,6 @@ hp.photoblog = {
 			var description = $('#photoblog_description');
 			var text = $('#photoblog_description_text');
 			
-			//$('h2', description).text(options.header);
 			text.html(options.description);
 			if ( options.description == 'Ingen beskrivning' || options.description == '' ) {
 				description.css('display', 'none');
@@ -469,18 +471,22 @@ hp.photoblog = {
 						nextMonth.before(dt);
 					}
 					var photoname = hp.photoblog.make_thumbname(item.id);
-					var dd = $('<dd><a rel="imageid-' + item.id + '" href="#image-' + item.id + '"></a></dd>');
+					var dd = $('<dd><a rel="imageid_' + item.id + '" href="#image-' + item.id + '"></a></dd>');
 					nextMonth.before(dd);
 					var img = $('<img alt="" />');
 					
 					if ( i == data.length - 1 ) {
+						console.log('add load-event');
+						console.log(img.get(0));
 						img.load(function() {
-							console.log('done load');
+							console.log('-- new month --');
+							console.log('sWidth before:', self.thumbsContainer.sWidth);
 							self.thumbsContainer.sWidth = self.thumbsContainer.container_width();
+							console.log('sWidth after:', self.thumbsContainer.sWidth);
 							self.set_scroller_width();
+							self.scroller.pWidth = self.scroller.width() - self.handle.width();
 						});
 					}
-					
 					img.attr('src', photoname);
 					img.appendTo(dd.children('a'))
 				});
@@ -507,11 +513,16 @@ hp.photoblog = {
 			this.show(year.get(0).value);
 			year.change(function() {
 				self.show(this.value);
+				self.load(months.get(0).value);
 			});
 			
 			months.change(function() {
-				hp.photoblog.view.load_month(879699, self.current_year.toString() + this.value.toString());
+				self.load(this.value.toString());
 			});
+		},
+		
+		load: function(month) {
+			hp.photoblog.view.load_month(hp.photoblog.current_user.id, this.current_year.toString() + month);
 		},
 		
 		show: function(new_year) {
@@ -569,6 +580,7 @@ jQuery.fn.extend({
 	container_width: function() {
 	 	var thumbsContainer = $(this);
 		var lastChild = $('#photoblog_nextmonth');
+		console.log('lastChild.left:', lastChild.position().left);
 		var width = lastChild.position().left + lastChild.width() - thumbsContainer.width();
 		return width;
 	},

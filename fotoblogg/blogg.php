@@ -9,27 +9,40 @@
 			'month' => date('Ym', time())
 		);
 		
-		$photos = photoblog_photos_fetch($options);			
+		$out .= '<script type="text/javascript">';
+			$out .= 'hp.photoblog.current_user = {';
+				$out .= 'id: ' . $user_id;
+			$out .= '};';
+		$out .= '</script>';
+		
+		$photos = photoblog_photos_fetch($options);
 		$out .= '<div id="photoblog_thumbs">';
 			$out .= '<div id="photoblog_thumbs_container">';
-				$out .= '<dl>';
-				$out .= '<dt id="photoblog_prevmonth"><a title="F&ouml;reg&aring;ende m&aring;nad" href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
-				$is_first = true;
-				$last_day = array('date' => null, 'formatted' => null);
-				foreach ( $photos as $photo )
-				{
-					if ( $last_day['date'] != $photo['date'] )
+				$out .= '<div id="photoblog_thumbs_inner">';
+					$out .= '<dl>';
+					$out .= '<dt id="photoblog_prevmonth"><a title="F&ouml;reg&aring;ende m&aring;nad" href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
+					$is_first = true;
+					$last_day = array('date' => null, 'formatted' => null);
+					if ( ! count($photos) )
 					{
-						$last_day['date'] = $photo['date'];
-						$last_day['formatted'] = date('j/n', strtotime($photo['date']));
-						$out .= '<dt>' . $last_day['formatted'] . '</dt>';
+						$out .= '<dt>H&auml;r var det tomt...</dt>';
 					}
-					$out .= '<dd><a title="' . $photo['date'] . '" rel="imageid_' . $photo['id'] . '" ' . ($is_first ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
-					$is_first = false;
-				}
-				
-				$out .= '<dt id="photoblog_nextmonth"><a title="N&auml;sta m&aring;nad" href="#">N&auml;sta m&aring;nad</a></dt>';
-				$out .= '</dl>';
+					
+					foreach ( $photos as $photo )
+					{
+						if ( $last_day['date'] != $photo['date'] )
+						{
+							$last_day['date'] = $photo['date'];
+							$last_day['formatted'] = date('j/n', strtotime($photo['date']));
+							$out .= '<dt>' . $last_day['formatted'] . '</dt>';
+						}
+						$out .= '<dd><a title="' . $photo['date'] . '" rel="imageid_' . $photo['id'] . '" ' . ($is_first ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
+						$is_first = false;
+					}
+					
+					$out .= '<dt id="photoblog_nextmonth"><a title="N&auml;sta m&aring;nad" href="#">N&auml;sta m&aring;nad</a></dt>';
+					$out .= '</dl>';
+				$out .= '</div>';
 			$out .= '</div>';
 		$out .= '</div>';
 		$out .= '<div id="photoblog_image">';
