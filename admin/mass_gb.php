@@ -17,37 +17,83 @@
 	*/
 	if ( $_GET['action'] == 'submit' )
 	{
-		$sql = 'INSERT INTO mass_gb_history SET timestamp = UNIX_TIMESTAMP(),';
+		 //HANDLE POSTDATA
+		$_POST['forum_privs'] = ($_POST['forum_privs'] == 'on') ? 'on' : 'off';
+		$_POST['igotgodmode_privs'] = ($_POST['igotgodmode_privs'] == 'on') ? 'on' : 'off';
+		$_POST['ip_ban_privs'] = ($_POST['ip_ban_privs'] == 'on') ? 'on' : 'off';
+		$sql = 'INSERT INTO mass_gb_history SET timestamp = ' . time() . ',';
 		$sql .= ' sent_by = ' . $_SESSION['login']['id'] . ',';
 		$sql .= ' message = "' . $_POST['message'] . '"';
 		mysql_query($sql) or report_sql_error($sql, __FILE__, __LINE__);
 		
 		$sql = 'SELECT user FROM privilegies GROUP BY(user)';
-		$result = mysql_query($sql);
-		while ( $data = mysql_fetch_assoc($result) )
+		$result = mysql_query( $sql );
+		while ( $data = mysql_fetch_assoc( $result ) )
 		{
-			$privilegied_users[] = $data['user'];
+			$privilegied_user_ids[] = $data['user'];
 		}
-		foreach ( $privilegied_users as $user )
+		foreach ( $privilegied_user_ids as $user_id )
 		{
-			$sql = 'SELECT session_id FROM login WHERE id = ' . $user . ' LIMIT 1';
+			$sql = 'SELECT privilegie FROM privilegies WHERE user = ' . $user_id . '';
 			$result = mysql_query( $sql );
-			$data = mysql_fetch_assoc( $result );
-			$privilegied_users_with_sessids[$user] = $data['session_id'];
+			while ( $data = mysql_fetch_assoc( $result ) )
+			{
+				$users[$user_id][] = $data['privilegie'];
+			}
 		}
-		foreach ( $privilegied_users_with_sessids as $user_id => $sessid )
+		foreach ( $users as $user_id => $privilegies )
 		{
-			$privilegied_users_session_data[$user_id] = session_load($sessid);
+			$haxx_string = $_POST['forum_privs'] . $_POST['ip_ban_privs'] . $_POST['igotgodmode_privs'];
+			switch ($haxx_string)
+			{
+				case 'onoffoff':
+					if ( !in_array($privilegies, 'igotgodmode') && !in_array($privilegies, 'ip_ban_admin') && in_array($privilegies, 'discussion_forum_remove_posts') )
+					{
+						$confirmed_recipients[] = $user_id;
+					}
+				break;
+				
+				case 'ononoff':
+					if ( !in_array($privilegies, 'igotgodmode') && in_array($privilegies, 'ip_ban_admin') && in_array($privilegies, 'discussion_forum_remove_posts') )
+					{
+						$confirmed_recipients[] = $user_id;
+					}
+				break;
+				
+				case 'ononon':
+					if ( in_array($privilegies, 'igotgodmode') && in_array($privilegies, 'ip_ban_admin') && in_array($privilegies, 'discussion_forum_remove_posts') )
+					{
+						$confirmed_recipients[] = $user_id;
+					}
+				break;
+				
+				case 'onoffon':
+					if ( in_array($privilegies, 'igotgodmode') && !in_array($privilegies, 'ip_ban_admin') && in_array($privilegies, 'discussion_forum_remove_posts') )
+					{
+						$confirmed_recipients[] = $user_id;
+					}
+				break;
+				
+				case 'offonon':
+					if ( in_array($privilegies, 'igotgodmode') && in_array($privilegies, 'ip_ban_admin') && !in_array($privilegies, 'discussion_forum_remove_posts') )
+					{
+						$confirmed_recipients[] = $user_id;
+					}
+				break;
+				
+				case 'offoffon':
+					if ( in_array($privilegies, 'igotgodmode') && !in_array($privilegies, 'ip_ban_admin') && !in_array($privilegies, 'discussion_forum_remove_posts') )
+					{
+						$confirmed_recipients[] = $user_id;
+					}
+				break;
+				
+				default:
+					die('THERE IS NO DEFAULT!');
+				break;
+			}
 		}
-		foreach ( $privilegied_users_session_data as $user_id => $session_data )
-		{
-			$users_privilegies[$user_id] = $session_data['privilegies'];
-		}
-		foreach ( $users_privilegies as $user_id => $privilegies )
-		{
-			
-		}
-		preint_r( $users_privilegies );
+		$out = preint_r( $privilegies , true );
 	}
 	
 	$out .= '<fieldset>
