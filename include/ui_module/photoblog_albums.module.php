@@ -7,7 +7,6 @@
 		if(strlen($photoblog_album['photos']) >= 1)
 		{
 			$photoblog_album['photos'] = explode(',', $photoblog_album['photos']);
-			preint_r($photoblog_album);
 			$options['output'].= '<a href="/fotoblogg/' . $photoblog_user['username'] . '/album/' . $photoblog_album['name'] . '" />' . "\n";
 			$options['output'].= '<img src="http://images.hamsterpaj.net/photos/full/' . floor($photoblog_album['photos'][0]/5000) . '/' . $photoblog_album['photos'][0] . '.jpg" />' . "\n";
 			$options['output'].= '<h3>' . $photoblog_album['name'] . '</h3>' . "\n";
