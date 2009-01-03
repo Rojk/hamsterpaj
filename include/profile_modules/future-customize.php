@@ -133,7 +133,7 @@ function profile_future_change_form()
 
 	if (isset($_GET['action']) && $_GET['action'] == 'remove')
 	{
-		$query = 'DELETE FROM traffa_future WHERE id = ' . $_GET['futureid'];
+		$query = 'DELETE FROM traffa_future WHERE id = "' . $_GET['futureid'] . '"';
 		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 	}
 
