@@ -70,7 +70,7 @@
 				break;
 				// OV SYSOP
 				case 'onoffon':
-					if ( in_array('igotgodmode', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
+					if ( (in_array('igotgodmode', $privilegies) || in_array('discussion_forum_remove_posts', $privilegies)) && !in_array('ip_ban_admin', $privilegies) )
 					{
 						$confirmed_recipients[] = $user_id;
 					}
