@@ -47,50 +47,51 @@
 			
 			switch ($haxx_string)
 			{
+				// OV
 				case 'onoffoff':
 					if ( !in_array('igotgodmode', $privilegies) && !in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
 					{
 						$confirmed_recipients[] = $user_id;
 					}
 				break;
-				
+				// OV ADMIN
 				case 'ononoff':
-					if ( !in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
+					if ( !in_array('igotgodmode', $privilegies) && (in_array('ip_ban_admin', $privilegies) || in_array('discussion_forum_remove_posts', $privilegies)) )
 					{
 						$confirmed_recipients[] = $user_id;
 					}
 				break;
-				
+				// OV ADMIN SYSOP
 				case 'ononon':
+					if ( in_array('igotgodmode', $privilegies) || in_array('ip_ban_admin', $privilegies) || in_array('discussion_forum_remove_posts', $privilegies) )
+					{
+						$confirmed_recipients[] = $user_id;
+					}
+				break;
+				// OV SYSOP
+				case 'onoffon':
+					if ( in_array('igotgodmode', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
+					{
+						$confirmed_recipients[] = $user_id;
+					}
+				break;
+				// ADMIN SYSOP
+				case 'offonon':
+					if ( in_array('igotgodmode', $privilegies) || in_array('ip_ban_admin', $privilegies) )
+					{
+						$confirmed_recipients[] = $user_id;
+					}
+				break;
+				// SYSOP
+				case 'offoffon':
 					if ( in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
 					{
 						$confirmed_recipients[] = $user_id;
 					}
 				break;
-				
-				case 'onoffon':
-					if ( in_array('igotgodmode', $privilegies) && !in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
-					{
-						$confirmed_recipients[] = $user_id;
-					}
-				break;
-				
-				case 'offonon':
-					if ( in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && !in_array('discussion_forum_remove_posts', $privilegies) )
-					{
-						$confirmed_recipients[] = $user_id;
-					}
-				break;
-				
-				case 'offoffon':
-					if ( in_array('igotgodmode', $privilegies) && !in_array('ip_ban_admin', $privilegies) && !in_array('discussion_forum_remove_posts', $privilegies) )
-					{
-						$confirmed_recipients[] = $user_id;
-					}
-				break;
-				
+				// ADMIN
 				case 'offonoff':
-					if ( !in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && !in_array('discussion_forum_remove_posts', $privilegies) )
+					if ( !in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
 					{
 						$confirmed_recipients[] = $user_id;
 					}
