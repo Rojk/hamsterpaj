@@ -44,45 +44,53 @@
 		foreach ( $users as $user_id => $privilegies )
 		{
 			$haxx_string = $_POST['forum_privs'] . $_POST['ip_ban_privs'] . $_POST['igotgodmode_privs'];
+			
 			switch ($haxx_string)
 			{
 				case 'onoffoff':
-					if ( !in_array($privilegies, 'igotgodmode') && !in_array($privilegies, 'ip_ban_admin') && in_array($privilegies, 'discussion_forum_remove_posts') )
+					if ( !in_array('igotgodmode', $privilegies) && !in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
 					{
 						$confirmed_recipients[] = $user_id;
 					}
 				break;
 				
 				case 'ononoff':
-					if ( !in_array($privilegies, 'igotgodmode') && in_array($privilegies, 'ip_ban_admin') && in_array($privilegies, 'discussion_forum_remove_posts') )
+					if ( !in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
 					{
 						$confirmed_recipients[] = $user_id;
 					}
 				break;
 				
 				case 'ononon':
-					if ( in_array($privilegies, 'igotgodmode') && in_array($privilegies, 'ip_ban_admin') && in_array($privilegies, 'discussion_forum_remove_posts') )
+					if ( in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
 					{
 						$confirmed_recipients[] = $user_id;
 					}
 				break;
 				
 				case 'onoffon':
-					if ( in_array($privilegies, 'igotgodmode') && !in_array($privilegies, 'ip_ban_admin') && in_array($privilegies, 'discussion_forum_remove_posts') )
+					if ( in_array('igotgodmode', $privilegies) && !in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
 					{
 						$confirmed_recipients[] = $user_id;
 					}
 				break;
 				
 				case 'offonon':
-					if ( in_array($privilegies, 'igotgodmode') && in_array($privilegies, 'ip_ban_admin') && !in_array($privilegies, 'discussion_forum_remove_posts') )
+					if ( in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && !in_array('discussion_forum_remove_posts', $privilegies) )
 					{
 						$confirmed_recipients[] = $user_id;
 					}
 				break;
 				
 				case 'offoffon':
-					if ( in_array($privilegies, 'igotgodmode') && !in_array($privilegies, 'ip_ban_admin') && !in_array($privilegies, 'discussion_forum_remove_posts') )
+					if ( in_array('igotgodmode', $privilegies) && !in_array('ip_ban_admin', $privilegies) && !in_array('discussion_forum_remove_posts', $privilegies) )
+					{
+						$confirmed_recipients[] = $user_id;
+					}
+				break;
+				
+				case 'offonoff':
+					if ( !in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && !in_array('discussion_forum_remove_posts', $privilegies) )
 					{
 						$confirmed_recipients[] = $user_id;
 					}
@@ -93,7 +101,8 @@
 				break;
 			}
 		}
-		$out = preint_r( $privilegies , true );
+		
+		preint_r( $confirmed_recipients );
 	}
 	
 	$out .= '<fieldset>
