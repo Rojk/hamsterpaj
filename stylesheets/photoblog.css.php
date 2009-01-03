@@ -150,8 +150,11 @@
         position: relative;
     }
 
+	#photoblog_thumbs_inner {
+		width: 10000px;
+	}
+
     div#photoblog_thumbs dl {
-        width: 10000px;
         position: relative;
         padding: 3px 0 0 0;
     }
