@@ -144,6 +144,7 @@
 				$out .= 'Meddelande skickat till ' . $recipient . '<br />';
 			}
 		}
+		preint_r( $confirmed_recipients );
 		preint_r( $entry );
 	}
 	
