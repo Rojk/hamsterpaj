@@ -28,11 +28,11 @@
 	$highlights[] = '<span style="color: #191970;">%VALUE%</span>';
 	$highlights[] = '<span style="color: #2E8B57;">%VALUE%</span>';
 	$highlights[] = '<span style="color: #9ACD32; font-weight: bold;">%VALUE%</span>';
-	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
-	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
-	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
-	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
-	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #4682B4; font-weight: bold;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #DDA0DD; font-weight: bold;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #688E23; font-weight: bold;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #87CEEB; font-weight: bold;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #800000; font-weight: bold;">%VALUE%</span>';
 	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
 	
 	if (!is_privilegied('use_ghosting_tools'))
