@@ -133,7 +133,7 @@
 			}
 		if (is_privilegied('ip_ban_admin'))
 		{
-			$out_ip .= '<br /><strong>Senaste användarnamn:</strong>' . $user_ips['lastusername'] . "\n";
+			$out_ip .= '<br /><strong>Senaste användarnamn:</strong> ' . $user_ips['lastusername'] . "\n";
 			$out_ip .= '<br /><a href="/admin/ip_ban_admin.php?handy_link_auto_ip=' . $user_ips['lastip'] . '">Till IP-ban via senaste ip</a>' . "\n";
 			$out_ip .= '<br /><a href="/admin/ip_ban_admin.php?handy_link_auto_ip=' . $user_ips['regip'] . '">Till IP-ban via regip</a>' . "\n";
 		}
