@@ -21,6 +21,7 @@
 		$_POST['forum_privs'] = ($_POST['forum_privs'] == 'on') ? 'on' : 'off';
 		$_POST['igotgodmode_privs'] = ($_POST['igotgodmode_privs'] == 'on') ? 'on' : 'off';
 		$_POST['ip_ban_privs'] = ($_POST['ip_ban_privs'] == 'on') ? 'on' : 'off';
+		$_POST['is_private'] = ($_POST['is_private'] == 'on') ? 1 : 0;
 		$haxx_string = $_POST['forum_privs'] . $_POST['ip_ban_privs'] . $_POST['igotgodmode_privs'];
 		
 		switch ( $_POST['from'] )
@@ -111,7 +112,7 @@
 					break;
 					// SYSOP
 					case 'offoffon':
-						if ( in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
+						if ( in_array('igotgodmode', $privilegies) )
 						{
 							$confirmed_recipients[] = $user_id;
 						}
@@ -135,6 +136,7 @@
 			$entry['sender'] = $send_from;
 			$entry['recipient'] = $recipient;
 			$entry['message'] = $_POST['message'];
+			$entry['is_private'] = $_POST['is_private'];
 			if (!guestbook_insert($entry))
 			{
 				$out .= 'Failade att skicka meddelande till ' . $recipient . '.<br />' . "\n";
@@ -154,39 +156,54 @@
 	.recipient_filters li {
 		list-style-type:none;
 	}
+	.mass_gb_left_div {
+		border-right: thin solid #BBB;
+		padding-right: 15px;
+		margin-right: 15px;
+		width: 200px;
+		float:left;
+	}
+	.mass_gb_right_div {
+	}
 	</style>
 		<form action="' . $_SERVER['SCRIPT_URI'] . '?action=submit" method="post">
 			<table class="form">
 				<tr>
-				<table>
-						<tr>
-							<td style="padding-right: 10px;">
-								<label for="forum_privs ip_ban_privs igogtgodmode_privs">Vilka vill du skicka till? <strong>*</strong></label>
-								<ul class="recipient_filters">
-									<li>
-										<input type="checkbox" name="forum_privs" />
-										<label for="forum_privs">OV</label>
-									</li>
-									<li>
-										<input type="checkbox" name="ip_ban_privs" />
-										<label for="ip_ban_privs">Admins</label>
-									</li>
-									<li>
-										<input type="checkbox" name="igotgodmode_privs" />
-										<label for="igotgodmode_privs">Sysöps</label>
-									</li>
-								</ul>
-							</td>
-							<td style="border-left: thin solid #BBB; padding: 10px;">
-								<label for="from">Vem vill du skicka från? <strong>*</strong></label><br  />
-								<select name="from">
-									<option value="choose">Välj</option>
-									<option value="webmaster">Webmaster</option>
-									<option value="me">Mig själv</option>
-								</select>
-							</td>
-						</tr>
-					</table>
+					<td colspan="2">
+					<div class="mass_gb_left_div">
+						<label for="forum_privs ip_ban_privs igogtgodmode_privs">Vilka vill du skicka till? <strong>*</strong></label>
+						<ul class="recipient_filters">
+							<li>
+								<input type="checkbox" name="forum_privs" />
+								<label for="forum_privs">OV</label>
+							</li>
+							<li>
+								<input type="checkbox" name="ip_ban_privs" />
+								<label for="ip_ban_privs">Admins</label>
+							</li>
+							<li>
+								<input type="checkbox" name="igotgodmode_privs" />
+								<label for="igotgodmode_privs">Sysöps</label>
+							</li>
+						</ul>
+					</div>
+					<div class="mass_gb_right_div">
+						<label for="from">Vem vill du skicka från? <strong>*</strong></label><br  />
+						<select name="from">
+							<option value="choose">Välj</option>
+							<option value="webmaster">Webmaster</option>
+							<option value="me">Mig själv</option>
+						</select>
+					</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="is_private">Privat</label>
+					</td>
+					<td>
+						<input type="checkbox" name="is_private" />
+					</td>
 				</tr>
 				<tr>
 					<td>
