@@ -6,13 +6,24 @@
 	
 	$unit_1 = $_GET['unit_1'];
 	$unit_2 = $_GET['unit_2'];
-	
+	$highlights[] = '<strong>%VALUE%</strong>';
+	$highlights[] = '<em>%VALUE%</em>';
+	$highlights[] = '<span style="color: green; font-weight: bold;">%VALUE%</span>';
+	$highlights[] = '<span style="color: red; font-weight: bold;">%VALUE%</span>';
+	$highlights[] = '<span style="color: blue; font-weight: bold;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #ababab; font-weight: bold;">%VALUE%</span>';
+	$highlights[] = '<span style="color: green;">%VALUE%</span>';
+	$highlights[] = '<span style="color: red;">%VALUE%</span>';
+	$highlights[] = '<span style="color: blue;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #ababab;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #9b0ca0; font-weight: bold;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #9b0ca0;">%VALUE%</span>';
 	if (!is_privilegied('use_ghosting_tools'))
 	{
-		die("Fel.");
+		die('Üt ür mein Haus! FülhachkaRRe!! Ni ähr Allah LIhkhadhaaana!');
 	}
 	
-	function numberIsset($numbers)
+	function number_isset($numbers)
 	{
 		foreach ($numbers AS $number)
 		{
@@ -38,7 +49,7 @@
 	if (isset($unit_1))
 	{
 		$out .= (isset($_GET['fullscreen'])) ? '' : '<a href="/admin/guestbook_hack.php">Tillbaka</a>';
-		if (numberIsset(array($unit_1, $unit_2)))
+		if (number_isset(array($unit_1, $unit_2)))
 		{
 			$sql = 'SELECT gb.* FROM traffa_guestbooks AS gb
 			 WHERE gb.sender = ' . $unit_1 . '
@@ -57,16 +68,13 @@
 			 ORDER BY gb.timestamp DESC LIMIT 2000';
 		}
 		$result = mysql_query($sql) or $out .= rounded_corners(mysql_error(), array('color' => 'orange_deluxe'), true);
-		$out .= '<table style="background: #000000; font-family: courier new; color: #00ff00; font-size: 10px;">';
-		if (isset($_GET['fullscreen']))
-		{
-			$out .= '<tr>' . "\n";
-			$out .= '<th colspan="10" style="background: #fc8; color: #000;">' . "\n";
-			$sql = 'SELECT username FROM login WHERE id = ' . $_SESSION['login']['id'] . ' LIMIT 1';
-			$data = mysql_fetch_assoc(mysql_query($sql));
-			$out .= 'Frågan utförd ' . date("Y.m.d - H:i.s") . ' (' . time() . ') av ' . $data['username'];
-			$out .= '</tr>' . "\n\n";
-		}
+		$out .= '<table style="width: 100%; font-family: Verdana monospace; color: #000; font-size: 14px;">';
+		$out .= '<tr>' . "\n";
+		$out .= '<th colspan="10" style="background: #fc8; color: #000;">' . "\n";
+		$sql = 'SELECT username FROM login WHERE id = ' . $_SESSION['login']['id'] . ' LIMIT 1';
+		$data = mysql_fetch_assoc(mysql_query($sql));
+		$out .= 'Frågan utförd ' . date("Y.m.d - H:i.s") . ' (' . time() . ') av ' . $data['username'];
+		$out .= '</tr>' . "\n\n";
 		$out .= '<tr>' . "\n";
 		$out .= '<th valign="top">time</th>' . "\n";
 		$out .= '<th valign="top">sender</th>' . "\n";
@@ -77,8 +85,41 @@
 		$out .= '</tr>' . "\n\n";
 		while ($data = mysql_fetch_assoc($result))
 		{
-			$out .= ($zebra == 1) ? '<tr style="background: #222;">' . "\n" : '<tr>' . "\n";
+			if ($data['deleted'] == 1)
+			{
+				$out .= '<tr style="background: #FEE;">' . "\n";
+			}
+			elseif ($data['is_private'] == 1)
+			{
+				$out .= '<tr style="background: #EEF;">' . "\n";
+			}
+			elseif ($zebra == 1)
+			{
+				$out .= '<tr style="background: #F9F9F9;">' . "\n";
+			}
 			$zebra = ($zebra == 1) ? $zebra = 0 : $zebra = 1;
+			
+			$highlight_items = array(
+				'sender',
+				'recipient'
+			);
+			
+			foreach ($highlight_items as $val)
+			{
+				if(!isset($assigned[$data[$val]]))
+				{
+					if(count($highlights) > 0)
+					{
+						$assigned[$data[$val]] = array_pop($highlights);
+					}
+					else
+					{
+						$assigned[$data[$val]] = '%VALUE%';
+					}
+				}
+				$data[$val] = str_replace('%VALUE%', $data[$val], $assigned[$data[$val]]);
+			}
+			
 			$out .= '<td valign="top">' . date("Y.m.d - H:i.s", $data['timestamp']) . '</td>';
 			$out .= '<td valign="top">' . $data['sender'] . '</td>' . "\n";
 			$out .= '<td valign="top">' . $data['recipient'] . '</td>' . "\n";
