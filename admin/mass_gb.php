@@ -17,7 +17,7 @@
 	*/
 	if ( $_GET['action'] == 'submit' )
 	{
-		 //HANDLE POSTDATA
+		// HANDLE POSTDATA
 		$_POST['forum_privs'] = ($_POST['forum_privs'] == 'on') ? 'on' : 'off';
 		$_POST['igotgodmode_privs'] = ($_POST['igotgodmode_privs'] == 'on') ? 'on' : 'off';
 		$_POST['ip_ban_privs'] = ($_POST['ip_ban_privs'] == 'on') ? 'on' : 'off';
