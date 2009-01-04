@@ -135,7 +135,8 @@
 			$menu['admin']['children']['crew-folk']['children']['ov_reg'] = array('label' => 'OV Registrering', 'url' => '/admin/ov_reg.php', 'userlevel' => 3);
 			$menu['admin']['children']['crew-folk']['children']['ov_watch'] = array('label' => 'OV Statistik', 'url' => '/admin/ov_watch.php', 'is_privilegied' => 'ov_admin');
 			$menu['admin']['children']['crew-folk']['children']['ov_list'] = array('label' => 'OV Kontaktuppgifter', 'url' => '/admin/ov_list.php', 'userlevel' => 3);
-			$menu['admin']['children']['crew-folk']['children']['log_view'] = array('label' => 'Administrativ logg', 'url' => '/admin/log_view.php', 'is_priviledieg' => 'ov_admin');
+			$menu['admin']['children']['crew-folk']['children']['log_view'] = array('label' => 'Administrativ logg', 'url' => '/admin/log_view.php', 'is_privilegied' => 'ov_admin');
+			$menu['admin']['children']['crew-folk']['children']['log_view'] = array('label' => 'Mass-GB', 'url' => '/admin/mass_gb.php', 'is_privilegied' => 'igotgodmode');
 			$menu['admin']['children']['crew-folk']['children']['privilegies_admin'] = array('label' => 'Privilegier', 'url' => '/admin/privilegies_admin.php', 'is_privilegied' => 'privilegies_admin');
 	
 	$site_admin_privilegies = array('fp_module_rearrange', 'schedule_admin', 'use_statistic_tools', 'register_suspend_admin', 'entertain_add', 'backgrounds_admin', 'music_guess_admin', 'open_search');
