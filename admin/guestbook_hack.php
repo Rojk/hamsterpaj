@@ -3,6 +3,9 @@
 	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
 	$ui_options['title'] = 'Guestbook-hack - Hamsterpaj.net';
 	$ui_options['menu_path'] = array('fra', 'guestbook_hack');
+	$out .= '<head>
+	<title>GB-HACKZ! - Hamsterpaj.net</title>
+	</head>' . "\n";
 	
 	$unit_1 = $_GET['unit_1'];
 	$unit_2 = $_GET['unit_2'];
@@ -18,6 +21,20 @@
 	$highlights[] = '<span style="color: #ababab;">%VALUE%</span>';
 	$highlights[] = '<span style="color: #9b0ca0; font-weight: bold;">%VALUE%</span>';
 	$highlights[] = '<span style="color: #9b0ca0;">%VALUE%</span>';
+	
+	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #CD5C5C;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #FF00FF;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #191970;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #2E8B57;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #9ACD32; font-weight: bold;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
+	$highlights[] = '<span style="color: #A52A2A;">%VALUE%</span>';
+	
 	if (!is_privilegied('use_ghosting_tools'))
 	{
 		die('Üt ür mein Haus! FülhachkaRRe!! Ni ähr Allah LIhkhadhaaana!');
