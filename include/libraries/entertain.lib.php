@@ -583,7 +583,7 @@ function entertain_fetch($options)
 	if(isset($options['limit']))
 	{
 		$query_no_limit = $query;
-		$result = mysql_query($query_no_limit) or die(report_sql_error($query, __FILE__, __LINE__));
+		$result = mysql_query($query_no_limit) or report_sql_error($query, __FILE__, __LINE__);
 		$return['item_total_count'] = mysql_num_rows($result);
 	}
 	if(isset($options['limit']))
@@ -591,7 +591,7 @@ function entertain_fetch($options)
 		$query .= ' LIMIT ' . (isset($options['limit_offset']) ? $options['limit_offset'] . ', ' : '') . $options['limit'];
 	}
 
-	$result = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
+	$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 	global $entertain_types;
 	while($data = mysql_fetch_assoc($result))
 	{
