@@ -144,11 +144,11 @@ function ui_top($options = array())
 	
 	
 	// A big notice-bar shown on top, 60px height.
-
+/*
 	$full_page_notice = '<h2>Trubbel med spelsystemet</h2><p>Just nu har vi problem med att få nya spel att fungera ordentligt - vi jobbar på saken!</p>';
 
 	$full_page_notice_id = 'dynamadsic01ochumbaaerkaera'; //Set this to a unique ID for this notice
-
+*/
 	// Don't remove those lines
 	if(isset($full_page_notice) && $_COOKIE[$full_page_notice_id] != 'closed')
 	{
