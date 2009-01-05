@@ -605,7 +605,10 @@ function entertain_fetch($options)
 	{
 		cache_save('entertain_' . $hash, $return);
 	}
-	//file_put_contents('/home/joar/all/trace', preint_r($return, true));
+	if ($data['handle'] == 'meeblings_2')
+	{
+		file_put_contents('/home/joar/all/trace', preint_r($return, true));
+	}
 	return $return;
 }
 
