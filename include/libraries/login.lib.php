@@ -1,172 +1,110 @@
 <?php
-	function login_dologin($username, $password, $options = array())
+	function login_dologin($options)
 	{	
-		
-		$ghost = (isset($options['ghost']) && $options['ghost'] == true);
-		
-		// Check if the user has been removed, and then display the removal message. 
-		// This row also pretends removed users from creating new accounts with the 
-		// same name and password as the previous account. Unintentionally, but now permanent
-		// as i think that it's nuthin' but fair play.
-		// START die-by-removed-user-and-display-message-block
-		/*
-		
-		FUCK IT.
-		$query = 'SELECT is_removed, removal_message FROM login WHERE lastusername = "' . trim($username) . '" AND password_hash = "' . sha1($password . PASSWORD_SALT) . '" LIMIT 1';
-		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-		$data = mysql_fetch_assoc($result);
-		
-		if (!$options['ghost'] && $data['is_removed'] == 1)
+		if(!isset($options['method']))
 		{
-			$removal_string = 'Du är borttagen med anledningen: ' . $data['removal_message'];
-			die($removal_string);
-			exit;
+			throw new Exception('No login method specified.');
 		}
-		else 
-		{
-			// DEBUG
-			//die($options['ghost'] . ' - ' . $data['is_removed'] . '<br />' . $username . '<br />' . $password . '<br />' . sha1($password . PASSWORD_SALT));
-		}*/
-		// END die-by-removed-user-and-display-message-block
 		
-		if(strtolower($username) == 'borttagen')
+		if(isset($options['username']) && strtolower($options['username']) == 'borttagen')
 		{
 			header('Location: http://disneyworld.disney.go.com/wdw/index?bhcp=1');
-			exit;
+			throw new Exception('Username CANNOT be "borttagen"!');
 		}
 		
+		$query = 'SELECT id FROM login WHERE is_removed = 0';
 		
-		if($ghost)
+		switch($options['method'])
 		{
-			$query = 'SELECT id, lastaction, lastlogon, session_id FROM login WHERE username = "' . $username . '" LIMIT 1';
-			$loginquery = mysql_query($query) or report_sql_error($query);
-		}
-		elseif($username && $password)
-		{
-			$password = utf8_decode($password);
-			
-			// Test with new hash
-			$query = 'SELECT id, lastaction, lastlogon, session_id FROM login WHERE username = "' . $username . '" AND password = "' . hamsterpaj_password($password) . '" LIMIT 1';
-			$loginquery = mysql_query($query) or report_sql_error($query);
-			if(mysql_num_rows($loginquery) != 1)
-			{
-				jscript_alert('hej');
-				// New hash not found, test the old hash
-				$old_query = 'SELECT id FROM login WHERE username = "' . $username . '" AND password_hash = "' . sha1($password . PASSWORD_SALT) . '" LIMIT 1';
-				$old_result = mysql_query($old_query) or report_sql_error($old_query);
-				if(mysql_num_rows($old_result) == 1)
+			case 'ghost':
+				if(isset($options['username']))
 				{
-					return 3;
+					$query .= ' AND username = "' . $options['username'] . '"';
 				}
-			}
-		}
-		else
-		{
-			return 2;
-		}
-			
-		if(mysql_num_rows($loginquery) > 0)
-		{
-			$tempdata = mysql_fetch_assoc($loginquery);
-			
-			if($tempdata['lastlogon'] < strtotime(date('Y-m-d')))
-			{
-				event_log_log('user_unique_log_on');
-			}
-			
-			if($tempdata['lastaction'] > (time() - 600) && false)
-			{
-				$old_session = session_load($tempdata['session_id']);
-				session_destroy();
-				session_id($tempdata['session_id']);
-				session_start();
-				$_SESSION = $old_session;
-				if (isset($_SESSION['login']['id']))
+				else
 				{
-					if($ghost)
-					{
-						$_SESSION['ghost'] = true;
-					}
-					
-					return true;
+					throw new Exception('No username was set!');
 				}
-			}
+			break;
 			
-			if($ghost)
-			{
-				$_SESSION['ghost'] = true;
-			}
+			case 'username_and_password':
+				if(isset($options['username']) && isset($options['password']))
+				{
+					$options['password'] = utf8_decode($options['password']);
+					$query .= ' AND password_version = 4 AND username = "' . $options['username'] . '" AND password = "' . hamsterpaj_password($options['password']) . '"';
+				}
+				else
+				{
+					throw new Exception('No username or password was set!');
+				}
+			break;
+		
+			default:
+				throw new Exception('Invalid login method.');
+		}
+			
+		$query .= ' LIMIT 1';
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		
+		if(mysql_num_rows($result) > 0)
+		{
+			$data = mysql_fetch_assoc($result);
+			$user_id = $data['id'];
+			
+			// 1. Fetch neccessary data from login, userinfo, preferences and traffa-tables and unserialize...
+			$_SESSION = array_merge($_SESSION, login_load_user_data($user_id, array(
+				'login' => array('id', 'lastlogon', 'username', 'password', 'userlevel', 'regtimestamp', 'lastusernamechange', 'session_id', 'lastaction', 'lastip', 'regip', 'quality_level', 'quality_level_expire'),
+				'userinfo' => array('contact1', 'contact2', 'gender', 'birthday', 'image', 'image_ban_expire', 'forum_signature', 'zip_code', 'forum_quality_rank', 'parlino_activated', 'cell_phone', 'firstname', 'surname', 'email', 'streetaddress', 'msn', 'visible_level', 'phone_ov', 'user_status', 'gbrss'),
+				'preferences' => array('bubblemessage_visitors', 'allow_hotmessages', 'activate_current_action', 'enable_hetluft', 'randomizer', 'left_login_module', 'enable_shoutbox', 'module_states', 'module_order', 'forum_enable_smilies', 'forum_subscribe_on_create', 'forum_subscribe_on_post','gb_anti_p12'),
+				'traffa' => array('firstname', 'profile_modules')
+			), __FILE__, __LINE__);
+			$_SESSION['module_states'] = unserialize($_SESSION['preferences']['module_states']);
+			$_SESSION['module_order'] = unserialize($_SESSION['preferences']['module_order']);
+			//$_SESSION['preferences']['forum_favourite_categories'] = unserialize($_SESSION['preferences']['forum_favourite_categories']);
 
-			$uid = $tempdata['id'];
 			
-			$ip = $_SERVER['REMOTE_ADDR'];
-			
+			// 2. Set some special/initial parametrers...
 			$_SESSION['cache']['lastupdate'] = 0;
-
-			$_SESSION['userid'] = $uid;	
-			$_SESSION['login']['id'] = $uid;			
-		
-			$guestbook_sql = 'SELECT COUNT(id) AS unread FROM traffa_guestbooks WHERE recipient = ' . $_SESSION['login']['id'] . ' AND `read` =  0 AND deleted = 0';
-			$guestbook_result = mysql_query($guestbook_sql) or die('Ett fel inträffade!' . mysql_error() . $guestbook_sql);
+			switch($options['method'])
+			{
+				case 'ghost':
+					$_SESSION['ghost'] = true;
+				break;
+				
+				case 'username_and_password':
+					$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+					$_SESSION['login']['lastlogon'] = time();
+				break;
+			}
+			
+			// 3. Fetch guestbook notices...
+			$guestbook_query = 'SELECT COUNT(id) AS unread FROM traffa_guestbooks WHERE recipient = ' . $user_id . ' AND `read` =  0 AND deleted = 0';
+			$guestbook_result = mysql_query($guestbook_query) or report_sql_error($guestbook_query, __FILE__, __LINE__);
 			$guestbook_data = mysql_fetch_assoc($guestbook_result);
 			$_SESSION['notices']['unread_gb_entries'] = $guestbook_data['unread'];
 
-			$message_status = messages_count_unread($_SESSION['login']['id']);
-			$_SESSION['notices']['unread_messages'] = $message_status;
-
-			$fetch['login'] = array('id', 'lastlogon', 'username', 'password_hash', 'userlevel', 'regtimestamp', 'lastusernamechange', 'session_id', 'lastaction', 'lastip', 'regip', 'quality_level', 'quality_level_expire');
-			$fetch['preferences'] = array('bubblemessage_visitors', 'allow_hotmessages', 'activate_current_action', 'enable_hetluft', 'randomizer', 'left_login_module', 'enable_shoutbox', 'module_states', 'module_order', 'forum_enable_smilies', 'forum_subscribe_on_create', 'forum_subscribe_on_post','gb_anti_p12');
-			$fetch['traffa'] = array('firstname', 'profile_modules');
-			$fetch['userinfo'] = array('contact1', 'contact2', 'gender', 'birthday', 'image', 'image_ban_expire', 'forum_signature', 'zip_code', 'forum_quality_rank', 'parlino_activated', 'cell_phone', 'firstname', 'surname', 'email', 'streetaddress', 'msn', 'visible_level', 'phone_ov', 'user_status', 'gbrss');
-			$userinfo = login_load_user_data($uid, $fetch, __FILE__, __LINE__);
+			// 4. Fetch group notices...
+			$_SESSION = array_merge($_SESSION, login_load_group_data($user_id, array('groups_members' => array('groupid'))));
 			
-			$_SESSION = array_merge($_SESSION, $userinfo);
+			// 5. Fetch PM notices...
+			$_SESSION['notices']['unread_messages'] = messages_count_unread($user_id);
 
-//				$_SESSION['preferences']['forum_favourite_categories'] = unserialize($_SESSION['preferences']['forum_favourite_categories']);
-			$_SESSION['module_states'] = unserialize($_SESSION['preferences']['module_states']);
-			$_SESSION['module_order'] = unserialize($_SESSION['preferences']['module_order']);
-
-			/* Notes in the note-module */
-			$query = 'SELECT text FROM notes WHERE id = "' . $_SESSION['login']['id'] . '" LIMIT 1';
-			$result = mysql_query($query) OR die(report_sql_error($query, __FILE__, __LINE__));
-			$data = mysql_fetch_assoc($result);
-			$_SESSION['note'] = $data['text'];
-
-			/* groups-start-here */
-			$group_data['groups_members'] = array('groupid');
-			$groups = login_load_group_data($uid, $group_data);
-
-			$_SESSION = array_merge($_SESSION, $groups);
-
-			if(!$ghost)
-			{
-				$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
-			}
+			// 6. Fetch friends notices...
+			$_SESSION['friends'] = friends_fetch_online_smart(array('user_id' => $user_id));
 			
-			/* Friends start here */
-			$options['user_id'] = $_SESSION['login']['id'];
-			$_SESSION['friends'] = friends_fetch_online_smart($options);
-
-			$query = 'SELECT DISTINCT(uel.remote_user_id) AS id, uel.timestamp, l.username ';
-			$query .= 'FROM user_event_log AS uel, login AS l, userinfo AS u';
-			$query .= ' WHERE uel.action = "profile_visit" AND uel.user = "' . $_SESSION['login']['id'] . '" AND l.id = uel.remote_user_id AND (u.image = 1 OR u.image = 2) AND u.userid = uel.remote_user_id';
+			// 7. Fetch visitors from "my visitors"
+			$query  = 'SELECT DISTINCT(uel.remote_user_id) AS id, uel.timestamp, l.username';
+			$query .= ' FROM user_event_log AS uel, login AS l, userinfo AS u';
+			$query .= ' WHERE uel.action = "profile_visit" AND uel.user = "' . $user_id . '" AND l.id = uel.remote_user_id AND (u.image = 1 OR u.image = 2) AND u.userid = uel.remote_user_id';
 			$query .= ' GROUP BY uel.remote_user_id ORDER BY timestamp DESC LIMIT 8';
-			$result = mysql_query($query) OR die(report_sql_error($query, __FILE__, __LINE__));
-			$_SESSION['visitors_with_image'] = '';
+			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+			$_SESSION['visitors_with_image'] = array();
 			while($data = mysql_fetch_assoc($result))
 			{
 				$_SESSION['visitors_with_image'][] = $data;
 			}
-
-			/* Fetch the latest posts, the posts antiflood system will use this */
-			$query = 'SELECT MD5(content), timestamp FROM posts WHERE author = "' . $_SESSION['login']['id'] . '" ORDER BY id DESC LIMIT 50';
-			$result = mysql_query($query) OR die(report_sql_error($query, __FILE__, __LINE__));
-			while($data = mysql_fetch_assoc($result))
-			{
-				$_SESSION['posts']['latest'][] = $data;
-			}
 			
-			/* Fetch privilegies */
+			// 8. Fetch privilegies...
 			$query = 'SELECT privilegie, value FROM privilegies WHERE user = "' . $_SESSION['login']['id'] . '"';
 			$result = mysql_query($query);
 			while($data = mysql_fetch_assoc($result))
@@ -174,31 +112,42 @@
 				$_SESSION['privilegies'][$data['privilegie']][is_numeric($data['value']) ? intval($data['value']) : $data['value']] = true;
 			}
 			
-			/* Log the logon to database */
-			$query = 'INSERT INTO login_log (user_id, logon_time, impressions, ip, ghost) VALUES(' . $_SESSION['login']['id'] . ', ' . time();
-			$query .= ', 0, ' . ip2long($_SERVER['REMOTE_ADDR']) . ', "' . ($ghost ? 'YES' : 'NO') . '")';
-			mysql_query($query) OR die(report_sql_error($query, __FILE__, __LINE__));
+			// 9. Log the logon to the database...
+			$query  = 'INSERT INTO login_log (user_id, logon_time, impressions, ip, ghost)';
+			$query .= ' VALUES(' . $user_id . ', ' . time() . ', 0, ' . ip2long($_SERVER['REMOTE_ADDR']) . ', "' . ($options['method'] == 'ghost' ? 'YES' : 'NO') . '")';
+			mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 			
-			if(!$ghost)
+			// 10. Update fields in logon related to the login...
+			if($options['method'] != 'ghost')
 			{
-				$sql = 'UPDATE login SET lastlogon = ' . time() . ', lastip = "' . $ip . '", session_id = "' . session_id() . '" WHERE id = "' . $uid . '" LIMIT 1';
-				mysql_query($sql) or die('Query failed: ' . mysql_error());
-				
-				$_SESSION['login']['lastlogon'] = time();
+				$query = 'UPDATE login SET lastlogon = ' . time() . ', lastip = "' . $_SERVER['REMOTE_ADDR'] . '", session_id = "' . session_id() . '" WHERE id = "' . $user_id . '" LIMIT 1';
+				mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 			}
 			
-			/* Cache some info about the users visits to categories. This is used to calculate new threads and category-subscriptions */
-			$query = 'SELECT * FROM forum_category_visits WHERE user_id = "' . $_SESSION['login']['id'] . '"';
+			// 11. Cache some info about the users visits to categories. This is used to calculate new threads and category-subscriptions
+			$query = 'SELECT * FROM forum_category_visits WHERE user_id = "' . $user_id . '"';
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 			while($data = mysql_fetch_assoc($result))
 			{
 				$_SESSION['forum']['categories'][$data['category_id']] = $data;
-			}				
-			return 1;
+			}
+		}
+		else if($options['method'] == 'username_and_password')
+		{
+			$query = 'SELECT id FROM login WHERE password_version = 3 AND username = "' . $options['username'] . '" AND password = "' . sha1($options['password'] . PASSWORD_SALT) . '" LIMIT 1';
+			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+			if(mysql_num_rows($result) == 1)
+			{
+				throw new Exception('Du använder ett lösenord baserat på det gamla lösenordssystemet. Av säkerhetsskäl måste du byta, det gör du <a href="/installningar/renew_password.php">på den här sidan &raquo;</a>');
+			}
+			else
+			{
+				throw new Exception('Det gick inte att logga in med de uppgifter du angav. Detta beror antingen på att du inte angivit korrekt användarnamn och lösenord, eller att användarnamnet inte finns.<br /><br />Har du glömt ditt lösenord? Då finns det inte mycket att göra :(');
+			}
 		}
 		else
 		{
-			return 0;
+			throw new Exception('Login failed: User not found or password incorrect.');
 		}
 	}
 	
