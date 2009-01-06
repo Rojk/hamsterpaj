@@ -10,7 +10,7 @@
 	
 	if(login_checklogin())
 	{
-		echo 'Det kanske låter konstigt, men du måste <a href="/logout.php">logga ut</a> för att byta lösenord.';
+		echo 'Detta går inte om du är inloggad!';
 	}
 	else
 	{
@@ -50,13 +50,12 @@
 			?>
 			<h1>Förnya lösenord</h1>
 			<p>
-				Du kan ha hamnat på den här sidan av två skäl:
-				<ul>
-					<li>Du försökte byta lösenord.</li>
-					<li>Du hade ett lösenord krypterat med den gamla krypteringen.</li>
-				</ul>
-				
-				Om det är det senare orkar jag inte förklara, bara byt. Klockan är 04:20 och då skriver man inte små söta pedagogiska texter. Punkt. /Joel
+				Ditt lösenord var av den gamla typen, vilka vi av säkerhetsskäl byter ut mot den nya typens lösenord.
+				För att göra livet surt för elaka hackers (och kanske ditt minne ^^) så måste du byta lösenord.
+			</p>
+			
+			<p>
+				(För dig som är säkerhetsintresserad så går vi från saltade SHA1-summor till en ny hemlig algoritm).
 			</p>
 			
 			<p>
@@ -64,8 +63,8 @@
 					Användarnamn: <input type="text" name="username" /><br />
 					Gammalt lösenord: <input type="password" name="old_password" /><br />
 					Nytt lösenord: <input type="password" name="new_password" /><br />
-					Nytt lösenord (Förklaring för blondiner: upprepat) <input type="password" name="new_password_repeat" /><br />
-					<input type="submit" value="Byt" /> (&raquo; Blondinförklaring: Tryck på den orange knappen som inte är orange, för det orkar jag inte koda nu).<br />
+					Nytt lösenord igen: <input type="password" name="new_password_repeat" /><br />
+					<input type="submit" value="Byt" />
 				</form>
 			</p>
 			<?php
