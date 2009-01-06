@@ -50,7 +50,22 @@
 			}
 			else
 			{
-				$msg = login_dologin($_POST['username'], $_POST['password']);
+				try
+				{
+					login_dologin(array(
+						'username' => $_POST['username'],
+						'password' => $_POST['password'],
+						'method' => 'username_and_password'
+					));
+				}
+				catch(Exception $error)
+				{
+					$ui_options['title'] = 'Inloggningen misslyckades.';
+					ui_top($ui_options);
+					echo '<h1>Ett fel inträffade när du skulle logga in!</h1>' . "\n";
+					echo $error->getMessage();
+					ui_bottom();
+				}
 /*				if ($_SESSION['login']['id'] = 897773)
 				{
 					session_destroy();

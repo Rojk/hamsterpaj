@@ -38,7 +38,7 @@ require(PATHS_INCLUDE . 'future-functions.php');
 			$_POST['future_thing'] = htmlspecialchars($_POST['future_thing']);
 			$status = '&nbsp;&nbsp;';
 			
-			$query = 'INSERT INTO traffa_future (userid, future_name, future_date, future_enddate, status, date_text) VALUES ("' . $_SESSION['userid'] . '", "' . $_POST['future_thing'] . '", "' . $date . '", "' . $enddate . '", "' . $status . '", "' . $_POST['date_text'] . '")';
+			$query = 'INSERT INTO traffa_future (userid, future_name, future_date, future_enddate, status, date_text) VALUES ("' . $_SESSION['login']['id'] . '", "' . $_POST['future_thing'] . '", "' . $date . '", "' . $enddate . '", "' . $status . '", "' . $_POST['date_text'] . '")';
 			mysql_query($query) or die(report_sql_error($query));
 		}
 	}
@@ -139,7 +139,7 @@ function profile_future_change_form()
 
 	if (isset($_POST['change_submit']))
 	{
-		$query = 'UPDATE traffa_future SET status = "&nbsp;&nbsp;" WHERE userid = ' . $_SESSION['userid'];
+		$query = 'UPDATE traffa_future SET status = "&nbsp;&nbsp;" WHERE userid = ' . $_SESSION['login']['id'];
 		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 		foreach ($_POST as $id => $status)
 		{
@@ -156,7 +156,7 @@ function profile_future_change_form()
 		}
 	}
 
-	$query = 'SELECT * FROM traffa_future WHERE userid = ' . $_SESSION['userid'] . ' ORDER BY future_date';
+	$query = 'SELECT * FROM traffa_future WHERE userid = ' . $_SESSION['login']['id'] . ' ORDER BY future_date';
 	$result = mysql_query($query) or die(report_sql_error($query));
 	echo '<h2>Din framtid</h2>';
 	echo '<form action="' . $_SERVER['PHP_SELF'] . '?id=' . $_GET['id'] . '" method="post">';

@@ -25,7 +25,7 @@
 					if(mysql_num_rows($result) == 1)
 					{
 						$data = mysql_fetch_assoc($result);
-						$query = 'UPDATE login SET password_hash = "", password = "' . hamsterpaj_password(utf8_decode($_POST['new_password'])) . '" WHERE id = ' . $data['id'];
+						$query = 'UPDATE login SET password_version = 4, password_hash = "", password = "' . hamsterpaj_password(utf8_decode($_POST['new_password'])) . '" WHERE id = ' . $data['id'];
 						mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 						echo 'Det där gick ju bra, logga in där uppe nu tjockis!';
 					}

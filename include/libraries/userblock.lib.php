@@ -17,15 +17,15 @@
 		{
 			return false;
 		}
-		$sql = 'SELECT * FROM userblocks WHERE ownerid = ' . $object_id . ' AND blockedid = ' . $_SESSION['userid'] . ' LIMIT 1';
+		$sql = 'SELECT * FROM userblocks WHERE ownerid = ' . $object_id . ' AND blockedid = ' . $_SESSION['login']['id'] . ' LIMIT 1';
 		$result = mysql_query($sql) or report_sql_error($sql, __FILE__, __LINE__);
 		$data = mysql_fetch_assoc($result);
 		
-		if ($data['blockedid'] === $_SESSION['userid'] && !is_privilegied('igotgodmode') && !is_privilegied('ip_ban_admin'))
+		if ($data['blockedid'] === $_SESSION['login']['id'] && !is_privilegied('igotgodmode') && !is_privilegied('ip_ban_admin'))
 		{
 			return true;
 		}
-		elseif ($data['blockedid'] === $_SESSION['userid'] && is_privilegied('igotgodmode') && !is_privilegied('ip_ban_admin'))
+		elseif ($data['blockedid'] === $_SESSION['login']['id'] && is_privilegied('igotgodmode') && !is_privilegied('ip_ban_admin'))
 		{
 			echo '<p class="error"><strong>Den h&auml;r anv&auml;ndaren har blockerat dig!</strong><br />' . "\n";
 			echo 'Men eftersom du &auml;r 1337 h4xx0r s&aring; kan du se personens presentation i alla fall :)</p>' . "\n";

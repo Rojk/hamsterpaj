@@ -125,7 +125,7 @@
 			jscript_alert('Försök fatta dig lite kortare, det är trots allt ett klotterplank. Använd forumet om du vill diskutera!');
 			return FALSE;
 		}
-		$query = 'SELECT COUNT(id) AS total FROM klotterplank WHERE userid = ' . $_SESSION['userid'] . ' AND timestamp > UNIX_TIMESTAMP() - 60';
+		$query = 'SELECT COUNT(id) AS total FROM klotterplank WHERE userid = ' . $_SESSION['login']['id'] . ' AND timestamp > UNIX_TIMESTAMP() - 60';
 		$result = mysql_query($query);
 		$data = mysql_fetch_assoc($result);
 		if($data['total'] > 0){

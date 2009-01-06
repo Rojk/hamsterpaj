@@ -54,11 +54,24 @@
 			mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 			
 			/* Rows created, log on the user */
-			login_dologin($_POST['username'], $_POST['password']);
-			
-			/* Redirect to welcome page asking the user for more information */
-			jscript_alert('Du kan numera känna dig som en riktig Hamsterpajare!\nVi loggar in dig på ditt konto nu.');
-			jscript_location('/registered.php');
+			try
+			{
+				login_dologin(array(
+					'username' => $_POST['username'],
+					'password' => $_POST['password'],
+					'method' => 'username_and_password'
+				));
+					
+				/* Redirect to welcome page asking the user for more information */
+				jscript_alert('Du kan numera känna dig som en riktig Hamsterpajare!\nVi loggar in dig på ditt konto nu.');
+				jscript_location('/registered.php');
+			}
+			catch(Exception $error)
+			{
+				jscript_alert('Något gick ganska snett under registreringen. Felet har loggats.');
+				echo $error->getMessage();
+				trace('registration_login_failed', $error);
+			}
 		}
 	}
 	else

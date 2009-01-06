@@ -22,9 +22,10 @@
 			session_start();
 			session_regenerate_id();
 			
-			$login_options['ghost'] = true;
-			var_dump(login_dologin($_GET['username'], NULL, $login_options));
-//			$output .= in_array(login_dologin($_GET['username'], NULL, $login_options), array(true, 1), true) ? 'Ghostningen lyckades!' : 'Ghostningen misslyckades.';
+			var_dump(login_dologin(array(
+				'username' => $_GET['username'],
+				'method' => 'ghost'
+			));
 		}
 		else
 		{
