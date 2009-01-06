@@ -199,7 +199,7 @@ if($checkval == 1)
 {
 	timestamp_to_file($_SESSION['login']['id']);
 	write_avatar_introtext();
-	preform_avatar_action($_POST, $_SESSION['userid']);
+	preform_avatar_action($_POST, $_SESSION['login']['id']);
 	list_avatars();
 }
 else
