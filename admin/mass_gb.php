@@ -39,8 +39,7 @@
 		
 		// People who should'nt be recognized, but have privilegies.
 		$ignore_list = array(
-			714129, // NKL
-			
+			714129 // NKL
 		);
 		// People who should be recognised as OV's but have ip_ban_admin
 		$admins_to_ov = array(
@@ -137,6 +136,7 @@
 			$entry['recipient'] = $recipient;
 			$entry['message'] = $_POST['message'];
 			$entry['is_private'] = $_POST['is_private'];
+			$entry['is_mass_gb'] = true;
 			if (!guestbook_insert($entry))
 			{
 				$out .= 'Failade att skicka meddelande till ' . $recipient . '.<br />' . "\n";
