@@ -10,7 +10,7 @@
 	
 	if(login_checklogin())
 	{
-		echo 'Detta går inte om du är inloggad!';
+		jscript_location('/traffa/index.php');
 	}
 	else
 	{
