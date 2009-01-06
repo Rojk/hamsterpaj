@@ -20,7 +20,7 @@
 			{
 				if($_POST['new_password'] != $_POST['old_password'])
 				{
-					$query = 'SELECT id FROM login WHERE username = "' . $_POST['username'] . '" AND password_hash = "' . sha1(utf8_decode($_POST['old_password']) . PASSWORD_SALT) . '" LIMIT 1';
+					$query = 'SELECT id FROM login WHERE password_version = 3, username = "' . $_POST['username'] . '" AND password = "' . sha1(utf8_decode($_POST['old_password']) . PASSWORD_SALT) . '" LIMIT 1';
 					$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 					if(mysql_num_rows($result) == 1)
 					{
