@@ -17,13 +17,41 @@
 	*/
 	if ( $_GET['action'] == 'submit' )
 	{
-		 //HANDLE POSTDATA
+		// HANDLE POSTDATA
 		$_POST['forum_privs'] = ($_POST['forum_privs'] == 'on') ? 'on' : 'off';
 		$_POST['igotgodmode_privs'] = ($_POST['igotgodmode_privs'] == 'on') ? 'on' : 'off';
 		$_POST['ip_ban_privs'] = ($_POST['ip_ban_privs'] == 'on') ? 'on' : 'off';
+		$_POST['is_private'] = ($_POST['is_private'] == 'on') ? 1 : 0;
+		$haxx_string = $_POST['forum_privs'] . $_POST['ip_ban_privs'] . $_POST['igotgodmode_privs'];
+		
+		switch ( $_POST['from'] )
+		{
+			case 'webmaster':
+				$send_from = 2348;
+			break;
+			case 'me':
+				$send_from = $_SESSION['login']['id'];
+			break;
+			default:
+				throw new Exception('$_POST[\'from\'] iz a failz0er...');
+			break;
+		}
+		
+		// People who should'nt be recognized, but have privilegies.
+		$ignore_list = array(
+			714129, // NKL
+			
+		);
+		// People who should be recognised as OV's but have ip_ban_admin
+		$admins_to_ov = array(
+			848713 
+		);
+		
 		$sql = 'INSERT INTO mass_gb_history SET timestamp = ' . time() . ',';
 		$sql .= ' sent_by = ' . $_SESSION['login']['id'] . ',';
-		$sql .= ' message = "' . $_POST['message'] . '"';
+		$sql .= ' message = "' . $_POST['message'] . '",';
+		$sql .= ' send_gb_from = ' . $send_from . ',';
+		$sql .= ' haxx_string = "' . $haxx_string . '"';
 		mysql_query($sql) or report_sql_error($sql, __FILE__, __LINE__);
 		
 		$sql = 'SELECT user FROM privilegies GROUP BY(user)';
@@ -43,66 +71,83 @@
 		}
 		foreach ( $users as $user_id => $privilegies )
 		{
-			$haxx_string = $_POST['forum_privs'] . $_POST['ip_ban_privs'] . $_POST['igotgodmode_privs'];
-			
-			switch ($haxx_string)
+			if ( !in_array($user_id, $ignore_list) )
 			{
-				case 'onoffoff':
-					if ( !in_array('igotgodmode', $privilegies) && !in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
-					{
-						$confirmed_recipients[] = $user_id;
-					}
-				break;
-				
-				case 'ononoff':
-					if ( !in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
-					{
-						$confirmed_recipients[] = $user_id;
-					}
-				break;
-				
-				case 'ononon':
-					if ( in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
-					{
-						$confirmed_recipients[] = $user_id;
-					}
-				break;
-				
-				case 'onoffon':
-					if ( in_array('igotgodmode', $privilegies) && !in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
-					{
-						$confirmed_recipients[] = $user_id;
-					}
-				break;
-				
-				case 'offonon':
-					if ( in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && !in_array('discussion_forum_remove_posts', $privilegies) )
-					{
-						$confirmed_recipients[] = $user_id;
-					}
-				break;
-				
-				case 'offoffon':
-					if ( in_array('igotgodmode', $privilegies) && !in_array('ip_ban_admin', $privilegies) && !in_array('discussion_forum_remove_posts', $privilegies) )
-					{
-						$confirmed_recipients[] = $user_id;
-					}
-				break;
-				
-				case 'offonoff':
-					if ( !in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && !in_array('discussion_forum_remove_posts', $privilegies) )
-					{
-						$confirmed_recipients[] = $user_id;
-					}
-				break;
-				
-				default:
-					die('THERE IS NO DEFAULT!');
-				break;
+				switch ($haxx_string)
+				{
+					// OV
+					case 'onoffoff':
+						if ( !in_array('igotgodmode', $privilegies) && !in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies) )
+						{
+							$confirmed_recipients[] = $user_id;
+						}
+					break;
+					// OV ADMIN
+					case 'ononoff':
+						if ( !in_array('igotgodmode', $privilegies) && (in_array('ip_ban_admin', $privilegies) || in_array('discussion_forum_remove_posts', $privilegies)) )
+						{
+							$confirmed_recipients[] = $user_id;
+						}
+					break;
+					// OV ADMIN SYSOP
+					case 'ononon':
+							if ( in_array('igotgodmode', $privilegies) || in_array('ip_ban_admin', $privilegies) || in_array('discussion_forum_remove_posts', $privilegies) )
+						{
+							$confirmed_recipients[] = $user_id;
+						}
+					break;
+					// OV SYSOP
+					case 'onoffon':
+						if ( (in_array('igotgodmode', $privilegies) || in_array('discussion_forum_remove_posts', $privilegies)) && !in_array('ip_ban_admin', $privilegies) )
+						{
+							$confirmed_recipients[] = $user_id;
+						}
+					break;
+					// ADMIN SYSOP
+					case 'offonon':
+						if ( (in_array('igotgodmode', $privilegies) || in_array('ip_ban_admin', $privilegies)) && !in_array($user_id, $admins_to_ov) )
+						{
+							$confirmed_recipients[] = $user_id;
+						}
+					break;
+					// SYSOP
+					case 'offoffon':
+						if ( in_array('igotgodmode', $privilegies) )
+						{
+							$confirmed_recipients[] = $user_id;
+						}
+					break;
+					// ADMIN
+					case 'offonoff':
+						if ( (!in_array('igotgodmode', $privilegies) && in_array('ip_ban_admin', $privilegies) && in_array('discussion_forum_remove_posts', $privilegies)) && !in_array($user_id, $admins_to_ov) )
+						{
+							$confirmed_recipients[] = $user_id;
+						}
+					break;
+					
+					default:
+						die('THERE IS NO DEFAULT!');
+					break;
+				}
 			}
 		}
-		
+		foreach ( $confirmed_recipients as $recipient )
+		{
+			$entry['sender'] = $send_from;
+			$entry['recipient'] = $recipient;
+			$entry['message'] = $_POST['message'];
+			$entry['is_private'] = $_POST['is_private'];
+			if (!guestbook_insert($entry))
+			{
+				$out .= 'Failade att skicka meddelande till ' . $recipient . '.<br />' . "\n";
+			}
+			else
+			{
+				$out .= 'Meddelande skickat till ' . $recipient . '<br />';
+			}
+		}
 		preint_r( $confirmed_recipients );
+		preint_r( $entry );
 	}
 	
 	$out .= '<fieldset>
@@ -111,42 +156,70 @@
 	.recipient_filters li {
 		list-style-type:none;
 	}
+	.mass_gb_left_div {
+		border-right: thin solid #BBB;
+		padding-right: 15px;
+		margin-right: 15px;
+		width: 200px;
+		float:left;
+	}
+	.mass_gb_right_div {
+	}
 	</style>
-	<form action="' . $_SERVER['SCRIPT_URI'] . '?action=submit" method="post">
-	<table class="form">
-	<tr>
-	<td colspan="2">
-	<ul class="recipient_filters">
-		<li>
-		<input type="checkbox" name="forum_privs" />
-		<label for="forum_privs">OV</label>
-		</li>
-		<li>
-		<input type="checkbox" name="ip_ban_privs" />
-		<label for="ip_ban_privs">Admins</label>
-		</li>
-		<li>
-		<input type="checkbox" name="igotgodmode_privs" />
-		<label for="igotgodmode_privs">Sysöps</label>
-		</li>
-	</ul>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	<label for="message">Meddelande <strong>*</strong></label>
-	</td>
-	<td>
-	<textarea name="message" style="width: 470px; height: 300px;"></textarea>
-	</td>
-	</tr>
-	<tr>
-	<td colspan="2">
-	<input type="submit" value="Skicka meddelande" onclick="this.disabled = true; this.value = \'Klicka inte förfan...\'" />
-	</td>
-	</tr>
-	</table>
-	</form>
+		<form action="' . $_SERVER['SCRIPT_URI'] . '?action=submit" method="post">
+			<table class="form">
+				<tr>
+					<td colspan="2">
+					<div class="mass_gb_left_div">
+						<label for="forum_privs ip_ban_privs igogtgodmode_privs">Vilka vill du skicka till? <strong>*</strong></label>
+						<ul class="recipient_filters">
+							<li>
+								<input type="checkbox" name="forum_privs" />
+								<label for="forum_privs">OV</label>
+							</li>
+							<li>
+								<input type="checkbox" name="ip_ban_privs" />
+								<label for="ip_ban_privs">Admins</label>
+							</li>
+							<li>
+								<input type="checkbox" name="igotgodmode_privs" />
+								<label for="igotgodmode_privs">Sysöps</label>
+							</li>
+						</ul>
+					</div>
+					<div class="mass_gb_right_div">
+						<label for="from">Vem vill du skicka från? <strong>*</strong></label><br  />
+						<select name="from">
+							<option value="choose">Välj</option>
+							<option value="webmaster">Webmaster</option>
+							<option value="me">Mig själv</option>
+						</select>
+					</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="is_private">Privat</label>
+					</td>
+					<td>
+						<input type="checkbox" name="is_private" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="message">Meddelande <strong>*</strong></label>
+					</td>
+					<td>
+						<textarea name="message" style="width: 470px; height: 300px;"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="Skicka meddelande" onclick="this.disabled = true; this.value = \'Klicka inte förfan...\'" />
+					</td>
+				</tr>
+			</table>
+		</form>
 	</fieldset>' . "\n";
 	
 	echo ui_top( $ui_options );

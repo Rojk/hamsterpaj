@@ -35,6 +35,7 @@ stylesheets/fp_modules/*
 admin/validator.txt
 traffa/gallery_content.html
 include/message_bar_current.txt
+.backupignore
 
 # Configuration files
 include/constants.php

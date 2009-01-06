@@ -1,4 +1,7 @@
 <?php
+
+	// i can has testing?
+
 	require('../include/core/common.php');
 		
 	$ui_options['menu_path'] = array('admin');
