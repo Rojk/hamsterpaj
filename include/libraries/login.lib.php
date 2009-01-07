@@ -147,7 +147,7 @@
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 			if(mysql_num_rows($result) == 1)
 			{
-				throw new Exception('Du använder ett lösenord baserat på det gamla lösenordssystemet. Av säkerhetsskäl måste du byta, det gör du <a href="/installningar/renew_password.php">på den här sidan &raquo;</a>');
+				throw new Exception('<h2>Du använder ett lösenord baserat på det gamla lösenordssystemet. Av säkerhetsskäl måste du byta, det gör du <a href="/installningar/renew_password.php" style="font-weight: bold">på den här sidan &raquo;</a></h2>');
 			}
 			else
 			{
