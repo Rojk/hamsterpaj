@@ -124,12 +124,6 @@ switch($request['entertain_type'])
 }
 ui_top($ui_options);
 
-// Userids: Joel, Joel on developer platform, BuenaVistaDemo
-if(in_array($request['entertain_type'], array('game', 'clip')) && login_checklogin() && in_array($_SESSION['login']['id'], array(87926, 879697, 899954)))
-{
-	echo '<center><a href="http://www.hamsterpaj.net/filmklipp/disney__camp_rock.html" style="text-decoration: none; text-align: center">Detta är en reklam (det riktiga klippet eller spelet finns under - scrolla ner!).<br /><img src="http://images.hamsterpaj.net/advertising/camp_rock_film_dummy.png" alt="Camp Rock trailer" /></a></center>';
-}
-
 switch($request['view'])
 {
 	case 'list':
