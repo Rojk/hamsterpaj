@@ -1,13 +1,16 @@
 <?php
 	function photoblog_fetch_active_user_data($username)
 	{
-		global $photoblog_preferences_default_values;
 		if ( isset($username) && preg_match('/^[a-zA-Z0-9-_]+$/', $username) && strtolower($username) != 'borttagen' )
 		{
 			$sql = 'SELECT id FROM login WHERE username = "' . $username . '" LIMIT 1';
 			$result = mysql_query($sql);
 			$data = mysql_fetch_assoc($result);
 			$user_id = $data['id'];
+			if(!isset($user_id))
+			{
+				return false;
+			}
 			
 			$sql = 'SELECT user_id FROM photoblog_preferences WHERE user_id = ' . $user_id . ' LIMIT 1';
 			$result = mysql_query($sql);
@@ -16,9 +19,9 @@
 				
 				$sql = 'INSERT INTO photoblog_preferences SET ';
 				$sql .= ' user_id = ' . $user_id . ',';
-				$sql .= ' color_main = "' . $photoblog_preferences_default_values['color_main'] . '",';
-				$sql .= ' color_detail = "' . $photoblog_preferences_default_values['color_detail'] . '",';
-				$sql .= ' hamster_guard_on = ' . $photoblog_preferences_default_values['hamster_guard_on'];
+				$sql .= ' color_main = "333333",';
+				$sql .= ' color_detail = "FF8040",';
+				$sql .= ' hamster_guard_on = 0';
 				if (!mysql_query($sql))
 				{
 					report_sql_error($sql);
@@ -37,7 +40,7 @@
 			}
 			else
 			{
-				throw new Exception('Användaren verkar inte finnas i databasen *sadface*<br /><a href="/fotoblogg/">Tillbaka</a>');
+				return false;
 			}
 		}
 	}
@@ -325,12 +328,12 @@
 	}
 	
 	function photoblog_dates_fetch($options)
-	{
+	{		
 		$photo_options = array(
-			'user_id' => $options['user_id']
+			'user' => $options['user']
 		);
-		$photos = photoblog_photos_fetch($options);
-		
+		$photos = photoblog_photos_fetch($photo_options);
+
 		$return = array();
 		foreach ( $photos as $photo )
 		{

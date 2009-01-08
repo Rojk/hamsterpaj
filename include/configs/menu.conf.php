@@ -110,6 +110,7 @@
  {
 	$menu['installningar'] = array('label' => 'Inställningar', 'url' => '/installningar/generalsettings.php', 'index_label' => 'Generella');
 		$menu['installningar']['children']['byt_namn'] = array('label' => 'Byt namn', 'url' => '/installningar/changename.php');
+		//$menu['installningar']['children']['byt_losen'] = array('label' => 'Byt lösenord', 'url' => '/installningar/renew_password.php');
 		$menu['installningar']['children']['profil'] = array('label' => 'Presentation', 'url' => '/installningar/profilesettings.php');
 		$menu['installningar']['children']['forum_installningar'] = array('label' => 'Foruminställningar', 'url' => '/installningar/forum_settings.php');
 		$menu['installningar']['children']['byt_visningsbild'] = array('label' => '<strong>Byt visningsbild</strong>', 'url' => '/avatar-settings.php');
@@ -134,12 +135,13 @@
 			$menu['admin']['children']['crew-folk']['children']['ov_reg'] = array('label' => 'OV Registrering', 'url' => '/admin/ov_reg.php', 'userlevel' => 3);
 			$menu['admin']['children']['crew-folk']['children']['ov_watch'] = array('label' => 'OV Statistik', 'url' => '/admin/ov_watch.php', 'is_privilegied' => 'ov_admin');
 			$menu['admin']['children']['crew-folk']['children']['ov_list'] = array('label' => 'OV Kontaktuppgifter', 'url' => '/admin/ov_list.php', 'userlevel' => 3);
-			$menu['admin']['children']['crew-folk']['children']['log_view'] = array('label' => 'Administrativ logg', 'url' => '/admin/log_view.php', 'is_priviledieg' => 'ov_admin');
+			$menu['admin']['children']['crew-folk']['children']['log_view'] = array('label' => 'Administrativ logg', 'url' => '/admin/log_view.php', 'is_privilegied' => 'ov_admin');
+			$menu['admin']['children']['crew-folk']['children']['mass_gb'] = array('label' => 'Mass-GB', 'url' => '/admin/mass_gb.php', 'is_privilegied' => 'igotgodmode');
 			$menu['admin']['children']['crew-folk']['children']['privilegies_admin'] = array('label' => 'Privilegier', 'url' => '/admin/privilegies_admin.php', 'is_privilegied' => 'privilegies_admin');
 	
 	$site_admin_privilegies = array('fp_module_rearrange', 'schedule_admin', 'use_statistic_tools', 'register_suspend_admin', 'entertain_add', 'backgrounds_admin', 'music_guess_admin', 'open_search');
 	$menu['site_admin'] = array('label' => 'Site adm', 'url' => 'javascript:void(0)', 'is_privilegied' => $site_admin_privilegies);
-		$menu['site_admin']['children']['fp_admin'] = array('label' => 'Ordna startsidan', 'url' => '/admin/fp_module_rearrange.php', 'is_privilegied' => 'fp_module_rearrange');
+		$menu['site_admin']['children']['fp_admin'] = array('label' => 'Ordna startsidan', 'url' => '/admin/fp_module_list.php', 'is_privilegied' => 'fp_module_rearrange');
 		$menu['site_admin']['children']['schemalagt'] = array('label' => 'Schemalagt', 'url' => '/admin/schemalagt.php', 'is_privilegied' => 'schedule_admin');
 		$menu['site_admin']['children']['statistik'] = array('label' => 'Statistik', 'url' => '/admin/event_log.php', 'is_privilegied' => 'use_statistic_tools');
 		$menu['site_admin']['children']['pageviews'] = array('label' => 'Sidvisningar', 'url' => '/admin/pageviews.php', 'is_privilegied' => 'use_statistic_tools');

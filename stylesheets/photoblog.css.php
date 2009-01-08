@@ -1,8 +1,11 @@
 <?php
 	header('Content-type: text/css');
-
-	define('PHOTOBLOG_BACKGROUND_COLOR', '#333');
-	define('PHOTOBLOG_DETAIL_COLOR', 'orange');
+	
+	$req_uri = $_SERVER['REQUEST_URI'];
+	$uri_parts = explode('_', $_SERVER['REQUEST_URI']);
+	
+	$main_color = '#' . ((strlen($uri_parts[1]) > 2) ? $uri_parts[1] : '333');
+	$detail_color = '#' . ((strlen($uri_parts[2]) > 2) ? $uri_parts[2] : 'FF8040');
 ?>
 
 #photoblog_upload_wrapper {
@@ -94,7 +97,7 @@
 	width: 638px;
 }
 	#photoblog_select {
-		background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> repeat-x;
+		background: <?php echo $main_color; ?> repeat-x;
 		border-radius: 5px;
 		-moz-border-radius: 5px;
 		-khtml-border-radius: 5px;
@@ -112,19 +115,19 @@
 			top: 4px;
 		}
 	#photoblog_user_header {
-		background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> repeat-x;
+		background: <?php echo $main_color; ?> repeat-x;
 		border-radius: 5px;
 		-moz-border-radius: 5px;
 		-khtml-border-radius: 5px;
 		padding: 5px 10px;
-		color: orange;
+		color: <?php echo $detail_color; ?>;
 		margin-bottom: 10px;
 		margin-left: 230px;
 		width: 388px;
 		height: 21px;	
 	}
 	#photoblog_user_header a {
-		color: orange;
+		color: <?php echo $detail_color; ?>;
 		margin: 0 15px;
 		padding-top: 3px;
 		display: block;
@@ -133,7 +136,7 @@
 
 #photoblog_thumbs {
     /* if the background image just looks weird just remove it */
-    background: <?php echo PHOTOBLOG_BACKGROUND_COLOR; ?> repeat-x;
+    background: <?php echo $main_color; ?> repeat-x;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -khtml-border-radius: 5px;
@@ -147,8 +150,11 @@
         position: relative;
     }
 
+	#photoblog_thumbs_inner {
+		width: 10000px;
+	}
+
     div#photoblog_thumbs dl {
-        width: 10000px;
         position: relative;
         padding: 3px 0 0 0;
     }
@@ -191,7 +197,7 @@
     }
 	
     .photoblog_active img {
-       border: 2px solid yellow;
+       border: 2px solid <?php echo $detail_color; ?>;
 			-moz-border-radius: 3px;
 			-khtml-border-radius: 3px;
 			border-radius: 3px;
@@ -204,7 +210,7 @@
 
 #photoblog_thumbs_scroller {
     width: 100%;
-    background: url(http://images.hamsterpaj.net/photoblog/white-50-percent-opacity.png);
+    background: <?php echo $main_color; ?> url(http://images.hamsterpaj.net/photoblog/white-50-percent-opacity.png);
     height: 15px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -215,7 +221,7 @@
     #photoblog_thumbs_handle {
         display: block;
         width: 40px;
-        background: <?php echo PHOTOBLOG_DETAIL_COLOR; ?> url(http://images.hamsterpaj.net/photoblog/scroller-overlay.png) repeat-x;
+        background: <?php echo $detail_color; ?> url(http://images.hamsterpaj.net/photoblog/scroller-overlay.png) repeat-x;
         -moz-border-radius: 4px;
     	-webkit-border-radius: 4px;
         height: 100%;
@@ -274,13 +280,9 @@
 	background-position: right center;
 }
 
-/*#photoblog_comments,
 #photoblog_description {
-    margin: 0 auto 10px;
-    border: 1px solid #ccc;
-    background: #f9f9f9;
-    padding: 10px;
-}*/
+	text-align: center;
+}
 
     #photoblog_description h2 {
         text-align: center;
@@ -291,7 +293,6 @@
 	opacity: .6;
 	filter: alpha(opacity=60);
 	padding: 5px;
-	border: 1px solid #333;
 	background: #fff;
 }
 
@@ -306,20 +307,79 @@
 	}
 
 /* comments */
-
-#photoblog_comments ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+#photoblog_comments {
+	margin-top: 10px;
+	background: <?php echo $main_color; ?>;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 15px 15px 0 15px;
 }
-
-#photoblog_comments h3 { display: none; }
-
-#photoblog_comments form,
-#photoblog_comments form * {
-	margin: 0;
-	padding: 0;
-}
+	#photoblog_comments ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+		.photoblog_comment {
+			min-height: 155px;
+		}
+			.photoblog_comment_userinfo {
+				position: absolute;
+				width: 75px;
+			}
+				.photoblog_comment .user_avatar {
+					height: 100px;
+					width: 75px;
+				}
+				.photoblog_comment_userinfo a {
+					display: block;
+					padding: 4px 0 2px 0;
+					color: <?php echo $detail_color; ?>;
+				}
+				.photoblog_comment_userinfo span {
+					display: block;
+					color: #fff;
+					opacity: .5;
+					filter: alpha(opacity=50);
+				}
+			.photoblog_comment_bubble_pointer {
+				width: 503px;
+				padding: 0;
+				background: url(http://images.hamsterpaj.net/photoblog/comment_bubble_pointer.png) no-repeat left top;
+				margin-left: 90px;
+			}
+			.photoblog_comment_text {
+				background: #fff;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				width: 459px;
+				padding: 15px;
+				margin-left: 30px;
+				min-height: 60px;
+			}
+				.photoblog_comment_text p {
+					margin: 0;
+				}	
+				.photoblog_comment_answer {
+					margin-top: 15px;
+					border: 1px solid #d3d3d3;
+					background: #eeeeee;
+					padding: 10px;
+					-moz-border-radius: 5px;
+					-webkit-border-radius: 5px;
+				}
+					.photoblog_comment_answer span {
+						color: #737272;
+						margin-bottom: 8px;
+						display: block;
+					}
+	
+	#photoblog_comments h3 { display: none; }
+	
+	#photoblog_comments form,
+	#photoblog_comments form * {
+		margin: 0;
+		padding: 0;
+	}
 	#photoblog_comments form span { display: none; }
 	
 	#photoblog_comments form label textarea {
@@ -338,16 +398,117 @@
 		-webkit-border-radius: 2px;
 	}
 	
-#photoblog_comments_container {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+/* ########################################################
+		MODULER
+	 ###################################################### */
+	 
+/*
+	################################################################
+		Photoblog_user
+	################################################################
+*/
+#ui_module_photoblog_user .ui_module_header {
+  display: none;
 }
-	#photoblog_comments .photoblog_comment {
-	
+	#ui_module_photoblog_user .ui_module_content {
+	  padding: 10px;
+	  height: 50px;
+	  background: <?php echo $main_color; ?>;
+	  color: #fff;
+	  -moz-border-radius: 5px;
 	}
-	#photoblog_comments .photoblog_comment h4 {
-		margin: 0;
-		padding: 5px;
-		font-size: 14px;
+	#ui_module_photoblog_user h3 {
+	  margin:	0;
+	  margin-left: 50px;
+	}
+	#ui_module_photoblog_user a {
+	  margin: 30px 0 0 50px;
+	  text-decoration: underline;
+	  color: <?php echo $detail_color; ?>;	
+	  
+	}
+	#ui_module_photoblog_user .user_avatar {
+	  position: absolute;
+	  border: 1px solid gray;
+	  width: 37px;
+	  height: 50px;
+	}
+
+/*
+	################################################################
+		Photoblog_calendar
+	################################################################
+*/
+#ui_module_photoblog_calendar .ui_module_header {
+  display: none;
+}
+	#ui_module_photoblog_calendar .ui_module_content {
+	  height: 190px;
+	  background: <?php echo $main_color; ?> url(http://images.hamsterpaj.net/photoblog/calendar_fade.png);
+	  color: #fff;
+	  -moz-border-radius: 5px;
+	  padding: 0;
+	}
+		#photoblog_calendar_month {
+			padding: 8px 12px 16px 12px;
+			height: 11px;
+			font-size: 14px;
+			text-align: center;
+		}
+			#photoblog_calendar_month a {
+				color: <?php echo $detail_color; ?>;
+			}	
+		#ui_module_photoblog_calendar table {
+		  margin: 0 11px;
+		  width: 180px;
+		}
+			#ui_module_photoblog_calendar th {
+			  color: <?php echo $detail_color; ?>;
+			  text-align: center;
+			}
+			#ui_module_photoblog_calendar td {
+			  color: white;
+			  text-align: center;
+			  height: 19px;
+			  padding: 2px;
+			}
+			#photoblog_calendar_year {
+				color: <?php echo $detail_color; ?>;
+				padding: 10px 15px 0 15px;
+			}
+				.photoblog_calendar_year_after {
+					float: right;
+				}
+				.photoblog_calendar_year_pre {
+					float: left;
+				}
+
+/*
+	################################################################
+		Photoblog_albums
+	################################################################
+*/
+#ui_module_photoblog_albums .ui_module_header {
+  display: none;
+}
+	#ui_module_photoblog_albums .ui_module_content {
+		padding: 10px;
+	  background: <?php echo $main_color; ?>;
+	  color: #fff;
+	  -moz-border-radius: 5px;
+	}
+	#ui_module_photoblog_albums h3 {
+		margin-top: 8px;
+		text-align: center;
+	}
+	#ui_module_photoblog_albums img {
+		margin: 12px 25px 0 25px;
+		-moz-border-radius: 4px;
+  	-webkit-border-radius: 4px;
+  	border: 4px solid black;
+  	width: 120px;
+  	height: 90px;
+	}
+	#ui_module_photoblog_albums a {
+		color: <?php echo $detail_color; ?>;
 	}

@@ -97,7 +97,7 @@
 			$newdata['preferences']['gb_anti_p12'] = ($_POST['gb_anti_p12'] == 0) ? 'off' : 'on';
 		break;
 		case 'password':
-			if(sha1(utf8_decode($_POST['password_old']) . PASSWORD_SALT) != $_SESSION['login']['password_hash'])
+			if(hamsterpaj_password(utf8_decode($_POST['password_old'])) != $_SESSION['login']['password'])
 			{
 				jscript_alert('Det där går inte, du måste skriva in ditt nuvarande lösenord, annars funkar inte skiten. Seså, gör om gör rätt!');
 				jscript_go_back();
@@ -109,7 +109,8 @@
 				jscript_go_back();
 				exit;
 			}
-			$newdata['login']['password_hash'] = sha1(utf8_decode($_POST['password_new']) . PASSWORD_SALT);
+			
+			$newdata['login']['password'] = hamsterpaj_password(utf8_decode($_POST['password_new']));
 		break;
 		}
 		login_save_user_data($_SESSION['login']['id'], $newdata);

@@ -3,11 +3,21 @@
 	require(PATHS_INCLUDE . 'libraries/fp_modules.lib.php');
 
 	$ui_options['stylesheets'][] = 'start.css';
-	$ui_options['stylesheets'][] = 'fp_module_create.css';
+	$ui_options['stylesheets'][] = 'fp_modules.css';
 
 	$ui_options['title'] = 'Arrangera om startsidemoduler';
 	$ui_options['menu_path'] = array('hamsterpaj');
 	
+	if (!is_privilegied('fp_module_rearrange'))
+	{
+		ui_top($ui_options);
+		echo '<div class="error">';
+		echo '<strong>Nu äter hamstern upp dig! :)</strong>';
+		echo '</div>';
+		ui_bottom();
+		exit;
+	}
+
 	if($_POST['action'] == 'update_modules')
 	{
 		$module_ids = explode(',', $_POST['module_ids']);
@@ -22,9 +32,9 @@
 		}
 	}
 
-
-
-	$o .= '<a href="/admin/fp_module_create.php">Ny modul</a>' . "\n";
+	$o .= '<h1>Arrangera förstasidesmoduler</h1>' . "\n";
+	$o .= '<p>Du kan endast ändra i en lista i taget, ändringar som gjorts i andra listor än den du sparar kommer gå förlorade.</p>' . "\n";
+	$o .= '<p>Skapa nya moduler på sidan <a href="/admin/fp_module.php">skapa ny startsidemodul</a></p>' . "\n";
 
 	$o .= '<div style="width: 320px; float: left;">' . "\n";
 	$modules = fp_modules_fetch(array('removal_min' => time(), 'launch_max' => time()));

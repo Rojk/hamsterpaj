@@ -283,7 +283,7 @@
 		if($type == 'hamsterpaj_password_hash' && isset($_POST['data'], $_POST['data_do_not_show']))
 		{
 			$data = empty($_POST['data_do_not_show']) ? $_POST['data'] : $_POST['data_do_not_show'];
-			echo sha1(utf8_decode($data) . PASSWORD_SALT) . $go_back;
+			echo hamsterpaj_password(utf8_decode($data)) . $go_back;
 		}
 		else
 		{

@@ -50,22 +50,25 @@
 
 	function guestbook_insert($entry)
 	{
-		if($_SESSION['login']['id'] == $entry['sender'])
+		if ($entry['is_mass_gb'] !== true)
 		{
-			if($_SESSION['last_gb_entry'] > time() - 5)
+			if($_SESSION['login']['id'] == $entry['sender'])
+			{
+				if($_SESSION['last_gb_entry'] > time() - 5)
+				{
+					return false;
+				}
+			}
+	
+			if(strlen($entry['message']) == 0)
 			{
 				return false;
 			}
-		}
-
-		if(strlen($entry['message']) == 0)
-		{
-			return false;
-		}
-
-		if($entry['recipient'] == 2348 && $entry['sender'] != 2348)
-		{
-			$_SESSION['posted_gb_to_webmaster'] = true;
+	
+			if($entry['recipient'] == 2348 && $entry['sender'] != 2348)
+			{
+				$_SESSION['posted_gb_to_webmaster'] = true;
+			}
 		}
 
 		$entry['is_private'] = ($entry['is_private'] == 1) ? 1 : 0;
@@ -75,30 +78,41 @@
 		$entry['id'] = mysql_insert_id();
 
 		$query = 'UPDATE userinfo SET gb_entries = gb_entries + 1 WHERE userid = "' . $entry['recipient']. '" LIMIT 1';
-		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		if (!mysql_query($query))
+		{
+			report_sql_error($query, __FILE__, __LINE__);
+			return false;
+		}
 
 		if(isset($entry['reply-to']))
 		{
 			$query = 'UPDATE traffa_guestbooks SET answered = "Y", `read` =  1 WHERE id = "' . $entry['reply-to'] . '" AND recipient = "' . $entry['sender'] . '" LIMIT 1';
-			mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+			if (!mysql_query($query))
+			{
+				report_sql_error($query, __FILE__, __LINE__);
+				return false;
+			}
 		}
-
-		$query = 'SELECT session_id FROM login WHERE id = "' . $entry['recipient'] . '" LIMIT 1';
-		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-		$data = mysql_fetch_assoc($result);
-		if(strlen($data['session_id']) > 5)
+		if ($entry['is_mass_gb'] !== true)
 		{
-			$remote_session = session_load($data['session_id']);
-			$remote_session['notices']['unread_gb_entries'] += 1;
-			$entry['image'] = $_SESSION['userinfo']['image'];
-			$entry['timestamp'] = time();
-			$entry['message'] = stripslashes($entry['message']);
-			$entry['username'] = $_SESSION['login']['username'];
-			$remote_session['unread_gb_entries'][] = $entry;
-			session_save($data['session_id'], $remote_session);
+			$query = 'SELECT session_id FROM login WHERE id = "' . $entry['recipient'] . '" LIMIT 1';
+			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+			$data = mysql_fetch_assoc($result);
+			if(strlen($data['session_id']) > 5)
+			{
+				$remote_session = session_load($data['session_id']);
+				$remote_session['notices']['unread_gb_entries'] += 1;
+				$entry['image'] = $_SESSION['userinfo']['image'];
+				$entry['timestamp'] = time();
+				$entry['message'] = stripslashes($entry['message']);
+				$entry['username'] = $_SESSION['login']['username'];
+				$remote_session['unread_gb_entries'][] = $entry;
+				session_save($data['session_id'], $remote_session);
+			}
 		}
 
 		$_SESSION['last_gb_entry'] = time();
+		return true;
 	}
 
 	function guestbook_list($entries)

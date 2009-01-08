@@ -39,7 +39,7 @@
 			event_log_log('classic_reg_form_sign_up');
 			/* Input from user is OK, create rows in required tables */
 			$query = 'INSERT INTO login(username, password, regtimestamp, regip, lastlogon) ';
-			$query .= 'VALUES ("' . $_POST['username'] . '", "' . md5(utf8_decode($_POST['password'])) . '", "';
+			$query .= 'VALUES ("' . $_POST['username'] . '", "' . hamsterpaj_password(utf8_decode($_POST['password'])) . '", "';
 			$query .= time() . '", "' . $_SERVER['REMOTE_ADDR'] . '", "")';
 			mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 			$user_id = mysql_insert_id();
@@ -54,11 +54,24 @@
 			mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 			
 			/* Rows created, log on the user */
-			login_dologin($_POST['username'], $_POST['password']);
-			
-			/* Redirect to welcome page asking the user for more information */
-			jscript_alert('Du kan numera känna dig som en riktig Hamsterpajare!\nVi loggar in dig på ditt konto nu.');
-			jscript_location('/registered.php');
+			try
+			{
+				login_dologin(array(
+					'username' => $_POST['username'],
+					'password' => $_POST['password'],
+					'method' => 'username_and_password'
+				));
+					
+				/* Redirect to welcome page asking the user for more information */
+				jscript_alert('Du kan numera känna dig som en riktig Hamsterpajare!\nVi loggar in dig på ditt konto nu.');
+				jscript_location('/registered.php');
+			}
+			catch(Exception $error)
+			{
+				jscript_alert('Något gick ganska snett under registreringen. Felet har loggats.');
+				echo $error->getMessage();
+				trace('registration_login_failed', $error);
+			}
 		}
 	}
 	else

@@ -1,0 +1,139 @@
+.fp_users_list li
+{
+	display: block;
+	float: left;
+	padding: 4px;
+	border: 1px solid #ababab;
+	margin-right: 3px;
+	margin-bottom: 3px;
+}
+
+.fp_users_list li img
+{
+	display: block;
+	width: 75px;
+	height: 100px;
+}
+
+/***************
+Stylesheet for the news.
+****************/
+
+.fp_news_main
+{
+	display: block;
+	float: left;
+	width: 416px;
+	padding-top: 10px;
+	padding-right: 5px;
+}
+
+.fp_news_main_hidden
+{
+	display: none;
+	float: left;
+	width: 421px;
+	padding-top: 10px;
+}
+
+.fp_news_titles
+{
+	float: right;
+	margin: 12px 0px 0px 0px;
+	border-left: 1px solid #C0C0C0;
+	width: 200px;
+}
+
+.fp_news_titles h3
+{
+	margin: 0px 0px 0px 15px;
+}
+
+.fp_news_titles dl
+{
+	padding: 0px 0px 0px 15px;
+	margin: 0px;
+}
+
+.fp_news_titles dl dd
+{
+	margin-top: 0px;
+	padding-top: 0px;
+	text-indent: 0px;
+}
+
+.fp_news_titles dt
+{
+	float: left;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+.fp_news_titles di
+{
+	display: block;
+	margin-top: 5px;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+
+/*************************
+RECENT UPDATES
+*************************/
+#fp_last_update
+{
+	float: left;
+	width: 350px;
+}
+
+#fp_last_update a
+{
+	font-size: 20px;
+	color: #565656;
+}
+
+#fp_last_update .passepartout
+{
+	width: 122px;
+	height: 92px;
+	padding: 15px;
+	border: 1px solid #ababab;
+	-moz-border-radius: 5px;
+	float: left;
+	margin-right: 15px;
+}
+
+#fp_last_update .passepartout img
+{
+	border: 1px solid #565656;
+	-moz-border-radius: 5px;
+}
+
+#fp_event_list
+{
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	list-style-type: none;
+	width: 240px;
+}
+
+#fp_event_list li
+{
+	width: 240px;
+	height: 37px;
+	margin-bottom: 4px;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+#fp_event_list img
+{
+	width: 50px;
+	height: 37px;
+	float: left;
+	display: block;
+	margin-right: 10px;
+	-moz-border-radius: 5px;
+}

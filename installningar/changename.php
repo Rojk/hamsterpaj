@@ -10,16 +10,12 @@ $ui_options['stylesheets'][] = 'rounded_corners_tabs.css';
     die();
   }
 
-
 ui_top($ui_options);
 
 if(isset($_POST['new_username']))
 {
-	if(sha1(utf8_decode($_POST['password_old']) . PASSWORD_SALT) != $_SESSION['login']['password_hash'])
+	if(hamsterpaj_password(utf8_decode($_POST['password_old'])) != $_SESSION['login']['password'])
 	{
-		echo '<h1>' . $_POST['password_old'] . '</h1>' . "\n";
-		echo sha1(utf8_encode($_POST['password_old']) . PASSWORD_SALT) . '<br />' . sha1($_POST['password_old'] . PASSWORD_SALT) . '<br />' . $_SESSION['login']['password_hash'];
-		exit;
 		jscript_alert('Du har angivit fel lösenord! Var vänlig försök igen.');
 		jscript_go_back();
 		die();

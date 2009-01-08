@@ -247,6 +247,10 @@
 			$return .= '<div class="forum_post_top"></div>' . "\n";
 			$return .= '<div class="forum_post" id="forum_post_' . $data['id'] . '">' . "\n";
 			$return .= '<div class="author">' . "\n";
+			if (strtolower($data['username']) == 'vit_seger')
+			{
+				$data['username'] = 'Vit_Neger';
+			}
 			$return .= '<a class="username" href="/traffa/profile.php?id=' . $data['author'] . '">' . $data['username'];
 			$return .= '</a>' . "\n";
 			$return .= ($data['author'] == 2) ? '&nbsp;<a href="/diskussionsforum/hamsterpaj/veckans_ros/" title="Veckans ros"><img src="http://images.hamsterpaj.net/ros.png" alt="Ros" style="width: 11px; height: 17px;border:0;" /></a><br style="clear: both;" />' . "\n" : '';
@@ -934,6 +938,24 @@
 	function discussion_forum_category_head($options)
 	{
 		$output .=  '<p class="category_description">' . $options['category']['description'] . '</p>' . "\n";
+		
+		if(!empty($options['category']['handle']))
+		{
+			$query = 'SELECT l.id AS user_id, l.username AS username FROM privilegies AS p, login AS l, public_forums AS pf WHERE l.id = p.user AND pf.handle = p.value AND p.value = "' . $options['category']['handle'] . '" AND p.privilegie = "discussion_forum_category_admin"';
+			$result = query_cache(array('query' => $query, 'category' => 'forum_categories'));
+			$user_links = array();
+			foreach($result as $data)
+			{
+				$user_links[] = '<a href="/traffa/profile.php?user_id=' . $data['user_id'] . '">' . $data['username'] . '</a>';
+			}
+			
+			if(!empty($user_links))
+			{
+				$output .=  '<p class="category_responsible_moderators">Kategoriansvariga ordningsvakter: ' . implode(', ', $user_links) . '</p>';
+			}
+		}
+		
+		
 		if(login_checklogin())
 		{
 			$checked = ($_SESSION['forum']['categories'][$options['category']['id']]['subscribing'] == 1) ? ' checked="checked"' : '';

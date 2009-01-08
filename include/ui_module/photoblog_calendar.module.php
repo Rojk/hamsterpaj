@@ -6,9 +6,11 @@
 
 		$offset = date('N', $date);
 		$rows = 1;
-		$out.= '<a href="">&laquo;</a>' . "\n";
-			$out .= '<span>' . date('F', $date) . '</span>' . "\n";
-		$out.= '<a href="">&raquo;</a>' . "\n";
+		$out .= '<div id="photoblog_calendar_month">' . "\n";
+			$out.= '<a href="">&laquo;</a>' . "\n";
+				$out .= '<span>' . date('F', $date) . '</span>' . "\n";
+			$out.= '<a href="">&raquo;</a>' . "\n";
+		$out .= '</div>' . "\n";
 		$out .= '<table>' . "\n";
 		$out .= '<tr><th>M</th><th>T</th><th>O</th><th>T</th><th>F</th><th>L</th><th>S</th></tr>' . "\n";
 		$out .= '<tr>';
@@ -32,7 +34,9 @@
 		}
 		$out .= '</tr>' . "\n";
 		$out .= '</table>' . "\n";
-		$out .= '<span>2007</span><strong>2008</strong>' . "\n";
+		$out .= '<div id="photoblog_calendar_year">' . "\n";
+		$out .= '<span class="photoblog_calendar_year_pre">2007</span><span class="photoblog_calendar_year_after">2008</span>' . "\n";
+		$out .= '</div>' . "\n";
 		return $out;
 	}
 	

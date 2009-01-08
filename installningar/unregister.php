@@ -9,10 +9,9 @@
 		die();
 	}
 
-
 	if($_GET['verify'] == 1)
 	{
-		if (sha1(utf8_decode($_POST['password']) . PASSWORD_SALT) == $_SESSION['login']['password_hash']) {
+		if (hamsterpaj_password(utf8_decode($_POST['password'])) == $_SESSION['login']['password']) {
 			login_remove_user($_SESSION['login']['id']);
 			$_SESSION = null;
 			session_destroy();
@@ -37,9 +36,6 @@
 	echo '<br /><input type="submit" value="Ta bort mig" class="button_90">';
 	echo '</form>';
 	$output .= rounded_corners_tabs_bottom();
-//	echo '<a href="' . $_SERVER['PHP_SELF'] . '?verify=1"';
-//	echo ' onclick="return confirm(\'Du är på väg att ta bort dig från hamsterpaj.net Vill du fortsätta?\');">Ta bort mig</a>';
-
 
 	ui_bottom();
 ?>

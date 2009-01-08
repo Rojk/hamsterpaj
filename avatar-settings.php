@@ -15,7 +15,7 @@
 	include($hp_includepath . 'md5image-functions.php');
 	include(PATHS_INCLUDE . 'copy_protection/exif.php');
 	
-	if(!isset($_SESSION['userid']))
+	if(!isset($_SESSION['login']['id']))
 	{
 		jscript_alert('Du måste vara inloggad för att komma åt denna sidan!aaaaa');
 		jscript_location('/');
@@ -40,14 +40,14 @@
 	$avatar_path_thumb =  PATHS_IMAGES . 'users/thumb/';		// Avatarsökvägen
 	$avatar_path_full =  PATHS_IMAGES . 'users/full/';
 	
-	$avatar_tmp_orginal_filename = $avatar_tmp_path . $_SESSION['userid'] . '_orginal.jpg';
-	$avatar_tmp_crop_filename = $avatar_tmp_path . $_SESSION['userid'] . '_crop.jpg';
-	$avatar_tmp_full_filename = $avatar_tmp_path . $_SESSION['userid'] . '_full.jpg';
-	$avatar_tmp_thumb_filename = $avatar_tmp_path . $_SESSION['userid'] . '_thumb.jpg';
+	$avatar_tmp_orginal_filename = $avatar_tmp_path . $_SESSION['login']['id'] . '_orginal.jpg';
+	$avatar_tmp_crop_filename = $avatar_tmp_path . $_SESSION['login']['id'] . '_crop.jpg';
+	$avatar_tmp_full_filename = $avatar_tmp_path . $_SESSION['login']['id'] . '_full.jpg';
+	$avatar_tmp_thumb_filename = $avatar_tmp_path . $_SESSION['login']['id'] . '_thumb.jpg';
 	
-	$avatar_tmp_orginal_url = $hp_url . 'tmp/avatars/' . $_SESSION['userid'] . '_orginal.jpg?' . rand();
-	$avatar_tmp_full_url = $hp_url . 'tmp/avatars/' . $_SESSION['userid'] . '_full.jpg?' . rand();
-	$avatar_tmp_thumb_url = $hp_url . 'tmp/avatars/' . $_SESSION['userid'] . '_thumb.jpg?' . rand();
+	$avatar_tmp_orginal_url = $hp_url . 'tmp/avatars/' . $_SESSION['login']['id'] . '_orginal.jpg?' . rand();
+	$avatar_tmp_full_url = $hp_url . 'tmp/avatars/' . $_SESSION['login']['id'] . '_full.jpg?' . rand();
+	$avatar_tmp_thumb_url = $hp_url . 'tmp/avatars/' . $_SESSION['login']['id'] . '_thumb.jpg?' . rand();
 	
 	$avatar_orginal_width = 442; 	// Efter en bild laddas upp så skalas dom om till en angiven width.
 	$avatar_full_width = 320; 		// Fullstorleksbildens bredd
@@ -160,8 +160,8 @@
 	// Spara
 	if($_POST && $_GET['action'] == 'save') 
 	{
-		$avatar_full_filename = $avatar_path_full . $_SESSION['userid']  . '.jpg';
-		$avatar_thumb_filename = $avatar_path_thumb . $_SESSION['userid']  . '.jpg';
+		$avatar_full_filename = $avatar_path_full . $_SESSION['login']['id']  . '.jpg';
+		$avatar_thumb_filename = $avatar_path_thumb . $_SESSION['login']['id']  . '.jpg';
 
 		rename($avatar_tmp_full_filename, $avatar_full_filename); 
 		rename($avatar_tmp_thumb_filename, $avatar_thumb_filename);
@@ -174,7 +174,7 @@
 		write_copy_protection($avatar_thumb_filename, 'Copyrighted Work');
 		
 		$newdata['userinfo']['image'] = 1;
-		login_save_user_data($_SESSION['userid'], $newdata);
+		login_save_user_data($_SESSION['login']['id'], $newdata);
 		$_SESSION['userinfo']['image'] = 1;
 		
 		/*$message_bar = '<a href="/traffa/profile.php?id=' . $_SESSION['login']['id'] . '">' . $_SESSION['login']['username'] . '</a> laddade nyss upp en ny visningsbild.';
@@ -197,11 +197,11 @@
 	// Ta bort
 	if($_GET['action'] == 'delete') 
 	{
-		$avatar_full_filename = $avatar_path_full . $_SESSION['userid']  . '.jpg';
-		$avatar_thumb_filename = $avatar_path_thumb . $_SESSION['userid']  . '.jpg';
+		$avatar_full_filename = $avatar_path_full . $_SESSION['login']['id']  . '.jpg';
+		$avatar_thumb_filename = $avatar_path_thumb . $_SESSION['login']['id']  . '.jpg';
 		
 		$newdata['userinfo']['image'] = 0;
-		login_save_user_data($_SESSION['userid'], $newdata);
+		login_save_user_data($_SESSION['login']['id'], $newdata);
 		$_SESSION['userinfo']['image'] = 0;
 		
 		if(is_file($avatar_full_filename)) {
@@ -298,7 +298,7 @@ if(isset($_GET['registerproccess']))
 	<input type="button" class="button" value="Nej tack, jag vill inte ladda upp en bild &raquo;"	onclick="location.href=\'/register.php?nextstep=3\'">';
 }
 $out .= '</form>';
-		$avatar_full_filename = $avatar_path_full . $_SESSION['userid']  . '.jpg';
+		$avatar_full_filename = $avatar_path_full . $_SESSION['login']['id']  . '.jpg';
 		if (is_file($avatar_full_filename)) 
 		{
 			$out .= '<h2 style="margin: 0px; ">Din nuvarande bild:</h2>';
