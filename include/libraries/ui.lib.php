@@ -36,57 +36,7 @@ function ui_top($options = array())
 	$output .= '		<link rel="icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />' . "\n";
 	$output .= '		<link rel="shortcut icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />' . "\n";
 
-	$options['javascripts'] = (isset($options['javascripts']) && is_array($options['javascripts'])) ? $options['javascripts'] : array();
 	$options['stylesheets'] = (isset($options['stylesheets']) && is_array($options['stylesheets'])) ? $options['stylesheets'] : array();
-	
-	// Javascripts (Order: jQuery, Womlib (needs jQuery to work properly!), synchronize, The rest...)
-	if(login_checklogin())
-	{
-	$options['javascripts'] = array_merge(array(
-		'jquery.js',
-		'womlib.js',
-		'jquery.dimensions.js',
-		'jquery-ui.js',
-		'synchronize.js'
-	), $options['javascripts']);
-	}
-	else
-	{
-		$options['javascripts'] = array_merge(array(
-		'jquery.js',
-		'womlib.js',
-		'jquery.dimensions.js',
-		'jquery-ui.js'
-	), $options['javascripts']);
-	}
-	
-	$options['javascripts'][] = 'ui_server_message.js';
-	$options['javascripts'][] = 'scripts.js';
-	$options['javascripts'][] = 'steve.js';
-	$options['javascripts'][] = 'new_guestbook.js';
-	$options['javascripts'][] = 'forum.js';
-	$options['javascripts'][] = 'posts.js';
-	$options['javascripts'][] = 'abuse_report.js';
-	$options['javascripts'][] = 'poll.js';
-	$options['javascripts'][] = 'swfobject.js';
-	$options['javascripts'][] = 'md5.js';
-	$options['javascripts'][] = 'xmlhttp_login.js';
-	$options['javascripts'][] = 'xmlhttp.js';
-	$options['javascripts'][] = 'fult_dhml-skit_som_faar_bilder_att_flyga.js';
-	$options['javascripts'][] = 'wave_effect.js';
-	$options['javascripts'][] = 'joels_hackerkod.js';
-	$options['javascripts'][] = 'ui.js';
-	$options['javascripts'][] = 'ui_modules.js';
-	$options['javascripts'][] = 'ui_business_card.js';
-	$options['javascripts'][] = 'ui_multisearch.js';
-	if(!login_checklogin())
-	{
-		$options['javascripts'][] = 'tiny_reg_form.js';
-	}
-	if($_SESSION['login']['id'] > 0)
-	{
-		$options['javascripts'][] = 'stay_online.js';
-	}
 	
 	// Stylesheets
 	array_unshift($options['stylesheets'], 'ui.css');
@@ -103,7 +53,6 @@ function ui_top($options = array())
 	
 	// Remove duplicates
 	$options['stylesheets'] = array_unique($options['stylesheets']);
-	$options['javascripts'] = array_unique($options['javascripts']);
 	
 	$output .= '<style type="text/css">' . "\n";
 	foreach($options['stylesheets'] as $stylesheet)
@@ -114,16 +63,26 @@ function ui_top($options = array())
 
 	// Create HP namespace...
 	$output .= '<script type="text/javascript" language="javascript">var hp = new Object();</script>' . "\n";
+	$output .= '<script type="text/javascript" language="javascript">' . 'hp.login_checklogin = function(){ return ' . (login_checklogin() ? 'true' : 'false') . '; }' . '</script>' . "\n";
 	
+	$options['javascripts'] = (isset($options['javascripts']) && is_array($options['javascripts'])) ? $options['javascripts'] : array();
+	$javascripts_path = PATHS_WEBROOT . 'javascripts/';
+	if(ENVIRONMENT == 'development')
+	{
+		global $js_compress_important_files; // standard_javascripts.conf.php
+		foreach($js_compress_important_files as $javascript)
+		{
+			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/' . $javascript . '?version=' . filemtime(PATHS_WEBROOT . 'javascripts/' . $javascript) . '"></script>' . "\n";
+		}
+	}
+	else
+	{
+		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/merged.js') . '.js"></script>' . "\n";
+	}
+	$options['javascripts'] = array_unique($options['javascripts']);
 	foreach($options['javascripts'] as $javascript)
 	{
 		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/' . $javascript . '?version=' . filemtime(PATHS_WEBROOT . 'javascripts/' . $javascript) . '"></script>' . "\n";
-	}
-	if ($_SESSION['login']['id'] == 682454 && rand(1, 21) == 10)
-	{
-		$output .= '<script type="text/javascript">' . "\n";
-		$output .= 'alert("Okej då, Joar är bättre :O ;)");' . "\n";
-		$output .= '</script>' . "\n";
 	}
 	
 	$output .= $options['header_extra'];
@@ -144,11 +103,11 @@ function ui_top($options = array())
 	
 	
 	// A big notice-bar shown on top, 60px height.
-/*
-	$full_page_notice = '<h2>Trubbel med spelsystemet</h2><p>Just nu har vi problem med att få nya spel att fungera ordentligt - vi jobbar på saken!</p>';
-
+/*	
+	$full_page_notice = '<h2>Något är jävligt fel med Amanda. Lef felsöker, därför kan det vara lite mobbat för stunden</h2>';
+	$full_page_notice .= '<span>Lol</span>';
 	$full_page_notice_id = 'dynamadsic01ochumbaaerkaera'; //Set this to a unique ID for this notice
-*/
+*/	
 	// Don't remove those lines
 	if(isset($full_page_notice) && $_COOKIE[$full_page_notice_id] != 'closed')
 	{

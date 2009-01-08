@@ -5,6 +5,9 @@ Rewritebase /
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^javascripts/merge_?([0-9]+).js$ tmp/javascripts/merged.js?$1 [L]
+
 RewriteRule ^stylesheets/photoblog_?(.*)_?(.*)_.css$ stylesheets/photoblog.css.php?$1 [L]
 RewriteRule ^stylesheets/photoblog.css$ stylesheets/photoblog.css.php?$1 [L]
 

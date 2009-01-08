@@ -25,4 +25,4 @@ hp.birthday = {
 	}
 }
 
-womAdd("hp.birthdayinit()");
+//womAdd("hp.birthdayinit()");

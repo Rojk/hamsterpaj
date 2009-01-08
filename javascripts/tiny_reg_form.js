@@ -50,4 +50,7 @@ function tiny_reg_form_enable()
 	}
 }
 
-womAdd('tiny_reg_form_enable()');
+if(hp.login_checklogin())
+{
+	womAdd('tiny_reg_form_enable()');
+}

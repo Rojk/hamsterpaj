@@ -14,19 +14,13 @@
 @import url('/stylesheets/downtime.css');
 </style>
 
-<script type="text/javascript" language="javascript" src="/javascripts/womlib.js?version=1178622179"></script>
-<script type="text/javascript" language="javascript" src="/javascripts/steve.js?version=1190383885"></script>
-
 </head>
 <body>
-	
-<h1>N
-<Img src="http://images.hamsterpaj.net/steve/steve.gif" id="steve" />
-
-<img src="http://images.hamsterpaj.net/fun_images/finger_genom_oegat.jpg" />
-<img src="http://images.hamsterpaj.net/fun_images/kiss_i_ansiktet.jpg" />
-<img src="http://images.hamsterpaj.net/fun_images/fastnat_i_stolen.jpg" />
-</div>
+<h1>Nu sitter vi och pillar med ngt, så nu är sidan nere för stunden. *cut* *cut* *cut*</h1>
+<h2>Varför inte underhålla sig med lite meeblings? </h2>
+<object style="width: 627px; height: 470px;" data="http://amuse.hamsterpaj.net/distribute/game/meeblings_2.swf" type="application/x-shockwave-flash">
+	<param value="http://amuse.hamsterpaj.net/distribute/game/meeblings_2.swf" name="movie"/>
+</object>
 	
 </body>
-</html>
+</html> 

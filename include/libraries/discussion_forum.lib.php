@@ -41,7 +41,7 @@
 		$query .= ($options['threads_only'] == true) ? ' AND p.removed = 0' : '';
 		$query .= (isset($options['min_quality_level'])) ? ' AND pf.quality_level >= ' . $options['min_quality_level'] : '';
 		$query .= (isset($options['max_quality_level'])) ? ' AND pf.quality_level <= ' . $options['max_quality_level'] : '';
-		$query .= (isset($options['thread_handle'])) ? ' AND p.handle LIKE "' . str_replace('_', '\\_', $options['thread_handle']) . '"' : '';
+		$query .= (strlen($options['thread_handle']) >= 1) ? ' AND p.handle LIKE "' . str_replace('_', '\\_', $options['thread_handle']) . '"' : '';
 		$query .= (isset($options['forum_id'])) ? ' AND p.forum_id = "' . $options['forum_id'] . '"' : '';
 		$query .= ($options['only_subscriptions'] == true) ? ' AND rp.subscribing = "true"' : '';
 		$query .= ($options['force_unread_posts'] == true) ? ' AND rp.posts < p.child_count' : '';
@@ -938,6 +938,24 @@
 	function discussion_forum_category_head($options)
 	{
 		$output .=  '<p class="category_description">' . $options['category']['description'] . '</p>' . "\n";
+		
+		if(!empty($options['category']['handle']))
+		{
+			$query = 'SELECT l.id AS user_id, l.username AS username FROM privilegies AS p, login AS l, public_forums AS pf WHERE l.id = p.user AND pf.handle = p.value AND p.value = "' . $options['category']['handle'] . '" AND p.privilegie = "discussion_forum_category_admin"';
+			$result = query_cache(array('query' => $query, 'category' => 'forum_categories'));
+			$user_links = array();
+			foreach($result as $data)
+			{
+				$user_links[] = '<a href="/traffa/profile.php?user_id=' . $data['user_id'] . '">' . $data['username'] . '</a>';
+			}
+			
+			if(!empty($user_links))
+			{
+				$output .=  '<p class="category_responsible_moderators">Kategoriansvariga ordningsvakter: ' . implode(', ', $user_links) . '</p>';
+			}
+		}
+		
+		
 		if(login_checklogin())
 		{
 			$checked = ($_SESSION['forum']['categories'][$options['category']['id']]['subscribing'] == 1) ? ' checked="checked"' : '';

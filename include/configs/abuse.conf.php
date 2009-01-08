@@ -44,7 +44,7 @@
 	$abuse_types['cammsn']['description'] = 'Har du P12-skölden aktiverad i gästboken, och frågar folk fortfarande om msn eller cam?';
 
 	$abuse_types['offensive']['label'] = 'Stötande bilder';
-	$abuse_types['offensive']['description'] = 'Rasistiska, nazistiska eller på något annat sätt upplevs som kränkande.';
+	$abuse_types['offensive']['description'] = 'Rasistiska, nazistiska eller på något annat sätt upplevs som kränkande. Om någon här på Hamsterpaj är drabbad så glöm inte att ange dess användarnamn.';
 	
 	$abuse_types['nudity']['label'] = 'Nakenbilder';
 	$abuse_types['nudity']['description'] = 'Bilder som är lite för lättklädda.';
