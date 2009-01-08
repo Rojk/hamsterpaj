@@ -3,7 +3,7 @@
 <head>
 <meta name="description" content="" />
 <meta name="keywords" content="" />
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Hamsterpaj ligger nere för underhåll just nu</title>
 <link rel="icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />
 <link rel="shortcut icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />
