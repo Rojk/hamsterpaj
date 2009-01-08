@@ -1,7 +1,7 @@
 /*************************************************************
 * Window Onload Manager (WOM) v1.0
 * Author: Justin Barlow - www.netlobo.com
-*
+*  
 * Description:
 * The WOM library of functions allows you to easily call
 * multiple javascript functions when your page loads.

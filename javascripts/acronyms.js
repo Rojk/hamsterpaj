@@ -12,6 +12,8 @@ function expand_contract_acronym()
 
 function make_acronyms_clickable()
 {
+try
+{
 	var items = document.getElementById('acronyms').getElementsByTagName('li');
 	for(var i = 0; i < items.length; i++)
 	{
@@ -50,6 +52,10 @@ function make_acronyms_clickable()
 		}
 	}
 }
+catch(err) {
+	alert(err.description);
+}
 
 womAdd("make_acronyms_clickable()");
 womOn();
+}
