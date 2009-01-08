@@ -41,7 +41,7 @@
 		$query .= ($options['threads_only'] == true) ? ' AND p.removed = 0' : '';
 		$query .= (isset($options['min_quality_level'])) ? ' AND pf.quality_level >= ' . $options['min_quality_level'] : '';
 		$query .= (isset($options['max_quality_level'])) ? ' AND pf.quality_level <= ' . $options['max_quality_level'] : '';
-		$query .= (isset($options['thread_handle'])) ? ' AND p.handle LIKE "' . str_replace('_', '\\_', $options['thread_handle']) . '"' : '';
+		$query .= (strlen($options['thread_handle']) >= 1) ? ' AND p.handle LIKE "' . str_replace('_', '\\_', $options['thread_handle']) . '"' : '';
 		$query .= (isset($options['forum_id'])) ? ' AND p.forum_id = "' . $options['forum_id'] . '"' : '';
 		$query .= ($options['only_subscriptions'] == true) ? ' AND rp.subscribing = "true"' : '';
 		$query .= ($options['force_unread_posts'] == true) ? ' AND rp.posts < p.child_count' : '';
