@@ -120,6 +120,7 @@ hp.photoblog = {
 			this.make_nextprev();
 			this.make_ajax();
 			this.make_keyboard();
+			this.make_comments();
 			
 			this.load_hashimage();
 		},
@@ -281,6 +282,26 @@ hp.photoblog = {
 			});
 		},
 		
+		make_comments: function() {
+			$('textarea[name=comment]').focus(function() {
+				if ( ! this.has_changed ) {
+					this.orig_value = this.value;
+					this.value = '';
+					this.has_changed = true;
+				}
+				
+				if ( this.value == this.orig_value ) {
+					this.value = '';
+				}
+			}).blur(function() {
+				if ( this.value == '' ) {
+					this.value = this.orig_value;
+					this.is_orig = true;
+				}
+			});
+		},
+		
+		// import future
 		make_cache: function() {
 			this.cache = $('<div style="display: none" id="photoblog_cache"></div>').appendTo(document.body);
 		},
