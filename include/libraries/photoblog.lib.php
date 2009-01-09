@@ -327,6 +327,67 @@
 		return mysql_insert_id();
 	}
 	
+	function photoblog_comments_list($comments, $options)
+	{
+		$out .= '<div id="photoblog_comments_list">' . "\n";
+		$out .= '<ul>' . "\n";
+		foreach ($comments as $comment)
+		{
+			$out .= '<li class="photoblog_comment">' . "\n";					
+			$out .= '<div class="photoblog_comment_userinfo">' . "\n";
+			$out .= ui_avatar($comment['user_id']);
+			$out .= '<a href="/traffa/profile.php?user_id=' . $comment['user_id'] . '">' . $comment['username'] . '</a>' . "\n";
+			$out .= '<span>' . $comment['date'] . '</span>' . "\n"; // 31 December
+			$out .= '</div>' . "\n";
+						
+			$out .= '<div class="photoblog_comment_bubble_pointer">' . "\n";
+			$out .= '<div class="photoblog_comment_text">' . "\n";
+			$out .= '<p>' . nl2br($comment['comment']) . '</p>' . "\n";
+			if(isset($comment['answer']))
+			{
+				$out .= '<div class="photoblog_comment_answer">' . "\n";
+				$out .= '<span>Svar av: ' . $photoblog_user['username'] . '</span>' . "\n";
+				$out .= '<p>' . nl2br($comment['answer']) . '</p>' . "\n";
+				$out .= '</div>' . "\n";
+			}
+			$out .= '</div' . "\n";
+			$out .= '</div>' . "\n";
+			$out .= '<br style="clear: both;" />' . "\n";
+			$out .= '</li>' . "\n";
+		}		
+		$out .= '</ul>';
+		$out .= '</div>' . "\n";	
+		
+		return $out;
+	}
+	
+	function photoblog_comments_form($options)
+	{
+		$out .= '<div id="photoblog_comments_form">' . "\n";
+		$out .= '<ul>' . "\n";
+		$out .= '<li class="photoblog_comment">' . "\n";					
+		$out .= '<div class="photoblog_comment_userinfo">' . "\n";
+		$out .= ui_avatar($_SESSION['login']['id']);
+		$out .= '</div>' . "\n";	
+		$out .= '<div class="photoblog_comment_bubble_pointer">' . "\n";
+		$out .= '<div class="photoblog_comment_text">' . "\n";
+		$out .= '<form action="#" method="post">' . "\n";
+		$out .= '<p>' . "\n";
+		$out .= '<textarea name="comment">Skriv en kommentar... (Ska försvinna automagiskt *skrika på iPhone*)</textarea>' . "\n";
+		$out .= '<br />' . "\n";
+		$out .= '<input class="submit" type="submit" value="Skicka" />' . "\n";
+		$out .= '</p>' . "\n";
+		$out .= '</form>' . "\n";
+		$out .= '</div' . "\n";
+		$out .= '</div>' . "\n";
+		$out .= '<br style="clear: both;" />' . "\n";
+		$out .= '</li>' . "\n";	
+		$out .= '</ul>';
+		$out .= '</div>' . "\n";	
+		
+		return (login_checklogin() ? $out : '');
+	}
+	
 	function photoblog_dates_fetch($options)
 	{		
 		$photo_options = array(
