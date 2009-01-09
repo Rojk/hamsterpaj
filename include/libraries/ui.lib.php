@@ -727,7 +727,7 @@ function ui_module_render($options)
 	
 	function ui_avatar($user_id, $options)
 	{
-		if(!is_numeric($user_id))
+		if(!is_numeric($user_id) && $options['show_nothing'] != true)
 		{
 			return 'Avatar id not numeric, aborting...';
 		}
