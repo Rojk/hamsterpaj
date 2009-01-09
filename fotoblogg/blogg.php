@@ -28,15 +28,22 @@
 						$out .= '<dt>H&auml;r var det tomt...</dt>';
 					}
 					
+					$count = count($photos);
+					
+					$i = 0;
 					foreach ( $photos as $photo )
 					{
+						$i++;
 						if ( $last_day['date'] != $photo['date'] )
 						{
 							$last_day['date'] = $photo['date'];
 							$last_day['formatted'] = date('j/n', strtotime($photo['date']));
 							$out .= '<dt>' . $last_day['formatted'] . '</dt>';
 						}
-						$out .= '<dd><a title="' . $photo['date'] . '" rel="imageid_' . $photo['id'] . '" ' . ($is_first ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
+						$class = '';
+						if ( $i == 1 ) $class = ' class="first-image"';
+						elseif ( $i == $count ) $class = ' class="last-image"';
+						$out .= '<dd' . $class . '><a title="' . $photo['date'] . '" rel="imageid_' . $photo['id'] . '" ' . ($is_first ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
 						$is_first = false;
 					}
 					
