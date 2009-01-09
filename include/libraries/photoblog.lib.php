@@ -367,13 +367,14 @@
 		$out .= '<ul>' . "\n";
 		$out .= '<li class="photoblog_comment">' . "\n";					
 		$out .= '<div class="photoblog_comment_userinfo">' . "\n";
-		$out .= ui_avatar($_SESSION['login']['id']);
+		$avatar_options['show_nothing'] = true;
+		$out .= ui_avatar($_SESSION['login']['id'], $avatar_options);
 		$out .= '</div>' . "\n";	
 		$out .= '<div class="photoblog_comment_bubble_pointer">' . "\n";
 		$out .= '<div class="photoblog_comment_text">' . "\n";
 		$out .= '<form action="#" method="post">' . "\n";
 		$out .= '<p>' . "\n";
-		$out .= '<textarea name="comment">Skriv en kommentar... (Ska försvinna automagiskt *skrika på iPhone*)</textarea>' . "\n";
+		$out .= '<textarea name="comment">Skriv en kommentar... (Ska försvinna automagiskt *skrika på iPhone*) Och om man inte är inloggad ska man få upp en såndär söt tiny register ruta.</textarea>' . "\n";
 		$out .= '<br />' . "\n";
 		$out .= '<input class="submit" type="submit" value="Skicka" />' . "\n";
 		$out .= '</p>' . "\n";
@@ -385,7 +386,7 @@
 		$out .= '</ul>';
 		$out .= '</div>' . "\n";	
 		
-		return (login_checklogin() ? $out : '');
+		return $out;
 	}
 	
 	function photoblog_dates_fetch($options)
