@@ -14,8 +14,7 @@ require($hp_includepath . 'avataradmin-functions.php');
 
 if(!is_privilegied('avatar_admin'))
 {
-	header('location: /');
-	die();
+	die('Fulhaxxor.');
 }
 
 ui_top($ui_options);
@@ -97,13 +96,20 @@ function list_avatars()
 			echo '<table><tr>';
 			$selected = '';
 			if (isset($_GET['selectall'])) { $selected = 'checked '; }
-			echo '<td><input ' . $selected . 'type="radio" name="user' . $data['id'] . '" value="2"></td>';
-			echo '<td><input type="radio" name="user' . $data['id'] . '" value="3"></td>';
-			echo '<td><input type="radio" name="user' . $data['id'] . '" value="4"></td>';
+			echo '<td><input ' . $selected . 'type="radio" id="yes_' . $data['id'] . '" name="user_' . $data['id'] . '" value="2"></td>';
+			echo '<td><input type="radio" id="no_' . $data['id'] . '" name="user' . $data['id'] . '" value="3"></td>';
+			echo '<td><input type="radio" id="block_' . $data['id'] . '" name="user' . $data['id'] . '" value="4"></td>';
 			echo '</tr><tr>';
-			echo '<td style="text-align: center;"><a style="cursor:  pointer;" onclick="document.avatarform.user' . $data['id'] . '[0].checked = true;">Y</a></td>';
-			echo '<td style="text-align: center;"><a style="cursor:  pointer;" onclick="document.avatarform.user' . $data['id'] . '[1].checked = true;">N</a></td>';
-			echo '<td style="text-align: center;"><a style="cursor:  pointer;" onclick="document.avatarform.user' . $data['id'] . '[2].checked = true;">X</a></td>';
+			
+			echo '<td style="text-align: center;"><label for="yes_' . $data['id'] . '">Y</label></td>';
+			echo '<td style="text-align: center;"><label for="no_' . $data['id'] . '">N</label></td>';
+			echo '<td style="text-align: center;"><label for="block_' . $data['id'] . '">X</label></td>';
+			
+			/*
+			echo '<td style="text-align: center;"><a style="cursor:  pointer;" onclick="document.avatarform.user_' . $data['id'] . '[0].checked = true;">Y</a></td>';
+			echo '<td style="text-align: center;"><a style="cursor:  pointer;" onclick="document.avatarform.user_' . $data['id'] . '[1].checked = true;">N</a></td>';
+			echo '<td style="text-align: center;"><a style="cursor:  pointer;" onclick="document.avatarform.user_' . $data['id'] . '[2].checked = true;">X</a></td>';
+			*/
 			echo '</tr></table>';
 			$columns++;
 			if($columns == 6)
