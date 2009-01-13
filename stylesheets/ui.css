@@ -558,7 +558,7 @@ h3 {
 	padding: 10px 0px 0 10px;
 	width: 638px; 
 	float: left;
-	overflow-x: hidden;
+	overflow: hidden;
 	clear: left;
 }
 

@@ -4,7 +4,6 @@
 	$ui_options['menu_path'] = array('installningar');
 	require(PATHS_INCLUDE . 'traffa-definitions.php');
 
-	$ui_options['javascripts'][] = 'zip_codes.js';
 	$ui_options['javascripts'][] = 'settings.js';
 
 	$ui_options['stylesheets'][] = 'user_profile.css';
@@ -70,14 +69,21 @@
 				$newdata['userinfo']['birthday'] = (($_SESSION['login']['id'] == 827889) ? '2000-04-15' : $_POST['birth_year']) . '-' . $_POST['birth_month'] . '-' . $_POST['birth_day'];
 			}
 			$zip_code = str_replace(' ', '', $_POST['zip_code']);
-			$newdata['userinfo']['zip_code'] = is_numeric($zip_code) ? $zip_code : 0;
 			if(is_numeric($zip_code))
 			{
 				$query = 'SELECT x_rt90, y_rt90 FROM zip_codes WHERE zip_code = "' . $zip_code . '" LIMIT 1';
 				$result = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 				$data = mysql_fetch_assoc($result);
-				$_SESSION['userinfo']['x_rt90'] = $data['x_rt90'];
-				$_SESSION['userinfo']['y_rt90'] = $data['y_rt90'];
+				if(!empty($data))
+				{
+					$newdata['userinfo']['zip_code'] = is_numeric($zip_code) ? $zip_code : 0;
+					$_SESSION['userinfo']['x_rt90'] = $data['x_rt90'];
+					$_SESSION['userinfo']['y_rt90'] = $data['y_rt90'];
+				}
+				else
+				{
+					jscript_alert('Men det postnummret fanns ju inte i Sveariket. Fast vi ändrar allt annat åt dig ändå =)');
+				}
 			}
 
 			$newdata['userinfo']['cell_phone'] = $_POST['cell_phone'];
@@ -193,31 +199,10 @@
 	$out .= '</select>' . "\n";
 	$out .= '<br /><br />' . "\n\n";
 ?>
-	<script>
-		function settings_zip_code_keyup()
-		{
-			user_zip_code = document.getElementById('settings_zip_code').value;
-			if(user_zip_code == '' || user_zip_code == '0')
-			{
-				var code_label = 'Inget nummer angivet';
-				document.getElementById('optional_info_submit').disabled = false;
-			}
-			else if(zip_codes[user_zip_code])
-			{
-				var code_label = zip_codes[user_zip_code];
-				document.getElementById('optional_info_submit').disabled = false;
-			}
-			else
-			{
-				var code_label = '<strong style="color: red;">Ogitligt postnummer</strong>';
-				document.getElementById('optional_info_submit').disabled = true;
-			}
-			document.getElementById('zip_code_label').innerHTML = code_label;
-		}
-	</script>
+
 <?php
 	$out .= '<strong>Postnummer</strong><br />' . "\n";
-	$out .= '<input autocomplete="off" type="text" name="zip_code" id="settings_zip_code" value="' . $_SESSION['userinfo']['zip_code'] . '" onkeyup="settings_zip_code_keyup()" maxlength="6" style="width: 50px;" /><br />' . "\n";
+	$out .= '<input autocomplete="off" type="text" name="zip_code" id="settings_zip_code" value="' . $_SESSION['userinfo']['zip_code'] . '" maxlength="6" style="width: 50px;" /><br />' . "\n";
 	$out .= '<div id="zip_code_label"> </div>' . "\n";
 	$out .= 'Vet du inte ditt postnummer? Sök på din adress på <a href="http://www.hitta.se" target="_blank">hitta.se</a>, dom har postnummer';
 	$out .= '<br /><br />';

@@ -8,12 +8,14 @@
         die;
     }
     
+    // fetch a single image
     if ( ! isset($_GET['month']) )
     {
         $options = array(
             'id' => $_GET['id']
         );
     }
+    // fetch an entire month
     else
     {
         if ( ! is_numeric($_GET['month']) )

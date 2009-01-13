@@ -59,46 +59,14 @@
 				$out .= 'Not.</p>';
 				$out .= '</div>';
 			$out .= '</div>';
-			$out .= '<div id="photoblog_comments">';
-				$out .= '<h3>Kommentarer</h3><ul>';
-					$out .= '<div id="photoblog_comments_container">' . "\n";
-						$out .= '<ul>' . "\n";
-						$comment1 = array('user_id' => 625058, 'username' => 'Lef', 'comment' => 'Din mamma är så fet!');
-						$comment2 = array('user_id' => 3, 'answer' => 'Jag bryr mig <del>inte</del> visst! Det gör ont när du säger sånt...', 'username' => 'Johan', 'comment' => 'Din med! :( ');
-						$comments = array($comment1, $comment2);
-						foreach ($comments as $comment)
-						{
-							$options['user_id'] = $comment['user_id'];
-							$out .= '<li class="photoblog_comment">' . "\n";
-							
-							$out .= '<div class="photoblog_comment_userinfo">' . "\n";
-							$out .= ui_avatar($comment['user_id']);
-							$out .= '<a href="/traffa/profile.php?user_id=' . $comment['user_id'] . '">' . $comment['username'] . '</a>' . "\n";
-							$out .= '<span>31 December</span>' . "\n";
-							$out .= '</div>' . "\n";
-							
-							$out .= '<div class="photoblog_comment_bubble_pointer">' . "\n";
-								$out .= '<div class="photoblog_comment_text">' . "\n";
-								$out .= '<p>' . nl2br($comment['comment']) . '</p>' . "\n";
-									if(isset($comment['answer']))
-									{
-										$out .= '<div class="photoblog_comment_answer">' . "\n";
-											$out .= '<span>Svar av: ' . $photoblog_user['username'] . '</span>' . "\n";
-											$out .= '<p>' . nl2br($comment['answer']) . '</p>' . "\n";
-										$out .= '</div>' . "\n";
-									}
-								$out .= '</div' . "\n";
-							$out .= '</div>' . "\n";
-							$out .= '<br style="clear: both;" />' . "\n";
-							$out .= '</li>' . "\n";
-						}
-							
-							$out .= '
-						
-						</ul>
-					</div>
-				';
-			$out .= '</div>';
+			
+			// Some test-data
+			$comment1 = array('user_id' => 625058, 'username' => 'Lef', 'comment' => 'Din mamma är så fet!');
+			$comment2 = array('user_id' => 3, 'answer' => 'Jag bryr mig <del>inte</del> visst! Det gör ont när du säger sånt...', 'username' => 'Johan', 'comment' => 'Din med! :( ');
+			$comments = array($comment1, $comment2);
+			
+			$out .= photoblog_comments_form($options);
+			$out .= photoblog_comments_list($comments);
 		}
 		else
 		{		
