@@ -96,7 +96,7 @@ function list_avatars()
 			echo '<table><tr>';
 			$selected = '';
 			if (isset($_GET['selectall'])) { $selected = 'checked '; }
-			echo '<td><input ' . $selected . 'type="radio" id="yes_' . $data['id'] . '" name="user_' . $data['id'] . '" value="2"></td>';
+			echo '<td><input ' . $selected . 'type="radio" id="yes_' . $data['id'] . '" name="user' . $data['id'] . '" value="2"></td>';
 			echo '<td><input type="radio" id="no_' . $data['id'] . '" name="user' . $data['id'] . '" value="3"></td>';
 			echo '<td><input type="radio" id="block_' . $data['id'] . '" name="user' . $data['id'] . '" value="4"></td>';
 			echo '</tr><tr>';
