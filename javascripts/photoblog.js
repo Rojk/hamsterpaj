@@ -304,7 +304,7 @@ hp.photoblog = {
 	},
 	
 	make_comments: function() {
-		$('#photoblog_comment_text textarea').focus(function() {
+		$('.photoblog_comment_text textarea').focus(function() {
 			if ( ! this.has_changed ) {
 				this.orig_value = this.value;
 				this.value = '';
