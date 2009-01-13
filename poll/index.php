@@ -61,7 +61,7 @@
 				$schedule['type'] = 'poll';
 				schedule_event_add($schedule);
 
-				$output .= '<h1>Undersökningen på plats! Seså, gör en till tjockis!</h1>' . "\n";
+				$output .= '<h1>Undersökningen på plats! Seså, gör en till, tjockis!</h1>' . "\n";
 				$output .= poll_form();
 			}
 			else
