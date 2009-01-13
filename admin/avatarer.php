@@ -130,7 +130,7 @@ function list_avatars()
 function preform_avatar_action($data, $validator)
 {
 	foreach ($data as $uid => $status) {
-		$uid = preg_match('/^user_([0-9]+)$)/', "$1", $uid);
+		$uid = substr($uid, 5);
 		if (is_numeric($status) && is_numeric($uid))
 		{
 			if ($status == 2)
