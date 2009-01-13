@@ -54,14 +54,14 @@
 			$output .= poll_form();
 			break;
 		case 'create':
-			if($request['poll']['type'] == 'daily')
+			if($request['poll']['type'] == 'daily' && is_privilegied('frontpage_poll_admin'))
 			{
 				$schedule['data'] = serialize($request['poll']);
 				$schedule['release'] = strtotime($request['poll']['release']);
 				$schedule['type'] = 'poll';
 				schedule_event_add($schedule);
 
-				$output .= '<h1>Undersökningen på plats! Seså, gör en till tjockis!</h1>' . "\n";
+				$output .= '<h1>Undersökningen på plats! Seså, gör en till, tjockis!</h1>' . "\n";
 				$output .= poll_form();
 			}
 			else

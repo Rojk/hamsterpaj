@@ -97,8 +97,8 @@ function list_avatars()
 			$selected = '';
 			if (isset($_GET['selectall'])) { $selected = 'checked '; }
 			echo '<td><input ' . $selected . 'type="radio" id="yes_' . $data['id'] . '" name="user_' . $data['id'] . '" value="2"></td>';
-			echo '<td><input type="radio" id="no_' . $data['id'] . '" name="user' . $data['id'] . '" value="3"></td>';
-			echo '<td><input type="radio" id="block_' . $data['id'] . '" name="user' . $data['id'] . '" value="4"></td>';
+			echo '<td><input type="radio" id="no_' . $data['id'] . '" name="user_' . $data['id'] . '" value="3"></td>';
+			echo '<td><input type="radio" id="block_' . $data['id'] . '" name="user_' . $data['id'] . '" value="4"></td>';
 			echo '</tr><tr>';
 			
 			echo '<td style="text-align: center;"><label for="yes_' . $data['id'] . '">Y</label></td>';
@@ -130,7 +130,7 @@ function list_avatars()
 function preform_avatar_action($data, $validator)
 {
 	foreach ($data as $uid => $status) {
-		$uid = substr($uid, 4);
+		$uid = substr($uid, 5);
 		if (is_numeric($status) && is_numeric($uid))
 		{
 			if ($status == 2)
@@ -139,14 +139,7 @@ function preform_avatar_action($data, $validator)
 			}
 			if ($status == 3)
 			{
-				if ($uid == 573633)
-				{
-					validate_image($uid, $validator);
-				}
-				else
-				{
-					refuse_image($uid, $validator);
-				}
+				refuse_image($uid, $validator);
 			}
 			if ($status == 4)
 			{

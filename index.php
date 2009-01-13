@@ -44,8 +44,7 @@
 		{
 			$out .= '<li class="module_noframe">' . "\n";			
 		}
-//		$regexp = '#(href="?)([a-zA-Z0-9.-_Ã¥Ã¤Ã¶Ã…Ã„Ã–&()~/=]{4,})"#eis';
-		$regexp = '#(href="?)([a-zA-Z0-9\:\.\-\_åäöÅÄÖ&\(\)~\/=]{4,})"#eis';
+		$regexp = '#(href="?)([a-zA-Z0-9\:\.\-\_åäöÅÄÖ&\(\)~\/=?]{4,})"#eis';
 		$o = preg_replace($regexp, "'href=\"/fp_module_click.php?id=" . $module['id'] . "&url=' . base64_encode(stripcslashes('$2')) . '\"'", $o);
 		$out .= $o;
 
