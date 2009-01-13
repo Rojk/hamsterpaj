@@ -34,7 +34,7 @@ if(ENVIRONMENT != 'development')
 		if($file_id < 10) echo ' ';
 		if($file_id < 100) echo ' ';
 		echo $file_id . ' | ' . filemtime($javascripts_path . $file) . ' | ' . filemtime($merged_file_path . $file) . ' | ' . $file . str_repeat(' ', $maxlen - strlen($file)) . '| ';
-		if((filemtime($javascripts_path . $file) >= filemtime($merged_file_path . $file)) || FORCE_UPDATE_JS_LIB)
+		if(filemtime($javascripts_path . $file) >= filemtime($merged_file_path . $file))
 		{
 			$file_contents = file_get_contents($javascripts_path . $file);
 			$packed = JSMin::minify($file_contents);
@@ -61,26 +61,5 @@ if(ENVIRONMENT != 'development')
 	$end_time = microtime(true);
 	echo "\n";
 	echo $updated_files . ' of ' . sizeof($update_list) . ' files updated in ' . ($end_time - $start_time) . ' seconds. Totally ' . $total_saved_bit . ' bit saved.' . "\n";
-	
-	if(CLEAR_JS_SPECIFIC_LIB)
-	{
-		echo "\n";
-		echo 'Files in merged path:' . "\n";
-		$dir = dir($merged_file_path);
-		while(($file = $dir->read()) !== false)
-		{
-			if(in_array($file, $js_compress_important_files))
-			{
-				echo $file . '<---------------- Removed (refresh)';
-				unlink($merged_file_path . $file);
-			}
-			else
-			{
-				echo $file;
-			}
-			echo "\n";
-		}
-		$dir->close();
-	}
 }
 ?>
