@@ -115,8 +115,24 @@
 				mkdir(PHOTOS_PATH . $format . '/' . $folder);
 			}
 		}
-
-		$image_size = getimagesize($options['file']);
+		
+		if (!$image_size = getimagesize($options['file']))
+		{
+			throw new Exception('Är du säker på att det var en bild du laddade upp?');
+		}
+		
+		$dimensions = array(
+			$image_size[0],
+			$image_size[1]
+		);
+		
+		foreach ($dimensions as $width_or_height)
+		{
+			if ($width_or_height > 4000)
+			{
+				throw new Exception('Whoa! Har du fotograferat en långtradare eller varför är bilden så stor?<br />Maxdimensionerna är 4000 x 4000 pixlar.');
+			}
+		}
 		
 		$square = min($image_size[0], $image_size[1]);
 		$width = round($square * 0.9);
