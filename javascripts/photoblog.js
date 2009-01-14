@@ -600,28 +600,41 @@ hp.photoblog = {
 			}
 		},
 		
-		get_prev_date: function() {
+		get_x_date: function(type) {
+			var delta = (type == 'next') ? -1 : 1;
+			
 			var month_index = this.current_month_select[0].selectedIndex;
 			var year_index = this.year[0].selectedIndex;
+			var years_available = this.current_month_select[0].options.length - 1;
 			
-			if ( month_index == 0 ) {
+			// we need to select a new year
+			if ( (type == 'prev' && month_index == 0) || (type == 'next' && month_index == years_available) ) {
+				if ( type == 'next' ) console.log('last month fucker');
 				// out of luck, mate
-				if ( year_index == 0 ) {
+				if ( (type == 'prev' && year_index == years_available) || (type == 'next' && year_index == 0) ) {
 					return false;
 				} else {
-					var new_year = this.years[year_index - 1];
-					var new_month = new_year[0];
-					var value_year = this.year[0].options[year_index - 1].value;
-					var value_month = new_month.options[new_month.options.length - 1].value;
+					var new_year = this.years[year_index + delta]; // -- type dependant
+					var new_month = new_year[0]; // the <select> for the new month
+					var value_year = this.year[0].options[year_index + delta].value; // -- type dependant
+					var value_month = new_month.options[new_month.options.length - 1].value; // -- ?
 					return value_year + value_month;
 				}
 			} else {
 				var value_year = this.current_year;
 				var new_month = this.years[year_index][0];
-				var value_month = new_month.options[month_index - 1].value;
+				var value_month = new_month.options[month_index - delta].value; // -- ???
 				return value_year + value_month;
 			}
 			return false;
+		},
+		
+		get_next_date: function() {
+			return this.get_x_date('next');
+		},
+		
+		get_prev_date: function() {
+			return this.get_x_date('prev');
 		}
 	},
 	
