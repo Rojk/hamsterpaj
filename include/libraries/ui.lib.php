@@ -74,15 +74,19 @@ function ui_top($options = array())
 		{
 			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/' . $javascript . '?version=' . filemtime(PATHS_WEBROOT . 'javascripts/' . $javascript) . '"></script>' . "\n";
 		}
+		foreach($options['javascripts'] as $javascript)
+		{
+			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/' . $javascript . '"></script>' . "\n";
+		}
 	}
 	else
 	{
 		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/merged.js') . '.js"></script>' . "\n";
-	}
-	$options['javascripts'] = array_unique($options['javascripts']);
-	foreach($options['javascripts'] as $javascript)
-	{
-		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/specified/' . $javascript) . '.js"></script>' . "\n";
+		$options['javascripts'] = array_unique($options['javascripts']);
+		foreach($options['javascripts'] as $javascript)
+		{
+			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/specified/' . $javascript) . '.js"></script>' . "\n";
+		}
 	}
 	
 	$output .= $options['header_extra'];
