@@ -18,7 +18,7 @@ entertain_temp/*
 music_guess/*
 include/cache/*
 include/live_chat/*
-tmp/avatars/*
+tmp/*
 photo_upload_temp/*
 kvitton/*
 snyggve_temp/full/*
