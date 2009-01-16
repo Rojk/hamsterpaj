@@ -128,10 +128,9 @@ hp.photoblog = {
 		this.load_hashimage();
 		
 		var active_id = hp.photoblog.get_active();
-		if ( active_id.length ) {
-			active_id = hp.photoblog.image_id(active_id);
-			this.set_prevnext(active_id);
-		}
+		active_id = hp.photoblog.image_id(active_id);
+		console.log(active_id);
+		this.set_prevnext(active_id);
 	},
 	
 	make_scroller: function() {
