@@ -160,8 +160,8 @@ hp.photoblog = {
 		
 		this.handle = $('#photoblog_thumbs_handle', this.scroller);
 		
-		this.centralize_active();
 		this.set_scroller_width();
+		this.centralize_active();
 		
 		this.scroller.pWidth = this.scroller.width() - this.handle.width();
 	},
@@ -357,7 +357,7 @@ hp.photoblog = {
 	
 	centralize_active: function() {
 		var thumbsContainer = this.thumbsContainer;
-		var active = hp.photoblog.get_active();//$('.photoblog_active', thumbsContainer);
+		var active = hp.photoblog.get_active();
 		if ( ! active.length || thumbsContainer.sWidth < thumbsContainer.real_width ) {
 			this.scroller.slide_slider(0);
 			return;
@@ -478,8 +478,8 @@ hp.photoblog = {
 			self.set_data(data[0]);
 		};
 		
-		this.set_image(id);
 		this.set_active('a[href=#image-' + id + ']');
+		this.set_image(id);
 		this.set_prevnext(id);
 		this.create_load();
 		$.getJSON('/ajax_gateways/photoblog.json.php?id=' + id, json_callback);
