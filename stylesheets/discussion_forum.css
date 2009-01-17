@@ -1,7 +1,11 @@
 .forum_locator
 {
 	font-size: 12px;
-	padding: 3px 0 0 3px;
+	padding: 5px;
+	background: orange;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	margin: 0;
 }
 
 .forum_locator a
@@ -9,6 +13,15 @@
 	text-decoration: underline;
 	color: #454545;
 	
+}
+
+.forum_locator_ovs
+{
+	background: #D5E3FF;
+	margin: 0;
+	padding: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
 }
 
 .forum_thread_list
@@ -44,7 +57,6 @@
 	padding: 0px;
 	border: 1px solid #ababab;
 	border-spacing: 0px;
-	background: url('http://images.hamsterpaj.net/discussion_forum/category_list_background.png');
 }
 
 .forum_category_list_parent_heading
@@ -62,6 +74,16 @@
 	margin: 0px;
 	padding: 0px;
 	border-bottom: 1px solid #ababab;
+}
+
+.forum_category_list .even
+{
+	background: url('http://images.hamsterpaj.net/discussion_forum/category_list_background_even.png') repeat-x top;
+}
+
+.forum_category_list .uneven
+{
+	background: url('http://images.hamsterpaj.net/discussion_forum/category_list_background_uneven.png') repeat-x bottom;
 }
 
 .forum_category_list td
