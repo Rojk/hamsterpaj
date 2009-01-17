@@ -13,7 +13,29 @@ function refuse_image($userid, $validator)
 		mysql_query($query) or die();
 		if(unlink(PATHS_IMAGES . 'users/full/' . $userid . '.jpg') && unlink(PATHS_IMAGES . 'users/thumb/' . $userid . '.jpg'))
 		{
-			messages_send(2348, $userid, '', $_POST['message'], 0, 7);
+			guestbook_insert(array(
+				'sender' => 2348,
+				'recipient' => $userid,
+				'is_private' => 1,
+				'message' => 'OBS! Detta meddelande har skickats automatiskt. Det är ingen idé att svara på meddelandet, kontakta någon ordningsvakt eller fråga i forumet.
+Din bild har nekats, acceptera det.
+
+Välj en ny bild som följer vår policy:
+
+1) Bilden föreställer dig och ansiktet syns tydligt
+
+2) Det är bara du på bilden
+
+3) Ingen alkohol, ingen porr och inga nazistiska symboler
+
+4) Inget som bryter mot Svensk lag, är upphovsrättskyddat eller är kränkande för någon person förekommer
+
+5) Det är en skarp och ljus bild på dig
+
+6) Bilden är inte taggad från någon annan sida ex. snyggast
+
+7) Du har inte angett rätt ålder/kön så att det överensstämmer med personen på bilden'
+			));
     } 
 		else 
 		{
