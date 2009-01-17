@@ -13,7 +13,7 @@
 		}
 		else
 		{
-			$query = 'SELECT l.username, l.lastaction, l.lastlogon, u.gender, u.birthday, u.image, u.user_status, u.profile_theme, u.gb_entries, z.spot, u.presentation_text, p.gb_anti_p12';
+			$query = 'SELECT l.username, l.lastaction, l.lastlogon, u.gender, u.birthday, u.image, u.user_status, u.profile_theme, u.gb_entries, z.spot, z.zip_code, z.x_rt90, z.y_rt90, u.presentation_text, p.gb_anti_p12';
 			$query .= ' FROM login AS l, userinfo AS u, zip_codes AS z, preferences AS p';
 			$query .= ' WHERE l.id = "' . $options['user_id'] . '" AND u.userid = l.id AND z.zip_code = u.zip_code AND p.userid = l.id';
 			if((!isset($options['show_removed_users'])) || (isset($options['show_removed_users']) && $options['show_removed_users'] == false))
@@ -96,7 +96,28 @@
 		$genders = array('m' => 'kille', 'f' => 'tjej');
 		$out .= (isset($genders[$params['gender']])) ? '<span class="gender">' . $genders[$params['gender']]. '</span> ' : '';		
 		$out .= ($params['birthday'] != '0000-00-00') ? '<span class="age">' . date_get_age($params['birthday']) . '</span> ' : '';
-		$out .= (strlen($params['spot']) > 0) ? '<span class="spot">' . $params['spot']. '</span> ' : '';
+		
+		if($params['x_rt90'] > 0 && $params['y_rt90'] > 0)
+		{
+			$location = $params['spot'];
+			
+		  if(login_checklogin() && $_SESSION['userinfo']['x_rt90'] > 0 && $_SESSION['userinfo']['y_rt90'] > 0 && $params['zip_code'] != $_SESSION['userinfo']['zip_code'])
+		  {
+		    $location .= ' (' . rt90_readable(rt90_distance($params['x_rt90'], $params['y_rt90'], $userinfo['userinfo']['x_rt90'], $userinfo['userinfo']['y_rt90'])) . ')';
+		  }
+		  
+	    /* Note RT90 Y and X values are flipped, due to a "bug" at hitta.se */
+	    /* Reference: daniel.eklund@hitta.se */
+	    
+	    $location .= ' <input type="button" value="Visa på karta" class="button_90" onclick="window.open(\''
+			. 'http://www.hitta.se/LargeMap.aspx?ShowSatellite=false&pointX=' . $params['y_rt90']
+			. '&pointY=' . $params['x_rt90'] . '&cx=' . $params['y_rt90']
+			. '&cy=' . $params['x_rt90'] . '&z=6&name=' . $params['username']
+			. '\', \'user_map_' . $params['username'] . '\', \'location=false, width=750, height=500\');" />' . "\n";
+			
+			$out .= '<span class="spot">' . $location . '</span> ';
+		}
+		
 		if($params['lastaction'] > time() - 600)
 		{
 			$out .= '<span class="online">online</span>' . "\n";
