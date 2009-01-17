@@ -4,7 +4,7 @@
 	$query = 'UPDATE fp_modules SET clicks = clicks + 1 WHERE id = "' . $_GET['id'] . '" LIMIT 1';
 	mysql_query($query);
 	
-	if (preg_match('eis#^(http://)(www\.)(hamsterpaj|pajen|hamsterpajiskolan)\.(net|se)(/|/index.php)$#eis', $_SERVER['HTTP_REFERER']))
+	if (preg_match('#^(http://)(www\.)(hamsterpaj|pajen|hamsterpajiskolan)\.(net|se)/(index.php)#', $_SERVER['HTTP_REFERER']))
 	{
 		event_log_log('fp_module_click');
 		header('Location: ' . base64_decode($_GET['url']));
@@ -35,6 +35,8 @@
 		$out .= '<div id="content" style="padding: 4px; padding-top: 0; text-align: left;">' . "\n";
 		$out .= '<p>' . "\n";
 		$out .= 'Är du säker på att du vill gå vidare till' . "\n";
+		$out .= '</p>' . "\n";
+		$out .= '<p>' . "\n";
 		$out .= '<a href="' . $url . '">' . $url . '</a>' . "\n";
 		$out .= '</p>' . "\n";
 		$out .= '</div>' . "\n";
