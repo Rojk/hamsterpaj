@@ -646,7 +646,7 @@ function group_invite_member($groupid, $username)
 			'sender' => $owner,
 			'recipient' => $userid,
 			'is_private' => 1,
-			'message' => $message
+			'message' => mysql_real_escape_string($message)
 		));
 	}
 	else
