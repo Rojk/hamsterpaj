@@ -72,7 +72,7 @@
 				'sender' => 2348,
 				'recipient' => 57100,
 				'is_private' => 1,
-				'message' => 'Detta är ett förslag från förslagslådan, som numera kommer i GB:' . "\n" . $suggestion['text'];
+				'message' => mysql_real_escape_string('Detta är ett förslag från förslagslådan, som numera kommer i GB:' . "\n") . $suggestion['text']
 			));
 			
 			break;
