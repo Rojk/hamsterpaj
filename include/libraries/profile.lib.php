@@ -103,7 +103,7 @@
 			
 		  if(login_checklogin() && $_SESSION['userinfo']['x_rt90'] > 0 && $_SESSION['userinfo']['y_rt90'] > 0 && $params['zip_code'] != $_SESSION['userinfo']['zip_code'])
 		  {
-		    $location .= ' (' . rt90_readable(rt90_distance($params['x_rt90'], $params['y_rt90'], $userinfo['userinfo']['x_rt90'], $userinfo['userinfo']['y_rt90'])) . ')';
+		    $location .= ' (' . rt90_readable(rt90_distance($params['x_rt90'], $params['y_rt90'], $_SESSION['userinfo']['x_rt90'], $_SESSION['userinfo']['y_rt90'])) . ')';
 		  }
 		  
 	    /* Note RT90 Y and X values are flipped, due to a "bug" at hitta.se */
