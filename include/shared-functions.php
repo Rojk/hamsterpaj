@@ -707,7 +707,7 @@ function clickable_links($str)
 	$str = preg_replace($forum_image_regex, '[IMAGE]', $str);
 	// GAMMAL #((http://|https://|ftp://|www\.)(www\.)?)([a-zA-Z0-9åäöÅÄÖ$\#_%?&-/=+@.:-~()]{4,})#eis
 	// Leta upp länkar
-		$str = preg_replace('#((http://|https://|ftp://|www\.)(www\.)?)([a-zA-Z0-9åäöÅÄÖ$\#_%?&-/=+@.:-~()]{4,})\s#eis', 
+		$str = preg_replace('#((http://|https://|ftp://|www\.)(www\.)?)([a-zA-Z0-9åäöÅÄÖ$\#_%?&-/=+@.:-~()]{4,})(<br />|\s)#eis', 
 							"
 							('$2' != 'http://' && '$2' != 'https://' && '$2' != 'ftp://') ? 
 								'<a href=\"http://$1$4\" target=\"_blank\">' . 
