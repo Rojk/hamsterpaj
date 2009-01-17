@@ -39,7 +39,7 @@
 
 	function hamsterpaj_password($password, $version = 1)
 	{
-		$password_hash = sha1($password . $salt_password);
+		$password_hash = sha1($password . SALT_PASSWORD);
 		return $password_hash;
 	}
 	
@@ -63,6 +63,7 @@
 	define('IMAGE_URL', $url_images);
 	define('STATIC_URL', $url_static);
 	define('ENVIRONMENT', $environment); 
+	define('SALT_PASSWORD', $salt_password); 
 	
 /*
 	################################################################
