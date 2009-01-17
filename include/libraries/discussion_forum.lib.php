@@ -1175,11 +1175,11 @@
 			{
 				if($ov['lastaction'] > time() - 600)
 				{
-					$output .= '<a href="/traffa/profile.php?user_id=' . $ov['user_id'] . '><strong>' . $ov['username'] . '</strong></a> ' . "\n";
+					$output .= '<a href="/traffa/profile.php?user_id=' . $ov['user_id'] . '"><strong>' . $ov['username'] . '</strong></a> ' . "\n";
 				}
 				else
 				{
-					$output .= '<a href="/traffa/profile.php?user_id=' . $ov['user_id'] . '><span>' . $ov['username'] . '</span></a> ' . "\n";
+					$output .= '<a href="/traffa/profile.php?user_id=' . $ov['user_id'] . '"><span>' . $ov['username'] . '</span></a> ' . "\n";
 				}
 			}
 		}
