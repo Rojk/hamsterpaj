@@ -1052,6 +1052,7 @@
 				$data['children'] = $children;
 			}
 			$data['url'] = $options['url_prefix'] . $data['handle'] . '/';
+			
 			$categories[] = $data;
 		}
 		
@@ -1090,7 +1091,24 @@
 				$output .= '<tr class="' . $zebra . '">' . "\n";
 				$output .= '	<td class="name"><a href="' . $category['url'] . '" class="category_name">' . $category['title'] . '</a><br />' . "\n";
 				$category['last_thread_title'] = (strlen($category['last_thread_title']) > 45) ? substr($category['last_thread_title'], 0, 35) . '...' : $category['last_thread_title'];
-				$output .= '	Senaste tråden <a href="' . $category['url'] . $category['last_thread_handle'] . '/sida_1.php">' . $category['last_thread_title'] . '</a> av <a href="/traffa/profile.php?id=' . $category['last_thread_author'] . '">' . $category['last_thread_username'] . '</a></td>' . "\n";
+				$output .= '	Senaste tråden <a href="' . $category['url'] . $category['last_thread_handle'] . '/sida_1.php">' . $category['last_thread_title'] . '</a> av <a href="/traffa/profile.php?id=' . $category['last_thread_author'] . '">' . $category['last_thread_username'] . '</a><br />' . "\n";
+				// Listing moderators in forum category
+				if(isset($category['ovs']))
+				{
+					$output .= '<em>Ansvariga ordningsvakter:</em> ' . "\n";
+					foreach($category['ovs'] as $ov)
+					{
+						if($ov['lastaction'] > time() - 600)
+						{
+							$output .= '<a href="/traffa/profile.php?user_id=' . $ov['id'] . '><strong>' . $ov['username'] . '</strong></a> ' . "\n";
+						}
+						else
+						{
+							$output .= '<a href="/traffa/profile.php?user_id=' . $ov['id'] . '><span>' . $ov['username'] . '</span></a> ' . "\n";
+						}
+					}
+				$output .= '</td>' . "\n";
+				}
 				$output .= '	<td class="thread_count">' . $category['thread_count'] . ' trådar</td>' . "\n";
 				if(login_checklogin())
 				{
@@ -1159,6 +1177,25 @@
 			$output .= forum_thread_paging($options);
 		}
 				
+		$output .= '</div>' . "\n";
+		$output .= '<div class="forum_locator_ovs">' . "\n";
+
+		// Listing moderators in forum category
+		if(isset($category['ovs']))
+		{
+			$output .= '<em>Ansvariga ordningsvakter:</em> ' . "\n";
+			foreach($category['ovs'] as $ov)
+			{
+				if($ov['lastaction'] > time() - 600)
+				{
+					$output .= '<a href="/traffa/profile.php?user_id=' . $ov['id'] . '><strong>' . $ov['username'] . '</strong></a> ' . "\n";
+				}
+				else
+				{
+					$output .= '<a href="/traffa/profile.php?user_id=' . $ov['id'] . '><span>' . $ov['username'] . '</span></a> ' . "\n";
+				}
+			}
+		}
 		$output .= '</div>' . "\n";
 		
 		return $output;
@@ -1450,8 +1487,6 @@
 			'spoiler'=>  array('type' => BBCODE_TYPE_NOARG, 'open_tag' => '<div class="spoiler"><span>Spoiler: <button class="spoiler_control">Visa</button></span><span class="spoiler_content">', 'close_tag' => '</span></div>', 'childs'=>''),
 		);
 		
-		$text = clickable_links($text);
-		
 		if(isset($options['search_highlight']))
 		{
 			$options['search_highlight'] = is_array($options['search_highlight']) ? $options['search_highlight'] : explode(' ', $options['search_highlight']);
@@ -1504,6 +1539,8 @@
 		{
 			$text = setSmilies($text);
 		}
+		
+		$text = clickable_links($text);
 		
 		return $text;
 	}
