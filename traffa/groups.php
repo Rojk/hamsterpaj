@@ -642,7 +642,12 @@ function group_invite_member($groupid, $username)
 		$query = 'INSERT INTO groups_members (groupid, userid, approved) VALUES (' . $groupid . ',' . $userid . ', 3)';
 		mysql_query($query) or die(report_sql_error($query));
 
-		messages_send($owner, $userid, $title, $message, $allowhtml = 1);
+		guestbook_insert(array(
+			'sender' => $owner,
+			'recipient' => $userid,
+			'is_private' => 1,
+			'message' => $message
+		));
 	}
 	else
 	{
