@@ -101,9 +101,6 @@
 
 			// * Fetch group notices...
 			$_SESSION = array_merge($_SESSION, login_load_group_data($user_id, array('groups_members' => array('groupid'))));
-			
-			// * Fetch PM notices...
-			$_SESSION['notices']['unread_messages'] = messages_count_unread($user_id);
 
 			// * Fetch friends notices...
 			$_SESSION['friends'] = friends_fetch_online_smart(array('user_id' => $user_id));
