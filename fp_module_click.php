@@ -4,7 +4,7 @@
 	$query = 'UPDATE fp_modules SET clicks = clicks + 1 WHERE id = "' . $_GET['id'] . '" LIMIT 1';
 	mysql_query($query);
 	
-	if (preg_match('#^(http://)(www\.)(hamsterpaj|pajen|hamsterpajiskolan)\.(net|se)/(index.php)#', $_SERVER['HTTP_REFERER']))
+	if (preg_match('/(http:\/\/)(www\.|)(hamsterpaj|pajen|hamsterpajiskolan)\.(net|se)\/(index.php|)/', $_SERVER['HTTP_REFERER']))
 	{
 		event_log_log('fp_module_click');
 		header('Location: ' . base64_decode($_GET['url']));
