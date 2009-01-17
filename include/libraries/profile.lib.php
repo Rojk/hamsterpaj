@@ -163,9 +163,6 @@
 
 		$profile_modules['guestbook']['label'] = 'Gästbok';
 		$profile_modules['guestbook']['url'] = '/traffa/guestbook.php?view=%USERID%';
-		
-		$profile_modules['old_profile']['label'] = 'Gammal presentation';
-		$profile_modules['old_profile']['url'] = '/traffa/old_profile.php?id=%USERID%';
 
 		$profile_modules['photos']['label'] = 'Fotoalbum';
 		$profile_modules['photos']['url'] = '/traffa/photos.php?user_id=%USERID%';
