@@ -129,7 +129,6 @@ hp.photoblog = {
 		
 		var active_id = hp.photoblog.get_active();
 		active_id = hp.photoblog.image_id(active_id);
-		console.log(active_id);
 		this.set_prevnext(active_id);
 	},
 	
@@ -338,7 +337,6 @@ hp.photoblog = {
 	},
 	
 	set_active: function(active) {
-		//$('#photoblog_thumbs .photoblog_active').removeClass('photoblog_active');
 		hp.photoblog.get_active().removeClass('photoblog_active');
 		$(active).addClass('photoblog_active');
 	},
@@ -352,6 +350,10 @@ hp.photoblog = {
 			var w = outerWidth / innerWidth * outerWidth;
 			this.handle.css('width', Math.max(w, 40));
 		}
+	},
+	
+	reset_scroller: function() {
+		this.scroller.slide_slider(0);
 	},
 	
 	centralize_active: function() {
@@ -522,6 +524,7 @@ hp.photoblog = {
 				
 				if ( i == data.length - 1 ) {
 					img.load(function() {
+						self.reset_scroller();
 						self.thumbsContainer.sWidth = self.thumbsContainer.container_width();
 						self.set_scroller_width();
 						self.scroller.pWidth = self.scroller.width() - self.handle.width();
