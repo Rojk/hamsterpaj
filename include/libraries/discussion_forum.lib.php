@@ -1487,8 +1487,6 @@
 			'spoiler'=>  array('type' => BBCODE_TYPE_NOARG, 'open_tag' => '<div class="spoiler"><span>Spoiler: <button class="spoiler_control">Visa</button></span><span class="spoiler_content">', 'close_tag' => '</span></div>', 'childs'=>''),
 		);
 		
-		$text = clickable_links($text);
-		
 		if(isset($options['search_highlight']))
 		{
 			$options['search_highlight'] = is_array($options['search_highlight']) ? $options['search_highlight'] : explode(' ', $options['search_highlight']);
@@ -1541,6 +1539,8 @@
 		{
 			$text = setSmilies($text);
 		}
+		
+		$text = clickable_links($text);
 		
 		return $text;
 	}
