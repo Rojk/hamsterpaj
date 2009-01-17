@@ -5,7 +5,6 @@
 	
 	ob_start();
 	require('../include/core/common.php');
-	require_once($hp_includepath . 'message-functions.php');
 	require_once(PATHS_INCLUDE . 'libraries/live_chat.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
 

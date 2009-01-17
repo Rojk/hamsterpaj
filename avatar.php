@@ -4,7 +4,6 @@
 	require_once('/storage/www/paths.php');
 	require_once($hp_includepath . 'constants.php');
 	
-	require_once(PATHS_INCLUDE . 'message-functions.php');
   require_once($hp_includepath . 'avataradmin-functions.php');
   require_once($hp_includepath . 'admin-functions.php');
 	
