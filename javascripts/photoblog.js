@@ -242,15 +242,13 @@ hp.photoblog = {
 				// load next/prev month
 				// load first/last image from collection
 				// this means load month will have to return the collection, I think
-				//var is_prev = (self.load_prev_month && t.attr('id') == 'photoblog_prev');
 				var date_month = hp.photoblog.get_month(t);
+				hp.photoblog.year_month.set_date(date_month);
 				self.load_month(
 					date_month,
 					function (data) {
-						//var image_id = (is_prev) ? data[data.length - 1] : data[0];
-						var image_id = 0;
-						console.log('image_id:', image_id);
-						self.load_image(image_id.id);
+						var image_index = (t.attr('id').indexOf('prev') != -1) ? data.length - 1 : 0;
+						self.load_image(data[image_index].id);
 					}
 				);
 			} else {
@@ -335,6 +333,7 @@ hp.photoblog = {
 			'description': $('div', cache)
 		};
 	},
+	// end future
 	
 	set_active: function(active) {
 		hp.photoblog.get_active().removeClass('photoblog_active');
@@ -414,6 +413,7 @@ hp.photoblog = {
 		
 		var url = next_image.attr('href');
 		if ( prevnext[3] ) {
+			console.log('next month');
 			url = '#month-' + hp.photoblog.year_month.get_next_date();
 		}
 		this.next.attr('href', url);
@@ -514,11 +514,11 @@ hp.photoblog = {
 				}
 				var photoname = hp.photoblog.make_thumbname(item.id);
 				
-				var className = '';
-				if ( i == 0 ) className = ' class="first-image"';
-				else if ( i == data.length - 1 ) className = ' class="last-image"';
+				var dd = $('<dd><a href="#image-' + item.id + '"></a></dd>');
 				
-				var dd = $('<dd' + className + '><a href="#image-' + item.id + '"></a></dd>');
+				if ( i == 0 ) dd.addClass('first-image');
+				if ( i == data.length - 1 ) dd.addClass('last-image');
+				
 				nextMonth.before(dd);
 				var img = $('<img alt="" />');
 				
@@ -577,6 +577,7 @@ hp.photoblog = {
 		
 		show: function(new_year) {
 			this.current_year = new_year;
+			this.year.children('[value=' + new_year + ']')[0].selected = true;
 			for ( var i = 0, year; year = this.years[i]; i++ ) {
 				if ( year.attr('id') == 'photoblog_select_month_' + new_year ) {
 					year.css('display', 'inline');
@@ -587,15 +588,28 @@ hp.photoblog = {
 			}
 		},
 		
+		select_month: function(new_month) {
+			this.current_month_select.children('[value=' + new_month + ']').attr('selected', true);
+		},
+		
+		set_date: function(date) {
+			date = date.toString();
+			var year = date.substr(0, 4);
+			var month = date.substr(4, 2);
+			this.show(year);
+			this.select_month(month);
+		},
+		
 		get_x_date: function(type) {
 			var delta = (type == 'next') ? -1 : 1;
 			
 			var month_index = this.current_month_select[0].selectedIndex;
 			var year_index = this.year[0].selectedIndex;
-			var years_available = this.current_month_select[0].options.length - 1;
+			var years_available = this.year[0].options.length - 1;
+			var months_available = this.current_month_select[0].options.length - 1;
 			
 			// we need to select a new year
-			if ( (type == 'prev' && month_index == 0) || (type == 'next' && month_index == years_available) ) {
+			if ( (type == 'prev' && month_index == 0) || (type == 'next' && month_index == months_available) ) {
 				// out of luck, mate
 				if ( (type == 'prev' && year_index == years_available) || (type == 'next' && year_index == 0) ) {
 					return false;
