@@ -119,6 +119,8 @@ hp.photoblog = {
 		this.imageContainer = $('#photoblog_image');
 		this.image = $('img', this.imageContainer);
 		
+		this.prevnext_month = $('#photoblog_nextmonth a, #photoblog_prevmonth a');
+		
 		this.make_scroller();
 		this.make_nextprev();
 		this.make_ajax();
@@ -130,6 +132,8 @@ hp.photoblog = {
 		var active_id = hp.photoblog.get_active();
 		active_id = hp.photoblog.image_id(active_id);
 		this.set_prevnext(active_id);
+		
+		this.make_month();
 	},
 	
 	make_scroller: function() {
@@ -237,7 +241,6 @@ hp.photoblog = {
 		
 		var click_callback = function(e) {
 			var t = $(this);
-			var id = hp.photoblog.image_id(t);
 			if ( t.attr('href').indexOf('#month-') != -1 ) {
 				// load next/prev month
 				// load first/last image from collection
@@ -252,6 +255,7 @@ hp.photoblog = {
 					}
 				);
 			} else {
+				var id = hp.photoblog.image_id(t);
 				self.load_image(id);
 			}
 		};
@@ -261,6 +265,7 @@ hp.photoblog = {
 		
 		if ( ! thumbsOnly) {
 			this.prevnext.click(click_callback);
+			this.prevnext_month.click(click_callback);
 		}
 	},
 	
@@ -312,6 +317,11 @@ hp.photoblog = {
 				this.is_orig = true;
 			}
 		});
+	},
+	
+	make_month: function(all) {
+		var next = $('#photoblog_nextmonth a').attr('href', '#month-' + hp.photoblog.year_month.get_next_date());
+		var prev = $('#photoblog_prevmonth a').attr('href', '#month-' + hp.photoblog.year_month.get_prev_date());
 	},
 	
 	// import future
@@ -531,6 +541,7 @@ hp.photoblog = {
 						if ( typeof callback == 'function' ) {
 							callback(data);
 						}
+						self.make_month();
 					});
 				}
 				img.attr('src', photoname);

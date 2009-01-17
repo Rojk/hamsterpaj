@@ -20,7 +20,7 @@
 			$out .= '<div id="photoblog_thumbs_container">';
 				$out .= '<div id="photoblog_thumbs_inner">';
 					$out .= '<dl>';
-					$out .= '<dt id="photoblog_prevmonth"><a title="F&ouml;reg&aring;ende m&aring;nad" href="#prev-month">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
+					$out .= '<dt id="photoblog_prevmonth"><a id="prevmonth" title="F&ouml;reg&aring;ende m&aring;nad" href="#prev-month">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
 					$is_first = true;
 					$last_day = array('date' => null, 'formatted' => null);
 					if ( ! count($photos) )
@@ -47,7 +47,7 @@
 						$is_first = false;
 					}
 					
-					$out .= '<dt id="photoblog_nextmonth"><a title="N&auml;sta m&aring;nad" href="#next-month">N&auml;sta m&aring;nad</a></dt>';
+					$out .= '<dt id="photoblog_nextmonth"><a id="nextmonth" title="N&auml;sta m&aring;nad" href="#next-month">N&auml;sta m&aring;nad</a></dt>';
 					$out .= '</dl>';
 				$out .= '</div>';
 			$out .= '</div>';
