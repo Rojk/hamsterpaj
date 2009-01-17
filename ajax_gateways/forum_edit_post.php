@@ -11,11 +11,11 @@ require_once(PATHS_INCLUDE . 'libraries/markup.php');
 
 	preint_r($_GET);
 	// HELL NO!
-	// Med den här raden så kan man cracka 50% av hamsterpajs lösenord på några timmar.
-	// I och med att den skriver ut sessionen så får man reda på sin hash, och skriver
-	// man då ett program som byter lösenord <generalsettings.php> och hämtar hashen <$_SERVER['SCRIPT_NAME']> (FFS!)
-	// Så kan man komma ganska långt. [reformaterat]
-	// Hälsar LordDanne.
+	// Med den hÃ¤r raden sÃ¥ kan man cracka 50% av hamsterpajs lÃ¶senord pÃ¥ nÃ¥gra timmar.
+	// I och med att den skriver ut sessionen sÃ¥ fÃ¥r man reda pÃ¥ sin hash, och skriver
+	// man dÃ¥ ett program som byter lÃ¶senord <generalsettings.php> och hÃ¤mtar hashen <$_SERVER['SCRIPT_NAME']> (FFS!)
+	// SÃ¥ kan man komma ganska lÃ¥ngt. [reformaterat]
+	// HÃ¤lsar LordDanne.
 	// preint_r($_SESSION);
 
 	
