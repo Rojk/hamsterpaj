@@ -17,7 +17,7 @@ function refuse_image($userid, $validator)
 				'sender' => 2348,
 				'recipient' => $userid,
 				'is_private' => 1,
-				'message' => 'OBS! Detta meddelande har skickats automatiskt. Det är ingen idé att svara på meddelandet, kontakta någon ordningsvakt eller fråga i forumet.
+				'message' => mysql_real_escape_string('OBS! Detta meddelande har skickats automatiskt. Det är ingen idé att svara på meddelandet, kontakta någon ordningsvakt eller fråga i forumet.
 Din bild har nekats, acceptera det.
 
 Välj en ny bild som följer vår policy:
@@ -34,7 +34,7 @@ Välj en ny bild som följer vår policy:
 
 6) Bilden är inte taggad från någon annan sida ex. snyggast
 
-7) Du har inte angett rätt ålder/kön så att det överensstämmer med personen på bilden'
+7) Du har inte angett rätt ålder/kön så att det överensstämmer med personen på bilden')
 			));
     } 
 		else 
