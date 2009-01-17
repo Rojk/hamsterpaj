@@ -89,7 +89,5 @@
 	define('MESSAGES_MAX_TITLE_STRLEN', 50);	// If PM-system is removed, remove this as well.
 	define('MESSAGES_MIN_MESSAGE_STRLEN', 2);	// If PM-system is removed, remove this as well.
 
-	define('PROFILE_MAX_MODULES', 5);	// If old profile system is removed, remove this as well.
-
 	define('TREASURE_ITEM',0); // 1 = TREASURE HUNT IS ON / 0 = TREASURE HUNT IS OFF (Maybe this should be moved to a treasure_item.conf.php?
 ?>
