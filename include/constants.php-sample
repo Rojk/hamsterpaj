@@ -82,8 +82,6 @@
 	 aren't specific for your environment.
 	################################################################
 */
-	define('USER_ID', $_SESSION['login']['id']); // This is what I call shitcode. We will use $_SESSION['login']['id'] in the code instead.
-
 	define('USERS_ONLINE_TIMEOUT', 600); // How many seconds since lastaction is a user to displayed "online"? (I think this should be moved to some kind of login.conf.php)
 
 	define('MESSAGES_ITEMS_PER_PAGE', 15);		// If PM-system is removed, remove this as well.
