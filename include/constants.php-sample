@@ -83,11 +83,6 @@
 	################################################################
 */
 	define('USERS_ONLINE_TIMEOUT', 600); // How many seconds since lastaction is a user to displayed "online"? (I think this should be moved to some kind of login.conf.php)
-
-	define('MESSAGES_ITEMS_PER_PAGE', 15);		// If PM-system is removed, remove this as well.
-	define('MESSAGES_MIN_TITLE_STRLEN', 3);		// If PM-system is removed, remove this as well.
-	define('MESSAGES_MAX_TITLE_STRLEN', 50);	// If PM-system is removed, remove this as well.
-	define('MESSAGES_MIN_MESSAGE_STRLEN', 2);	// If PM-system is removed, remove this as well.
-
+	
 	define('TREASURE_ITEM',0); // 1 = TREASURE HUNT IS ON / 0 = TREASURE HUNT IS OFF (Maybe this should be moved to a treasure_item.conf.php?
 ?>
