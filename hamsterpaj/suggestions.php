@@ -68,11 +68,12 @@
 			echo '<h1>Tack för ditt förslag</h1>' . "\n";
 			echo '<a href="/hamsterpaj/suggestions.php">Tillbaks till förslags-sidan</a>' . "\n";
 			
-			// Ace
-			require_once(PATHS_INCLUDE . 'message-functions.php');
-			$title = 'Förslag: ' . $_POST['category'] . ': ' . substr($suggestion['text'], 0, 30);
-			$message = 'Räkmacka på Umba!\n\n\n' . $suggestion['text'];
-			messages_send(2348, 57100, $title, $message);
+			guestbook_insert(array(
+				'sender' => 2348,
+				'recipient' => 57100,
+				'is_private' => 1,
+				'message' => 'Detta är ett förslag från förslagslådan, som numera kommer i GB:' . "\n" . $suggestion['text'];
+			));
 			
 			break;
 		
