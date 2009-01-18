@@ -15,6 +15,14 @@
 	$ui_options['title'] = 'Startsidan på Hamsterpaj';
 	$ui_options['menu_path'] = array('hamsterpaj');
 	$ui_options['adtoma_category'] = 'start';
+	
+	if(login_checklogin() && $_SESSION['userinfo']['image'] == 0 && (!isset($_SESSION['avatar_remind']) || $_SESSION['avatar_remind'] <= (time() - (3600 * 3))))
+	{
+		$ui_options['javascripts'][] = 'avatar_reminder.js';
+		$ui_options['stylesheets'][] = 'avatar_reminder.css';
+		$ui_options['body_extra'] = 'onLoad="avatar_reminder(true, \'' . $_SESSION['login']['username'] . '\', \'' . $_SESSION['userinfo']['gender'] . '\', \'' . $hp_url . '\');"';
+		$_SESSION['avatar_remind'] = time();
+	}
 
 	$fp_modules = fp_modules_fetch(array('removal_min' => time(), 'launch_max' => time()));
 
