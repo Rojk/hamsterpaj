@@ -37,10 +37,6 @@
 		{
 			$return['password'] = 'too_short';
 		}
-		/*if($info['security_code'] != $_SESSION['register_security_code'])
-		{
-			$return['security_code'] = 'mismatch';
-		}*/
 		if($info['rules'] != 'ok')
 		{
 			$return['rules'] = 'not_ok';
@@ -88,10 +84,6 @@
 
 	function register_form($values, $errors)
 	{
-		/*if(!isset($_SESSION['register_security_code']))
-		{
-			$_SESSION['register_security_code'] = rand(10000, 9999999);
-		}*/
 		echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="post">' . "\n";
 		echo rounded_corners_tabs_top();
 		echo '<fieldset>' . "\n";
@@ -179,33 +171,6 @@
 		echo '</div>' . "\n";
 		echo '</fieldset>' . "\n";
 		echo rounded_corners_tabs_bottom();
-		
-		//echo rounded_corners_tabs_top();
-		/* Security code */
-		/*$class = '';
-		$legend = 'Säkerhetskod';
-		if(isset($errors['security_code']))
-		{
-			$class = ' class="error"';
-			$legend = 'Du har fyllt i fel säkerhetskod';
-		}
-		echo '<fieldset>' . "\n";
-		echo '<legend' . $class . '>' . $legend . '</legend>' . "\n";
-		echo '<div class="regform_inputs">' . "\n";
-		echo '<img src="/security_code.png.php" id="regfrm_security_code_img" />' . "\n";
-		echo '<h4>Skriv av numret här ovanför</h4>' . "\n";
-		echo '<input type="text" name="security_code" value="' . $values['security_code'] . '" />' . "\n";
-		echo $_SESSION['register_security_code'];
-		echo '</div>' . "\n";
-				
-		echo '<div class="regform_explanation">' . "\n";
-		echo '<p>' . "\n";
-		echo 'Vi vill inte få problem med datorprogram som registrerar konton på Hamsterpaj, så därför' . "\n";
-		echo 'måster du du skriva av siffrorna i bilden, datorprogram är nämnligen inte så bra på att läsa bilder.' . "\n";
-		echo '</p>' . "\n";
-		echo '</div>' . "\n";
-		echo '</fieldset>' . "\n";
-		echo rounded_corners_tabs_bottom();*/
 		
 		echo rounded_corners_tabs_top();
 		echo '<h2>Sunt förnuft, respekt och en trevlig ton på Hamsterpaj</h2>' . "\n";
