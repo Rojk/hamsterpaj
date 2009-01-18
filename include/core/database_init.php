@@ -1,13 +1,18 @@
 <?php
-//	include(PATHS_INCLUDE . 'downtime.php');
-//	exit;
-
+	// Maybe make this gitignore with a constant?
+	if(false)
+	{
+		require(PATHS_INCLUDE . 'downtime.php');
+		exit;
+	}
+	
 	//Backup is running and slowing down everything between 4.30 and ca 5.00
 	if(date('H') == '4' && date('i') > 30)
 	{
 		include(PATHS_INCLUDE . 'running_backup.html');
 		exit;
 	}
+	
 	if(!mysql_pconnect($db_server, $db_username, $db_password))
 	{
 		if($_SESSION['max_connection_retries'] > 3)
