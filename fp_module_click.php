@@ -58,7 +58,8 @@
 						</div>
 						<div id="footer">
 							<em>Referer: ';
-							$out .= (strlen($_SERVER['HTTP_REFERER']) > 0) ? $_SERVER['HTTP_REFERER'] : '<tom>';
+							// 1. for <tom>, 2. for REFERER which is NOT secure!
+							$out .= htmlspecialchars((strlen($_SERVER['HTTP_REFERER']) > 0) ? $_SERVER['HTTP_REFERER'] : '<tom>');
 							$out .= '</em>
 						</div>
 					</div>
