@@ -1,8 +1,6 @@
 <?php
 	session_start();
 	require('include/core/common.php');
-	require_once($hp_includepath . 'db-config.php');
-	require_once($hp_includepath . 'constants.php');
 	
 	if(!isset($_GET['u'])){
 		die();

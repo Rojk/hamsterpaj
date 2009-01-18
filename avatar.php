@@ -1,8 +1,6 @@
 <?php
 	require('include/core/common.php');
 	//session_start();
-	require_once('/storage/www/paths.php');
-	require_once($hp_includepath . 'constants.php');
 	
   require_once($hp_includepath . 'avataradmin-functions.php');
   require_once($hp_includepath . 'admin-functions.php');
