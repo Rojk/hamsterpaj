@@ -91,9 +91,13 @@
 
 	
 		$o .= '<label class="fp_admin_code_label">Kod</label>' . "\n";
-		if($module['id'] > 0)
+		if($module['id'] > 0 && !isset($module['code']))
 		{
 			$code = htmlspecialchars(file_get_contents(PATHS_INCLUDE . 'fp_modules/' . $module['id'] . '.php'));
+		}
+		else
+		{
+			$code = $module['code'];
 		}
 		$o .= '<textarea name="code" wrap="off">' . $code . '</textarea>' . "\n";
 	
@@ -101,6 +105,7 @@
 		
 	
 		$o .= '<input type="submit" value="Spara" />' . "\n";
+		$o .= '<input type="submit" name="preview" value="Förhandsgranska" />' . "\n";
 		$o .= '</form>' . "\n";
 
 		$o .= '<a href="/admin/fp_module_list.php">Sortera moduler</a>' . "\n";

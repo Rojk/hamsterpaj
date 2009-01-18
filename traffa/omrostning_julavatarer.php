@@ -1,3 +1,6 @@
+<?php die('Inte är det julen ännu ^^'); ?>
+
+
 <?php
 	require('../include/core/common.php');
 	require(PATHS_INCLUDE . 'libraries/christmas_avatars_polls.lib.php');

@@ -74,15 +74,19 @@ function ui_top($options = array())
 		{
 			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/' . $javascript . '?version=' . filemtime(PATHS_WEBROOT . 'javascripts/' . $javascript) . '"></script>' . "\n";
 		}
+		foreach($options['javascripts'] as $javascript)
+		{
+			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/' . $javascript . '"></script>' . "\n";
+		}
 	}
 	else
 	{
 		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/merged.js') . '.js"></script>' . "\n";
-	}
-	$options['javascripts'] = array_unique($options['javascripts']);
-	foreach($options['javascripts'] as $javascript)
-	{
-		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/specified/' . $javascript) . '.js"></script>' . "\n";
+		$options['javascripts'] = array_unique($options['javascripts']);
+		foreach($options['javascripts'] as $javascript)
+		{
+			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/specified/' . $javascript) . '.js"></script>' . "\n";
+		}
 	}
 	
 	$output .= $options['header_extra'];
@@ -167,7 +171,7 @@ function ui_top($options = array())
 		$output .= '					</li>' . "\n";
 		
 		$output .= '					<li>' . "\n";
-		$output .= '						<a id="ui_noticebar_events" ' . (($notices['photo_comments'] + $notices['messages'] > 0) ? 'class="ui_noticebar_active"' : '') . ' style="background-image: url(http://images.hamsterpaj.net/ui/events/events' . date('j') . '.png)" href="/traffa/events.php">' . (($notices['photo_comments'] + $notices['messages'] >= 1) ? (($notices['photo_comments'] + $notices['messages'] == 1) ? 'En ny' : ($notices['photo_comments'] + $notices['messages']) . ' nya') : 'Händelser') . '</a>' . "\n";
+		$output .= '						<a id="ui_noticebar_events" ' . (($notices['photo_comments'] + $notices['messages'] > 0) ? 'class="ui_noticebar_active"' : '') . ' style="background-image: url(http://images.hamsterpaj.net/ui/events/events' . date('j') . '.png)" href="/traffa/events.php">' . (($notices['photo_comments'] >= 1) ? (($notices['photo_comments'] == 1) ? 'En ny' : ($notices['photo_comments']) . ' nya') : 'Händelser') . '</a>' . "\n";
 		$output .= '						<ul class="ui_noticebar_info">' . "\n";
 		$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina h&auml;ndelser</h3></li>' . "\n";
 		$output .= '						</ul>' . "\n";
@@ -512,7 +516,6 @@ function ui_notices_fetch()
 		$notices['groups'] = array('unread_notices' => $_SESSION['cache']['unread_group_notices'], 'groups' => $_SESSION['cache']['group_notices']);
 		
 		$notices['photo_comments'] = $_SESSION['cache']['unread_photo_comments'];
-		$notices['messages'] = $_SESSION['notices']['unread_messages'];
 		
 		return $notices;
 	}

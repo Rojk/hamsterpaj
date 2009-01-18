@@ -5,7 +5,6 @@
 	
 	ob_start();
 	require('../include/core/common.php');
-	require_once($hp_includepath . 'message-functions.php');
 	require_once(PATHS_INCLUDE . 'libraries/live_chat.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
 
@@ -642,7 +641,12 @@ function group_invite_member($groupid, $username)
 		$query = 'INSERT INTO groups_members (groupid, userid, approved) VALUES (' . $groupid . ',' . $userid . ', 3)';
 		mysql_query($query) or die(report_sql_error($query));
 
-		messages_send($owner, $userid, $title, $message, $allowhtml = 1);
+		guestbook_insert(array(
+			'sender' => $owner,
+			'recipient' => $userid,
+			'is_private' => 1,
+			'message' => mysql_real_escape_string($message)
+		));
 	}
 	else
 	{

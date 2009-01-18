@@ -18,7 +18,7 @@ entertain_temp/*
 music_guess/*
 include/cache/*
 include/live_chat/*
-tmp/avatars/*
+tmp/*
 photo_upload_temp/*
 kvitton/*
 snyggve_temp/full/*
@@ -38,7 +38,9 @@ include/message_bar_current.txt
 .backupignore
 
 # Configuration files
+# NOTE: Keep BOTH constants.php! Even if one of them doesn't exist!
 include/constants.php
+include/core/constants.php
 
 # Backups
 hpback.tar

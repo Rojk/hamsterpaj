@@ -939,23 +939,6 @@
 	{
 		$output .=  '<p class="category_description">' . $options['category']['description'] . '</p>' . "\n";
 		
-		if(!empty($options['category']['handle']))
-		{
-			$query = 'SELECT l.id AS user_id, l.username AS username FROM privilegies AS p, login AS l, public_forums AS pf WHERE l.id = p.user AND pf.handle = p.value AND p.value = "' . $options['category']['handle'] . '" AND p.privilegie = "discussion_forum_category_admin"';
-			$result = query_cache(array('query' => $query, 'category' => 'forum_categories'));
-			$user_links = array();
-			foreach($result as $data)
-			{
-				$user_links[] = '<a href="/traffa/profile.php?user_id=' . $data['user_id'] . '">' . $data['username'] . '</a>';
-			}
-			
-			if(!empty($user_links))
-			{
-				$output .=  '<p class="category_responsible_moderators">Kategoriansvariga ordningsvakter: ' . implode(', ', $user_links) . '</p>';
-			}
-		}
-		
-		
 		if(login_checklogin())
 		{
 			$checked = ($_SESSION['forum']['categories'][$options['category']['id']]['subscribing'] == 1) ? ' checked="checked"' : '';
@@ -1052,6 +1035,7 @@
 				$data['children'] = $children;
 			}
 			$data['url'] = $options['url_prefix'] . $data['handle'] . '/';
+			
 			$categories[] = $data;
 		}
 		
@@ -1090,7 +1074,24 @@
 				$output .= '<tr class="' . $zebra . '">' . "\n";
 				$output .= '	<td class="name"><a href="' . $category['url'] . '" class="category_name">' . $category['title'] . '</a><br />' . "\n";
 				$category['last_thread_title'] = (strlen($category['last_thread_title']) > 45) ? substr($category['last_thread_title'], 0, 35) . '...' : $category['last_thread_title'];
-				$output .= '	Senaste tråden <a href="' . $category['url'] . $category['last_thread_handle'] . '/sida_1.php">' . $category['last_thread_title'] . '</a> av <a href="/traffa/profile.php?id=' . $category['last_thread_author'] . '">' . $category['last_thread_username'] . '</a></td>' . "\n";
+				$output .= '	Senaste tråden <a href="' . $category['url'] . $category['last_thread_handle'] . '/sida_1.php">' . $category['last_thread_title'] . '</a> av <a href="/traffa/profile.php?id=' . $category['last_thread_author'] . '">' . $category['last_thread_username'] . '</a><br />' . "\n";
+				// Listing moderators in forum category
+				if(isset($category['ovs']))
+				{
+					$output .= '<em>Ansvariga ordningsvakter:</em> ' . "\n";
+					foreach($category['ovs'] as $ov)
+					{
+						if($ov['lastaction'] > time() - 600)
+						{
+							$output .= '<a href="/traffa/profile.php?user_id=' . $ov['id'] . '><strong>' . $ov['username'] . '</strong></a> ' . "\n";
+						}
+						else
+						{
+							$output .= '<a href="/traffa/profile.php?user_id=' . $ov['id'] . '><span>' . $ov['username'] . '</span></a> ' . "\n";
+						}
+					}
+				$output .= '</td>' . "\n";
+				}
 				$output .= '	<td class="thread_count">' . $category['thread_count'] . ' trådar</td>' . "\n";
 				if(login_checklogin())
 				{
@@ -1159,6 +1160,29 @@
 			$output .= forum_thread_paging($options);
 		}
 				
+		$output .= '</div>' . "\n";
+		$output .= '<div class="forum_locator_ovs">' . "\n";
+
+		// Listing moderators in forum category
+		$last_category = array_pop($options['categories']);
+		if(!empty($last_category['handle']))
+		{
+			$query = 'SELECT l.id AS user_id, l.username AS username, l.lastaction AS lastaction FROM privilegies AS p, login AS l, public_forums AS pf WHERE l.id = p.user AND pf.handle = p.value AND p.value = "' . $last_category['handle'] . '" AND p.privilegie = "discussion_forum_category_admin"';
+			$result = query_cache(array('query' => $query, 'category' => 'forum_categories'));
+			
+			$output .= '<em>Ansvariga ordningsvakter:</em> ' . "\n";
+			foreach($result as $ov)
+			{
+				if($ov['lastaction'] > time() - 600)
+				{
+					$output .= '<a href="/traffa/profile.php?user_id=' . $ov['user_id'] . '"><strong>' . $ov['username'] . '</strong></a> ' . "\n";
+				}
+				else
+				{
+					$output .= '<a href="/traffa/profile.php?user_id=' . $ov['user_id'] . '"><span>' . $ov['username'] . '</span></a> ' . "\n";
+				}
+			}
+		}
 		$output .= '</div>' . "\n";
 		
 		return $output;
@@ -1504,6 +1528,7 @@
 		{
 			$text = setSmilies($text);
 		}
+		
 		
 		return $text;
 	}

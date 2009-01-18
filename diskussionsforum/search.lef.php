@@ -1,6 +1,10 @@
 <?php
 	/* OPEN_SOURCE */
 	require('../include/core/common.php');
+	if(!is_privilegied('igotgodmode'))
+	{
+		die('fast den här söken var ju dum...');
+	} 
 	
 	$ui_options['menu_path'] = array('diskussionsforum', 'soek'); // Doesn't work. I have to get the right keyword.
 	$ui_options['title'] = 'Hamsterpajs diskussionsforum';

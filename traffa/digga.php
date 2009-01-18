@@ -127,7 +127,7 @@
 			echo '<p class="digga_no_description">' . "\n";
 			echo 'Vi har tyvärr ingen beskrivning om ' . $artist_info['name'] . ' än. Om du känner att du kan mycket om det ';
 			echo 'här bandet eller den här artisten så får du hemskt gärna skriva en egen beskrivning och skicka den som ett ';
-			echo 'privat meddelande till <a href="/traffa/profile.php?id=301872">Fridh</a>. Glöm inte att tala om vilken artist ';
+			echo 'privat meddelande till <a href="/traffa/profile.php?id=774586">Joar</a>. Glöm inte att tala om vilken artist ';
 			echo 'det gäller!' . "\n";
 			echo '</p>' . "\n";
 		}

@@ -20,7 +20,7 @@
 			$out .= '<div id="photoblog_thumbs_container">';
 				$out .= '<div id="photoblog_thumbs_inner">';
 					$out .= '<dl>';
-					$out .= '<dt id="photoblog_prevmonth"><a rel="prev-month" title="F&ouml;reg&aring;ende m&aring;nad" href="#">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
+					$out .= '<dt id="photoblog_prevmonth"><a title="F&ouml;reg&aring;ende m&aring;nad" href="#prev-month">F&ouml;reg&aring;ende m&aring;nad</a></dt>';
 					$is_first = true;
 					$last_day = array('date' => null, 'formatted' => null);
 					if ( ! count($photos) )
@@ -43,11 +43,11 @@
 						$class = '';
 						if ( $i == 1 ) $class = ' class="first-image"';
 						elseif ( $i == $count ) $class = ' class="last-image"';
-						$out .= '<dd' . $class . '><a title="' . $photo['date'] . '" rel="imageid_' . $photo['id'] . '" ' . ($is_first ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
+						$out .= '<dd' . $class . '><a title="' . $photo['date'] . '" ' . ($is_first ? 'class="photoblog_active"' : '') . ' href="#image-' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></a></dd>';
 						$is_first = false;
 					}
 					
-					$out .= '<dt id="photoblog_nextmonth"><a rel="next-month" title="N&auml;sta m&aring;nad" href="#">N&auml;sta m&aring;nad</a></dt>';
+					$out .= '<dt id="photoblog_nextmonth"><a title="N&auml;sta m&aring;nad" href="#next-month">N&auml;sta m&aring;nad</a></dt>';
 					$out .= '</dl>';
 				$out .= '</div>';
 			$out .= '</div>';
