@@ -33,7 +33,6 @@ stylesheets/fp_modules/*
 static/*
 
 # Files to exclude
-admin/validator.txt
 traffa/gallery_content.html
 include/message_bar_current.txt
 .backupignore
