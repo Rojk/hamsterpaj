@@ -411,7 +411,7 @@ if($_SESSION['login']['id'] == '148153') //för att vara säker på att inte dö
       }
       else
       {
-        echo '<img src="http://images.hamsterpaj.net/user_no_image.png" alt="Ingen visninsbild"/>';
+        echo '<img src="' . IMAGE_URL . 'user_no_image.png" alt="Ingen visninsbild"/>';
       }
       echo '</td><td style="vertical-align: top;">';
       echo fix_time($data['timestamp']) . ' <a href="javascript:void(0);" onclick="javascript:document.postform.group_message.value=document.postform.group_message.value + \''.$data['username'].': \';document.postform.group_message.focus();">[^]</a><br/>'; 

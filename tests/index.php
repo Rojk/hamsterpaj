@@ -94,7 +94,7 @@
 		}
 		
 		echo '<p>';
-		echo '<a href="/tests/create.html"><img src="http://images.hamsterpaj.net/tests/create_ad.png?destroy_cache" alt="Skapa test!" /></a>';
+		echo '<a href="/tests/create.html"><img src="' . IMAGE_URL . 'tests/create_ad.png?destroy_cache" alt="Skapa test!" /></a>';
 		echo '</p>';
 		
 		echo '<br />';
