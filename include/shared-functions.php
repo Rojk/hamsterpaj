@@ -354,7 +354,9 @@
 			'vinnpris.se', 
 			'/skiten/lur.php?id=',
 			'sexyemilie',
-			'sexye.milie'
+			'sexye.milie',
+			'www.rivality.notlong.com',
+			'rivality.com/'
 			);
 		foreach($banned_strings AS $banned)
 		{

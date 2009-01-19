@@ -37,7 +37,7 @@
 			$map_points .= '<Content><![CDATA[' . $data['gender'] . ' ' . date_get_age($data['birthday']);
 			if($data['image'] == 1 || $data['image'] == 2)
 			{
-				$map_points .= '<br /><img src=\'http://images.hamsterpaj.net/images/users/thumb/' . $data['userid'] . '.jpg\' />';
+				$map_points .= '<br /><img src="' . IMAGE_URL . 'images/users/thumb/' . $data['userid'] . '.jpg" />';
 			}
 			$map_points .= ']]></Content>';
 			$map_points .= '</Point>';
@@ -81,7 +81,7 @@
 			$map_points .= '<Content><![CDATA[' . $data['gender'] . ' ' . date_get_age($data['birthday']);
 			if($data['image'] == 1 || $data['image'] == 2)
 			{
-				$map_points .= '<br /><a href=\'http://www.hamsterpaj.net/hittapunktse_map_link_redirect.php?id=' . $data['userid'] . '\'><img src=\'http://images.hamsterpaj.net/images/users/thumb/' . $data['userid'] . '.jpg\' /></a>';
+				$map_points .= '<br /><a href="' . IMAGE_URL . '/hittapunktse_map_link_redirect.php?id=' . $data['userid'] . '"><img src=\'http://images.hamsterpaj.net/images/users/thumb/' . $data['userid'] . '.jpg\' /></a>';
 			}
 			if(login_checklogin())
 			{

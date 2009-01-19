@@ -54,7 +54,7 @@
 		$out .= '</div>';
 		$out .= '<div id="photoblog_image">';
 		$first_photo = $photos[0];
-		$out .= '<p><img src="http://images.hamsterpaj.net/photos/full/' . floor($first_photo['id'] / 5000) . '/' . $first_photo['id'] . '.jpg" alt="" /></p>';
+		$out .= '<p><img src="' . IMAGE_URL . 'photos/full/' . floor($first_photo['id'] / 5000) . '/' . $first_photo['id'] . '.jpg" alt="" /></p>';
 		$out .= '</div>';
 		$out .= '<div id="photoblog_description">';
 		$out .= '<div id="photoblog_description_text">';
