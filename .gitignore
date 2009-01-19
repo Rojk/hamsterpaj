@@ -30,6 +30,7 @@ include/articles/*
 include/article_authors/*
 include/fp_modules/*
 stylesheets/fp_modules/*
+static/*
 
 # Files to exclude
 admin/validator.txt
