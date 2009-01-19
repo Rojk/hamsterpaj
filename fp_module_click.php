@@ -11,7 +11,7 @@
 	}
 	else
 	{
-		$url = base64_decode(utf8_decode($_GET['url']));
+		$url = htmlspecialchars(base64_decode(utf8_decode($_GET['url'])));
 		$out .= '
 		<html>
 			<head>
@@ -49,7 +49,7 @@
 							Är du säker på att du vill gå vidare till
 							</p>
 							<p>
-							<a href="' . $url . '">' . $url . '</a>
+							<a href="' . addslashes($url) . '">' . $url . '</a>
 							</p>
 							<p id="explanation">
 							 <em>- Får du upp den här sidan utan att ha klickat på några konstiga länkar?</em><br />
@@ -58,7 +58,8 @@
 						</div>
 						<div id="footer">
 							<em>Referer: ';
-							$out .= (strlen($_SERVER['HTTP_REFERER']) > 0) ? $_SERVER['HTTP_REFERER'] : '<tom>';
+							// 1. for <tom>, 2. for REFERER which is NOT secure!
+							$out .= htmlspecialchars((strlen($_SERVER['HTTP_REFERER']) > 0) ? $_SERVER['HTTP_REFERER'] : '<tom>');
 							$out .= '</em>
 						</div>
 					</div>

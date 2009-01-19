@@ -1,0 +1,47 @@
+#reminder_box
+{
+	position: absolute;
+	left: 25%;
+	top: 20%;
+	z-index: 99;
+	width: 50%;
+	height: auto;
+	min-height: 100px;
+	background: #FFFFFF;
+	border: 1px solid #000000;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	color: #000000;
+	filter: alpha(opacity=90);
+	-moz-opacity: .9;
+	opacity: .9;
+}
+#reminder_box_content
+{
+	width: 100%;
+	float: left;
+	padding: 10px;
+	cursor: default;
+}
+#reminder_box_content p
+{
+	float: left;
+	padding: 5px;
+}
+#reminder_box_panel
+{
+	position: absolute;
+	right: 0px;
+	padding: 4px 6px;
+	font-family: Verdana;
+}
+	#reminder_box_panel a
+	{
+		color: #000000;
+		text-decoration: none;
+		/*font-weight: bold;*/
+	}
+	#reminder_box_panel a:hover
+	{
+		color: #EE0000;
+	}

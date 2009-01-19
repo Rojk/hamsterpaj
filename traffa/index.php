@@ -239,13 +239,10 @@
 </div>
 
 <div id="scribble_puff">
-	<a href="/traffa/klotterplank.php">
+	<a href="/traffa/klotterplanket.php">
 	<img src="http://images.hamsterpaj.net/scribbler.png" style="float: left;" />
 	<?php
-		$query = 'SELECT id FROM klotterplank ORDER BY id DESC LIMIT 1';
-		$result = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
-		$data = mysql_fetch_assoc($result);
-		echo '<h2>' . cute_number($data['id']) . ' inlägg på klotterplanket just nu!</h2>' . "\n";
+		echo '<h2>Massa snygga flickor och pojkar på klotterplanket just nu!</h2>' . "\n";
 	?>
 	<p>
 		På klotterplanket skriver Hamsterpajare dygnet runt korta små inlägg. En del letar efter någon
