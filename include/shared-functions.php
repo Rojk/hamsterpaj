@@ -124,23 +124,6 @@
 		return $htmlContactMediums;
 	}
 
-function preint_r($array, $bool_return = false)
-{
-	if ($bool_return)
-	{
-		$return = '<pre>' . "\n";
-		$return .= print_r($array, true);
-		$return .= '</pre>' . "\n";
-		return $return;
-	}
-	else
-	{
-		echo '<pre>' . "\n";
-		print_r($array);
-		echo '</pre>' . "\n";
-	}
-}
-
 function tail($options)
 {
 	$options['line_count'] = (isset($options['line_count'])) ? $options['line_count'] : 10;
