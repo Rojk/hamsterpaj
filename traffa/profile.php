@@ -6,7 +6,6 @@
 	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
 	require(PATHS_INCLUDE . 'libraries/photos.lib.php');
 	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
-	require(PATHS_INCLUDE . 'xhpml.php');
 
 	$ui_options['javascripts'][] = 'user_flags.js';
 	
