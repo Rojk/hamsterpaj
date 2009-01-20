@@ -1,6 +1,5 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'traffa-functions.php');
 
 	if(!login_checklogin())
 	{
