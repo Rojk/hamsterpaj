@@ -57,13 +57,6 @@
 		return $age;
 	}
 	
-	function birthdaycake($birthday) //Prints a birthday-cake if it's the users birthday
-	{
-		if($birthday != '0000-00-00' && substr($birthday, -5) == date("m-d", time())){
-			return '<img src="' . IMAGE_URL . 'common_icons/cake.png" style="width: 30px; height: 20px; alt="Personen fyller år idag" />';
-		}
-	}
-	
 	function dateSplitDate($date) {
 		$datearray = explode('-', $date);
 		

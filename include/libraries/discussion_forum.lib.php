@@ -342,7 +342,7 @@
 			{
 				$return .= '<span class="online_status">Online</span>' . "\n";				
 			}
-			$return .= birthdaycake($data['birthday']) . "\n";
+			$return .= ui_birthday_cake($data['birthday']) . "\n";
 			$return .= '</div>' . "\n";
 
 			$return .= '<div class="post_info">' . "\n";

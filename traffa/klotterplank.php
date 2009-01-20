@@ -87,7 +87,7 @@
 			echo fix_time($data['timestamp']) . ' (inlägg #' . $data['id'] . ') <a style="text-decoration:none;" href="javascript:#;" onclick="javascript:document.gbform.message.value=document.gbform.message.value+\''.$data['username'].' : \';document.gbform.message.focus();">[^]</a><br/>' . "\n";
 			echo '<a href="' . $hp_url . '/traffa/profile.php?id=' . $data['userid'] . '">' . "\n";
 			echo '<b>' . $data['username']  . '</b></a> ' . "\n";
-			echo birthdaycake($data['birthday']) . ' ' . "\n";
+			echo ui_birthday_cake($data['birthday']) . ' ' . "\n";
 			echo $genderlabels[$data['gender']];
 			if($userage > 1)
 			{

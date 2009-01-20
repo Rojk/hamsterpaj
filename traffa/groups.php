@@ -422,7 +422,7 @@ if($_SESSION['login']['id'] == '148153') //för att vara säker på att inte dö
       {
     		echo '<a href="' . $_SERVER['PHP_SELF'] . '?action=remove_post&amp;groupid=' . $groupid . '&amp;postid=' . $data['id'] . '">[Ta bort]</a>';
     	}
-      echo birthdaycake($data['birthday']) . ' ';
+      echo ui_birthday_cake($data['birthday']) . ' ';
       echo '<br/>';
       echo setSmilies(discussion_forum_parse_output($data['text']));
       echo '</td></tr></table>';

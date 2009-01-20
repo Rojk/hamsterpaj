@@ -806,4 +806,12 @@ function ui_module_render($options)
 		$return.= '</div>' . "\n";
 		return $return;
 	}
+	
+	function ui_birthday_cake($birthday)
+	{
+		if($birthday != '0000-00-00' && substr($birthday, -5) == date("m-d", time()))
+		{
+			return '<img src="' . IMAGE_URL . 'common_icons/cake.png" style="width: 30px; height: 20px; alt="Personen fyller år idag" />';
+		}
+	}
 ?>
