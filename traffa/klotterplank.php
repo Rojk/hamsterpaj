@@ -77,7 +77,7 @@
 			echo '<table class="body" style="width: 100%;"><tr><td style="vertical-align: top; width: 75px;">' . "\n";
 			if($data['image'] == 1 || $data['image'] == 2)
 			{
-				echo insert_avatar($data['userid']);
+				echo ui_avatar($data['userid']);
 			}
 			else
 			{
