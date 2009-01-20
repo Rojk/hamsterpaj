@@ -1,19 +1,5 @@
 <?php
 	/* OPEN_SOURCE */
-
-	function fetch_weekday($time) // Puts the weekday
-	{
-		$weekdays = array('Söndag', 'Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag');
-		return $weekdays[date('w', $time)];
-	}
-	
-	function dateSplitDate($date) {
-		$datearray = explode('-', $date);
-		
-		to_logfile('notice', __FILE__, __LINE__, 'Deprecated function dateSplitDate() was called', $_SERVER['REQUEST_URI']);
-		return $datearray;
-	}
-	
 	function parseContact($contact) {
 		$temparray = explode(':', $contact, 2);
 		//Delar upp contacthandel i två delar och tar bort ev. html 		
@@ -137,39 +123,6 @@
 		
 		return $htmlContactMediums;
 	}
-		
-
-	
-	function setsmilies_old($text, $limit = 25){
-	/* Tar emot en sträng och en begränsning av antal smilies i procent,
-	   Anges inte denna så defaultar funktionen till 25%. Inlägg med färre
-	   än fyra smilies släpps alltid igenom. Nya smilies läggs in rad för
-	   rad i arrayen $smilies. Alla bilder ska ligga i /images/smilies.
-	*/
-		$smilies = getSmiliesArray();
-
-
-		if(substr($text, 0, 11) == '[nosmilies]')
-		{
-			return substr($text, 11);
-		}
-
-		for($i = 0; $i < count($smilies); $i++){//Räkna antalet smilies
-			$smiliesInString = $smiliesInString + substr_count($text, $smilies[$i][0]);
-		}
-		$nosmilies = $text;
-		for($i = 0; $i < count($smilies); $i++){//Plocka bort alla smilies
-			$nosmilies = str_replace($smilies[$i][0], NULL, $nosmilies);
-		}
-		if(100*$smiliesInString/(strlen($nosmilies)+1) > $limit && $smiliesInString > 3){//Om smiliespam upptäcks
-			return '<b>Smilies har dolts i detta inlägg</b><br/>' . $nosmilies;
-		}
-		for($i = 0; $i < count($smilies); $i++){//Byt ut smilies mot bilder
-			// If you change this, change line below to...
-			$text = str_replace($smilies[$i][0], '<img src="' . IMAGE_URL . '/images/smilies/' . $smilies[$i][1] . '" alt="" />', $text);
-		}
-		return $text;
-	}
 
 	function userblock_check($owner, $blocked)
 	{
@@ -189,27 +142,6 @@
 		}
 	}
 
-	function generateuniqid()
-	{
-		return md5(uniqid(rand(), true));
-	}
-
-	function message_bar($message)
-	{
-		$old_msg_bar = file(PATHS_INCLUDE . 'message_bar_current.txt');
-		$msg_bar[0] = trim($old_msg_bar[1]);
-		$msg_bar[1] = trim($old_msg_bar[2]);
-		$msg_bar[2] = time() . ';' . $message;
-		unset($msg_bar[3]);
-		
-		$message_bar = implode("\n", $msg_bar);
-		$message_bar_file = fopen(PATHS_INCLUDE . 'message_bar_current.txt', 'w');
-		fwrite($message_bar_file, $message_bar);
-		fclose($message_bar_file);
-	}
-
-
-
 function preint_r($array, $bool_return = false)
 {
 	if ($bool_return)
@@ -225,15 +157,6 @@ function preint_r($array, $bool_return = false)
 		print_r($array);
 		echo '</pre>' . "\n";
 	}
-}
-
-
-function file_extension($filename)
-{
-	$last_dot = strrpos($filename, '.');
-	$extension = strtolower(substr($filename, $last_dot));
-	
-	return $extension;
 }
 
 function tail($options)
