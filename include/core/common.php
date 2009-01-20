@@ -31,6 +31,7 @@
 	define('CORE_PATH', substr(__FILE__, 0, strrpos(__FILE__, '/')+1));
 
   require_once(CORE_PATH . 'constants.php');
+  require_once(PATHS_INCLUDE . 'libraries/database.lib.php');
 	require_once(CORE_PATH . 'database_init.php');
 	require_once($hp_includepath . 'logging-functions.php');
   require(PATHS_INCLUDE . 'libraries/login.lib.php');
