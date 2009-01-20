@@ -39,7 +39,6 @@
 	// Needs to be loaded before ui-functions.php (tele2 fullscreen ad)
 	require_once(PATHS_INCLUDE . 'libraries/event_log.lib.php');
 
-  require($hp_includepath . 'ui-functions.php');
   require(PATHS_INCLUDE . 'libraries/cache.lib.php');
   require(PATHS_INCLUDE . 'libraries/jscript.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/forum-notices.php');
