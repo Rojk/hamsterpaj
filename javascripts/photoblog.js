@@ -132,8 +132,10 @@ hp.photoblog = {
 		this.load_hashimage();
 		
 		var active_id = hp.photoblog.get_active();
-		active_id = hp.photoblog.image_id(active_id);
-		this.set_prevnext(active_id);
+		if ( active_id.length ) {
+			active_id = hp.photoblog.image_id(active_id);
+			this.set_prevnext(active_id);
+		}
 		
 		this.make_month();
 	},
@@ -358,8 +360,14 @@ hp.photoblog = {
 	// end future
 	
 	set_active: function(active) {
+		active = $(active);
 		hp.photoblog.get_active().removeClass('photoblog_active');
-		$(active).addClass('photoblog_active');
+		if ( ! active.length ) {
+			return false;
+		} else {
+			active.addClass('photoblog_active');
+			return true;
+		}
 	},
 	
 	set_scroller_width: function() {
@@ -420,8 +428,7 @@ hp.photoblog = {
 		var prevnext = this.get_prevnext_a(cimg);
 		
 		if ( ! prevnext ) {
-			console.log('quiting');
-			return;
+			return false;
 		}
 		
 		var prev_image = prevnext[0];
@@ -440,6 +447,7 @@ hp.photoblog = {
 			url = '#month-' + next_date;
 		} 
 		this.next.attr('href', url);
+		return true;
 	},
 	
 	get_prevnext_a: function(from) {
@@ -498,11 +506,27 @@ hp.photoblog = {
 	load_image: function(id) {
 		var self = this;
 		this.current_id = id;
+		var load_new_month = false;
+		
+		if ( false == this.set_active('a[href=#image-' + id + ']') ) {
+			load_new_month = true;
+		}
+		
 		var json_callback = function(data) {
 			self.set_data(data[0]);
+			if ( load_new_month ) {
+				var date = hp.photoblog.format_date(data[0].date);
+				self.load_month(date, function() {
+					self.set_active('a[href=#image-' + id + ']');
+					
+					self.set_prevnext(id);
+					self.centralize_active();
+				});
+				hp.photoblog.year_month.set_date(date);
+				
+			}
 		};
 		
-		this.set_active('a[href=#image-' + id + ']');
 		this.set_image(id);
 		this.set_prevnext(id);
 		this.create_load();
@@ -664,6 +688,11 @@ hp.photoblog = {
 		get_prev_date: function() {
 			return this.get_x_date('prev');
 		}
+	},
+	
+	format_date: function(date) {
+		var pieces = date.split('-');
+		return pieces[0] + pieces[1];
 	},
 	
 	make_name: function(id) {
