@@ -1,14 +1,13 @@
-#wallpaper_resolutions
+#wallpaper_header
 {
-	clear: both;
-	border: 1px solid #ababab;
+	text-align: center;
 }
-
+	
 #wallpaper_resolutions ul
 {
 	display: block;
 	clear: both;
-	height: 25px;
+	height: 12px;
 }
 
 #wallpaper_resolutions ul li
@@ -18,6 +17,11 @@
 	margin-left: 0px;
 	list-style-type: none;
 	float: left;
+}
+
+#wallpaper_resolutions h2, #wallpaper_resolutions ul
+{
+	margin: 5px;
 }
 
 #wallpaper_preview
@@ -98,4 +102,14 @@ ul.wallpaper_categories li {
 
 .notice .warning_text {
 	font-size: larger;
+}
+
+#sizes ul li
+{
+	list-style-type: none;
+}
+
+#wallpaper_prev
+{
+	float: left;
 }

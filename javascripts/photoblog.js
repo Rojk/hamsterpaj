@@ -107,7 +107,7 @@ hp.photoblog = {
 	view: {
 	/*
 		.photoblog_active is always fetched dynamically, because it changes constantly 
-		do indent when we are done, I'm fed up of having to scroll sideways
+		do indent of hp.photoblog.view when we are done, I'm fed up of having to scroll sideways
 	*/
 	init: function() {
 		hp.photoblog.year_month.init();
@@ -119,6 +119,10 @@ hp.photoblog = {
 		this.imageContainer = $('#photoblog_image');
 		this.image = $('img', this.imageContainer);
 		
+		this.prev_month = $('#photoblog_prevmonth a');
+		this.next_month = $('#photoblog_nextmonth a');
+		this.prevnext_month = $('#photoblog_nextmonth a, #photoblog_prevmonth a');
+		
 		this.make_scroller();
 		this.make_nextprev();
 		this.make_ajax();
@@ -128,9 +132,12 @@ hp.photoblog = {
 		this.load_hashimage();
 		
 		var active_id = hp.photoblog.get_active();
-		active_id = hp.photoblog.image_id(active_id);
-		console.log(active_id);
-		this.set_prevnext(active_id);
+		if ( active_id.length ) {
+			active_id = hp.photoblog.image_id(active_id);
+			this.set_prevnext(active_id);
+		}
+		
+		this.make_month();
 	},
 	
 	make_scroller: function() {
@@ -238,23 +245,18 @@ hp.photoblog = {
 		
 		var click_callback = function(e) {
 			var t = $(this);
-			var id = hp.photoblog.image_id(t);
 			if ( t.attr('href').indexOf('#month-') != -1 ) {
-				// load next/prev month
-				// load first/last image from collection
-				// this means load month will have to return the collection, I think
-				//var is_prev = (self.load_prev_month && t.attr('id') == 'photoblog_prev');
 				var date_month = hp.photoblog.get_month(t);
+				hp.photoblog.year_month.set_date(date_month);
 				self.load_month(
 					date_month,
 					function (data) {
-						//var image_id = (is_prev) ? data[data.length - 1] : data[0];
-						var image_id = 0;
-						console.log('image_id:', image_id);
-						self.load_image(image_id.id);
+						var image_index = (t.attr('id').indexOf('prev') != -1) ? data.length - 1 : 0;
+						self.load_image(data[image_index].id);
 					}
 				);
 			} else {
+				var id = hp.photoblog.image_id(t);
 				self.load_image(id);
 			}
 		};
@@ -264,6 +266,7 @@ hp.photoblog = {
 		
 		if ( ! thumbsOnly) {
 			this.prevnext.click(click_callback);
+			this.prevnext_month.click(click_callback);
 		}
 	},
 	
@@ -317,6 +320,24 @@ hp.photoblog = {
 		});
 	},
 	
+	make_month: function(all) {
+		var prev_date = hp.photoblog.year_month.get_prev_date();
+		if ( prev_date === false ) {
+			this.prev_month.hide();
+		} else {
+			this.prev_month.show();
+			this.prev_month.attr('href', '#month-' + prev_date);
+		}
+		
+		var next_date = hp.photoblog.year_month.get_next_date();
+		if ( next_date === false ) {
+			this.next_month.hide();
+		} else {
+			this.next_month.show();
+			this.next_month.attr('href', '#month-' + next_date);
+		}
+	},
+	
 	// import future
 	make_cache: function() {
 		this.cache = $('<div style="display: none" id="photoblog_cache"></div>').appendTo(document.body);
@@ -336,11 +357,17 @@ hp.photoblog = {
 			'description': $('div', cache)
 		};
 	},
+	// end future
 	
 	set_active: function(active) {
-		//$('#photoblog_thumbs .photoblog_active').removeClass('photoblog_active');
+		active = $(active);
 		hp.photoblog.get_active().removeClass('photoblog_active');
-		$(active).addClass('photoblog_active');
+		if ( ! active.length ) {
+			return false;
+		} else {
+			active.addClass('photoblog_active');
+			return true;
+		}
 	},
 	
 	set_scroller_width: function() {
@@ -352,6 +379,10 @@ hp.photoblog = {
 			var w = outerWidth / innerWidth * outerWidth;
 			this.handle.css('width', Math.max(w, 40));
 		}
+	},
+	
+	reset_scroller: function() {
+		this.scroller.slide_slider(0);
 	},
 	
 	centralize_active: function() {
@@ -397,8 +428,7 @@ hp.photoblog = {
 		var prevnext = this.get_prevnext_a(cimg);
 		
 		if ( ! prevnext ) {
-			console.log('quiting');
-			return;
+			return false;
 		}
 		
 		var prev_image = prevnext[0];
@@ -406,15 +436,18 @@ hp.photoblog = {
 		
 		var url = prev_image.attr('href');
 		if ( prevnext[2] ) {
-			url = '#month-' + hp.photoblog.year_month.get_prev_date();
+			var prev_date = hp.photoblog.year_month.get_prev_date();
+			url = '#month-' + prev_date;
 		}
 		this.prev.attr('href', url);
 		
 		var url = next_image.attr('href');
 		if ( prevnext[3] ) {
-			url = '#month-' + hp.photoblog.year_month.get_next_date();
-		}
+			var next_date = hp.photoblog.year_month.get_next_date();
+			url = '#month-' + next_date;
+		} 
 		this.next.attr('href', url);
+		return true;
 	},
 	
 	get_prevnext_a: function(from) {
@@ -473,11 +506,27 @@ hp.photoblog = {
 	load_image: function(id) {
 		var self = this;
 		this.current_id = id;
+		var load_new_month = false;
+		
+		if ( false == this.set_active('a[href=#image-' + id + ']') ) {
+			load_new_month = true;
+		}
+		
 		var json_callback = function(data) {
 			self.set_data(data[0]);
+			if ( load_new_month ) {
+				var date = hp.photoblog.format_date(data[0].date);
+				self.load_month(date, function() {
+					self.set_active('a[href=#image-' + id + ']');
+					
+					self.set_prevnext(id);
+					self.centralize_active();
+				});
+				hp.photoblog.year_month.set_date(date);
+				
+			}
 		};
 		
-		this.set_active('a[href=#image-' + id + ']');
 		this.set_image(id);
 		this.set_prevnext(id);
 		this.create_load();
@@ -499,7 +548,8 @@ hp.photoblog = {
 	load_month: function(month, callback) {
 		var user_id = hp.photoblog.current_user.id;
 		var self = this;
-		var nextMonth = $('#photoblog_nextmonth');		
+		var nextMonth = $('#photoblog_nextmonth');
+		this.thumbsList.css('opacity', 0.4);
 		$.getJSON('/ajax_gateways/photoblog.json.php?id=' + user_id + '&month=' + month, function(data) {
 			self.thumbsList.children().not('#photoblog_prevmonth, #photoblog_nextmonth').remove();
 			var lastDay = null;
@@ -512,22 +562,25 @@ hp.photoblog = {
 				}
 				var photoname = hp.photoblog.make_thumbname(item.id);
 				
-				var className = '';
-				if ( i == 0 ) className = ' class="first-image"';
-				else if ( i == data.length - 1 ) className = ' class="last-image"';
+				var dd = $('<dd><a href="#image-' + item.id + '"></a></dd>');
 				
-				var dd = $('<dd' + className + '><a href="#image-' + item.id + '"></a></dd>');
+				if ( i == 0 ) dd.addClass('first-image');
+				if ( i == data.length - 1 ) dd.addClass('last-image');
+				
 				nextMonth.before(dd);
 				var img = $('<img alt="" />');
 				
 				if ( i == data.length - 1 ) {
 					img.load(function() {
+						self.reset_scroller();
 						self.thumbsContainer.sWidth = self.thumbsContainer.container_width();
 						self.set_scroller_width();
 						self.scroller.pWidth = self.scroller.width() - self.handle.width();
 						if ( typeof callback == 'function' ) {
 							callback(data);
 						}
+						self.make_month();
+						self.thumbsList.css('opacity', 1);
 					});
 				}
 				img.attr('src', photoname);
@@ -535,7 +588,8 @@ hp.photoblog = {
 			});
 			self.make_ajax_thumbs();
 		});
-	}
+	},
+
 	// end .view
 	},
 	
@@ -555,7 +609,7 @@ hp.photoblog = {
 				self.years[self.years.length] = $(this);
 			});
 			
-			this.show(year.get(0).value);
+			this.show(year[0].value);
 			this.current_month = this.current_month_select.val();
 			year.change(function() {
 				self.show(this.value);
@@ -569,11 +623,15 @@ hp.photoblog = {
 		
 		load: function(month) {
 			this.current_month = month;
-			hp.photoblog.view.load_month(this.current_year.toString() + month);
+			hp.photoblog.view.load_month(this.current_year.toString() + month, function(data) {
+				// load first day in month
+				hp.photoblog.view.load_image(data[0].id);
+			});
 		},
 		
 		show: function(new_year) {
 			this.current_year = new_year;
+			this.year.children('[value=' + new_year + ']')[0].selected = true;
 			for ( var i = 0, year; year = this.years[i]; i++ ) {
 				if ( year.attr('id') == 'photoblog_select_month_' + new_year ) {
 					year.css('display', 'inline');
@@ -584,15 +642,28 @@ hp.photoblog = {
 			}
 		},
 		
+		select_month: function(new_month) {
+			this.current_month_select.children('[value=' + new_month + ']').attr('selected', true);
+		},
+		
+		set_date: function(date) {
+			date = date.toString();
+			var year = date.substr(0, 4);
+			var month = date.substr(4, 2);
+			this.show(year);
+			this.select_month(month);
+		},
+		
 		get_x_date: function(type) {
 			var delta = (type == 'next') ? -1 : 1;
 			
 			var month_index = this.current_month_select[0].selectedIndex;
 			var year_index = this.year[0].selectedIndex;
-			var years_available = this.current_month_select[0].options.length - 1;
+			var years_available = this.year[0].options.length - 1;
+			var months_available = this.current_month_select[0].options.length - 1;
 			
 			// we need to select a new year
-			if ( (type == 'prev' && month_index == 0) || (type == 'next' && month_index == years_available) ) {
+			if ( (type == 'prev' && month_index == 0) || (type == 'next' && month_index == months_available) ) {
 				// out of luck, mate
 				if ( (type == 'prev' && year_index == years_available) || (type == 'next' && year_index == 0) ) {
 					return false;
@@ -619,6 +690,11 @@ hp.photoblog = {
 		get_prev_date: function() {
 			return this.get_x_date('prev');
 		}
+	},
+	
+	format_date: function(date) {
+		var pieces = date.split('-');
+		return pieces[0] + pieces[1];
 	},
 	
 	make_name: function(id) {
