@@ -127,6 +127,7 @@
 			$out .=  '<td><a href="?ip=' . $ip . '">' . $display_ip . '</a></td>' . "\n";
 			$out .=  '</tr>' . "\n";
 		}
+		$out .= '</table>' . "\n";
 	}
 	elseif(isset($_GET['ip']))
 	{
