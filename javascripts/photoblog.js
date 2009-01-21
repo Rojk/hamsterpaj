@@ -569,7 +569,7 @@ hp.photoblog = {
 				self.years[self.years.length] = $(this);
 			});
 			
-			this.show(year.get(0).value);
+			this.show(year[0].value);
 			this.current_month = this.current_month_select.val();
 			year.change(function() {
 				self.show(this.value);
