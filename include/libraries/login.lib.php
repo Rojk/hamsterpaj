@@ -178,6 +178,24 @@
 		return ($item_id == 'ANY') ? isset($_SESSION['privilegies'][$privilegie]) : (isset($_SESSION['privilegies'][$privilegie][$item_id]) || isset($_SESSION['privilegies'][$privilegie][0]));
 	}
 	
+	function userblock_check($owner, $blocked)
+	{
+		if(is_privilegied('use_ghosting_tools'))
+		{
+			return 0;
+		}
+		$query = 'SELECT ownerid FROM userblocks WHERE ownerid = ' . $owner . ' AND blockedid = ' . $blocked . ' LIMIT 1';
+		$result = mysql_query($query);
+		if(mysql_num_rows($result) == 1)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	
 function cache_update_all()
 {
 	cache_update_bookmarks();

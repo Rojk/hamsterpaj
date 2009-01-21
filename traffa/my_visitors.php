@@ -1,6 +1,5 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'traffa-functions.php');
 	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
 	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
 

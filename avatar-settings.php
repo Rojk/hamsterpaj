@@ -302,7 +302,7 @@ $out .= '</form>';
 		if (is_file($avatar_full_filename)) 
 		{
 			$out .= '<h2 style="margin: 0px; ">Din nuvarande bild:</h2>';
-			$out .= insert_avatar($_SESSION['login']['id'], 'style="border: 1px solid #333333;"');
+			$out .= ui_avatar($_SESSION['login']['id'], array('style' => 'border: 1px solid #333333'));
 			$out .= '<br /><b><a href="' . $_SERVER['PHP_SELF'] . '?action=delete">» Ta bort bilden</a></b>';
 		}
 

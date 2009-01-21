@@ -9,7 +9,7 @@
 			$folder = floor($real_photo_id / 5000);
 			
 			header('HTTP/1.0 301 Moved Permanently');
-			header('Location: http://images.hamsterpaj.net/photos/thumb/' . $folder . '/' . $real_photo_id . '.jpg');
+			header('Location: ' . IMAGE_URL . 'photos/thumb/' . $folder . '/' . $real_photo_id . '.jpg');
 		}
 	}
 ?>

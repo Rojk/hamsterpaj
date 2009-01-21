@@ -6,7 +6,6 @@
 	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
 	require(PATHS_INCLUDE . 'libraries/photos.lib.php');
 	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
-	require(PATHS_INCLUDE . 'xhpml.php');
 
 	$ui_options['javascripts'][] = 'user_flags.js';
 	
@@ -125,7 +124,7 @@
 		$output .= '<div id="user_flags">' . "\n";
 		foreach($flags AS $data)
 		{
-			$output .= '<img src="http://images.hamsterpaj.net/user_flags/' . 
+			$output .= '<img src="' . IMAGE_URL . 'user_flags/' . 
 			$data['handle'] . '.png" alt="' . $data['title'] . '" title="' . $data['title'] . '" id="' . $data['id'] . '" />' . "\n";
 		}
 		$output .= '</div>' . "\n";

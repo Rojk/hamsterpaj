@@ -5,7 +5,6 @@
 	require_once(PATHS_INCLUDE . 'libraries/comments.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
 	
-	require_once($hp_includepath . 'traffa-functions.php');
 	
 	$ui_options['stylesheets'][] = 'photos.css';
 	$ui_options['javascripts'][] = 'photos.js';

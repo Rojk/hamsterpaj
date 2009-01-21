@@ -121,7 +121,7 @@ function posts_list($posts, $discussions = null, $options)
 			echo user_avatar($post['author']) . "\n";
 		}
 		echo '&nbsp;';
-		echo birthdaycake($post['birthday']);
+		echo ui_birthday_cake($post['birthday']);
 		echo '</div>' . "\n";
 		
 		

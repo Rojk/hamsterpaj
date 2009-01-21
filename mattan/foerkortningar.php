@@ -167,7 +167,6 @@
 		$query .= '", "' . htmlspecialchars($acronym['meaning']) . '", "' . htmlspecialchars($acronym['explanation']) . '")';
 		mysql_query($query) or die(report_sql_error());
 		$_GET['letter'] = strtolower($acronym['acronym']{0});
-		message_bar('<a href="/traffa/profile.php?id=' . $_SESSION['login']['id'] . '">' . $_SESSION['login']['username'] . '</a> la till <a href="/annat/acronyms.php?id=' . mysql_insert_id() . '">' . $acronym['acronym'] . '</a> i <a href="/annat/acronyms.php">förkortningslistan</a>');
 
 	}
 	
