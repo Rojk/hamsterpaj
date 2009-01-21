@@ -135,7 +135,6 @@
 	}
 
 #photoblog_thumbs {
-    /* if the background image just looks weird just remove it */
     background: <?php echo $main_color; ?> repeat-x;
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -170,9 +169,14 @@
             float: left;
             margin-right: 10px;
         }
+	
+		#photoblog_thumbs dd a {
+			display: block;
+		}
     
             #photoblog_thumbs img {
                 display: block;
+		border: 2px solid transparent;
             }
 		
 		#photoblog_thumbs dt {
@@ -196,16 +200,11 @@
         clear: both;
     }
 	
-    .photoblog_active img {
+    #photoblog_thumbs .photoblog_active img {
        border: 2px solid <?php echo $detail_color; ?>;
 			-moz-border-radius: 3px;
 			-khtml-border-radius: 3px;
 			border-radius: 3px;
-    }
-	
-    .photoblog_active {
-        position: relative;
-        top: -2px;
     }
 
 #photoblog_thumbs_scroller {
@@ -214,7 +213,7 @@
     height: 15px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
-    margin-top: 5px;
+    margin-top: 7px;
     position: relative;
 }
 
