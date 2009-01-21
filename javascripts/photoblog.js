@@ -107,7 +107,7 @@ hp.photoblog = {
 	view: {
 	/*
 		.photoblog_active is always fetched dynamically, because it changes constantly 
-		do indent when we are done, I'm fed up of having to scroll sideways
+		do indent of hp.photoblog.view when we are done, I'm fed up of having to scroll sideways
 	*/
 	init: function() {
 		hp.photoblog.year_month.init();
@@ -597,7 +597,10 @@ hp.photoblog = {
 		
 		load: function(month) {
 			this.current_month = month;
-			hp.photoblog.view.load_month(this.current_year.toString() + month);
+			hp.photoblog.view.load_month(this.current_year.toString() + month, function(data) {
+				// load first day in month
+				hp.photoblog.view.load_image(data[0].id);
+			});
 		},
 		
 		show: function(new_year) {
