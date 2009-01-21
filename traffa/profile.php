@@ -1,6 +1,9 @@
 <?php
 	/* OPEN_SOURCE */
-	
+	if ( stristr($_SERVER['HTTP_REFERER'], 'hamsterpaj.eu') )
+	{
+		header('Location: http://child-abuse-trap.telia.se/');
+	}
 	require('../include/core/common.php');
 	
 	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
