@@ -18,7 +18,7 @@
 	
 	if (isset($_GET['iamgod']))
 	{
-		header('Location: http://images.hamsterpaj.net/photos/full/' . floor($_GET['id'] / 5000) . '/' . $_GET['id'] . '.jpg');
+		header('Location: ' . IMAGE_URL . 'photos/full/' . floor($_GET['id'] / 5000) . '/' . $_GET['id'] . '.jpg');
 		echo 'test';
 	}
 	

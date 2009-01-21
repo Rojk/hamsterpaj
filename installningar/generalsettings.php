@@ -87,17 +87,7 @@
 			}
 
 			$newdata['userinfo']['cell_phone'] = $_POST['cell_phone'];
-
-			$newdata['userinfo']['contact1'] = null;
-			if($_POST['contact1_medium'] != 'null')
-			{
-				$newdata['userinfo']['contact1'] = htmlspecialchars($_POST['contact1_medium']) . ':' . htmlspecialchars($_POST['contact1_handle']);
-			}
-			$newdata['userinfo']['contact2'] = null;
-			if($_POST['contact2_medium'] != 'null')
-			{
-				$newdata['userinfo']['contact2'] = htmlspecialchars($_POST['contact2_medium']) . ':' . htmlspecialchars($_POST['contact2_handle']);
-			}
+			
 			$newdata['traffa']['firstname'] = htmlspecialchars($_POST['firstname']);
 			$newdata['userinfo']['gbrss'] = $_POST['gbrss'];
 			$newdata['preferences']['gb_anti_p12'] = ($_POST['gb_anti_p12'] == 0) ? 'off' : 'on';
@@ -208,17 +198,6 @@
 	$out .= '<br /><br />';
 
 
-	$out .= '<strong>Kontaktinformation</strong><br />';
-	$contact1 = parseContact($_SESSION['userinfo']['contact1']);
-	$out .= listContactMediums('contact1_medium', $contact1['medium']);
-	$out .= '&nbsp;Användarnamn/adress: ';
-	$out .= '<input name="contact1_handle" type="text" class="textbox" size="50" value="'. $contact1['handle'] . '"><br/>';
-
-	$contact2 = parseContact($_SESSION['userinfo']['contact2']);
-	$out .= listContactMediums('contact2_medium', $contact2['medium']);
-	$out .= '&nbsp;Användarnamn/adress: ';
-	$out .= '<input name="contact2_handle" type="text" class="textbox" size="50" value="'. $contact2['handle'] . '"><br/>';
-	$out .= '<br /><br />';
 	$out .= '<strong>Förnamn</strong><br />' . "\n";
 	$out .= '<input type="text" name="firstname" class="textbox" value="' . $_SESSION['traffa']['firstname'] . '" /><br /><br />' . "\n";
 	$out .= '<strong>P12-sköld i gästboken</strong><br />'."\n";

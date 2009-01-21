@@ -5,7 +5,6 @@
 	
 	ob_start();
 	require('../include/core/common.php');
-	require_once($hp_includepath . 'message-functions.php');
 	require_once(PATHS_INCLUDE . 'libraries/live_chat.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
 
@@ -412,7 +411,7 @@ if($_SESSION['login']['id'] == '148153') //för att vara säker på att inte dö
       }
       else
       {
-        echo '<img src="http://images.hamsterpaj.net/user_no_image.png" alt="Ingen visninsbild"/>';
+        echo '<img src="' . IMAGE_URL . 'user_no_image.png" alt="Ingen visninsbild"/>';
       }
       echo '</td><td style="vertical-align: top;">';
       echo fix_time($data['timestamp']) . ' <a href="javascript:void(0);" onclick="javascript:document.postform.group_message.value=document.postform.group_message.value + \''.$data['username'].': \';document.postform.group_message.focus();">[^]</a><br/>'; 
@@ -423,7 +422,7 @@ if($_SESSION['login']['id'] == '148153') //för att vara säker på att inte dö
       {
     		echo '<a href="' . $_SERVER['PHP_SELF'] . '?action=remove_post&amp;groupid=' . $groupid . '&amp;postid=' . $data['id'] . '">[Ta bort]</a>';
     	}
-      echo birthdaycake($data['birthday']) . ' ';
+      echo ui_birthday_cake($data['birthday']) . ' ';
       echo '<br/>';
       echo setSmilies(discussion_forum_parse_output($data['text']));
       echo '</td></tr></table>';
@@ -642,7 +641,12 @@ function group_invite_member($groupid, $username)
 		$query = 'INSERT INTO groups_members (groupid, userid, approved) VALUES (' . $groupid . ',' . $userid . ', 3)';
 		mysql_query($query) or die(report_sql_error($query));
 
-		messages_send($owner, $userid, $title, $message, $allowhtml = 1);
+		guestbook_insert(array(
+			'sender' => $owner,
+			'recipient' => $userid,
+			'is_private' => 1,
+			'message' => mysql_real_escape_string($message)
+		));
 	}
 	else
 	{

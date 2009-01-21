@@ -342,7 +342,7 @@
 			{
 				$return .= '<span class="online_status">Online</span>' . "\n";				
 			}
-			$return .= birthdaycake($data['birthday']) . "\n";
+			$return .= ui_birthday_cake($data['birthday']) . "\n";
 			$return .= '</div>' . "\n";
 
 			$return .= '<div class="post_info">' . "\n";
@@ -939,23 +939,6 @@
 	{
 		$output .=  '<p class="category_description">' . $options['category']['description'] . '</p>' . "\n";
 		
-		if(!empty($options['category']['handle']))
-		{
-			$query = 'SELECT l.id AS user_id, l.username AS username FROM privilegies AS p, login AS l, public_forums AS pf WHERE l.id = p.user AND pf.handle = p.value AND p.value = "' . $options['category']['handle'] . '" AND p.privilegie = "discussion_forum_category_admin"';
-			$result = query_cache(array('query' => $query, 'category' => 'forum_categories'));
-			$user_links = array();
-			foreach($result as $data)
-			{
-				$user_links[] = '<a href="/traffa/profile.php?user_id=' . $data['user_id'] . '">' . $data['username'] . '</a>';
-			}
-			
-			if(!empty($user_links))
-			{
-				$output .=  '<p class="category_responsible_moderators">Kategoriansvariga ordningsvakter: ' . implode(', ', $user_links) . '</p>';
-			}
-		}
-		
-		
 		if(login_checklogin())
 		{
 			$checked = ($_SESSION['forum']['categories'][$options['category']['id']]['subscribing'] == 1) ? ' checked="checked"' : '';
@@ -1181,18 +1164,22 @@
 		$output .= '<div class="forum_locator_ovs">' . "\n";
 
 		// Listing moderators in forum category
-		if(isset($category['ovs']))
+		$last_category = array_pop($options['categories']);
+		if(!empty($last_category['handle']))
 		{
+			$query = 'SELECT l.id AS user_id, l.username AS username, l.lastaction AS lastaction FROM privilegies AS p, login AS l, public_forums AS pf WHERE l.id = p.user AND pf.handle = p.value AND p.value = "' . $last_category['handle'] . '" AND p.privilegie = "discussion_forum_category_admin"';
+			$result = query_cache(array('query' => $query, 'category' => 'forum_categories'));
+			
 			$output .= '<em>Ansvariga ordningsvakter:</em> ' . "\n";
-			foreach($category['ovs'] as $ov)
+			foreach($result as $ov)
 			{
 				if($ov['lastaction'] > time() - 600)
 				{
-					$output .= '<a href="/traffa/profile.php?user_id=' . $ov['id'] . '><strong>' . $ov['username'] . '</strong></a> ' . "\n";
+					$output .= '<a href="/traffa/profile.php?user_id=' . $ov['user_id'] . '"><strong>' . $ov['username'] . '</strong></a> ' . "\n";
 				}
 				else
 				{
-					$output .= '<a href="/traffa/profile.php?user_id=' . $ov['id'] . '><span>' . $ov['username'] . '</span></a> ' . "\n";
+					$output .= '<a href="/traffa/profile.php?user_id=' . $ov['user_id'] . '"><span>' . $ov['username'] . '</span></a> ' . "\n";
 				}
 			}
 		}
@@ -1487,6 +1474,8 @@
 			'spoiler'=>  array('type' => BBCODE_TYPE_NOARG, 'open_tag' => '<div class="spoiler"><span>Spoiler: <button class="spoiler_control">Visa</button></span><span class="spoiler_content">', 'close_tag' => '</span></div>', 'childs'=>''),
 		);
 		
+		$text = clickable_links($text);
+		
 		if(isset($options['search_highlight']))
 		{
 			$options['search_highlight'] = is_array($options['search_highlight']) ? $options['search_highlight'] : explode(' ', $options['search_highlight']);
@@ -1540,7 +1529,6 @@
 			$text = setSmilies($text);
 		}
 		
-		$text = clickable_links($text);
 		
 		return $text;
 	}

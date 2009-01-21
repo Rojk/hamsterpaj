@@ -141,7 +141,7 @@
 					$map_points .= '<Content><![CDATA[' . $data['gender'] . ' ' . date_get_age($data['birthday']);
 					if($data['image'] == 1 || $data['image'] == 2)
 					{
-						$map_points .= '<br /><a href=\'http://www.hamsterpaj.net/hittapunktse_map_link_redirect.php?id=' . $data['userid'] . '\'><img src=\'http://images.hamsterpaj.net/images/users/thumb/' . $data['userid'] . '.jpg\' /></a>';
+						$map_points .= '<br /><a href="' . IMAGE_URL . 'hittapunktse_map_link_redirect.php?id=' . $data['userid'] . '"><img src="' . IMAGE_URL . 'images/users/thumb/' . $data['userid'] . '.jpg" /></a>';
 					}
 					if(login_checklogin())
 					{
@@ -239,13 +239,10 @@
 </div>
 
 <div id="scribble_puff">
-	<a href="/traffa/klotterplank.php">
-	<img src="http://images.hamsterpaj.net/scribbler.png" style="float: left;" />
+	<a href="/traffa/klotterplanket.php">
+	<img src="<?php echo IMAGE_URL; ?>" style="float: left;" />
 	<?php
-		$query = 'SELECT id FROM klotterplank ORDER BY id DESC LIMIT 1';
-		$result = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
-		$data = mysql_fetch_assoc($result);
-		echo '<h2>' . cute_number($data['id']) . ' inlägg på klotterplanket just nu!</h2>' . "\n";
+		echo '<h2>Massa snygga flickor och pojkar på klotterplanket just nu!</h2>' . "\n";
 	?>
 	<p>
 		På klotterplanket skriver Hamsterpajare dygnet runt korta små inlägg. En del letar efter någon

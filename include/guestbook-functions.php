@@ -27,7 +27,6 @@ NOTE: This file is deprecated, use the new system instead!
 
 */
 
-include 'constants.php';
 /*
 Databas-struktur:
 	Tabell: traffa_guestbooks

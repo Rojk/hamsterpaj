@@ -29,7 +29,7 @@
 				Logo
 			 ###############################################
 		*/
-		$out .= '<img src="http://images.hamsterpaj.net/radio/logo.png" id="radio_logo" />' . "\n";
+		$out .= '<img src="' . IMAGE_URL . 'radio/logo.png" id="radio_logo" />' . "\n";
 		
 		/* 
 			 ###############################################
@@ -148,7 +148,7 @@
 				foreach($radio_djs as $radio_dj)
 				{
 					$out .= '<div class="radio_crew">' . "\n";
-					$out .= insert_avatar($radio_dj['user_id']) . "\n";
+					$out .= ui_avatar($radio_dj['user_id']) . "\n";
 					$out .= '<h2>' . $radio_dj['username'] . '</h2>' . "\n";
 					if(is_privilegied('radio_admin'))// Only administrators for the whole radio can edit/remove DJs
 					{
@@ -314,7 +314,7 @@
 				if (isset($radio_sending[0]) && $radioinfo['status'] == 1) // If program is sent and server is up
 				{
 					$out .= '<div id="radio_sending">' . "\n";
-						$out .= '<img src="http://images.hamsterpaj.net/images/users/thumb/' . $radio_sending[0]['user_id'] . '.jpg" />' . "\n";
+						$out .= '<img src="' . IMAGE_URL . 'images/users/thumb/' . $radio_sending[0]['user_id'] . '.jpg" />' . "\n";
 						$out .= '<div class="radio_about">' . "\n";
 						$out .= '<h2>' . $radio_sending[0]['name'] . '</h2>' . "\n";
 						$out .= '<strong>DJ: ' . $radio_sending[0]['username'] . '</strong><br />' . "\n";
@@ -343,7 +343,7 @@
 				if (isset($radio_next_program[0])) // If there are any next program
 				{
 					$out .= '<div id="radio_next_program">' . "\n";
-						$out .= insert_avatar($radio_next_program[0]['user_id']) . "\n";
+						$out .= ui_avatar($radio_next_program[0]['user_id']) . "\n";
 						$out .= '<div class="radio_about">' . "\n";
 						$out .= '<h2>' . $radio_next_program[0]['name'] . '</h2>' . "\n";
 						$out .= '<strong>DJ: ' . $radio_next_program[0]['username'] . '</strong><br />' . "\n";

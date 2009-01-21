@@ -21,27 +21,6 @@ function ov_check_info($user_id)
 	return $filled;
 }
 
-function admin_delete_photo($user_id, $image_id) // NOT USED
-{
-	global $hp_includepath;
-	require_once($hp_includepath . 'message-functions.php');
-	deletePhoto($user_id, $image_id);
-	$title = 'En bild i ditt fotoalbum har tagits bort';
-	$message = 'Bild nummer ' . intval($image_id + 1) . ' i ditt fotoalbum har raderats av en administratör.' . "\n";
-	$message .= 'Det kan finnas många anledningar till att en bild tas bort, men oftast beror det på något av följande:' . "\n";
-	$message .= '* Bilden innehöll rasistisk eller nazistisk propaganda.' . "\n";
-	$message .= '* Bilden var pornografisk.' . "\n";
-	$message .= '* Bilden var rent ut sagt äcklig eller vidrig, och kunde verka obehaglig för våra yngre medlemmar.' . "\n";
-	$message .= '* Bilden var kränkande.' . "\n";
-	$message .= "\n\n";
-	$message .= 'Vi som arbetar med hamsterpaj vill göra siten till en så trevlig webbplats som möjligt, därför är behöver vi';
-	$message .= ' ibland ta bort bilder. Vi hoppas att du förstår varför bilden togs bort och önskar dig en trevlig tid här på hamsterpaj.';
-	$message .= "\n\n\n" . 'Med vänliga hälsningar, hamsterpaj.net administrations-team.';
-	messages_send(2348, $user_id, $title, $message);
-	//log_admin_event('deleted photo', $message , $_SESSION['login']['id'], $user_id, $image_id);
-	//loggning görs i deletePhoto()
-}
-
 function admin_report_event($username, $action, $resource_id)
 {
 /*	global $hp_includepath;

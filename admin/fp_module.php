@@ -18,9 +18,10 @@
 
 	if(isset($_POST['preview']))
 	{
+		$o .= '<h1>Previewing</h1><br /><br />';
 		$o .= '<ol id="fp_module_list">';
 		$o .= '<li>' . "\n";
-		$o .= html_entity_decode($_POST['code']);
+		$o .= html_entity_decode(stripslashes($_POST['code']));
 		$o .= '</li>' . "\n";
 		$o .= '</ol>' . "\n";
 		
@@ -28,7 +29,8 @@
 		$module = $_POST;
 		$module['launch'] = strtotime($_POST['launch']);
 		$module['removal'] = strtotime($_POST['removal']);
-		
+		$module['code'] = stripslashes($module['code']);		
+
 		$o .= fp_module_form($module);
 	}
 	else

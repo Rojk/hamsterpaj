@@ -171,7 +171,7 @@ function ui_top($options = array())
 		$output .= '					</li>' . "\n";
 		
 		$output .= '					<li>' . "\n";
-		$output .= '						<a id="ui_noticebar_events" ' . (($notices['photo_comments'] + $notices['messages'] > 0) ? 'class="ui_noticebar_active"' : '') . ' style="background-image: url(http://images.hamsterpaj.net/ui/events/events' . date('j') . '.png)" href="/traffa/events.php">' . (($notices['photo_comments'] + $notices['messages'] >= 1) ? (($notices['photo_comments'] + $notices['messages'] == 1) ? 'En ny' : ($notices['photo_comments'] + $notices['messages']) . ' nya') : 'Händelser') . '</a>' . "\n";
+		$output .= '						<a id="ui_noticebar_events" ' . (($notices['photo_comments'] + $notices['messages'] > 0) ? 'class="ui_noticebar_active"' : '') . ' style="background-image: url(http://images.hamsterpaj.net/ui/events/events' . date('j') . '.png)" href="/traffa/events.php">' . (($notices['photo_comments'] >= 1) ? (($notices['photo_comments'] == 1) ? 'En ny' : ($notices['photo_comments']) . ' nya') : 'Händelser') . '</a>' . "\n";
 		$output .= '						<ul class="ui_noticebar_info">' . "\n";
 		$output .= '							<li class="ui_noticebar_infoheader"><h3>Dina h&auml;ndelser</h3></li>' . "\n";
 		$output .= '						</ul>' . "\n";
@@ -182,7 +182,7 @@ function ui_top($options = array())
 		
 		$output .= '			<div id="ui_statusbar">' . "\n";
 		$output .= '				<a href="#">' . "\n";
-		$output .= '					<img src="http://images.hamsterpaj.net/images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
+		$output .= '					<img src="' . IMAGE_URL . 'images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
 		$output .= '				</a>' . "\n";
 		$output .= '				<div id="ui_statusbar_username">' . "\n";
 		$output .= '					<a href="/traffa/profile.php?user_id=' . $_SESSION['login']['id'] . '"><strong>' . $_SESSION['login']['username'] . '</strong></a><span> | </span><a href="/logout.php">Logga ut</a><br />' . "\n";
@@ -516,7 +516,6 @@ function ui_notices_fetch()
 		$notices['groups'] = array('unread_notices' => $_SESSION['cache']['unread_group_notices'], 'groups' => $_SESSION['cache']['group_notices']);
 		
 		$notices['photo_comments'] = $_SESSION['cache']['unread_photo_comments'];
-		$notices['messages'] = $_SESSION['notices']['unread_messages'];
 		
 		return $notices;
 	}
@@ -771,4 +770,48 @@ function ui_module_render($options)
 		return $output;
 	}
 	
+	function ui_dropbox($title, $data, $styleinfo, $expanded = NULL)
+	{
+		$rand = rand(100000, 999999);
+		$return = '<div';
+		if (array_key_exists('class', $styleinfo))
+		{
+			$return.= ' class="' . $styleinfo['class'] . '"';
+		}
+		if (array_key_exists('style', $styleinfo))
+		{
+			$return.= ' style="' . $styleinfo['style'] . '"';
+		}
+		$return.= '>' . "\n";
+		$return.= '<div class="droptitle" onclick="collapse_expand(\'' . $rand . '\');">' . "\n";
+	  $return.= '<h2 style="margin-top: 0;">' . $title . '</h2>' . "\n";
+//		$return.= '<img class="dropimage" id="dropbox_image_' . $rand . '" src="http://images.hamsterpaj.net/famfamfam_icons/bullet_toggle_';
+//		if (isset($expanded)) {
+//			$return.= 'minus';
+//		}
+//		else
+//			{
+//			$return.= 'plus';
+//		}
+//		$return.= '.png" alt="" />' . "\n";
+		$return.= '</div>' . "\n";
+		$return.= '<div id="dropbox_' . $rand . '"';
+		if (!isset($expanded))
+		{
+			$return.= ' style="display: none;"';
+		}
+		$return.= '>' . "\n";
+		$return.= $data;
+		$return.= '</div>' . "\n";
+		$return.= '</div>' . "\n";
+		return $return;
+	}
+	
+	function ui_birthday_cake($birthday)
+	{
+		if($birthday != '0000-00-00' && substr($birthday, -5) == date("m-d", time()))
+		{
+			return '<img src="' . IMAGE_URL . 'common_icons/cake.png" style="width: 30px; height: 20px; alt="Personen fyller år idag" />';
+		}
+	}
 ?>

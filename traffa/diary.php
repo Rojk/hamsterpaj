@@ -43,7 +43,7 @@
 		exit;
 	}
 
-	if($_GET['action'] == 'remove' & ($user_id == USER_ID || is_privilegied('remove_diary_post')))
+	if($_GET['action'] == 'remove' & ($user_id == $_SESSION['login']['id'] || is_privilegied('remove_diary_post')))
 	{
 		$query = 'UPDATE blog SET is_removed = 1 WHERE id = "' . $_GET['id'] . '" LIMIT 1';
 		mysql_query($query)  or report_sql_error($query,__FILE__,__LINE__);
@@ -110,7 +110,7 @@
 		
 		$entry .= '<p>' . nl2br($data['text']) . '</p>' . "\n";
 		
-		if($user_id == USER_ID || is_privilegied('remove_diary_post'))
+		if($user_id == $_SESSION['login']['id'] || is_privilegied('remove_diary_post'))
 		{
 			$entry .= '<a href="?user_id=' . $user_id . '&action=remove&id=' . $data['id'] . '">Ta bort dagboksinlägget</a>' . "\n";
 		}

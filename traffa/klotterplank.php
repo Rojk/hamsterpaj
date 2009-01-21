@@ -77,17 +77,17 @@
 			echo '<table class="body" style="width: 100%;"><tr><td style="vertical-align: top; width: 75px;">' . "\n";
 			if($data['image'] == 1 || $data['image'] == 2)
 			{
-				echo insert_avatar($data['userid']);
+				echo ui_avatar($data['userid']);
 			}
 			else
 			{
-				echo '<img src="http://images.hamsterpaj.net/images/noimage.png" style="width: 75px; height: 75px; border: 1px solid #cccccc;" alt="Ingen visningsbild"/>' . "\n";
+				echo '<img src="' . IMAGE_URL . 'images/noimage.png" style="width: 75px; height: 75px; border: 1px solid #cccccc;" alt="Ingen visningsbild"/>' . "\n";
 			}
 			echo '</td><td style="vertical-align: top;">';
 			echo fix_time($data['timestamp']) . ' (inlägg #' . $data['id'] . ') <a style="text-decoration:none;" href="javascript:#;" onclick="javascript:document.gbform.message.value=document.gbform.message.value+\''.$data['username'].' : \';document.gbform.message.focus();">[^]</a><br/>' . "\n";
 			echo '<a href="' . $hp_url . '/traffa/profile.php?id=' . $data['userid'] . '">' . "\n";
 			echo '<b>' . $data['username']  . '</b></a> ' . "\n";
-			echo birthdaycake($data['birthday']) . ' ' . "\n";
+			echo ui_birthday_cake($data['birthday']) . ' ' . "\n";
 			echo $genderlabels[$data['gender']];
 			if($userage > 1)
 			{

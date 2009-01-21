@@ -101,9 +101,6 @@
 
 			// * Fetch group notices...
 			$_SESSION = array_merge($_SESSION, login_load_group_data($user_id, array('groups_members' => array('groupid'))));
-			
-			// * Fetch PM notices...
-			$_SESSION['notices']['unread_messages'] = messages_count_unread($user_id);
 
 			// * Fetch friends notices...
 			$_SESSION['friends'] = friends_fetch_online_smart(array('user_id' => $user_id));
@@ -179,6 +176,24 @@
 			return true;
 		}
 		return ($item_id == 'ANY') ? isset($_SESSION['privilegies'][$privilegie]) : (isset($_SESSION['privilegies'][$privilegie][$item_id]) || isset($_SESSION['privilegies'][$privilegie][0]));
+	}
+	
+	function userblock_check($owner, $blocked)
+	{
+		if(is_privilegied('use_ghosting_tools'))
+		{
+			return 0;
+		}
+		$query = 'SELECT ownerid FROM userblocks WHERE ownerid = ' . $owner . ' AND blockedid = ' . $blocked . ' LIMIT 1';
+		$result = mysql_query($query);
+		if(mysql_num_rows($result) == 1)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 	
 function cache_update_all()

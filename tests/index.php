@@ -94,7 +94,7 @@
 		}
 		
 		echo '<p>';
-		echo '<a href="/tests/create.html"><img src="http://images.hamsterpaj.net/tests/create_ad.png?destroy_cache" alt="Skapa test!" /></a>';
+		echo '<a href="/tests/create.html"><img src="' . IMAGE_URL . 'tests/create_ad.png?destroy_cache" alt="Skapa test!" /></a>';
 		echo '</p>';
 		
 		echo '<br />';
@@ -675,7 +675,7 @@
 			$return .= '<div class="tests_completer">';
 			$return .= '<h3>' . $data['score'] . ' poäng</h3>' . "\n";
 			$return .= '<a href="/traffa/profile.php?id=' . $data['userid'] . '">' . ucfirst($data['username']) . '</a><br />' . "\n";
-			$return .= (in_array((int) $data['image'], array(1, 2)) ? insert_avatar($data['userid']) : '<img src="' . IMAGE_URL . '/images/noimage.png" style="border: 1px solid #cccccc;" alt="Ingen visningsbild" />') . '<br />' . "\n";
+			$return .= ui_avatar($data['userid'], array('style' => 'border: 1px solid #cccccc')) . '<br />' . "\n";
 			$return .= '</div>';
 		}
 		

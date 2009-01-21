@@ -30,15 +30,17 @@ include/articles/*
 include/article_authors/*
 include/fp_modules/*
 stylesheets/fp_modules/*
+static/*
 
 # Files to exclude
-admin/validator.txt
 traffa/gallery_content.html
 include/message_bar_current.txt
 .backupignore
 
 # Configuration files
+# NOTE: Keep BOTH constants.php! Even if one of them doesn't exist!
 include/constants.php
+include/core/constants.php
 
 # Backups
 hpback.tar

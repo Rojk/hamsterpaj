@@ -11,12 +11,12 @@
 	}
 	else
 	{
-		$url = base64_decode(utf8_decode($_GET['url']));
+		$url = htmlspecialchars(base64_decode(utf8_decode($_GET['url'])));
 		$out .= '
 		<html>
 			<head>
 				<title>Varning! - Hamserpaj.net</title>
-				<link rel="shortcut icon" href="http://images.hamsterpaj.net/favicon.png" type="image/x-icon" />
+				<link rel="shortcut icon" href="' . IMAGE_URL . 'favicon.png" type="image/x-icon" />
 				<style>
 					body {
 						background: #6391B3;
@@ -41,7 +41,7 @@
 					<div style="width: 355px; margin: 0 auto 0 auto; background: #e3e3e3; border: thin solid #aaaaaa;">
 						<div id="header">
 							<a href="/">
-							<img src="http://images.hamsterpaj.net/ui/ui_logo.png" alt="Hamsterpaj logo" />
+							<img src="' . IMAGE_URL . 'ui/ui_logo.png" alt="Hamsterpaj logo" />
 							</a>
 						</div>
 						<div id="content" style="padding: 4px; padding-top: 0; text-align: left;">
@@ -49,7 +49,7 @@
 							Är du säker på att du vill gå vidare till
 							</p>
 							<p>
-							<a href="' . $url . '">' . $url . '</a>
+							<a href="' . addslashes($url) . '">' . $url . '</a>
 							</p>
 							<p id="explanation">
 							 <em>- Får du upp den här sidan utan att ha klickat på några konstiga länkar?</em><br />
@@ -58,7 +58,8 @@
 						</div>
 						<div id="footer">
 							<em>Referer: ';
-							$out .= (strlen($_SERVER['HTTP_REFERER']) > 0) ? $_SERVER['HTTP_REFERER'] : '<tom>';
+							// 1. for <tom>, 2. for REFERER which is NOT secure!
+							$out .= htmlspecialchars((strlen($_SERVER['HTTP_REFERER']) > 0) ? $_SERVER['HTTP_REFERER'] : '<tom>');
 							$out .= '</em>
 						</div>
 					</div>
