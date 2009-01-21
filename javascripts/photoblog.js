@@ -548,7 +548,8 @@ hp.photoblog = {
 	load_month: function(month, callback) {
 		var user_id = hp.photoblog.current_user.id;
 		var self = this;
-		var nextMonth = $('#photoblog_nextmonth');		
+		var nextMonth = $('#photoblog_nextmonth');
+		this.thumbsList.css('opacity', 0.4);
 		$.getJSON('/ajax_gateways/photoblog.json.php?id=' + user_id + '&month=' + month, function(data) {
 			self.thumbsList.children().not('#photoblog_prevmonth, #photoblog_nextmonth').remove();
 			var lastDay = null;
@@ -579,6 +580,7 @@ hp.photoblog = {
 							callback(data);
 						}
 						self.make_month();
+						self.thumbsList.css('opacity', 1);
 					});
 				}
 				img.attr('src', photoname);
