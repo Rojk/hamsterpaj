@@ -427,6 +427,19 @@ function ui_bottom($options = array())
 	$output .= '</noscript>' . "\n";
 	$output .= '<!-- END Nielsen//NetRatings SiteCensus V5.2 -->' . "\n";
 	
+	if(ENVIRONMENT == 'production')
+	{	
+		$output .= '<script type="text/javascript">' . "\n";
+		$output .= 'var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");' . "\n";
+		$output .= 'document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));' . "\n";
+		$output .= '</script>' . "\n";
+		$output .= '<script type="text/javascript">' . "\n";
+		$output .= 'try {' . "\n";
+		$output .= 'var pageTracker = _gat._getTracker("UA-7112144-1");' . "\n";
+		$output .= 'pageTracker._trackPageview();' . "\n";
+		$output .= '} catch(err) {}</script>' . "\n";
+	}
+	
 	if(!login_checklogin())
 	{
 		$output .= '<div id="tiny_reg_form">' . "\n";
