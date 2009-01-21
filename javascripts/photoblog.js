@@ -119,6 +119,8 @@ hp.photoblog = {
 		this.imageContainer = $('#photoblog_image');
 		this.image = $('img', this.imageContainer);
 		
+		this.prev_month = $('#photoblog_prevmonth a');
+		this.next_month = $('#photoblog_nextmonth a');
 		this.prevnext_month = $('#photoblog_nextmonth a, #photoblog_prevmonth a');
 		
 		this.make_scroller();
@@ -242,9 +244,6 @@ hp.photoblog = {
 		var click_callback = function(e) {
 			var t = $(this);
 			if ( t.attr('href').indexOf('#month-') != -1 ) {
-				// load next/prev month
-				// load first/last image from collection
-				// this means load month will have to return the collection, I think
 				var date_month = hp.photoblog.get_month(t);
 				hp.photoblog.year_month.set_date(date_month);
 				self.load_month(
@@ -320,8 +319,21 @@ hp.photoblog = {
 	},
 	
 	make_month: function(all) {
-		var next = $('#photoblog_nextmonth a').attr('href', '#month-' + hp.photoblog.year_month.get_next_date());
-		var prev = $('#photoblog_prevmonth a').attr('href', '#month-' + hp.photoblog.year_month.get_prev_date());
+		var prev_date = hp.photoblog.year_month.get_prev_date();
+		if ( prev_date === false ) {
+			this.prev_month.hide();
+		} else {
+			this.prev_month.show();
+			this.prev_month.attr('href', '#month-' + prev_date);
+		}
+		
+		var next_date = hp.photoblog.year_month.get_next_date();
+		if ( next_date === false ) {
+			this.next_month.hide();
+		} else {
+			this.next_month.show();
+			this.next_month.attr('href', '#month-' + next_date);
+		}
 	},
 	
 	// import future
@@ -417,15 +429,16 @@ hp.photoblog = {
 		
 		var url = prev_image.attr('href');
 		if ( prevnext[2] ) {
-			url = '#month-' + hp.photoblog.year_month.get_prev_date();
+			var prev_date = hp.photoblog.year_month.get_prev_date();
+			url = '#month-' + prev_date;
 		}
 		this.prev.attr('href', url);
 		
 		var url = next_image.attr('href');
 		if ( prevnext[3] ) {
-			console.log('next month');
-			url = '#month-' + hp.photoblog.year_month.get_next_date();
-		}
+			var next_date = hp.photoblog.year_month.get_next_date();
+			url = '#month-' + next_date;
+		} 
 		this.next.attr('href', url);
 	},
 	
@@ -549,7 +562,8 @@ hp.photoblog = {
 			});
 			self.make_ajax_thumbs();
 		});
-	}
+	},
+
 	// end .view
 	},
 	
