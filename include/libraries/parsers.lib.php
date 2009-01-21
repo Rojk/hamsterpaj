@@ -8,7 +8,7 @@
 		//$label = strtolower(trim($label));
 		$label = trim($label);
 		
-		$replace =     array(' ', 'Å',  'å',  'Ä',  'ä',  'Ö',  'ö',  'È', 'è', 'É', 'é');
+		$replace =     array(' ', 'Ã…',  'Ã¥',  'Ã„',  'Ã¤',  'Ã–',  'Ã¶',  'Ãˆ', 'Ã¨', 'Ã‰', 'Ã©');
 		$replacement = array('_', 'aa', 'aa', 'ae', 'ae', 'oe', 'oe', 'e', 'e', 'e', 'e');
 		$label = str_replace($replace, $replacement, $label);
 		
@@ -24,11 +24,11 @@
 	{
 		if($short_day == 'true')
 		{
-			$days = array('Sön', 'Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör');
+			$days = array('SÃ¶n', 'MÃ¥n', 'Tis', 'Ons', 'Tors', 'Fre', 'LÃ¶r');
 		}
 		else
 		{
-			$days = array('Söndag', 'Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag');
+			$days = array('SÃ¶ndag', 'MÃ¥ndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'LÃ¶rdag');
 		}
 		
 		if(date('Y-m-d') == date("Y-m-d",$timestamp) && $day_relative == true)
@@ -37,7 +37,7 @@
 		}
 		elseif(date('Y-m-d', time()-86400) == date('Y-m-d',$timestamp) && $day_relative == true)
 		{
-			return 'Igår ' . date('H:i',$timestamp);
+			return 'IgÃ¥r ' . date('H:i',$timestamp);
 		}
 		elseif($timestamp > time() - 86400*5)
 		{
@@ -151,7 +151,7 @@
 	
 	function content_check($text)
 	{
-		$text = strtolower(' ' . $text . ' '); //Lägg till lite mellanslag för att fixa buggen som gör att filtren inte funkar om det saknas tecken innan den förbjudna teckenkombinationen.
+		$text = strtolower(' ' . $text . ' '); //LÃ¤gg till lite mellanslag fÃ¶r att fixa buggen som gÃ¶r att filtren inte funkar om det saknas tecken innan den fÃ¶rbjudna teckenkombinationen.
 		$banned_strings = array(
 			'?r=',
 			'msn-tools.de/?nr=', 
@@ -207,25 +207,25 @@
 		{
 			if(strpos($text, $banned) == true)
 			{
-				return 'En förbjuden webbadress hittades i ditt meddelande. Var snäll och spamma inte här på hamsterpaj.net';
+				return 'En fÃ¶rbjuden webbadress hittades i ditt meddelande. Var snÃ¤ll och spamma inte hÃ¤r pÃ¥ hamsterpaj.net';
 			}
 		}
 		$kedjebrev_strings = array(
-			'skicka du detta brev till tio personer så kommer den du älskar kyssa dig om sex dagar',
-			'skicka till tio av dina vänner',
+			'skicka du detta brev till tio personer sÃ¥ kommer den du Ã¤lskar kyssa dig om sex dagar',
+			'skicka till tio av dina vÃ¤nner',
 			'om du skickar till 15 st kommer',
-			'denna text måste du skicka till 10 personer',
-			'denna text måste du skicka åt 10',
+			'denna text mÃ¥ste du skicka till 10 personer',
+			'denna text mÃ¥ste du skicka Ã¥t 10',
 			'du den till 20 personer kommer',
 			'om du skickar till 10 st kommer du att',
-			'om du bryter den här kedjan kommer du att få kärleksproblem',
+			'om du bryter den hÃ¤r kedjan kommer du att fÃ¥ kÃ¤rleksproblem',
 			'skickar det till minst 15 pers inom 10 min',
-			'Mitt namn är Caroline. Jag dog i en brand för 3 år sedan',
+			'Mitt namn Ã¤r Caroline. Jag dog i en brand fÃ¶r 3 Ã¥r sedan',
 			'You will get kissed on the nearest possible',
 			'post this comment to at least 3 videos, you will die within 2 days',
 			'a young girl named Jenn was walking down a river',
-			'Hejsan jag är en gubbe på 61bast som heter Gösta',
-			'Mitt arbete är Cilit-BANG och jag strippar',
+			'Hejsan jag Ã¤r en gubbe pÃ¥ 61bast som heter GÃ¶sta',
+			'Mitt arbete Ã¤r Cilit-BANG och jag strippar',
 			'DONT READ THIS! In',
 			'There are 20 angels in',
 			'4 video comments',
@@ -238,7 +238,7 @@
 		{
 			if(strpos($text, $kedjebrev) == true)
 			{
-				return 'Kedjebrev är förbjudna här på hamsterpaj.net. De är bara störande och tillför inget vettigt, det som står i dem är inget annat är ren lögn.';
+				return 'Kedjebrev Ã¤r fÃ¶rbjudna hÃ¤r pÃ¥ hamsterpaj.net. De Ã¤r bara stÃ¶rande och tillfÃ¶r inget vettigt, det som stÃ¥r i dem Ã¤r inget annat Ã¤r ren lÃ¶gn.';
 			}
 		}
 /*		
@@ -254,7 +254,7 @@
 		{
 			if(strpos($text, $disturb) == true)
 			{
-				return 'Ta det lite lugnt med tecknen. Det blir bara jobbigt att läsa med massa punkter, frågetecken, utropstecken eller radbrytningar i rad.';
+				return 'Ta det lite lugnt med tecknen. Det blir bara jobbigt att lÃ¤sa med massa punkter, frÃ¥getecken, utropstecken eller radbrytningar i rad.';
 			}
 		}
 		*/
@@ -269,14 +269,14 @@
 			{
 				if(strpos($text, $number) == true)
 				{
-					return 'Reklam för SMS-tjänster är förbjudet här på hamsterpaj.net.';
+					return 'Reklam fÃ¶r SMS-tjÃ¤nster Ã¤r fÃ¶rbjudet hÃ¤r pÃ¥ hamsterpaj.net.';
 				}
 			}
 		}
 		
 		if(strpos($text, 'wowglider') == true)
 		{
-			return 'Sluta tjata om detta förbannade wowglider. Ingen är intresserad av scam, begrips!';
+			return 'Sluta tjata om detta fÃ¶rbannade wowglider. Ingen Ã¤r intresserad av scam, begrips!';
 		}
 		
 		/* Block posts about "Aprils fool" on the 1st of april every year */
@@ -284,7 +284,7 @@
 		$aprils_fool_blocks = array(
 				'april', 
 				'almanacka', 
-				'aprilskämt',
+				'aprilskÃ¤mt',
 				'almanackan',
 				'almenacka',
 				'almenackan',
@@ -302,7 +302,7 @@
 			{
 				if(strpos($text, $banned) == true)
 				{
-					return 'Snälla, du kan väl låta bli att avslöja för alla att det är första april idag? Det förstör liksom hela poängen...';
+					return 'SnÃ¤lla, du kan vÃ¤l lÃ¥ta bli att avslÃ¶ja fÃ¶r alla att det Ã¤r fÃ¶rsta april idag? Det fÃ¶rstÃ¶r liksom hela poÃ¤ngen...';
 				}
 			}
 			*/
@@ -321,7 +321,7 @@
 			{
 				if(strpos($text, $banned) == true)
 				{
-					return 'Nu var det färdigdampat med allt star-mia och cool-guy chatter. Och försöker ni komma runt systemet med stlar-mia lr clool-guy så kan ni vänta er en fet bann. Puss på dig med :) //Lef-91';
+					return 'Nu var det fÃ¤rdigdampat med allt star-mia och cool-guy chatter. Och fÃ¶rsÃ¶ker ni komma runt systemet med stlar-mia lr clool-guy sÃ¥ kan ni vÃ¤nta er en fet bann. Puss pÃ¥ dig med :) //Lef-91';
 				}
 			}
 			
@@ -349,7 +349,7 @@
 
 		if ($yearsDiff != '0')
 		{
-			$doutput.=$yearsDiff.' år ';
+			$doutput.=$yearsDiff.' Ã¥r ';
 		}
 		
     if ($daysDiff != '0')
@@ -449,11 +449,11 @@
 		
 		preg_match_all($forum_image_regex, $str, $matches);
 		
-		// Byta ut [img] mot  markör
+		// Byta ut [img] mot  markÃ¶r
 		$str = preg_replace($forum_image_regex, '[IMAGE]', $str);
-		// GAMMAL #((http://|https://|ftp://|www\.)(www\.)?)([a-zA-Z0-9åäöÅÄÖ$\#_%?&-/=+@.:-~()]{4,})#eis
-		// Leta upp länkar
-			$str = preg_replace('#((http://|https://|ftp://|www\.)(www\.)?)([a-zA-Z0-9åäöÅÄÖ$\#_%?&-/=+@.:-~()]{4,})(<|\s|\[/|)#eis', 
+		// GAMMAL #((http://|https://|ftp://|www\.)(www\.)?)([a-zA-Z0-9Ã¥Ã¤Ã¶Ã…Ã„Ã–$\#_%?&-/=+@.:-~()]{4,})#eis
+		// Leta upp lÃ¤nkar
+			$str = preg_replace('#((http://|https://|ftp://|www\.)(www\.)?)([a-zA-Z0-9Ã¥Ã¤Ã¶Ã…Ã„Ã–$\#_%?&-/=+@.:-~()]{4,})(<|\s|\[/|)#eis', 
 								"
 								('$2' != 'http://' && '$2' != 'https://' && '$2' != 'ftp://') ? 
 									'<a href=\"http://$1$4\" target=\"_blank\">' . 
@@ -471,7 +471,7 @@
 							$str
 							);
 						
-		// Lägga tillbaka [img]
+		// LÃ¤gga tillbaka [img]
 		foreach($matches[0] as $row)
 		{
 			$pos = strpos($str, '[IMAGE]');
