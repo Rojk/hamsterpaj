@@ -284,7 +284,7 @@ function get_cats($val, $level = 0, $cat)
 
 function wallpapers_admin_wallpapers_verify_list()
 {
-	$query = 'SELECT l.username, w.id, w.title, w.timestamp FROM login AS l, '.WALLPAPERS_TABLE.' AS w WHERE w.is_verified = 0 AND l.id = w.user_id AND w.license IS NOT NULL';
+	$query = 'SELECT l.username, w.id, w.title, w.timestamp FROM login AS l, '.WALLPAPERS_TABLE.' AS w WHERE w.is_verified = 0 AND l.id = w.user_id';
 	$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 
 	if(mysql_num_rows($result) > 0)
@@ -319,7 +319,7 @@ function wallpapers_admin_wallpapers_verify_list()
 
 function wallpaper_verify_fetch($options)
 {
-	$query = 'SELECT l.username, w.user_id, w.id, w.title, w.extension, w_l.title AS license_title, w_a.title AS author_title, w.timestamp, w.cid, w_c.title AS cat_title FROM login AS l, '.WALLPAPERS_TABLE.' AS w, '.WALLPAPERS_AUTHORS.' AS w_a, '.WALLPAPERS_LICENSE.' AS w_l, '.WALLPAPERS_CATS.' AS w_c WHERE w.is_verified = 0 AND l.id = w.user_id AND w.license = w_l.id AND w.author = w_a.id AND w.title <> "" AND w_c.id = w.cid';
+	$query = 'SELECT l.username, w.user_id, w.id, w.title, w.extension, w.timestamp, w.cid, w_c.title AS cat_title FROM login AS l, '.WALLPAPERS_TABLE.' AS w, '.WALLPAPERS_CATS.' AS w_c WHERE w.is_verified = 0 AND l.id = w.user_id AND w.title <> "" AND w_c.id = w.cid';
 	if(isset($options['id']))
 	{
 		$query .= ' AND w.id = '.intval($options['id']).' LIMIT 1';
@@ -356,8 +356,6 @@ function wallpaper_verify_get_info($id)
 		$out .= '<ul class="no_bullets">'."\n";
 		$out .= "\t".'<li>Tillagd: '.fix_time($data['timestamp'])."</li>\n";
 		$out .= "\t".'<li>Uppladdad av: <a href="/traffa/profile.php?id='.$data['user_id'].'">'.$data['username'].'</a>'."</li>\n";
-		$out .= "\t".'<li>License: '.$data['license_title']."</li>\n";
-		$out .= "\t".'<li>Av: '.$data['author_title']."</li>\n";
 		$out .= "\t".'<li>Kategori: '.$data['cat_title'].'</li>'."\n";
 		$out .= '<hr />'."\n";
 		$out .= '<form action="wallpapers_admin.php" method="post">'."\n";
@@ -429,10 +427,6 @@ function wallpapers_admin_menu_list($action='home')
 	$menu[0]['label'] = 'Kategorier';
 	$menu[1]['href'] = '?action=view_res';
 	$menu[1]['label'] = 'Upplösning';
-	$menu[2]['href'] = '?action=view_license';
-	$menu[2]['label'] = 'Licenser';
-	$menu[3]['href'] = '?action=view_authors';
-	$menu[3]['label'] = 'Upphovsrättsinnehavare';
 	$menu[5]['href'] = '?action=verify_wallpaper';
 	$menu[5]['label'] = '<span style="color:#ff691d;">Godkänn bakgrundsbild</span>';
 	

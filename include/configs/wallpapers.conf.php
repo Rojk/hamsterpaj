@@ -7,5 +7,5 @@
 	define('WALLPAPERS_TAGS', 'wallpapers_tags');
 	define('WALLPAPERS_LICENSE', 'wallpapers_licenses');
 	define('WALLPAPERS_AUTHORS', 'wallpapers_authors');
-	//define('WALLPAPER_URL', IMAGE_URL.'wallpapers_new/');	
+	define('WALLPAPER_URL', IMAGE_URL.'wallpapers_new/');	
 ?>

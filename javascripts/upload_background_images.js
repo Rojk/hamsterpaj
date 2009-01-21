@@ -144,7 +144,7 @@ $(document).ready(function(){
 				
 				if((i == (arr.length-1)))
 				{
-					$('#result').append('<h2>Din bild laddades upp! <a href="/mattan/bakgrundsbilder.php?action=preview&id='+mysql_insert_id+'" title="Gå till din bild">Går vidare till den...</a></h2>');
+					$('#result').append('<h2>Din bild laddades upp, nu ska den bara bli verifierad av admins.</h2>');
 				}
 				}
 			);

@@ -62,7 +62,6 @@ $(document).ready(function(){
 										complete: function(msg)
 										{
 											ajax_loading(id);
-											alert(msg.responseText);
 											$('li#li_'+id).slideUp('fast');								
 										}
 									});

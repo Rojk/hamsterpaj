@@ -39,7 +39,6 @@ function wallpapers_fetch($options)
 
 function wallpapers_instructions()
 {
-$out = '';
 	if(strstr($_SERVER['HTTP_USER_AGENT'], 'Macintosh') !== false)
 	{
 		$os = 'Mac OS X';
@@ -52,14 +51,13 @@ $out = '';
 		elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'Firefox'))
 		{
 			$instructions[] = 'Högerklicka på bilden och välj "Använd som skrivbordsbakgrund..."';
-		}
-				
+		}	
 	}
 	elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'Windows') !== false)
 	{
 		$os = 'Windows';
 		//instructions, one step / key
-		$instructions[] = 'Högerklicka på den upplösning som passar din skärm (om du inte vet, välj 1280 x 1024)';
+		$instructions[] = 'Högerklicka på den den upplösningen som är i fetstil, finns det ingen i fetstil så finns den här bakgrunden troligtvis inte med rätt mått för din skärm.';
 		$instructions[] = 'Spara bilden i en mapp på din dator, kanske "Mina Dokument"';
 		$instructions[] = 'Öppna bilden, högerklicka på den och välj "Använd som bakgrundsbild"';
 	}
@@ -68,16 +66,15 @@ $out = '';
 		$os = 'ett okänt OS';
 		$instructions[] = 'Eftersom du inte har Windows eller Mac OS X (Apple) så antar vi att du klarar av att byta bakgrundsbild. Om inte, skapa en tråd i forumet ;)';	
 	}
-
-	$out .= '<h3>Så här byter du bakgrundsbild i '.$os.'</h3>'."\n";
-	$out .= '<ol class="wallpaper_download_instructions">'."\n";
-
-	foreach($instructions as $instruction)
-	{
-		$out .= '<li>'.$instruction.'</li>'."\n";
-	}
-	
-	$out .= '</ol>';
+	$out .= rounded_corners_top(array('color' => 'blue_deluxe'));
+		$out .= '<h3>Så här byter du bakgrundsbild i '.$os.'</h3>'."\n";
+		$out .= '<ol class="wallpaper_download_instructions">'."\n";
+		foreach($instructions as $instruction)
+		{
+			$out .= '<li>'.$instruction.'</li>'."\n";
+		}
+		$out .= '</ol>';
+	$out .= rounded_corners_bottom();
 	
 	return $out;
 }
@@ -120,12 +117,9 @@ function wallpapers_action_home($arg)
 	{
 		while($data = mysql_fetch_assoc($result))
 		{
-			$out .= '<div class="wallpaper_container">'."\n";
-			$out .= '<h3>'.(strlen($data['title']) > 12 ? substr($data['title'], 0, 9).'...' : $data['title']).'</h3><a href="?action=preview&id='.$data['id'].'">'."\n";
+			$out .= '<a href="?action=preview&id='.$data['id'].'" title="' . $data['title'] . '">'."\n";
 			$out .= '<img src="'.WALLPAPER_URL.$data['id'].'_thumb.'.$data['extension'].'" alt="'.$data['title'].'" />'."\n";
 			$out .= '</a>'."\n";
-			$out .= '<span class="downloads">'.$data['downloads'].' nedladdning'.($data['downloads'] == 1 ? '' : 'ar').'</span>'."\n";
-			$out .= '</div>'."\n";
 		}
 	}
 	else
@@ -181,12 +175,9 @@ function wallpapers_action_view_cat($arg)
 		{
 			while($data = mysql_fetch_assoc($result))
 			{
-				$out .= '<div class="wallpaper_container">'."\n";
-				$out .= '<h3>'.(strlen($data['title']) > 12 ? substr($data['title'], 0, 9).'...' : $data['title']).'</h3><a href="?action=preview&id='.$data['id'].'">'."\n";
+				$out .= '<a href="?action=preview&id='.$data['id'].'" title="' . $data['title'] . '">'."\n";
 				$out .= '<img src="'.WALLPAPER_URL.$data['id'].'_thumb.'.$data['extension'].'" alt="'.$data['title'].'" />'."\n";
 				$out .= '</a>'."\n";
-				$out .= '<span class="downloads">'.$data['downloads'].' nedladdning'.($data['downloads'] == 1 ? '' : 'ar').'</span>'."\n";
-				$out .= '</div>'."\n";
 			}
 		}
 		else
@@ -211,10 +202,8 @@ function wallpapers_action_preview($arg)
 	$wallpapers = wallpapers_fetch(array('id'=>$id, 'limit'=>1));
 	$cat = $wallpapers[0]['cid'];
 	
-	$query = 'SELECT a.title, a.extension, b.title AS license_title, b.license, c.title AS author_title, c.author 
+	$query = 'SELECT a.title, a.extension
 	FROM '.WALLPAPERS_TABLE.' AS a 
-	LEFT JOIN '.WALLPAPERS_LICENSE.' AS b ON a.license = b.id 
-	LEFT JOIN '.WALLPAPERS_AUTHORS.' AS c ON c.id = a.author 
 	LEFT JOIN '.WALLPAPERS_CATS.' AS d ON a.cid = d.id
 	WHERE a.id = '.$id.' 
 	AND a.is_removed = 0 
@@ -226,11 +215,6 @@ function wallpapers_action_preview($arg)
 	if(mysql_num_rows($result) > 0)
 	{
 	$data = mysql_fetch_assoc($result);
-	
-	$license['title'] = $data['license_title'];
-	$license['license'] = $data['license'];
-	$author['title'] = $data['author_title'];
-	$author['author'] = $data['author'];
 	
 	//next wallpaper
 	$query = 'SELECT id FROM `'.WALLPAPERS_TABLE.'` WHERE id > '.$id.' AND cid = '.$cat.' AND is_removed = 0 AND is_verified = 1 LIMIT 1';
@@ -244,11 +228,17 @@ function wallpapers_action_preview($arg)
 	$previous = (mysql_num_rows($result) > 0 ? mysql_fetch_assoc($result) : false);
 	$previous = $previous['id'];
 	echo '<br />'."\n";
+
+	//for the admins later on
+	$imagetitle = $data['title'];
+	
+	$out .= '<h1 id="wallpaper_header">'.$data['title'].'</h1>'."\n";
+	$out .= '<img src="'.WALLPAPER_URL.$id.'_preview.'.$data['extension'].'" id="wallpaper_preview" />'."\n";
 	
 	$out .= '<div>'."\n";
 	if($previous)
 	{
-		$out .= '<input type="button" value="&laquo; Förra" class="button" onclick="document.location.href = \'?action=preview&id='.$previous.'\';" />'."\n";
+		$out .= '<input type="button" value="&laquo; Föregående" class="button" id="wallpaper_prev" onclick="document.location.href = \'?action=preview&id='.$previous.'\';" />'."\n";
 	}
 	
 	if($next)
@@ -256,37 +246,11 @@ function wallpapers_action_preview($arg)
 		$out .= '<input type="button" value="Nästa &raquo;" class="button" onclick="document.location.href = \'?action=preview&id='.$next.'\';" style="float:right;" />'."\n";
 	}
 	$out .= '<br style="clear:both;" />'."\n";
-	$out .= '</div>'."\n";
-	$out .= '<br style="clear:both;" />'."\n";
-
 	$out .= '<br />'."\n";
-	//for the admins later on
-	$imagetitle = $data['title'];
-	
-	$out .= '<h1>'.$data['title'].'</h1>'."\n";
-	$out .= '<img src="'.WALLPAPER_URL.$id.'_preview.'.$data['extension'].'" id="wallpaper_preview" />'."\n";
-	$out .= '<h4>Taggad som</h4>'."\n";
-	$out .= '<ul id="wallpaper_tags">'."\n";
+	$out .= '</div>'."\n";
 
-	$query = 'SELECT tag FROM '.WALLPAPERS_TAGS.' WHERE is_removed = 0 AND pid = '.$id;
-	$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-
-	$tags = array();//for admins later
-	if(mysql_num_rows($result) > 0)
-	{	
-		while($data = mysql_fetch_assoc($result))
-		{
-			$tags[] .= $data['tag'];
-			$out .= '<li><a href="?action=view_tags&tag='.urlencode($data['tag']).'" title="Visa andra bilder med taggen">'.$data['tag'].'</a></li>'."\n";
-		}
-	}
-	else
-	{
-		$out .= '<li>Inga taggar</li>';
-	}
-
-	$out .= '</ul>'."\n";
 	$out .= '<div id="wallpaper_resolutions">'."\n";
+	$out .= rounded_corners_top(array('color' => 'orange'));
 	$out .= '<h2>Ladda hem bakgrundsbilden</h2>'."\n";
 	$out .= '<ul>'."\n";
 
@@ -330,24 +294,11 @@ function wallpapers_action_preview($arg)
 	}
 	
 	$out .= '</ul>'."\n";
-
-	$out .= '<br />'."\n";
+	$out .= rounded_corners_bottom();
 	$out .= wallpapers_instructions();
 	$out .= '</div>
 <div class="wallpaper_formalia">
-<h3>Licens och upphovsrätt</h3>
-<div class="license">'."\n";
 
-	$out .= '<h4>'.$license['title'].'</h4>'."\n";
-	$out .= '<p>'.$license['license'].'</p>'."\n";
-	
-	$out .= '</div>
-<div class="author">'."\n";
-
-	$out .= '<h4>'.$author['title'].'</h4>'."\n";
-	$out .= '<p>'.$author['author'].'</p>'."\n";
-	
-	$out .= '</div>
 	</div>'."\n";
 	$is_image = true;
 	$tags = implode(',', $tags);
@@ -406,12 +357,9 @@ $out = '';
 			{
 				while($data_imgs = mysql_fetch_assoc($result_imgs))
 				{
-					$out .= '<div class="wallpaper_container">'."\n";
-					$out .= '<h3>'.(strlen($data_imgs['title']) > 12 ? substr($data_imgs['title'], 0, 9).'...' : $data_imgs['title']).'</h3><a href="?action=preview&id='.$data_imgs['id'].'">'."\n";
+					$out .= '<a href="?action=preview&id='.$data_imgs['id'].'" title="' . $data_imgs['title'] . '">'."\n";
 					$out .= '<img src="'.WALLPAPER_URL.$data_imgs['id'].'_thumb.'.$data_imgs['extension'].'" alt="'.$data_imgs['title'].'" />'."\n";
 					$out .= '</a>'."\n";
-					$out .= '<span class="downloads">'.$data_imgs['downloads'].' nedladdning'.($data_imgs['downloads'] == 1 ? '' : 'ar').'</span>'."\n";
-					$out .= '</div>'."\n";
 				}
 			}
 			else
