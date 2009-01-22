@@ -246,7 +246,7 @@
 			}
 		}
 		
-		$remote_session['notice_message'] = 'Hey där, <a href="/traffa/profile.php?id=' . $_SESSION['login']['id'] . '">' . $_SESSION['login']['username'] . '</a> sladdade just in på din profil! - <a href="/traffa/my_visitors_joel.php">Visa alla dina besökare!</a>';
+		$remote_session['notice_message'] = 'Hey där, <a href="/traffa/profile.php?id=' . $_SESSION['login']['id'] . '">' . $_SESSION['login']['username'] . '</a> sladdade just in på din profil! - <a href="/traffa/my_visitors.php">Visa alla dina besökare!</a>';
 		session_save($userinfo['login']['session_id'], $remote_session);
 	}
 	//End of Lef
