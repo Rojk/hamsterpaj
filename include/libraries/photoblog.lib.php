@@ -158,7 +158,7 @@
 			$options['date'] = (is_array($options['date'])) ? $options['date'] : array($options['date']);
 		}
 		
-		$options['order-by'] = (in_array($options['order-by'], array('up.id'))) ? $options['order-by'] : 'up.id';
+		$options['order-by'] = (in_array($options['order-by'], array('up.id', 'up.date'))) ? $options['order-by'] : 'up.id';
 		$options['order-direction'] = (in_array($options['order-direction'], array('ASC', 'DESC'))) ? $options['order-direction'] : 'ASC';
 		$options['offset'] = (isset($options['offset']) && is_numeric($options['offset'])) ? $options['offset'] : 0;
 		$options['limit'] = (isset($options['limit']) && is_numeric($options['limit'])) ? $options['limit'] : 9999;
