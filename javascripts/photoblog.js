@@ -305,6 +305,10 @@ hp.photoblog = {
 	
 	make_comments: function() {
 		$('.photoblog_comment_text textarea').focus(function() {
+			if ( ! hp.login_checklogin() ) {
+				tiny_reg_form_show();
+			}
+			
 			if ( ! this.has_changed ) {
 				this.orig_value = this.value;
 				this.value = '';
