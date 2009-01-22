@@ -28,6 +28,6 @@
             'month' => $_GET['month']
         );
     }
-    
+    $options['order-by'] = 'up.date';
     $photo = photoblog_photos_fetch($options);
     echo json_encode($photo);
