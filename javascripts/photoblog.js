@@ -245,6 +245,7 @@ hp.photoblog = {
 		
 		var click_callback = function(e) {
 			var t = $(this);
+			document.location.hash = t.attr('href').split('#')[1];
 			if ( t.attr('href').indexOf('#month-') != -1 ) {
 				var date_month = hp.photoblog.get_month(t);
 				hp.photoblog.year_month.set_date(date_month);
@@ -259,6 +260,7 @@ hp.photoblog = {
 				var id = hp.photoblog.image_id(t);
 				self.load_image(id);
 			}
+			return false;
 		};
 		
 		var thumbs = $('#photoblog_thumbs a[href*=image-]');
