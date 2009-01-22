@@ -397,6 +397,9 @@
 		border: none;
 		margin: 0;
 		padding: 0;
+		font-size: 1.1em;
+		font-family: tahoma,arial,"ms trebuchet",sans-serif,serif;
+		color: #454545;
 	}
 	#photoblog_comments_form form .submit {
 		border: 1px solid #c6c6c6;
