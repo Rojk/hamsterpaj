@@ -129,7 +129,7 @@ hp.photoblog = {
 		this.make_keyboard();
 		this.make_comments();
 		
-		this.load_hashimage();
+		this.load_from_hash();
 		
 		var active_id = hp.photoblog.get_active();
 		if ( active_id.length ) {
@@ -245,20 +245,17 @@ hp.photoblog = {
 		
 		var click_callback = function(e) {
 			var t = $(this);
+			document.location.hash = t.attr('href').split('#')[1];
 			if ( t.attr('href').indexOf('#month-') != -1 ) {
 				var date_month = hp.photoblog.get_month(t);
-				hp.photoblog.year_month.set_date(date_month);
-				self.load_month(
-					date_month,
-					function (data) {
-						var image_index = (t.attr('id').indexOf('prev') != -1) ? data.length - 1 : 0;
-						self.load_image(data[image_index].id);
-					}
-				);
+				hp.photoblog.year_month.load_date(date_month, {
+					useLastIndex: (t.attr('id').indexOf('prev') != -1)
+				});
 			} else {
 				var id = hp.photoblog.image_id(t);
 				self.load_image(id);
 			}
+			return false;
 		};
 		
 		var thumbs = $('#photoblog_thumbs a[href*=image-]');
@@ -303,6 +300,10 @@ hp.photoblog = {
 	
 	make_comments: function() {
 		$('.photoblog_comment_text textarea').focus(function() {
+			if ( ! hp.login_checklogin() ) {
+				tiny_reg_form_show();
+			}
+			
 			if ( ! this.has_changed ) {
 				this.orig_value = this.value;
 				this.value = '';
@@ -533,7 +534,7 @@ hp.photoblog = {
 		$.getJSON('/ajax_gateways/photoblog.json.php?id=' + id, json_callback);
 	},
 	
-	load_hashimage: function() {
+	load_from_hash: function() {
 		var hash = window.location.hash;
 		if ( hash.indexOf('#image-') != -1 ) {
 			var id = parseInt(hash.replace('#image-', ''), 10);
@@ -542,6 +543,13 @@ hp.photoblog = {
 				return;
 			}
 			this.load_image(id);
+		} else if ( hash.indexOf('#month-') != -1 ) {
+			var date = parseInt(hash.replace('#month-', ''), 10);
+			if ( isNaN(date) ) {
+				alert('Erronous image date');
+				return;
+			}
+			hp.photoblog.year_month.load_date(date);
 		}
 	},
 	
@@ -626,6 +634,27 @@ hp.photoblog = {
 			hp.photoblog.view.load_month(this.current_year.toString() + month, function(data) {
 				// load first day in month
 				hp.photoblog.view.load_image(data[0].id);
+			});
+		},
+		
+		load_date: function(date, opts) {
+			opts = opts || {};
+			options = {
+				useLastIndex: false
+			};
+			for ( var key in opts ) if ( opts.hasOwnProperty(key) ) {
+				options[key] = opts[key];
+			}
+			
+			this.set_date(date);
+			this.current_month = date.toString().substr(4, 2);
+			hp.photoblog.view.load_month(date, function(data) {
+				if ( options.useLastIndex ) {
+					var index = data.length - 1;
+				} else {
+					var index = 0;
+				}
+				hp.photoblog.view.load_image(data[index].id);
 			});
 		},
 		
