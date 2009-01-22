@@ -374,7 +374,7 @@
 		$out .= '<div class="photoblog_comment_text">' . "\n";
 		$out .= '<form action="#" method="post">' . "\n";
 		$out .= '<p>' . "\n";
-		$out .= '<textarea name="comment">Skriv en kommentar... (Ska försvinna automagiskt *skrika på iPhone*) Och om man inte är inloggad ska man få upp en såndär söt tiny register ruta.</textarea>' . "\n";
+		$out .= '<textarea name="comment">Kommentar</textarea>' . "\n";
 		$out .= '<br />' . "\n";
 		$out .= '<input class="submit" type="submit" value="Skicka" />' . "\n";
 		$out .= '</p>' . "\n";
