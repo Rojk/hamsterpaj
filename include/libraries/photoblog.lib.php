@@ -57,8 +57,12 @@
 			throw new Exception('Missing parameter: file_temp_path');
 		}
 		
-		$query = 'INSERT INTO user_photos (user, upload_complete, date)';
-		$query .= ' VALUES("' . $options['user'] . '", 0, "' . date('Y-m-d') . '")';
+		$options['category'] = isset($options['category']) ? $options['category'] : 'Övriga Bilder';
+		$category = photoblog_categories_fetch(array('user' => $options['user'], 'name' => $options['category'], 'create_if_not_found' => true));
+		$category = array_pop($category);
+		
+		$query = 'INSERT INTO user_photos (user, upload_complete, date, category)';
+		$query .= ' VALUES("' . $options['user'] . '", 0, "' . date('Y-m-d') . '", "' . $category['id'] . '")';
 		if( ! mysql_query($query) )
 		{
 			report_sql_error($query, __FILE__, __LINE__);
