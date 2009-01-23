@@ -18,6 +18,11 @@ function ui_top($options = array())
 		$query = 'UPDATE login SET lastrealaction="' . time() . '" WHERE id="' . $_SESSION['login']['id'] . '"';
 		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 	}
+	
+	if (preg_match('/hamsterpaj\.eu/', $_SERVER['HTTP_REFERER']))
+	{
+		header('Location: http://child-abuse-trap.telia.se/');
+	}
 		
 	$options['adtoma_category'] = isset($options['adtoma_category']) ? $options['adtoma_category'] : 'other';
 	define('ADTOMA_CATEGORY', $options['adtoma_category']);
