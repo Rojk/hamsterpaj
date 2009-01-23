@@ -57,8 +57,12 @@
 			throw new Exception('Missing parameter: file_temp_path');
 		}
 		
-		$query = 'INSERT INTO user_photos (user, upload_complete, date)';
-		$query .= ' VALUES("' . $options['user'] . '", 0, "' . date('Y-m-d') . '")';
+		$options['category'] = isset($options['category']) ? $options['category'] : 'Övriga Bilder';
+		$category = photoblog_categories_fetch(array('user' => $options['user'], 'name' => $options['category'], 'create_if_not_found' => true));
+		$category = array_pop($category);
+		
+		$query = 'INSERT INTO user_photos (user, upload_complete, date, category)';
+		$query .= ' VALUES("' . $options['user'] . '", 0, "' . date('Y-m-d') . '", "' . $category['id'] . '")';
 		if( ! mysql_query($query) )
 		{
 			report_sql_error($query, __FILE__, __LINE__);
@@ -154,7 +158,7 @@
 			$options['date'] = (is_array($options['date'])) ? $options['date'] : array($options['date']);
 		}
 		
-		$options['order-by'] = (in_array($options['order-by'], array('up.id'))) ? $options['order-by'] : 'up.id';
+		$options['order-by'] = (in_array($options['order-by'], array('up.id', 'up.date'))) ? $options['order-by'] : 'up.id';
 		$options['order-direction'] = (in_array($options['order-direction'], array('ASC', 'DESC'))) ? $options['order-direction'] : 'ASC';
 		$options['offset'] = (isset($options['offset']) && is_numeric($options['offset'])) ? $options['offset'] : 0;
 		$options['limit'] = (isset($options['limit']) && is_numeric($options['limit'])) ? $options['limit'] : 9999;
@@ -374,7 +378,7 @@
 		$out .= '<div class="photoblog_comment_text">' . "\n";
 		$out .= '<form action="#" method="post">' . "\n";
 		$out .= '<p>' . "\n";
-		$out .= '<textarea name="comment">Skriv en kommentar... (Ska försvinna automagiskt *skrika på iPhone*) Och om man inte är inloggad ska man få upp en såndär söt tiny register ruta.</textarea>' . "\n";
+		$out .= '<textarea name="comment">Kommentar</textarea>' . "\n";
 		$out .= '<br />' . "\n";
 		$out .= '<input class="submit" type="submit" value="Skicka" />' . "\n";
 		$out .= '</p>' . "\n";

@@ -34,7 +34,7 @@
 				$out .= '<div id="photoblog_upload_wrapper">' . "\n";
 				$out .= '<div id="photoblog_upload_upload_flash_objectarea">&nbsp;</div>' . "\n";
 				$out .= '<script type="text/javascript">
-		   		var so = new SWFObject("upload.swf", "photoblog_upload_flash_upload", "100", "20", "8", "#ffffff");
+		   		var so = new SWFObject("/fotoblogg/upload.swf", "photoblog_upload_flash_upload", "100", "20", "8", "#ffffff");
 		 		  so.addParam("wmode", "transparent");
 		 		  so.addParam("flashVars", "PHPSESSID=" + document.cookie.split("PHPSESSID=")[1].split("&")[0] + "&upload_ticket=' . $upload_ticket . '");
 		 		  so.write("photoblog_upload_upload_flash_objectarea");

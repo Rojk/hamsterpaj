@@ -1,13 +1,13 @@
 function tiny_reg_form_show(header, bread_text)
 {
-	document.getElementById('hamsterpaj_website').style.display = 'none';	
+	document.getElementById('ui_wrapper').style.display = 'none';
 	document.getElementById('tiny_reg_form').style.display = 'block';
 	
-	if(header.length > 1)
+	if(header && header.length > 1)
 	{
 		document.getElementById('tiny_reg_form_header').innerHTML = header;
 	}
-	if(bread_text.length > 1)
+	if(bread_text && bread_text.length > 1)
 	{
 		document.getElementById('tiny_reg_form_bread_text').innerHTML = bread_text;
 	}
@@ -16,7 +16,7 @@ function tiny_reg_form_show(header, bread_text)
 
 function tiny_reg_form_hide()
 {
-	document.getElementById('hamsterpaj_website').style.display = 'block';
+	document.getElementById('ui_wrapper').style.display = 'block';
 	document.getElementById('tiny_reg_form').style.display = 'none';
 }
 
@@ -50,7 +50,7 @@ function tiny_reg_form_enable()
 	}
 }
 
-if(hp.login_checklogin())
+if(! hp.login_checklogin())
 {
 	womAdd('tiny_reg_form_enable()');
 }
