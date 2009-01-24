@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'guestbook-functions.php');
+	require_once(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
 	$ui_options['menu_path'] = array('admin', 'user_management');
 	$ui_options['title'] = 'User Management - Hamsterpaj.net';
 	
@@ -49,7 +49,12 @@
 					}
 						break;
 					case 'gb_warning':
-						new_entry($user['id'], 2348, $_POST['message']);
+						guestbook_insert(array(
+							'sender' => 2348,
+							'recipient' => $user['id'],
+							'is_private' => 1,
+							'message' => $_POST['message']
+						));
 						echo '<p>Guestbook message sent</p>' . "\n";
 						break;
 					case 'user_abuse':
