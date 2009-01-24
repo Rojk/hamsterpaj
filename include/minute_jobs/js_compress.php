@@ -2,7 +2,7 @@
 require_once('../core/common.php');
 if(ENVIRONMENT != 'development')
 {
-	require_once(PATHS_INCLUDE . 'libraries/jsmin.php');
+	require_once(PATHS_INCLUDE . 'libraries/jsmin.lib.php');
 	header('Content-type: text/plain');
 	$do_update = FORCE_UPDATE_JS_LIB; //Default: false. Change to true to update merged file irrespective of last JavaScript change.
 	unset($merge_input);

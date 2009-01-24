@@ -1,6 +1,5 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'guestbook-functions.php');
 	$ui_options['stylesheets'][] = 'abuse.css';
 	$ui_options['javascripts'][] = 'start.js';
 	$ui_options['javascripts'][] = 'abuse_report_handle.js';

@@ -1,6 +1,5 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'guestbook-functions.php');
 	
 	if(login_checklogin() && is_privilegied('abuse_report_handler'))
 	{
@@ -17,7 +16,11 @@
 			$message .= $_GET["extra"]."\n" . $_GET['reply'];
 			$message .= "\n\n" . 'Tack för att du hjälper oss att göra Hamsterpaj till ett bättre och mer trivsamt ställe. Keep on rocking!';
 			$message .= "\n\n" . '/Webmaster (referensnummret på rapporten är '. $_GET['report_id'] . ')';
-			new_entry($data['reporter'], 2348, htmlentities($message, ENT_QUOTES, UTF-8));
+			guestbook_insert(array(
+				'sender' => 2348,
+				'recipient' => $data['reporter'],
+				'message' => mysql_real_escape_string(htmlspecialchars($message))
+			));
 		}
 	}
 	else

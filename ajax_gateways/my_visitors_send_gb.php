@@ -1,6 +1,5 @@
 <?php
 	require('../include/core/common.php');
-	include($hp_includepath . 'guestbook-functions.php');
 	
 	if(isset($_POST['recipient']) && isset($_POST['message']) && is_numeric($_POST['recipient']))
 	{
@@ -11,17 +10,12 @@
 			{
 				die('Fel: Användaren har blockerat dig.');
 			}
-	
-			$spamval = spamcheck($_SESSION['login']['id'], $_POST['message']);
-			if($spamval == 1)
-			{
-				new_entry($_POST['recipient'], $_SESSION['login']['id'], $_POST['message']);
-				die('Gästboksinlägg skickat!');
-			}
-			else
-			{
-				die('Fel: Stoppat av spamskyddet.');
-			}
+			
+			guestbook_insert(array(
+				'sender' => $_SESSION['login']['id'],
+				'recipient' => $_POST['recipient'],
+				'message' => $_POST['message']
+			));
 		}
 	}
 ?>

@@ -379,7 +379,6 @@ function wallpaper_verify_execute($id, $form)
 		die('Wrong parameters');
 	if(!is_numeric($id))
 		die('Soet hacker du :P');
-	require(PATHS_INCLUDE . 'guestbook-functions.php');	
 	
 	$wallpapers = wallpaper_verify_fetch(array('id'=>intval($id)));
 	$wallpaper_recipient = $wallpapers[0]['user_id'];
@@ -415,7 +414,11 @@ function wallpaper_verify_execute($id, $form)
 	}
 	$message .= "\n" . 'Tack för att du hjälper oss att göra Hamsterpaj till ett bättre och mer trivsamt ställe. Keep on rocking!';
 	$message .= "\n\n" . '/Webmaster (referensnummret till bakgrundsbilden är '. intval($id) . ')';
-	new_entry($wallpaper_recipient, 2348, htmlentities(utf8_decode($message), ENT_QUOTES, UTF-8));
+	guestbook_insert(array(
+		'sender' => 2348,
+		'recipient' => $wallpaper_recipient,
+		'message' => mysql_real_escape_string(htmlentities(utf8_decode($message), ENT_QUOTES, UTF-8))
+	));
 
 	return 'Fixat';
 }
