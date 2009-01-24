@@ -32,6 +32,19 @@ function ui_top($options = array())
 	$output .= '<html xmlns="http://www.w3.org/1999/xhtml">' . "\n";
 	$output .= '	<head>' . "\n";
 	
+	if(ENVIRONMENT == 'production')
+	{	
+		$output .= '<script type="text/javascript">' . "\n";
+		$output .= 'var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");' . "\n";
+		$output .= 'document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));' . "\n";
+		$output .= '</script>' . "\n";
+		$output .= '<script type="text/javascript">' . "\n";
+		$output .= 'try {' . "\n";
+		$output .= 'var pageTracker = _gat._getTracker("UA-7112144-1");' . "\n";
+		$output .= 'pageTracker._trackPageview();' . "\n";
+		$output .= '} catch(err) {}</script>' . "\n";
+	}
+	
 	$output .=  '<meta name="description" content="' . $options['meta_description'] . '" />' . "\n";
 	$output .=  '<meta name="keywords" content="' . $options['meta_keywords'] . '" />' . "\n";
 	$output .=  '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' . "\n";
@@ -431,19 +444,6 @@ function ui_bottom($options = array())
 	$output .= '	<img src="//secure-dk.imrworldwide.com/cgi-bin/m?ci=hamsterpaj-se&amp;cg=0&amp;cc=1" alt=""/>' . "\n";
 	$output .= '</noscript>' . "\n";
 	$output .= '<!-- END Nielsen//NetRatings SiteCensus V5.2 -->' . "\n";
-	
-	if(ENVIRONMENT == 'production')
-	{	
-		$output .= '<script type="text/javascript">' . "\n";
-		$output .= 'var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");' . "\n";
-		$output .= 'document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));' . "\n";
-		$output .= '</script>' . "\n";
-		$output .= '<script type="text/javascript">' . "\n";
-		$output .= 'try {' . "\n";
-		$output .= 'var pageTracker = _gat._getTracker("UA-7112144-1");' . "\n";
-		$output .= 'pageTracker._trackPageview();' . "\n";
-		$output .= '} catch(err) {}</script>' . "\n";
-	}
 	
 	if(!login_checklogin())
 	{
