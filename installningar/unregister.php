@@ -15,7 +15,7 @@
 			login_remove_user($_SESSION['login']['id']);
 			$_SESSION = null;
 			session_destroy();
-			header('location: /msg.php?message=remove_success');
+			header('Location: /index.php');
 			die();
 		}
 		else {
