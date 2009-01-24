@@ -151,7 +151,6 @@
 		$menu['site_admin']['children']['open_search'] = array('label' => 'Open search', 'url' => '/admin/open_search.php', 'is_privilegied' => 'open_search');
 		$menu['site_admin']['children']['dev'] = array('label' => 'Utveckling', 'url' => 'javascript:void(0)', 'is_privilegied' => array('use_debug_tools'));
 			$menu['site_admin']['children']['dev']['children']['handy'] = array('label' => 'Handy <i>(riktig)</i>', 'url' => '/handy.php', 'is_privilegied' => 'use_debug_tools');
-			$menu['site_admin']['children']['dev']['children']['ajax_handy'] = array('label' => 'Handy encoder/decoder', 'url' => '/admin/ajax_handy.php', 'is_privilegied' => 'use_debug_tools');
 			$menu['site_admin']['children']['dev']['children']['visa_sessionsdata'] = array('label' => 'Visa sessionsdata', 'url' => '/admin/view_session.php', 'is_privilegied' => 'use_debug_tools');
 
 require_once(PATHS_INCLUDE . 'configs/entertain.conf.php');
