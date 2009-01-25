@@ -342,7 +342,7 @@ $out .= '</form>';
 		}
 		$out .= '">uppladdningen</a>.<br/>';
 		
-			$swfurl = 'cropper.swf?cropheight=' . $avatar_height . '&cropwidth=' . $crop_width . '&imageFile=' . $avatar_tmp_orginal_url . '&postFile=avatar-settings.php?action=crop';
+			$swfurl = '/swfs/cropper.swf?cropheight=' . $avatar_height . '&cropwidth=' . $crop_width . '&imageFile=' . $avatar_tmp_orginal_url . '&postFile=avatar-settings.php?action=crop';
 			if (isset($_GET['registerproccess']))
 			{
 				$swfurl.= '%26registerproccess=1';
