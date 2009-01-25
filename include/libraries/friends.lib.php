@@ -50,6 +50,7 @@
 		{
 			$friends_notices[$data['user_id']]['actions'][$data['action_id']] = $data; // Save in array
 			$friends_notices[$data['user_id']]['username'] = $data['username'];
+			$friends_notices[$data['user_id']]['friend_id'] = $data['user_id'];
 		}
 		return $friends_notices;
 	}
@@ -67,5 +68,14 @@
 			$query_insert .= ' VALUES("' . $data['user_id'] . '", "' . time() . '", "' . $_SESSION['login']['id'] . '", "' . $options['action'] . '", "' . $options['url'] . '", "' . $options['label'] . '")';
 			$result_insert = mysql_query($query_insert) or report_sql_error($query_insert, __FILE__, __LINE__);
 		}
+	}
+	
+	function friends_notices_remove($options)
+	{
+		$options['friend_id'] = intval($options['friend_id']) ? $options['friend_id'] : die('not a valid id');
+		$query = 'UPDATE friends_notices SET `read` = 1 WHERE 1';
+		$query .= ' AND user_id = ' . $_SESSION['login']['id'] . '';
+		$query .= ' AND friend_id = ' . $options['friend_id'] . '';
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 	}
 ?>
