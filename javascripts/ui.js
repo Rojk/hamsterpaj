@@ -232,7 +232,7 @@ hp.ui = {
 		$('.friends_notices_remove_all_from_user').click(function() {
 			var friend_id = $(this).attr("id");
 			$.ajax({
-				url: 'ajax_gateways/friends_notices_remove_all_from_user.php',
+				url: '/ajax_gateways/friends_notices_remove_all_from_user.php',
 				type: 'GET',
 				data: 'friend_id=' + friend_id
 			});

@@ -27,6 +27,8 @@
 	$fp_modules = fp_modules_fetch(array('removal_min' => time(), 'launch_max' => time()));
 
 	$out .= '<ol id="fp_module_list">' . "\n";
+
+	$puff_no = -1;
 	foreach($fp_modules AS $module)
 	{
 		$o = '';
@@ -44,14 +46,19 @@
 			$o = file_get_contents(PATHS_INCLUDE . 'fp_modules/' . $module['id'] . '.php');
 		}
 
-		if($module['commenting'] == 'true' || $module['published'] == 'true' || $module['grading'] == 'true')
+		$class = ($module['commenting'] == 'true' || $module['published'] == 'true' || $module['grading'] == 'true') ? 'module' : 'module_noframe';
+		if($module['format'] == '2_3')
 		{
-			$out .= '<li class="module">' . "\n";
+			$puff_no++;
+			$out .= '<li class="module_2_3">' . "\n";			
+			$out .= '<div class="' . $class . '">' . "\n";
 		}
 		else
 		{
-			$out .= '<li class="module_noframe">' . "\n";			
+			$out .= '<li class="' . $class . '">' . "\n";
 		}
+		
+		
 		$regexp = '#(href="?)([a-zA-Z0-9\:\.\-\_Â‰ˆ≈ƒ÷&\(\)~\/=?]{4,})"#eis';
 		$o = preg_replace($regexp, "'href=\"/fp_module_click.php?id=" . $module['id'] . "&url=' . base64_encode(stripcslashes('$2')) . '\"'", $o);
 		$out .= $o;
@@ -96,7 +103,20 @@
 			}
 			$out .= '</div>' . "\n";
 		}
-		$out .= '</li>' . "\n";
+		if($module['format'] == '2_3')
+		{
+			$out .= '</div>' . "\n";
+			$out .= '<div class="puff">' . "\n";
+			
+			$puff_query = 'SELECT * FROM fp_puffs ORDER BY id ASC';
+			$puffs = query_cache(array('category' => 'fp_puffs', 'max_limit' => 600, 'query' => $puff_query));
+
+			$puff_key = (date('z') + $puff_no) % count($puffs);
+
+			$out .= $puffs[$puff_key]['content'];
+			$out .= '</div>' . "\n";
+		}
+		$out .= '</li>' . "\n";		
 	}
 	$out .= '</ol>' . "\n";
 	
