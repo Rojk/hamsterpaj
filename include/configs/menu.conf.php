@@ -112,7 +112,7 @@
 		//$menu['installningar']['children']['byt_losen'] = array('label' => 'Byt lösenord', 'url' => '/installningar/renew_password.php');
 		$menu['installningar']['children']['profil'] = array('label' => 'Presentation', 'url' => '/installningar/profilesettings.php');
 		$menu['installningar']['children']['forum_installningar'] = array('label' => 'Foruminställningar', 'url' => '/installningar/forum_settings.php');
-		$menu['installningar']['children']['byt_visningsbild'] = array('label' => '<strong>Byt visningsbild</strong>', 'url' => '/avatar-settings.php');
+		$menu['installningar']['children']['byt_visningsbild'] = array('label' => '<strong>Byt visningsbild</strong>', 'url' => '/installningar/avatar-settings.php');
 		$menu['installningar']['children']['blockera'] = array('label' => 'Blockera', 'url' => '/installningar/userblock.php');
 		$menu['installningar']['children']['avregistrera'] = array('label' => 'Avregistrera', 'url' => '/installningar/unregister.php');
 	}
