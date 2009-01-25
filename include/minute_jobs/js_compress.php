@@ -4,7 +4,7 @@ if(ENVIRONMENT != 'development')
 {
 	require_once(PATHS_INCLUDE . 'libraries/jsmin.lib.php');
 	header('Content-type: text/plain');
-	$do_update = FORCE_UPDATE_JS_LIB; //Default: false. Change to true to update merged file irrespective of last JavaScript change.
+	$do_update = false; //Default: false. Change to true to update merged file irrespective of last JavaScript change.
 	unset($merge_input);
 	$javascripts_path = PATHS_WEBROOT . 'javascripts/';
 	$merged_file_path = PATHS_WEBROOT . 'tmp/javascripts/merged.js';
