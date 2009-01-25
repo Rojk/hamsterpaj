@@ -1,6 +1,6 @@
 <?php
 	
-	require('include/core/common.php');
+	require('../include/core/common.php');
 	$ui_options['menu_path'] = array('installningar', 'byt_visningsbild');
 	
 	if($_SESSION['login']['id'] == 804445)
@@ -212,7 +212,7 @@
 			unlink($avatar_thumb_filename );
 		}
 		jscript_alert('Din bild är nu borttagen!');
-		jscript_location($hp_url . 'avatar-settings.php');
+		jscript_location($hp_url . '/installningar/avatar-settings.php');
 	}
 	
 	
@@ -237,7 +237,7 @@
 		$out .= '
 <h1 style="margin: 0px; ">Ladda upp ditt foto (steg 1)</h1>
 Ladda upp ditt foto här, det måste vara en bild av filtyperna JPG, GIF eller PNG.<br /><br />
-<form name="uploadimg" action="/avatar-settings.php?action=upload" method="post" enctype="multipart/form-data" style="margin: 0px;">
+<form name="uploadimg" action="/installningar/avatar-settings.php?action=upload" method="post" enctype="multipart/form-data" style="margin: 0px;">
 <input name="userimage" type="file" /><br /><br />
 <h3>Alla bilder granskas av riktiga människor, innan bilden skickas till granskning måste du intyga följande:</h3>
 <ul style="padding: 0px; list-style-type: none;">
@@ -335,14 +335,14 @@ $out .= '</form>';
 		
 		$out .= '<h1 style="margin: 0px; ">Skala och besk&auml;r ditt foto (steg 2)</h1>';
 		$out .= 'Här kan du beskära och klippa ut valt område från ditt foto. Alla foton kommer klippas ut med ration 3:4.<br /><br />';
-		$out .= '» Vill du ladda upp en annan bild så gå tillbaka till <a href="avatar-settings.php';
+		$out .= '» Vill du ladda upp en annan bild så gå tillbaka till <a href="/installningar/avatar-settings.php';
 		if (isset($_GET['registerproccess']))
 		{
 			$out .= '?registerproccess=1';
 		}
 		$out .= '">uppladdningen</a>.<br/>';
 		
-			$swfurl = 'cropper.swf?cropheight=' . $avatar_height . '&cropwidth=' . $crop_width . '&imageFile=' . $avatar_tmp_orginal_url . '&postFile=avatar-settings.php?action=crop';
+			$swfurl = '/swfs/cropper.swf?cropheight=' . $avatar_height . '&cropwidth=' . $crop_width . '&imageFile=' . $avatar_tmp_orginal_url . '&postFile=/installningar/avatar-settings.php?action=crop';
 			if (isset($_GET['registerproccess']))
 			{
 				$swfurl.= '%26registerproccess=1';
@@ -359,10 +359,10 @@ $out .= '</form>';
 	{
 		$out .= '<h1 style="margin: 0px; ">Förhandsgranska och spara (steg 3)</h1>';
 		$out .= 'Du har nu skalat och beskärt ditt foto. Om du tycker ditt foto är okej så tryck på Spara så kommer ditt foto sparas och läggas in för granskning.<br /><br />';
-		$out .= '» Vill du ladda upp en annan bild så gå tillbaka till <a href="avatar-settings.php';
+		$out .= '» Vill du ladda upp en annan bild så gå tillbaka till <a href="/installningar/avatar-settings.php';
 		$out .= (isset($_GET['registerproccess']) ? '?registerproccess=1' : '');
 		$out .= '">uppladdningen</a>.<br/>';
-		$out .= '» Eller vill du skala om bilderna gå till <a href="avatar-settings.php?step=2';
+		$out .= '» Eller vill du skala om bilderna gå till <a href="/installningar/avatar-settings.php?step=2';
 		$out .= (isset($_GET['registerproccess']) ? '&registerproccess=1' : '');
 		$out .= '">beskärningen</a>.';
 	
@@ -371,7 +371,7 @@ $out .= '</form>';
 		$out .= '<br /><b>Fullstorlek:</b><br/> <img src="' . $avatar_tmp_full_url . '">';
 		$out .= '<br /><b>Thumbnail:</b><br /> <img src="' . $avatar_tmp_thumb_url. '">';
 		$out .= '</div>';
-		$out .= '<p><form name="saveimg" action="avatar-settings.php?action=save" method="post" enctype="multipart/form-data" style="margin: 0px;">';
+		$out .= '<p><form name="saveimg" action="/installningar/avatar-settings.php?action=save" method="post" enctype="multipart/form-data" style="margin: 0px;">';
 		$out .= '<input name="submit" type="submit" value="Spara" class="button" /><br />';
 		if (isset($_GET['registerproccess']))
 		{
