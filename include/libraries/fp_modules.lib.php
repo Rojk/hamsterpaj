@@ -87,6 +87,12 @@
 							<input type="checkbox" name="published" id="module_published" value="true"' . (($module['published'] == 'true') ? ' checked="checked"' : '') . ' />
 							<label for="module_published">Publiceringsdatum</label>
 						</li>
+						<li>
+							<select name="format">
+								<option value="normal">Normalt</option>
+								<option value="2_3"' . (($module['format'] == '2_3') ? ' selected="true"' : '') . '>Två-tredjedels</option>
+							</select>
+						</li>
 					</ul>' . "\n";
 
 	
