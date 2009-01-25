@@ -136,7 +136,55 @@
 			break;
 
 		default:
-			include('suggestions_start.html');
+			?>
+
+<h1>Här kan du lämna förslag till Hamsterpaj!</h1>
+
+<p>
+	Om du har hittat en bugg, saknar en funktion eller vill ha en ny flagga så kan du skicka
+	in ditt förslag här. Alla förslag läses av de som jobbar här på Hamsterpaj.<br />
+	När vi har läst ett förslag svarar vi på det och klassificerar det, skräp och trams tas
+	bara bort.
+</p>
+
+<h2>Här kan du inte rapportera användare eller inlägg!</h2>
+<p>
+	Om du vill rapportera en användare besöker du dennes presentation och trycker på "anmäl".
+</p>
+
+<h2>Du kan inte ställa frågor till oss här!</h2>
+<p>
+	Det här är en förslagsfunktion och inte en frågelåda! Du kan be oss skriva manualer eller
+	hjälpsidor, men vi svarar aldrig på frågor här.<br />
+	Undrar du över något? Starta en diskussion i <a href="/diskussionsforum/">forumet</a>.
+</p>
+
+<!-- Rounded corners div. Color: , dimension: -->
+<div class="rounded_corners" id="suggestion_start_help">
+<img src="http://images.hamsterpaj.net/css_backgrounds/rounded_corners/blue_full_top.png" />
+<div class="rounded_corners_blue_full">
+	<div style="clear:both"></div>
+	<h1 style="margin-top: 0px; padding-top: 4px;">Det är lätt att skicka in ett eget förslag</h1>
+		<ol style="margin-bottom: 0px; padding-bottom: 4px;">
+			<li>Titta så att förslaget inte redan är inlagt</li>
+			<li>Tänk igenom ditt förslag ordentligt
+				<ul>
+					<li>Blir Hamsterpaj bättre med ditt förslag?</li>
+					<li>Tror du det är möjligt att genomföra det?</li>
+					<li>Är det fler än du som kommer tycka att det är ett bra förslag?</li>
+				</ul>
+			</li>
+			<li>Skriv ner ditt förslag så tydligt och detaljerat som möjligt</li>
+			<li>Läs igenom ditt förslag, är det lätt att förstå vad du menar?</li>
+			<li>Tryck på "Skicka in ett förslag" och skicka in ditt förslag!</li>
+		</ol>
+	<div style="clear:both"></div>
+</div>
+<img src="http://images.hamsterpaj.net/css_backgrounds/rounded_corners/blue_full_bottom.png" />
+</div>
+
+
+			<?php
 	}
 
 	ui_bottom();

@@ -1,7 +1,6 @@
 <?php
 	require('../include/core/common.php');
 	require(PATHS_INCLUDE . 'libraries/drivers_license.php');
-	require(PATHS_INCLUDE . 'configs/drivers_license.php');
 			
 	$ui_options['menu_path'] = array('mattan', 'koerkort');
 	$ui_options['title'] = 'Körkortsfrågor på Hamsterpaj';
