@@ -45,8 +45,7 @@
 
 #ui_module_friends_notices ul li
 {
-	background: url(http://images.hamsterpaj.net/famfamfam_icons/eye.png) no-repeat left;
-	padding:  0px 0 2px 20px;
+	padding:  0px 0 2px 0px;
 	height: 12px;
 	list-style: none;
   font-size: 8pt;

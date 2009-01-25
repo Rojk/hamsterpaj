@@ -12,6 +12,7 @@ hp.ui = {
 		this.full_page_notice.init();
 		this.flash_menu_fix();
 		this.fix_ie6_menu();
+		this.friends_notices_remove_all_from_user();
 	},
 	
 	full_page_notice: {	
@@ -224,7 +225,22 @@ hp.ui = {
 				$(this).removeClass('hover');
 			});
 		}
+	},
+	
+	friends_notices_remove_all_from_user: function()
+	{
+		$('.friends_notices_remove_all_from_user').click(function() {
+			var friend_id = $(this).attr("id");
+			$.ajax({
+				url: 'ajax_gateways/friends_notices_remove_all_from_user.php',
+				type: 'GET',
+				data: 'friend_id=' + friend_id
+			});
+			$(this).parent().slideUp('500');
+			return false;
+		});
 	}
 }
 
 womAdd('hp.ui.init()');
+
