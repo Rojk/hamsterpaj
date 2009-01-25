@@ -30,7 +30,7 @@
 	
 	foreach($screens AS $id => $date)
 	{
-		echo '<li style="margin-top: 10px;"><a href="/tillbakablickar/hamsterpaj' . $id . '.jpg" target="_blank">' . $date . '</a></li>' . "\n";
+		echo '<li style="margin-top: 10px;"><a href="' . IMAGE_URL . 'tillbakablickar/hamsterpaj' . $id . '.jpg" target="_blank">' . $date . '</a></li>' . "\n";
 	}
 	
 	echo '</ol>' . "\n";
