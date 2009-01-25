@@ -28,7 +28,7 @@
 				passthru('mp3splt ' . escapeshellarg(MP3_PATH . stripslashes($_GET['filename'])) . ' -n -q -d ' . $hp_path . 'music_guess/mp3 -o ' . $file_id . '_' . $i . '.mp3 ' . $times[$i]);
 				
 				echo '<li style="margin-bottom: 20px;"><input type="radio" value="' . $i . '" name="file_version" /> ' . $times[$i] . "\n";
-				$swf_player = 'http://hamsterpaj.net/xspf/xspf_player_slim.swf';
+				$swf_player = 'http://hamsterpaj.net/swfs/xspf_player_slim.swf';
 				$swf_song = '?song_url=/music_guess/mp3/' . $file_id . '_' . $i . '.mp3';
 				$swf_song_title = '&song_title=' . $_GET['filename'];
 				$swf_player_title = '&player_title=' . $_GET['filename'];

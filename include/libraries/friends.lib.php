@@ -72,7 +72,7 @@
 	
 	function friends_notices_remove($options)
 	{
-		$options['friend_id'] = intval($options['friend_id']) ? $options['friend_id'] : die('not a valid id');
+		$options['friend_id'] = is_numeric($options['friend_id']) ? $options['friend_id'] : die('not a valid id');
 		$query = 'UPDATE friends_notices SET `read` = 1 WHERE 1';
 		$query .= ' AND user_id = ' . $_SESSION['login']['id'] . '';
 		$query .= ' AND friend_id = ' . $options['friend_id'] . '';

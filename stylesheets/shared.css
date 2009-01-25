@@ -5,7 +5,7 @@
 	################################################################
 */
 .corners, #corners {
-	behavior: url('/border-radius.htc');
+	behavior: url('/htcs/border-radius.htc');
 }
 
 /*
