@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require($hp_includepath . 'admin-functions.php');
+	require_once(PATHS_INCLUDE . 'libraries/admin.lib.php');
 
 	$ui_options['current_menu'] = 'admin';
 	ui_top($ui_options);

@@ -2,8 +2,7 @@
 	require('include/core/common.php');
 	//session_start();
 	
-  require_once($hp_includepath . 'avataradmin-functions.php');
-  require_once($hp_includepath . 'admin-functions.php');
+  require_once(PATHS_INCLUDE . 'libraries/admin.lib.php');
 	
 	$_GET['id'] = intval($_GET['id']);
 	
