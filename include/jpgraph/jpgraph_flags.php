@@ -1,4 +1,15 @@
 <?php
+
+
+/* Note: flags.dat, flags_thumb*.dat was removed to save space/backup time.
+   If you need flags, you have to remove the comments at line 283 to 291 in this file.
+   You also have to get the files needed from the jpgraph source (at jpgraph.com?). //Joel
+   
+   OR do a git revert commitid (search on github for "Removed flags from jpgraph to save space/leave space.")
+ */
+
+
+
 //=======================================================================
 // File:	JPGRAPH_FLAGS.PHP
 // Description:	Class Jpfile. Handles plotmarks
@@ -269,7 +280,7 @@ class FlagImages {
 
     function FlagImages($aSize=FLAGSIZE1) {
 	switch($aSize) {
-	    case FLAGSIZE1 :
+	  /*  case FLAGSIZE1 :
 	    case FLAGSIZE2 :
 	    case FLAGSIZE3 :
 	    case FLAGSIZE4 :
@@ -277,7 +288,7 @@ class FlagImages {
 		$fp = fopen($file,'rb');
 		$rawdata = fread($fp,filesize($file));
 		$this->iFlagData = unserialize($rawdata);
-	    break;
+	    break;*/
 	    default:
 		JpGraphError::RaiseL(5001,$aSize);
 //('Unknown flag size. ('.$aSize.')');
