@@ -227,7 +227,7 @@ function ui_top($options = array())
 	else
 	{
 		$output .= '			<div id="ui_login">' . "\n";
-		$output .= '				<form action="/login.php?action=login" method="post">' . "\n";
+		$output .= '				<form action="/login/login.php?action=login" method="post">' . "\n";
 		$output .= '					<p><label><strong>Användarnamn:</strong><br /><input id="ui_login_username" type="text" name="username" /></label></p>' . "\n";
 		$output .= '					<p><label><strong>Lösenord:</strong><br /><input id="ui_login_password" type="password" name="password" /></label></p>' . "\n";
 		$output .= '					<p><input class="ui_login_submit" type="submit" value="Logga in" /></p>' . "\n";
