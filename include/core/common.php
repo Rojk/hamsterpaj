@@ -31,29 +31,32 @@
 	define('CORE_PATH', substr(__FILE__, 0, strrpos(__FILE__, '/')+1));
 
   require_once(CORE_PATH . 'constants.php');
-  require_once(PATHS_INCLUDE . 'libraries/debug.lib.php');
-  require_once(PATHS_INCLUDE . 'libraries/database.lib.php');
-	require_once(CORE_PATH . 'database_init.php');
-	require_once(PATHS_INCLUDE . 'libraries/log.lib.php');
-  require(PATHS_INCLUDE . 'libraries/login.lib.php');
-
-	// Needs to be loaded before ui-functions.php (tele2 fullscreen ad)
-	require_once(PATHS_INCLUDE . 'libraries/event_log.lib.php');
-
-  require(PATHS_INCLUDE . 'libraries/cache.lib.php');
-  require(PATHS_INCLUDE . 'libraries/jscript.lib.php');
-
-  require_once(PATHS_INCLUDE . 'libraries/file_handling.lib.php');
-  require_once(PATHS_INCLUDE . 'libraries/parsers.lib.php');
   
-	require_once(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/tags.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/poll.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/ui.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/friends.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/msnbot.lib.php');
+  // These libraries are loaded by default, from /include/libraries/xxx.lib.php.
+  foreach(array(
+  	'debug',
+  	'database',
+  	'log',
+  	'login',
+  	'event_log',
+  	'cache',
+  	'jscript',
+  	'file_handling',
+  	'parsers',
+  	'discussion_forum',
+  	'tags',
+  	'poll',
+  	'ui',
+  	'guestbook',
+  	'friends',
+  	'msnbot'
+  ) as $library)
+  {
+	  require_once(PATHS_INCLUDE . 'libraries/' . $library . '.lib.php');
+	}
 	
+	// First here we connect to the database/break for database backup...
+	require_once(CORE_PATH . 'database_init.php');
 
 	/* Include all config files */
 	$dir = opendir(PATHS_INCLUDE . 'configs/');
