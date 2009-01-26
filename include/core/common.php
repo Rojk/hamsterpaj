@@ -42,12 +42,10 @@
 
   require(PATHS_INCLUDE . 'libraries/cache.lib.php');
   require(PATHS_INCLUDE . 'libraries/jscript.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/posts.php');
 
   require_once(PATHS_INCLUDE . 'libraries/file_handling.lib.php');
   require_once(PATHS_INCLUDE . 'libraries/parsers.lib.php');
   
-	require_once(PATHS_INCLUDE . 'libraries/forum.php');
 	require_once(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/tags.php');
 	require_once(PATHS_INCLUDE . 'libraries/poll.lib.php');
