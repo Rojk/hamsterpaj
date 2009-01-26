@@ -2,12 +2,7 @@
 	/* OPEN_SOURCE */
 
   require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/discussions.php');
-	require(PATHS_INCLUDE . 'libraries/posts.php');
-	require(PATHS_INCLUDE . 'libraries/quality.php');
-	require(PATHS_INCLUDE . 'libraries/forum-antispam.php');
 	require(PATHS_INCLUDE . 'libraries/msnbot.lib.php');
-	include($hp_path . 'forum_new/parser.php');
 
 	$ui_options['menu_path'] = array('hamsterpaj', 'nytt');
   $ui_options['enable_rte'] = true;
@@ -84,13 +79,6 @@
 			echo '<a name="newsitem' . $data['id'] . '"></a>';
 			echo '<strong>' . $data['title'] . '</strong> (' . fix_time($data['tstamp'], false) . ')<br />';
 			echo $data['body'];
-			if ($data['forumthread'] != '0')
-			{
-				unset($options);
-				$options['id'] = $data['forumthread'];
-				$discussions = discussions_fetch($options);
-				echo '<br /><br /><a href="/forum/hamsterpaj/nyheter/' . $discussions[0]['handle'] . '/">Kommentera nyheten »</a>';
-			}
 			echo '<br /><i>Skriven av: <strong>' . $data['who'] . '</strong></i>';
 			if(is_privilegied('news_admin'))
 			{
