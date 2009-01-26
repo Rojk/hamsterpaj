@@ -159,7 +159,7 @@ function steve_walk()
 			function steve_shot()
 			{
 				bubble('Aaargh!');
-				window.location = '/rip_steve.php';
+				window.location = '/mattan/rip_steve.php';
 			}
 			
 			function steve_gun()
