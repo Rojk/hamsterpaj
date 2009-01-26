@@ -47,7 +47,7 @@
   require_once(PATHS_INCLUDE . 'libraries/parsers.lib.php');
   
 	require_once(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/tags.php');
+	require_once(PATHS_INCLUDE . 'libraries/tags.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/poll.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/ui.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/guestbook.lib.php');

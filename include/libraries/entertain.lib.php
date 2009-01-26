@@ -1,6 +1,6 @@
 <?php
 require_once(PATHS_INCLUDE . 'libraries/distribute.lib.php');
-require_once(PATHS_INCLUDE . 'libraries/tags.php');
+require_once(PATHS_INCLUDE . 'libraries/tags.lib.php');
 require_once(PATHS_INCLUDE . 'libraries/schedule.lib.php');
 require_once(PATHS_INCLUDE . 'libraries/rank.lib.php');
 require_once(PATHS_INCLUDE . 'libraries/comments.lib.php');
