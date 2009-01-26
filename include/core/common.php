@@ -45,7 +45,7 @@
 	require_once(PATHS_INCLUDE . 'libraries/forum-notices.php');
 	require_once(PATHS_INCLUDE . 'libraries/posts.php');
 
-  require($hp_includepath . 'shared-functions.php');
+  require_once(PATHS_INCLUDE . 'libraries/file_handling.lib.php');
   require_once(PATHS_INCLUDE . 'libraries/parsers.lib.php');
   
 	require_once(PATHS_INCLUDE . 'libraries/forum.php');
