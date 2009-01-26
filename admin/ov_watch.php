@@ -1,8 +1,6 @@
 <?php
 
 require('../include/core/common.php');
-require_once(PATHS_INCLUDE . 'libraries/posts.php');
-require_once(PATHS_INCLUDE . 'libraries/markup.php');
 
 $ui_options['menu_path'] = array('admin', 'ov_watch');
 $ui_options['stylesheets'][] = 'forms.css';

@@ -34,7 +34,7 @@
   require_once(PATHS_INCLUDE . 'libraries/debug.lib.php');
   require_once(PATHS_INCLUDE . 'libraries/database.lib.php');
 	require_once(CORE_PATH . 'database_init.php');
-	require_once($hp_includepath . 'logging-functions.php');
+	require_once(PATHS_INCLUDE . 'libraries/log.lib.php');
   require(PATHS_INCLUDE . 'libraries/login.lib.php');
 
 	// Needs to be loaded before ui-functions.php (tele2 fullscreen ad)
@@ -42,16 +42,12 @@
 
   require(PATHS_INCLUDE . 'libraries/cache.lib.php');
   require(PATHS_INCLUDE . 'libraries/jscript.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/forum-notices.php');
-	require_once(PATHS_INCLUDE . 'libraries/posts.php');
 
-  require($hp_includepath . 'shared-functions.php');
+  require_once(PATHS_INCLUDE . 'libraries/file_handling.lib.php');
   require_once(PATHS_INCLUDE . 'libraries/parsers.lib.php');
   
-	require_once(PATHS_INCLUDE . 'libraries/forum.php');
 	require_once(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/tags.php');
-	require_once(PATHS_INCLUDE . 'libraries/log.lib.php');
+	require_once(PATHS_INCLUDE . 'libraries/tags.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/poll.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/ui.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/guestbook.lib.php');

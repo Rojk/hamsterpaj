@@ -203,7 +203,7 @@ function ui_top($options = array())
 		$output .= '					<img src="' . IMAGE_URL . 'images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
 		$output .= '				</a>' . "\n";
 		$output .= '				<div id="ui_statusbar_username">' . "\n";
-		$output .= '					<a href="/traffa/profile.php?user_id=' . $_SESSION['login']['id'] . '"><strong>' . $_SESSION['login']['username'] . '</strong></a><span> | </span><a href="/logout.php">Logga ut</a><br />' . "\n";
+		$output .= '					<a href="/traffa/profile.php?user_id=' . $_SESSION['login']['id'] . '"><strong>' . $_SESSION['login']['username'] . '</strong></a><span> | </span><a href="/login/logout.php">Logga ut</a><br />' . "\n";
 		$output .= '				</div>' . "\n";
 		$output .= '				<div id="ui_statusbar_logintime">' . "\n";
 	
@@ -227,7 +227,7 @@ function ui_top($options = array())
 	else
 	{
 		$output .= '			<div id="ui_login">' . "\n";
-		$output .= '				<form action="/login.php?action=login" method="post">' . "\n";
+		$output .= '				<form action="/login/login.php?action=login" method="post">' . "\n";
 		$output .= '					<p><label><strong>Användarnamn:</strong><br /><input id="ui_login_username" type="text" name="username" /></label></p>' . "\n";
 		$output .= '					<p><label><strong>Lösenord:</strong><br /><input id="ui_login_password" type="password" name="password" /></label></p>' . "\n";
 		$output .= '					<p><input class="ui_login_submit" type="submit" value="Logga in" /></p>' . "\n";

@@ -1,9 +1,6 @@
 <?php
 // Schedule library
 
-require_once(PATHS_INCLUDE . 'libraries/posts.php');
-require_once(PATHS_INCLUDE . 'libraries/discussions.php');
-require_once(PATHS_INCLUDE . 'libraries/forum.php');
 require_once(PATHS_INCLUDE . 'libraries/contests.lib.php');
 require_once(PATHS_INCLUDE . 'libraries/fun_images.lib.php');
 require_once(PATHS_INCLUDE . 'libraries/poll.lib.php');
@@ -190,9 +187,7 @@ function schedule_releases_do($options)
 		switch($event['type'])
 		{
 			case 'todays_discussion':
-				$discussion = schedule_release_todays_discussion($event);
-				$url = '/forum/' . forum_get_parent_category($discussion['category_handle']) . '/' . $discussion['category_handle'] . '/' . $discussion['handle'] . '/';
-				$label = $discussion['title'];
+				trace('todays_discussion_break', 'Tried to release todays_discussion in ' . __FILE__ . ' on line ' . __LINE__);
 				break;
 			case 'contest':
 				contests_create($data);
@@ -437,34 +432,6 @@ function schedule_release_get($options)
 	$debug .=  'day: ' . $day . "\n";
 	log_to_file('schedule', LOGLEVEL_DEBUG, __FILE__, __LINE__, $debug);
 	return $slots[$slot]['start'] + $day * 86400 + rand(0, $slots[$slot]['end'] - $slots[$slot]['start']);
-}
-
-function schedule_release_todays_discussion($event)
-{
-	$restored_POST = unserialize($event['data']);
-	unset($discussion);
-	$discussion['title'] = forum_fix_title($restored_POST['title']);
-	$discussion['author'] = 2348;
-	$discussion['discussion_type'] = 'forum';
-	$discussion['category'] = $restored_POST['category'];
-	
-	$discussion['desired_quality'] = 0;
-
-	$discussion['tags'] = explode(' ', str_replace(',', ' ', $restored_POST['tags']));
-	foreach($discussion['tags'] AS $key => $tag)
-	{
-		$discussion['tags'][$key] = trim($tag);
-	}
-	$discussion['tags'] = array_unique($discussion['tags']);
-	$return = discussion_create($discussion);
-	/* Lets write the users post to the discussion */
-	unset($post);
-	$post['content'] = $restored_POST['content'];
-	$post['discussion_id'] = $return['id'];
-	$post['author'] = 2348;
-	$post_id = posts_create($post);
-	$return['title'] = $discussion['title'];
-	return $return;
 }
 
 ?>
