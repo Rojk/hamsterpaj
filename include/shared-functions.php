@@ -1,4 +1,0 @@
-<?php
-	/* OPEN_SOURCE */
-
-?>
