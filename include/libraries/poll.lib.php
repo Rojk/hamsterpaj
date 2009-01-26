@@ -180,7 +180,7 @@
 		}
 		if ( !is_privilegied('frontpage_poll_admin') && $poll['type'] == 'daily' )
 		{
-			header('Location: /logout.php');
+			header('Location: /login/logout.php');
 			exit;
 			exit;
 			exit; // !!!

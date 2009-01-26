@@ -1,5 +1,5 @@
 <?php
-	require('include/core/common.php');
+	require('../include/core/common.php');
 	if($_SESSION['login']['id'] > 0)
 	{
 		$new_info['login']['lastaction'] = 0;
