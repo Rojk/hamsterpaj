@@ -9,7 +9,6 @@ plockas user bort med hjälp av en substr.
 require('../include/core/common.php');
 $ui_options['menu_path'] = array('admin', 'avatarer');
 include($hp_includepath . 'admin-functions.php');
-require($hp_includepath . 'avataradmin-functions.php');
 
 if(!is_privilegied('avatar_admin'))
 {
