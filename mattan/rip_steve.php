@@ -1,5 +1,5 @@
 <?php
-	require('./include/core/common.php');
+	require('../include/core/common.php');
 
 	$_SESSION['disablesteve'] = 1;
 
