@@ -4,7 +4,7 @@ function avatar_reminder(openBox, username, gender, hp_url)
 	if(openBox)
 	{
 		var oposite_gender = (gender == 'm' ? 'tjejer' : (gender == 'f' ? 'killar' : 'tjejer/killar'));
-		var avatar_reminder_text = "Hörru tjockis, vem är du egentligen?<br />Vi vet att du heter " + username + " här på Hamsterpaj, men vi har ingen<br />aning om hur du ser ut. Tänk på alla " + oposite_gender + " du missar för att du inte<br />har någon visningsbild. ;)<br /><br /><a href=\"" + hp_url + "avatar-settings.php\">Ladda upp en bild &raquo;</a>";
+		var avatar_reminder_text = "Hörru tjockis, vem är du egentligen?<br />Vi vet att du heter " + username + " här på Hamsterpaj, men vi har ingen<br />aning om hur du ser ut. Tänk på alla " + oposite_gender + " du missar för att du inte<br />har någon visningsbild. ;)<br /><br /><a href=\"" + hp_url + "installningar/avatar-settings.php\">Ladda upp en bild &raquo;</a>";
 		
 		if(!document.getElementById('remind_box'))
 		{
