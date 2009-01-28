@@ -180,5 +180,5 @@ foreach($handles as $handle)
 		$privilegie_handle = array_search($handle, $privilegie_handle_array);
 		$menu[$handle]['children']['admin'] = array('label' => 'Admin', 'url' => '/' . $type['url_handle'] . '/admin/', 'is_privilegied' => 'entertain_add');
 }
-	$menu['game']['children']['nord'] = array('label' => 'Nord', 'url' => '/nordframe.php');
+	$menu['game']['children']['nord'] = array('label' => 'Nord', 'url' => '/entertain/nordframe.php');
 ?>

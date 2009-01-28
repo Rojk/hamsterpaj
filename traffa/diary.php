@@ -54,16 +54,18 @@
 	if(login_checklogin() && isset($_POST['title']))
 	{
 		$insertquery = 'INSERT INTO blog (user, date, title, text) VALUES("' . $_SESSION['login']['id'] . '", "' . date('Y-m-d') . '", "' . $_POST['title'] . '", "' . $_POST['text'] . '")';
-		$updatequery = 'UPDATE blog SET title = "' . $_POST['title'] . '", text = "' . $_POST['text'] . '" WHERE user = "' . $_SESSION['login']['id'] . '" AND date = "' . date('Y-m-d') . '" LIMIT 1';
+		$updatequery = 'UPDATE blog SET is_removed = 0, title = "' . $_POST['title'] . '", text = "' . $_POST['text'] . '" WHERE user = "' . $_SESSION['login']['id'] . '" AND date = "' . date('Y-m-d') . '" LIMIT 1';
 		
 		if(mysql_query($insertquery))
 		{
 			$ualquery = 'INSERT INTO user_action_log (timestamp, user, action, url, label)';
 			$ualquery .= ' VALUES("' . time() . '", "' . $_SESSION['login']['id'] . '", "diary", "/traffa/diary.php?user=' . $_SESSION['login']['id'] . '&entry=' . mysql_insert_id() . '", "' . $_POST['title'] . '")';
 			
-			$options['url'] = '/traffa/diary.php?user=' . $_SESSION['login']['id'] . '&entry=' . mysql_insert_id();
+			$entry_id = mysql_insert_id();
+			$options['url'] = '/traffa/diary.php?user=' . $_SESSION['login']['id'] . '&entry=' . $entry_id;
 			$options['action'] = 'diary';
 			$options['label'] = $_POST['title'];
+			$options['item_id'] = $entry_id;
 			friends_actions_insert($options);
 			
 			mysql_query($ualquery) or report_sql_error($ualquery, __FILE__, __LINE__);
@@ -82,9 +84,11 @@
 	$output .= profile_mini_page($profile);
 	
 	/* Fetch and render an entry */
-	if(isset($_GET['entry']))
+	if(isset($_GET['entry']) && is_numeric($_GET['entry']))
 	{
 		$query = 'SELECT * FROM blog WHERE id = "' . $_GET['entry'] . '" AND is_removed = 0';
+		
+		friends_notices_set_read(array('action' => 'diary', 'item_id' => $_GET['entry']));
 	}
 	else
 	{
