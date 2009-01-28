@@ -35,7 +35,7 @@
 	
 	function friends_actions_fetch($options)
 	{
-		$query = 'SELECT f.friend_id AS user_id, f.url, f.action_id, f.read, f.action, f.label, l.username';
+		$query = 'SELECT f.friend_id AS user_id, f.url, f.action_id, f.read, f.action, f.label, l.username, f.item_id';
 		$query .= ' FROM friends_notices AS f, login AS l, userinfo AS u';
 		$query .= ' WHERE 1';
 		$query .=  isset($options['user_id']) ? ' AND f.user_id = "' . $options['user_id'] . '"' : '';
@@ -64,18 +64,61 @@
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);	
 		while($data = mysql_fetch_assoc($result))
 		{
-			$query_insert = 'INSERT INTO friends_notices (user_id, timestamp, friend_id, action, url, label)';
-			$query_insert .= ' VALUES("' . $data['user_id'] . '", "' . time() . '", "' . $_SESSION['login']['id'] . '", "' . $options['action'] . '", "' . $options['url'] . '", "' . $options['label'] . '")';
+			$query_insert = 'INSERT INTO friends_notices (user_id, timestamp, friend_id, action, url, label, item_id)';
+			$query_insert .= ' VALUES("' . $data['user_id'] . '", "' . time() . '", "' . $_SESSION['login']['id'] . '", "' . $options['action'] . '", "' . $options['url'] . '", "' . $options['label'] . '", "' . $options['item_id'] . '")';
 			$result_insert = mysql_query($query_insert) or report_sql_error($query_insert, __FILE__, __LINE__);
 		}
 	}
 	
 	function friends_notices_remove($options)
 	{
-		$options['friend_id'] = is_numeric($options['friend_id']) ? $options['friend_id'] : die('not a valid id');
 		$query = 'UPDATE friends_notices SET `read` = 1 WHERE 1';
-		$query .= ' AND user_id = ' . $_SESSION['login']['id'] . '';
-		$query .= ' AND friend_id = ' . $options['friend_id'] . '';
-		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		$query .= ' AND user_id = ' . $_SESSION['login']['id'];
+		$query .= (isset($options['friend_id']) && is_numeric($options['friend_id'])) ?  ' AND friend_id = ' . $options['friend_id'] : '';
+		$query .= (isset($options['item_id']) && is_numeric($options['item_id'])) ?  ' AND item_id = ' . $options['item_id'] : '';
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);echo mysql_affected_rows();
+	}
+	
+	function friends_notices_set_read($options)
+	{
+		if(!login_checklogin())
+		{
+			throw new Exception('Men tjockiskod, man måste ju vara inloggad för att kunna uppdatera statusen på vännernotiser!');
+		}
+		
+		if(!isset($options['action']))
+		{
+			throw new Exception('Ännu mera tjockiskod, grattis! Ingen type sattes för vännernotisen som skulle uppdateras.');
+		}
+		
+		if(!isset($options['item_id']) || !is_numeric($options['item_id']))
+		{
+			throw new Exception('Vännernotisen saknar helt klart ett item id för att kunna uppdateras...');
+		}
+		
+		if(isset($_SESSION['friends_actions']))
+		{
+			foreach($_SESSION['friends_actions'] as &$friend)
+			{
+				foreach($friend['actions'] as &$action)
+				{
+					if(isset($action['item_id']) && is_numeric($action['item_id']) && $action['action'] == $options['action'] && $action['item_id'] == $options['item_id'])
+					{
+						friends_notices_remove(array(
+							'item_id' => $action['item_id'],
+							'action' => $action['action']
+						));
+						
+						// Note: Both &$friend and &$action are reference pointers!
+						unset($action);
+						
+						if(empty($friend['actions']))
+						{
+							unset($friend);
+						}
+					}
+				}
+			}
+		}
 	}
 ?>

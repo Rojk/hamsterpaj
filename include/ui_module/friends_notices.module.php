@@ -29,7 +29,7 @@
 					case 'photos': $friend_action_action = 'Nytt foto'; break;
 					case 'diary': $friend_action_action = 'Nytt dagboksinlägg'; break;
 				}
-				$options['output'] .= '<li><a href="/traffa/friends_notices_redirect.php?friend_id=' . $friend_action['user_id'] . '&amp;url=' . urlencode($friend_action['url']) . '">' . $friend_action_action . ': ' . $friend_action['label'] . '</a></li>' . "\n";
+				$options['output'] .= '<li><a href="' . $friend_action['url'] . '">' . $friend_action_action . ': ' . $friend_action['label'] . '</a></li>' . "\n";
 			}
 		$options['output'] .= '</ul>' . "\n";
 		$options['output'] .= '</div>' . "\n";
