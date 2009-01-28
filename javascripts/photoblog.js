@@ -550,6 +550,13 @@ hp.photoblog = {
 				return;
 			}
 			hp.photoblog.year_month.load_date(date);
+		} else if ( hash.indexOf('#day-') != -1 ) {
+			var date = parseInt(hash.replace('#day-', ''), 10);
+			if ( isNaN(date) ) {
+				alert('Erronous image date');
+				return;
+			}
+			hp.photoblog.year_month.load_date(date, {useDay: true});
 		}
 	},
 	
@@ -640,21 +647,40 @@ hp.photoblog = {
 		load_date: function(date, opts) {
 			opts = opts || {};
 			options = {
-				useLastIndex: false
+				useLastIndex: false,
+				useDay: false
 			};
 			for ( var key in opts ) if ( opts.hasOwnProperty(key) ) {
 				options[key] = opts[key];
 			}
 			
+			if ( options.useDay ) {
+				date = date.toString();
+				day = date.substr(6, 2);
+				date = date.substr(0, 6);
+				
+				var findDay = function(obj, day) {
+					for ( var key in obj ) if (obj.hasOwnProperty(key)) {
+						if ( obj[key].date.substr(8, 2) == day ) {
+							return obj[key];
+						}
+					}
+					return false;
+				};
+			}
+			
 			this.set_date(date);
 			this.current_month = date.toString().substr(4, 2);
+			
 			hp.photoblog.view.load_month(date, function(data) {
-				if ( options.useLastIndex ) {
-					var index = data.length - 1;
+				if ( options.useDay ) {
+					var image = findDay(data, day);
 				} else {
-					var index = 0;
+					var index = (options.useLastIndex) ? date.length - 1 : 0;
+					var image = data[index];
 				}
-				hp.photoblog.view.load_image(data[index].id);
+				
+				hp.photoblog.view.load_image(image.id);
 			});
 		},
 		
