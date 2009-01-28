@@ -76,6 +76,7 @@
 		$query .= ' AND user_id = ' . $_SESSION['login']['id'];
 		$query .= (isset($options['friend_id']) && is_numeric($options['friend_id'])) ?  ' AND friend_id = ' . $options['friend_id'] : '';
 		$query .= (isset($options['item_id']) && is_numeric($options['item_id'])) ?  ' AND item_id = ' . $options['item_id'] : '';
+		$query .= (isset($options['action'])) ?  ' AND action = "' . $options['action'] . '"' : '';
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);echo mysql_affected_rows();
 	}
 	
