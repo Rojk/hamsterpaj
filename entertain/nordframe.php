@@ -1,5 +1,5 @@
 <?php
-	require('include/core/common.php');
+	require('../include/core/common.php');
 	$ui_options['menu_path'] = array('spel', 'nord');
 	$ui_options['title'] = 'Nord';
 	ui_top($ui_options);
