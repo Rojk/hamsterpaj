@@ -1,4 +1,7 @@
 <?php
+
+	die('Någon kodar som ett arsel, och Lorddanne leker. så, jag säger att detta är lite trasigt.');
+
 	require('../include/core/common.php');
 	require(PATHS_INCLUDE . 'libraries/suggestions.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
