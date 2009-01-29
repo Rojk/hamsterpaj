@@ -499,4 +499,14 @@ $(function() {
 		$('#' + thread_id).fadeOut('500');
 		return false;
 	});
+	$('.remove_answer_notice_listed').click(function() {
+		var post_id = $(this).attr("id");
+		$.ajax({
+			url: '/ajax_gateways/discussion_forum.php',
+			type: 'GET',
+			data: 'post_id=' + post_id + '&action=remove_answer_notice'			 
+		});
+		$(this).parent().parent().fadeOut('500');
+		return false;
+	});
 });

@@ -1313,7 +1313,8 @@
 				$category_path = discussion_forum_path_to_category(array('id' => $notice['forum_id']));
 				$category = array_pop($category_path);
 				$url = $category['url'] . $notice['handle'] . '/sida_' . (floor($data['posts'] / FORUM_POSTS_PER_PAGE)+1) . '.php#post_' . $notice['post_id'];
-
+				
+				$output .= '<td class="remove_answer_notice_listed"><a id="' . $notice['post_id'] . '" class="remove_answer_notice_listed" href="/ajax_gateways/discussion_forum.php?action=remove_answer_notice&post_id=' . $notice['post_id'] . '" title="Flagga inlägget som läst"><img src="' . IMAGE_URL . 'famfamfam_icons/eye.png" alt="x" /></a></td>' . "\n";
 				$output .= '<td>' . fix_time($notice['timestamp']) . '</td>' . "\n";		
 				$output .= '<td><a href="' . $url . '">' . $notice['title'] . '</a></td>';
 				$output .= '<td><a href="/traffa/profile.php?id=' . $notice['author'] . '">' . $notice['username'] . '</a></td>';
