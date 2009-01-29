@@ -487,3 +487,16 @@ hp.discussion_forum = {
 		}
 	}
 }
+
+$(function() {
+	$('.remove_subscribtion_listed').click(function() {
+		var thread_id = $(this).parent().parent().attr("id");
+		$.ajax({
+			url: '/ajax_gateways/discussion_forum.php',
+			type: 'GET',
+			data: 'thread_id=' + thread_id + '&action=remove_thread_subscription'			 
+		});
+		$('#' + thread_id).fadeOut('500');
+		return false;
+	});
+});

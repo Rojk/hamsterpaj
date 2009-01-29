@@ -49,6 +49,12 @@
 	padding-top: 5px;
 }
 
+.forum_thread_list .remove_subscribtion_listed
+{
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
 /* Category listing */
 .forum_category_list
 {

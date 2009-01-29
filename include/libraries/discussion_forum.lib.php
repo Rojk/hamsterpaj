@@ -951,7 +951,7 @@
 	function discussion_forum_thread_list($threads)
 	{
 		$output .= '<table class="forum_thread_list">' . "\n";
-		$output .= '<tr class="headings"><th>Rubrik</th><th>Skapare</th><th>Inlägg</th><th>Olästa</th><th>Poäng</th></tr>' . "\n";
+		$output .= '<tr class="headings"><th></th><th>Rubrik</th><th>Skapare</th><th>Inlägg</th><th>Olästa</th><th>Poäng</th></tr>' . "\n";
 		$zebra = 'odd';
 		foreach($threads AS $thread)
 		{
@@ -960,7 +960,8 @@
 			$href = (isset($thread['url'])) ? $thread['url'] : $thread['handle'] . '/sida_1.php';
 			$thread['unread_posts'] = ($thread['unread_posts'] > 0) ? '<strong>' . $thread['unread_posts'] . '</strong>' : '';
 			
-			$output .= '<tr class="' . $zebra . '">' . "\n";
+			$output .= '<tr class="' . $zebra . '" id="' . $thread['id'] . '">' . "\n";
+			$output .= '	<td class="remove_subscribtion_listed"><a class="remove_subscribtion_listed" href="/ajax_gateways/discussion_forum.php?action=remove_thread_subscription&thread_id=' . $thread['id'] . '" title="Sluta bevaka tråd"><img src="' . IMAGE_URL . 'famfamfam_icons/eye.png" alt="x" /></a></td>' . "\n";
 			$output .= '	<td class="main_info">' . "\n";
 			$output .= '		' . (empty($flags) ? '' : '&laquo;' . $flags . ' &raquo;') . ' <a href="' . $href . '">' . $thread['title'] . '</a>' . "\n";
 			$output .= '	</td>' . "\n";
