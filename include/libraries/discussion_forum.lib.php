@@ -948,7 +948,7 @@
 		return $output;
 	}
 	
-	function discussion_forum_thread_list($threads)
+	function discussion_forum_thread_list($threads, $options)
 	{
 		$output .= '<table class="forum_thread_list">' . "\n";
 		$output .= '<tr class="headings"><th></th><th>Rubrik</th><th>Skapare</th><th>Inlägg</th><th>Olästa</th><th>Poäng</th></tr>' . "\n";
