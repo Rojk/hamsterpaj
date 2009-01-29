@@ -340,9 +340,8 @@
 			$output .= discussion_forum_list_notices();
 
 			$output .= '<h1>Bevakade trådar</h1>' . "\n";
-			
-			//$output .= '<h1>Bajs?</h1>' . "\n";
-			$output .= discussion_forum_thread_list($_SESSION['forum']['subscriptions'], array("option_delete" => true));
+			$options['notice_listing'] = true;
+			$output .= discussion_forum_thread_list($_SESSION['forum']['subscriptions'], $options);
 			
 
 			foreach($_SESSION['forum']['categories'] AS $category)
