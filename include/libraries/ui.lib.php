@@ -312,7 +312,7 @@ function ui_top($options = array())
 	}
 	
 	$data = cache_load('live_chat_new_message');
-	if(($_SESSION['seen_live_chat_notice'][$data['id']] < 2) && login_checklogin())
+	if(($_SESSION['seen_live_chat_notice'][$data['id']] < 2) && $data['timestamp'] > (time() - 60) && login_checklogin())
 	{
 		$_SESSION['seen_live_chat_notice'][$data['id']]++;
 		$content = '<a href="traffa/klotterplanket.php">';
