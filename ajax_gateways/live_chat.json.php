@@ -40,7 +40,19 @@
 		{
 			array_pop($_SESSION['live_chat']['last_message']);
 		}
-
+		
+		// Create a notice to all members that somebody is writing, if it is long since latest
+		$latest_message = cache_load('live_chat_latest_message');
+		if($event['reference_id'] = 4 && $latest_message < (time() - 15*60)) // If it is the normal klotterplank room and half an hour since last message
+		{
+			$cache_data['id'] = md5($_GET['message'] . time()); // We create a fake-id
+			// Save latest messagetime to cache.
+			$cache_data['timestamp'] = time();
+			$cache_data['author'] = $event['username'];
+			cache_save('live_chat_new_message', $cache_data);
+		}
+		
+		cache_save('live_chat_latest_message', time());
 	}
 	else
 	{

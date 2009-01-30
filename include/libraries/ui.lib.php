@@ -307,11 +307,19 @@ function ui_top($options = array())
 		$content = '<span class="ui_notice_time">' . date('H:i', $data['timestamp']) . '</span>' . "\n";
 		$content .= '<span class="ui_notice_event">' . $RECENT_UPDATES[$data['type']] . '</span>' . "\n";
 		$content .= '<span class="ui_notice_link"><a href="/recent_updates_redirect.php?id=' . $data['id'] . '&url=' . urlencode($data['url']) . '&source=global_notice">' . $data['label'] . '</a></span>' . "\n";
-		
 		$noticemessages[] = array('html' => $content);
 		$_SESSION['recent_update_notifier'][$data['id']]++;
 	}
-
+	
+	$data = cache_load('live_chat_new_message');
+	if(($_SESSION['seen_live_chat_notice'][$data['id']] < 2) && login_checklogin())
+	{
+		$_SESSION['seen_live_chat_notice'][$data['id']]++;
+		$content = '<a href="traffa/klotterplanket.php">';
+		$content .= $data['author'] . ' skrev precis på klotterplanket. Skriv något du med?';
+		$content .= '</a>';
+		$noticemessages[] = array('html' => $content);
+	}
 
 	foreach($noticemessages AS $noticemessage)
 	{
