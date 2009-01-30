@@ -2,6 +2,7 @@
 		$ui_options['ui_modules']['photoblog_user'] = 'User';
 		$ui_options['ui_modules']['photoblog_calendar'] = 'Kalender';
 		$ui_options['ui_modules']['photoblog_albums'] = 'Album';
+		$ui_options['javascripts'][] = 'jquery.protect-image.js';
 		
 		$user_id = $photoblog_user['id'];
 		$options = array(
@@ -25,7 +26,7 @@
 					$last_day = array('date' => null, 'formatted' => null);
 					if ( ! count($photos) )
 					{
-						$out .= '<dt>H&auml;r var det tomt...</dt>';
+						$out .= '<dt>Här var det tomt...</dt>';
 					}
 					
 					$count = count($photos);
