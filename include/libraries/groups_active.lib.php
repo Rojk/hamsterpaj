@@ -456,13 +456,14 @@
 			
 			// Post form for writing in the group
 			
-			echo '<form action="' . $_SERVER['php_self'] . '?action=new_post&amp;groupid=' . $groupid . '" method="post" name="postform">';
+			echo '<form action="/ajax_gateways/groups.php?action=new_post&groupid=' . $groupid . '" method="post" id="' . $groupid . '" name="postform">';
 			echo '<h2 style="margin-top: 0;">Meddelande:</h2>';
-			echo '<textarea name="group_message" class="textbox" style="width: 99%; height: 110px;"></textarea><br />';
-			echo '<input type="submit" value="Skicka" name="submit_message" class="button_60"/><br />';
-			echo '</form>';
+			echo '<textarea name="group_message" class="textbox" style="width: 99%; height: 110px;" id="group_message"></textarea><br />';
+			echo '<input type="submit" value="Skicka" name="submit_message" id="group_message_submit" class="button_60"/><br />';
+			echo '</form>';			
 		}
 		echo rounded_corners_bottom(array('color' => 'blue'));
+		echo '<div id="form_notice"></div>';
 	}
 	
 	function group_check_auth($userid, $groupid, $approved)
