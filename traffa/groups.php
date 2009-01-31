@@ -5,19 +5,13 @@
 	
 	ob_start();
 	require('../include/core/common.php');
-	require_once(PATHS_INCLUDE . 'libraries/live_chat.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
 	require_once(PATHS_INCLUDE . 'libraries/groups_active.lib.php');
 
 	$ui_options['menu_path'] = array('traeffa', 'grupper');
 	$ui_options['admtoma_category'] = 'groups';
 	$ui_options['javascripts'] = array('scripts.js');
-	
-	$ui_options['stylesheets'][] = 'live_chat.css';
-	$ui_options['javascripts'][] = 'live_chat.js';
-	
-		$ui_options['javascripts'][] = 'discussion_forum.js';	
-
+	$ui_options['javascripts'][] = 'discussion_forum.js';	
 
 	ui_top($ui_options);
 
