@@ -303,6 +303,10 @@
 		mysql_query($query) or die(report_sql_error($query));	
 		
 		event_log_log('group_post');
+		
+		// Since I wrote this there is no idea to get a notice about it.
+		$query = 'UPDATE groups_members SET read_msg = read_msg +1 WHERE userid = ' . $_SESSION['login']['id'] . ' AND groupid = ' . $groupid;
+		mysql_query($query) or die(report_sql_error($query));
 	}
 	
 	function group_close_group($groupid)
