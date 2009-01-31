@@ -1,0 +1,227 @@
+/* This is not an old fp_modules.css; this is used for /hamsterpaj/gamla_indexmoduler */
+#module_pagination
+{
+	height: 20px;
+	margin-top: 5px;
+	padding: 10px;
+	text-align: center;
+	background: #FFFBC9;
+	-moz-border-radius: 8px;
+}
+
+#fp_module_list
+{
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
+}
+
+#fp_module_list .module .module_header
+{
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	margin-left: -5px;
+	margin-right: -5px;
+	padding-left: 5px;
+	background: #d5e3ff;
+	cursor: pointer;
+}
+
+#fp_module_list .module_2_3 .module_header
+{
+	border: 3px solid #d5e3ff;
+	-moz-border-radius: 8px;
+	padding: 0 0 0 5px;
+	margin: 0px;
+	margin-bottom: 5px;
+	cursor: pointer;
+	height: 20px;
+	line-height: 20px;
+	background: #d5e3ff;
+}
+
+#fp_module_list .module .module_header *
+{
+	display: inline;
+}
+
+#fp_module_list .module .module_header .module_toggle_guide, #fp_module_list .module_2_3 .module_header .module_toggle_guide
+{
+	display: inline;
+	float: right;
+	margin-right: 10px;
+}
+
+#fp_module_list .module .module_header strong, #fp_module_list .module .module_header span, #fp_module_list .module_2_3 .module_header strong, #fp_module_list .module_2_3 .module_header span
+{
+	display: inline;
+	float: left;
+	margin-left: 5px;
+}
+
+#fp_module_list .module .module_content
+{
+	padding-top: 10px;
+}
+
+#fp_module_list .module h2, #fp_module_list .module_noframe h2
+{
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding: 0px;
+}
+
+#fp_module_list .module p
+{
+	margin-bottom: 2px;
+}
+
+#fp_module_list .module, #fp_module_list .module_noframe
+{
+	display: block;
+	clear: both;
+	list-style-type: none;
+	margin-left: 0px;
+	border: 3px solid #d5e3ff;
+	-moz-border-radius: 8px;
+	margin-bottom: 5px;
+	padding: 0 5px 0 5px;
+}
+
+#fp_module_list .module_2_3 .module, #fp_module_list .module_2_3 .module_noframe
+{
+	width: 400px;
+	float: left;
+}
+
+#fp_module_list .module_2_3 .puff
+{
+	padding: 5px;
+	width: 200px;
+	float: left;
+	clear: right;
+}
+
+#fp_module_list .module_2_3 .puff h2
+{
+	margin: 0px;
+	padding: 3px;
+	-moz-border-radius: 3px;
+	background: #e5e5e5;
+	
+}
+
+
+#fp_module_list .module .controls
+{
+	height: 20px;
+	line-height: 20px;
+	margin-top: 5px;
+	margin-left: -5px;
+	margin-right: -5px;
+	padding-left: 5px;
+	background: #d5e3ff;
+}
+
+#fp_module_list .module .controls p
+{
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	display: inline;
+}
+
+.fp_module_commenting, .fp_module_published, .fp_module_score
+{
+	padding-right: 50px;
+}
+
+.module_2_3 .fp_module_commenting, .module_2_3 .fp_module_published, .module_2_3 .fp_module_score
+{
+	padding-right: 20px;
+}
+
+#fp_module_list .module .controls .fp_vote
+{
+	cursor: pointer;
+}
+
+.fp_module_admin_list ol
+{
+	padding: 0px;
+	list-style-type: none;
+}
+
+.fp_module_admin_list ol li
+{
+	display: block;
+	width: 300px;
+	height: 50px;
+	padding: 5px;
+	background: #fbe4c9;
+	-moz-border-radius: 8px;
+	margin-bottom: 5px;
+}
+
+.fp_module_admin_list ol li h3
+{
+	display: inline;
+	margin: 0px;
+	padding: 0px;
+}
+
+.fp_module_admin_list ol li p
+{
+	float: right;
+	margin: 0px;
+	padding: 0px;
+}
+
+.fp_module_admin_list ol li label, .fp_module_admin_list ol li input
+{
+	display: block;
+	float: left;
+	width: 100px;
+}
+
+.fp_module_admin_list ol li input
+{
+	border: none;
+	font-size: 10px;
+	margin-right: 10px;
+	width: 90px;
+}
+
+
+
+/* Edit / creation form */
+.fp_module_form textarea
+{
+	display: block;
+	width: 630px;
+	height: 350px;
+	font-size: 11px;
+	color: #565656;
+}
+
+
+#fp_admin_labels, #fp_admin_fields, #fp_admin_options
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+#fp_admin_labels li, #fp_admin_fields li, #fp_admin_options li
+{
+	list-style-type: none;
+	float: left;
+	display: block;
+	width: 210px;
+}
+
+.fp_admin_code_label
+{
+	display: block;
+	font-size: 16px;
+	clear: both;
+}
