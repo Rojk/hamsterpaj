@@ -5,7 +5,7 @@ if(ENVIRONMENT != 'development')
 	require_once(PATHS_INCLUDE . 'libraries/jsmin.lib.php');
 	header('Content-type: text/plain');
 	$javascripts_path = PATHS_WEBROOT . 'javascripts/';
-	$merged_file_path = PATHS_WEBROOT . 'tmp/javascripts/specified/';
+	$merged_file_path = PATHS_STATIC . 'javascripts/specified/';
 	$update_list = array();
 	$number_of_files = 0;
 	$maxlen = 30;

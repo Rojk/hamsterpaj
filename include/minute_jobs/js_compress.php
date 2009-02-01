@@ -7,7 +7,7 @@ if(ENVIRONMENT != 'development')
 	$do_update = false; //Default: false. Change to true to update merged file irrespective of last JavaScript change.
 	unset($merge_input);
 	$javascripts_path = PATHS_WEBROOT . 'javascripts/';
-	$merged_file_path = PATHS_WEBROOT . 'tmp/javascripts/merged.js';
+	$merged_file_path = PATHS_STATIC . 'javascripts/merged.js';
 	$merged_file_last_update = filemtime($merged_file_path);
 	$last_javascript_update = 0;
 	$maxlen = 45;
