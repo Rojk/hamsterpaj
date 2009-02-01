@@ -36,6 +36,9 @@
 
 		$query .= (isset($options['order-by'])) ? ' ORDER BY ' . $options['order-by'] : ' ORDER BY priority';		
 		$query .= (isset($options['order-direction'])) ? ' ' . $options['order-direction'] : ' DESC';
+		$query .= (isset($options['limit'])) ? ' LIMIT' : '';
+		$query .= (isset($options['offset']) && is_numeric($options['offset']) && isset($options['limit'])) ? ' ' . $options['offset'] . ', ' : '';
+		$query .= (isset($options['limit'])) ? ' ' . $options['limit'] : '';
 
 		$result = mysql_query($query) or report_sql_error($query);
 		while($data = mysql_fetch_assoc($result))

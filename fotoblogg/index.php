@@ -5,9 +5,9 @@
 		require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
 		require(PATHS_INCLUDE . 'libraries/photoblog_preferences.lib.php');
 		require(PATHS_INCLUDE . 'libraries/profile.lib.php');
-		
+		//error_reporting(E_ALL);
 		// If this is true, it means that $uri_parts[2] isn't a valid username
-		if ( $_SERVER['REQUEST_URI'] == '/fotoblogg/')
+		if ( preg_match('#^/fotoblogg(\/|)$#', $_SERVER['REQUEST_URI']) )
 		{
 			if ( login_checklogin() )
 			{

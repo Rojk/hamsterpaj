@@ -811,4 +811,7 @@ $(window).load(function() {
 	if ( $('#photoblog_image').length ) {
 		hp.photoblog.view.init();
 	}
+	$(window).bind('load', function() {  
+		$('#ui_content #photoblog_image img').protectImage();  
+	});  
 });

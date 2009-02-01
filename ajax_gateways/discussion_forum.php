@@ -140,4 +140,10 @@
 		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 	}
 	
+	/* Remove answer to notice */
+	if($_GET['action'] == 'remove_answer_notice' && is_numeric($_GET['post_id']) && login_checklogin())
+	{
+		$query = 'DELETE FROM forum_notices WHERE post_id = ' . $_GET['post_id'] . ' AND user = "' . $_SESSION['login']['id'] . '" LIMIT 1';
+		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+	}
 ?>

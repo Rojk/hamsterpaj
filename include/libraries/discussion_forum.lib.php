@@ -948,10 +948,10 @@
 		return $output;
 	}
 	
-	function discussion_forum_thread_list($threads)
+	function discussion_forum_thread_list($threads, $options)
 	{
 		$output .= '<table class="forum_thread_list">' . "\n";
-		$output .= '<tr class="headings"><th>Rubrik</th><th>Skapare</th><th>Inlägg</th><th>Olästa</th><th>Poäng</th></tr>' . "\n";
+		$output .= '<tr class="headings"><th></th><th>Rubrik</th><th>Skapare</th><th>Inlägg</th><th>Olästa</th><th>Poäng</th></tr>' . "\n";
 		$zebra = 'odd';
 		foreach($threads AS $thread)
 		{
@@ -960,7 +960,11 @@
 			$href = (isset($thread['url'])) ? $thread['url'] : $thread['handle'] . '/sida_1.php';
 			$thread['unread_posts'] = ($thread['unread_posts'] > 0) ? '<strong>' . $thread['unread_posts'] . '</strong>' : '';
 			
-			$output .= '<tr class="' . $zebra . '">' . "\n";
+			$output .= '<tr class="' . $zebra . '" id="' . $thread['id'] . '">' . "\n";
+			if($options['notice_listing'] == true && isset($options['notice_listing']))
+			{
+				$output .= '	<td class="remove_subscribtion_listed"><a class="remove_subscribtion_listed" href="/ajax_gateways/discussion_forum.php?action=remove_thread_subscription&thread_id=' . $thread['id'] . '" title="Sluta bevaka tråd"><img src="' . IMAGE_URL . 'famfamfam_icons/eye.png" alt="x" /></a></td>' . "\n";
+			}
 			$output .= '	<td class="main_info">' . "\n";
 			$output .= '		' . (empty($flags) ? '' : '&laquo;' . $flags . ' &raquo;') . ' <a href="' . $href . '">' . $thread['title'] . '</a>' . "\n";
 			$output .= '	</td>' . "\n";
@@ -1309,7 +1313,8 @@
 				$category_path = discussion_forum_path_to_category(array('id' => $notice['forum_id']));
 				$category = array_pop($category_path);
 				$url = $category['url'] . $notice['handle'] . '/sida_' . (floor($data['posts'] / FORUM_POSTS_PER_PAGE)+1) . '.php#post_' . $notice['post_id'];
-
+				
+				$output .= '<td class="remove_answer_notice_listed"><a id="' . $notice['post_id'] . '" class="remove_answer_notice_listed" href="/ajax_gateways/discussion_forum.php?action=remove_answer_notice&post_id=' . $notice['post_id'] . '" title="Flagga inlägget som läst"><img src="' . IMAGE_URL . 'famfamfam_icons/eye.png" alt="x" /></a></td>' . "\n";
 				$output .= '<td>' . fix_time($notice['timestamp']) . '</td>' . "\n";		
 				$output .= '<td><a href="' . $url . '">' . $notice['title'] . '</a></td>';
 				$output .= '<td><a href="/traffa/profile.php?id=' . $notice['author'] . '">' . $notice['username'] . '</a></td>';

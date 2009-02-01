@@ -61,7 +61,7 @@
 		}
 	}
 
-	if (isset($_GET['ajax']))
+	if (isset($_GET['ajax']) && isset($_GET['image_id']) && is_numeric($_GET['image_id']))
 	{
 			$out = '<span class="updateviewid" id="'.$_GET['image_id'].'_'.'" style="display:none;"></span>'. "\n";
 			$out .= '<div id="img_view">'."\n";
@@ -81,6 +81,8 @@
 			}
 		
 			$profile_head .= profile_mini_page($profile);
+			
+			friends_notices_set_read(array('action' => 'photos', 'item_id' => $_GET['image_id']));
 		}
 	}
 	else
@@ -165,24 +167,19 @@
 					$data = mysql_fetch_assoc($result);
 					$query = 'UPDATE user_action_log SET url = "/traffa/photos.php?id=' . $photo_id . '", label = "' . $options['description'] . '", timestamp = "' . time() . '" WHERE id = "' . $data['id'] . '" LIMIT 1';
 					mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-					
-					// Gives friend a notice of the users action
-					$options['url'] = '/traffa/photos.php?id=' . $photo_id . '#photo';
-					$options['action'] = 'photos';
-					$options['label'] = $options['description'];
-					friends_actions_insert($options);
 				}
 				else
 				{
 					$query = 'INSERT INTO user_action_log (action, timestamp, user, url, label) VALUES("photos", "' . time() . '", "' . $_SESSION['login']['id'] . '", "/traffa/photos.php?id=' . $photo_id . '", "' . $options['description'] . '")';
 					mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-
-					// Gives friend a notice of the users action
-					$options['url'] = '/traffa/photos.php?id=' . $photo_id . '#photo';
-					$options['action'] = 'photos';
-					$options['label'] = $options['description'];
-					friends_actions_insert($options);
 				}
+				
+				// Gives friend a notice of the users action
+				$options['url'] = '/traffa/photos.php?id=' . $photo_id . '#photo';
+				$options['action'] = 'photos';
+				$options['label'] = $options['description'];
+				$options['item_id'] = $photo_id;
+				friends_actions_insert($options);
 
 				$display_successful_message = true;
 			}

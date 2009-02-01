@@ -35,3 +35,26 @@
 fieldset .form_readonly {
 	background: #eee;
 }
+#form_notice {
+	display:none;
+}
+.form_notice_error, .form_notice_notice, .form_notice_success {
+	padding: .8em; 
+	margin-bottom: 1em; 
+	border: 2px solid #ddd; 
+}
+.form_notice_success {
+	 background: #E6EFC2;
+	 color: #264409;
+	 border-color: #C6D880;
+}
+.form_notice_error {
+	 background: #FBE3E4;
+	 color: #8a1f11;
+	 border-color: #FBC2C4;
+}
+.form_notice_notice {
+	background: #FFF6BF; 
+	color: #514721; 
+	border-color: #FFD324; 
+}

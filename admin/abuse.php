@@ -8,7 +8,7 @@
 
 	if(!is_privilegied('abuse_report_handler'))
 	{
-		jscript_location("/");
+		die('Inget för dig min sköna');
 	}
 		$out .= '<div id="abuse">' . "\n";
 		$out .= '<h1>Inkomna rapporter</h1>' . "\n";

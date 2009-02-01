@@ -61,19 +61,22 @@
 	switch($action)
 	{
 		case 'create':
-			$suggestion = $_POST;
-			$suggestion['display_level'] = (is_privilegied('suggestion_admin')) ? $_POST['display_level'] : 'normal';
-			suggestion_create($suggestion);
-			
-			echo '<h1>Tack för ditt förslag</h1>' . "\n";
-			echo '<a href="/hamsterpaj/suggestions.php">Tillbaks till förslags-sidan</a>' . "\n";
-			
-			guestbook_insert(array(
-				'sender' => 2348,
-				'recipient' => 57100,
-				'is_private' => 1,
-				'message' => mysql_real_escape_string('Detta är ett förslag från förslagslådan, som numera kommer i GB:' . "\n") . $suggestion['text']
-			));
+			if(login_checklogin())
+			{
+				$suggestion = $_POST;
+				$suggestion['display_level'] = (is_privilegied('suggestion_admin')) ? $_POST['display_level'] : 'normal';
+				suggestion_create($suggestion);
+				
+				echo '<h1>Tack för ditt förslag</h1>' . "\n";
+				echo '<a href="/hamsterpaj/suggestions.php">Tillbaks till förslags-sidan</a>' . "\n";
+				
+				guestbook_insert(array(
+					'sender' => 2348,
+					'recipient' => 57100,
+					'is_private' => 1,
+					'message' => mysql_real_escape_string('Detta är ett förslag från förslagslådan, som numera kommer i GB:' . "\n") . $suggestion['text']
+				));
+			}
 			
 			break;
 		
@@ -97,6 +100,8 @@
 			break;
 			
 		case 'update':
+			if(is_privilegied('suggestion_admin'))
+			{
 				$query = 'SELECT author FROM suggestions WHERE id = "' . $_POST['id'] . '" LIMIT 1';
 				$result = mysql_query($query);
 				if(mysql_num_rows($result) == 1)
@@ -113,12 +118,16 @@
 				suggestion_update($_POST);
 				jscript_alert('Fixat och donat!');
 				jscript_location('/hamsterpaj/suggestions.php?action=view_waiting');
+			}
 			break;
 			
 		case 'delete':
-		 	$options['id'] = $_GET['id'];
-		 	$options['display_level'] = 'removed';
-			suggestion_update($options);
+			if(is_privilegied('suggestion_admin'))
+			{
+			 	$options['id'] = $_GET['id'];
+			 	$options['display_level'] = 'removed';
+				suggestion_update($options);
+			}
 			break;
 			
 		case 'view_waiting':
