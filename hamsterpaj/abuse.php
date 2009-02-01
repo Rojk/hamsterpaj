@@ -7,9 +7,9 @@
 	ui_top($ui_options);
 	
 	echo '<div id="abuse">' . "\n";
-	if(login_checklogin() && isset($_GET['report_type']) && isset($_GET['reference_id']))
+	if(login_checklogin() && isset($_GET['report_type']) && isset($_GET['reference_id']) && is_numeric($_GET['reference_id']))
 	{
-		$query = 'SELECT reference_id FROM abuse WHERE reference_id = ' . $_GET['reference_id'] . ' LIMIT 1';
+		$query = 'SELECT reference_id FROM abuse WHERE reference_id = "' . $_GET['reference_id'] . '" LIMIT 1';
 		$result = mysql_query($query);
 		while ($row = mysql_fetch_assoc($result))
 		{
@@ -42,7 +42,7 @@
 			echo '</form>' . "\n";
 		}
 	}
-	elseif(login_checklogin() && isset($_POST['reference_id']))
+	elseif(login_checklogin() && isset($_POST['reference_id']) && is_numeric($_POST['reference_id']))
 	{
 		$query = 'INSERT INTO abuse (timestamp, reporter, report_type, reference_id, abuse_type, freetext)';
 		$query .= ' VALUES("' . time() . '", "' . $_SESSION['login']['id'] . '", "' . $_POST['report_type'] . '", "' . $_POST['reference_id'] . '", "' . $_POST['abuse_type'] . '", "' .$_POST['freetext'] . '")';
