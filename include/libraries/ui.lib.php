@@ -144,9 +144,10 @@ function ui_top($options = array())
 	$output .= '</div>' . "\n";
 	
 	$output .= '	<div id="ui_wrapper">' . "\n";
+	$custom_logo_style = (isset($options['custom_logo'])) ? 'style="background-image: url(\'' . $options['custom_logo'] . '\');"' : '';
 	$output .= '		<div id="ui_header">' . "\n";
 	$output .= '			<h1>' . "\n";
-	$output .= '				<a href="/">Hamsterpaj.net</a>' . "\n";
+	$output .= '				<a href="/"' . $custom_logo_style . '>Hamsterpaj.net</a>' . "\n";
 	$output .= '			</h1>' . "\n";
 
 	if( login_checklogin() )
