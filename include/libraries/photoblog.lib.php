@@ -276,7 +276,7 @@
 	
 	function photoblog_comments_fetch($options = array())
 	{
-		$options['order_by_field'] = isset($options['order_by_field']) ? $options['order_by_field'] : 'c.id';
+		$options['order_by_field'] = isset($options['order_by_field']) ? $options['order_by_field'] : 'c.comment_id';
 		$options['order_by_order'] = (isset($options['order_by_order']) && in_array($options['order_by_order'], array('ASC', 'DESC'))) ? $options['order_by_order'] : 'DESC';
 		
 		$options['limit_start'] = (isset($options['limit_start']) && is_numeric($options['limit_start'])) ? $options['limit_start'] : 0;
@@ -285,7 +285,7 @@
 		$query  = 'SELECT c.*, l.username';
 		$query .= ' FROM photoblog_comments AS c, login AS l';
 		$query .= ' WHERE l.id = c.author';
-		$query .= ' AND c.is_removed = 0';
+		$query .= ' AND l.is_removed = 0';
 		$query .= (isset($options['photo_id']) && is_numeric($options['photo_id'])) ? ' AND c.photo_id = ' . $options['photo_id'] : '';
 		$query .= (isset($options['author']) && is_numeric($options['author'])) ? ' AND c.author = ' . $options['author'] : '';
 		$query .= ' ORDER BY ' . $options['order_by_field'] . ' ' . $options['order_by_order'];
