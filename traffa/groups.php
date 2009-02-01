@@ -12,6 +12,8 @@
 	$ui_options['admtoma_category'] = 'groups';
 	$ui_options['javascripts'] = array('scripts.js');
 	$ui_options['javascripts'][] = 'discussion_forum.js';	
+	$ui_options['javascripts'][] = 'groups.js';	
+	$ui_options['stylesheets'][] = 'forms.css';
 
 	ui_top($ui_options);
 
@@ -124,23 +126,6 @@ switch($_GET['action'])
 			group_list_groups($_SESSION['login']['id']);
 			group_draw_menu(0, NULL, 1);
 			break;
-		case 'new_post':
-			$auth = group_check_auth($_SESSION['login']['id'], $_GET['groupid'], 1);
-      if ($auth)
-      {
-				$_POST['group_message'] = trim($_POST['group_message']);
-				if (strlen($_POST['group_message']) > 0)
-				{
-					group_send_new_message($_GET['groupid'], $_SESSION['login']['id'], $_POST['group_message']);
-				}
-				else
-				{
-					jscript_alert('Nånting måste du skriva!');
-				}			
-			}
-			jscript_location($_SERVER['php_self'] . '?action=goto&groupid=' . $_GET['groupid']);
-			//die();			
-			break;
 		case 'create_group':
 			$_POST['take_members'] = isset($_POST['take_members']) ? 0 : 1;
   		group_create_new(htmlspecialchars($_POST['group_name']), $_SESSION['login']['id'], $_POST['take_members'], htmlspecialchars($_POST['description']));			
@@ -156,8 +141,8 @@ switch($_GET['action'])
 			}
     case 'invited_member':
 			$auth = group_check_auth($_SESSION['login']['id'], $_GET['groupid'], 3);
-      if ($auth)
-      {
+			if ($auth)
+			{
 				group_add_to_group($_GET['groupid'], $_SESSION['login']['id'], 1);
 				jscript_alert('Du är nu medlem i gruppen');
 				jscript_location($_SERVER['php_self'] . '?action=goto&groupid=' . $_GET['groupid']);			
@@ -165,7 +150,7 @@ switch($_GET['action'])
     	break;
 		case 'save_press':
 			$auth = group_check_admin_auth($_GET['groupid']);
-      if ($auth)
+      		if ($auth)
 			{
 				group_press_save(htmlspecialchars($_POST['press_text']), $_GET['groupid']);
 				$_POST['take_new'] = isset($_POST['take_new']) ? 1 : 0;
@@ -183,8 +168,8 @@ switch($_GET['action'])
 			break;
 		case 'remove_group':
 			$auth = group_check_admin_auth($_GET['groupid']);
-      if ($auth || is_privilegied('groups_superadmin'))
-      {
+			if ($auth || is_privilegied('groups_superadmin'))
+			{
 				group_preform_group_remove($_GET['groupid']);
 				jscript_alert('Gruppen borttagen');
 			}
@@ -215,8 +200,8 @@ switch($_GET['action'])
 			break;
 		case 'remove_post';
 			$auth = group_check_admin_auth($_GET['groupid']);
-      if ($auth || is_privilegied('groups_superadmin'))
-      {
+			if ($auth || is_privilegied('groups_superadmin'))
+			{
 				group_remove_post($_GET['groupid'], $_GET['postid']);
 				jscript_alert('Inlägget borttaget');
 			}
