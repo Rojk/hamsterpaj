@@ -57,6 +57,7 @@
 			$out .= '<div id="photoblog_select">';
 				$select_year .= '<select id="photoblog_select_year">';
 				$select_months = array();
+				$highest_date = 0;		
 				foreach ($photos_by_year as $year => $photos_by_month)
 				{
 					$select_year .= '<option value="' . $year . '">' . $year . '</option>';
@@ -64,6 +65,7 @@
 					$select_this_month = '<select style="display: none;" id="photoblog_select_month_' . $year . '">';
 					foreach ( $photos_by_month as $month => $photos_by_day )
 					{
+						$highest_date = max((int)($year . $month), $highest_date);
 						$select_this_month .= '<option value="' . $month . '">' . $month_table[$month] . '</option>';
 					}
 					$select_this_month .= '</select>';
