@@ -333,7 +333,9 @@
 	
 	function photoblog_comments_list($comments, $options)
 	{
-		$out .= '<div id="photoblog_comments_list">' . "\n";
+		$options['use_container'] = (isset($options['use_container']) ? (bool)$options['use_container'] : true);
+		
+		$out .= ($options['use_container']) ? '<div id="photoblog_comments_list">' . "\n" : '';
 		$out .= '<ul>' . "\n";
 		foreach ($comments as $comment)
 		{
@@ -360,7 +362,7 @@
 			$out .= '</li>' . "\n";
 		}		
 		$out .= '</ul>';
-		$out .= '</div>' . "\n";	
+		$out .= ($options['use_container']) ? '</div>' . "\n" : '';	
 		
 		return $out;
 	}

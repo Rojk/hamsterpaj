@@ -532,6 +532,11 @@ hp.photoblog = {
 		this.set_prevnext(id);
 		this.create_load();
 		$.getJSON('/ajax_gateways/photoblog.json.php?id=' + id, json_callback);
+		this.load_comment(id);
+	},
+	
+	load_comment: function(id) {
+		$('#photoblog_comments_list').load('/ajax_gateways/photoblog_comments.php?id='+ id);
 	},
 	
 	load_from_hash: function() {

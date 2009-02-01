@@ -70,9 +70,10 @@
 		$out .= '</div>';
 		
 		// Some test-data
-		$comment1 = array('user_id' => 625058, 'username' => 'Lef', 'comment' => 'Din mamma är så fet!');
+		/*$comment1 = array('user_id' => 625058, 'username' => 'Lef', 'comment' => 'Din mamma är så fet!');
 		$comment2 = array('user_id' => 3, 'answer' => 'Jag bryr mig <del>inte</del> visst! Det gör ont när du säger sånt...', 'username' => 'Johan', 'comment' => 'Din med! :( ');
-		$comments = array($comment1, $comment2);
+		$comments = array($comment1, $comment2);*/
+		$comments = photoblog_comments_fetch(array('photo_id' => $last_photo['id']));
 		
 		$out .= photoblog_comments_form($options);
 		$out .= photoblog_comments_list($comments);
