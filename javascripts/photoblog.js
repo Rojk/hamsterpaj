@@ -536,7 +536,7 @@ hp.photoblog = {
 	},
 	
 	load_comment: function(id) {
-		$('#photoblog_comments_list').load('/ajax_gateways/photoblog_comments.php?id='+ id);
+		$('#photoblog_comments_list').load('/ajax_gateways/photoblog_comments.php?action=fetch&id='+ id);
 	},
 	
 	load_from_hash: function() {
