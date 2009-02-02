@@ -1,48 +1,56 @@
 <?php
-	function photoblog_fetch_active_user_data($username)
+	function photoblog_fetch_active_user_data($options)
 	{
-		if ( isset($username) && preg_match('/^[a-zA-Z0-9-_]+$/', $username) && strtolower($username) != 'borttagen' )
+		if(!isset($options['user_id']) && isset($options['username']) && preg_match('/^[a-zA-Z0-9-_]+$/', $options['username']) && strtolower($options['username']) != 'borttagen')
 		{
-			$sql = 'SELECT id FROM login WHERE username = "' . $username . '" LIMIT 1';
-			$result = mysql_query($sql);
-			$data = mysql_fetch_assoc($result);
-			$user_id = $data['id'];
-			if(!isset($user_id))
-			{
-				return false;
-			}
+			$query = 'SELECT id AS user_id FROM login WHERE LIKE "' . str_replace('_', '\\_', $options['username']) . '" LIMIT 1';
+			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 			
-			$sql = 'SELECT user_id FROM photoblog_preferences WHERE user_id = ' . $user_id . ' LIMIT 1';
-			$result = mysql_query($sql);
-			if (mysql_num_rows($result) == 0)
+			if(mysql_num_rows($result) == 1)
 			{
-				
-				$sql = 'INSERT INTO photoblog_preferences SET ';
-				$sql .= ' user_id = ' . $user_id . ',';
-				$sql .= ' color_main = "333333",';
-				$sql .= ' color_detail = "FF8040",';
-				$sql .= ' friends_only = 0,';
-				$sql .= ' member_only = 0';
-				if (!mysql_query($sql))
-				{
-					report_sql_error($sql);
-				}
-			}
-			
-			$sql = 'SELECT pp.*, l.id, l.username';
-			$sql .= ' FROM login AS l, photoblog_preferences AS pp';
-			$sql .= ' WHERE pp.user_id = l.id AND l.username = "' . $username . '"';
-			$sql .= ' LIMIT 1';
-			$result = mysql_query($sql) or report_sql_error($sql, __FILE__, __LINE__);
-			$data = mysql_fetch_assoc($result);
-			if ( mysql_num_rows($result) == 1 )
-			{
-				return $data;
+				$data = mysql_fetch_assoc($result);
+				$options['user_id'] = $data['user_id'];
 			}
 			else
 			{
-				return false;
+				throw new Exception('The username cannot be found!');
 			}
+		}
+		
+		if(!isset($options['user_id']))
+		{
+			throw new Exception('No user_id passed to photoblog_fetch_active_user_data function.');
+		}
+		
+		if(!is_numeric($options['user_id']))
+		{
+			throw new Exception('Die die die! Die hard!');
+		}
+		
+		$query = 'SELECT pp.*, l.id, l.username';
+		$query .= ' FROM login AS l, photoblog_preferences AS pp';
+		$query .= ' WHERE pp.user_id = l.id AND l.id = "' . $options['user_id'] . '';
+		$query .= ' LIMIT 1';
+		
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+
+		if(mysql_num_rows($result) == 1)
+		{		
+			$insert_query = 'INSERT INTO photoblog_preferences (user_id, color_main_color_detail, members_only, friends_only)';
+			$insert_query .= ' VALUES(' . $options['user_id'] . ', "333333", "FF8040", 0, 0)';
+			mysql_query($insert_query) or report_sql_error($insert_query, __FILE__, __LINE__);
+		}
+		
+		// Do it again to find out if it works now when the default values are filled in...
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		
+		if(mysql_num_rows($result) == 1)
+		{
+			return mysql_fetch_assoc($result);
+		}
+		else
+		{
+			throw new Exception('Fatal error: No entries found, expected 1! (Or something like that, I suppose we are fetching SOMETHING).');
 		}
 	}
 	

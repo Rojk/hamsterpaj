@@ -464,10 +464,11 @@
 			echo '<h2 style="margin-top: 0;">Meddelande:</h2>';
 			echo '<textarea name="group_message" class="textbox" style="width: 99%; height: 110px;" id="group_message"></textarea><br />';
 			echo '<input type="submit" value="Skicka" name="submit_message" id="group_message_submit" class="button_60"/><br />';
-			echo '</form>';			
+			echo '</form>';	
 		}
 		echo rounded_corners_bottom(array('color' => 'blue'));
 		echo '<div id="form_notice"></div>';
+		echo '<div id="posted_messages"></div>';
 	}
 	
 	function group_check_auth($userid, $groupid, $approved)

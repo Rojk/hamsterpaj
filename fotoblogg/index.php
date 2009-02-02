@@ -22,13 +22,21 @@
 		
 		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 		
-		if(login_checklogin())
+		if(isset($uri_parts[2]) && preg_match('/^[a-zA-Z0-9-_]+$/', $uri_parts[2]))
 		{
-			$photoblog_user = photoblog_fetch_active_user_data($_SESSION['login']['username']);
+			$photoblog_user = photoblog_fetch_active_user_data(array(
+				'username' => $uri_parts[2]
+			));
 		}
-		if(photoblog_fetch_active_user_data($uri_parts[2]))
+		else if(login_checklogin())
 		{
-			$photoblog_user = photoblog_fetch_active_user_data($uri_parts[2]);
+			$photoblog_user = photoblog_fetch_active_user_data(array(
+				'user_id' => $_SESSION['login']['username']
+			));
+		}
+		else
+		{
+			throw new Exception('Njet, ogiltigt användarnamn!');
 		}
 		
 		$ui_options['stylesheets'][] = 'photoblog_' . $photoblog_user['color_main'] . '_' . $photoblog_user['color_detail'] . '_.css';
