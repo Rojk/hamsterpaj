@@ -299,7 +299,9 @@ hp.photoblog = {
 	},
 	
 	make_comments: function() {
-		$('.photoblog_comment_text textarea').focus(function() {
+		var self = this;
+		
+		var textarea = $('.photoblog_comment_text textarea').focus(function() {
 			if ( ! hp.login_checklogin() ) {
 				tiny_reg_form_show();
 			}
@@ -318,6 +320,11 @@ hp.photoblog = {
 				this.value = this.orig_value;
 				this.is_orig = true;
 			}
+		});
+		
+		this.comment_form = $('.photoblog_comment_text form').submit(function() {
+			self.post_comment(self.current_id, textarea.val());			
+			return false;
 		});
 	},
 	
@@ -609,6 +616,15 @@ hp.photoblog = {
 			self.make_ajax_thumbs();
 		});
 	},
+	
+	post_comment: function(image_id, text) {
+		var self = this;
+		$.post('/ajax_gateways/photoblog_comments.php?action=post&id=' + image_id, {'comment': text}, function(data) {
+			//alert(data);
+			self.load_comment(image_id);
+			// disable textarea	
+		});
+	}
 
 	// end .view
 	},

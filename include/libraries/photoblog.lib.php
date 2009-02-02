@@ -305,7 +305,7 @@
 	
 	function photoblog_comments_add($comment)
 	{
-		if(isset($comment['comment']))
+		if(!isset($comment['comment']))
 		{
 			throw new Exception('Server error: No comment passed to function in options array. Terminating!');// Because "terminating" is such a cool word *NOT*
 		}
