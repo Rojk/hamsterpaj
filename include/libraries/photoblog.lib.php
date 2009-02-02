@@ -3,7 +3,7 @@
 	{
 		if(!isset($options['user_id']) && isset($options['username']) && preg_match('/^[a-zA-Z0-9-_]+$/', $options['username']) && strtolower($options['username']) != 'borttagen')
 		{
-			$query = 'SELECT id AS user_id FROM login WHERE LIKE "' . str_replace('_', '\\_', $options['username']) . '" LIMIT 1';
+			$query = 'SELECT id AS user_id FROM login WHERE username LIKE "' . str_replace('_', '\\_', $options['username']) . '" LIMIT 1';
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 			
 			if(mysql_num_rows($result) == 1)
@@ -29,14 +29,14 @@
 		
 		$query = 'SELECT pp.*, l.id, l.username';
 		$query .= ' FROM login AS l, photoblog_preferences AS pp';
-		$query .= ' WHERE pp.user_id = l.id AND l.id = "' . $options['user_id'] . '';
+		$query .= ' WHERE pp.user_id = l.id AND l.id = "' . $options['user_id'] . '"';
 		$query .= ' LIMIT 1';
 		
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 
-		if(mysql_num_rows($result) == 1)
+		if(mysql_num_rows($result) == 0)
 		{		
-			$insert_query = 'INSERT INTO photoblog_preferences (user_id, color_main_color_detail, members_only, friends_only)';
+			$insert_query = 'INSERT INTO photoblog_preferences (user_id, color_main, color_detail, members_only, friends_only)';
 			$insert_query .= ' VALUES(' . $options['user_id'] . ', "333333", "FF8040", 0, 0)';
 			mysql_query($insert_query) or report_sql_error($insert_query, __FILE__, __LINE__);
 		}

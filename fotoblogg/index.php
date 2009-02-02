@@ -31,7 +31,7 @@
 		else if(login_checklogin())
 		{
 			$photoblog_user = photoblog_fetch_active_user_data(array(
-				'user_id' => $_SESSION['login']['username']
+				'username' => $_SESSION['login']['username']
 			));
 		}
 		else
