@@ -36,9 +36,9 @@
 
 		if(mysql_num_rows($result) == 1)
 		{		
-			$insert_query = 'INSERT INTO photoblog_preferences (user_id, color_main_color_detail, hamster_guard_on)';
-			$insert_query .= ' VALUES(' . $options['user_id'] . ', "333333", "FF8040", 0)';
-			mysql_query($insert_query) or report_sql_error($insert_query, __FILE__, __LINE__))
+			$insert_query = 'INSERT INTO photoblog_preferences (user_id, color_main_color_detail, members_only, friends_only)';
+			$insert_query .= ' VALUES(' . $options['user_id'] . ', "333333", "FF8040", 0, 0)';
+			mysql_query($insert_query) or report_sql_error($insert_query, __FILE__, __LINE__);
 		}
 		
 		// Do it again to find out if it works now when the default values are filled in...
