@@ -85,16 +85,25 @@
 	
 	function radio_dj_add($dj_user_id, $dj_information)
 	{
-		$radio_djs_add_sql = 'INSERT INTO radio_djs (information, user_id) VALUES("' . $dj_information . '", ' . $dj_user_id . ')';
-		if (mysql_query($radio_djs_add_sql))
+		if(!is_numeric($dj_user_id))
 		{
-			return true;
+			throw new Exception('User ID not numeric');
 		}
-		else
+
+		$radio_djs_add_sql = 'INSERT INTO radio_djs (information, user_id) VALUES("' . $dj_information . '", ' . $dj_user_id . ')';
+		if (!mysql_query($radio_djs_add_sql))
 		{
 			report_sql_error($radio_djs_add_sql, __FILE__, __LINE__);
-			throw new Exception('N�got gick fel i ett MySQL-query.<br />' . mysql_error() . '');
+			throw new Exception('Något gick fel i ett MySQL-query.<br />' . mysql_error() . '');
 		}
+		
+		$radio_privilegies_add_sql = 'INSERT INTO privilegies (privilegie, value, user) VALUES ("radio_sender", 0, ' . $dj_user_id . ')'; // NOT WORKING
+		if (!mysql_query($radio_privilegies_add_sql))
+		{
+			report_sql_error($radio_privilegies_add_sql, __FILE__, __LINE__);
+			throw new Exception('Något gick fel när privilegien skulle läggas till<br />' . mysql_error() . '');
+		}
+		return true;
 	}
 	
 	function radio_programs_fetch($options)

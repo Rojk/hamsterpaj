@@ -21,7 +21,8 @@
 				$sql .= ' user_id = ' . $user_id . ',';
 				$sql .= ' color_main = "333333",';
 				$sql .= ' color_detail = "FF8040",';
-				$sql .= ' hamster_guard_on = 0';
+				$sql .= ' friends_only = 0,';
+				$sql .= ' member_only = 0';
 				if (!mysql_query($sql))
 				{
 					report_sql_error($sql);
@@ -413,5 +414,35 @@
 		}
 		natsort($return);
 		return $return;
+	}
+	
+	function photoblog_access($options)
+	{
+		$members_only = $options['members_only'];
+		$friends_only = $options['friends_only'];
+		$action = $options['action'];
+		$owner_id = $options['owner_id'];
+		
+		switch($action)
+		{
+			case visit:
+				if(userblock_checkblock($owner_id))
+				{
+					throw new Exception('Du är blockerad av användaren och kan därför inte besöka dess fotoblogg');
+				}
+				if($members_only == 1 && !login_checklogin())
+				{
+					throw new Exception('Du måste vara inloggad för att se den här personens fotoblogg. Varför inte besöka profilen istället? <a href="/traffa/profile.php?user_id=' . $owner_id . '">Gå till profil</a>');
+				}
+				if($friends_only == 1 && !friends_is_friends(array('user_id' => $_SESSION['login']['id'], 'friend_id' => $owner_id)))
+				{
+					throw new Exception('Du måste vara vän med personen för att se dess fotoblogg. Varför inte besöka profilen istället? <a href="/traffa/profile.php?user_id=' . $owner_id . '">Gå till profil</a>');
+				}
+			break;
+			
+			default:
+			throw new Exception('No action was set');
+			break;
+		}
 	}
 ?>
