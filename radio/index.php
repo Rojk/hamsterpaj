@@ -6,6 +6,7 @@
 		include_once('shoutcast/ShoutcastInfo.class.php');
 		require(PATHS_INCLUDE . 'libraries/articles.lib.php');
 		$ui_options['stylesheets'][] = 'radio.css';
+		$ui_options['javascripts'][] = 'radio.js';
 		
 		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 		
@@ -67,34 +68,7 @@
 				if (is_privilegied('radio_dj'))
 				{
 					switch ($uri_parts[3])
-					{
-						case 'radio_dj_add':
-							
-							$dj_username = $_POST['radio_dj_add_name'];
-							if(strtolower($dj_username) == 'borttagen')
-							{
-								throw new Exception('Jävla tjockis');
-								trace('tjockis_live_at_radio', __FILE__ . ' line ' . __LINE__ . ' : ' . $_SESSION['login']['username']);
-							}
-							$query = 'SELECT id FROM login WHERE username = "' . $dj_username . '" AND is_removed != 1 LIMIT 1';
-							$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-							if(mysql_num_rows($result) != 1)
-							{
-								throw new Exception('Den fanns det två av... :D (=det finns fler än en användare med det användarnamnet eller så finns det inga användare med det användarnamnet, vilket inte är så bra...).');
-							}
-							$data = mysql_fetch_assoc($result);
-							$dj_user_id = $data['id'];
-							$dj_information = $_POST['radio_dj_add_information'];
-							if (intval($dj_user_id) > 0 && strlen($dj_information) > 0)
-							{
-								radio_dj_add($dj_user_id, $dj_information);
-							}
-							else
-							{
-								throw new Exception('Det går inte för sig. Skräddaren säger NEJ!<br />Du _måste_ fylla i formuläret helt och hållet ditt blindstyre.<br /><em>Love, Joar</em>');
-							}
-						break;
-						
+					{	
 						case 'program_add':
 							
 							if(!isset($_POST['name'], $_POST['dj'], $_POST['sendtime'], $_POST['information']))
@@ -164,17 +138,19 @@
 				{
 					$ui_options['stylesheets'][] = 'forms.css'; // Includes stylesheet for form.
 					
+					$out .= '<div id="form_notice">' . "\n";
+					$out .= '</div>' . "\n";
 					$out .= '<fieldset>' . "\n";
 					$out .= '<legend>Lägg till DJ</legend>' . "\n";
-					$out .= '<form action="/radio/post_settings/radio_dj_add/" method="post">';
+					$out .= '<form action="/ajax_gateways/radio.php?action=dj_add" method="post">';
 					$out .= '<table class="form">' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="radio_dj_add_name">Användarnamn <strong>*</strong></label></th>' . "\n";
-						$out .= '<td><input type="text" name="radio_dj_add_name" /></td>' . "\n";
+						$out .= '<td><input type="text" name="radio_dj_add_name" id="radio_dj_add_name" /></td>' . "\n";
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="radio_dj_add_information">Information <strong>*</strong></label></th>' . "\n"; 
-						$out .= '<td><textarea name="radio_dj_add_information" cols="45" rows="5"></textarea></td>' . "\n";
+						$out .= '<td><textarea name="radio_dj_add_information" cols="45" rows="5" id="radio_dj_add_information"></textarea></td>' . "\n";
 					$out .= '</tr>' . "\n";				
 					$out .= '</table>' . "\n";
 					$out .= '<input type="submit" id="radio_dj_add_submit" value="Spara" />' . "\n"; // Ajax, privilegiet radio_sender ska ges till personen
