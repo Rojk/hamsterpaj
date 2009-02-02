@@ -107,11 +107,6 @@
 	
 	function friends_notices_set_read($options)
 	{
-		if(!login_checklogin())
-		{
-			throw new Exception('Men tjockiskod, man måste ju vara inloggad för att kunna uppdatera statusen på vännernotiser!');
-		}
-		
 		if(!isset($options['action']))
 		{
 			throw new Exception('ännu mera tjockiskod, grattis! Ingen type sattes för vännernotisen som skulle uppdateras.');
