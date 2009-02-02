@@ -15,16 +15,17 @@ $(document).ready(function(){
 		$.ajax({
 			url: '/ajax_gateways/groups.php',
 			type: 'POST',
-			data: 'action=new_post&groupid=' + group_id + '&group_message=' + group_message
+			data: 'action=new_post&groupid=' + group_id + '&group_message=' + group_message,
+			success: function(result) {
+				$('#posted_messages').prepend(result);
+				$('#group_message').attr("value", "");
+				$('#form_notice').css("display", "none");
+				$('#form_notice').removeClass();
+				$('#form_notice').toggleClass('form_notice_success');
+				$('#form_notice').text('Meddelandet skickat!');
+				$('#form_notice').fadeIn(500);
+			}
 		});
-		
-		$('#form_notice').css("display", "none");
-		$('#form_notice').removeClass();
-		$('#form_notice').addClass('form_notice_success');
-		$('#form_notice').html('Meddelandet skrickat!');
-		$('#form_notice').fadeIn(500);
-		$('#group_message').attr("value", "");
-		
 		return false;
 	});
 });
