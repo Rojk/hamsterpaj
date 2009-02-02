@@ -313,7 +313,7 @@
 	
 	function photoblog_comments_add($comment)
 	{
-		if(isset($comment['comment']))
+		if(!isset($comment['comment']))
 		{
 			throw new Exception('Server error: No comment passed to function in options array. Terminating!');// Because "terminating" is such a cool word *NOT*
 		}
@@ -350,8 +350,8 @@
 		{
 			$out .= '<li class="photoblog_comment">' . "\n";					
 			$out .= '<div class="photoblog_comment_userinfo">' . "\n";
-			$out .= ui_avatar($comment['user_id']);
-			$out .= '<a href="/traffa/profile.php?user_id=' . $comment['user_id'] . '">' . $comment['username'] . '</a>' . "\n";
+			$out .= ui_avatar($comment['author']);
+			$out .= '<a href="/traffa/profile.php?user_id=' . $comment['author'] . '">' . $comment['username'] . '</a>' . "\n";
 			$out .= '<span>' . $comment['date'] . '</span>' . "\n"; // 31 December
 			$out .= '</div>' . "\n";
 						
