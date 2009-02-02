@@ -24,6 +24,7 @@ $(document).ready(function(){
 				$('#form_notice').toggleClass('form_notice_success');
 				$('#form_notice').text('Meddelandet skickat!');
 				$('#form_notice').fadeIn(500);
+				$('#group_message').focus();
 			}
 		});
 		return false;
