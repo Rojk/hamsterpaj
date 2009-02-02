@@ -28,4 +28,19 @@ $(document).ready(function(){
 		});
 		return false;
 	});
+	
+	updateScribble();
 });
+
+	function updateScribble() {
+		var groupid = $('.group_header').attr('id');
+		$.ajax({
+			url: '/ajax_gateways/groups.php',
+			type: 'POST',
+			data: 'action=fetch_new_posts&groupid=' + groupid,
+			success: function(result) {
+				$('#posted_messages').prepend(result);
+			}
+		});
+		setTimeout('updateScribble()', 6000);
+	}

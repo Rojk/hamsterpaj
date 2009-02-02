@@ -637,10 +637,10 @@
 		if ($name)	
 		{
 		echo '<a href="/traffa/groupnotices.php">&laquo; Till gruppnotiser</a><br />';
-			$query = 'SELECT name, message_count, take_new_members FROM groups_list WHERE groupid = ' . $groupid;
+			$query = 'SELECT name, message_count, take_new_members, groupid FROM groups_list WHERE groupid = ' . $groupid;
 			$result = mysql_query($query) or die(report_sql_error($query));
 			$data = mysql_fetch_assoc($result);
-			echo '<h2>' . $data['name'] . ' - ' . (($groupid == 246) ? '<span onclick="alert(' . "'" . 'Nu var du allt haxx!\nInlägg: ' . $data['message_count'] . "'" . ')">L33t h4xx0r</span>' : $data['message_count']) . ' inlägg</h2>';
+			echo '<h2 class="group_header" id="' . $data['groupid'] . '">' . $data['name'] . ' - ' . (($groupid == 246) ? '<span onclick="alert(' . "'" . 'Nu var du allt haxx!\nInlägg: ' . $data['message_count'] . "'" . ')">L33t h4xx0r</span>' : $data['message_count']) . ' inlägg</h2>';
 			if ($data['take_new_members'] == 1 && !array_key_exists($groupid, $_SESSION['groups_members']))
 			{
 				echo '<br /><a href="' . $_SERVER['PHP_SELF'] . '?action=apply&amp;groupid=' . $groupid . '">Gå med i denna grupp >></a>';
