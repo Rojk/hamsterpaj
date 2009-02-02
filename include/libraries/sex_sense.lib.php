@@ -217,12 +217,14 @@
 		$out .= sex_sense_dark_container_bottom();
 		
 		$out .= '<p>';
-		$out .= 'Man får fråga om allt möjligt, det är bara att fråga på så svarar Entrero eller SheDevil.';
+		$out .= 'Man får fråga om allt möjligt, det är bara att fråga på så svarar Entrero, Shedevil eller RoadGunner.';
 		$out .= ' Det finns vissa regler för det här och de är egentligen rätt enkla.';
 		$out .= '</p>';
 		
 		$out .= '<p>';
 		$out .= 'Det ska vara seriösa frågor som ställs, och man får inte skriva massor av skräp och spam.';
+		$out .= 'Sexperterna besvarar helst inte sådant som redan har besvarats så se gärna efter';
+		$out .= 'om frågan inte redan har besvarats i en eller annan form genom att använda sökfunktionen';
 		$out .= ' Enkelt, inte sant? :)';
 		$out .= '</p>';
 
