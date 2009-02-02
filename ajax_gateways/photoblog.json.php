@@ -14,6 +14,8 @@
         $options = array(
             'id' => $_GET['id']
         );
+        
+        friends_notices_set_read(array('action' => 'photos', 'item_id' => $_GET['id']));
     }
     // fetch an entire month
     else
