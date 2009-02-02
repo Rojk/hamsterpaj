@@ -5,6 +5,7 @@
 		require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
 		require(PATHS_INCLUDE . 'libraries/photoblog_preferences.lib.php');
 		require(PATHS_INCLUDE . 'libraries/profile.lib.php');
+		require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
 		//error_reporting(E_ALL);
 		// If this is true, it means that $uri_parts[2] isn't a valid username
 		if ( preg_match('#^/fotoblogg(\/|)$#', $_SERVER['REQUEST_URI']) )
@@ -116,10 +117,20 @@
 				switch ($uri_parts[3])
 				{
 					case 'album':
+						$options['members_only'] = $photoblog_user['members_only'];
+						$options['friends_only'] = $photoblog_user['friends_only'];
+						$options['action'] = 'visit';
+						$options['owner_id'] = $photoblog_user['id'];
+						photoblog_access($options);
 						require('album.php');
 					break;
 					
 					default:
+						$options['members_only'] = $photoblog_user['members_only'];
+						$options['friends_only'] = $photoblog_user['friends_only'];
+						$options['action'] = 'visit';
+						$options['owner_id'] = $photoblog_user['id'];
+						photoblog_access($options);
 						require('blogg.php');
 					break;
 				}

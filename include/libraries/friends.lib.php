@@ -33,6 +33,31 @@
 		return $friends;
 	}
 	
+	function friends_is_friends($options)
+	{
+		$query = 'SELECT f.user_id';
+		$query .= ' FROM friendslist AS f';
+		$query .= ' WHERE 1';
+		$query .= is_numeric($options['user_id']) ? ' AND f.user_id = "' . $options['user_id'] . '"' : '';
+		$query .= is_numeric($options['friend_id']) ? ' AND f.friend_id = "' . $options['friend_id'] . '"' : '';
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);	
+		if(mysql_num_rows($result) >= 1)
+		{
+			return true;
+		}
+		else
+		{
+			if($options['user_id'] == $options['friend_id'])
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+	
 	function friends_actions_fetch($options)
 	{
 		$query = 'SELECT f.friend_id AS user_id, f.url, f.action_id, f.read, f.action, f.label, l.username, f.item_id';
@@ -82,19 +107,14 @@
 	
 	function friends_notices_set_read($options)
 	{
-		if(!login_checklogin())
-		{
-			throw new Exception('Men tjockiskod, man måste ju vara inloggad för att kunna uppdatera statusen på vännernotiser!');
-		}
-		
 		if(!isset($options['action']))
 		{
-			throw new Exception('Ännu mera tjockiskod, grattis! Ingen type sattes för vännernotisen som skulle uppdateras.');
+			throw new Exception('Ã¤nnu mera tjockiskod, grattis! Ingen type sattes fÃ¶r vÃ¤nnernotisen som skulle uppdateras.');
 		}
 		
 		if(!isset($options['item_id']) || !is_numeric($options['item_id']))
 		{
-			throw new Exception('Vännernotisen saknar helt klart ett item id för att kunna uppdateras...');
+			throw new Exception('VÃ¤nnernotisen saknar helt klart ett item id fï¿½r att kunna uppdateras...');
 		}
 		
 		if(isset($_SESSION['friends_actions']))
