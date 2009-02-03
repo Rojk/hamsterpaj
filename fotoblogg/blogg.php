@@ -19,6 +19,10 @@
 			'month' => $date
 		);
 		
+		define('PHOTOBLOG_CURRENT_YEAR', substr($date, 0, 4));
+		define('PHOTOBLOG_CURRENT_MONTH', substr($date, 4, 2));
+		define('PHOTOBLOG_CURRENT_USER', $photoblog_user['id']);
+		
 		$photos = photoblog_photos_fetch($options);
 		$out .= '<div id="photoblog_thumbs">';
 			$out .= '<div id="photoblog_thumbs_container">';
