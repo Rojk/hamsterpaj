@@ -13,9 +13,9 @@ $(document).ready(function(){
 		}
 		
 		$.ajax({
-			url: '/ajax_gateways/groups.php',
+			url: '/ajax_gateways/groups.php?action=new_post',
 			type: 'POST',
-			data: 'action=new_post&groupid=' + group_id + '&group_message=' + group_message,
+			data: 'groupid=' + group_id + '&group_message=' + group_message,
 			success: function(result) {
 				$('#posted_messages').prepend(result);
 				$('#group_message').attr("value", "");
@@ -36,9 +36,9 @@ $(document).ready(function(){
 	function updateScribble() {
 		var groupid = $('.group_header').attr('id');
 		$.ajax({
-			url: '/ajax_gateways/groups.php',
+			url: '/ajax_gateways/groups.php?action=fetch_new_posts',
 			type: 'POST',
-			data: 'action=fetch_new_posts&groupid=' + groupid,
+			data: 'groupid=' + groupid,
 			success: function(result) {
 				$('#posted_messages').prepend(result);
 			}

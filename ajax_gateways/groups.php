@@ -4,7 +4,7 @@
 		require('../include/core/common.php');
 		require_once(PATHS_INCLUDE . 'libraries/groups_active.lib.php');
 	
-		$action = $_POST['action'];
+		$action = $_GET['action'];
 		switch($action)
 		{
 			case 'new_post':
@@ -14,7 +14,16 @@
 					$_POST['group_message'] = trim($_POST['group_message']);
 					if (strlen($_POST['group_message']) > 0)
 					{
-						group_send_new_message($_POST['groupid'], $_SESSION['login']['id'], $_POST['group_message']);
+						if(isset($_GET['return']) && $_GET['return'] == true)
+						{
+							group_send_new_message($_POST['groupid'], $_SESSION['login']['id'], $_POST['group_message'], false);
+							header('Location: /traffa/groups.php/?action=goto&groupid=' . $_POST['groupid'] . '');
+						}
+						else
+						{
+							group_send_new_message($_POST['groupid'], $_SESSION['login']['id'], $_POST['group_message']);
+						}
+						
 						$div_code = 'orange';
 						if (preg_match("/(".$_SESSION['login']['username']."|Magic word: igotgodmodeigotgubbmode)/i", $data['text'])) 
 						{
