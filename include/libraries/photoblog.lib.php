@@ -342,8 +342,11 @@
 	
 	function photoblog_comments_list($comments, $options)
 	{
-		$options['use_container'] = (isset($options['use_container']) ? (bool)$options['use_container'] : true);
-		
+		$options['use_container'] = (isset($options['use_container']) ? $options['use_container'] : true);
+		if(count($comments) == 0)
+		{
+			 return false;
+		}
 		$out .= ($options['use_container']) ? '<div id="photoblog_comments_list">' . "\n" : '';
 		$out .= '<ul>' . "\n";
 		foreach ($comments as $comment)

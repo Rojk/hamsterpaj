@@ -37,8 +37,9 @@
                 'photo_id' => $_GET['id']
             );
             
-            $photo = photoblog_comments_fetch($options, array('use_container' => false));
-            echo photoblog_comments_list($photo);
+            $photo = photoblog_comments_fetch($options);
+            $options['use_container'] = false;
+            echo photoblog_comments_list($photo, $options);
         break;
     }
     
