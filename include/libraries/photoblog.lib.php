@@ -397,7 +397,7 @@
 		$out .= '<input class="submit" type="submit" value="Skicka" />' . "\n";
 		$out .= '</p>' . "\n";
 		$out .= '</form>' . "\n";
-		$out .= '</div' . "\n";
+		$out .= '</div>' . "\n";
 		$out .= '</div>' . "\n";
 		$out .= '<br style="clear: both;" />' . "\n";
 		$out .= '</li>' . "\n";	
