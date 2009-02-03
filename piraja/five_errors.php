@@ -190,5 +190,6 @@ echo '
 </script>
 	';
 
+echo '<p><a href="/piraja/">Mer fr&aring;n Piraja p&aring; Hamsterpaj</a></p>' . "\n";
 ui_bottom();
 	?>
