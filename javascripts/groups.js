@@ -16,6 +16,7 @@ $(document).ready(function(){
 			url: '/ajax_gateways/groups.php?action=new_post',
 			type: 'POST',
 			data: 'groupid=' + group_id + '&group_message=' + group_message,
+			timeout: 1200,
 			success: function(result) {
 				$('#posted_messages').prepend(result);
 				$('#group_message').attr("value", "");
@@ -39,6 +40,7 @@ $(document).ready(function(){
 			url: '/ajax_gateways/groups.php?action=fetch_new_posts',
 			type: 'POST',
 			data: 'groupid=' + groupid,
+			timeout: 1200,
 			success: function(result) {
 				$('#posted_messages').prepend(result);
 			}
