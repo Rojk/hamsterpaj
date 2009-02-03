@@ -36,8 +36,8 @@
 
 		if(mysql_num_rows($result) == 0)
 		{		
-			$insert_query = 'INSERT INTO photoblog_preferences (user_id, color_main, color_detail, members_only, friends_only)';
-			$insert_query .= ' VALUES(' . $options['user_id'] . ', "333333", "FF8040", 0, 0)';
+			$insert_query = 'INSERT INTO photoblog_preferences (user_id, color_main, color_detail, members_only, friends_only, copy_protection)';
+			$insert_query .= ' VALUES(' . $options['user_id'] . ', "333333", "FF8040", 0, 0, 0)';
 			mysql_query($insert_query) or report_sql_error($insert_query, __FILE__, __LINE__);
 		}
 		

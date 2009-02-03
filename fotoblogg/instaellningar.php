@@ -45,6 +45,17 @@
 					$out .= ' value="1" />' . "\n";
 				$out .= '</td>' . "\n";
 			$out .= '</tr>' . "\n";
+			/* Copy-protection */
+			$out .= '<tr>' . "\n";
+				$out .= '<th>' . "\n";
+					$out .= '<label for="photoblog_copy_protection">Kopieringskydda mina bilder så gott det går</label>' . "\n";
+				$out .= '</th>' . "\n";
+				$out .= '<td>' . "\n";
+					$out .= '<input type="checkbox" name="photoblog_preferences_copy_protection" id="photoblog_preferences_copy_protectiony"';
+					$out .= ($my_photoblog_preferences['copy_protection'] == 1) ? ' checked="checked"' : '';
+					$out .= ' value="1" />' . "\n";
+				$out .= '</td>' . "\n";
+			$out .= '</tr>' . "\n";
 			$out .= '<tr>' . "\n";
 				$out .= '<th>' . "\n";
 					$out .= '<label for="photoblog_preferences_color_detail">Detaljfärg</label>' . "\n";
@@ -75,7 +86,8 @@
 			'color_main' => strtoupper($_POST['photoblog_preferences_color_main']),
 			'color_detail' => strtoupper($_POST['photoblog_preferences_color_detail']),
 			'members_only' => $_POST['photoblog_preferences_members_only'],
-			'friends_only' => $_POST['photoblog_preferences_friends_only']
+			'friends_only' => $_POST['photoblog_preferences_friends_only'],
+			'copy_protection' => $_POST['photoblog_preferences_copy_protection']
 		);
 		$options_check_strlen_len_6_array = array(
 			'color_main',
