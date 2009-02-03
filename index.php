@@ -63,15 +63,6 @@
 		$o = preg_replace($regexp, "'href=\"/fp_module_click.php?id=" . $module['id'] . "&url=' . base64_encode(stripcslashes('$2')) . '\"'", $o);
 		$out .= $o;
 
-		$out .= '<br style="font-size: 0px; height: 0px; clear: both; line-height: 0px;" />' . "\n";
-		
-		if($module['commenting'] == 'true' || $module['published'] == 'true' || $module['grading'] == 'true')
-		{
-			$out .= '<div class="controls">' . "\n";
-			if($module['published'] == 'true')
-			{
-				$out .= '<p class="fp_module_published">Upplagd ' . date('Y-m-d', $module['launch']) . '</p>' . "\n";
-			}
 			if($module['commenting'] == 'true')
 			{
 				if($module['thread_id'] == 0)
@@ -86,7 +77,17 @@
 					$query = 'UPDATE fp_modules SET thread_id = "' . $module['thread_id'] . '" WHERE id = "' . $module['id'] . '"';
 					mysql_query($query);		
 				}
-				$out .= '<a href="' . forum_get_url_by_post($module['thread_id']) . '" class="fp_moudle_commenting">Kommentera i forumet</a>' . "\n";
+				$out .= '<p style="margin-top: 2px;"><a style="color: #565656; text-decoration: underline;" href="' . forum_get_url_by_post($module['thread_id']) . '" class="fp_moudle_commenting">Kommentera i forumet</a></p>' . "\n";
+			}
+
+		$out .= '<br style="font-size: 0px; height: 0px; clear: both; line-height: 0px;" />' . "\n";
+		
+		if($module['commenting'] == 'true' || $module['published'] == 'true' || $module['grading'] == 'true')
+		{
+			$out .= '<div class="controls">' . "\n";
+			if($module['published'] == 'true')
+			{
+				$out .= '<p class="fp_module_published">Upplagd ' . date('Y-m-d', $module['launch']) . '</p>' . "\n";
 			}
 			if($module['grading'] == 'true')
 			{
