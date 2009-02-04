@@ -1346,7 +1346,7 @@
 		{
 			$request['action'] = 'move_thread';
 			$request['thread'] = array_pop(discussion_forum_post_fetch(array('post_id' => $_POST['thread_id'])));
-			$request['new_category'] = $_POST['new_category'];
+			$request['new_category'] = array_pop(discussion_forum_categories_fetch(array('id' => $_POST['new_category'])));
 		}
 		elseif($url == '/diskussionsforum/nytt_inlaegg.php')
 		{

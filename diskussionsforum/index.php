@@ -68,11 +68,24 @@
 		case 'move_thread':
 			if(forum_security(array('action' => 'move_thread', 'thread' => $request['thread'])))
 			{
-				$query = 'UPDATE forum_posts SET forum_id = "' . $request['new_category'] . '" WHERE id = "' . $request['thread']['id'] . '" LIMIT 1';
+				$query = 'UPDATE forum_posts SET forum_id = "' . $request['new_category']['id'] . '" WHERE id = "' . $request['thread']['id'] . '" LIMIT 1';
 				mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-
-				$category = discussion_forum_categories_fetch(array('id' => $request['new_category']));
-				header('Location: ' . $category[0]['url']);
+			
+				$message  = 'Hej, din tråd i forumet med titeln "%TITLE%" har flyttats till %NEW_CATEGORY%.' . "\n";
+				$message .= 'Har du några frågor om varför tråden flyttades så kan du ta dem med %MOVERS_USERNAME%';
+				$message .= 'eller med någon annan ordningsvakt, du hittar sådana i modulen "Inloggade Ordningsvakter" till höger.' . "\n";
+				$message .= '/Webmaster';
+				$guestbook_message = array(
+					'sender' => 2348,
+					'recipient' => intval($request['thread']['author']),
+					'message' => mysql_real_escape_string(str_replace(
+						array('%TITLE%', '%NEW_CATEGORY%', '%MOVERS_USERNAME%'),
+						array($request['thread']['title'], $request['new_category']['title'], $_SESSION['login']['username']),
+						$message
+					))
+				);
+				guestbook_insert($guestbook_message); 
+				header('Location: ' . $request['new_category']['url']);
 				exit;
 			}
 			break;
