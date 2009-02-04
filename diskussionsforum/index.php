@@ -193,8 +193,19 @@
 		break;
 		
 		case 'search':
-			$output .= '<h1>TEST</h1>';
-			$output .= '<h2>Under utveckling</h2>' .  "\n";
+			$output .= discussion_forum_search_form();
+			
+			if(strlen($_GET['freetext']) > 0)
+			{
+				$fetch_options = array();
+				$fetch_options['match']['against'] = $_GET['freetext'];
+				$fetch_options['match']['columns'] = array('author', 'title', 'content');
+				$posts = discussion_forum_post_fetch($fetch_options);
+//				$output .= discussion_forum_search_render($search_results);
+				echo '<h1>Search results</h1>';
+				preint_r($posts);
+			}
+			
 			break;
 		
 		case 'new_post':
