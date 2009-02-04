@@ -198,6 +198,7 @@
 			if(strlen($request['freetext']) > 0)
 			{
 				$fetch_options = array();
+				$fetch_options['order-direction'] = 'DESC';
 				$fetch_options['match']['against'] = $request['freetext'];
 				$fetch_options['match']['in_columns'] = array('p.content');
 				$posts = discussion_forum_post_fetch($fetch_options);
