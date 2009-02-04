@@ -897,7 +897,7 @@
 		$o = '<ul class="forum_search_results">' . "\n";
 		foreach($posts AS $post)
 		{
-			$o .= '<li><h3>Av: ' . $post['username'] . ' i: <a href="' . forum_get_url_by_post($post['id']) . '">' . $post['title'] . '</a> vid:' . date('Y-m-d H:i', $post['timestamp']) . '</h3>';
+			$o .= '<li><h3>Av: ' . $post['username'] . ' i: <a href="' . forum_get_url_by_post($post['id']) . '">tråden ' . $post['title'] . '</a> vid:' . date('Y-m-d H:i', $post['timestamp']) . '</h3>';
 			$o .= '<p>' . substr($post['content'], 0, 250) . '</p>' . "\n";
 			$o .= '</li>';
 		}
