@@ -343,6 +343,7 @@
 	
 		$query = 'UPDATE groups_members SET read_msg = ' . $total_msg  . ' WHERE userid = ' . $_SESSION['login']['id'] . ' AND groupid = ' . $groupid;
 		mysql_query($query) or die(report_sql_error($query));
+		$_SESSION['cache']['groups_notices'][$groupid]['unread_messages'] = 0;
 	
 		$new_messages = $new_messages - $data['total_read'];
 	
