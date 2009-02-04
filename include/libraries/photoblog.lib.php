@@ -460,19 +460,27 @@
 
 	function photoblog_calendar($user_id, $month, $year)
 	{
+		$format_month = ($month < 10) ? '0' . $month : $month;
+		
 		$options = array('user' => $user_id);
 		$used_dates = photoblog_dates_fetch($options);
-		$used_dates = $used_dates[$year][$month];
+		$used_dates = $used_dates[$year][$format_month];
 		
 		$date = mktime(12, 0, 0, $month, 1, $year);
 		$daysInMonth = date('t', $date);
 		
+		$prev_month = ($month == 1) ? 12 : $month - 1;
+		$prev_year = ($prev_month == 12) ? $year -1 : $year;
+		
+		$next_month = ($month == 12) ? 1 : $month + 1;
+		$next_year = ($next_month == 1) ? $year + 1 : $year;
+		
 		$offset = date('N', $date);
 		$rows = 1;
 		$out .= '<div id="photoblog_calendar_month">' . "\n";
-			$out.= '<a href="">&laquo;</a>' . "\n";
+			$out.= sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&laquo;</a>', $prev_year, $prev_month) . "\n";
 				$out .= '<span title="offset: ' . $offset . '">' . date('F', $date) . ', ' . $year . '</span>' . "\n";
-			$out.= '<a href="">&raquo;</a>' . "\n";
+			$out.= sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&raquo;</a>', $next_year, $next_month) . "\n";
 		$out .= '</div>' . "\n";
 		$out .= '<table>' . "\n";
 		$out .= '<tr><th>M</th><th>T</th><th>O</th><th>T</th><th>F</th><th>L</th><th>S</th></tr>' . "\n";
@@ -490,7 +498,7 @@
 				$out .= '</tr><tr>' . "\n";
 				$rows++;
 			}
-			$out .= '<td>' . (isset($used_dates[$format_day]) ? '<a href="#day-' . $year . $month . $day . '">' . $day . '</a>' : $day) . '</td>' . "\n";
+			$out .= '<td>' . (isset($used_dates[$format_day]) ? '<a href="#day-' . $year . $format_month . $format_day . '">' . $day . '</a>' : $day) . '</td>' . "\n";
 		}
 		while( ($day + $offset) <= $rows * 7)
 		{

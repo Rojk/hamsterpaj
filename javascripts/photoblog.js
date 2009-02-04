@@ -111,6 +111,7 @@ hp.photoblog = {
 	*/
 	init: function() {
 		hp.photoblog.year_month.init();
+		hp.photoblog.calendar.init();
 		
 		this.thumbsContainer = $('#photoblog_thumbs_container');
 		this.thumbs = $('#photoblog_thumbs');
@@ -793,6 +794,31 @@ hp.photoblog = {
 		
 		get_prev_date: function() {
 			return this.get_x_date('prev');
+		}
+	},
+	
+	calendar: {
+		init: function() {
+			var self = this;
+			
+			$(document).click(function(e) {
+				e = e || window.event;
+				var target = $(e.target);
+				
+				if ( target.is('.photoblog_calendar_date') ) {
+					var hash = target.attr('href').split('#')[1];
+					var year = hash.split('-')[0];
+					var month = hash.split('-')[1];
+					
+					self.load(year, month);
+					
+					return false;
+				}
+			});
+		},
+		
+		load: function(year, month) {
+			$('#photoblog_calendar_month').parent().load('/ajax_gateways/photoblog_calendar.php?user_id=' + hp.photoblog.current_user.id + '&year=' + year + '&month=' + month);
 		}
 	},
 	
