@@ -368,7 +368,12 @@ hp.photoblog = {
 					break;
 				
 					case 'day':
-						hp.photoblog.year_month.load_date(date, {'useDay': true});						
+						var options = {'useDay': true};
+						if ( target.parents('#ui_module_photoblog_calendar table') ) {
+							$('.photoblog_calendar_active').removeClass('photoblog_calendar_active');
+							target.addClass('photoblog_calendar_active');
+						}
+						hp.photoblog.year_month.load_date(date, options);						
 					break;
 				}
 			}
