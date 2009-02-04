@@ -58,11 +58,6 @@
 		
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		
-		if($_SESSION['login']['id'] == 774586)
-		{
-			//echo $query . '<br /><br />';
-		}
-		
 		while($data = mysql_fetch_assoc($result))
 		{
 			if($options['url_lookup'] == true)
@@ -1703,5 +1698,26 @@
 		$fetch['types'] = array('watches', 'responses', 'notices', 'subscriptions');
 		$notices = forum_notices_get($fetch);
 		return $notices['watches']['unread'] + $notices['responses']['unread'] + $notices['notices']['unread'] + $notices['subscriptions']['unread'];
+	}
+	
+	
+	function discussion_forum_search_form()
+	{
+		$o = '<form class="discussion_forum_search_form" action="/diskussionsforum/soek.php" method="get">' . "\n";
+		$o .= '<input type="text" name="freetext" />' . "\n";
+		$o .= '<input type="submit" value="Sök" />' . "\n";
+		$o .= '</form>' . "\n";
+		
+		return $o;
+	}
+
+	function discussion_forum_search()
+	{
+		
+	}	
+	
+	function discussion_forum_search_render()
+	{
+		
 	}
 ?>
