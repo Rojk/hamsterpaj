@@ -53,17 +53,18 @@
 			case 'fetch_new_posts':
 				$groupid = $_POST['groupid'];
 				
-				$selectquery = 'SELECT message_count AS total FROM groups_list WHERE groupid = ' . $groupid;
-				$result = mysql_query($selectquery) or die(report_sql_error($selectquery));
-				$group_message_count = mysql_fetch_assoc($result);
+//				$selectquery = 'SELECT message_count AS total FROM groups_list WHERE groupid = ' . $groupid;
+//				$result = mysql_query($selectquery) or die(report_sql_error($selectquery));
+//				$group_message_count = mysql_fetch_assoc($result);
 
 				// Om antal meddelanden är större än jag läst:
-				$selectquery = 'SELECT read_msg AS total_read FROM groups_members WHERE groupid = ' . $groupid . ' AND userid = ' . $_SESSION['login']['id'];
-				$result = mysql_query($selectquery) or die(report_sql_error($selectquery));
-				$user_message_count = mysql_fetch_assoc($result);
+//				$selectquery = 'SELECT read_msg AS total_read FROM groups_members WHERE groupid = ' . $groupid . ' AND userid = ' . $_SESSION['login']['id'];
+//				$result = mysql_query($selectquery) or die(report_sql_error($selectquery));
+//				$user_message_count = mysql_fetch_assoc($result);
 
 				//$groupid = $_POST['groupid'];
-				if($group_message_count['total'] > $user_message_count['total_read'])
+//				if($group_message_count['total'] > $user_message_count['total_read'])
+				if($_SESSION['cache']['groups_notices'][$groupid]['unread_messages'] > 0 && login_checklogin())
 				{
 					$count_new_posts = $group_message_count['total'] - $user_message_count['total_read'];
 					// Set messages read

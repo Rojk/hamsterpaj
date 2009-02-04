@@ -36,14 +36,16 @@ $(document).ready(function(){
 
 	function updateScribble() {
 		var groupid = $('.group_header').attr('id');
+
 		$.ajax({
 			url: '/ajax_gateways/groups.php?action=fetch_new_posts',
 			type: 'POST',
 			data: 'groupid=' + groupid,
-			timeout: 1200,
+			timeout: 200,
 			success: function(result) {
 				$('#posted_messages').prepend(result);
 			}
 		});
-		setTimeout('updateScribble()', 6000);
+
+		setTimeout('updateScribble()', 40000);
 	}
