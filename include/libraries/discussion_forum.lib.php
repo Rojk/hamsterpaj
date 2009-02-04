@@ -48,7 +48,7 @@
 		$query .= (isset($options['author']) && is_numeric($options['author'])) ? ' AND p.author = "' . $options['author'] . '"' : '';
 		$query .= (isset($options['min_userlevel_read']) && is_numeric($options['min_userlevel_read'])) ? ' AND pf.userlevel_read >= "' . $options['min_userlevel_read'] . '"' : '';
 		$query .= (isset($options['max_userlevel_read']) && is_numeric($options['max_userlevel_read'])) ? ' AND pf.userlevel_read <= "' . $options['max_userlevel_read'] . '"' : '';
-		$query .= (isset($options['match']['against'], $options['match']['in_columns'])) ? ' AND MATCH(' . implode(', ', $options['match']['in_columns']) . ') AGAINST("' . $options['match']['against'] . '" IN BOOLEAN MODE)' : '';
+		$query .= (isset($options['match']['against'], $options['match']['in_columns'])) ? ' AND MATCH(' . implode(', ', $options['match']['in_columns']) . ') AGAINST("' . $options['match']['against'] . '")' : '';
 		
 		$query .= ' ORDER BY';
 		$query .= isset($options['order_by_sticky']) ? ' sticky DESC,' : '';
@@ -892,6 +892,20 @@
 		return $return;
 	}
 	
+	function discussion_forum_post_list_search($posts)
+	{
+		$o = '<ul class="forum_search_results">' . "\n";
+		foreach($posts AS $post)
+		{
+			$o .= '<li><h3>Av: ' . $post['username'] . ' i: <a href="' . forum_get_url_by_post($post['id']) . '">' . $post['title'] . '</a> vid:' . date('Y-m-d H:i', $post['timestamp']) . '</h3>';
+			$o .= '<p>' . substr($post['content'], 0, 250) . '</p>' . "\n";
+			$o .= '</li>';
+		}
+		$o .= '</ul>' . "\n";
+		
+		return $o;
+	}
+	
 	function forum_thread_cache_latest_threads()
 	{
 		$threads = discussion_forum_post_fetch(array('threads_only' => 'true', 'limit' => 8, 'url_lookup' => true, 'order-by' => 'p.id', 'order-direction' => 'DESC', 'min_quality_level' => 2, 'max_userlevel_read' => 1));
@@ -1350,6 +1364,7 @@
 		elseif($url == '/diskussionsforum/soek.php')
 		{
 			$request['action'] = 'search';
+			$request['freetext'] = substr($url_query_parts[1], 9);
 		}
 		elseif($url == '/diskussionsforum/nya_traadar.php')
 		{
@@ -1704,20 +1719,11 @@
 	function discussion_forum_search_form()
 	{
 		$o = '<form class="discussion_forum_search_form" action="/diskussionsforum/soek.php" method="get">' . "\n";
-		$o .= '<input type="text" name="freetext" />' . "\n";
-		$o .= '<input type="submit" value="Sök" />' . "\n";
+		$o .= '<input type="text" name="freetext" style="font-size: 18px; padding: 5px;" />' . "\n";
+		$o .= '<input type="submit" value="Sök" style="font-size: 18px; padding: 5px;" />' . "\n";
 		$o .= '</form>' . "\n";
 		
 		return $o;
 	}
 
-	function discussion_forum_search()
-	{
-		
-	}	
-	
-	function discussion_forum_search_render()
-	{
-		
-	}
 ?>

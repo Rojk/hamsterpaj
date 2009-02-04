@@ -161,7 +161,7 @@
 				break;
 			}
 			
-			$output .=  discussion_forum_post_list($posts, $first_post[0]);
+			$output .= discussion_forum_post_list($posts, $first_post[0]);
 			
 			$paging_options['current_page'] = $request['page_num'];
 			$paging_options['post_count'] = $first_post[0]['child_count'];
@@ -195,15 +195,22 @@
 		case 'search':
 			$output .= discussion_forum_search_form();
 			
-			if(strlen($_GET['freetext']) > 0)
+			if(strlen($request['freetext']) > 0)
 			{
 				$fetch_options = array();
-				$fetch_options['match']['against'] = $_GET['freetext'];
-				$fetch_options['match']['columns'] = array('author', 'title', 'content');
+				$fetch_options['match']['against'] = $request['freetext'];
+				$fetch_options['match']['in_columns'] = array('p.content');
 				$posts = discussion_forum_post_fetch($fetch_options);
-//				$output .= discussion_forum_search_render($search_results);
-				echo '<h1>Search results</h1>';
-				preint_r($posts);
+				if(count($posts) > 0)
+				{
+					$output .= discussion_forum_post_list_search($posts);
+				}
+				else
+				{
+					$output .= '<h1>Vi hittade inget</h1>' . "\n";
+					$output .= '<p>Nedan har vi gjort en Google-sökning åt dig, klicka med scrollhjulet på länkarna.</p>' . "\n";
+					$output .= '<iframe src="http://www.google.se/search?q=site%3Awww.hamsterpaj.net%2Fdiskussionsforum%2F+' . urlencode($request['freetext']) . '" style="width: 630px; height: 1000px;"></iframe>' . "\n";
+				}
 			}
 			
 			break;
