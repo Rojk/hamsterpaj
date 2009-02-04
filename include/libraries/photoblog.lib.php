@@ -460,27 +460,33 @@
 
 	function photoblog_calendar($user_id, $month, $year)
 	{
-		$format_month = ($month < 10) ? '0' . $month : $month;
+		$format_month = sprintf('%02s', $month);
 		
 		$options = array('user' => $user_id);
-		$used_dates = photoblog_dates_fetch($options);
-		$used_dates = $used_dates[$year][$format_month];
+		$dates = photoblog_dates_fetch($options);
+		$used_dates = $dates[$year][$format_month];
 		
 		$date = mktime(12, 0, 0, $month, 1, $year);
 		$daysInMonth = date('t', $date);
 		
+		$dates_first = reset(end($dates));
+		$dates_last = end(reset($dates));
+		
 		$prev_month = ($month == 1) ? 12 : $month - 1;
 		$prev_year = ($prev_month == 12) ? $year -1 : $year;
+		$prev_has = $used_dates != $dates_first;
+		
 		
 		$next_month = ($month == 12) ? 1 : $month + 1;
 		$next_year = ($next_month == 1) ? $year + 1 : $year;
+		$next_has = $used_dates != $dates_last;
 		
 		$offset = date('N', $date);
 		$rows = 1;
 		$out .= '<div id="photoblog_calendar_month">' . "\n";
-			$out.= sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&laquo;</a>', $prev_year, $prev_month) . "\n";
-				$out .= '<span title="offset: ' . $offset . '">' . date('F', $date) . ', ' . $year . '</span>' . "\n";
-			$out.= sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&raquo;</a>', $next_year, $next_month) . "\n";
+			$out.= $prev_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&laquo;</a>', $prev_year, $prev_month) . "\n" : '';
+				$out .= '<span>' . date('F', $date) . ', ' . $year . '</span>' . "\n";
+			$out.= $next_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&raquo;</a>', $next_year, $next_month) . "\n" : '';
 		$out .= '</div>' . "\n";
 		$out .= '<table>' . "\n";
 		$out .= '<tr><th>M</th><th>T</th><th>O</th><th>T</th><th>F</th><th>L</th><th>S</th></tr>' . "\n";
@@ -491,7 +497,7 @@
 		}
 		for($day = 1; $day <= $daysInMonth; $day++)
 		{
-			$format_day = ($day < 10) ? '0' . $day : $day;
+			$format_day = sprintf('%02s', $day);
 			
 			if( ($day + $offset - 2) % 7 == 0 && $day != 1)
 			{
