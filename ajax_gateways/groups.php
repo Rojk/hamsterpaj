@@ -51,29 +51,18 @@
 			break;
 			
 			case 'fetch_new_posts':
-				$groupid = $_POST['groupid'];
-				
-//				$selectquery = 'SELECT message_count AS total FROM groups_list WHERE groupid = ' . $groupid;
-//				$result = mysql_query($selectquery) or die(report_sql_error($selectquery));
-//				$group_message_count = mysql_fetch_assoc($result);
-
-				// Om antal meddelanden är större än jag läst:
-//				$selectquery = 'SELECT read_msg AS total_read FROM groups_members WHERE groupid = ' . $groupid . ' AND userid = ' . $_SESSION['login']['id'];
-//				$result = mysql_query($selectquery) or die(report_sql_error($selectquery));
-//				$user_message_count = mysql_fetch_assoc($result);
-
-				//$groupid = $_POST['groupid'];
-//				if($group_message_count['total'] > $user_message_count['total_read'])
-				if($_SESSION['cache']['groups_notices'][$groupid]['unread_messages'] > 0 && login_checklogin())
+				$groupid = $_GET['groupid'];
+				if($_SESSION['cache']['group_notices'][$groupid]['unread_messages'] > 0 && login_checklogin())
 				{
-					$count_new_posts = $group_message_count['total'] - $user_message_count['total_read'];
+					$new_posts = $_SESSION['cache']['group_notices'][$groupid]['unread_messages'];
+					
 					// Set messages read
-					$query = 'UPDATE groups_members SET read_msg = read_msg + ' . $count_new_posts . ' WHERE userid = ' . $_SESSION['login']['id'] . ' AND groupid = ' . $groupid;
+					$query = 'UPDATE groups_members SET read_msg = read_msg + ' . $new_posts . ' WHERE userid = ' . $_SESSION['login']['id'] . ' AND groupid = ' . $groupid;
 					mysql_query($query) or die(report_sql_error($query));
+					$_SESSION['cache']['groups_notices'][$groupid]['unread_messages'] = 0;
 					
-					$query = 'SELECT login.username, groups_scribble.userid, groups_scribble.timestamp, groups_scribble.text, groups_scribble.id, userinfo.image, userinfo.birthday FROM login, groups_scribble, userinfo WHERE login.id = groups_scribble.userid AND groups_scribble.groupid = ' . $groupid . ' AND userinfo.userid = groups_scribble.userid AND groups_scribble.deleted = 0 ORDER BY groups_scribble.id DESC LIMIT ' . $count_new_posts . '';
+					$query = 'SELECT login.username, groups_scribble.userid, groups_scribble.timestamp, groups_scribble.text, groups_scribble.id, userinfo.image, userinfo.birthday FROM login, groups_scribble, userinfo WHERE login.id = groups_scribble.userid AND groups_scribble.groupid = ' . $groupid . ' AND userinfo.userid = groups_scribble.userid AND groups_scribble.deleted = 0 ORDER BY groups_scribble.id DESC LIMIT ' . $new_posts . '';
 					$result = mysql_query($query) or die(report_sql_error($query));
-					
 					
 					while ($data = mysql_fetch_assoc($result))
 					{
