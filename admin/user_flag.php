@@ -17,8 +17,8 @@
 	
 	switch(isset($_GET['action']) ? $_GET['action'] : 'home')
 	{			
-	case 'view':		
-	
+	case 'view':	
+		
 		if(isset($_POST['username']) && strtolower($_POST['username']) != 'borttagen')
 		{
 			$username = str_replace('_', '\\_', $_POST['username']);
@@ -71,7 +71,6 @@
 				$output .= 'Användarnamnet finns inte, försök igen.' . "\n";
 			}
 		}
-	
 	break;
 	
 	case 'edit':
@@ -85,23 +84,20 @@
 			$result = mysql_query($query) or die(report_sql_error($query));
 			$output .= 'Flaggan är inlagd!';
 		}
-		
 		elseif(isset($_POST['remove']) && is_numeric($user_flag) && is_numeric($userid))
 		{
 			$query = 'DELETE FROM user_flags WHERE user =' . $userid . ' AND flag =' . $user_flag . ' LIMIT 1';
 			$result = mysql_query($query) or die(report_sql_error($query));
 			$output .= 'Flaggan är borttagen!';
-		}
-		
+		}		
 		else
-			{
-				$output .= 'Nåt fel hände, försök igen.' . "\n";
-			}
+		{
+			$output .= 'Nåt fel hände, försök igen.' . "\n";
+		}
 		
 		break;
 		
 	}
-	
 	$output .= rounded_corners_bottom();
 	
 	ui_top($ui_options);
