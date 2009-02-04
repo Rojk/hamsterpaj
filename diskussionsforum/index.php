@@ -68,11 +68,24 @@
 		case 'move_thread':
 			if(forum_security(array('action' => 'move_thread', 'thread' => $request['thread'])))
 			{
-				$query = 'UPDATE forum_posts SET forum_id = "' . $request['new_category'] . '" WHERE id = "' . $request['thread']['id'] . '" LIMIT 1';
+				$query = 'UPDATE forum_posts SET forum_id = "' . $request['new_category']['id'] . '" WHERE id = "' . $request['thread']['id'] . '" LIMIT 1';
 				mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-
-				$category = discussion_forum_categories_fetch(array('id' => $request['new_category']));
-				header('Location: ' . $category[0]['url']);
+			
+				$message  = 'Hej, din tråd i forumet med titeln "%TITLE%" har flyttats till %NEW_CATEGORY%.' . "\n";
+				$message .= 'Har du några frågor om varför tråden flyttades så kan du ta dem med %MOVERS_USERNAME%';
+				$message .= 'eller med någon annan ordningsvakt, du hittar sådana i modulen "Inloggade Ordningsvakter" till höger.' . "\n";
+				$message .= '/Webmaster';
+				$guestbook_message = array(
+					'sender' => 2348,
+					'recipient' => intval($request['thread']['author']),
+					'message' => mysql_real_escape_string(str_replace(
+						array('%TITLE%', '%NEW_CATEGORY%', '%MOVERS_USERNAME%'),
+						array($request['thread']['title'], $request['new_category']['title'], $_SESSION['login']['username']),
+						$message
+					))
+				);
+				guestbook_insert($guestbook_message); 
+				header('Location: ' . $request['new_category']['url']);
 				exit;
 			}
 			break;
@@ -148,7 +161,7 @@
 				break;
 			}
 			
-			$output .=  discussion_forum_post_list($posts, $first_post[0]);
+			$output .= discussion_forum_post_list($posts, $first_post[0]);
 			
 			$paging_options['current_page'] = $request['page_num'];
 			$paging_options['post_count'] = $first_post[0]['child_count'];
@@ -180,8 +193,27 @@
 		break;
 		
 		case 'search':
-			$output .= '<h1>TEST</h1>';
-			$output .= '<h2>Under utveckling</h2>' .  "\n";
+			$output .= discussion_forum_search_form();
+			
+			if(strlen($request['freetext']) > 0)
+			{
+				$fetch_options = array();
+				$fetch_options['order-direction'] = 'DESC';
+				$fetch_options['match']['against'] = $request['freetext'];
+				$fetch_options['match']['in_columns'] = array('p.content');
+				$posts = discussion_forum_post_fetch($fetch_options);
+				if(count($posts) > 0)
+				{
+					$output .= discussion_forum_post_list_search($posts);
+				}
+				else
+				{
+					$output .= '<h1>Vi hittade inget</h1>' . "\n";
+					$output .= '<p>Nedan har vi gjort en Google-sökning åt dig, klicka med scrollhjulet på länkarna.</p>' . "\n";
+					$output .= '<iframe src="http://www.google.se/search?q=site%3Awww.hamsterpaj.net%2Fdiskussionsforum%2F+' . urlencode($request['freetext']) . '" style="width: 630px; height: 1000px;"></iframe>' . "\n";
+				}
+			}
+			
 			break;
 		
 		case 'new_post':

@@ -12,7 +12,7 @@
 		die();
 	}
 	
-	ui_top($ui_options);
+	$format = isset($_POST['show_csv_format']) ? 'csv' : 'styled';
 
 	if (isset($_POST['username']))
 	{
@@ -20,44 +20,50 @@
 	}
 
 	$numeric = array_key_exists('numeric',$_POST) == 1;
-	echo rounded_corners_top();
-	echo '<h1 style="margin-top: 0px; padding-top: 2px;">Logg över administrativa händelser</h1>';
-	echo '<h3>Filtrera på valfria fält</h3><br />';
-
-	echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="post">';
-	echo '<table class="admin_log" >';
-	echo '	<tr>';
-	echo '		<td class="event" >Händelse</td>';
-	echo '		<td class="comment">Info</td>';
-	echo '		<td class="time">Tidpunkt</td>';
-	echo '		<td class="admin">Admin</td>';
-	echo '		<td class="user">Användare</td>';
-	echo '		<td class="item">Item id</td>';
-	echo '	</tr>';
-	echo '	<tr>';
-	echo '		<td class="event" ><input type="text" name="event" value="' . $_POST['event'] . '" /></td>';
-	echo '		<td class="comment" ><input type="text" name="value" value="' . $_POST['value'] . '" /></td>';
-	echo '		<td><input type="text" name="starttime" value="' . $_POST['starttime'] . '" /></td>';
-	echo '		<td><input type="text" name="admin" value="' . $_POST['admin'] . '" /></td>';
-	echo '		<td><input type="text" name="user" value="' . $_POST['user'] . '" /></td>';
-	echo '		<td><input type="text" name="item" value="' . $_POST['item'] . '" /></td>';
-	echo '	</tr>';
-	echo '	<tr>';
-	echo '		<td></td>';
-	echo '		<td></td>';
-	echo '		<td><input type="text" name="endtime" value="' . $_POST['endtime'] . '" /></td>';
-	echo '		<td></td>';
-	echo '		<td></td>';
-	echo '		<td></td>';
-	echo '	</tr>';
-	echo '</table>';
-	echo '<input type="checkbox" name="numeric" value="true" id="chk_numeric_ids" ' . ( $numeric ? 'checked="checked"' : '') . ' />';
-	echo '<label for="chk_numeric_ids"> Id-nummer istället för namn </label>';
-	echo '<input type="checkbox" name="rubish" value="true" id="chk_rubish" ' . ( array_key_exists('rubish',$_POST) ? 'checked="checked"' : '') . ' />';
-	echo '<label for="chk_rubish"> Visa inte avatarer och namnbyten </label>';
-	echo '<br /><br /><input type="submit" name="submit" value="Filtrera" class="button_60" />';
-	echo '</form>';
-	echo '<hr />';
+	
+	if($format == 'styled')
+	{
+		$output = rounded_corners_top();
+		$output .= '<h1 style="margin-top: 0px; padding-top: 2px;">Logg över administrativa händelser</h1>';
+		$output .= '<h3>Filtrera på valfria fält</h3><br />';
+	
+		$output .= '<form action="' . $_SERVER['PHP_SELF'] . '" method="post">';
+		$output .= '<table class="admin_log" >';
+		$output .= '	<tr>';
+		$output .= '		<td class="event" >Händelse</td>';
+		$output .= '		<td class="comment">Info</td>';
+		$output .= '		<td class="time">Tidpunkt</td>';
+		$output .= '		<td class="admin">Admin</td>';
+		$output .= '		<td class="user">Användare</td>';
+		$output .= '		<td class="item">Item id</td>';
+		$output .= '	</tr>';
+		$output .= '	<tr>';
+		$output .= '		<td class="event" ><input type="text" name="event" value="' . $_POST['event'] . '" /></td>';
+		$output .= '		<td class="comment" ><input type="text" name="value" value="' . $_POST['value'] . '" /></td>';
+		$output .= '		<td><input type="text" name="starttime" value="' . $_POST['starttime'] . '" /></td>';
+		$output .= '		<td><input type="text" name="admin" value="' . $_POST['admin'] . '" /></td>';
+		$output .= '		<td><input type="text" name="user" value="' . $_POST['user'] . '" /></td>';
+		$output .= '		<td><input type="text" name="item" value="' . $_POST['item'] . '" /></td>';
+		$output .= '	</tr>';
+		$output .= '	<tr>';
+		$output .= '		<td></td>';
+		$output .= '		<td></td>';
+		$output .= '		<td><input type="text" name="endtime" value="' . $_POST['endtime'] . '" /></td>';
+		$output .= '		<td></td>';
+		$output .= '		<td></td>';
+		$output .= '		<td></td>';
+		$output .= '	</tr>';
+		$output .= '</table>';
+		$output .= '<input type="checkbox" name="numeric" value="true" id="chk_numeric_ids" ' . ( $numeric ? 'checked="checked"' : '') . ' />';
+		$output .= '<label for="chk_numeric_ids"> Id-nummer istället för namn </label>';
+		$output .= '<input type="checkbox" name="rubish" value="true" id="chk_rubish" ' . ( array_key_exists('rubish',$_POST) ? 'checked="checked"' : '') . ' />';
+		$output .= '<label for="chk_rubish"> Visa inte avatarer och namnbyten </label>';
+		$output .= '<input type="checkbox" name="show_csv_format" value="true" id="chk_show_csv_format" ' . ( array_key_exists('show_csv_format',$_POST) ? 'checked="checked"' : '') . ' />';
+		$output .= '<label for="chk_show_csv_format"> Ge mig en sån där CSV-fil istället för något annat skräp (Excel) </label>';
+		$output .= '<br /><br /><input type="submit" name="submit" value="Filtrera" class="button_60" />';
+		$output .= '</form>';
+		$output .= '<hr />';
+	}
 	
 	if(has_value($_POST['starttime']))
 	{
@@ -82,31 +88,80 @@
 	$query = preg_replace('/WHERE AND/', 'WHERE', $query);
 	$query = preg_replace('/WHERE ORDER/', 'ORDER', $query);
 	$result = mysql_query($query) or die(report_sql_error($query));
-//	echo '<p>sql-frågan: ' . $query . '</p>';
-	echo '<table class="admin_log">';
-	echo '	<tr>';
-	echo '		<td class="event" >Händelse</td>';
-	echo '		<td class="comment" >Info</td>';
-	echo '		<td class="time" >Tidpunkt</td>';
-	echo '		<td class="admin" >Admin</td>';
-	echo '		<td class="user" >Användare</td>';
-	echo '		<td class="item" >Item id</td>';
-	echo '	</tr>';
+//	$output .= '<p>sql-frågan: ' . $query . '</p>';
+
+	switch($format)
+	{
+		case 'styled':
+			$output .= '<table class="admin_log">';
+			$output .= '	<tr>';
+			$output .= '		<td class="event" >Händelse</td>';
+			$output .= '		<td class="comment" >Info</td>';
+			$output .= '		<td class="time" >Tidpunkt</td>';
+			$output .= '		<td class="admin" >Admin</td>';
+			$output .= '		<td class="user" >Användare</td>';
+			$output .= '		<td class="item" >Item id</td>';
+			$output .= '	</tr>';
+		break;
+		
+		case 'csv':
+			$output .= implode("\t", array('Handelse', 'Info', 'Tidpunkt', 'Admin', 'Anvandare', 'Itemid')) . "\n";
+		break;
+	}
+	
 	while($data = mysql_fetch_assoc($result))
 	{
-		echo '<tr>';
-		echo '	<td class="event" >' . $data['event'] . '</td>';
-		echo '	<td class="comment" >' . $data['value'] . '</td>';
-		echo '	<td>' . fix_time($data['timestamp']) . '</td>';
-		echo '	<td>' . ($numeric ? $data['admin_id'] : get_username_by_id($data['admin_id'])) . '</td>';
-		echo '	<td>' . ($numeric ? $data['user_id'] : get_username_by_id($data['user_id'])) . '</td>';
-		echo '	<td>' . $data['item_id'] . '</td>';
-		echo '</tr>';
+		switch($format)
+		{
+			case 'styled':
+				$output .= '<tr>';
+				$output .= '	<td class="event" >' . $data['event'] . '</td>';
+				$output .= '	<td class="comment" >' . $data['value'] . '</td>';
+				$output .= '	<td>' . fix_time($data['timestamp']) . '</td>';
+				$output .= '	<td>' . ($numeric ? $data['admin_id'] : get_username_by_id($data['admin_id'])) . '</td>';
+				$output .= '	<td>' . ($numeric ? $data['user_id'] : get_username_by_id($data['user_id'])) . '</td>';
+				$output .= '	<td>' . $data['item_id'] . '</td>';
+				$output .= '</tr>';
+			break;
+			
+			case 'csv':
+				$row = array(
+					'event' => $data['event'],
+					'comment' => $data['value'],
+					'timestamp' => date('Y-m-d H:i', $data['timestamp']),
+					'admin' => ($numeric ? $data['admin_id'] : get_username_by_id($data['admin_id'])),
+					'user' => ($numeric ? $data['user_id'] : get_username_by_id($data['user_id'])),
+					'item_id' => $data['item_id']
+				);
+				
+				//$row = array_map('md5', $row);
+				
+				$output .= '' . implode("\t", $row) . '' . "\n";
+			break;
+		}
 	}
-	echo '</table>';
-	echo rounded_corners_bottom();
 	
-	ui_bottom();
+	if($format == 'styled')
+	{
+		$output .= '</table>';
+		$output .= rounded_corners_bottom();
+	}
+	
+	switch($format)
+	{
+		case 'styled':
+			ui_top($ui_options);
+			echo $output;
+			ui_bottom();
+		break;
+		
+		case 'csv':
+			//header('Content-type: text/plain');
+			header('Content-type: text/csv');
+			header('Content-disposition: attachment; filename=adminlogg_' . date('Y-m-d_H.i') . '.csv');
+			echo $output;
+		break;
+	}
 
 	//functions used in this script
 	function get_userid_by_name($username)

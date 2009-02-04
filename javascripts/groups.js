@@ -16,7 +16,7 @@ $(document).ready(function(){
 			url: '/ajax_gateways/groups.php?action=new_post',
 			type: 'POST',
 			data: 'groupid=' + group_id + '&group_message=' + group_message,
-			timeout: 1200,
+			timeout: 10000,
 			success: function(result) {
 				$('#posted_messages').prepend(result);
 				$('#group_message').attr("value", "");
@@ -36,14 +36,15 @@ $(document).ready(function(){
 
 	function updateScribble() {
 		var groupid = $('.group_header').attr('id');
+
 		$.ajax({
 			url: '/ajax_gateways/groups.php?action=fetch_new_posts',
-			type: 'POST',
+			type: 'GET',
 			data: 'groupid=' + groupid,
 			timeout: 1200,
 			success: function(result) {
 				$('#posted_messages').prepend(result);
 			}
 		});
-		setTimeout('updateScribble()', 6000);
+		setTimeout('updateScribble()', 40000);
 	}

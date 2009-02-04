@@ -397,7 +397,7 @@
 		$out .= '<input class="submit" type="submit" value="Skicka" />' . "\n";
 		$out .= '</p>' . "\n";
 		$out .= '</form>' . "\n";
-		$out .= '</div' . "\n";
+		$out .= '</div>' . "\n";
 		$out .= '</div>' . "\n";
 		$out .= '<br style="clear: both;" />' . "\n";
 		$out .= '</li>' . "\n";	
@@ -455,5 +455,67 @@
 			throw new Exception('No action was set');
 			break;
 		}
+	}
+
+
+	function photoblog_calendar($user_id, $month, $year)
+	{
+		$format_month = sprintf('%02s', $month);
+		
+		$options = array('user' => $user_id);
+		$dates = photoblog_dates_fetch($options);
+		$used_dates = $dates[$year][$format_month];
+		
+		$date = mktime(12, 0, 0, $month, 1, $year);
+		$daysInMonth = date('t', $date);
+		
+		$dates_first = reset(end($dates));
+		$dates_last = end(reset($dates));
+		
+		$prev_month = ($month == 1) ? 12 : $month - 1;
+		$prev_year = ($prev_month == 12) ? $year -1 : $year;
+		$prev_has = $used_dates != $dates_first;
+		
+		
+		$next_month = ($month == 12) ? 1 : $month + 1;
+		$next_year = ($next_month == 1) ? $year + 1 : $year;
+		$next_has = $used_dates != $dates_last;
+		
+		$offset = date('N', $date);
+		$rows = 1;
+		$out .= '<div id="photoblog_calendar_month">' . "\n";
+			$out.= $prev_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&laquo;</a>', $prev_year, $prev_month) . "\n" : '';
+				$out .= '<span>' . date('F', $date) . ', ' . $year . '</span>' . "\n";
+			$out.= $next_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&raquo;</a>', $next_year, $next_month) . "\n" : '';
+		$out .= '</div>' . "\n";
+		$out .= '<table>' . "\n";
+		$out .= '<tr><th>M</th><th>T</th><th>O</th><th>T</th><th>F</th><th>L</th><th>S</th></tr>' . "\n";
+		$out .= '<tr>';
+		for($i = 1; $i < $offset; $i++)
+		{
+			$out .= '<td></td>' . "\n";
+		}
+		for($day = 1; $day <= $daysInMonth; $day++)
+		{
+			$format_day = sprintf('%02s', $day);
+			
+			if( ($day + $offset - 2) % 7 == 0 && $day != 1)
+			{
+				$out .= '</tr><tr>' . "\n";
+				$rows++;
+			}
+			$out .= '<td>' . (isset($used_dates[$format_day]) ? '<a href="#day-' . $year . $format_month . $format_day . '">' . $day . '</a>' : $day) . '</td>' . "\n";
+		}
+		while( ($day + $offset) <= $rows * 7)
+		{
+			$out .= '<td></td>' . "\n";
+			$day++;
+		}
+		$out .= '</tr>' . "\n";
+		$out .= '</table>' . "\n";
+		$out .= '<div id="photoblog_calendar_year">' . "\n";
+		$out .= '<span class="photoblog_calendar_year_pre">' . ((int)$year - 1) . '</span><span class="photoblog_calendar_year_after">' . ((int)$year + 1) . '</span>' . "\n";
+		$out .= '</div>' . "\n";
+		return $out;
 	}
 ?>
