@@ -8,8 +8,7 @@
         if(isset($_GET['debug_include_standard'])){
                 include('../core/common.php');
         }
-//      require_once($hp_includepath . '/libraries/games.lib.php');
-        require_once($hp_includepath . '/libraries/schedule.lib.php');
+        require_once(PATHS_INCLUDE . '/libraries/schedule.lib.php');
 
         schedule_releases_do();
 ?>

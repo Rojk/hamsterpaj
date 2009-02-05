@@ -77,7 +77,6 @@
 */
 
 	$hp_path = $_SERVER['DOCUMENT_ROOT'] . '/'; // This is the server path to your application
-	$hp_includepath = PATHS_INCLUDE;
 	$hp_url = 'http://' . $_SERVER['SERVER_NAME'] . '/';
 
 /*
