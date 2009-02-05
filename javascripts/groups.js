@@ -1,3 +1,4 @@
+var last_group_message;
 $(document).ready(function(){
 	$('#group_message_submit').click(function() {
 		var group_message = $('#group_message').val();
@@ -11,7 +12,17 @@ $(document).ready(function(){
 			$('#form_notice').fadeIn(500);
 			return false;
 		}
-		
+	
+		if(group_message == last_group_message)
+		{
+			$('#form_notice').css("display", "none");
+      $('#form_notice').removeClass();
+      $('#form_notice').toggleClass('form_notice_error');
+      $('#form_notice').text('DubbelpostarN');
+      $('#form_notice').fadeIn(500);
+      return false;
+		}	
+	
 		$.ajax({
 			url: '/ajax_gateways/groups.php?action=new_post',
 			type: 'POST',
@@ -26,12 +37,13 @@ $(document).ready(function(){
 				$('#form_notice').text('Meddelandet skickat!');
 				$('#form_notice').fadeIn(500);
 				$('#group_message').focus();
+				last_group_message = group_message;
 			}
 		});
 		return false;
 	});
 	
-	updateScribble();
+//	updateScribble();
 });
 
 	function updateScribble() {
