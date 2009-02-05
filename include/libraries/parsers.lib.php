@@ -200,6 +200,12 @@
 			'/skiten/lur.php?id=',
 			'sexyemilie',
 			'sexye.milie',
+			'sexy.emilie',
+			'sexy*emilie',
+			'milie.com/?id=',
+			'sexy-emilie',
+			'emilie.com',
+			'emilie,com',
 			'www.rivality.notlong.com',
 			'rivality.com/'
 			);
