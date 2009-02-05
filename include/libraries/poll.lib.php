@@ -168,6 +168,11 @@
 	function poll_create($poll)
 	{
 		$handle = url_secure_string($poll['question']);
+		if(empty($handle))
+		{
+			$handle = md5(time() . rand(0, 9999));
+		}
+		
 		for($i = 1; $i < 100; $i++)
 		{
 			$query = 'SELECT id FROM poll WHERE handle LIKE "' . $handle . '" LIMIT 1';
