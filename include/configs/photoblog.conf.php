@@ -4,6 +4,7 @@
 		'color_main' => 'FFFF00',
 		'color_detail' => 'FF00FF',
 		'members_only' => '0',
-		'friends_only' => '0'
+		'friends_only' => '0',
+		'copy_protection' => '0'
 	);
 ?>

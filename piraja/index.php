@@ -1,5 +1,5 @@
 <?php
-	require('include/core/common.php');
+	require('../include/core/common.php');
 	require_once(PATHS_INCLUDE  . 'libraries/entertain.lib.php');
 	require_once(PATHS_INCLUDE  . 'libraries/rank.lib.php');
 	require_once(PATHS_INCLUDE  . 'libraries/photos.lib.php');

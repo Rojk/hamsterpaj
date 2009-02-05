@@ -3,7 +3,7 @@
 	{
 		if(!isset($options['user_id']) && isset($options['username']) && preg_match('/^[a-zA-Z0-9-_]+$/', $options['username']) && strtolower($options['username']) != 'borttagen')
 		{
-			$query = 'SELECT id AS user_id FROM login WHERE LIKE "' . str_replace('_', '\\_', $options['username']) . '" LIMIT 1';
+			$query = 'SELECT id AS user_id FROM login WHERE username LIKE "' . str_replace('_', '\\_', $options['username']) . '" LIMIT 1';
 			$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 			
 			if(mysql_num_rows($result) == 1)
@@ -29,16 +29,16 @@
 		
 		$query = 'SELECT pp.*, l.id, l.username';
 		$query .= ' FROM login AS l, photoblog_preferences AS pp';
-		$query .= ' WHERE pp.user_id = l.id AND l.id = "' . $options['user_id'] . '';
+		$query .= ' WHERE pp.user_id = l.id AND l.id = "' . $options['user_id'] . '"';
 		$query .= ' LIMIT 1';
 		
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 
-		if(mysql_num_rows($result) == 1)
+		if(mysql_num_rows($result) == 0)
 		{		
-			$insert_query = 'INSERT INTO photoblog_preferences (user_id, color_main_color_detail, hamster_guard_on)';
-			$insert_query .= ' VALUES(' . $options['user_id'] . ', "333333", "FF8040", 0)';
-			mysql_query($insert_query) or report_sql_error($insert_query, __FILE__, __LINE__))
+			$insert_query = 'INSERT INTO photoblog_preferences (user_id, color_main, color_detail, members_only, friends_only, copy_protection)';
+			$insert_query .= ' VALUES(' . $options['user_id'] . ', "333333", "FF8040", 0, 0, 0)';
+			mysql_query($insert_query) or report_sql_error($insert_query, __FILE__, __LINE__);
 		}
 		
 		// Do it again to find out if it works now when the default values are filled in...
@@ -313,7 +313,7 @@
 	
 	function photoblog_comments_add($comment)
 	{
-		if(isset($comment['comment']))
+		if(!isset($comment['comment']))
 		{
 			throw new Exception('Server error: No comment passed to function in options array. Terminating!');// Because "terminating" is such a cool word *NOT*
 		}
@@ -342,16 +342,19 @@
 	
 	function photoblog_comments_list($comments, $options)
 	{
-		$options['use_container'] = (isset($options['use_container']) ? (bool)$options['use_container'] : true);
-		
+		$options['use_container'] = (isset($options['use_container']) ? $options['use_container'] : true);
+		if(count($comments) == 0)
+		{
+			 return false;
+		}
 		$out .= ($options['use_container']) ? '<div id="photoblog_comments_list">' . "\n" : '';
 		$out .= '<ul>' . "\n";
 		foreach ($comments as $comment)
 		{
 			$out .= '<li class="photoblog_comment">' . "\n";					
 			$out .= '<div class="photoblog_comment_userinfo">' . "\n";
-			$out .= ui_avatar($comment['user_id']);
-			$out .= '<a href="/traffa/profile.php?user_id=' . $comment['user_id'] . '">' . $comment['username'] . '</a>' . "\n";
+			$out .= ui_avatar($comment['author']);
+			$out .= '<a href="/traffa/profile.php?user_id=' . $comment['author'] . '">' . $comment['username'] . '</a>' . "\n";
 			$out .= '<span>' . $comment['date'] . '</span>' . "\n"; // 31 December
 			$out .= '</div>' . "\n";
 						
@@ -394,7 +397,7 @@
 		$out .= '<input class="submit" type="submit" value="Skicka" />' . "\n";
 		$out .= '</p>' . "\n";
 		$out .= '</form>' . "\n";
-		$out .= '</div' . "\n";
+		$out .= '</div>' . "\n";
 		$out .= '</div>' . "\n";
 		$out .= '<br style="clear: both;" />' . "\n";
 		$out .= '</li>' . "\n";	
@@ -452,5 +455,67 @@
 			throw new Exception('No action was set');
 			break;
 		}
+	}
+
+
+	function photoblog_calendar($user_id, $month, $year)
+	{
+		$format_month = sprintf('%02s', $month);
+		
+		$options = array('user' => $user_id);
+		$dates = photoblog_dates_fetch($options);
+		$used_dates = $dates[$year][$format_month];
+		
+		$date = mktime(12, 0, 0, $month, 1, $year);
+		$daysInMonth = date('t', $date);
+		
+		$dates_first = reset(end($dates));
+		$dates_last = end(reset($dates));
+		
+		$prev_month = ($month == 1) ? 12 : $month - 1;
+		$prev_year = ($prev_month == 12) ? $year -1 : $year;
+		$prev_has = $used_dates != $dates_first;
+		
+		
+		$next_month = ($month == 12) ? 1 : $month + 1;
+		$next_year = ($next_month == 1) ? $year + 1 : $year;
+		$next_has = $used_dates != $dates_last;
+		
+		$offset = date('N', $date);
+		$rows = 1;
+		$out .= '<div id="photoblog_calendar_month">' . "\n";
+			$out.= $prev_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&laquo;</a>', $prev_year, $prev_month) . "\n" : '';
+				$out .= '<span>' . date('F', $date) . ', ' . $year . '</span>' . "\n";
+			$out.= $next_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&raquo;</a>', $next_year, $next_month) . "\n" : '';
+		$out .= '</div>' . "\n";
+		$out .= '<table>' . "\n";
+		$out .= '<tr><th>M</th><th>T</th><th>O</th><th>T</th><th>F</th><th>L</th><th>S</th></tr>' . "\n";
+		$out .= '<tr>';
+		for($i = 1; $i < $offset; $i++)
+		{
+			$out .= '<td></td>' . "\n";
+		}
+		for($day = 1; $day <= $daysInMonth; $day++)
+		{
+			$format_day = sprintf('%02s', $day);
+			
+			if( ($day + $offset - 2) % 7 == 0 && $day != 1)
+			{
+				$out .= '</tr><tr>' . "\n";
+				$rows++;
+			}
+			$out .= '<td>' . (isset($used_dates[$format_day]) ? '<a href="#day-' . $year . $format_month . $format_day . '">' . $day . '</a>' : $day) . '</td>' . "\n";
+		}
+		while( ($day + $offset) <= $rows * 7)
+		{
+			$out .= '<td></td>' . "\n";
+			$day++;
+		}
+		$out .= '</tr>' . "\n";
+		$out .= '</table>' . "\n";
+		$out .= '<div id="photoblog_calendar_year">' . "\n";
+		$out .= '<span class="photoblog_calendar_year_pre">' . ((int)$year - 1) . '</span><span class="photoblog_calendar_year_after">' . ((int)$year + 1) . '</span>' . "\n";
+		$out .= '</div>' . "\n";
+		return $out;
 	}
 ?>

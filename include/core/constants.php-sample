@@ -18,7 +18,8 @@
 	$paths_images_old			= '/mnt/images/images/';	// File path to images. This is the old images/images on hamsterpaj.
 	$paths_images 				= '/mnt/images/';	// File path to the current images directory.
 	$paths_static				= '/mnt/static/';	// File path to static, containing Images and compressed JS and CSS.
-	$url_images					= 'http://images.hamsterpaj.net/';	// URL to the images server.
+	$url_images_old			= 'http://images.hamsterpaj.net/';	// URL to the old images folder d.v.s images.hamsterpaj.net
+	$url_images					= 'http://static.hamsterpaj.net/images/'; // URL to images folder. This content is fetched from the hamsterpaj_images repository. I would recommend to set this content in a static/images folder. Which is gitignored.
 	$url_static					= 'http://static.hamsterpaj.net/';	// URL to the static server.
 	
 	$environment				= 'development';	//Set to 'development', 'production' or 'test' depending on which environment you want to use.
@@ -62,7 +63,8 @@
 	define('PATHS_IMAGES', $paths_images_old);
 	define('PATHS_STATIC', $paths_static);
 	define('IMAGE_PATH', $paths_images);
-	define('IMAGE_URL', $url_images);
+	define('IMAGE_URL', $url_images_old);
+	define('URL_IMAGES',  $url_images);
 	define('STATIC_URL', $url_static);
 	define('ENVIRONMENT', $environment); 
 	define('SALT_PASSWORD', $salt_password); 

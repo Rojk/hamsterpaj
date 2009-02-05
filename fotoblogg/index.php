@@ -22,7 +22,13 @@
 		
 		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 		
-		if(isset($uri_parts[2]) && preg_match('/^[a-zA-Z0-9-_]+$/', $uri_parts[2]))
+		if($uri_parts[2] == 'ordna' || $uri_parts[2] == 'instaellningar')
+		{
+			$photoblog_user = photoblog_fetch_active_user_data(array(
+				'username' => $_SESSION['login']['username']
+			));
+		}
+		else if(isset($uri_parts[2]) && preg_match('/^[a-zA-Z0-9-_]+$/', $uri_parts[2]))
 		{
 			$photoblog_user = photoblog_fetch_active_user_data(array(
 				'username' => $uri_parts[2]
@@ -31,7 +37,7 @@
 		else if(login_checklogin())
 		{
 			$photoblog_user = photoblog_fetch_active_user_data(array(
-				'user_id' => $_SESSION['login']['username']
+				'username' => $_SESSION['login']['username']
 			));
 		}
 		else

@@ -522,3 +522,8 @@
 	#ui_module_photoblog_albums a {
 		color: <?php echo $detail_color; ?>;
 	}
+	
+.photoblog_calendar_active {
+	font-weight: bold;
+	color: <?php echo $detail_color; ?>;
+}

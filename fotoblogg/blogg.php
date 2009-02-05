@@ -19,11 +19,9 @@
 			'month' => $date
 		);
 		
-		$out .= '<script type="text/javascript">';
-			$out .= 'hp.photoblog.current_user = {';
-				$out .= 'id: ' . $user_id;
-			$out .= '};';
-		$out .= '</script>';
+		define('PHOTOBLOG_CURRENT_YEAR', substr($date, 0, 4));
+		define('PHOTOBLOG_CURRENT_MONTH', substr($date, 4, 2));
+		define('PHOTOBLOG_CURRENT_USER', $photoblog_user['id']);
 		
 		$photos = photoblog_photos_fetch($options);
 		$out .= '<div id="photoblog_thumbs">';
@@ -68,6 +66,13 @@
 				$out .= $last_photo['description'];
 				$out .= '</div>';
 		$out .= '</div>';
+		
+		$out .= '<script type="text/javascript">';
+			$out .= 'hp.photoblog.current_user = {';
+				$out .= 'id: ' . $user_id;
+			$out .= '};';
+			$out .= 'hp.photoblog.view.current_id = ' . $last_photo['id'];
+		$out .= '</script>';
 		
 		// Some test-data
 		/*$comment1 = array('user_id' => 625058, 'username' => 'Lef', 'comment' => 'Din mamma är så fet!');

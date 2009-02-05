@@ -266,7 +266,7 @@
 		}
 	}
 	
-	function group_send_new_message($groupid, $userid, $text)
+	function group_send_new_message($groupid, $userid, $text, $setread = true)
 	{
 		/*if (isset($_SESSION['debug']))
 		{
@@ -304,9 +304,11 @@
 		
 		event_log_log('group_post');
 		
-		// Since I wrote this there is no idea to get a notice about it.
-		$query = 'UPDATE groups_members SET read_msg = read_msg +1 WHERE userid = ' . $_SESSION['login']['id'] . ' AND groupid = ' . $groupid;
-		mysql_query($query) or die(report_sql_error($query));
+		if($setread == true)
+		{
+			$query = 'UPDATE groups_members SET read_msg = read_msg +1 WHERE userid = ' . $_SESSION['login']['id'] . ' AND groupid = ' . $groupid;
+			mysql_query($query) or die(report_sql_error($query));
+		}
 	}
 	
 	function group_close_group($groupid)
@@ -341,6 +343,7 @@
 	
 		$query = 'UPDATE groups_members SET read_msg = ' . $total_msg  . ' WHERE userid = ' . $_SESSION['login']['id'] . ' AND groupid = ' . $groupid;
 		mysql_query($query) or die(report_sql_error($query));
+		$_SESSION['cache']['groups_notices'][$groupid]['unread_messages'] = 0;
 	
 		$new_messages = $new_messages - $data['total_read'];
 	
@@ -460,14 +463,16 @@
 			
 			// Post form for writing in the group
 			
-			echo '<form action="/ajax_gateways/groups.php?action=new_post&groupid=' . $groupid . '" method="post" id="' . $groupid . '" name="postform">';
+			echo '<form action="/ajax_gateways/groups.php?action=new_post&return=true&groupid=' . $groupid . '" method="post" id="' . $groupid . '" name="postform">';
 			echo '<h2 style="margin-top: 0;">Meddelande:</h2>';
 			echo '<textarea name="group_message" class="textbox" style="width: 99%; height: 110px;" id="group_message"></textarea><br />';
+			echo '<input type="text" name="groupid" style="display: none;" id="group_id" value="' . $groupid . '" />';
 			echo '<input type="submit" value="Skicka" name="submit_message" id="group_message_submit" class="button_60"/><br />';
-			echo '</form>';			
+			echo '</form>';	
 		}
 		echo rounded_corners_bottom(array('color' => 'blue'));
 		echo '<div id="form_notice"></div>';
+		echo '<div id="posted_messages"></div>';
 	}
 	
 	function group_check_auth($userid, $groupid, $approved)
@@ -636,10 +641,10 @@
 		if ($name)	
 		{
 		echo '<a href="/traffa/groupnotices.php">&laquo; Till gruppnotiser</a><br />';
-			$query = 'SELECT name, message_count, take_new_members FROM groups_list WHERE groupid = ' . $groupid;
+			$query = 'SELECT name, message_count, take_new_members, groupid FROM groups_list WHERE groupid = ' . $groupid;
 			$result = mysql_query($query) or die(report_sql_error($query));
 			$data = mysql_fetch_assoc($result);
-			echo '<h2>' . $data['name'] . ' - ' . (($groupid == 246) ? '<span onclick="alert(' . "'" . 'Nu var du allt haxx!\nInlägg: ' . $data['message_count'] . "'" . ')">L33t h4xx0r</span>' : $data['message_count']) . ' inlägg</h2>';
+			echo '<h2 class="group_header" id="' . $data['groupid'] . '">' . $data['name'] . ' - ' . (($groupid == 246) ? '<span onclick="alert(' . "'" . 'Nu var du allt haxx!\nInlägg: ' . $data['message_count'] . "'" . ')">L33t h4xx0r</span>' : $data['message_count']) . ' inlägg</h2>';
 			if ($data['take_new_members'] == 1 && !array_key_exists($groupid, $_SESSION['groups_members']))
 			{
 				echo '<br /><a href="' . $_SERVER['PHP_SELF'] . '?action=apply&amp;groupid=' . $groupid . '">Gå med i denna grupp >></a>';
