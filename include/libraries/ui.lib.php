@@ -351,6 +351,11 @@ function ui_top($options = array())
 	{
 		$output .= '<div>' . $options['xxl'] . '</div>' . "\n";
 	}
+
+	if(rand(0, 50) == 25 || $_SESSION['login']['id'] == 3 || $_SESSION['login']['id'] == 57100)
+	{
+		$output .= '<div style="text-align: center;"><script type="text/javascript" src="http://www.adtrade.net/ad/p/?id=hamsterpaj_1&size=728x90&ad=002" charset="iso-8859-1"></script></div>' . "\n";
+	}
 	
 	$output .= '		<div id="ui_content">' . "\n";
 	$output .= '<script type="text/javascript">CM8ShowAd("Rektangel");</script>' . "\n";
