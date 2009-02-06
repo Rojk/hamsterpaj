@@ -36,7 +36,6 @@
 				$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 				if(mysql_num_rows($result) != 1)
 				{
-					preint_r($_POST);
 					throw new Exception('Ingen användare med användarnamnet kunde hittas');
 				}
 				$data = mysql_fetch_assoc($result);
@@ -48,6 +47,85 @@
 		   		echo 'Användaren är tillagd!';
 				echo '</div>';
 			break;
+			
+			case dj_remove:
+				if(!is_privilegied('radio_admin'))
+				{
+					throw new Exception('Du har inte privilegier att lägga till radio DJs');
+				}
+				if(!isset($_GET['id']))
+				{
+					throw new Exception('Inget ID kom med');
+				}
+				$options['user_id'] = $_GET['id'];
+				radio_dj_remove($options);
+				
+				if(isset($_GET['no_ajax']) && $_GET['no_ajax'] == true)
+				{
+					header('Location: /radio/crew/');
+				}
+				
+				echo '<div class="form_notice_success">';
+				echo 'Användaren borttagen som DJ';
+				echo '</div>';
+			break;
+			
+			case 'program_add':
+				if(!is_privilegied('radio_admin'))
+				{
+					throw new Exception('Du har inte privilegier att lägga till radio DJs');
+				}
+				if(!isset($_POST['name']))
+				{
+					throw new Exception('Du måste fylla i ett namn');
+				}
+				if(!isset($_POST['dj']))
+				{
+					throw new Exception('Du måste välja en DJ');
+				}
+				if(!isset($_POST['information']))
+				{
+					throw new Exception('Du måste skriva in lite information');
+				}
+				if(!is_numeric($_POST['dj']))
+				{
+					throw new Exception('ID\'t är inte godkänt');
+				}
+				$query = 'SELECT id FROM login WHERE id = ' . $_POST['dj'] . ' AND is_removed = 0 LIMIT 1';
+				$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+				if(mysql_num_rows($result) != 1)
+				{
+					throw new Exception('Ingen användare med användarnamnet kunde hittas');
+				}
+
+				$options['user_id'] = $_POST['dj'];
+				$options['name'] = $_POST['name'];
+				$options['information'] = $_POST['information'];
+				$options['sendtime'] = $_POST['sendtime'];
+				radio_program_add($options);
+				
+				echo '<div class="form_notice_success">';
+		   		echo 'Programmet är tillagt!';
+				echo '</div>';
+			break;
+			
+			case program_remove:
+				if(!is_privilegied('radio_admin'))
+				{
+					throw new Exception('Du har inte privilegier att lägga till radio DJs');
+				}
+				if(!isset($_GET['id']))
+				{
+					throw new Exception('Inget ID kom med');
+				}
+				$options['id'] = $_GET['id'];
+				radio_program_remove($options);
+				
+				echo '<div class="form_notice_success">';
+				echo 'Programmet borttaget';
+				echo '</div>';
+			break;
+			
 			default:
 				throw new Exception('Action not found');
 			break;

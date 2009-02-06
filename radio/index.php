@@ -69,26 +69,6 @@
 				{
 					switch ($uri_parts[3])
 					{	
-						case 'program_add':
-							
-							if(!isset($_POST['name'], $_POST['dj'], $_POST['sendtime'], $_POST['information']))
-							{
-								throw new Exception('Getmjölk?');
-							}
-							
-							if(strlen($_POST['name']) < 0 || !is_numeric($_POST['dj']) || strlen($_POST['information']) < 0)
-							{
-								throw new Exception('Något fält var ju INTE korrekt ifyllt säger jag ju då.');
-							}
-							
-							radio_program_add(array(
-								'name' => $_POST['name'],
-								'sendtime' => $_POST['sendtime'],
-								'information' => $_POST['information'],
-								'dj' => $_POST['dj']
-							));
-						break;
-						
 						case 'schedule_add':
 							
 							if(!isset($_POST['program'], $_POST['starttime'], $_POST['endtime']))
@@ -121,14 +101,14 @@
 				$radio_djs = radio_djs_fetch($options);
 				foreach($radio_djs as $radio_dj)
 				{
-					$out .= '<div class="radio_crew">' . "\n";
+					$out .= '<div class="radio_crew" id="' . $radio_dj['user_id'] . '">' . "\n";
 					$out .= ui_avatar($radio_dj['user_id']) . "\n";
 					$out .= '<h2>' . $radio_dj['username'] . '</h2>' . "\n";
 					if(is_privilegied('radio_admin'))// Only administrators for the whole radio can edit/remove DJs
 					{
 						$out .= '<div class="admin_tools">' . "\n";
-						$out .= '<a href="#" title="Ändra DJ">Ändra</a> | ' . "\n"; // När man klickar edit ska formuläret för att lägga till sändning användas för att ändra sändningen.
-						$out .= '<a href="#" title="Ta bort DJ">Ta bort</a>' . "\n"; // Ajax, popup-accept
+						// $out .= '<a class="dj_edit_information" href="#" title="Ändra DJ">Ändra</a> | ' . "\n"; // När man klickar edit ska formuläret för att lägga till sändning användas för att ändra sändningen.
+						$out .= '<a class="dj_remove" href="/ajax_gateways/radio.php?action=dj_remove&id=' . $radio_dj['user_id'] . '&no_ajax=true" title="Ta bort DJ">Ta bort</a>' . "\n"; // Ajax, popup-accept
 						$out .= '</div>' . "\n";
 					}
 					$out .= '<p>' . $radio_dj['information'] . '</p>' . "\n"; // substr to fitting characters
@@ -138,8 +118,7 @@
 				{
 					$ui_options['stylesheets'][] = 'forms.css'; // Includes stylesheet for form.
 					
-					$out .= '<div id="form_notice">' . "\n";
-					$out .= '</div>' . "\n";
+					$out .= '<div id="form_notice"></div>' . "\n";
 					$out .= '<fieldset>' . "\n";
 					$out .= '<legend>Lägg till DJ</legend>' . "\n";
 					$out .= '<form action="/ajax_gateways/radio.php?action=dj_add" method="post">';
@@ -159,59 +138,63 @@
 				}	
 			break;
 			
-			case 'program':	
+			case 'program':
 				$options['order-by']= 'name';
 				$options['order-direction']= 'DESC';
 				$radio_programs = radio_programs_fetch($options);
-				$out .= '<table>' . "\n";
+				
+				$zebra = 'even';
 				foreach($radio_programs as $radio_program)
 				{
-					$out .= '<tr>' . "\n";
-					$out .= '<td>' . $radio_program['name'] . '</td>' . "\n";
-					$out .= '<td>' . $radio_program['dj'] . '</td>' . "\n";
-					$out .= '<td>' . $radio_program['sendtime'] . '</td>' . "\n";
-					$out .= '<td>' . $radio_program['information'] . '</td>' . "\n"; // substr to fitting characters
-					if(is_privilegied('radio_sender')) // Only senders can edit programs
-					{
-						$out .= '<td><a href="#" title="Ändra program">Ändra</a></td>' . "\n"; // När man klickar edit ska formuläret för att lägga till sändning användas för att ändra sändningen.
-						$out .= '<td><a href="#" title="Ta bort program">Ta bort</a></td>' . "\n"; // Ajax, popup-accept
-					}
-					$out .= '</tr>' . "\n";
+					$out .= '<div id="' . $radio_program['id'] . '" class="' . $zebra . ' radio_program">' . "\n";
+						$out .= ui_avatar($radio_program['user_id']) . "\n";
+						$out .= '<div class="radio_about">' . "\n";
+						$out .= '<h2>' . $radio_program['name'] . '</h2>' . "\n";
+						if(is_privilegied('radio_sender')) // Only senders can add/edit programs
+						{
+							$out .= '<a href="#" class="program_remove">Ta bort</a>' . "\n";
+						}
+						$out .= '<strong>DJ: ' . $radio_program['username'] . '</strong><br />' . "\n";
+						$out .= '<span>' . $radio_program['sendtime'] . '</span>' . "\n";
+						$out .= '</div>' . "\n";
+					$out .= '</div>' . "\n";
+					$zebra = ($zebra == 'even') ? 'uneven' : 'even';
 				}
-				$out .= '</table>' . "\n";
+
 				if(is_privilegied('radio_sender')) // Only senders can add/edit programs
 				{
 					$radio_djs = radio_djs_fetch(); // Fetches DJ's to the Select list in the form
 					$ui_options['stylesheets'][] = 'forms.css'; // Inkluderar stilmall för formuläret
 					
+					$out .= '<br style="clear: both;" /><div id="form_notice"></div>' . "\n";
 					$out .= '<fieldset>' . "\n";
 					$out .= '<legend>Lägg till program</legend>' . "\n";
-					$out .= '<form action="/radio/post_settings/program_add" method="post">';
+					$out .= '<form action="/ajax_gateways/radio.php?action=program_add&no_ajax=true" method="post">';
 					$out .= '<table class="form">' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="name">Namn <strong>*</strong></label></th>' . "\n";
-						$out .= '<td><input type="text" name="name" /></td>' . "\n";
+						$out .= '<td><input id="radio_program_add_name" type="text" name="name" /></td>' . "\n";
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="dj">DJ <strong>*</strong></label></th>' . "\n";
-						$out .= '<td><select name="dj">' . "\n";
+						$out .= '<td><select id="radio_program_add_dj" name="dj">' . "\n";
 							foreach($radio_djs as $radio_dj)
 							{
-								$out .= '<option value="' . $radio_dj['id'] . '">' . $radio_dj['username'] . '</option>' ."\n";
+								$out .= '<option value="' . $radio_dj['user_id'] . '">' . $radio_dj['username'] . '</option>' ."\n";
 							}
 						$out .= '</select>' . "\n";
 						$out .= '</td>' . "\n";
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="sendtime">Sändningstid/Övrigt </label></th>' . "\n";
-						$out .= '<td><input type="text" name="sendtime" /></td>' . "\n";
+						$out .= '<td><input  id="radio_program_add_sendtime" type="text" name="sendtime" /></td>' . "\n";
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="information">Information <strong>*</strong></label></th>' . "\n"; 
-						$out .= '<td><textarea name="information" cols="45" rows="10"></textarea></td>' . "\n";
+						$out .= '<td><textarea  id="radio_program_add_information" name="information" cols="45" rows="10"></textarea></td>' . "\n";
 					$out .= '</tr>' . "\n";				
 					$out .= '</table>' . "\n";
-					$out .= '<input type="submit" id="submit" value="Spara" />' . "\n"; // Ajax
+					$out .= '<input type="submit" id="radio_program_add_submit" value="Spara" />' . "\n";
 					$out .= '</form>';
 					$out .= '</fieldset>' . "\n";
 				}	
@@ -222,7 +205,7 @@
 				$options['limit'] = 30; 
 				$options['order-direction']= 'DESC'; // We want them in order by which is coming first
 				$radio_events = radio_schedule_fetch($options);
-				$out .= '<table>' . "\n";
+				$out .= '<table style="width: 638px;">' . "\n";
 				foreach($radio_events as $radio_event)
 				{
 					$out .= '<tr>' . "\n";

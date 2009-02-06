@@ -90,19 +90,28 @@
 			throw new Exception('User ID not numeric');
 		}
 
-		$radio_djs_add_sql = 'INSERT INTO radio_djs (information, user_id) VALUES("' . $dj_information . '", ' . $dj_user_id . ')';
-		if (!mysql_query($radio_djs_add_sql))
-		{
-			report_sql_error($radio_djs_add_sql, __FILE__, __LINE__);
-			throw new Exception('Något gick fel i ett MySQL-query.<br />' . mysql_error() . '');
-		}
+		$query = 'INSERT INTO radio_djs (information, user_id) VALUES("' . $dj_information . '", ' . $dj_user_id . ')';
+		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 		
-		$radio_privilegies_add_sql = 'INSERT INTO privilegies (privilegie, value, user) VALUES ("radio_sender", 0, ' . $dj_user_id . ')'; // NOT WORKING
-		if (!mysql_query($radio_privilegies_add_sql))
+		$query = 'INSERT INTO privilegies (privilegie, value, user) VALUES ("radio_sender", 0, ' . $dj_user_id . ')';
+		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
+		
+		return true;
+	}
+	
+	function radio_dj_remove($options)
+	{
+		if(!is_numeric($options['user_id']))
 		{
-			report_sql_error($radio_privilegies_add_sql, __FILE__, __LINE__);
-			throw new Exception('Något gick fel när privilegien skulle läggas till<br />' . mysql_error() . '');
+			throw new Exception('User ID not numeric');
 		}
+
+		$query = 'DELETE FROM radio_djs WHERE user_id = ' . $options['user_id'] . '';
+		$result = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
+		
+		$query = 'DELETE FROM privilegies WHERE user = ' . $options['user_id'] . ' AND privilegie = "radio_sender"';
+		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
+		
 		return true;
 	}
 	
@@ -147,6 +156,17 @@
 		}
 		
 		$query = 'INSERT INTO radio_programs (user_id, name, information, sendtime) VALUES("' . implode('", "', array($options['user_id'], $options['name'], $options['information'], $options['sendtime'])) . '")';
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+	}
+	
+	function radio_program_remove($options)
+	{
+		if(!is_numeric($options['id']))
+		{
+			throw new Exception('Id is not numeric');
+		}
+		
+		$query = 'DELETE FROM radio_programs WHERE id = ' . $options['id'] . '';
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 	}
 	

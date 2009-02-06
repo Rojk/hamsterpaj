@@ -165,6 +165,41 @@
 	float: left;
 	margin-bottom: 10px;
 }
+.radio_program {
+	background-image: url(http://images.hamsterpaj.net/radio/program_template.png);
+	width: 314px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
+}
+.even {
+	margin-right: 10px;
+}
+	.radio_program .radio_about {
+		margin-left: 97px;
+	}
+		.radio_program img {
+			margin-left: 11px;
+			margin-top: 11px;
+			float: left;
+			width: 75px;
+		}
+		.radio_program .radio_about h2 {
+			color: orange;
+			top: 15px;
+			position: relative;
+		}
+		.radio_program .radio_about span, .radio_program .radio_about strong {
+			color: #adadad;
+			top: 55px;
+			left: 78px;
+			position: relative;
+		}
+.program_remove {
+	top: 10px;
+	left: 150px;
+	position: relative;
+}
 		 
 #choose_player {
 	clear: both;
@@ -216,6 +251,7 @@
 		position: relative;
 		top: 30px;
 		left: 23px;
+		width: 75px;
 	}
 	.radio_crew h2 {
 		position: relative;
