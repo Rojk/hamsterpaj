@@ -33,7 +33,8 @@
 		$query .= (isset($options['launch_min'])) ? ' AND launch >= "' . $options['launch_min'] . '"' : '';
 		$query .= (isset($options['launch_max'])) ? ' AND launch <= "' . $options['launch_max'] . '"' : '';
 		$query .= (isset($options['id'])) ? ' AND id = "' . $options['id'] . '"' : '';
-		$query .= (isset($options['piraja'])) ? ' AND piraja = 1' : '';
+		$query .= (isset($options['piraja'])) ? ' AND piraja = "true"' : '';
+		$query .= (isset($options['gadget'])) ? ' AND gadget = "true"' : '';
 
 
 		$query .= (isset($options['order-by'])) ? ' ORDER BY ' . $options['order-by'] : ' ORDER BY priority';		
