@@ -1,6 +1,5 @@
 <?php
-require_once('../core/common.php');
-if(1==1)//ENVIRONMENT != 'development')
+if(ENVIRONMENT != 'development')
 {
 	require_once(PATHS_INCLUDE . 'libraries/jsmin.lib.php');
 	header('Content-type: text/plain');
@@ -22,18 +21,18 @@ if(1==1)//ENVIRONMENT != 'development')
 		}
 	}
 	$dir->close();
-	echo sizeof($update_list) . ' of ' . $number_of_files . ' Javascript files added to queue.' . "\n";
-	echo 'Updating list...' . "\n\n";
-	echo ' ID |   SOURCE   | COMPRESSED | NAME' . str_repeat(' ', $maxlen - 4) . '| STATUS' . "\n";
+	$out .= sizeof($update_list) . ' of ' . $number_of_files . ' Javascript files added to queue.' . "\n";
+	$out .= 'Updating list...' . "\n\n";
+	$out .= ' ID |   SOURCE   | COMPRESSED | NAME' . str_repeat(' ', $maxlen - 4) . '| STATUS' . "\n";
 	$file_id = 1;
 	$updated_files = 0;
 	$total_saved_bit = 0;
 	$start_time = microtime(true);
 	foreach($update_list as $file)
 	{
-		if($file_id < 10) echo ' ';
-		if($file_id < 100) echo ' ';
-		echo $file_id . ' | ' . filemtime($javascripts_path . $file) . ' | ' . filemtime($merged_file_path . $file) . ' | ' . $file . str_repeat(' ', $maxlen - strlen($file)) . '| ';
+		if($file_id < 10) $out .= ' ';
+		if($file_id < 100) $out .= ' ';
+		$out .= $file_id . ' | ' . filemtime($javascripts_path . $file) . ' | ' . filemtime($merged_file_path . $file) . ' | ' . $file . str_repeat(' ', $maxlen - strlen($file)) . '| ';
 		if(filemtime($javascripts_path . $file) >= filemtime($merged_file_path . $file))
 		{
 			$file_contents = file_get_contents($javascripts_path . $file);
@@ -42,24 +41,24 @@ if(1==1)//ENVIRONMENT != 'development')
 			$saved_bit = strlen($file_contents) - strlen($packed);
 			if($process)
 			{
-				echo 'Compress succeed (' . (time() - filemtime($javascripts_path . $file)) . ' seconds old). ' . $saved_bit . ' bits saved';
+				$out .= 'Compress succeed (' . (time() - filemtime($javascripts_path . $file)) . ' seconds old). ' . $saved_bit . ' bits saved';
 				$updated_files++;
 				$total_saved_bit += $saved_bit;
 			}
 			else
 			{
-				echo 'ERROR';
+				$out .= 'ERROR';
 			}
 		}
 		else
 		{
-			echo 'Up-to-date';
+			$out .= 'Up-to-date';
 		}
-		echo "\n";
+		$out .= "\n";
 		$file_id++;
 	}
 	$end_time = microtime(true);
-	echo "\n";
-	echo $updated_files . ' of ' . sizeof($update_list) . ' files updated in ' . ($end_time - $start_time) . ' seconds. Totally ' . $total_saved_bit . ' bit saved.' . "\n";
+	$out .= '' . "\n";
+	$out .= $updated_files . ' of ' . sizeof($update_list) . ' files updated in ' . ($end_time - $start_time) . ' seconds. Totally ' . $total_saved_bit . ' bit saved.' . "\n";
 }
 ?>
