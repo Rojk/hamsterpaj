@@ -101,6 +101,7 @@
 		$menu['piraja']['children']['allt'] = array('label' => 'Allt från Piraja', 'url' => '/piraja/');
 		$menu['piraja']['children']['finn_fem_fel'] = array('label' => 'Finn fem fel', 'url' => '/piraja/five_errors.php?fffid=hfred');
 		$menu['piraja']['children']['hyvlar'] = array('label' => 'Test av rakhyvlar', 'url' => '/piraja/hyvlar.php');
+		$menu['piraja']['children']['prylar'] = array('label' => 'Prylar', 'url' => '/piraja/prylar.php');
 		
 
 /*

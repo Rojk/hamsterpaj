@@ -40,11 +40,14 @@
 			$grading = ($_POST['grading'] == 'true') ? 'true' : 'false';
 			$commenting = ($_POST['commenting'] == 'true') ? 'true' : 'false';
 			$published = ($_POST['published'] == 'true') ? 'true' : 'false';
+			$published = ($_POST['piraja'] == 'true') ? 'true' : 'false';
+			$published = ($_POST['gadget'] == 'true') ? 'true' : 'false';
 			$format = $_POST['format'];
 			
-			$query = 'INSERT INTO fp_modules(code_mode, launch, removal, name, grading, commenting, published, format)';
+			$query = 'INSERT INTO fp_modules(code_mode, launch, removal, name, grading, commenting, published, format, piraja, grading)';
 			$query .= ' VALUES("' . $_POST['code_mode'] . '", "' . strtotime($_POST['launch']) . '", "' . strtotime($_POST['removal']);
-			$query .= '", "' . $_POST['name'] . '", "' . $grading . '", "' . $commenting . '", "' . $published . '", "' . $format . '")';
+			$query .= '", "' . $_POST['name'] . '", "' . $grading . '", "' . $commenting . '", "' . $published . '", "' . $format;
+			$query .= '", "' . $piraja . '", "' . $grading . '")';
 			mysql_query($query) or die(report_sql_error($query));
 			
 			$id = mysql_insert_id();
@@ -61,12 +64,14 @@
 				$grading = ($_POST['grading'] == 'true') ? 'true' : 'false';
 				$commenting = ($_POST['commenting'] == 'true') ? 'true' : 'false';
 				$published = ($_POST['published'] == 'true') ? 'true' : 'false';
+				$piraja = ($_POST['piraja'] == 'true') ? 'true' : 'false';
+				$gadget = ($_POST['gadget'] == 'true') ? 'true' : 'false';
 				$format = $_POST['format'];
 			
 				$query = 'UPDATE fp_modules SET name = "' . $_POST['name'] . '", launch = "' . strtotime($_POST['launch']) . '"';
 				$query .= ', removal = "' . strtotime($_POST['removal']) . '", code_mode = "' . $_POST['code_mode'] . '"';
 				$query .= ', grading = "' . $grading . '", commenting = "' . $commenting . '", published = "' . $published . '"';
-				$query .= ', format = "' . $format . '" WHERE id = "' . $_GET['id'] . '"';
+				$query .= ', format = "' . $format . '", piraja = "' . $piraja . '", gadget = "' . $gadget . '" WHERE id = "' . $_GET['id'] . '"';
 				
 				mysql_query($query);
 				
