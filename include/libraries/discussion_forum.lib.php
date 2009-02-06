@@ -251,10 +251,6 @@
 			$return .= ($data['author'] == 2) ? '&nbsp;<a href="/diskussionsforum/hamsterpaj/veckans_ros/" title="Veckans ros"><img src="http://images.hamsterpaj.net/ros.png" alt="Ros" style="width: 11px; height: 17px;border:0;" /></a><br style="clear: both;" />' . "\n" : '';
 			$return .= '<div class="passepartout">' . "\n";
 			$return .= ui_avatar($data['author']);
-			if($data['author'] == 625058)
-			{
-				$return .= '<img class="bars" src="http://images.hamsterpaj.net/discussion_forum/bars.gif" />' . "\n";
-			}
 			$return .= '</div>' . "\n";
 			if($data['gender'] == 'f')
 			{
