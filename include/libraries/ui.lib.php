@@ -99,11 +99,11 @@ function ui_top($options = array())
 	}
 	else
 	{
-		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/merged.js') . '.js"></script>' . "\n";
+		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime('/mnt/static/javascripts/merged.js') . '.js"></script>' . "\n";
 		$options['javascripts'] = array_unique($options['javascripts']);
 		foreach($options['javascripts'] as $javascript)
 		{
-			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/specified/' . $javascript) . '.js"></script>' . "\n";
+			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime('/mnt/static/javascripts/specified/' . $javascript) . '.js"></script>' . "\n";
 		}
 	}
 	

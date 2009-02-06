@@ -1,6 +1,6 @@
 <?php
-//require_once('../core/common.php');
-if(false)//ENVIRONMENT != 'development')
+require_once('../core/common.php');
+if(1==1)//ENVIRONMENT != 'development')
 {
 	require_once(PATHS_INCLUDE . 'libraries/jsmin.lib.php');
 	header('Content-type: text/plain');
