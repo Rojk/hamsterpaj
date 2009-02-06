@@ -44,7 +44,7 @@
 			$published = ($_POST['gadget'] == 'true') ? 'true' : 'false';
 			$format = $_POST['format'];
 			
-			$query = 'INSERT INTO fp_modules(code_mode, launch, removal, name, grading, commenting, published, format, piraja, grading)';
+			$query = 'INSERT INTO fp_modules(code_mode, launch, removal, name, grading, commenting, published, format, piraja, gadget)';
 			$query .= ' VALUES("' . $_POST['code_mode'] . '", "' . strtotime($_POST['launch']) . '", "' . strtotime($_POST['removal']);
 			$query .= '", "' . $_POST['name'] . '", "' . $grading . '", "' . $commenting . '", "' . $published . '", "' . $format;
 			$query .= '", "' . $piraja . '", "' . $grading . '")';
