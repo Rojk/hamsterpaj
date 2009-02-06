@@ -61,7 +61,7 @@
 		$menu['traeffa']['children']['galleriet'] = array('label' => 'Galleriet', 'url' => '/traffa/gallery.php');
 		$menu['traeffa']['children']['grupper'] = array('label' => 'Grupper', 'url' => '/traffa/groups.php');
 		$menu['traeffa']['children']['digga'] = array('label' => 'Digga', 'url' => '/traffa/digga.php');		
-		$menu['traeffa']['children']['besoeksloggen'] = array('label' => 'Besöksloggen', 'url' => '/traffa/my_visitors_joel.php');
+		$menu['traeffa']['children']['besoeksloggen'] = array('label' => 'Besöksloggen', 'url' => '/traffa/my_visitors.php');
 		$menu['traeffa']['children']['age_guess'] = array('label' => 'Gissa Åldern', 'url' => '/traffa/age_guess.php');
 		$menu['traeffa']['children']['gamla_klotterplanket'] = array('label' => 'Gamla klotterplanket', 'url' => '/traffa/klotterplank.php');
 		$menu['traeffa']['children']['tester'] = array('label' => 'Tester', 'url' => '/tests/index.php');
