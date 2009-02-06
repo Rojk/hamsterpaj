@@ -240,6 +240,12 @@ function ui_top($options = array())
 	} // end login_checklogin
 	
 	$output .= '		</div>' . "\n";
+
+	if(rand(0, 50) == 25 || $_SESSION['login']['username'] == 'Johan' || $_SESSION['login']['id'] == 57100)
+	{
+		$output .= '<div style="padding-left: 75px;"><script type="text/javascript" src="http://www.adtrade.net/ad/p/?id=hamsterpaj_1&size=728x90&ad=002" charset="iso-8859-1"></script></div>' . "\n";
+	}
+
 	$output .= '		<div id="ui_menu">' . "\n";
 	$output .= '				<ul>' . "\n";
 	
