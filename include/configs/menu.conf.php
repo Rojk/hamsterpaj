@@ -22,7 +22,7 @@
 		}
 		$menu['forum']['children']['new_threads'] = array('label' => 'Nya trådar', 'url' => '/diskussionsforum/nya_traadar.php');
 		$menu['forum']['children']['search'] = array('label' => 'Sök', 'url' => '/diskussionsforum/soek.php');
-		$menu['forum']['children']['rules'] = array('label' => 'Regler', 'url' => '/artiklar/?action=show&id=75');
+		$menu['forum']['children']['rules'] = array('label' => 'Regler', 'url' => '/hamsterpaj/rules_and_policies.php');
 	
 	$menu['sex_sense'] = array('label' => 'Sex &amp; sinne', 'url' => '/sex_och_sinne/', 'index_label' => 'Start');
 		$menu['sex_sense']['children']['latest'] = array('label' => 'Senaste frågorna', 'url' => '/sex_och_sinne/senaste_fraagorna.html');
