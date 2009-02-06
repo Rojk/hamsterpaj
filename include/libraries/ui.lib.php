@@ -85,9 +85,11 @@ function ui_top($options = array())
 	
 	$options['javascripts'] = (isset($options['javascripts']) && is_array($options['javascripts'])) ? $options['javascripts'] : array();
 	$javascripts_path = PATHS_WEBROOT . 'javascripts/';
+	
+	global $js_compress_important_files; // standard_javascripts.conf.php
+	
 	if(ENVIRONMENT == 'development')
 	{
-		global $js_compress_important_files; // standard_javascripts.conf.php
 		foreach($js_compress_important_files as $javascript)
 		{
 			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/' . $javascript . '?version=' . filemtime(PATHS_WEBROOT . 'javascripts/' . $javascript) . '"></script>' . "\n";
@@ -99,11 +101,16 @@ function ui_top($options = array())
 	}
 	else
 	{
-		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime('/mnt/static/javascripts/merged.js') . '.js"></script>' . "\n";
+		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/merged.js') . '.js"></script>' . "\n";
+		
 		$options['javascripts'] = array_unique($options['javascripts']);
 		foreach($options['javascripts'] as $javascript)
 		{
-			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime('/mnt/static/javascripts/specified/' . $javascript) . '.js"></script>' . "\n";
+			$internal_path = PATHS_WEBROOT . 'tmp/javascripts/specified/' . $javascript;
+			if(!in_array($javascript, $js_compress_important_files) && file_exists($internal_path))
+			{
+				$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime($internal_path) . '.js"></script>' . "\n";
+			}
 		}
 	}
 	
@@ -240,12 +247,6 @@ function ui_top($options = array())
 	} // end login_checklogin
 	
 	$output .= '		</div>' . "\n";
-
-	if(rand(0, 50) == 25 || $_SESSION['login']['username'] == 'Johan' || $_SESSION['login']['id'] == 57100)
-	{
-		$output .= '<div style="padding-left: 75px;"><script type="text/javascript" src="http://www.adtrade.net/ad/p/?id=hamsterpaj_1&size=728x90&ad=002" charset="iso-8859-1"></script></div>' . "\n";
-	}
-
 	$output .= '		<div id="ui_menu">' . "\n";
 	$output .= '				<ul>' . "\n";
 	
