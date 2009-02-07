@@ -101,12 +101,12 @@ function ui_top($options = array())
 	}
 	else
 	{
-		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/merged.js') . '.js"></script>' . "\n";
+		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime(PATHS_STATIC . 'javascripts/merged.js') . '.js"></script>' . "\n";
 		
 		$options['javascripts'] = array_unique($options['javascripts']);
 		foreach($options['javascripts'] as $javascript)
 		{
-			$internal_path = PATHS_WEBROOT . 'tmp/javascripts/specified/' . $javascript;
+			$internal_path = PATHS_STATIC . 'javascripts/specified/' . $javascript;
 			if(!in_array($javascript, $js_compress_important_files) && file_exists($internal_path))
 			{
 				$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime($internal_path) . '.js"></script>' . "\n";
