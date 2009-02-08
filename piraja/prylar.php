@@ -116,10 +116,8 @@
 	$out .= '</ol>' . "\n";
 	
 	ui_top($ui_options);
-	echo '<h1>Hamsterpaj & Piraja sitting in a tree K-I-S-S-I-N-G</h1>' . "\n";
-	echo '<p>Vi har ett litet test nu när vi stjäl innehåll ur tidningen <a href="http://www.piraja.se/">Piraja</a> och lägger på Hamsterpaj. Vi tror att det är okej, killen som chefar pratade gotländska, så vi begrep inte riktigt allt, men det blir säkert bra :)</p>' . "\n";
-	echo '<h3>Här finns allt Pirajamaterial vi publicerat</h3>' . "\n"; 
-
+	echo '<h1>Prylar</h1>' . "\n";
+	echo '<p>I samarbete med Piraja presenterar vi annorlunda, konstiga och kul prylar.</p>' . "\n";
 
 	echo $out;
 	ui_bottom();

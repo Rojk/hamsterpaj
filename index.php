@@ -71,6 +71,10 @@
 				}
 				$out .= '<p style="margin-top: 2px;"><a style="color: #565656; text-decoration: underline;" href="' . forum_get_url_by_post($module['thread_id']) . '" class="fp_moudle_commenting">Kommentera i forumet</a></p>' . "\n";
 			}
+			if($module['piraja'] == 'true')
+			{
+				$out .= '<p style="margin-top: 2px;"><a style="color: #565656; text-decoration: underline;" href="/piraja/prylar.php">Flera prylar</a></p>' . "\n";
+			}
 
 		$out .= '<br style="font-size: 0px; height: 0px; clear: both; line-height: 0px;" />' . "\n";
 		
