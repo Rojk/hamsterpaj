@@ -137,6 +137,7 @@
 			$menu['admin']['children']['anvaendare']['children']['user_ghost'] = array('label' => 'Ghosta', 'url' => '/admin/user_ghost.php', 'is_privilegied' => 'use_ghosting_tools');
 			$menu['admin']['children']['anvaendare']['children']['user_logins'] = array('label' => 'User Logins', 'url' => '/admin/user_logins.php', 'is_privilegied' => 'ip_ban_admin');
 			$menu['admin']['children']['anvaendare']['children']['newly_registered_users'] = array('label' => 'Nyregistrerade användare', 'url' => '/admin/newly_registered_users.php', 'is_privilegied' => 'remove_user');
+			$menu['admin']['children']['anvaendare']['children']['user_flag'] = array('label' => 'Användarflaggor', 'url' => '/admin/user_flag.php', 'is_privilegied' => 'user_flag_admin');
 		$menu['admin']['children']['crew-folk'] = array('label' => 'Crew-folk', 'url' => 'javascript:void(0)', 'is_privilegied' => $admin_privilegies);
 			$menu['admin']['children']['crew-folk']['children']['admins'] = array('label' => 'Besättning', 'url' => '/admin/admins.php');
 			$menu['admin']['children']['crew-folk']['children']['ov_reg'] = array('label' => 'OV Registrering', 'url' => '/admin/ov_reg.php', 'userlevel' => 3);
