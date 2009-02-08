@@ -565,12 +565,31 @@ function user_avatars()
 
 function avatar_popup()
 {
-	/* Quite ugly, but very easy, replace everything with null, except the user id */
-	var user_id = this.src.replace('http://images.hamsterpaj.net/images/users/thumb/', '');
-	user_id = user_id.replace('.jpg', '');
-	user_id = (user_id.indexOf('?') != -1) ? user_id.substring(0, user_id.indexOf('?')) : user_id; 
+	var user_id = this.id;
+	var original = $("#" + user_id).offset();
+	var avatar_original = original;
+	if(!$("#avatar_wnd").text())
+	{
+		var content = '<div id="avatar_wnd" onClick="avatar_closedown(' + user_id + ');"><img src="http://images.hamsterpaj.net/images/users/full/' + user_id + '.jpg" /><div></div></div>';
+		$("#ui_content").append(content);
+		$("#avatar_wnd").css({"opacity" : "0.1", "left" : original.left + "px", "top" : original.top + "px", "width" : $("#" + user_id).width() + "px", "height" : $("#" + user_id).height() + "px"});
+		var ajax_request = '/ajax_gateways/forum_signature.php?id=' + user_id;
+		$.get(ajax_request, function(data){
+			$("#avatar_wnd div").append(data);
+		});
+		$("#avatar_wnd div").hide();
+		$("#avatar_wnd").animate({"opacity" : "1.0", "left" : "250px", "top" : $(document).scrollTop() + 50 + "px", "width" : "320px", "height" : "427px"}, "slow", function() {
+			$("#avatar_wnd div").slideDown("normal");
+		});
+	}
+}
 
-	window.open('http://www.hamsterpaj.net/avatar.php?id=' + user_id, 'full_avatar_' + user_id, 'toolbar=no, location=no, directories=no, scrollbars=no, resizable=yes, width=420, height=600');
+function avatar_closedown(uid)
+{
+	var original = $("#" + uid).offset();
+	$("#avatar_wnd").animate({"opacity" : "0.0", "left" : original.left + "px", "top" : original.top + "px", "width" : $("#" + uid).width() + "px", "height" : $("#" + uid).height() + "px"}, "normal", function() {
+		$("#avatar_wnd").remove();
+	});
 }
 
 womAdd('user_avatars()');

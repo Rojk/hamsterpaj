@@ -666,3 +666,23 @@ h4 {
 {
 	cursor: pointer;
 }
+
+#avatar_wnd
+{
+	z-index: 999;
+	position: absolute;
+	color: #000000;
+	display: block;
+}
+
+#avatar_wnd img
+{
+	width: 100%;
+	height: auto;
+}
+
+#avatar_wnd div
+{
+	background: #F0F0F0;
+	text-align: center;
+}

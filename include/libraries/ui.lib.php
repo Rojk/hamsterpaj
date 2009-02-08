@@ -207,9 +207,10 @@ function ui_top($options = array())
 		$output .= '			</div>' . "\n";
 		
 		$output .= '			<div id="ui_statusbar">' . "\n";
-		$output .= '				<a href="#">' . "\n";
-		$output .= '					<img src="' . IMAGE_URL . 'images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
-		$output .= '				</a>' . "\n";
+		//$output .= '				<a href="#">' . "\n";
+		//$output .= '					<img src="' . IMAGE_URL . 'images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
+		$output .= '					' . ui_avatar($_SESSION['login']['id']) . "\n";
+		//$output .= '				</a>' . "\n";
 		$output .= '				<div id="ui_statusbar_username">' . "\n";
 		$output .= '					<a href="/traffa/profile.php?user_id=' . $_SESSION['login']['id'] . '"><strong>' . $_SESSION['login']['username'] . '</strong></a><span> | </span><a href="/login/logout.php">Logga ut</a><br />' . "\n";
 		$output .= '				</div>' . "\n";
@@ -773,11 +774,11 @@ function ui_module_render($options)
 		$size = (isset($options['size'])) ? $options['size'] : 'mini';
 		if (file_exists($img_path))
 		{
-			return '<img src="' . IMAGE_URL . 'images/users/thumb/' . $user_id . '.jpg?cache_prevention=' . filemtime($img_path) . '" class="user_avatar"' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . 'images/users/thumb/' . $user_id . '.jpg?cache_prevention=' . filemtime($img_path) . '" class="user_avatar" id="' . $user_id . '"' . $style . ' />' . "\n";
 		}
 		else
 		{
-			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" class="user_avatar"' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" class="user_avatar" id="' . $user_id . '"' . $style . ' />' . "\n";
 		}
 	}
 	
