@@ -245,9 +245,37 @@ hp.ui = {
 	avatar:
 	{
 		init: function()
-		{
-			
-		}
+	  {
+	    $('.user_avatar').click(function()
+	    {
+	    	alert('Snopp i näsan eller näsan i snoppen, det är frågan...');
+	      var user_id = $(this).attr('id');
+	      var original = $('#' + user_id).offset();
+	      var avatar_original = original;
+	      if(!$("#avatar_wnd").text())
+	      {
+	        var content = '<div id="avatar_wnd" onClick="avatar_closedown(' + user_id + ');"><img src="http://images.hamsterpaj.net/images/users/full/' + user_id + '.jpg" /><div></div></div>';
+	        $(content).appendTo("#ui_content");
+	        $("#avatar_wnd").css({"opacity" : "0.1", "left" : original.left + "px", "top" : original.top + "px", "width" : $("#" + user_id).width() + "px", "height" : $("#" + user_id).height() + "px"});
+	        var ajax_request = '/ajax_gateways/forum_signature.php?id=' + user_id;
+	        $.get(ajax_request, function(data){
+	          $("#avatar_wnd div").append(data);
+	        });
+	        $("#avatar_wnd div").hide();
+	        $("#avatar_wnd").animate({"opacity" : "1.0", "left" : "250px", "top" : $(document).scrollTop() + 50 + "px", "width" : "320px", "height" : "427px"}, "slow", function() {
+	          $("#avatar_wnd div").slideDown("normal");
+	        });
+	        /*
+	        $("#avatar_wnd").click(function() {
+						var original = $("#" + uid).offset();
+						$("#avatar_wnd").animate({"opacity" : "0.0", "left" : original.left + "px", "top" : original.top + "px", "width" : $("#" + uid).width() + "px", "height" : $("#" + uid).height() + "px"}, "normal", function() {
+							$("#avatar_wnd").remove();
+						});
+					});
+					*/
+	      }
+			});//<---- ); = TADA!
+  	}
 	}
 }
 
