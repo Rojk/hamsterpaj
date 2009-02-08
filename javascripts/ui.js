@@ -13,6 +13,7 @@ hp.ui = {
 		this.flash_menu_fix();
 		this.fix_ie6_menu();
 		this.friends_notices_remove_all_from_user();
+		this.avatar.init();
 	},
 	
 	full_page_notice: {	
@@ -239,6 +240,14 @@ hp.ui = {
 			$(this).parent().slideUp('500');
 			return false;
 		});
+	},
+	
+	avatar:
+	{
+		init: function()
+		{
+			
+		}
 	}
 }
 
