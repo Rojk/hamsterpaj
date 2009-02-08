@@ -243,7 +243,10 @@
 			'emilie.com',
 			'emilie,com',
 			'www.rivality.notlong.com',
-			'rivality.com/'
+			'rivality.com/',
+			'EXgirl007.myhotpicss.com',
+			'EXgirl',
+			'myhotpicss'
 			);
 		foreach($banned_strings AS $banned)
 		{
