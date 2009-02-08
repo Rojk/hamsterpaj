@@ -248,7 +248,7 @@ hp.ui = {
 	  {
 	    $('.user_avatar').click(function()
 	    {
-	    	alert('Snopp i näsan eller näsan i snoppen, det är frågan...');
+	    	
 	      var user_id = $(this).attr('id');
 	      var original = $('#' + user_id).offset();
 	      var avatar_original = original;
@@ -265,14 +265,12 @@ hp.ui = {
 	        $("#avatar_wnd").animate({"opacity" : "1.0", "left" : "250px", "top" : $(document).scrollTop() + 50 + "px", "width" : "320px", "height" : "427px"}, "slow", function() {
 	          $("#avatar_wnd div").slideDown("normal");
 	        });
-	        /*
 	        $("#avatar_wnd").click(function() {
 						var original = $("#" + uid).offset();
 						$("#avatar_wnd").animate({"opacity" : "0.0", "left" : original.left + "px", "top" : original.top + "px", "width" : $("#" + uid).width() + "px", "height" : $("#" + uid).height() + "px"}, "normal", function() {
 							$("#avatar_wnd").remove();
 						});
 					});
-					*/
 	      }
 			});//<---- ); = TADA!
   	}
