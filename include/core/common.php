@@ -69,7 +69,7 @@
 	}
 	require_once(PATHS_CONFIGS . 'menu.conf.php');
 	  
- 	require(PATHS_INCLUDE . 'core/ip_handling.php');
+ 	require(CORE_PATH . 'ip_handling.php');
   
   if(login_checklogin())
   {
