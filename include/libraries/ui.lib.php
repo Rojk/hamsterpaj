@@ -783,7 +783,7 @@ function ui_module_render($options)
 		}
 		else
 		{
-			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" class="user_avatar" ' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" id="' . $random_string . '_no_avatar" class="user_avatar" ' . $style . ' />' . "\n";
 		}
 	}
 	

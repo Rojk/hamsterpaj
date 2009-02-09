@@ -253,6 +253,9 @@ hp.ui = {
 	    		lock = true;
 		    	var avatar_id = $(this).attr('id');
 		    	var user_id = avatar_id.substring(7);
+		    	if (user_id = 'no_avatar') {
+		    		return;
+		    	}
 		      var original = $('#' + avatar_id).offset();
 		      var avatar_original = original;
 		      if(!$("#avatar_wnd").text())
