@@ -11,7 +11,6 @@
 	$ui_options['stylesheets'][] = 'rounded_corners_tabs.css';
 	$ui_options['title'] = 'Varningar - Hamsterpaj.net';
 	
-	require(PATHS_INCLUDE . 'traffa-definitions.php');
 	
 	define(THIS_URI, $_SERVER["REQUEST_URI"]);
 	//-------------------
