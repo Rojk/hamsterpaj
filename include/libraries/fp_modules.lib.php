@@ -113,7 +113,7 @@
 		$o .= '<label class="fp_admin_code_label">Kod</label>' . "\n";
 		if($module['id'] > 0 && !isset($module['code']))
 		{
-			$code = htmlspecialchars(file_get_contents(PATHS_INCLUDE . 'fp_modules/' . $module['id'] . '.php'));
+			$code = htmlspecialchars(file_get_contents(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $module['id'] . '.php'));
 		}
 		else
 		{

@@ -53,7 +53,7 @@
 			$id = mysql_insert_id();
 			if($id > 0)
 			{
-				file_put_contents(PATHS_INCLUDE . 'fp_modules/' . $id . '.php', html_entity_decode(stripslashes($_POST['code'])));
+				file_put_contents(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $id . '.php', html_entity_decode(stripslashes($_POST['code'])));
 			}
 		}
 		
@@ -75,7 +75,7 @@
 				
 				mysql_query($query);
 				
-				file_put_contents(PATHS_INCLUDE . 'fp_modules/' . $_GET['id'] . '.php', html_entity_decode(stripslashes($_POST['code'])));
+				file_put_contents(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $_GET['id'] . '.php', html_entity_decode(stripslashes($_POST['code'])));
 				
 			}
 			$module = array_pop(fp_modules_fetch(array('id' => $_GET['id'])));

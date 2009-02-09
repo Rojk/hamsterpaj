@@ -21,7 +21,7 @@
 	
 	if(isset($_GET['filename']))
 	{
-		$module_save_path = realpath(PATHS_INCLUDE . 'fp_modules/') . '/';
+		$module_save_path = realpath(PATHS_DYNAMIC_CONTENT . 'fp_modules/') . '/';
 		if(!file_exists($module_save_path . $_GET['filename']) || strncmp(realpath($module_save_path . $_GET['filename']), $module_save_path, strlen($module_save_path)) != 0)
 		{
 			echo 'Tjockis!';
@@ -41,7 +41,7 @@
 			
 			$code = stripslashes(html_entity_decode($_POST['code']));
 			
-			file_put_contents(PATHS_INCLUDE . 'fp_modules/' . $_GET['filename'], $code);
+			file_put_contents(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $_GET['filename'], $code);
 			
 			$output .= '<h1>Sparat! - <a href="/admin/fp_module_rearrange.php">sortera moduler</a></h1>';
 		}
@@ -51,7 +51,7 @@
 		$module['display'] = ($module['display'] == 1) ? ' checked="true"' : '';
 		$module['phpenabled'] = ($module['phpenabled'] == 1) ? ' checked="true"' : '';
 		
-		$module['code'] = file_get_contents(PATHS_INCLUDE . 'fp_modules/' . $_GET['filename']);
+		$module['code'] = file_get_contents(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $_GET['filename']);
 
 		$output .= '<form method="post">' . "\n";
 		$output .= '<input name="display" type="checkbox"' . $module['display'] . ' id="view_control" value="1" /><label for="view_control">Visa på förstasidan</label><br />';

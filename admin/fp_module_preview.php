@@ -25,7 +25,7 @@
 		$module_hide = false;
 		if($module['code_mode'] == 'php')
 		{
-			include(PATHS_INCLUDE . 'fp_modules/' . $module['id'] . '.php');
+			include(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $module['id'] . '.php');
 			if($module_hide == true)
 			{
 				continue;
@@ -33,7 +33,7 @@
 		}
 		else
 		{
-			$o = file_get_contents(PATHS_INCLUDE . 'fp_modules/' . $module['id'] . '.php');
+			$o = file_get_contents(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $module['id'] . '.php');
 		}
 
 		if($module['commenting'] == 'true' || $module['published'] == 'true' || $module['grading'] == 'true')

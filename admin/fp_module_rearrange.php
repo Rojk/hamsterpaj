@@ -24,7 +24,7 @@
 	
 	$filenames = cache_load('fp_module_order');
 
-	$dir = opendir(PATHS_INCLUDE . 'fp_modules/');
+	$dir = opendir(PATHS_DYNAMIC_CONTENT . 'fp_modules/');
 	while($filename = readdir($dir))
 	{
 		if($filename != '.' && $filename != '..' && !in_array($filename, $filenames))
