@@ -4,7 +4,6 @@
 	
 	//----------------------
 	$ui_options['menu_path'] = array('hamsterpaj');
-	require(PATHS_INCLUDE . 'traffa-definitions.php');
 
 	//$ui_options['javascripts'][] = 'zip_codes.js';
 	$ui_options['javascripts'][] = 'settings.js';
