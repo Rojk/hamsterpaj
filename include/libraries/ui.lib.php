@@ -765,6 +765,11 @@ function ui_module_render($options)
 	
 	function ui_avatar($user_id, $options)
 	{
+		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$chars_strlen = strlen($chars);
+		for ($i = 1; $i <= 6; $i++) {
+			$random_string .= substr($chars, rand(0, $chars_strlen - 1), 1);
+		}
 		if(!is_numeric($user_id) && $options['show_nothing'] != true)
 		{
 			return 'Avatar id not numeric, aborting...';
@@ -778,7 +783,7 @@ function ui_module_render($options)
 		}
 		else
 		{
-			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" class="user_avatar" id="' . $user_id . '"' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" class="user_avatar" id="' . $random_string . '_' . $user_id . '"' . $style . ' />' . "\n";
 		}
 	}
 	
