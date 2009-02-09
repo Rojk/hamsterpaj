@@ -280,6 +280,11 @@ hp.ui = {
 			    }
 	      }
 			});//<---- ); = TADA!
+  	},
+  	
+  	enable_new: function()
+  	{
+  		this.init();
   	}
 	}
 }
