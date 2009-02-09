@@ -31,6 +31,7 @@ include/article_authors/*
 include/fp_modules/*
 stylesheets/fp_modules/*
 static/*
+dynamic_content/*
 
 # Files to exclude
 traffa/gallery_content.html
