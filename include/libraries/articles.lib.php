@@ -87,9 +87,9 @@
 		
 		if(isset($name))
 		{
-			if(file_exists(PATHS_INCLUDE . 'article_authors/' . $name . '.php'))
+			if(file_exists(PATHS_DYNAMIC_CONTENT . 'article_authors/' . $name . '.php'))
 			{
-				include(PATHS_INCLUDE . 'article_authors/' . $name . '.php');
+				include(PATHS_DYNAMIC_CONTENT . 'article_authors/' . $name . '.php');
 			}
 		}
 
@@ -372,7 +372,7 @@
 		$output .= '<label for="author">Författare</label>' . "\n";
 		$output .= '<select name="author">' . "\n";
 		$output .= '<option value="">Anonym</option>' . "\n";
-		$handle = opendir(PATHS_INCLUDE . 'article_authors/');
+		$handle = opendir(PATHS_DYNAMIC_CONTENT . 'article_authors/');
 		while (false !== ($file = readdir($handle))) 
 		{
 			if ($file != "." && $file != "..") 
