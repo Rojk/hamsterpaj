@@ -162,7 +162,7 @@
 			$menu['site_admin']['children']['dev']['children']['handy'] = array('label' => 'Handy <i>(riktig)</i>', 'url' => '/handy.php', 'is_privilegied' => 'use_debug_tools');
 			$menu['site_admin']['children']['dev']['children']['visa_sessionsdata'] = array('label' => 'Visa sessionsdata', 'url' => '/admin/view_session.php', 'is_privilegied' => 'use_debug_tools');
 
-require_once(PATHS_INCLUDE . 'configs/entertain.conf.php');
+require_once(PATHS_CONFIGS . 'entertain.conf.php');
 // this is just to make sure that the entertain configs are available at this point
 $handles = array('game', 'flash', 'clip', 'image');
 foreach($handles as $handle)

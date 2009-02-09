@@ -66,7 +66,7 @@ function promoe_paintboard($promoe = null)
 		<div class="promoe_colors">
 			<h3>Färgväljare</h3>
 <?php
-	include(PATHS_INCLUDE . 'configs/promoe.conf.php');
+	require_once(PATHS_CONFIGS . 'promoe.conf.php');
 
 	foreach($promoe_colors AS $color)
 	{
