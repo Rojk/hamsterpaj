@@ -7,6 +7,6 @@
 		echo $data['user_status'];
 	}
 	else {
-		echo 'FülhackaRRRe! Üt uRR Mein HAUS!';
+		echo 'FÃ¼lhackaRRRe! Ãœt uRR Mein HAUS!';
 	}
 ?>
