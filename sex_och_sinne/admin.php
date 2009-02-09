@@ -1,9 +1,9 @@
 <?php
 	require('../include/core/common.php');
-	include_once(PATHS_INCLUDE . 'libraries/sex_sense.lib.php');
-	include_once(PATHS_INCLUDE . 'libraries/sex_sense_ui.lib.php');
-	include_once(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
-	include_once(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
+	include_once(PATHS_LIBRARIES . 'sex_sense.lib.php');
+	include_once(PATHS_LIBRARIES . 'sex_sense_ui.lib.php');
+	include_once(PATHS_LIBRARIES . 'guestbook.lib.php');
+	include_once(PATHS_LIBRARIES . 'discussion_forum.lib.php');
 	$ui_options['stylesheets'][] = 'sex_sense.css';
 	$ui_options['javascripts'][] = 'sex_sense.js';
 	$ui_options['title'] = 'Besvara frågor - Sex och Sinne - Hamsterpaj.net';

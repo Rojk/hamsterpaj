@@ -1,7 +1,7 @@
 <?php
 require('../include/core/common.php');
-require_once(PATHS_INCLUDE . 'libraries/comments.lib.php');
-require_once(PATHS_INCLUDE . 'libraries/photos.lib.php');
+require_once(PATHS_LIBRARIES . 'comments.lib.php');
+require_once(PATHS_LIBRARIES . 'photos.lib.php');
 log_to_file('comments', LOGLEVEL_DEBUG, __FILE__, __LINE__, 'comment');
 
 if(login_checklogin() && (isset($_POST['comment']) || $_POST['update'] == true) && isset($_POST['item_id']) && isset($_POST['item_type']))

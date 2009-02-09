@@ -1,7 +1,7 @@
 <?
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
-	require(PATHS_INCLUDE . 'libraries/warnings.lib.php');
+	require(PATHS_LIBRARIES . 'profile.lib.php');
+	require(PATHS_LIBRARIES . 'warnings.lib.php');
 	
 	
 	//----------------------

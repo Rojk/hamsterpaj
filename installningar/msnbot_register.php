@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/msnbot.lib.php');
+	require(PATHS_LIBRARIES . 'msnbot.lib.php');
 	
 	$ui_options['title'] = 'Msnbot';
 	$ui_options['menu_path'] = array('installningar', 'msnbot');

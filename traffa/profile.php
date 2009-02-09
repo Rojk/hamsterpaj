@@ -6,9 +6,9 @@
 	}
 	require('../include/core/common.php');
 	
-	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
-	require(PATHS_INCLUDE . 'libraries/photos.lib.php');
-	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
+	require(PATHS_LIBRARIES . 'profile.lib.php');
+	require(PATHS_LIBRARIES . 'photos.lib.php');
+	require(PATHS_LIBRARIES . 'userblock.lib.php');
 
 	$ui_options['javascripts'][] = 'user_flags.js';
 	

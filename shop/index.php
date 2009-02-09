@@ -2,7 +2,7 @@
 	/* OPEN_SOURCE */
 	
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE  . 'libraries/photos.lib.php');
+	require(PATHS_LIBRARIES . 'photos.lib.php');
 	
 	$acceptance_text = '<h3>Att köpa en T-shirt</h3>
 <p>När du lagt en beställning kommer du få ett referensnummer av systemet. Detta nummer måste du ange när du sätter in pengar på Hamsterpajs bankgirokonto.

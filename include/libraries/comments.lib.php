@@ -3,7 +3,7 @@
 // dependencies: rank (library and db-table)
 
 
-require_once(PATHS_INCLUDE . 'libraries/rank.lib.php');
+require_once(PATHS_LIBRARIES . 'rank.lib.php');
 
 function comments_input_draw($item_id, $item_type)
 {

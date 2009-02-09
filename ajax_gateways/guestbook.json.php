@@ -1,7 +1,7 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
-	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
+	require(PATHS_LIBRARIES . 'guestbook.lib.php');
+	require(PATHS_LIBRARIES . 'userblock.lib.php');
 	
 	if($_POST['action'] == 'insert' && login_checklogin())
 	{

@@ -1,7 +1,7 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/rank.lib.php');
-	require(PATHS_INCLUDE . 'libraries/comments.lib.php');
+	require(PATHS_LIBRARIES . 'rank.lib.php');
+	require(PATHS_LIBRARIES . 'comments.lib.php');
 	$ui_options['menu_path'] = array('annat', 'hamburgare', 'alla_burgare');
 	$ui_options['title'] = 'Gissa Hamburgaren på Hamsterpaj';
 	$ui_options['stylesheets'][] = 'burgers.css';

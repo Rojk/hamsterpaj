@@ -3,7 +3,7 @@
 
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/christmas_avatars_polls.lib.php');
+	require(PATHS_LIBRARIES . 'christmas_avatars_polls.lib.php');
 	
 	if(rand(0, 3) == 1 || is_privilegied('christmas_avatar_poll'))
 	{

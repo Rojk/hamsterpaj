@@ -1,8 +1,8 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/photos.lib.php');
-	require(PATHS_INCLUDE . 'libraries/comments.lib.php');
-	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
+	require(PATHS_LIBRARIES . 'photos.lib.php');
+	require(PATHS_LIBRARIES . 'comments.lib.php');
+	require(PATHS_LIBRARIES . 'userblock.lib.php');
 
 
 	if (userblock_checkblock($GET['id']))

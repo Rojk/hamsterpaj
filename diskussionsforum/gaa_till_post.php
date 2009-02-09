@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require_once(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
+	require_once(PATHS_LIBRARIES . 'discussion_forum.lib.php');
 	
 	if(isset($_GET['post_id']) && is_numeric($_GET['post_id']) && intval($_GET['post_id']) > 0)
 	{

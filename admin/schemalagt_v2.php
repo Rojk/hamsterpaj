@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require_once(PATHS_INCLUDE . 'libraries/schedule_v2.lib.php');
+	require_once(PATHS_LIBRARIES . 'schedule_v2.lib.php');
 	
 	if(is_privilegied('schedule_admin'))
 	{

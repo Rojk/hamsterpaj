@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require_once(PATHS_INCLUDE . 'libraries/age_guess.lib.php');
+	require_once(PATHS_LIBRARIES . 'age_guess.lib.php');
 	
 	$output['result'] = age_guess_result();
 	$output['hourglass'] = age_guess_hourglass();

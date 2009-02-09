@@ -58,6 +58,7 @@
 */
 	define('PATHS_WEBROOT', $_SERVER['DOCUMENT_ROOT'] . '/');
 	define('PATHS_INCLUDE', PATHS_WEBROOT . 'include/');
+	define('PATHS_LIBRARIES', PATHS_INCLUDE . 'libraries/');
 	define('PATHS_CACHE', PATHS_INCLUDE . 'cache/');
 	define('PATHS_LOGS', $paths_logs);
 	define('PATHS_IMAGES', $paths_images_old);

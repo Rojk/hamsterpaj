@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require('../include/libraries/fp_modules.lib.php');
+	require(PATHS_LIBRARIES . 'fp_modules.lib.php');
 	$ui_options['stylesheets'][] = 'fp_modules.css';
 
 	$ui_options['title'] = 'Anpassa startsidemodul';

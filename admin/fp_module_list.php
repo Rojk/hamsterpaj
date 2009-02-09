@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/fp_modules.lib.php');
+	require(PATHS_LIBRARIES . 'fp_modules.lib.php');
 
 	$ui_options['stylesheets'][] = 'start.css';
 	$ui_options['stylesheets'][] = 'fp_modules.css';

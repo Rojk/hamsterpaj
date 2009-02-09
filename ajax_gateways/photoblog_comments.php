@@ -1,6 +1,6 @@
 <?php
     require('../include/core/common.php');
-    require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
+    require(PATHS_LIBRARIES . 'photoblog.lib.php');
     
     if ( ! isset($_GET['id']) || ! is_numeric($_GET['id']) )
     {

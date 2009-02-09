@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/open_source.lib.php');
+	require(PATHS_LIBRARIES . 'open_source.lib.php');
 	
 	$open_source_config['open_source_menu_path'] = 'theme_creation';
 	$open_source_config['title'] = 'Skapa egna profilteman, en open source-relaterad sida på Hamsterpaj.net';

@@ -1,7 +1,7 @@
 <?php
 if(ENVIRONMENT != 'development')
 {
-	require_once(PATHS_INCLUDE . 'libraries/jsmin.lib.php');
+	require_once(PATHS_LIBRARIES . 'jsmin.lib.php');
 	header('Content-type: text/plain');
 	$javascripts_path = PATHS_WEBROOT . 'javascripts/';
 	$merged_file_path = PATHS_STATIC . 'javascripts/specified/';

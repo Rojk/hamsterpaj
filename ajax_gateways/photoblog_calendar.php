@@ -10,6 +10,6 @@
     }
     
     require('../include/core/common.php');
-    require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
+    require(PATHS_LIBRARIES . 'photoblog.lib.php');
     
     echo photoblog_calendar($_GET['user_id'], $_GET['month'], $_GET['year']);

@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE  . 'libraries/photos.lib.php');
+	require(PATHS_LIBRARIES . 'photos.lib.php');
 
 	$ui_options['javascripts'][] = 'fp_module_rearrange.js';
 	$ui_options['stylesheets'][] = 'fp_module_rearrange.css';

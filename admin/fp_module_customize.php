@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE  . 'libraries/photos.lib.php');
+	require(PATHS_LIBRARIES . 'photos.lib.php');
 	
 	$ui_options['title'] = 'Redigera modul';
 	$ui_options['menu_path'] = array('hamsterpaj');

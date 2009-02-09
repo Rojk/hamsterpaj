@@ -2,10 +2,10 @@
 	require('../include/core/common.php');
 	try
 	{
-		require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
-		require(PATHS_INCLUDE . 'libraries/photoblog_preferences.lib.php');
-		require(PATHS_INCLUDE . 'libraries/profile.lib.php');
-		require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
+		require(PATHS_LIBRARIES . 'photoblog.lib.php');
+		require(PATHS_LIBRARIES . 'photoblog_preferences.lib.php');
+		require(PATHS_LIBRARIES . 'profile.lib.php');
+		require(PATHS_LIBRARIES . 'userblock.lib.php');
 		//error_reporting(E_ALL);
 		// If this is true, it means that $uri_parts[2] isn't a valid username
 		if ( preg_match('#^/fotoblogg(\/|)$#', $_SERVER['REQUEST_URI']) )

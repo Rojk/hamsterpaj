@@ -29,7 +29,7 @@ if(isset($_GET['action'], $_GET['val']) && $_GET['action'] == 'showall')
 	jscript_location('"+document.referrer+"');
 }
 
-	require(PATHS_INCLUDE.'libraries/wallpaper.lib.php');
+	require(PATHS_LIBRARIES . 'wallpaper.lib.php');
 	$javascript_cookie_location = 'bakgrundsbilder_new.php';
 
 	

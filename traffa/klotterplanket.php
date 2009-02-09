@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/live_chat.lib.php');
+	require(PATHS_LIBRARIES . 'live_chat.lib.php');
 	$_GET['channel'] = (isset($_GET['channel'])) ? $_GET['channel'] : 'klotter';
 
 	$ui_options['menu_path'] = array('traeffa', 'klotterplank', $_GET['channel']);

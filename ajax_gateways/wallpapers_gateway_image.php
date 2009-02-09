@@ -2,7 +2,7 @@
 
 	require('../include/core/common.php');
 
-	require(PATHS_INCLUDE.'libraries/wallpaper_admin.lib.php');
+	require(PATHS_LIBRARIES . 'wallpaper_admin.lib.php');
 
 	if(!is_privilegied('backgrounds_admin'))
 	{

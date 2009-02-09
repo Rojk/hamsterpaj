@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/groups.lib.php');
+	require(PATHS_LIBRARIES . 'groups.lib.php');
 	$ui_options['menu_path'] = array('grupper');
 
 	$ui_options['stylesheets'][] = 'groups.css';

@@ -52,7 +52,7 @@
   	'msnbot'
   ) as $library)
   {
-	  require_once(PATHS_INCLUDE . 'libraries/' . $library . '.lib.php');
+	  require_once(PATHS_LIBRARIES . $library . '.lib.php');
 	}
 	
 	// First here we connect to the database/break for database backup...

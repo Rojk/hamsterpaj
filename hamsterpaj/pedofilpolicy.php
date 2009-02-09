@@ -4,7 +4,7 @@
 
 	$ui_options['menu_path'] = array('hamsterpaj', 'pedofilpolicy');
 	
-	require(PATHS_INCLUDE . 'libraries/articles.lib.php');
+	require(PATHS_LIBRARIES . 'articles.lib.php');
 	$ui_options['stylesheets'][] = 'articles.css';
 	
 	$article = articles_fetch(array('id' => '64'));
