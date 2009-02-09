@@ -20,11 +20,10 @@ $data = mysql_fetch_assoc($result);
 
 $info['visitors'] = $online;
 $info['logged_in'] = $data['logged_in'];
-//$info['pageviews'] = filesize(PATHS_INCLUDE . 'pageviews/' . date('Y-m-d') . '.txt');
 
 $output = serialize($info);
 
-$handle = fopen(PATHS_INCLUDE . 'cache/live_stats.phpserialized', 'w');
+$handle = fopen(PATHS_CACHE . 'live_stats.phpserialized', 'w');
 
 fwrite($handle, $output);
 fclose($handle);
