@@ -779,11 +779,11 @@ function ui_module_render($options)
 		$size = (isset($options['size'])) ? $options['size'] : 'mini';
 		if (file_exists($img_path))
 		{
-			return '<img src="' . IMAGE_URL . 'images/users/thumb/' . $user_id . '.jpg?cache_prevention=' . filemtime($img_path) . '" class="user_avatar" id="' . $user_id . '"' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . 'images/users/thumb/' . $user_id . '.jpg?cache_prevention=' . filemtime($img_path) . '" class="user_avatar" id="' . $random_string . '_' . $user_id . '"' . $style . ' />' . "\n";
 		}
 		else
 		{
-			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" class="user_avatar" id="' . $random_string . '_' . $user_id . '"' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" class="user_avatar" ' . $style . ' />' . "\n";
 		}
 	}
 	
