@@ -35,13 +35,15 @@
 	development environment that seems quite unnecessary to me. 
 	And u can keep it as it is. If you edit this, the
 	example users for your development-environment won't be working.
+	Also note: This is used as the old password system in the prod/
+	live environment. Removing it will create problems for old users.
 	################################################################
 */
-	$salt_password			=	'exempelsalt'; 
+	$password_salt			=	'exempelsalt'; 
 
 	function hamsterpaj_password($password, $version = 1)
 	{
-		$password_hash = sha1($password . SALT_PASSWORD);
+		$password_hash = sha1($password . PASSWORD_SALT);
 		return $password_hash;
 	}
 	
@@ -72,7 +74,7 @@
 	define('URL_IMAGES',  $url_images);
 	define('STATIC_URL', $url_static);
 	define('ENVIRONMENT', $environment);
-	define('SALT_PASSWORD', $salt_password);
+	define('PASSWORD_SALT', $password_salt);
 	
 /*
 	################################################################
