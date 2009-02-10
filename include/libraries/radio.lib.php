@@ -2,11 +2,20 @@
 	function radio_shoutcast_fetch()
 	{
 		$scs = &new ShoutcastInfo(RADIO_SERVER);
+		$scs2 = &new ShoutcastInfo(RADIO_SERVER2);
 		if($scs->connect())
 		{
 			$scs->send();
 			$data = $scs->parse();
 			$scs->close();
+			
+			return $data;
+		}
+		elseif($scs2->connect())
+		{
+			$scs2->send();
+			$data = $scs2->parse();
+			$scs2->close();
 			
 			return $data;
 		}
