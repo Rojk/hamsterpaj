@@ -1,5 +1,6 @@
 <?php
 	define('FORUM_POSTS_PER_PAGE', 30);
+	define('FORUM_MIN_POST_DELAY', 30);
 
 		$DISCUSSION_FORUM_QUALITY_LEVEL_HEADER['1'] = 'Slapp';
 		$DISCUSSION_FORUM_QUALITY_LEVEL_INFO['1'] = 'Detta är den nivå som har minst moderering. Chatt, skämt, offtopic och liknande: Vi tillåter det mesta, men inga agressiva påhopp eller rena lagförbrytelser. ';

@@ -1,8 +1,3 @@
-/* During december 2008 we will have a grinch, this is cheatcode to give him a green nick */
-g{
-	color:#729d2e;
-}
-
 /*
 	################################################################
 	Mantainer: Patrick Lef
@@ -269,7 +264,6 @@ h4 {
   background: url("http://images.hamsterpaj.net/ui/ui_menu_bg.png") repeat-x;
   height: 26px;
   font-size: 94%;
-  padding-left: 2px;
   z-index: 1;
 }
 	#ui_menu ul {
