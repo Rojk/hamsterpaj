@@ -191,7 +191,7 @@
 		}
 		.radio_program .radio_about span, .radio_program .radio_about strong {
 			color: #adadad;
-			top: 55px;
+			top: 35px;
 			left: 78px;
 			position: relative;
 		}
@@ -266,6 +266,7 @@
 		top: 28px;
 		left: 55px;
 		font-size: 1.1em;
+		width: 555px;
 	}
 	.radio_crew .admin_tools {
 		position: relative;
