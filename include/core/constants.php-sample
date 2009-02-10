@@ -60,7 +60,7 @@
 	
 	################################################################
 */
-	define('PATHS_SCRIPTROOT', $_SERVER['DOCUMENT_ROOT'] . '/');
+	define('PATHS_SCRIPTROOT', substr(substr(substr(__FILE__, 0, strrpos(__FILE__, '/')), 0, strrpos(substr(__FILE__, 0, strrpos(__FILE__, '/')), '/')), 0, strrpos(substr(substr(__FILE__, 0, strrpos(__FILE__, '/')), 0, strrpos(substr(__FILE__, 0, strrpos(__FILE__, '/')), '/')), '/') + 1));// Easy, ugly fix giving most people a hard headache. What it does? It finds the webroot even if used from command line (cron)! :D
 	define('PATHS_WEBROOT', PATHS_SCRIPTROOT);// This is about to change when we introduce public/
 	define('PATHS_INCLUDE', PATHS_SCRIPTROOT . 'include/');
 	define('PATHS_LIBRARIES', PATHS_INCLUDE . 'libraries/');
