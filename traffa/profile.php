@@ -110,7 +110,6 @@
 	
 	
 	/* User flags */
-	include(PATHS_INCLUDE . 'user_flags.php');
 	$query = 'SELECT ufl.* FROM user_flags AS uf, user_flags_list AS ufl WHERE user = "' . 
 	$params['user_id'] . '" AND ufl.id = uf.flag';
 	$result = mysql_query($query) or die(report_sql_error($query));

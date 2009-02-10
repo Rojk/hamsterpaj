@@ -22,7 +22,6 @@
 		if(isset($_POST['username']) && strtolower($_POST['username']) != 'borttagen')
 		{
 			$username = str_replace('_', '\\_', $_POST['username']);
-			include(PATHS_INCLUDE . 'user_flags.php');
 			$query = 'SELECT l.username, l.id AS userid, ufl.* FROM login AS l, user_flags AS uf, user_flags_list AS ufl WHERE l.username LIKE "' .
 			$username . '" AND uf.user = l.id AND ufl.id = uf.flag';
 			$result = mysql_query($query) or die(report_sql_error($query));
