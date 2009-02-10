@@ -29,6 +29,8 @@
 	$db_password				= ''; // Database password, leave empty if not configed
 	$db_database				= ''; // Database name
 	
+	$msnbot_salt				= ''; // Msnbot salt, only used in production at the moment.
+	
 /*
 	################################################################
 	This is if you wish to create a more secure password. In 
@@ -75,6 +77,7 @@
 	define('STATIC_URL', $url_static);
 	define('ENVIRONMENT', $environment);
 	define('PASSWORD_SALT', $password_salt);
+	define('MSNBOT_SALT', $msnbot_salt);
 	
 /*
 	################################################################
