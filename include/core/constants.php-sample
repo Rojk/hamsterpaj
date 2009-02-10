@@ -60,6 +60,7 @@
 	define('PATHS_WEBROOT', PATHS_SCRIPTROOT);// This is about to change when we introduce public/
 	define('PATHS_INCLUDE', PATHS_SCRIPTROOT . 'include/');
 	define('PATHS_LIBRARIES', PATHS_INCLUDE . 'libraries/');
+	define('PATHS_VENDORS', PATHS_INCLUDE . 'vendors/');
 	define('PATHS_CONFIGS', PATHS_INCLUDE . 'configs/');
 	define('PATHS_CACHE', PATHS_INCLUDE . 'cache/');
 	define('PATHS_LOGS', $paths_logs);

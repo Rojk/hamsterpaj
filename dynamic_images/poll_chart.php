@@ -1,7 +1,7 @@
 <?php
 	require('../include/core/common.php');
-	include('../include/jpgraph/jpgraph.php');
-	include('../include/jpgraph/jpgraph_pie.php');
+	require(PATHS_VENDORS . 'jpgraph/jpgraph.php');
+	require(PATHS_VENDORS . 'jpgraph/jpgraph_pie.php');
 
 
 	unset($data);
