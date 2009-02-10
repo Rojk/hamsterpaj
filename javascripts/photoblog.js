@@ -656,7 +656,7 @@ hp.photoblog = {
 		$.post('/ajax_gateways/photoblog_comments.php?action=post&id=' + image_id, {'comment': text}, function(data) {
 			//alert(data);
 			self.load_comment(image_id);
-			// disable textarea	
+			$('.photoblog_comment_text textarea').val('');	
 		});
 	}
 
