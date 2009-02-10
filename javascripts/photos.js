@@ -53,8 +53,7 @@ var change_photo = true;
   							});	
 						}
 					);
-
-
+					hp.ui.avatar.enable_new();
    				}
 			});
 		});
