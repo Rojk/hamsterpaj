@@ -1,9 +1,9 @@
 <?php
 	require('../include/core/common.php');
 	
-	require_once(PATHS_INCLUDE . 'libraries/photos.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/comments.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
+	require_once(PATHS_LIBRARIES . 'photos.lib.php');
+	require_once(PATHS_LIBRARIES . 'comments.lib.php');
+	require_once(PATHS_LIBRARIES . 'guestbook.lib.php');
 	
 	
 	$ui_options['stylesheets'][] = 'photos.css';

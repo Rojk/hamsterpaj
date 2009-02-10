@@ -1,6 +1,6 @@
 <?
 	require('../include/core/common.php');
-	//require(PATHS_INCLUDE  . 'libraries/photos.lib.php');
+	//require(PATHS_LIBRARIES . 'photos.lib.php');
 	$ui_options['stylesheets'][] = 'start.css';
 	$ui_options['javascripts'][] = 'start.js';
 	$ui_options['stylesheets'][] = 'photos.css';

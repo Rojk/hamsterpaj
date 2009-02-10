@@ -2,9 +2,9 @@
 	try
 	{
 		require('../include/core/common.php');
-		require(PATHS_INCLUDE . 'libraries/radio.lib.php');
+		require(PATHS_LIBRARIES . 'radio.lib.php');
 		include_once('shoutcast/ShoutcastInfo.class.php');
-		require(PATHS_INCLUDE . 'libraries/articles.lib.php');
+		require(PATHS_LIBRARIES . 'articles.lib.php');
 		$ui_options['stylesheets'][] = 'radio.css';
 		$ui_options['javascripts'][] = 'radio.js';
 		
@@ -335,16 +335,29 @@
 					case 'pls': // If address is lyssna/pls it will download pls playlist
 						header('Content-Type: audio/scpls');
 						header('Content-Disposition: attachment;filename="lyssna.pls"');
-						$fp=fopen('playlists/lyssna.pls','r');
-						fpassthru($fp);
-						fclose($fp);
+						echo '[playlist]
+NumberOfEntries=2
+File1=http://' . RADIO_SERVER . '
+Title1=HamsterRadio - Server 1
+Length1=-1
+File2=http://' . RADIO_SERVER2 . '
+Title2=HamsterRadio - Server 2
+Length2=-1
+Version=2';
+						die();
 					break;
 					case 'asx': // If address is lyssna/asx it will download asx playlist
 						header('Content-Type: video/x-ms-asf');
 						header('Content-Disposition: attachment;filename="lyssna.asx"');
-						$fp=fopen('playlists/lyssna.asx','r');
-						fpassthru($fp);
-						fclose($fp);
+						echo '<ASX version = "3.0">
+<Entry>
+<REF HREF="http://' . RADIO_SERVER . '" />
+</Entry>
+<Entry>
+<REF HREF="http://' . RADIO_SERVER2 . '" />
+</Entry>
+</ASX>';
+						die();
 					break;
 					case 'webbspelare': // If address is lyssna/webbspelaren it will open the webplayer in a popup-window
 					

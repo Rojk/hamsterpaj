@@ -85,9 +85,11 @@ function ui_top($options = array())
 	
 	$options['javascripts'] = (isset($options['javascripts']) && is_array($options['javascripts'])) ? $options['javascripts'] : array();
 	$javascripts_path = PATHS_WEBROOT . 'javascripts/';
+	
+	global $js_compress_important_files; // standard_javascripts.conf.php
+	
 	if(ENVIRONMENT == 'development')
 	{
-		global $js_compress_important_files; // standard_javascripts.conf.php
 		foreach($js_compress_important_files as $javascript)
 		{
 			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/' . $javascript . '?version=' . filemtime(PATHS_WEBROOT . 'javascripts/' . $javascript) . '"></script>' . "\n";
@@ -99,11 +101,16 @@ function ui_top($options = array())
 	}
 	else
 	{
-		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime('/mnt/static/javascripts/merged.js') . '.js"></script>' . "\n";
+		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime(PATHS_STATIC . 'javascripts/merged.js') . '.js"></script>' . "\n";
+		
 		$options['javascripts'] = array_unique($options['javascripts']);
 		foreach($options['javascripts'] as $javascript)
 		{
-			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime('/mnt/static/javascripts/specified/' . $javascript) . '.js"></script>' . "\n";
+			$internal_path = PATHS_STATIC . 'javascripts/specified/' . $javascript;
+			if(!in_array($javascript, $js_compress_important_files) && file_exists($internal_path))
+			{
+				$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime($internal_path) . '.js"></script>' . "\n";
+			}
 		}
 	}
 	
@@ -200,9 +207,10 @@ function ui_top($options = array())
 		$output .= '			</div>' . "\n";
 		
 		$output .= '			<div id="ui_statusbar">' . "\n";
-		$output .= '				<a href="#">' . "\n";
-		$output .= '					<img src="' . IMAGE_URL . 'images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
-		$output .= '				</a>' . "\n";
+		//$output .= '				<a href="#">' . "\n";
+		//$output .= '					<img src="' . IMAGE_URL . 'images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
+		$output .= '					' . ui_avatar($_SESSION['login']['id']) . "\n";
+		//$output .= '				</a>' . "\n";
 		$output .= '				<div id="ui_statusbar_username">' . "\n";
 		$output .= '					<a href="/traffa/profile.php?user_id=' . $_SESSION['login']['id'] . '"><strong>' . $_SESSION['login']['username'] . '</strong></a><span> | </span><a href="/login/logout.php">Logga ut</a><br />' . "\n";
 		$output .= '				</div>' . "\n";
@@ -240,12 +248,6 @@ function ui_top($options = array())
 	} // end login_checklogin
 	
 	$output .= '		</div>' . "\n";
-
-	if(rand(0, 50) == 25 || $_SESSION['login']['username'] == 'Johan' || $_SESSION['login']['id'] == 57100)
-	{
-		$output .= '<div style="padding-left: 75px;"><script type="text/javascript" src="http://www.adtrade.net/ad/p/?id=hamsterpaj_1&size=728x90&ad=002" charset="iso-8859-1"></script></div>' . "\n";
-	}
-
 	$output .= '		<div id="ui_menu">' . "\n";
 	$output .= '				<ul>' . "\n";
 	
@@ -471,7 +473,7 @@ function ui_bottom($options = array())
 		}
 		else
 		{
-			$output .= file_get_contents(PATHS_INCLUDE . 'tiny_reg_form.html');
+			$output .= login_tiny_reg_form_generate();
 		}
 		$output .= '</div>' . "\n";	
 	}
@@ -763,6 +765,11 @@ function ui_module_render($options)
 	
 	function ui_avatar($user_id, $options)
 	{
+		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$chars_strlen = strlen($chars);
+		for ($i = 1; $i <= 6; $i++) {
+			$random_string .= substr($chars, rand(0, $chars_strlen - 1), 1);
+		}
 		if(!is_numeric($user_id) && $options['show_nothing'] != true)
 		{
 			return 'Avatar id not numeric, aborting...';
@@ -772,11 +779,11 @@ function ui_module_render($options)
 		$size = (isset($options['size'])) ? $options['size'] : 'mini';
 		if (file_exists($img_path))
 		{
-			return '<img src="' . IMAGE_URL . 'images/users/thumb/' . $user_id . '.jpg?cache_prevention=' . filemtime($img_path) . '" class="user_avatar"' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . 'images/users/thumb/' . $user_id . '.jpg?cache_prevention=' . filemtime($img_path) . '" class="user_avatar" id="' . $random_string . '_' . $user_id . '"' . $style . ' />' . "\n";
 		}
 		else
 		{
-			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" class="user_avatar"' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" id="' . $random_string . '_no_avatar" class="user_avatar" ' . $style . ' />' . "\n";
 		}
 	}
 	

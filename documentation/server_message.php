@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/documentation.lib.php');
+	require(PATHS_LIBRARIES . 'documentation.lib.php');
 
 			$out .= '<h3>Server_message - ui_server_message()</h3>' . "\n";
 			$out .= '<p>Creates a warning/notification</p>' . "\n";

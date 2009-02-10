@@ -10,7 +10,7 @@
 	WALLPAPERS_LICENSE
 */
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE.'libraries/wallpaper_admin.lib.php');
+	require(PATHS_LIBRARIES . 'wallpaper_admin.lib.php');
 
 	$ui_options['title'] = 'Bakgrundsbilder | Admin | Hamsterpaj.net';
 	$ui_options['menu_path'] = array('admin', 'wallpapers');

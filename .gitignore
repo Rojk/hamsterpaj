@@ -23,14 +23,9 @@ photo_upload_temp/*
 kvitton/*
 snyggve_temp/full/*
 snyggve_temp/thumb/*
-include/jpgraph-1.20.5/docs/*
-include/jpgraph-1.20.5/src/Examples/*
-include/jpgraph/docs/*
-include/articles/*
-include/article_authors/*
-include/fp_modules/*
 stylesheets/fp_modules/*
 static/*
+dynamic_content/*
 
 # Files to exclude
 traffa/gallery_content.html

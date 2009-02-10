@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	include(PATHS_INCLUDE  . 'libraries/poll.lib.php');
+	include(PATHS_LIBRARIES . 'poll.lib.php');
 	
 	if($_GET['action'] == 'vote' && is_numeric($_GET['poll_id']) && in_array($_GET['answer_id'], array(1, 2, 3, 4, 5, 6, 7)))
 	{

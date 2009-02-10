@@ -1,7 +1,7 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE  . 'libraries/comments.lib.php');
-	require(PATHS_INCLUDE  . 'libraries/schedule.lib.php');
+	require(PATHS_LIBRARIES . 'comments.lib.php');
+	require(PATHS_LIBRARIES . 'schedule.lib.php');
 	$ui_options['menu_path'] = array('chat', 'statistik');
 	$ui_options['title'] = 'Undersökningar på Hamsterpaj';
 	

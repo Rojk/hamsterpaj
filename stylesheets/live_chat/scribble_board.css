@@ -43,7 +43,7 @@
 	background: #f2f4f8 url('http://images.hamsterpaj.net/live_chat/live_chat_entry_bg.png') repeat-x;
 }
 
-.live_chat_scribble_board .entry_area .user_photo
+.live_chat_scribble_board .entry_area .user_avatar
 {
 	display: block;
 	float: left;
@@ -54,7 +54,7 @@
 	cursor: pointer;
 }
 
-.live_chat_scribble_board .entry_area .user_photo:hover
+.live_chat_scribble_board .entry_area .user_avatar:hover
 {
 	width: 75px;
 	height: 100px;

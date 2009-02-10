@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE  . 'libraries/photos.lib.php');
+	require(PATHS_LIBRARIES . 'photos.lib.php');
 
 	$ui_options['javascripts'][] = 'fp_module_rearrange.js';
 	$ui_options['stylesheets'][] = 'fp_module_rearrange.css';
@@ -24,7 +24,7 @@
 	
 	$filenames = cache_load('fp_module_order');
 
-	$dir = opendir(PATHS_INCLUDE . 'fp_modules/');
+	$dir = opendir(PATHS_DYNAMIC_CONTENT . 'fp_modules/');
 	while($filename = readdir($dir))
 	{
 		if($filename != '.' && $filename != '..' && !in_array($filename, $filenames))

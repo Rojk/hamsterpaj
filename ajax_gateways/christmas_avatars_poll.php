@@ -1,7 +1,7 @@
 <?php
 
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/christmas_avatars_polls.lib.php');
+	require(PATHS_LIBRARIES . 'christmas_avatars_polls.lib.php');
 
 	switch(isset($_GET['action']) ? $_GET['action'] : 'home')
 	{

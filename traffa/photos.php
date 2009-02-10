@@ -1,11 +1,11 @@
 <?php
 	/* OPEN_SOURCE */
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
-	require(PATHS_INCLUDE . 'libraries/photos.lib.php');
-	require(PATHS_INCLUDE . 'libraries/comments.lib.php');
-	require(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
-	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
+	require(PATHS_LIBRARIES . 'profile.lib.php');
+	require(PATHS_LIBRARIES . 'photos.lib.php');
+	require(PATHS_LIBRARIES . 'comments.lib.php');
+	require(PATHS_LIBRARIES . 'guestbook.lib.php');
+	require(PATHS_LIBRARIES . 'userblock.lib.php');
 	
 	$ui_options['stylesheets'][] = 'user_profile.css';
 	$ui_options['stylesheets'][] = 'photos.css';

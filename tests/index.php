@@ -1,8 +1,8 @@
 <?php
 	// Note: 'vuxenpoaeng.html' is turned off on line 350.
 	include('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/rank.lib.php'); // The comment library needs this for some reason..
-	require(PATHS_INCLUDE . 'libraries/comments.lib.php'); // Stylesheets ans javascripts are loaded in tests_calculate_score().
+	require(PATHS_LIBRARIES . 'rank.lib.php'); // The comment library needs this for some reason..
+	require(PATHS_LIBRARIES . 'comments.lib.php'); // Stylesheets ans javascripts are loaded in tests_calculate_score().
 	
 	$ui_options['title'] = 'Tester, på Hamsterpaj';
 	$ui_options['menu_path'] = array('traeffa', 'tester');

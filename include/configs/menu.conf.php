@@ -22,7 +22,7 @@
 		}
 		$menu['forum']['children']['new_threads'] = array('label' => 'Nya trådar', 'url' => '/diskussionsforum/nya_traadar.php');
 		$menu['forum']['children']['search'] = array('label' => 'Sök', 'url' => '/diskussionsforum/soek.php');
-		$menu['forum']['children']['rules'] = array('label' => 'Regler', 'url' => '/artiklar/?action=show&id=75');
+		$menu['forum']['children']['rules'] = array('label' => 'Regler', 'url' => '/hamsterpaj/rules_and_policies.php');
 	
 	$menu['sex_sense'] = array('label' => 'Sex &amp; sinne', 'url' => '/sex_och_sinne/', 'index_label' => 'Start');
 		$menu['sex_sense']['children']['latest'] = array('label' => 'Senaste frågorna', 'url' => '/sex_och_sinne/senaste_fraagorna.html');
@@ -61,7 +61,7 @@
 		$menu['traeffa']['children']['galleriet'] = array('label' => 'Galleriet', 'url' => '/traffa/gallery.php');
 		$menu['traeffa']['children']['grupper'] = array('label' => 'Grupper', 'url' => '/traffa/groups.php');
 		$menu['traeffa']['children']['digga'] = array('label' => 'Digga', 'url' => '/traffa/digga.php');		
-		$menu['traeffa']['children']['besoeksloggen'] = array('label' => 'Besöksloggen', 'url' => '/traffa/my_visitors_joel.php');
+		$menu['traeffa']['children']['besoeksloggen'] = array('label' => 'Besöksloggen', 'url' => '/traffa/my_visitors.php');
 		$menu['traeffa']['children']['age_guess'] = array('label' => 'Gissa Åldern', 'url' => '/traffa/age_guess.php');
 		$menu['traeffa']['children']['gamla_klotterplanket'] = array('label' => 'Gamla klotterplanket', 'url' => '/traffa/klotterplank.php');
 		$menu['traeffa']['children']['tester'] = array('label' => 'Tester', 'url' => '/tests/index.php');
@@ -133,9 +133,11 @@
 			$menu['admin']['children']['anvaendare']['children']['warnings'] = array('label' => 'Varningar', 'url' => '/admin/warnings.php');
 			$menu['admin']['children']['anvaendare']['children']['user_management'] = array('label' => 'User management', 'url' => '/admin/user_management.php', 'is_privilegied' => 'user_management_admin');
 			$menu['admin']['children']['anvaendare']['children']['pm_hack'] = array('label' => 'PM-hack', 'url' => '/admin/pm_hack.php', 'is_privilegied' => 'use_ghosting_tools');
-			$menu['admin']['children']['anvaendare']['children']['guestbook_hack'] = array('label' => 'Gästbokshack', 'url' => '/admin/guestbook_hack.php', 'is_privilegied' => 'use_ghosting_tools');
+			$menu['admin']['children']['anvaendare']['children']['guestbook_hack'] = array('label' => 'GB-hack', 'url' => '/admin/guestbook_hack.php', 'is_privilegied' => 'use_ghosting_tools');
 			$menu['admin']['children']['anvaendare']['children']['user_ghost'] = array('label' => 'Ghosta', 'url' => '/admin/user_ghost.php', 'is_privilegied' => 'use_ghosting_tools');
 			$menu['admin']['children']['anvaendare']['children']['user_logins'] = array('label' => 'User Logins', 'url' => '/admin/user_logins.php', 'is_privilegied' => 'ip_ban_admin');
+			$menu['admin']['children']['anvaendare']['children']['newly_registered_users'] = array('label' => 'Nyregistrerade användare', 'url' => '/admin/newly_registered_users.php', 'is_privilegied' => 'remove_user');
+			$menu['admin']['children']['anvaendare']['children']['user_flag'] = array('label' => 'Användarflaggor', 'url' => '/admin/user_flag.php', 'is_privilegied' => 'user_flag_admin');
 		$menu['admin']['children']['crew-folk'] = array('label' => 'Crew-folk', 'url' => 'javascript:void(0)', 'is_privilegied' => $admin_privilegies);
 			$menu['admin']['children']['crew-folk']['children']['admins'] = array('label' => 'Besättning', 'url' => '/admin/admins.php');
 			$menu['admin']['children']['crew-folk']['children']['ov_reg'] = array('label' => 'OV Registrering', 'url' => '/admin/ov_reg.php', 'userlevel' => 3);
@@ -160,7 +162,7 @@
 			$menu['site_admin']['children']['dev']['children']['handy'] = array('label' => 'Handy <i>(riktig)</i>', 'url' => '/handy.php', 'is_privilegied' => 'use_debug_tools');
 			$menu['site_admin']['children']['dev']['children']['visa_sessionsdata'] = array('label' => 'Visa sessionsdata', 'url' => '/admin/view_session.php', 'is_privilegied' => 'use_debug_tools');
 
-require_once(PATHS_INCLUDE . 'configs/entertain.conf.php');
+require_once(PATHS_CONFIGS . 'entertain.conf.php');
 // this is just to make sure that the entertain configs are available at this point
 $handles = array('game', 'flash', 'clip', 'image');
 foreach($handles as $handle)

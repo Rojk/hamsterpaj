@@ -1,8 +1,7 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
+	require(PATHS_LIBRARIES . 'profile.lib.php');
 	$ui_options['menu_path'] = array('installningar');
-	require(PATHS_INCLUDE . 'traffa-definitions.php');
 
 	$ui_options['javascripts'][] = 'settings.js';
 

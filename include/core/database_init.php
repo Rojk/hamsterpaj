@@ -1,33 +1,29 @@
 <?php
-	// Maybe make this gitignore with a constant?
-	if(false)
+	if(ENVIRONMENT == 'downtime')
 	{
-		require(PATHS_INCLUDE . 'downtime.php');
+		require(PATHS_WEBROOT . 'downtime.php');
 		exit;
 	}
 	
 	//Backup is running and slowing down everything between 4.30 and ca 5.00
 	if(date('H') == '4' && date('i') > 30)
 	{
-		include(PATHS_INCLUDE . 'running_backup.html');
+		echo database_error_create(array('type' => 'running_backup'));
 		exit;
 	}
 	
 	if(!mysql_pconnect($db_server, $db_username, $db_password))
 	{
-		if($_SESSION['max_connection_retries'] > 3)
-		{
-			include(PATHS_INCLUDE . 'max_connections_max_reloads.html');
-			$_SESSION['max_connection_retries'] = 0;
-		}
-		else
-		{
-			include(PATHS_INCLUDE . 'max_connections.html');
-			$_SESSION['max_connection_retries']++;
-		}
+		$_SESSION['database_connection_retries'] = isset($_SESSION['database_connection_retries']) ? $_SESSION['database_connection_retries'] : 0;
+			
+		echo database_error_create(array('type' => 'connection_error', 'try_again' => ($_SESSION['database_connection_retries'] < 4)));
+		
+		$_SESSION['database_connection_retries']++;
 		exit;
 	}
-	$_SESSION['max_connection_retries'] = 0;
+	
+	unset($db_server, $db_username, $db_password);
+	unset($_SESSION['database_connection_retries']);
 
 	mysql_select_db($db_database) or die ('Can\'t use database: ' . mysql_error());
 	mysql_query('SET NAMES utf8');

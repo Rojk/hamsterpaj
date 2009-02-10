@@ -3,7 +3,7 @@
 	$ui_options['menu_path'] = array('hamsterpaj', 'rules_and_policies');
 	$ui_options['javascripts'][] = 'settings.js';
 	
-	require(PATHS_INCLUDE . 'libraries/articles.lib.php');
+	require(PATHS_LIBRARIES . 'articles.lib.php');
 	$ui_options['stylesheets'][] = 'articles.css';
 	
 	$article = articles_fetch(array('id' => '65'));

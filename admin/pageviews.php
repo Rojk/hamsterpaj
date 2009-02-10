@@ -1,7 +1,7 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'jpgraph/jpgraph.php');
-	require(PATHS_INCLUDE . 'jpgraph/jpgraph_line.php');
+	require(PATHS_VENDORS . 'jpgraph/jpgraph.php');
+	require(PATHS_VENDORS . 'jpgraph/jpgraph_line.php');
 	
 	if(!is_privilegied('use_statistic_tools'))
 	{

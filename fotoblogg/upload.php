@@ -7,7 +7,7 @@
 	}	
 	
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/photoblog.lib.php');
+	require(PATHS_LIBRARIES . 'photoblog.lib.php');
 		
 	try
 	{

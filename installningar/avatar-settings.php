@@ -13,7 +13,7 @@
 	}
 	
 	include(PATHS_INCLUDE . 'md5image-functions.php');
-	include(PATHS_INCLUDE . 'copy_protection/exif.php');
+	include(PATHS_VENDORS . 'copy_protection/exif.php');
 	
 	if(!isset($_SESSION['login']['id']))
 	{

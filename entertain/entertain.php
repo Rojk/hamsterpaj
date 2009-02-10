@@ -7,11 +7,11 @@
 */
 
 	require('../include/core/common.php');
-	require_once(PATHS_INCLUDE . 'libraries/movie_compability.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/entertain.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/schedule.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/rank.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/comments.lib.php');
+	require_once(PATHS_LIBRARIES . 'movie_compability.lib.php');
+	require_once(PATHS_LIBRARIES . 'entertain.lib.php');
+	require_once(PATHS_LIBRARIES . 'schedule.lib.php');
+	require_once(PATHS_LIBRARIES . 'rank.lib.php');
+	require_once(PATHS_LIBRARIES . 'comments.lib.php');
 
 	define(ENTERTAINMENT_ITEMS_PER_PAGE, 24);
 

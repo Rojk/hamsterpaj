@@ -131,7 +131,7 @@
 		{
 			foreach(array(14, 16, 18, 20, 22) AS $age)
 			{
-				$unserialized = file_get_contents(PATHS_INCLUDE . 'cache/online_people/' . $gender . $age . '.phpserialized');
+				$unserialized = file_get_contents(PATHS_CACHE . 'online_people/' . $gender . $age . '.phpserialized');
 				$people = unserialize($unserialized);
 				foreach($people AS $data)
 				{

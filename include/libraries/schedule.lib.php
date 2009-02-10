@@ -1,11 +1,11 @@
 <?php
 // Schedule library
 
-require_once(PATHS_INCLUDE . 'libraries/contests.lib.php');
-require_once(PATHS_INCLUDE . 'libraries/fun_images.lib.php');
-require_once(PATHS_INCLUDE . 'libraries/poll.lib.php');
-//require_once(PATHS_INCLUDE . 'libraries/sex_and_sense.lib.php');
-require_once(PATHS_INCLUDE . 'libraries/sex_sense.lib.php');
+require_once(PATHS_LIBRARIES . 'contests.lib.php');
+require_once(PATHS_LIBRARIES . 'fun_images.lib.php');
+require_once(PATHS_LIBRARIES . 'poll.lib.php');
+//require_once(PATHS_LIBRARIES . 'sex_and_sense.lib.php');
+require_once(PATHS_LIBRARIES . 'sex_sense.lib.php');
 
 function schedule_event_add($options)
 {

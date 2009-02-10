@@ -52,24 +52,24 @@
   	'msnbot'
   ) as $library)
   {
-	  require_once(PATHS_INCLUDE . 'libraries/' . $library . '.lib.php');
+	  require_once(PATHS_LIBRARIES . $library . '.lib.php');
 	}
 	
 	// First here we connect to the database/break for database backup...
 	require_once(CORE_PATH . 'database_init.php');
 
 	/* Include all config files */
-	$dir = opendir(PATHS_INCLUDE . 'configs/');
+	$dir = opendir(PATHS_CONFIGS);
 	while($file = readdir($dir))
 	{
 		if($file != '.' && $file != '..' && substr($file, 0, 2) != '._' && $file != 'menu.conf.php')
 		{
-			include(PATHS_INCLUDE . 'configs/' . $file);
+			require_once(PATHS_CONFIGS . $file);
 		}
 	}
-	include(PATHS_INCLUDE . 'configs/menu.conf.php');
+	require_once(PATHS_CONFIGS . 'menu.conf.php');
 	  
- 	require(PATHS_INCLUDE . 'core/ip_handling.php');
+ 	require(CORE_PATH . 'ip_handling.php');
   
   if(login_checklogin())
   {

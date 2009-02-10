@@ -1,6 +1,6 @@
 <?php
 	require('/home/www/standard.php');
-	require_once(PATHS_INCLUDE . 'libraries/open_search.lib.php');
+	require_once(PATHS_LIBRARIES . 'open_search.lib.php');
 
 	if(!is_privilegied('open_search'))
 	{

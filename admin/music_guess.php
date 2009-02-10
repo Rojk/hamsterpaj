@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	include(PATHS_INCLUDE . 'libraries/schedule.lib.php');
+	include(PATHS_LIBRARIES . 'schedule.lib.php');
 	
 	$ui_options['menu_path'] = array('administration', 'music_guess');
 	ui_top($ui_options);

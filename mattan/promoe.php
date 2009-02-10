@@ -1,7 +1,7 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/promoe.lib.php');
-	require(PATHS_INCLUDE . 'configs/promoe.conf.php');
+	require(PATHS_LIBRARIES . 'promoe.lib.php');
+	require(PATHS_CONFIGS . 'promoe.conf.php');
 	$ui_options['menu_path'] = array('mattan', 'promoe');
 	$ui_options['title'] = 'Promoe på Hamsterpaj.net, rita dina egna pixel-bilder!';
 	$ui_options['stylesheets'][] = 'promoe_new.css';

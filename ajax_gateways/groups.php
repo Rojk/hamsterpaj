@@ -2,7 +2,7 @@
 	try
 	{
 		require('../include/core/common.php');
-		require_once(PATHS_INCLUDE . 'libraries/groups_active.lib.php');
+		require_once(PATHS_LIBRARIES . 'groups_active.lib.php');
 	
 		$action = $_GET['action'];
 		switch($action)

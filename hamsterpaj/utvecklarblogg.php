@@ -1,7 +1,7 @@
 <?php
 	require('../include/core/common.php');
-	require('/storage/www/www.hamsterpaj.net/data/include/libraries/developer_blog.lib.php');
-	require(PATHS_INCLUDE . 'libraries/comments.lib.php');
+	require(PATHS_LIBRARIES . 'developer_blog.lib.php');
+	require(PATHS_LIBRARIES . 'comments.lib.php');
 	$ui_options['stylesheets'][] = 'abuse.css';
 	$ui_options['javascripts'][] = 'start.js';
 	$ui_options['javascripts'][] = 'comments.js';

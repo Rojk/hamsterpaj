@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/documentation.lib.php');
+	require(PATHS_LIBRARIES . 'documentation.lib.php');
 	
 			$out .= '<h3>Text_container - ui_text_container_top(), ui_text_container_bottom()</h3>' . "\n";
 			$out .= '<p>Creates a container for text</p>' . "\n";

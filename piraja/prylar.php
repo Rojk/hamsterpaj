@@ -1,9 +1,9 @@
 <?php
 	require('../include/core/common.php');
-	require_once(PATHS_INCLUDE  . 'libraries/entertain.lib.php');
-	require_once(PATHS_INCLUDE  . 'libraries/rank.lib.php');
-	require_once(PATHS_INCLUDE  . 'libraries/photos.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/fp_modules.lib.php');
+	require_once(PATHS_LIBRARIES . 'entertain.lib.php');
+	require_once(PATHS_LIBRARIES . 'rank.lib.php');
+	require_once(PATHS_LIBRARIES . 'photos.lib.php');
+	require_once(PATHS_LIBRARIES . 'fp_modules.lib.php');
 
 	$ui_options['javascripts'][] = 'fp_common_modules.js';
 
@@ -30,7 +30,7 @@
 		$module_hide = false;
 		if($module['code_mode'] == 'php')
 		{
-			include(PATHS_INCLUDE . 'fp_modules/' . $module['id'] . '.php');
+			include(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $module['id'] . '.php');
 			if($module_hide == true)
 			{
 				continue;
@@ -38,7 +38,7 @@
 		}
 		else
 		{
-			$o = file_get_contents(PATHS_INCLUDE . 'fp_modules/' . $module['id'] . '.php');
+			$o = file_get_contents(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $module['id'] . '.php');
 		}
 
 		$class = ($module['commenting'] == 'true' || $module['published'] == 'true' || $module['grading'] == 'true') ? 'module' : 'module_noframe';
@@ -116,10 +116,8 @@
 	$out .= '</ol>' . "\n";
 	
 	ui_top($ui_options);
-	echo '<h1>Hamsterpaj & Piraja sitting in a tree K-I-S-S-I-N-G</h1>' . "\n";
-	echo '<p>Vi har ett litet test nu när vi stjäl innehåll ur tidningen <a href="http://www.piraja.se/">Piraja</a> och lägger på Hamsterpaj. Vi tror att det är okej, killen som chefar pratade gotländska, så vi begrep inte riktigt allt, men det blir säkert bra :)</p>' . "\n";
-	echo '<h3>Här finns allt Pirajamaterial vi publicerat</h3>' . "\n"; 
-
+	echo '<h1>Prylar</h1>' . "\n";
+	echo '<p>I samarbete med Piraja presenterar vi annorlunda, konstiga och kul prylar.</p>' . "\n";
 
 	echo $out;
 	ui_bottom();

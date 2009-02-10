@@ -1,6 +1,6 @@
 <?php
 	require('/home/www/standard.php');
-	require(PATHS_INCLUDE . 'libraries/plump.lib.php');
+	require(PATHS_LIBRARIES . 'plump.lib.php');
 	$ui_options['menu_path'] = array('spel', 'plump');
 	$ui_options['stylesheets'][] = 'plump.css';
 	$ui_options['title'] = 'Spela Plump på Hamsterpaj!';

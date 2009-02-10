@@ -270,14 +270,6 @@
 	position: absolute;
 }
 
-.forum_post .author .bars
-{
-	height: 100px;
-	width: 75px;
-	position: absolute;
-	z-index: 100;
-}
-
 .forum_post .author .username
 {
 	border: none;

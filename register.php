@@ -1,6 +1,6 @@
 <?php
 	require('include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/register.lib.php');
+	require(PATHS_LIBRARIES . 'register.lib.php');
 	
 	$ui_options['menu_path'] = array('hamsterpaj');
 	$ui_options['stylesheets'][] = 'rounded_corners_tabs.css';

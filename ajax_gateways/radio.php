@@ -2,7 +2,7 @@
 	try
 	{
 		require('../include/core/common.php');
-		require(PATHS_INCLUDE . 'libraries/radio.lib.php');
+		require(PATHS_LIBRARIES . 'radio.lib.php');
 		
 		if(isset($_GET['action']))
 		{

@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	include(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
+	include(PATHS_LIBRARIES . 'discussion_forum.lib.php');
 
 	if($_GET['action'] == 'direct_link_fetch' && isset($_GET['post_id']) && is_numeric($_GET['post_id']))
 	{

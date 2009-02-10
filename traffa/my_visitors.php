@@ -1,7 +1,7 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
-	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
+	require(PATHS_LIBRARIES . 'profile.lib.php');
+	require(PATHS_LIBRARIES . 'userblock.lib.php');
 
 	$show_user_username = 'dina';
 	$show_user_id = $_SESSION['login']['id'];

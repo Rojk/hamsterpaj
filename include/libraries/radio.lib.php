@@ -2,11 +2,20 @@
 	function radio_shoutcast_fetch()
 	{
 		$scs = &new ShoutcastInfo(RADIO_SERVER);
+		$scs2 = &new ShoutcastInfo(RADIO_SERVER2);
 		if($scs->connect())
 		{
 			$scs->send();
 			$data = $scs->parse();
 			$scs->close();
+			
+			return $data;
+		}
+		elseif($scs2->connect())
+		{
+			$scs2->send();
+			$data = $scs2->parse();
+			$scs2->close();
 			
 			return $data;
 		}
@@ -30,9 +39,8 @@
 		$query .= (isset($options['id'])) ? ' AND rs.id IN("' . implode('", "', $options['id']) . '")' : '';
 		$query .= (isset($options['user'])) ? ' AND rp.user_id  = "' . $options['user'] . '"' : '';
 		$query .= ($options['broadcasting']) ? ' AND NOW() BETWEEN rs.starttime AND rs.endtime' : ' AND NOW() NOT BETWEEN rs.starttime AND rs.endtime';
-		$query .= (!$options['show_sent']) ? ' AND NOW() < rs.starttime ' : ''; // Show programs that already been sent?
+		$query .= (!$options['show_sent'] && !$options['broadcasting']) ? ' AND NOW() < rs.starttime ' : ''; // Show programs that already been sent?
 		$query .= ' ORDER BY ' . $options['order-by'] . ' ' . $options['order-direction'] . ' LIMIT ' . $options['offset'] . ', ' . $options['limit'];
-			
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		$schedule = array();
 		while($data = mysql_fetch_assoc($result))

@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/photos.lib.php');
+	require(PATHS_LIBRARIES . 'photos.lib.php');
 	
 	$options['user'] = $_GET['user'];
 	if(isset($_GET['date']) && strtotime($_GET['date']) > 0)
