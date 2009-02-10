@@ -473,7 +473,7 @@ function ui_bottom($options = array())
 		}
 		else
 		{
-			$output .= file_get_contents(PATHS_INCLUDE . 'tiny_reg_form.html');
+			$output .= login_tiny_reg_form_generate();
 		}
 		$output .= '</div>' . "\n";	
 	}
