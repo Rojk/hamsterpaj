@@ -89,14 +89,7 @@ function comments_list($item_id, $item_type, $options)
 			$output .= '<div class="comment_' . $options['style'] . '" id="comment_'.$data['id'].'">' . "\n";
 			if($options['style'] == 'normal')
 			{
-				if($data['image'] == 1 || $data['image'] == 2)
-				{
-					$output .= '<img class="user_avatar" src="http://images.hamsterpaj.net/images/users/thumb/' . $data['user_id'] . '.jpg" />' . "\n";
-				}
-				else
-				{
-					$output .= '<div class="user_avatar"></div>' . "\n";
-				}
+				$output .= ui_avatar($data['user_id']) . "\n";
 			}
 			$output .= '<div class="comment_main_';
 			if(($data['image'] == 1 || $data['image'] == 2) && $options['style'] == 'normal')
