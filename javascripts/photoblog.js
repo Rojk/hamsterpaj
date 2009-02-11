@@ -169,9 +169,8 @@ hp.photoblog = {
 		this.handle = $('#photoblog_thumbs_handle', this.scroller);
 		
 		this.set_scroller_width();
-		this.centralize_active();
-		
 		this.scroller.pWidth = this.scroller.width() - this.handle.width();
+		this.centralize_active();		
 	},
 	
 	make_nextprev: function() {
@@ -860,7 +859,7 @@ jQuery.fn.extend({
 	
 	container_width: function() {
 		//var width = 0;
-		//$(this).children().each(function() {
+		//$('dl', this).children().each(function() {
 		//	width += $(this).width();
 		//});
 	 	var thumbsContainer = $(this);
