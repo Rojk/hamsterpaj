@@ -476,7 +476,6 @@
 		$prev_year = ($prev_month == 12) ? $year -1 : $year;
 		$prev_has = $used_dates != $dates_first;
 		
-		
 		$next_month = ($month == 12) ? 1 : $month + 1;
 		$next_year = ($next_month == 1) ? $year + 1 : $year;
 		$next_has = $used_dates != $dates_last;
