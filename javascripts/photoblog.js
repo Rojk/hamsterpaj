@@ -829,7 +829,6 @@ hp.photoblog = {
 		},
 		
 		load_new: function(year, month) {
-			console.log((year.toString() + month));
 			if ( this.get_curr_date() != (year.toString() + month) ) {
 				this.load(year, month);
 			}
