@@ -363,7 +363,7 @@ hp.photoblog = {
 					break;
 				
 					case 'month':
-						//alert('load month: ' + date);			
+						hp.photoblog.year_month.load_date(date);
 					break;
 				
 					case 'day':
