@@ -65,7 +65,7 @@
 		switch ($uri_parts[2])
 		{
 			case 'post_settings':
-				if (is_privilegied('radio_dj'))
+				if (is_privilegied('radio_sender'))
 				{
 					switch ($uri_parts[3])
 					{	
