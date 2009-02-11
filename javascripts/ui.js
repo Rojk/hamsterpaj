@@ -247,11 +247,16 @@ hp.ui = {
 		init: function()
 	  {
 	    var lock = false;
-	    $('.user_avatar').click(function()
-	    {
+	    $(document).click(function(e) {
+		var avatar = $(e.target);
+		if ( ! $(e.target).hasClass('user_avatar') ) {
+			avatar = avatar.parents('.user_avatar');
+			if (! avatar.length) return;
+		}
+		
 	    	if (!lock) {
 	    		lock = true;
-		    	var avatar_id = $(this).attr('id');
+		    	var avatar_id = $(avatar).attr('id');
 		    	var user_id = avatar_id.substring(7);
 		    	if (user_id != 'no_avatar') {
 			    	var original = $('#' + avatar_id).offset();
@@ -277,14 +282,16 @@ hp.ui = {
 								});
 							});
 			      }
-			    }
-	      }
-			});//<---- ); = TADA!
+			} else {
+				lock = false;
+			}
+		}
+	});//<---- ); = TADA!
   	},
   	
   	enable_new: function()
   	{
-  		this.init();
+  		//this.init();
   	}
 	}
 }
