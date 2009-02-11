@@ -488,7 +488,7 @@
 		
 		$offset = date('N', $date);
 		$rows = 1;
-		$out .= '<div id="photoblog_calendar_month">' . "\n";
+		$out .= '<div id="photoblog_calendar_month" class="date-' . $year . $format_month . '">' . "\n";
 			$out.= $prev_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&laquo;</a>', $prev_year, $prev_month) . "\n" : '';
 				$out .= '<span>' . date('F', $date) . ', ' . $year . '</span>' . "\n";
 			$out.= $next_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&raquo;</a>', $next_year, $next_month) . "\n" : '';

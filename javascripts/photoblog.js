@@ -691,10 +691,12 @@ hp.photoblog = {
 		},
 		
 		load: function(month) {
+			var year = this.current_year.toString();
 			this.current_month = month;
-			hp.photoblog.view.load_month(this.current_year.toString() + month, function(data) {
+			hp.photoblog.view.load_month(year + month, function(data) {
 				// load first day in month
 				hp.photoblog.view.load_image(data[0].id);
+				hp.photoblog.calendar.load_new(year, month);
 			});
 		},
 		
@@ -761,6 +763,7 @@ hp.photoblog = {
 			var month = date.substr(4, 2);
 			this.show(year);
 			this.select_month(month);
+			hp.photoblog.calendar.load_new(year, month);
 		},
 		
 		get_x_date: function(type) {
@@ -823,6 +826,17 @@ hp.photoblog = {
 		
 		load: function(year, month) {
 			$('#photoblog_calendar_month').parent().load('/ajax_gateways/photoblog_calendar.php?user_id=' + hp.photoblog.current_user.id + '&year=' + year + '&month=' + month);
+		},
+		
+		load_new: function(year, month) {
+			console.log((year.toString() + month));
+			if ( this.get_curr_date() != (year.toString() + month) ) {
+				this.load(year, month);
+			}
+		},
+		
+		get_curr_date: function() {
+			return $('#photoblog_calendar_month')[0].className.replace('date-', '');
 		}
 	},
 	
