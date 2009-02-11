@@ -82,7 +82,7 @@
 	
 	$menu['artiklar'] = array('label' => 'Artiklar', 'url' => '/artiklar/');
 	
-		$menu['artiklar']['children']['all'] = array('label' => 'Visa alla', 'url' => '/artiklar/?action=list');
+		$menu['artiklar']['children']['search'] = array('label' => 'Visa alla', 'url' => '/artiklar/?action=list');
 			$menu['artiklar']['children']['search']['children']['4'] = array('label' => 'Debatt', 'url' => '/artiklar/?action=list&category=4');
 			$menu['artiklar']['children']['search']['children']['6'] = array('label' => 'Guider', 'url' => '/artiklar/?action=list&category=6');
 			$menu['artiklar']['children']['search']['children']['1'] = array('label' => 'Hamsterpaj', 'url' => '/artiklar/?action=list&category=1');
