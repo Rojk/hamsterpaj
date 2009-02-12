@@ -10,11 +10,43 @@
 
 	ui_top($ui_options);
 ?>
+<style>
+	.piraja_haarsprej
+	{
+		display: block;
+		float: left;
+		width: 270px;
+	}
+
+	.piraja_haarsprej li
+	{
+		margin-bottom: 10px;
+	}
+
+	.piraja_haarsprej li h2
+	{
+		font-weight: bold;
+	}
+
+	.piraja_haarsprej li .description
+	{
+		font-weight: bold;
+	}
+
+	.piraja_haarsprej li p
+	{
+		margin: 0px;
+		padding: 0px;
+		margin-top: 3px;
+		margin-bottom: 3px;
+	}
+
+</style>
 <h1>Test av hårsprej</h1>
 
 <img src="http://images.hamsterpaj.net/piraja/harsprej.png" />
 
-<ol class="piraja_hyvlar">
+<ol class="piraja_haarsprej">
 	<li>
 
 		<h2>Kladdigt</h2>
