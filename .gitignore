@@ -15,22 +15,14 @@
 # Directories to exclude
 distribute/*
 entertain_temp/*
-music_guess/*
-include/cache/*
 cache/*
 include/live_chat/*
 tmp/*
-photo_upload_temp/*
 kvitton/*
-snyggve_temp/full/*
-snyggve_temp/thumb/*
-stylesheets/fp_modules/*
 static/*
 dynamic_content/*
 
 # Files to exclude
-traffa/gallery_content.html
-include/message_bar_current.txt
 .backupignore
 
 # Configuration files
