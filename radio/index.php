@@ -63,38 +63,7 @@
 		' . "\n";
 		
 		switch ($uri_parts[2])
-		{
-			case 'post_settings':
-				if (is_privilegied('radio_sender'))
-				{
-					switch ($uri_parts[3])
-					{	
-						case 'schedule_add':
-							
-							if(!isset($_POST['program'], $_POST['starttime'], $_POST['endtime']))
-							{
-								throw new Exception('Getmjölk i soppan?');
-							}
-							
-							if(strlen($_POST['starttime']) < 0 || !is_numeric($_POST['program']) || strlen($_POST['endtime']) < 0)
-							{
-								throw new Exception('Något fält var ju INTE korrekt ifyllt säger jag ju då.');
-							}
-							
-							radio_schedule_add(array(
-								'program_id' => $_POST['program'],
-								'starttime' => $_POST['starttime'],
-								'endtime' => $_POST['endtime']
-							));
-						break;
-					}
-				}
-				else
-				{
-					throw new Exception('Haxx0r!');
-				}
-			break;
-			
+		{	
 			case 'crew':
 				$options['order-by'] = 'username';
 				$options['order-direction']= 'ASC';
@@ -203,23 +172,28 @@
 			case 'schema':	
 				$options['show_sent'] = false; 
 				$options['limit'] = 30; 
-				$options['order-direction']= 'DESC'; // We want them in order by which is coming first
+				$options['order-direction']= 'ASC'; // We want them in order by which is coming first
+				$options['sort-by-day'] = true;
 				$radio_events = radio_schedule_fetch($options);
-				$out .= '<table style="width: 638px;">' . "\n";
-				foreach($radio_events as $radio_event)
+				
+				foreach($radio_events as $radio_day => $radio_day_events)
 				{
-					$out .= '<tr>' . "\n";
-					$out .= '<td>' . $radio_event['name'] . '</td>' . "\n";
-					$out .= '<td>' . $radio_event['username'] . '</td>' . "\n";
-					$out .= '<td>' . $radio_event['starttime'] . '</td>' . "\n"; // Snygga till datumet så det står: Imorgon 22:00 Eller ngt sådant snyggt
-					if(is_privilegied('radio_sender'))
+					$out .= '<h2>' . date('j/n', strtotime($radio_day)) . '</h2>' . "\n";
+					$out .= '<table style="width: 186px;">' . "\n";
+					foreach($radio_day_events as $radio_event)
 					{
-						$out .= '<td><a href="#" title="Ändra sändning">Ändra</a></td>' . "\n"; // När man klickar edit ska formuläret för att lägga till sändning användas för att ändra sändningen.
-						$out .= '<td><a href="#" title="Ta bort sändning">Ta bort</a></td>' . "\n"; // Ajax
+						$out .= '<tr>' . "\n";
+						$out .= '<td>' . $radio_event['name'] . '</td>' . "\n";
+						$out .= '<td>' . date('H:i', strtotime($radio_event['starttime'])) . '</td>' . "\n"; // Snygga till datumet så det står: Imorgon 22:00 Eller ngt sådant snyggt
+						if(is_privilegied('radio_sender'))
+						{
+							$out .= '<td><a href="#" title="Ta bort sändning">(x)</a></td>' . "\n"; // Ajax
+						}
+						$out .= '</tr>' . "\n";
+						
 					}
-					$out .= '</tr>' . "\n";
+					$out .= '</table>' . "\n";
 				}
-				$out .= '</table>' . "\n";
 				if(is_privilegied('radio_sender'))
 				{
 					$ui_options['stylesheets'][] = 'forms.css'; // includes stylesheet for form
@@ -228,14 +202,14 @@
 					$options['order-direction']= 'DESC';
 					$radio_programs = radio_programs_fetch($options); // For Select list
 					unset($options);
-					
+					$out .= '<br style="clear: both;" /><div id="form_notice"></div>' . "\n";
 					$out .= '<fieldset>' . "\n";
 					$out .= '<legend>Lägg till sändning</legend>' . "\n";
-					$out .= '<form action="/radio/post_settings/schedule_add" method="post">';
+					$out .= '<form action="/ajax_gateways/radio.php?action=schedule_add" method="post">';
 					$out .= '<table class="form">' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="program">Program <strong>*</strong></label></th>' . "\n";
-						$out .= '<td><select name="program">' . "\n";
+						$out .= '<td><select name="program" id="radio_schedule_add_program">' . "\n";
 							foreach($radio_programs as $radio_program)
 							{
 								$out .= '<option value="' . $radio_program['id'] . '">' . $radio_program['name'] . '</option>' ."\n";
@@ -245,18 +219,17 @@
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="starttime">Starttid <strong>*</strong></label></th>' . "\n"; // Jquery calendar?
-						$out .= '<td><input type="text" name="starttime" value="' . date( 'Y-m-d') . ' 00:00:00" /></td>' . "\n";
+						$out .= '<td><input type="text" name="starttime" id="radio_schedule_add_starttime" value="' . date( 'Y-m-d') . ' 00:00:00" /></td>' . "\n";
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="endtime">Sluttid <strong>*</strong></label></th>' . "\n"; // jquery calendar?
-						$out .= '<td><input type="text" name="endtime" value="' . date( 'Y-m-d') . ' 00:00:00" /></td>' . "\n";
+						$out .= '<td><input type="text" name="endtime" id="radio_schedule_add_endtime" value="' . date( 'Y-m-d') . ' 00:00:00" /></td>' . "\n";
 					$out .= '</tr>' . "\n";				
 					$out .= '</table>' . "\n";
-					$out .= '<input type="submit" id="submit" value="Spara" />' . "\n"; // Ajax
+					$out .= '<input type="submit" id="radio_schedule_add_submit" value="Spara" />' . "\n";
 					$out .= '</form>';
 					$out .= '</fieldset>' . "\n";
 				}
-				
 			break;
 			
 			case 'om_radion':		
