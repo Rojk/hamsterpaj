@@ -23,7 +23,6 @@ static/*
 dynamic_content/*
 
 # Files to exclude
-traffa/gallery_content.html
 include/message_bar_current.txt
 .backupignore
 
