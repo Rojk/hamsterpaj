@@ -66,7 +66,7 @@
 	define('PATHS_LIBRARIES', PATHS_INCLUDE . 'libraries/');
 	define('PATHS_VENDORS', PATHS_INCLUDE . 'vendors/');
 	define('PATHS_CONFIGS', PATHS_INCLUDE . 'configs/');
-	define('PATHS_CACHE', PATHS_INCLUDE . 'cache/');
+	define('PATHS_CACHE', PATHS_SCRIPTROOT . 'cache/');
 	define('PATHS_LOGS', $paths_logs);
 	define('PATHS_DYNAMIC_CONTENT', PATHS_SCRIPTROOT . 'dynamic_content/');
 	define('PATHS_IMAGES', $paths_images_old);
