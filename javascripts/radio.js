@@ -73,4 +73,24 @@ $(document).ready(function(){
 		
 		return false;
 	});
+	
+		// Add schedule
+	$('#radio_schedule_add_submit').click(function() {
+		$('#form_notice').fadeOut('500');
+		$('#form_notice').empty();
+		var program = $('#radio_schedule_add_program').val();
+		var starttime = $('#radio_schedule_add_starttime').val();
+		var endtime = $('#radio_schedule_add_endtime').val();
+		$.ajax({
+			url: '/ajax_gateways/radio.php?action=schedule_add',
+			type: 'POST',
+			data: 'program=' + program + '&starttime=' + starttime + '&endtime=' + endtime,
+			success: function(result) {
+				$('#form_notice').append(result);
+				$('#form_notice').fadeIn('500');
+				$('#radio_schedule_add_program').attr("value", "");
+			}
+		});
+		return false;
+	});
 });

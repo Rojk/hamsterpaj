@@ -126,6 +126,37 @@
 				echo '</div>';
 			break;
 			
+			case 'schedule_add':
+				if(!is_privilegied('radio_sender'))
+				{
+					throw new Exception('Du har inte privilegier att ändra radioschemat');
+				}					
+				if(!isset($_POST['program']) || !is_numeric($_POST['program']))
+				{
+					throw new Exception('Du måste välja ett program');
+				}
+				if(!isset($_POST['starttime']) || strlen($_POST['endtime']) < 0)
+				{
+					throw new Exception('Du måste sätta en starttid');
+				}
+				if(!isset($_POST['endtime']) || strlen($_POST['starttime']) < 0)
+				{
+					throw new Exception('Du måste sätta en sluttid');
+				}
+				if($_POST['starttime'] >= $_POST['endtime'])
+				{
+					throw new Exception('Det är ju bra om programmet har börjat innan det slutar om man säger så...');
+				}
+				$options['program_id'] = $_POST['program'];
+				$options['starttime'] = $_POST['starttime'];
+				$options['endtime'] = $_POST['endtime'];
+				radio_schedule_add($options);
+				
+				echo '<div class="form_notice_success">';
+				echo 'Programmet inplanerat';
+				echo '</div>';
+			break;
+			
 			default:
 				throw new Exception('Action not found');
 			break;

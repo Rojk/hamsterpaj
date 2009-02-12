@@ -42,21 +42,41 @@
 		$query .= (!$options['show_sent'] && !$options['broadcasting']) ? ' AND NOW() < rs.starttime ' : ''; // Show programs that already been sent?
 		$query .= ' ORDER BY ' . $options['order-by'] . ' ' . $options['order-direction'] . ' LIMIT ' . $options['offset'] . ', ' . $options['limit'];
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-		$schedule = array();
-		while($data = mysql_fetch_assoc($result))
-		{
-			$schedule[] = $data;
-			$found_something = true;
-		}
 		
-		if ($found_something)
+		if($options['sort-by-day'] === true && isset($options['sort-by-day']))
 		{
+			$schedule = array();
+			while($data = mysql_fetch_assoc($result))
+			{
+				$startday = substr($data['starttime'], 0, 10);
+				$schedule[$startday][] = $data;
+			}
 			return $schedule;
 		}
 		else
 		{
+			$schedule = array();
+			while($data = mysql_fetch_assoc($result))
+			{
+				$schedule[] = $data;
+			}
+			return $schedule;
+		}
+		
+		if(empty($data))
+		{
 			return false;
 		}
+	}
+	
+	function radio_schedule_add($options)
+	{	
+		if(!is_numeric($options['program_id']))
+		{
+			throw new Exception('Id is not numerical');
+		}
+		$query = 'INSERT INTO radio_schedule (program_id, starttime, endtime) VALUES("' . implode('", "', array($options['program_id'], $options['starttime'], $options['endtime'])) . '")';
+		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 	}
 	
 	function radio_djs_fetch($options)
@@ -176,12 +196,6 @@
 		
 		$query = 'DELETE FROM radio_programs WHERE id = ' . $options['id'] . '';
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-	}
-	
-	function radio_schedule_add($options)
-	{		
-		$query = 'INSERT INTO radio_schedule (program_id, starttime, endtime) VALUES("' . implode('", "', array($options['program_id'], $options['starttime'], $options['endtime'])) . '")';
-		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 	}
 	
 	function radio_sending_fetch()
