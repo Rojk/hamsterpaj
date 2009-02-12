@@ -39,7 +39,7 @@
 		for($i = 1; $i <= 12; $i++)
 		{
 			echo '<div class="saveform">' . "\n";
-			echo '<img onclick="autoSizeWindow(\'/snyggve_temp/full/' . $identifier . '_' . $i . '.jpg\', \'Snyggve, stor bild\');" src="/snyggve_temp/thumb/' . $identifier . '_' . $i . '.jpg" />' . "\n";
+			echo '<img onclick="autoSizeWindow(\'' . SNYGGVE_TEMP_URL . 'full/' . $identifier . '_' . $i . '.jpg\', \'Snyggve, stor bild\');" src="' . SNYGGVE_TEMP_URL . 'thumb/' . $identifier . '_' . $i . '.jpg" />' . "\n";
 			echo '<input type="radio" name="image_id" value="' . $identifier . '_' . $i . '" />' ."\n";
 			echo '</div>' . "\n";
 		}
