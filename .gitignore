@@ -23,7 +23,6 @@ static/*
 dynamic_content/*
 
 # Files to exclude
-include/message_bar_current.txt
 .backupignore
 
 # Configuration files
