@@ -2,8 +2,6 @@
 	/*  Snyggve garbage collection process
 			Removes old images (600s or older) from the Snyggve temp directory
 	*/
-
-	define('SNYGGVE_TEMP_PATH', $hp_path . 'snyggve_temp/');
 	
 	$thumbs = opendir(SNYGGVE_TEMP_PATH . 'thumb/');
 	echo SNYGGVE_TEMP_PATH . 'thumb/';

@@ -1,10 +1,6 @@
 <?php
 	require('../include/core/common.php');
 	
-	define('SNYGGVE_TEMP_PATH', $hp_path . 'snyggve_temp/');
-	define('SNYGGVE_TEMP_URL', $hp_url . 'snyggve_temp/');
-	define('SNYGGVE_PERM_PATH', '/mnt/images/snyggve/');
-	define('SNYGGVE_PERM_URL', IMAGE_URL . 'snyggve/');
 	
 	$ui_options['menu_path'] = array('mattan', 'snyggve');
 	$ui_options['title'] = 'Snyggve, hur snygg kan du bli?';
