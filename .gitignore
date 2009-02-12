@@ -15,7 +15,6 @@
 # Directories to exclude
 distribute/*
 entertain_temp/*
-music_guess/*
 include/cache/*
 cache/*
 include/live_chat/*
