@@ -19,8 +19,6 @@ cache/*
 include/live_chat/*
 tmp/*
 kvitton/*
-snyggve_temp/full/*
-snyggve_temp/thumb/*
 static/*
 dynamic_content/*
 
