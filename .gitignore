@@ -17,6 +17,7 @@ distribute/*
 entertain_temp/*
 music_guess/*
 include/cache/*
+cache/*
 include/live_chat/*
 tmp/*
 photo_upload_temp/*
