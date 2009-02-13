@@ -109,8 +109,8 @@
 		}
 		#radio_sending .radio_about span, #radio_sending .radio_about strong {
 			color: #adadad;
-			top: 35px;
-			left: 70px;
+			top: 40px;
+			left: 40px;
 			position: relative;
 		}
 		
@@ -154,7 +154,7 @@
 		}
 		#radio_next_program .radio_about span,#radio_next_program .radio_about strong {
 			color: #adadad;
-			top: 50px;
+			top: 40px;
 			left: 40px;
 			position: relative;
 		}
