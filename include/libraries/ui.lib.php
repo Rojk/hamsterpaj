@@ -384,6 +384,13 @@ function ui_bottom($options = array())
 	}
 	else
 	{
+		
+		$query = 'SELECT rs.id FROM radio_schedule AS rs, login AS l, radio_programs AS rp WHERE l.id = rp.user_id AND rp.id = rs.program_id AND NOW() BETWEEN rs.starttime AND rs.endtime ORDER BY rs.starttime DESC LIMIT 0, 1';
+		$ui_module_radio_sending = query_cache(array('query' => $query, 'max_delay' => 60));
+		if(count($ui_module_radio_sending) > 0)
+		{
+			$modules['radio_sending'] = 'Radio';
+		}
 		$modules['multisearch'] = 'Multi-sök';
 		
 		if ( login_checklogin() )

@@ -135,6 +135,30 @@
 
 /*
 	################################################################
+		Radio_sending
+	################################################################
+*/
+#ui_module_radio_sending .ui_module_header {
+  display: none;
+}
+
+#ui_modulebar #ui_module_radio_sending {
+  background: url(http://images.hamsterpaj.net/radio/ui_module.png);
+  height: 78px;
+}
+
+#ui_module_radio_sending  .ui_module_content {
+	padding: 0;
+}
+
+#ui_module_radio_sending a {
+	display: block;
+	width: 200px;
+	height: 78px;
+}
+
+/*
+	################################################################
 		Online_ovs
 	################################################################
 */
