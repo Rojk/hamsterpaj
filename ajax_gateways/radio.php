@@ -48,7 +48,7 @@
 				echo '</div>';
 			break;
 			
-			case dj_remove:
+			case 'dj_remove':
 				if(!is_privilegied('radio_admin'))
 				{
 					throw new Exception('Du har inte privilegier att lägga till radio DJs');
