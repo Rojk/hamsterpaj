@@ -51,7 +51,7 @@
 			<a id="radio_menu_04' . ($uri_parts[2] == 'schema' ? '_active"' : '') . '" href="/radio/schema">Schema</a>
 		</li>
 		<li>
-			<a id="radio_menu_05" href="/chat/">IRC-kanal</a>
+			<a id="radio_menu_05" href="' . radio_chat_url_render() . '">IRC-kanal</a>
 		</li>
 		<li>
 			<a id="radio_menu_06" href="/diskussionsforum/hamsterradio/">Radioforum</a>

@@ -42,7 +42,6 @@
 		$query .= (!$options['show_sent'] && !$options['broadcasting']) ? ' AND NOW() < rs.starttime ' : ''; // Show programs that already been sent?
 		$query .= ' ORDER BY ' . $options['order-by'] . ' ' . $options['order-direction'] . ' LIMIT ' . $options['offset'] . ', ' . $options['limit'];
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-		
 		if($options['sort-by-day'] === true && isset($options['sort-by-day']))
 		{
 			$schedule = array();
@@ -211,5 +210,37 @@
 	function radio_sending_fetch()
 	{
 		return true;
+	}
+	
+	function radio_chat_url_render()
+	{
+		$url = 'http://ved.hamsterpaj.net/chatt/index.php?';
+		if(login_checklogin())
+		{
+			$url .= 'nick=';
+			/* Please comment this if you understand the following lines */
+			/* Ask Joel, he can explain it. /Joel */
+			if (!preg_match("/^[A-Za-z]$/i",substr($_SESSION['login']['username'],0,1)))
+			{
+				$url.= substr($_SESSION['login']['username'],1,strlen($_SESSION['login']['username']));
+			}
+			else
+			{
+				$url .= $_SESSION['login']['username'];
+			}
+			$url .= '&amp;realname=';
+			$ageArray = date_get_age($_SESSION['userinfo']['birthday']); 
+			$url .= urlencode($ageArray . ';');
+			$url .= urlencode($_SESSION['userinfo']['gender'] . ';');
+			$url .= urlencode($_SESSION['userinfo']['location'] . ';');
+			$url .= urlencode($_SESSION['login']['id'] . ';');
+			$url .= urlencode($_SESSION['userinfo']['image'] . ';');
+		}
+		else
+		{
+			$url .= 'guest';
+		}
+		$url .= '&amp;chan=hamsterradio' . ',\'' . rand() . '\'';
+		return $url;
 	}
 ?>

@@ -107,4 +107,11 @@ $(document).ready(function(){
 		});
 		return false;
 	});
+	
+	// Open up chat
+	$('#radio_menu_05').click(function() {
+		var chat_conf = $(this).attr('href');
+		window.open(chat_conf,'1071246666','toolbar=no, width=640, height=478')
+		return false;
+	});
 });
