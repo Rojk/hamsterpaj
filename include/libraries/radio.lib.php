@@ -40,7 +40,7 @@
 		$query .= (isset($options['user'])) ? ' AND rp.user_id  = "' . $options['user'] . '"' : '';
 		$query .= ($options['broadcasting']) ? ' AND NOW() BETWEEN rs.starttime AND rs.endtime' : '';
 		$query .= ($options['show_from_today'] && !$options['broadcasting']) ? ' AND "' . date('Y-m-d 00:00') . '" <= rs.starttime ' : ''; // Show programs from today
-		$query .= (!$options['show_sent'] && !$options['broadcasting'] && !$options['show_from_today']) ? ' AND NOW() < rs.endtime ' : ''; // Show programs that already been sent?
+		$query .= (!$options['show_sent'] && !$options['broadcasting'] && !$options['show_from_today']) ? ' AND NOW() < rs.starttime ' : ''; // Show programs that already been sent?
 		$query .= ' ORDER BY ' . $options['order-by'] . ' ' . $options['order-direction'] . ' LIMIT ' . $options['offset'] . ', ' . $options['limit'];
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		if($options['sort-by-day'] === true && isset($options['sort-by-day']))
