@@ -170,7 +170,7 @@
 			break;
 			
 			case 'schema':	
-				$options['show_sent'] = false; 
+				$options['show_from_today'] = true; 
 				$options['limit'] = 30; 
 				$options['order-direction']= 'ASC'; // We want them in order by which is coming first
 				$options['sort-by-day'] = true;
