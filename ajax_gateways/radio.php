@@ -157,6 +157,27 @@
 				echo '</div>';
 			break;
 			
+			case schedule_remove:
+				if(!is_privilegied('radio_sender'))
+				{
+					throw new Exception('Du har inte privilegier att ta bort sändningar');
+				}
+				if(!isset($_GET['id']))
+				{
+					throw new Exception('Inget ID kom med');
+				}
+				if(!is_numeric($_GET['id']))
+				{
+					throw new Exception('ID\'t är inte numeriskt');
+				}
+				$options['id'] = $_GET['id'];
+				radio_schedule_remove($options);
+				
+				echo '<div class="form_notice_success">';
+				echo 'Schemaläggningen borttagen';
+				echo '</div>';
+			break;
+			
 			default:
 				throw new Exception('Action not found');
 			break;

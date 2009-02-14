@@ -70,11 +70,10 @@ $(document).ready(function(){
 				$('#radio_menu').after(result);
 			}
 		});
-		
 		return false;
 	});
 	
-		// Add schedule
+	// Add schedule
 	$('#radio_schedule_add_submit').click(function() {
 		$('#form_notice').fadeOut('500');
 		$('#form_notice').empty();
@@ -89,6 +88,21 @@ $(document).ready(function(){
 				$('#form_notice').append(result);
 				$('#form_notice').fadeIn('500');
 				$('#radio_schedule_add_program').attr("value", "");
+			}
+		});
+		return false;
+	});
+	
+	// Remove schedule
+	$('.schedule_remove').click(function() {
+		var id = $(this).parent().parent().attr('id');
+		$.ajax({
+			url: '/ajax_gateways/radio.php?action=schedule_remove',
+			type: 'GET',
+			data: 'id=' + id,
+			success: function(result) {
+				$('#' + id).slideUp('500');
+				$('#radio_menu').after(result);
 			}
 		});
 		return false;

@@ -182,12 +182,12 @@
 					$out .= '<table style="width: 186px;">' . "\n";
 					foreach($radio_day_events as $radio_event)
 					{
-						$out .= '<tr>' . "\n";
+						$out .= '<tr id="' . $radio_event['id'] . '">' . "\n";
 						$out .= '<td>' . $radio_event['name'] . '</td>' . "\n";
 						$out .= '<td>' . date('H:i', strtotime($radio_event['starttime'])) . '</td>' . "\n"; // Snygga till datumet så det står: Imorgon 22:00 Eller ngt sådant snyggt
 						if(is_privilegied('radio_sender'))
 						{
-							$out .= '<td><a href="#" title="Ta bort sändning">(x)</a></td>' . "\n"; // Ajax
+							$out .= '<td><a href="#" class="schedule_remove" title="Ta bort sändning">(x)</a></td>' . "\n"; // Ajax
 						}
 						$out .= '</tr>' . "\n";
 						

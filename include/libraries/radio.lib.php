@@ -32,7 +32,7 @@
 		$options['offset'] = (isset($options['offset']) && is_numeric($options['offset'])) ? $options['offset'] : 0;
 		$options['limit'] = (isset($options['limit']) && is_numeric($options['limit'])) ? $options['limit'] : 9999;
 		
-		$query = 'SELECT rs.*, l.username, rp.*';
+		$query = 'SELECT rs.*, l.username, rp.*, rs.id AS id';
 		$query .= ' FROM radio_schedule AS rs, login AS l, radio_programs AS rp';
 		$query .= ' WHERE l.id = rp.user_id';
 		$query .= ' AND rp.id = rs.program_id';
@@ -76,6 +76,16 @@
 			throw new Exception('Id is not numerical');
 		}
 		$query = 'INSERT INTO radio_schedule (program_id, starttime, endtime) VALUES("' . implode('", "', array($options['program_id'], $options['starttime'], $options['endtime'])) . '")';
+		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+	}
+	
+	function radio_schedule_remove($options)
+	{	
+		if(!is_numeric($options['id']))
+		{
+			throw new Exception('Id is not numerical');
+		}
+		$query = 'DELETE FROM radio_schedule WHERE id = ' . $options['id'] . ' LIMIT 1';
 		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 	}
 	
