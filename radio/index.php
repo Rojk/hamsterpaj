@@ -178,21 +178,26 @@
 				
 				foreach($radio_events as $radio_day => $radio_day_events)
 				{
+					$radio_day_fix_margin++;
+					$out .= '<div class="radio_schedule_day';
+					$out .= ' radio_schedule_' . strtolower(date('D', strtotime($radio_day))) . '' . "\n";
+					$out .= (is_integer($radio_day_fix_margin / 3) ? ' radio_schedule_day_marginfix' : '') . "\n";
+					$out .= '">' . "\n";
 					$out .= '<h2>' . date('j/n', strtotime($radio_day)) . '</h2>' . "\n";
-					$out .= '<table style="width: 186px;">' . "\n";
+					$out .= '<table>' . "\n";
 					foreach($radio_day_events as $radio_event)
 					{
 						$out .= '<tr id="' . $radio_event['id'] . '">' . "\n";
-						$out .= '<td>' . $radio_event['name'] . '</td>' . "\n";
+						$out .= '<td class="radio_schedule_program_name">' . $radio_event['name'] . '</td>' . "\n";
 						$out .= '<td>' . date('H:i', strtotime($radio_event['starttime'])) . '</td>' . "\n"; // Snygga till datumet så det står: Imorgon 22:00 Eller ngt sådant snyggt
 						if(is_privilegied('radio_sender'))
 						{
 							$out .= '<td><a href="#" class="schedule_remove" title="Ta bort sändning">(x)</a></td>' . "\n"; // Ajax
 						}
 						$out .= '</tr>' . "\n";
-						
 					}
 					$out .= '</table>' . "\n";
+					$out .= '</div>' . "\n";
 				}
 				if(is_privilegied('radio_sender'))
 				{
