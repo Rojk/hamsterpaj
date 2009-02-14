@@ -71,7 +71,7 @@
 			break;
 			
 			case 'program_add':
-				if(!is_privilegied('radio_admin'))
+				if(!is_privilegied('radio_sender'))
 				{
 					throw new Exception('Du har inte privilegier att lägga till radio DJs');
 				}
@@ -110,7 +110,7 @@
 			break;
 			
 			case program_remove:
-				if(!is_privilegied('radio_admin'))
+				if(!is_privilegied('radio_sender'))
 				{
 					throw new Exception('Du har inte privilegier att lägga till radio DJs');
 				}
