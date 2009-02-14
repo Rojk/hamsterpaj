@@ -270,7 +270,7 @@
 				
 				$options['broadcasting'] = false; // It shouldn't be broadcasting right now
 				$options['limit'] = 1; // We only want the coming one
-				$options['order-direcion']= 'DESC'; // We want the coming one
+				$options['order-direction']= 'ASC'; // We want the coming one
 				$radio_next_program = radio_schedule_fetch($options);
 				if (isset($radio_next_program[0])) // If there are any next program
 				{
@@ -288,6 +288,7 @@
 					$out .= '<div id="radio_next_program_inactive">' . "\n"; // Displays a "Inget inplanerat" box
 					$out .= '</div>' . "\n";
 				}
+				$out .= '<br style="clear: both;" />' . "\n";
 				
 				if ($radioinfo['status'] == 1) // If the server is broadcasting we will show a list of players to listen in
 				{
