@@ -7,6 +7,7 @@
 		require(PATHS_LIBRARIES . 'articles.lib.php');
 		$ui_options['stylesheets'][] = 'radio.css';
 		$ui_options['javascripts'][] = 'radio.js';
+		$ui_options['stylesheets'][] = 'forms.css'; // includes stylesheet for form
 		
 		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 		
@@ -85,8 +86,6 @@
 				}
 				if(is_privilegied('radio_admin')) // Only administrators for the whole radio can edit/add DJs
 				{
-					$ui_options['stylesheets'][] = 'forms.css'; // Includes stylesheet for form.
-					
 					$out .= '<div id="form_notice"></div>' . "\n";
 					$out .= '<fieldset>' . "\n";
 					$out .= '<legend>Lägg till DJ</legend>' . "\n";
@@ -133,7 +132,6 @@
 				if(is_privilegied('radio_sender')) // Only senders can add/edit programs
 				{
 					$radio_djs = radio_djs_fetch(); // Fetches DJ's to the Select list in the form
-					$ui_options['stylesheets'][] = 'forms.css'; // Inkluderar stilmall för formuläret
 					
 					$out .= '<br style="clear: both;" /><div id="form_notice"></div>' . "\n";
 					$out .= '<fieldset>' . "\n";
@@ -201,8 +199,6 @@
 				}
 				if(is_privilegied('radio_sender'))
 				{
-					$ui_options['stylesheets'][] = 'forms.css'; // includes stylesheet for form
-					
 					$options['order-by']= 'name';
 					$options['order-direction']= 'DESC';
 					$radio_programs = radio_programs_fetch($options); // For Select list
@@ -259,24 +255,26 @@
 						$out .= '</div>' . "\n";
 					$out .= '</div>' . "\n";
 				}
-				else
+				elseif (isset($radio_sending[0])) // If it is a program scheduled but no program is up
 				{
-					if ($radioinfo['status'] == 1) // If the server is up but no program scheduled
-					{
+					$out .= '<div id="radio_sending_inactive">' . "\n"; // Displays "Ingen sändning
+					$out .= '</div>' . "\n";
+					$radio_server_problems = true;
+				}
+				elseif ($radioinfo['status'] == 1) // If the server is up but no program scheduled
+				{
 						$out .= '<div id="radio_sending_slinga">' . "\n"; // Displays "Slingan rullar"
 						$out .= '</div>' . "\n";
-					}
-					else
-					{
-						$out .= '<div id="radio_sending_inactive">' . "\n"; // Displays "Ingen sändning
-						$out .= '</div>' . "\n";
-					}
+				}
+				else
+				{
+					$out .= '<div id="radio_sending_inactive">' . "\n"; // Displays "Ingen sändning
+					$out .= '</div>' . "\n";
 				}
 				
 				$options['broadcasting'] = false; // It shouldn't be broadcasting right now
 				$options['limit'] = 1; // We only want the coming one
 				$options['order-direction']= 'ASC'; // We want the coming one
-				$options['show_sent'] = false;
 				$radio_next_program = radio_schedule_fetch($options);
 				if (isset($radio_next_program[0])) // If there are any next program
 				{
@@ -295,6 +293,11 @@
 					$out .= '</div>' . "\n";
 				}
 				$out .= '<br style="clear: both;" />' . "\n";
+				
+				if($radio_server_problems === true)
+				{
+					$out .= '<div class="form_notice_error">Något verkar vara fel med servern, vi jobbar på felet och skyller det på Heggan.</div>' . "\n";
+				}
 				
 				if ($radioinfo['status'] == 1) // If the server is broadcasting we will show a list of players to listen in
 				{
