@@ -32,17 +32,17 @@
 		$options['offset'] = (isset($options['offset']) && is_numeric($options['offset'])) ? $options['offset'] : 0;
 		$options['limit'] = (isset($options['limit']) && is_numeric($options['limit'])) ? $options['limit'] : 9999;
 		
-		$query = 'SELECT rs.*, l.username, rp.*';
+		$query = 'SELECT rs.*, l.username, rp.*, rs.id AS id';
 		$query .= ' FROM radio_schedule AS rs, login AS l, radio_programs AS rp';
 		$query .= ' WHERE l.id = rp.user_id';
 		$query .= ' AND rp.id = rs.program_id';
 		$query .= (isset($options['id'])) ? ' AND rs.id IN("' . implode('", "', $options['id']) . '")' : '';
 		$query .= (isset($options['user'])) ? ' AND rp.user_id  = "' . $options['user'] . '"' : '';
-		$query .= ($options['broadcasting']) ? ' AND NOW() BETWEEN rs.starttime AND rs.endtime' : ' AND NOW() NOT BETWEEN rs.starttime AND rs.endtime';
-		$query .= (!$options['show_sent'] && !$options['broadcasting']) ? ' AND NOW() < rs.starttime ' : ''; // Show programs that already been sent?
+		$query .= ($options['broadcasting']) ? ' AND NOW() BETWEEN rs.starttime AND rs.endtime' : '';
+		$query .= ($options['show_from_today'] && !$options['broadcasting']) ? ' AND "' . date('Y-m-d 00:00') . '" <= rs.starttime ' : ''; // Show programs from today
+		$query .= (!$options['show_sent'] && !$options['broadcasting'] && !$options['show_from_today']) ? ' AND NOW() < rs.starttime ' : ''; // Show programs that already been sent?
 		$query .= ' ORDER BY ' . $options['order-by'] . ' ' . $options['order-direction'] . ' LIMIT ' . $options['offset'] . ', ' . $options['limit'];
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-		
 		if($options['sort-by-day'] === true && isset($options['sort-by-day']))
 		{
 			$schedule = array();
@@ -76,6 +76,16 @@
 			throw new Exception('Id is not numerical');
 		}
 		$query = 'INSERT INTO radio_schedule (program_id, starttime, endtime) VALUES("' . implode('", "', array($options['program_id'], $options['starttime'], $options['endtime'])) . '")';
+		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+	}
+	
+	function radio_schedule_remove($options)
+	{	
+		if(!is_numeric($options['id']))
+		{
+			throw new Exception('Id is not numerical');
+		}
+		$query = 'DELETE FROM radio_schedule WHERE id = ' . $options['id'] . ' LIMIT 1';
 		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 	}
 	
@@ -201,5 +211,37 @@
 	function radio_sending_fetch()
 	{
 		return true;
+	}
+	
+	function radio_chat_url_render()
+	{
+		$url = 'http://ved.hamsterpaj.net/chatt/index.php?';
+		if(login_checklogin())
+		{
+			$url .= 'nick=';
+			/* Please comment this if you understand the following lines */
+			/* Ask Joel, he can explain it. /Joel */
+			if (!preg_match("/^[A-Za-z]$/i",substr($_SESSION['login']['username'],0,1)))
+			{
+				$url.= substr($_SESSION['login']['username'],1,strlen($_SESSION['login']['username']));
+			}
+			else
+			{
+				$url .= $_SESSION['login']['username'];
+			}
+			$url .= '&amp;realname=';
+			$ageArray = date_get_age($_SESSION['userinfo']['birthday']); 
+			$url .= urlencode($ageArray . ';');
+			$url .= urlencode($_SESSION['userinfo']['gender'] . ';');
+			$url .= urlencode($_SESSION['userinfo']['location'] . ';');
+			$url .= urlencode($_SESSION['login']['id'] . ';');
+			$url .= urlencode($_SESSION['userinfo']['image'] . ';');
+		}
+		else
+		{
+			$url .= 'guest';
+		}
+		$url .= '&amp;chan=hamsterradio' . ',\'' . rand() . '\'';
+		return $url;
 	}
 ?>

@@ -51,7 +51,7 @@
 			<a id="radio_menu_04' . ($uri_parts[2] == 'schema' ? '_active"' : '') . '" href="/radio/schema">Schema</a>
 		</li>
 		<li>
-			<a id="radio_menu_05" href="/chat/">IRC-kanal</a>
+			<a id="radio_menu_05" href="' . radio_chat_url_render() . '">IRC-kanal</a>
 		</li>
 		<li>
 			<a id="radio_menu_06" href="/diskussionsforum/hamsterradio/">Radioforum</a>
@@ -170,7 +170,7 @@
 			break;
 			
 			case 'schema':	
-				$options['show_sent'] = false; 
+				$options['show_from_today'] = true; 
 				$options['limit'] = 30; 
 				$options['order-direction']= 'ASC'; // We want them in order by which is coming first
 				$options['sort-by-day'] = true;
@@ -178,21 +178,26 @@
 				
 				foreach($radio_events as $radio_day => $radio_day_events)
 				{
+					$radio_day_fix_margin++;
+					$out .= '<div class="radio_schedule_day';
+					$out .= ' radio_schedule_' . strtolower(date('D', strtotime($radio_day))) . '' . "\n";
+					$out .= (is_integer($radio_day_fix_margin / 3) ? ' radio_schedule_day_marginfix' : '') . "\n";
+					$out .= '">' . "\n";
 					$out .= '<h2>' . date('j/n', strtotime($radio_day)) . '</h2>' . "\n";
-					$out .= '<table style="width: 186px;">' . "\n";
+					$out .= '<table>' . "\n";
 					foreach($radio_day_events as $radio_event)
 					{
-						$out .= '<tr>' . "\n";
-						$out .= '<td>' . $radio_event['name'] . '</td>' . "\n";
+						$out .= '<tr id="' . $radio_event['id'] . '">' . "\n";
+						$out .= '<td class="radio_schedule_program_name">' . $radio_event['name'] . '</td>' . "\n";
 						$out .= '<td>' . date('H:i', strtotime($radio_event['starttime'])) . '</td>' . "\n"; // Snygga till datumet så det står: Imorgon 22:00 Eller ngt sådant snyggt
 						if(is_privilegied('radio_sender'))
 						{
-							$out .= '<td><a href="#" title="Ta bort sändning">(x)</a></td>' . "\n"; // Ajax
+							$out .= '<td><a href="#" class="schedule_remove" title="Ta bort sändning">(x)</a></td>' . "\n"; // Ajax
 						}
 						$out .= '</tr>' . "\n";
-						
 					}
 					$out .= '</table>' . "\n";
+					$out .= '</div>' . "\n";
 				}
 				if(is_privilegied('radio_sender'))
 				{
@@ -270,7 +275,8 @@
 				
 				$options['broadcasting'] = false; // It shouldn't be broadcasting right now
 				$options['limit'] = 1; // We only want the coming one
-				$options['order-direcion']= 'DESC'; // We want the coming one
+				$options['order-direction']= 'ASC'; // We want the coming one
+				$options['show_sent'] = false;
 				$radio_next_program = radio_schedule_fetch($options);
 				if (isset($radio_next_program[0])) // If there are any next program
 				{
@@ -288,6 +294,7 @@
 					$out .= '<div id="radio_next_program_inactive">' . "\n"; // Displays a "Inget inplanerat" box
 					$out .= '</div>' . "\n";
 				}
+				$out .= '<br style="clear: both;" />' . "\n";
 				
 				if ($radioinfo['status'] == 1) // If the server is broadcasting we will show a list of players to listen in
 				{

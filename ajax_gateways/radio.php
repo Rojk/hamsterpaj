@@ -48,7 +48,7 @@
 				echo '</div>';
 			break;
 			
-			case dj_remove:
+			case 'dj_remove':
 				if(!is_privilegied('radio_admin'))
 				{
 					throw new Exception('Du har inte privilegier att lägga till radio DJs');
@@ -71,7 +71,7 @@
 			break;
 			
 			case 'program_add':
-				if(!is_privilegied('radio_admin'))
+				if(!is_privilegied('radio_sender'))
 				{
 					throw new Exception('Du har inte privilegier att lägga till radio DJs');
 				}
@@ -110,7 +110,7 @@
 			break;
 			
 			case program_remove:
-				if(!is_privilegied('radio_admin'))
+				if(!is_privilegied('radio_sender'))
 				{
 					throw new Exception('Du har inte privilegier att lägga till radio DJs');
 				}
@@ -154,6 +154,27 @@
 				
 				echo '<div class="form_notice_success">';
 				echo 'Programmet inplanerat';
+				echo '</div>';
+			break;
+			
+			case schedule_remove:
+				if(!is_privilegied('radio_sender'))
+				{
+					throw new Exception('Du har inte privilegier att ta bort sändningar');
+				}
+				if(!isset($_GET['id']))
+				{
+					throw new Exception('Inget ID kom med');
+				}
+				if(!is_numeric($_GET['id']))
+				{
+					throw new Exception('ID\'t är inte numeriskt');
+				}
+				$options['id'] = $_GET['id'];
+				radio_schedule_remove($options);
+				
+				echo '<div class="form_notice_success">';
+				echo 'Schemaläggningen borttagen';
 				echo '</div>';
 			break;
 			

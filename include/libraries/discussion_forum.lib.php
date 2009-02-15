@@ -127,13 +127,14 @@
 		$post['child_count'] = ($post['mode'] == 'new_thread') ? 1 : 0;
 		$post['anonymous'] = ($post['anonymous'] == 1) ? 1 : 0;
 
+		$post['fp_module_id'] = (isset($post['fp_module_id'])) ? $post['fp_module_id'] : 0;
 		
 		$query = 'INSERT INTO forum_posts (handle, author, timestamp, parent_post, forum_id, forum_type';
-		$query .= ', title, content, child_count, anonymous)';
+		$query .= ', title, content, child_count, anonymous, fp_module_id)';
 		$query .= ' VALUES("' . $post['handle'] . '", "' . $post['author'] . '", "' . $post['timestamp'] . '"';
 		$query .= ', "' . $post['parent_post'] . '", "' . $post['forum_id'] . '", "' . $post['forum_type'] . '"';
 		$query .= ', "' . $post['title'] . '", "' . $post['content'] . '", "' . $post['child_count'] . '"';
-		$query .= ', "' . $post['anonymous'] . '")';
+		$query .= ', "' . $post['anonymous'] . '", "' . $post['fp_module_id'] . '")';
 		
 		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		
