@@ -183,13 +183,6 @@
 			}
 			$handle = url_secure_string($poll['question']) . '_' . $i;
 		}
-		if ( !is_privilegied('frontpage_poll_admin') && $poll['type'] == 'daily' )
-		{
-			header('Location: /login/logout.php');
-			exit;
-			exit;
-			exit; // !!!
-		}
 		$query = 'INSERT INTO poll (handle, question, description, author, type, force_logon, timestamp, alt_1, alt_2, alt_3, alt_4, alt_5, alt_6, alt_7)';
 		$query .= ' VALUES("' . $handle . '", "' . $poll['question'] . '", "' . $poll['description'] . '", "' . (($poll['type'] == 'daily') ? 2348 : $_SESSION['login']['id']) . '", "' . $poll['type'] . '", "' . $poll['force_logon'] . '", "' . time() . '"';
 
