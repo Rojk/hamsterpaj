@@ -191,7 +191,7 @@
 			exit; // !!!
 		}
 		$query = 'INSERT INTO poll (handle, question, description, author, type, force_logon, timestamp, alt_1, alt_2, alt_3, alt_4, alt_5, alt_6, alt_7)';
-		$query .= ' VALUES("' . $handle . '", "' . $poll['question'] . '", "' . $poll['description'] . '", "' . $_SESSION['login']['id'] . '", "' . $poll['type'] . '", "' . $poll['force_logon'] . '", "' . time() . '"';
+		$query .= ' VALUES("' . $handle . '", "' . $poll['question'] . '", "' . $poll['description'] . '", "' . (($poll['type'] == 'daily') ? 2348 : $_SESSION['login']['id']) . '", "' . $poll['type'] . '", "' . $poll['force_logon'] . '", "' . time() . '"';
 
 		for($i = 1; $i <= 7; $i++)
 		{
