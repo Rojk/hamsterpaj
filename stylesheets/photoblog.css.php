@@ -531,3 +531,27 @@
 	font-weight: bold;
 	color: <?php echo $detail_color; ?>;
 }
+
+#photoblog_sort ul {
+	clear: both;
+	background: <?php echo $main_color; ?>;
+	padding: 10px;
+}
+
+	#photoblog_sort li {
+		float: left;
+		padding: 5px;
+		list-style: none;
+	}
+
+	#photoblog_sort img {
+		/*margin: 5px;*/
+	}
+	
+	#photoblog_sort ul:after {
+		clear: both;
+		display: block;
+		content: ".";
+		visibility: hidden;
+		height: 0;
+	}
