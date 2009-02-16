@@ -11,7 +11,7 @@ if(file_exists('/tmp/minute_jobs.lockfile'))
 	exit;
 }
 $lockfile = fopen('/tmp/minute_jobs.lockfile', 'w');
-fwrite($locfile, 'locked');
+fwrite($lockfile, 'locked');
 fclose($lockfile);
 set_time_limit(0); //Set the time limit to infinity
 

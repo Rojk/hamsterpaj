@@ -7,6 +7,7 @@
 		require(PATHS_LIBRARIES . 'articles.lib.php');
 		$ui_options['stylesheets'][] = 'radio.css';
 		$ui_options['javascripts'][] = 'radio.js';
+		$ui_options['stylesheets'][] = 'forms.css'; // includes stylesheet for form
 		
 		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 		
@@ -51,7 +52,7 @@
 			<a id="radio_menu_04' . ($uri_parts[2] == 'schema' ? '_active"' : '') . '" href="/radio/schema">Schema</a>
 		</li>
 		<li>
-			<a id="radio_menu_05" href="/chat/">IRC-kanal</a>
+			<a id="radio_menu_05" href="' . radio_chat_url_render() . '">IRC-kanal</a>
 		</li>
 		<li>
 			<a id="radio_menu_06" href="/diskussionsforum/hamsterradio/">Radioforum</a>
@@ -63,38 +64,7 @@
 		' . "\n";
 		
 		switch ($uri_parts[2])
-		{
-			case 'post_settings':
-				if (is_privilegied('radio_dj'))
-				{
-					switch ($uri_parts[3])
-					{	
-						case 'schedule_add':
-							
-							if(!isset($_POST['program'], $_POST['starttime'], $_POST['endtime']))
-							{
-								throw new Exception('Getmjölk i soppan?');
-							}
-							
-							if(strlen($_POST['starttime']) < 0 || !is_numeric($_POST['program']) || strlen($_POST['endtime']) < 0)
-							{
-								throw new Exception('Något fält var ju INTE korrekt ifyllt säger jag ju då.');
-							}
-							
-							radio_schedule_add(array(
-								'program_id' => $_POST['program'],
-								'starttime' => $_POST['starttime'],
-								'endtime' => $_POST['endtime']
-							));
-						break;
-					}
-				}
-				else
-				{
-					throw new Exception('Haxx0r!');
-				}
-			break;
-			
+		{	
 			case 'crew':
 				$options['order-by'] = 'username';
 				$options['order-direction']= 'ASC';
@@ -116,8 +86,6 @@
 				}
 				if(is_privilegied('radio_admin')) // Only administrators for the whole radio can edit/add DJs
 				{
-					$ui_options['stylesheets'][] = 'forms.css'; // Includes stylesheet for form.
-					
 					$out .= '<div id="form_notice"></div>' . "\n";
 					$out .= '<fieldset>' . "\n";
 					$out .= '<legend>Lägg till DJ</legend>' . "\n";
@@ -164,7 +132,6 @@
 				if(is_privilegied('radio_sender')) // Only senders can add/edit programs
 				{
 					$radio_djs = radio_djs_fetch(); // Fetches DJ's to the Select list in the form
-					$ui_options['stylesheets'][] = 'forms.css'; // Inkluderar stilmall för formuläret
 					
 					$out .= '<br style="clear: both;" /><div id="form_notice"></div>' . "\n";
 					$out .= '<fieldset>' . "\n";
@@ -201,41 +168,49 @@
 			break;
 			
 			case 'schema':	
-				$options['show_sent'] = false; 
+				$options['show_from_today'] = true; 
 				$options['limit'] = 30; 
-				$options['order-direction']= 'DESC'; // We want them in order by which is coming first
+				$options['order-direction']= 'ASC'; // We want them in order by which is coming first
+				$options['sort-by-day'] = true;
 				$radio_events = radio_schedule_fetch($options);
-				$out .= '<table style="width: 638px;">' . "\n";
-				foreach($radio_events as $radio_event)
+				
+				foreach($radio_events as $radio_day => $radio_day_events)
 				{
-					$out .= '<tr>' . "\n";
-					$out .= '<td>' . $radio_event['name'] . '</td>' . "\n";
-					$out .= '<td>' . $radio_event['username'] . '</td>' . "\n";
-					$out .= '<td>' . $radio_event['starttime'] . '</td>' . "\n"; // Snygga till datumet så det står: Imorgon 22:00 Eller ngt sådant snyggt
-					if(is_privilegied('radio_sender'))
+					$radio_day_fix_margin++;
+					$out .= '<div class="radio_schedule_day';
+					$out .= ' radio_schedule_' . strtolower(date('D', strtotime($radio_day))) . '' . "\n";
+					$out .= (is_integer($radio_day_fix_margin / 3) ? ' radio_schedule_day_marginfix' : '') . "\n";
+					$out .= '">' . "\n";
+					$out .= '<h2>' . date('j/n', strtotime($radio_day)) . '</h2>' . "\n";
+					$out .= '<table>' . "\n";
+					foreach($radio_day_events as $radio_event)
 					{
-						$out .= '<td><a href="#" title="Ändra sändning">Ändra</a></td>' . "\n"; // När man klickar edit ska formuläret för att lägga till sändning användas för att ändra sändningen.
-						$out .= '<td><a href="#" title="Ta bort sändning">Ta bort</a></td>' . "\n"; // Ajax
+						$out .= '<tr id="' . $radio_event['id'] . '">' . "\n";
+						$out .= '<td class="radio_schedule_program_name">' . $radio_event['name'] . '</td>' . "\n";
+						$out .= '<td>' . date('H:i', strtotime($radio_event['starttime'])) . '</td>' . "\n"; // Snygga till datumet så det står: Imorgon 22:00 Eller ngt sådant snyggt
+						if(is_privilegied('radio_sender'))
+						{
+							$out .= '<td><a href="#" class="schedule_remove" title="Ta bort sändning">(x)</a></td>' . "\n"; // Ajax
+						}
+						$out .= '</tr>' . "\n";
 					}
-					$out .= '</tr>' . "\n";
+					$out .= '</table>' . "\n";
+					$out .= '</div>' . "\n";
 				}
-				$out .= '</table>' . "\n";
 				if(is_privilegied('radio_sender'))
 				{
-					$ui_options['stylesheets'][] = 'forms.css'; // includes stylesheet for form
-					
 					$options['order-by']= 'name';
 					$options['order-direction']= 'DESC';
 					$radio_programs = radio_programs_fetch($options); // For Select list
 					unset($options);
-					
+					$out .= '<br style="clear: both;" /><div id="form_notice"></div>' . "\n";
 					$out .= '<fieldset>' . "\n";
 					$out .= '<legend>Lägg till sändning</legend>' . "\n";
-					$out .= '<form action="/radio/post_settings/schedule_add" method="post">';
+					$out .= '<form action="/ajax_gateways/radio.php?action=schedule_add" method="post">';
 					$out .= '<table class="form">' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="program">Program <strong>*</strong></label></th>' . "\n";
-						$out .= '<td><select name="program">' . "\n";
+						$out .= '<td><select name="program" id="radio_schedule_add_program">' . "\n";
 							foreach($radio_programs as $radio_program)
 							{
 								$out .= '<option value="' . $radio_program['id'] . '">' . $radio_program['name'] . '</option>' ."\n";
@@ -245,18 +220,17 @@
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="starttime">Starttid <strong>*</strong></label></th>' . "\n"; // Jquery calendar?
-						$out .= '<td><input type="text" name="starttime" value="' . date( 'Y-m-d') . ' 00:00:00" /></td>' . "\n";
+						$out .= '<td><input type="text" name="starttime" id="radio_schedule_add_starttime" value="' . date( 'Y-m-d') . ' 00:00:00" /></td>' . "\n";
 					$out .= '</tr>' . "\n";
 					$out .= '<tr>' . "\n";
 						$out .= '<th><label for="endtime">Sluttid <strong>*</strong></label></th>' . "\n"; // jquery calendar?
-						$out .= '<td><input type="text" name="endtime" value="' . date( 'Y-m-d') . ' 00:00:00" /></td>' . "\n";
+						$out .= '<td><input type="text" name="endtime" id="radio_schedule_add_endtime" value="' . date( 'Y-m-d') . ' 00:00:00" /></td>' . "\n";
 					$out .= '</tr>' . "\n";				
 					$out .= '</table>' . "\n";
-					$out .= '<input type="submit" id="submit" value="Spara" />' . "\n"; // Ajax
+					$out .= '<input type="submit" id="radio_schedule_add_submit" value="Spara" />' . "\n";
 					$out .= '</form>';
 					$out .= '</fieldset>' . "\n";
 				}
-				
 			break;
 			
 			case 'om_radion':		
@@ -281,23 +255,26 @@
 						$out .= '</div>' . "\n";
 					$out .= '</div>' . "\n";
 				}
-				else
+				elseif (isset($radio_sending[0])) // If it is a program scheduled but no program is up
 				{
-					if ($radioinfo['status'] == 1) // If the server is up but no program scheduled
-					{
+					$out .= '<div id="radio_sending_inactive">' . "\n"; // Displays "Ingen sändning
+					$out .= '</div>' . "\n";
+					$radio_server_problems = true;
+				}
+				elseif ($radioinfo['status'] == 1) // If the server is up but no program scheduled
+				{
 						$out .= '<div id="radio_sending_slinga">' . "\n"; // Displays "Slingan rullar"
 						$out .= '</div>' . "\n";
-					}
-					else
-					{
-						$out .= '<div id="radio_sending_inactive">' . "\n"; // Displays "Ingen sändning
-						$out .= '</div>' . "\n";
-					}
+				}
+				else
+				{
+					$out .= '<div id="radio_sending_inactive">' . "\n"; // Displays "Ingen sändning
+					$out .= '</div>' . "\n";
 				}
 				
 				$options['broadcasting'] = false; // It shouldn't be broadcasting right now
 				$options['limit'] = 1; // We only want the coming one
-				$options['order-direcion']= 'DESC'; // We want the coming one
+				$options['order-direction']= 'ASC'; // We want the coming one
 				$radio_next_program = radio_schedule_fetch($options);
 				if (isset($radio_next_program[0])) // If there are any next program
 				{
@@ -314,6 +291,12 @@
 				{
 					$out .= '<div id="radio_next_program_inactive">' . "\n"; // Displays a "Inget inplanerat" box
 					$out .= '</div>' . "\n";
+				}
+				$out .= '<br style="clear: both;" />' . "\n";
+				
+				if($radio_server_problems === true)
+				{
+					$out .= '<div class="form_notice_error">Något verkar vara fel med servern, vi jobbar på felet och skyller det på Heggan.</div>' . "\n";
 				}
 				
 				if ($radioinfo['status'] == 1) // If the server is broadcasting we will show a list of players to listen in

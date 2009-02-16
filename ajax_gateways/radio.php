@@ -48,7 +48,7 @@
 				echo '</div>';
 			break;
 			
-			case dj_remove:
+			case 'dj_remove':
 				if(!is_privilegied('radio_admin'))
 				{
 					throw new Exception('Du har inte privilegier att lägga till radio DJs');
@@ -71,7 +71,7 @@
 			break;
 			
 			case 'program_add':
-				if(!is_privilegied('radio_admin'))
+				if(!is_privilegied('radio_sender'))
 				{
 					throw new Exception('Du har inte privilegier att lägga till radio DJs');
 				}
@@ -110,7 +110,7 @@
 			break;
 			
 			case program_remove:
-				if(!is_privilegied('radio_admin'))
+				if(!is_privilegied('radio_sender'))
 				{
 					throw new Exception('Du har inte privilegier att lägga till radio DJs');
 				}
@@ -123,6 +123,58 @@
 				
 				echo '<div class="form_notice_success">';
 				echo 'Programmet borttaget';
+				echo '</div>';
+			break;
+			
+			case 'schedule_add':
+				if(!is_privilegied('radio_sender'))
+				{
+					throw new Exception('Du har inte privilegier att ändra radioschemat');
+				}					
+				if(!isset($_POST['program']) || !is_numeric($_POST['program']))
+				{
+					throw new Exception('Du måste välja ett program');
+				}
+				if(!isset($_POST['starttime']) || strlen($_POST['endtime']) < 0)
+				{
+					throw new Exception('Du måste sätta en starttid');
+				}
+				if(!isset($_POST['endtime']) || strlen($_POST['starttime']) < 0)
+				{
+					throw new Exception('Du måste sätta en sluttid');
+				}
+				if($_POST['starttime'] >= $_POST['endtime'])
+				{
+					throw new Exception('Det är ju bra om programmet har börjat innan det slutar om man säger så...');
+				}
+				$options['program_id'] = $_POST['program'];
+				$options['starttime'] = $_POST['starttime'];
+				$options['endtime'] = $_POST['endtime'];
+				radio_schedule_add($options);
+				
+				echo '<div class="form_notice_success">';
+				echo 'Programmet inplanerat';
+				echo '</div>';
+			break;
+			
+			case schedule_remove:
+				if(!is_privilegied('radio_sender'))
+				{
+					throw new Exception('Du har inte privilegier att ta bort sändningar');
+				}
+				if(!isset($_GET['id']))
+				{
+					throw new Exception('Inget ID kom med');
+				}
+				if(!is_numeric($_GET['id']))
+				{
+					throw new Exception('ID\'t är inte numeriskt');
+				}
+				$options['id'] = $_GET['id'];
+				radio_schedule_remove($options);
+				
+				echo '<div class="form_notice_success">';
+				echo 'Schemaläggningen borttagen';
 				echo '</div>';
 			break;
 			

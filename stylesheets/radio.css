@@ -109,8 +109,8 @@
 		}
 		#radio_sending .radio_about span, #radio_sending .radio_about strong {
 			color: #adadad;
-			top: 35px;
-			left: 70px;
+			top: 40px;
+			left: 40px;
 			position: relative;
 		}
 		
@@ -154,8 +154,8 @@
 		}
 		#radio_next_program .radio_about span,#radio_next_program .radio_about strong {
 			color: #adadad;
-			top: 35px;
-			left: 70px;
+			top: 40px;
+			left: 40px;
 			position: relative;
 		}
 #radio_next_program_inactive {
@@ -277,3 +277,37 @@
 		.radio_crew .admin_tools a {
 			color: #fff;
 		}
+.radio_schedule_day {
+	width: 206px;
+	height: 269px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	float: left;
+}
+.radio_schedule_day_marginfix {
+	margin-right: 0px;
+}
+	.radio_schedule_day h2 {
+		position: relative;
+		left: 153px;
+		top: 7px;
+		color: #fff;
+		margin: 0;
+	}
+	.radio_schedule_day table {
+		padding: 25px;
+		width: 206px;
+		margin-top: 10px;
+	}
+		.radio_schedule_day table .radio_schedule_program_name {
+			width: 100px;
+		}
+	
+	
+	.radio_schedule_mon {background-image: url(http://images.hamsterpaj.net/radio/schedule_monday.png);}
+	.radio_schedule_tue {background-image: url(http://images.hamsterpaj.net/radio/schedule_tuesday.png);}
+	.radio_schedule_wed {background-image: url(http://images.hamsterpaj.net/radio/schedule_wednesday.png);}
+	.radio_schedule_thu {background-image: url(http://images.hamsterpaj.net/radio/schedule_thursday.png);}
+	.radio_schedule_fri {background-image: url(http://images.hamsterpaj.net/radio/schedule_friday.png);}
+	.radio_schedule_sat {background-image: url(http://images.hamsterpaj.net/radio/schedule_saturday.png);}
+	.radio_schedule_sun {background-image: url(http://images.hamsterpaj.net/radio/schedule_sunday.png);}

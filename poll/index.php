@@ -59,6 +59,8 @@
 				$schedule['data'] = serialize($request['poll']);
 				$schedule['release'] = strtotime($request['poll']['release']);
 				$schedule['type'] = 'poll';
+				$schedule['url'] = 'javascript:alert(\'Pollen har inte skapats ännu... Den skapas när den släpps :)\');';
+				$schedule['title'] = $request['poll']['question'];
 				schedule_event_add($schedule);
 
 				$output .= '<h1>Undersökningen på plats! Seså, gör en till, tjockis!</h1>' . "\n";

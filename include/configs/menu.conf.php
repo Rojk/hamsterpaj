@@ -82,7 +82,7 @@
 	
 	$menu['artiklar'] = array('label' => 'Artiklar', 'url' => '/artiklar/');
 	
-		$menu['artiklar']['children']['all'] = array('label' => 'Visa alla', 'url' => '/artiklar/?action=list');
+		$menu['artiklar']['children']['search'] = array('label' => 'Visa alla', 'url' => '/artiklar/?action=list');
 			$menu['artiklar']['children']['search']['children']['4'] = array('label' => 'Debatt', 'url' => '/artiklar/?action=list&category=4');
 			$menu['artiklar']['children']['search']['children']['6'] = array('label' => 'Guider', 'url' => '/artiklar/?action=list&category=6');
 			$menu['artiklar']['children']['search']['children']['1'] = array('label' => 'Hamsterpaj', 'url' => '/artiklar/?action=list&category=1');
@@ -101,6 +101,7 @@
 		$menu['piraja']['children']['allt'] = array('label' => 'Allt från Piraja', 'url' => '/piraja/');
 		$menu['piraja']['children']['finn_fem_fel'] = array('label' => 'Finn fem fel', 'url' => '/piraja/five_errors.php?fffid=hfred');
 		$menu['piraja']['children']['hyvlar'] = array('label' => 'Test av rakhyvlar', 'url' => '/piraja/hyvlar.php');
+		$menu['piraja']['children']['haarsprej'] = array('label' => 'Test av hårsprej', 'url' => '/piraja/haarsprej.php');		
 		$menu['piraja']['children']['prylar'] = array('label' => 'Prylar', 'url' => '/piraja/prylar.php');
 		
 

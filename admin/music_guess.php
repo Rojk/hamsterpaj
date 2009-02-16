@@ -25,11 +25,11 @@
 			
 			for($i = 0; $i < count($times); $i++)
 			{
-				passthru('mp3splt ' . escapeshellarg(MP3_PATH . stripslashes($_GET['filename'])) . ' -n -q -d ' . $hp_path . 'music_guess/mp3 -o ' . $file_id . '_' . $i . '.mp3 ' . $times[$i]);
+				passthru('mp3splt ' . escapeshellarg(MP3_PATH . stripslashes($_GET['filename'])) . ' -n -q -d /mnt/amuse/music_guess_mp3 -o ' . $file_id . '_' . $i . '.mp3 ' . $times[$i]);
 				
 				echo '<li style="margin-bottom: 20px;"><input type="radio" value="' . $i . '" name="file_version" /> ' . $times[$i] . "\n";
 				$swf_player = 'http://hamsterpaj.net/swfs/xspf_player_slim.swf';
-				$swf_song = '?song_url=/music_guess/mp3/' . $file_id . '_' . $i . '.mp3';
+				$swf_song = '?song_url=http://amuse.hamsterpaj.net/music_guess_mp3/' . $file_id . '_' . $i . '.mp3';
 				$swf_song_title = '&song_title=' . $_GET['filename'];
 				$swf_player_title = '&player_title=' . $_GET['filename'];
 				
@@ -108,7 +108,7 @@
 			if(strlen($_POST['song2']) > 0) { $data['alternate_spellings']['artist'] = $_POST['song2']; }
 			if(strlen($_POST['song3']) > 0) { $data['alternate_spellings']['artist'] = $_POST['song3']; }
 
-			copy($hp_path . 'music_guess/mp3/' . $_POST['file_id'] . '_' . $_POST['file_version'] . '.mp3', '/mnt/images/music_guess_mp3/' . $data['secret_id'] . '.mp3');
+			copy('/mnt/amuse/music_guess_mp3/' . $_POST['file_id'] . '_' . $_POST['file_version'] . '.mp3', '/mnt/images/music_guess_mp3/' . $data['secret_id'] . '.mp3');
 			
 			$schedule['type'] = 'music_guess';
 			$schedule['data'] = serialize($data);

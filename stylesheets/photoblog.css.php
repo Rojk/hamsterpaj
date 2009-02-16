@@ -18,9 +18,10 @@
 	#photoblog_upload_upload_flash_objectarea {
 		float: left;
 	}
-	#photoblog_upload_hq {
+	#photoblog_upload_wrapper span {
 		float: left;
-		margin-left: 20px;
+		margin-left: 10px;
+		margin-top: 3px;
 	}
 
 #photoblog_photo_properties_save
@@ -481,6 +482,9 @@
 			  text-align: center;
 			  height: 19px;
 			  padding: 2px;
+			}
+			#ui_module_photoblog_calendar td a {
+			  color: <?php echo $detail_color; ?>;
 			}
 			#photoblog_calendar_year {
 				color: <?php echo $detail_color; ?>;

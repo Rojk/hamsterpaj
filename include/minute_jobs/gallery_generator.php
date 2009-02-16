@@ -74,7 +74,5 @@
 	$file_content .= '</div>';
 	$file_content .= '<!-- Last updated at: ' . date('Y-m-d H:i:s') . ' -->';
 
-	$handle = fopen($hp_path . 'traffa/gallery_content.html', 'w');
-	fwrite($handle, $file_content);
-	fclose($handle);
+	cache_save('traffa_gallery', $file_content);
 ?>
