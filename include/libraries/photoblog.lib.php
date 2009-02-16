@@ -457,7 +457,6 @@
 		}
 	}
 
-
 	function photoblog_calendar($user_id, $month, $year)
 	{
 		$format_month = sprintf('%02s', $month);

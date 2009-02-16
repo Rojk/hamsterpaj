@@ -6,11 +6,16 @@
 		require(PATHS_LIBRARIES . 'photoblog_preferences.lib.php');
 		require(PATHS_LIBRARIES . 'profile.lib.php');
 		require(PATHS_LIBRARIES . 'userblock.lib.php');
-		//error_reporting(E_ALL);
+		$ui_options['stylesheets'][] = 'photoblog_' . $photoblog_user['color_main'] . '_' . $photoblog_user['color_detail'] . '_.css';
+		$ui_options['javascripts'][] = 'jquery-ui-slider.js';
+		$ui_options['javascripts'][] = 'jquery-ui-datepicker.js';	
+		$ui_options['javascripts'][] = 'photoblog.js';
+		$ui_options['ui_modules_hide'] = true;
+
 		// If this is true, it means that $uri_parts[2] isn't a valid username
-		if ( preg_match('#^/fotoblogg(\/|)$#', $_SERVER['REQUEST_URI']) )
+		if(preg_match('#^/fotoblogg(\/|)$#', $_SERVER['REQUEST_URI']))
 		{
-			if ( login_checklogin() )
+			if(login_checklogin() && preg_match('#^/fotoblogg(\/|)$#', $_SERVER['REQUEST_URI']))
 			{
 				header('Location: /fotoblogg/' . $_SESSION['login']['username']);
 			}
@@ -22,37 +27,27 @@
 		
 		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 		
-		if($uri_parts[2] == 'ordna' || $uri_parts[2] == 'instaellningar' || $uri_parts[2] == 'ladda_upp')
+		if(in_array($uri_parts[2], array('ordna','instaellningar','ladda_upp')))
 		{
-			$photoblog_user = photoblog_fetch_active_user_data(array(
-				'username' => $_SESSION['login']['username']
-			));
+			$options['username'] = $_SESSION['login']['username'];
+			$photoblog_user = photoblog_fetch_active_user_data($options);
 		}
 		else if(isset($uri_parts[2]) && preg_match('/^[a-zA-Z0-9-_]+$/', $uri_parts[2]))
 		{
-			$photoblog_user = photoblog_fetch_active_user_data(array(
-				'username' => $uri_parts[2]
-			));
+			$options['username'] =  $uri_parts[2];
+			$photoblog_user = photoblog_fetch_active_user_data($options);
 		}
 		else if(login_checklogin())
 		{
-			$photoblog_user = photoblog_fetch_active_user_data(array(
-				'username' => $_SESSION['login']['username']
-			));
+			$options['username'] = $_SESSION['login']['username'];
+			$photoblog_user = photoblog_fetch_active_user_data($options);
 		}
 		else
 		{
 			throw new Exception('Njet, ogiltigt användarnamn!');
 		}
 		
-		$ui_options['stylesheets'][] = 'photoblog_' . $photoblog_user['color_main'] . '_' . $photoblog_user['color_detail'] . '_.css';
-		$ui_options['javascripts'][] = 'jquery-ui-slider.js';
-		$ui_options['javascripts'][] = 'jquery-ui-datepicker.js';	
-		$ui_options['javascripts'][] = 'photoblog.js';
-		$ui_options['ui_modules_hide'] = true;
-		
 		$photos_by_year = photoblog_dates_fetch(array('user' => $photoblog_user['id']));
-		
 		$month_table = array(
 			'01' => 'Januari',
 			'02' => 'Februari',
@@ -69,32 +64,33 @@
 		);
 		
 		$out .= '<div id="photoblog_header">';
-			$out .= '<div id="photoblog_select">';
-				$select_year .= '<select id="photoblog_select_year">';
-				$select_months = array();
-				$highest_date = 0;		
-				foreach ($photos_by_year as $year => $photos_by_month)
-				{
-					$select_year .= '<option value="' . $year . '">' . $year . '</option>';
-
-					$select_this_month = '<select style="display: none;" id="photoblog_select_month_' . $year . '">';
-					foreach ( $photos_by_month as $month => $photos_by_day )
-					{
-						$highest_date = max((int)($year . $month), $highest_date);
-						$select_this_month .= '<option value="' . $month . '">' . $month_table[$month] . '</option>';
-					}
-					$select_this_month .= '</select>';
-					
-					$select_months[] = $select_this_month;
-				}
-				$select_year .= '</select>';
+		$out .= '<div id="photoblog_select">';
+		$select_year .= '<select id="photoblog_select_year">';
+		
+		$select_months = array();
+		$highest_date = 0;		
+		
+		foreach ($photos_by_year as $year => $photos_by_month)
+		{
+			$select_year .= '<option value="' . $year . '">' . $year . '</option>';
+			$select_this_month = '<select style="display: none;" id="photoblog_select_month_' . $year . '">';
+			foreach ( $photos_by_month as $month => $photos_by_day )
+			{
+				$highest_date = max((int)($year . $month), $highest_date);
+				$select_this_month .= '<option value="' . $month . '">' . $month_table[$month] . '</option>';
+			}
+			$select_this_month .= '</select>';				
+			
+			$select_months[] = $select_this_month;
+		}
+		$select_year .= '</select>';
 				
-				$out .= $select_year;
-				$out .= '<div style="display: inline;" id="photoblog_select_months">';
-					$out .= implode('', $select_months);
-				$out .= '</div>';
-			$out .= '<a href="#" id="photoblog_select_today"><img src="' . IMAGE_URL . 'famfamfam_icons/house.png" alt="Idag" title="Till dagens datum" /></a>' . "\n";
-			$out .= '</div>';
+		$out .= $select_year;
+		$out .= '<div style="display: inline;" id="photoblog_select_months">';
+			$out .= implode('', $select_months);
+		$out .= '</div>';
+		$out .= '<a href="#" id="photoblog_select_today"><img src="' . IMAGE_URL . 'famfamfam_icons/house.png" alt="Idag" title="Till dagens datum" /></a>' . "\n";
+		$out .= '</div>';
 			$out .= '<div id="photoblog_user_header">';
 				$out .= '<a href="/fotoblogg/">Min fotoblogg</a><a href="/fotoblogg/ladda_upp">Ladda upp</a><a href="/fotoblogg/ordna">Sortera mina foton</a><a href="/fotoblogg/instaellningar">Inställningar</a>' . "\n";
 			$out .= '</div>';
@@ -103,14 +99,7 @@
 		switch ($uri_parts[2])
 		{
 			case 'instaellningar':
-				if ( login_checklogin() )
-				{
-					require('instaellningar.php');
-				}
-				else
-				{
-					throw new Exception('Inga inställningar för dig!<br />Logga in så kanske det går bättre ;)');
-				}
+				require('instaellningar.php');
 			break;
 			
 			case 'ladda_upp':		
@@ -148,10 +137,10 @@
 	catch (Exception $error)
 	{
 		$options['type'] = 'error';
-    $options['title'] = 'Felmeddelande!';
-    $options['message'] = $error->getMessage();
-    $options['collapse_information'] = '<p>File: ' . $error->getFile() . '<br />Line: ' . $error->getLine() . '</p>';
-    $out = ui_server_message($options);
+	    $options['title'] = 'Felmeddelande!';
+	    $options['message'] = $error->getMessage();
+	    $options['collapse_information'] = '<p>File: ' . $error->getFile() . '<br />Line: ' . $error->getLine() . '</p>';
+	    $out = ui_server_message($options);
 	}
 	ui_top($ui_options);
 	echo $out;
