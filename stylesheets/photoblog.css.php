@@ -482,6 +482,9 @@
 			  height: 19px;
 			  padding: 2px;
 			}
+			#ui_module_photoblog_calendar td a {
+			  color: <?php echo $detail_color; ?>;
+			}
 			#photoblog_calendar_year {
 				color: <?php echo $detail_color; ?>;
 				padding: 10px 15px 0 15px;
