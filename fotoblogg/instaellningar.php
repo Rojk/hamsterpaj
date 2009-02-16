@@ -48,7 +48,8 @@
 			/* Copy-protection */
 			$out .= '<tr>' . "\n";
 				$out .= '<th>' . "\n";
-					$out .= '<label for="photoblog_copy_protection">Kopieringskydda mina bilder så gott det går</label>' . "\n";
+					$out .= '<label for="photoblog_copy_protection">Kopieringskydda mina bilder</label>' . "\n";
+					$out .= '<br /><span>(Fast det finns inget sätt att kopieringskydda bilder på webben, och vi tänker inte heller låta F11 tro det. Men vi har kvar kryssrutan och hoppas på någon slags "placebo-effekt".)</span>' . "\n";
 				$out .= '</th>' . "\n";
 				$out .= '<td>' . "\n";
 					$out .= '<input type="checkbox" name="photoblog_preferences_copy_protection" id="photoblog_preferences_copy_protectiony"';
@@ -56,6 +57,7 @@
 					$out .= ' value="1" />' . "\n";
 				$out .= '</td>' . "\n";
 			$out .= '</tr>' . "\n";
+			/* Detail color */
 			$out .= '<tr>' . "\n";
 				$out .= '<th>' . "\n";
 					$out .= '<label for="photoblog_preferences_color_detail">Detaljfärg</label>' . "\n";
@@ -65,6 +67,7 @@
 						$out .= '<input type="hidden" name="photoblog_preferences_color_detail" id="photoblog_preferences_color_detail" value="' . $my_photoblog_preferences['color_detail'] . '" />' . "\n";
 				$out .= '</td>' . "\n";
 			$out .= '</tr>' . "\n";
+			/* background color */
 			$out .= '<tr>' . "\n";
 				$out .= '<th>' . "\n";
 					$out .= '<label for="photoblog_preferences_color_main">Bakgrund på element</label>' . "\n";
