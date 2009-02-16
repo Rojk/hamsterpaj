@@ -22,7 +22,7 @@
 		
 		$uri_parts = explode('/', $_SERVER['REQUEST_URI']);
 		
-		if($uri_parts[2] == 'ordna' || $uri_parts[2] == 'instaellningar')
+		if($uri_parts[2] == 'ordna' || $uri_parts[2] == 'instaellningar' || $uri_parts[2] == 'ladda_upp')
 		{
 			$photoblog_user = photoblog_fetch_active_user_data(array(
 				'username' => $_SESSION['login']['username']
