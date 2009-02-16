@@ -18,9 +18,10 @@
 	#photoblog_upload_upload_flash_objectarea {
 		float: left;
 	}
-	#photoblog_upload_hq {
+	#photoblog_upload_wrapper span {
 		float: left;
-		margin-left: 20px;
+		margin-left: 10px;
+		margin-top: 3px;
 	}
 
 #photoblog_photo_properties_save

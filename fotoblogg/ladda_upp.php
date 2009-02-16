@@ -39,7 +39,7 @@
 		 		  so.addParam("flashVars", "PHPSESSID=" + document.cookie.split("PHPSESSID=")[1].split("&")[0] + "&upload_ticket=' . $upload_ticket . '");
 		 		  so.write("photoblog_upload_upload_flash_objectarea");
 				</script>' . "\n";
-				$out .= '<div id="photoblog_upload_hq"><input type="checkbox" name="hq" /> <label for="hq">Ladda upp bilden i HQ (Hög Qvalite). Långsamt...</div><div style="clear: both;"></div>' . "\n";
+				$out .= '<span>Fungerar inte flashklienten? Tyvärr finns inget annat för tillfället, men vi jobbar på det!</span><div style="clear: both;"></div>' . "\n";
 			$out .= '</div>' . "\n";
 				/*
 				########################################################
