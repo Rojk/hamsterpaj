@@ -542,10 +542,7 @@
 		float: left;
 		padding: 5px;
 		list-style: none;
-	}
-
-	#photoblog_sort img {
-		/*margin: 5px;*/
+		cursor: move;
 	}
 	
 	#photoblog_sort ul:after {
@@ -554,4 +551,14 @@
 		content: ".";
 		visibility: hidden;
 		height: 0;
+	}
+	
+	.sort-ghost {
+		opacity: .6;
+		filter: alpha(opacity=60);
+		cursor: move;
+	}
+	
+	.sort-active {
+		visibility: hidden;
 	}

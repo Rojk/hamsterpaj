@@ -10,7 +10,7 @@ hp.photoblog = {	upload:	{		flash_upload:		{			new_file: function(photo_id,
 		},
 		
 		make_sortable: function() {
-			this.list = $('#photoblog_sort > ul').sortable({
+			/*this.list = $('#photoblog_sort > ul').sortable({
 				items: 'li',
 				scroll: true,
 				zindex: 5,
@@ -20,7 +20,8 @@ hp.photoblog = {	upload:	{		flash_upload:		{			new_file: function(photo_id,
 				update: function() {
 					hp.photoblog.sort.save();
 				}
-			});
+			});*/
+			this.sorter = new Sorter('#photoblog_sort li', '#photoblog_sort > ul');
 		},
 		
 		save: function() {

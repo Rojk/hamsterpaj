@@ -1,4 +1,6 @@
 <?php
+    $ui_options['javascripts'][] = 'sorter.js';
+
     $out .= '<h1>Sortera dina foton</h1>';
     $out .= '<p>Dra och släpp bitches!</p>';
     
