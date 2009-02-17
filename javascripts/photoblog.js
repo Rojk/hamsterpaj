@@ -10,22 +10,25 @@ hp.photoblog = {	upload:	{		flash_upload:		{			new_file: function(photo_id,
 		},
 		
 		make_sortable: function() {
-			/*this.list = $('#photoblog_sort > ul').sortable({
-				items: 'li',
-				scroll: true,
-				zindex: 5,
-				connectWith: $('#photoblog_sort > ul'),
-				delay: 0,
-				distance: 0,
-				update: function() {
-					hp.photoblog.sort.save();
-				}
-			});*/
 			this.sorter = new Sorter('#photoblog_sort li', '#photoblog_sort > ul');
+		},
+		
+		serialize: function() {
+			var result = {};
+			$('#photoblog_sort > ul').each(function() {
+				// category_id
+				var id = $(this).attr('id').replace('album_', '');
+				result[id] = [];
+				$(this).children('li').each(function(i) {
+					result[id][i] = $(this).attr('id').replace('photo_', '');
+				});
+			});
+			return result;
 		},
 		
 		save: function() {
 			// serialize and send to server
+			$.post('/ajax_gateways/photoblog.json.php?action=sort_save', this.serialize());
 		}
 	},		format_date: function(date) {		var pieces = date.split('-');		return pieces[0] + pieces[1];	},		make_name: function(id) {		return 'http://images.hamsterpaj.net/photos/full/' + Math.floor(parseInt(id, 10) / 5000) + '/' + id + '.jpg';	},		make_thumbname: function(id) {		return 'http://images.hamsterpaj.net/photos/mini/' + Math.floor(parseInt(id, 10) / 5000) + '/' + id + '.jpg';	},		image_id: function(a) {		return parseInt($(a).attr('href').split('#')[1].replace('image-', ''), 10);	},		get_month: function(a) {		return parseInt($(a).attr('href').split('#')[1].replace('month-', ''), 10);	}};jQuery.fn.extend({	slide_slider: function(to) {		var slider = $(this).slider('moveTo', to);	},		container_width: function() {		//var width = 0;		//$(this).children().each(function() {		//	width += $(this).width();		//});	 	var thumbsContainer = $(this);		var lastChild = $('#photoblog_nextmonth');		var width = lastChild.position().left + lastChild.width() - thumbsContainer.width();		return width;	},		fadeInOnAnother: function(theOther, callback, a_parent) {		var t = $(this).css({position: 'relative', zIndex: 1});		var h = t.height();//Math.max(t.height(), theOther.height());		var parent = a_parent || t.parent();		parent.animate({'height': h + 2});		var p = theOther.position();		theOther.css({			position: 'absolute',			top: p.top,			left: p.left,			zIndex: 0		});		t.insertBefore(theOther);		theOther.fadeOut();		t.fadeIn(callback);	}});$(window).load(function() {	if ( $('#photoblog_image').length ) {		hp.photoblog.view.init();	}
 	

@@ -14,14 +14,14 @@
     
     foreach ( $photos as $photo )
     {
-        $albums[$photo['category']][] = '<li><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></li>';
+        $albums[$photo['category']][] = '<li id="photo_' . $photo['id'] . '"><img src="' . IMAGE_URL . 'photos/mini/' . floor($photo['id']/5000) . '/' . $photo['id'] . '.jpg" title="' . $photo['username'] . '" /></li>';
     }
     
     $out .= '<div id="photoblog_sort">';
     foreach ( $albums as $id => $album )
     {
         $out .= '<h2>' . $id . ' <input type="text" value="Ändra namn eller nåt" /></h2>';
-        $out .= '<ul>';
+        $out .= '<ul id="album_' . $id . '">';
         $out .= implode('', $album);
         $out .= '</ul>';
     }

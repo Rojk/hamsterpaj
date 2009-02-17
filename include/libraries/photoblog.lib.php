@@ -523,4 +523,26 @@
 		$out .= '</div>' . "\n";
 		return $out;
 	}
+	
+	function photoblog_sort_save($data)
+	{
+		$sort_arrays = array();
+		foreach ( $data as $category_id => $photo_id )
+		{
+			if ( ! is_numeric($category_id) || ! is_numeric($photo_id) )
+			{
+				throw new Exception('Erronous ID:s, aborting.');
+			}
+			
+			$sort_arrays[$category_id][] = $photo_id;
+		}
+		
+		foreach ( $sort_arrays as $id => $arr )
+		{
+			$query = 'UPDATE user_photo_categories';
+			$query .= ' SET sorted_photos = "' . serialize($arr) .  '"';
+			$query .= ' WHERE id = ' . $id;
+			$query .= ' LIMIT 1';
+		}
+	}
 ?>
