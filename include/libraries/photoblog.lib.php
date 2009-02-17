@@ -526,6 +526,7 @@
 	
 	function photoblog_sort_save($data)
 	{
+		print_r($data);
 		$sort_arrays = array();
 		foreach ( $data as $category_id => $photo_id )
 		{
@@ -539,10 +540,19 @@
 		
 		foreach ( $sort_arrays as $id => $arr )
 		{
+			if ( $id == 0 )
+			{
+				continue;
+			}
+			
+			echo 'doing id ', $id, "\n";
 			$query = 'UPDATE user_photo_categories';
-			$query .= ' SET sorted_photos = "' . serialize($arr) .  '"';
+			$query .= ' SET sorted_photos = "' . mysql_real_escape_string(serialize($arr)) .  '"';
 			$query .= ' WHERE id = ' . $id;
 			$query .= ' LIMIT 1';
+			echo $query, "\n";
+			echo print_r($arr, true), "\n";
+			echo mysql_affected_rows(), "\n\n";
 		}
 	}
 ?>
