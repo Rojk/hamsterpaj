@@ -130,6 +130,11 @@ function ui_top($options = array())
 	$output .= '</script>' . "\n";
 	$output .= '<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>' . "\n";
 	
+	if(isset($_SESSION['user_message']))
+	{
+		$output .= jscript_alert($_SESSION['user_message'], true) . "\n";
+		unset($_SESSION['user_message']);
+	}
 	
 	// A big notice-bar shown on top, 60px height.
 /*	
