@@ -1,10 +1,10 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_LIBRARIES . 'articles.lib.php');
-	require(PATHS_LIBRARIES . 'photos.lib.php');
-	require(PATHS_LIBRARIES . 'discussion_forum.lib.php');
-	require(PATHS_LIBRARIES . 'comments.lib.php');
-	require(PATHS_LIBRARIES . 'rank.lib.php');
+	require_once(PATHS_LIBRARIES . 'articles.lib.php');
+	require_once(PATHS_LIBRARIES . 'photos.lib.php');
+	require_once(PATHS_LIBRARIES . 'discussion_forum.lib.php');
+	require_once(PATHS_LIBRARIES . 'comments.lib.php');
+	require_once(PATHS_LIBRARIES . 'rank.lib.php');
 	
 
 	$ui_options['menu_path'] = array('artiklar', 'start');

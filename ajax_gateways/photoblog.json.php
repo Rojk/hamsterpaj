@@ -2,7 +2,7 @@
 	try
 	{
 		require('../include/core/common.php');
-		require(PATHS_LIBRARIES . 'photoblog.lib.php');
+		require_once(PATHS_LIBRARIES . 'photoblog.lib.php');
 		
 		if(isset($_GET['action']))
 		{
