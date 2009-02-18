@@ -147,6 +147,7 @@
 			$menu['admin']['children']['crew-folk']['children']['log_view'] = array('label' => 'Administrativ logg', 'url' => '/admin/log_view.php', 'is_privilegied' => 'ov_admin');
 			$menu['admin']['children']['crew-folk']['children']['mass_gb'] = array('label' => 'Mass-GB', 'url' => '/admin/mass_gb.php', 'is_privilegied' => 'igotgodmode');
 			$menu['admin']['children']['crew-folk']['children']['privilegies_admin'] = array('label' => 'Privilegier', 'url' => '/admin/privilegies_admin.php', 'is_privilegied' => 'privilegies_admin');
+			$menu['admin']['children']['crew-folk']['children']['user_message'] = array('label' => 'Skicka JS-meddelande (h4xx)', 'url' => '/admin/user_message.php', 'is_privilegied' => 'user_message');
 	
 	$site_admin_privilegies = array('fp_module_rearrange', 'schedule_admin', 'use_statistic_tools', 'register_suspend_admin', 'entertain_add', 'backgrounds_admin', 'music_guess_admin', 'open_search');
 	$menu['site_admin'] = array('label' => 'SA', 'url' => 'javascript:void(0)', 'is_privilegied' => $site_admin_privilegies);
