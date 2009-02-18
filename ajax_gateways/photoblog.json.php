@@ -83,6 +83,10 @@
 			    
 			    echo photoblog_calendar($_GET['user_id'], $_GET['month'], $_GET['year']);
 			break;
+                    
+                        case 'sort_save':
+                            photoblog_sort_save($_POST);
+                        break;
 			
 			default:
 				throw new Exception('Action not found');

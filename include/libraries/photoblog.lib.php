@@ -479,9 +479,15 @@
 		$next_year = ($next_month == 1) ? $year + 1 : $year;
 		$next_has = $used_dates != $dates_last;
 		
+		$prev_year_has = isset($dates[$year - 1]);
+		$next_year_has = isset($dates[$year + 1]);
+		
+		$prev_year_month = $prev_year_has ? end(array_keys($dates[$year - 1])) : false;
+		$next_year_month = $next_year_has ? reset(array_keys($dates[$year + 1])) : false;
+		
 		$offset = date('N', $date);
 		$rows = 1;
-		$out .= '<div id="photoblog_calendar_month">' . "\n";
+		$out .= '<div id="photoblog_calendar_month" class="date-' . $year . $format_month . '">' . "\n";
 			$out.= $prev_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&laquo;</a>', $prev_year, $prev_month) . "\n" : '';
 				$out .= '<span>' . date('F', $date) . ', ' . $year . '</span>' . "\n";
 			$out.= $next_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&raquo;</a>', $next_year, $next_month) . "\n" : '';
@@ -512,8 +518,41 @@
 		$out .= '</tr>' . "\n";
 		$out .= '</table>' . "\n";
 		$out .= '<div id="photoblog_calendar_year">' . "\n";
-		$out .= '<span class="photoblog_calendar_year_pre">' . ((int)$year - 1) . '</span><span class="photoblog_calendar_year_after">' . ((int)$year + 1) . '</span>' . "\n";
+		$out .= '<span class="photoblog_calendar_year_pre">' . (($prev_year_has) ? sprintf('<a href="#month-%s%s">%s</a>', ($year - 1), $prev_year_month, ($year - 1)) : '') . '</span>';
+		$out .= '<span class="photoblog_calendar_year_after">' . (($next_year_has) ? sprintf('<a href="#month-%s%s">%s</a>', ($year + 1), $next_year_month, ($year + 1)) : '')  . '</span>' . "\n";
 		$out .= '</div>' . "\n";
 		return $out;
+	}
+	
+	function photoblog_sort_save($data)
+	{
+		print_r($data);
+		$sort_arrays = array();
+		foreach ( $data as $category_id => $photo_id )
+		{
+			if ( ! is_numeric($category_id) || ! is_numeric($photo_id) )
+			{
+				throw new Exception('Erronous ID:s, aborting.');
+			}
+			
+			$sort_arrays[$category_id][] = $photo_id;
+		}
+		
+		foreach ( $sort_arrays as $id => $arr )
+		{
+			if ( $id == 0 )
+			{
+				continue;
+			}
+			
+			echo 'doing id ', $id, "\n";
+			$query = 'UPDATE user_photo_categories';
+			$query .= ' SET sorted_photos = "' . mysql_real_escape_string(serialize($arr)) .  '"';
+			$query .= ' WHERE id = ' . $id;
+			$query .= ' LIMIT 1';
+			echo $query, "\n";
+			echo print_r($arr, true), "\n";
+			echo mysql_affected_rows(), "\n\n";
+		}
 	}
 ?>
