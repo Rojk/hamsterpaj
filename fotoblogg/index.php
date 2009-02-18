@@ -47,6 +47,9 @@
 			throw new Exception('Njet, ogiltigt användarnamn!');
 		}
 		
+		// This line has to be after photoblog_fetch_active_user_data since it use parameters for colors
+		$ui_options['stylesheets'][] = 'photoblog_' . $photoblog_user['color_main'] . '_' . $photoblog_user['color_detail'] . '_.css';
+		
 		$photos_by_year = photoblog_dates_fetch(array('user' => $photoblog_user['id']));
 		$month_table = array(
 			'01' => 'Januari',
