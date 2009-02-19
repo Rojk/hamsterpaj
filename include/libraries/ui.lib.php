@@ -775,7 +775,7 @@ function ui_module_render($options)
 		return $content;
 	}
 	
-	function ui_avatar($user_id, $options)
+	function ui_avatar($user_id, $options = array())
 	{
 		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$chars_strlen = strlen($chars);
