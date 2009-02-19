@@ -4,13 +4,15 @@
 	Because jQuery UI sortable is slow.
 */
 
-var Sorter = function(elements, parents) {
+var Sorter = function(elements, parents, options) {
 	var self = this;
 	
 	this.setElements(elements);
 	this.createGraveyard();
 	this.parents = $(parents);
 	
+        this.ignore = options.ignore || false;
+        
 	this.eventMousemove = function(e) {
 		return self.mousemove(e);
 	};
@@ -43,7 +45,7 @@ Sorter.prototype.setElements = function(elements) {
 };
 
 Sorter.prototype.createGraveyard = function() {
-	this.graveyard = $('<div style="list-style-type: none" />').appendTo(document.body);
+	this.graveyard = $('<div class="jquery_sort_graveyard" style="list-style-type: none" />').appendTo(document.body);
 };
 
 Sorter.prototype.setActive = function(element) {
@@ -66,6 +68,10 @@ Sorter.prototype.createGhost = function(from) {
 };
 
 Sorter.prototype.mousedown = function(e, element) {
+        if ( this.ignore && ($(e.target).is(this.ignore) || $(e.target).parents(this.ignore).length) ) {
+            return true;
+        }
+    
  	e.preventDefault();
  	
  	// this because webkit needs it. It will cause a slight jump because updateCache is slooow.

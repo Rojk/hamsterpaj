@@ -532,18 +532,41 @@
 	color: <?php echo $detail_color; ?>;
 }
 
-#photoblog_sort ul {
-	clear: both;
+#photoblog_sort {
 	background: <?php echo $main_color; ?>;
 	padding: 10px;
+	color: <?php echo $detail_color; ?>;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+}
+
+#photoblog_sort ul {
+	clear: both;
+	background: #fff;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
 }
 
 	#photoblog_sort li {
 		float: left;
 		padding: 5px;
 		list-style: none;
+		text-align: center;
 		cursor: move;
 	}
+	
+		#photoblog_sort img {
+			border: 2px solid <?php echo $main_color; ?>;
+		}
+	
+		#photoblog_sort li input {
+			position: relative;
+			z-index: 5;
+		}
 	
 	#photoblog_sort ul:after {
 		clear: both;
@@ -561,4 +584,8 @@
 	
 	.sort-active {
 		visibility: hidden;
+	}
+	
+	.jquery_sort_graveyard  {
+		list-style: none;
 	}

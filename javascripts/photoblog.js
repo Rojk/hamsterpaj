@@ -7,10 +7,24 @@ hp.photoblog = {	upload:	{		flash_upload:		{			new_file: function(photo_id,
 	sort: {
 		init: function() {
 			this.make_sortable();
+			
+			$('.photoblog_sort_save').click(function() {
+				hp.photoblog.sort.save(function() {
+					alert('Sparat! :)');
+				});
+				return false;
+			});
+			
+			$('.photoblog_sort_remove').click(function() {
+				$('#photoblog_sort input:checked').parent().fadeOut();
+				return false;
+			});
 		},
 		
 		make_sortable: function() {
-			this.sorter = new Sorter('#photoblog_sort li', '#photoblog_sort > ul');
+			this.sorter = new Sorter('#photoblog_sort li', '#photoblog_sort > ul', {
+				ignore: 'input'
+			});
 		},
 		
 		serialize: function() {
@@ -51,9 +65,9 @@ hp.photoblog = {	upload:	{		flash_upload:		{			new_file: function(photo_id,
 			return queryString.join('&');
 		},
 		
-		save: function() {
+		save: function(callback) {
 			// serialize and send to server
-			$.post('/ajax_gateways/photoblog.json.php?action=sort_save', this.serialize_to_url());
+			$.post('/ajax_gateways/photoblog.json.php?action=sort_save', this.serialize_to_url(), callback);
 		}
 	},		format_date: function(date) {		var pieces = date.split('-');		return pieces[0] + pieces[1];	},		make_name: function(id) {		return 'http://images.hamsterpaj.net/photos/full/' + Math.floor(parseInt(id, 10) / 5000) + '/' + id + '.jpg';	},		make_thumbname: function(id) {		return 'http://images.hamsterpaj.net/photos/mini/' + Math.floor(parseInt(id, 10) / 5000) + '/' + id + '.jpg';	},		image_id: function(a) {		return parseInt($(a).attr('href').split('#')[1].replace('image-', ''), 10);	},		get_month: function(a) {		return parseInt($(a).attr('href').split('#')[1].replace('month-', ''), 10);	}};jQuery.fn.extend({	slide_slider: function(to) {		var slider = $(this).slider('moveTo', to);	},		container_width: function() {		//var width = 0;		//$(this).children().each(function() {		//	width += $(this).width();		//});	 	var thumbsContainer = $(this);		var lastChild = $('#photoblog_nextmonth');		var width = lastChild.position().left + lastChild.width() - thumbsContainer.width();		return width;	},		fadeInOnAnother: function(theOther, callback, a_parent) {		var t = $(this).css({position: 'relative', zIndex: 1});		var h = t.height();//Math.max(t.height(), theOther.height());		var parent = a_parent || t.parent();		parent.animate({'height': h + 2});		var p = theOther.position();		theOther.css({			position: 'absolute',			top: p.top,			left: p.left,			zIndex: 0		});		t.insertBefore(theOther);		theOther.fadeOut();		t.fadeIn(callback);	}});$(window).load(function() {	if ( $('#photoblog_image').length ) {		hp.photoblog.view.init();	}
 	
