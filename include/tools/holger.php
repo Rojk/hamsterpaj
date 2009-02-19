@@ -1,4 +1,5 @@
 <?php
+	require_once '../core/common.php';
 	$password_hash = hamsterpaj_password($_POST['password']);
 	if ($password_hash != $holger_valid_hash) {
 		die('Uppblåst kattfisk!? Ut ur mitt hus fulhackare! *slå med räfsa*');
