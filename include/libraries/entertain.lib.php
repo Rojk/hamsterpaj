@@ -1251,9 +1251,9 @@ function entertain_item_preview_draw()
  */
 function entertain_item_distribute_new($item)
 {
-	$command = 'mv ' . ENTERTAIN_TEMP_PATH . $_SESSION['new_entertain_temp']['hash'] . '.' . $_SESSION['new_entertain_temp']['extension'] . 
+	$command = 'cp ' . ENTERTAIN_TEMP_PATH . $_SESSION['new_entertain_temp']['hash'] . '.' . $_SESSION['new_entertain_temp']['extension'] . 
 				' /storage/www/www.hamsterpaj.net/data/distribute/' . $item['entertain_type'] . '/' . $item['handle'] . '.' . $item['extension'];
-	exec($command, $output, $return_value);
+	shell_exec($command);
 	distribute_item(array('type' => $item['entertain_type'], 'handle' => $item['handle'], 'extension' => $item['extension']));
 }
 
