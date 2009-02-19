@@ -26,9 +26,34 @@ hp.photoblog = {	upload:	{		flash_upload:		{			new_file: function(photo_id,
 			return result;
 		},
 		
+		serialize_to_url: function() {
+			var result = this.serialize();
+			return this.to_query(result, 'data');
+		},
+
+		/*
+			Based on Mootools Hash.toQueryString
+		*/
+			
+		to_query: function(obj, base) {
+			var queryString = [];
+			for ( var key in obj ) if ( obj.hasOwnProperty(key) ) {
+				var value = obj[key];
+				if ( base ) key = base + '[' + key + ']';
+				var result, type = typeof value;
+				if ( type == 'string' || type == 'number' ) {
+					result = key + '=' + encodeURIComponent(value);
+				} else if ( type == 'object' ) {
+					result = this.to_query(value, key);
+				}
+				queryString[queryString.length] = result;
+			}
+			return queryString.join('&');
+		},
+		
 		save: function() {
 			// serialize and send to server
-			$.post('/ajax_gateways/photoblog.json.php?action=sort_save', this.serialize());
+			$.post('/ajax_gateways/photoblog.json.php?action=sort_save', this.serialize_to_url());
 		}
 	},		format_date: function(date) {		var pieces = date.split('-');		return pieces[0] + pieces[1];	},		make_name: function(id) {		return 'http://images.hamsterpaj.net/photos/full/' + Math.floor(parseInt(id, 10) / 5000) + '/' + id + '.jpg';	},		make_thumbname: function(id) {		return 'http://images.hamsterpaj.net/photos/mini/' + Math.floor(parseInt(id, 10) / 5000) + '/' + id + '.jpg';	},		image_id: function(a) {		return parseInt($(a).attr('href').split('#')[1].replace('image-', ''), 10);	},		get_month: function(a) {		return parseInt($(a).attr('href').split('#')[1].replace('month-', ''), 10);	}};jQuery.fn.extend({	slide_slider: function(to) {		var slider = $(this).slider('moveTo', to);	},		container_width: function() {		//var width = 0;		//$(this).children().each(function() {		//	width += $(this).width();		//});	 	var thumbsContainer = $(this);		var lastChild = $('#photoblog_nextmonth');		var width = lastChild.position().left + lastChild.width() - thumbsContainer.width();		return width;	},		fadeInOnAnother: function(theOther, callback, a_parent) {		var t = $(this).css({position: 'relative', zIndex: 1});		var h = t.height();//Math.max(t.height(), theOther.height());		var parent = a_parent || t.parent();		parent.animate({'height': h + 2});		var p = theOther.position();		theOther.css({			position: 'absolute',			top: p.top,			left: p.left,			zIndex: 0		});		t.insertBefore(theOther);		theOther.fadeOut();		t.fadeIn(callback);	}});$(window).load(function() {	if ( $('#photoblog_image').length ) {		hp.photoblog.view.init();	}
 	

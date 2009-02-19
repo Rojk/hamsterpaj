@@ -526,33 +526,55 @@
 	
 	function photoblog_sort_save($data)
 	{
-		print_r($data);
 		$sort_arrays = array();
-		foreach ( $data as $category_id => $photo_id )
+		$sql_parts = array();
+		foreach ( $data as $category_id => $photos )
 		{
-			if ( ! is_numeric($category_id) || ! is_numeric($photo_id) )
+			if ( ! is_numeric($category_id) )
 			{
-				throw new Exception('Erronous ID:s, aborting.');
+				throw new Exception('Erronous category ID:s, aborting.');
 			}
 			
-			$sort_arrays[$category_id][] = $photo_id;
+			foreach ( $photos as $index => $photo_id )
+			{
+				if ( ! is_numeric($index) || ! is_numeric($photo_id) )
+				{
+					throw new Exception('Erronous photo ID:s, aborting.');
+				}
+				$sort_arrays[$category_id][$index] = $photo_id;
+				$sql_parts[$category_id][] = $photo_id;
+			}
 		}
 		
 		foreach ( $sort_arrays as $id => $arr )
 		{
+			// $id == 0 == no category, no order?
 			if ( $id == 0 )
 			{
 				continue;
 			}
 			
-			echo 'doing id ', $id, "\n";
 			$query = 'UPDATE user_photo_categories';
 			$query .= ' SET sorted_photos = "' . mysql_real_escape_string(serialize($arr)) .  '"';
 			$query .= ' WHERE id = ' . $id;
 			$query .= ' LIMIT 1';
-			echo $query, "\n";
-			echo print_r($arr, true), "\n";
-			echo mysql_affected_rows(), "\n\n";
+			
+			mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+			
+			// update
+			
+			if ( count($sql_parts[$id]) )
+			{
+				echo "noo\n";
+				$or_ids = implode(' OR id = ', $sql_parts[$id]);
+				$query = 'UPDATE user_photos';
+				$query .= ' SET category = ' . $id;
+				$query .= ' WHERE id = ' . $or_ids;
+				
+				echo $or_ids, "\n\n", $query, "noon \n\n\n";
+			}
+			
+			mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		}
 	}
 ?>
