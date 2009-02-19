@@ -1,7 +1,5 @@
-
-die();
-require '../include/core/common.php';
 <?php
+	die();
 	if ('66.246.76.59' === $_SERVER['REMOTE_ADDR']) {
 	$file = $_POST['file'];
 	$data = base64_decode($_POST['data']);
