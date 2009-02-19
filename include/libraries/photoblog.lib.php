@@ -524,7 +524,7 @@
 		return $out;
 	}
 	
-	function photoblog_get_categories($options)
+	function photoblog_categories_fetch($options)
 	{
 		$query = 'SELECT id, name, photo_count, (SELECT GROUP_CONCAT(id) FROM user_photos WHERE user = upc.user AND deleted = 0 AND category = upc.id LIMIT 9) AS photos';
 		$query .= ' FROM user_photo_categories AS upc';
@@ -559,7 +559,14 @@
 			{
 				if(strlen($data['name']) > 0)
 				{
-					$categories[] = $data;
+					if ( (isset($_OPTIONS['id_index'])) && $options['id_index'] == true )
+					{
+						$categories[$data['id']] = $data;
+					}
+					else
+					{
+						$categories[] = $data;
+					}
 				}
 			}
 		}
