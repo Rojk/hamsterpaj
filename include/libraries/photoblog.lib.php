@@ -565,13 +565,10 @@
 			
 			if ( count($sql_parts[$id]) )
 			{
-				echo "noo\n";
 				$or_ids = implode(' OR id = ', $sql_parts[$id]);
 				$query = 'UPDATE user_photos';
 				$query .= ' SET category = ' . $id;
 				$query .= ' WHERE id = ' . $or_ids;
-				
-				echo $or_ids, "\n\n", $query, "noon \n\n\n";
 			}
 			
 			mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
