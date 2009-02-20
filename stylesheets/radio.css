@@ -303,6 +303,19 @@
 			width: 100px;
 		}
 	
+	#hardjavlahamster_header {
+		margin: 5px 0 5px 0;
+	}
+	#hardjavlahamster_images {
+		margin: 5px 0 5px 0;
+	}
+	.hardjavlahamster_live_image {
+		/*float:left;*/
+		width:310px;
+		/*margin-left:1px;
+		margin-bottom:1px;*/
+		margin: 4px 3px 4px 4px;
+	}
 	
 	.radio_schedule_mon {background-image: url(http://images.hamsterpaj.net/radio/schedule_monday.png);}
 	.radio_schedule_tue {background-image: url(http://images.hamsterpaj.net/radio/schedule_tuesday.png);}

@@ -240,6 +240,44 @@
 			break;
 				
 			default:
+				$time['hour'] = date('G');
+				$time['minute'] = intval(date('G'));
+				$time['day'] = intval(date('d'));
+				$time['month'] = date('n');
+				#$time['hour'] = 21;
+				$choose_player_moved = false;
+				if (!($time['hour'] > 22) && !($time['minute'] > 30) && $time['hour'] >= 21 && 20 == $time['day'] && 2 == $time['month']) {
+					$choose_player_moved = true;
+					if ($radioinfo['status'] == 1) // If the server is broadcasting we will show a list of players to listen in
+					{
+						$out .= '<ul id="choose_player">
+											<li>
+												<a id="choose_player_01" href="/radio/lyssna/pls" title="Den här länken fungerar i de flesta spelare. Exempelvis: iTunes, Real player, Winamp, VLC, foobar.">Spela upp radio i normala spelare</a>
+											</li>
+											<li>
+												<a id="choose_player_02" href="/radio/lyssna/asx" title="">Spela upp radio i Windows Media Player</a>
+											</li>
+											<li>
+												<a id="choose_player_03" href="/radio/lyssna/webbspelare" title="">Spela upp radio i webbspelaren</a>
+											</li>
+										</ul>' . "\n";
+					}
+					
+					$hjh_images_serialized = file_get_contents('http://images.hamsterpaj.net/radio/hardjavlahamster/images.serial');
+					$hjh_images = unserialize($hjh_images_serialized);
+					$out .= '<div id="hardjavlahamster_header">' . "\n";
+					$out .= '<img src="' . $url_images_old . 'fp_ads/hjh-live-just-nu.jpg" alt="Hård Jävla Hamster - LIVE just nu!" />' . "\n";
+					$out .= '</div>' . "\n";
+					$out .= '<div id="hardjavlahamster_images">' . "\n";
+					foreach ($hjh_images as $key => $hjh_image_hash) {
+						if (2 == $key) {
+							$out .= '<br />' . "\n";
+						}
+						$out .= '<img class="hardjavlahamster_live_image" src="' . $url_images_old . 'radio/hardjavlahamster/' . $hjh_image_hash . '.jpg" alt="Hårjd Jävla Hamster - LIVE image" />' . "\n";
+					}
+					$out .= '</div>' . "\n";
+				}
+				
 				$options['broadcasting'] = true; // It should be broadcasting right now
 				$options['limit'] = 1; // We only wish to have one
 				$options['order-direction']= 'DESC'; // We want the latest
@@ -298,20 +336,21 @@
 				{
 					$out .= '<div class="form_notice_error">Något verkar vara fel med servern, vi jobbar på felet och skyller det på Heggan.</div>' . "\n";
 				}
-				
-				if ($radioinfo['status'] == 1) // If the server is broadcasting we will show a list of players to listen in
-				{
-					$out .= '<ul id="choose_player">
-										<li>
-											<a id="choose_player_01" href="/radio/lyssna/pls" title="Den här länken fungerar i de flesta spelare. Exempelvis: iTunes, Real player, Winamp, VLC, foobar.">Spela upp radio i normala spelare</a>
-										</li>
-										<li>
-											<a id="choose_player_02" href="/radio/lyssna/asx" title="">Spela upp radio i Windows Media Player</a>
-										</li>
-										<li>
-											<a id="choose_player_03" href="/radio/lyssna/webbspelare" title="">Spela upp radio i webbspelaren</a>
-										</li>
-									</ul>' . "\n";
+				if (!$choose_player_moved) {
+					if ($radioinfo['status'] == 1) // If the server is broadcasting we will show a list of players to listen in
+					{
+						$out .= '<ul id="choose_player">
+											<li>
+												<a id="choose_player_01" href="/radio/lyssna/pls" title="Den här länken fungerar i de flesta spelare. Exempelvis: iTunes, Real player, Winamp, VLC, foobar.">Spela upp radio i normala spelare</a>
+											</li>
+											<li>
+												<a id="choose_player_02" href="/radio/lyssna/asx" title="">Spela upp radio i Windows Media Player</a>
+											</li>
+											<li>
+												<a id="choose_player_03" href="/radio/lyssna/webbspelare" title="">Spela upp radio i webbspelaren</a>
+											</li>
+										</ul>' . "\n";
+					}
 				}
 				switch ($uri_parts[3])
 				{
