@@ -14,10 +14,6 @@
 		{
 			$new_post[htmlspecialchars($key)] = htmlspecialchars($value);
 		}
-		else
-		{
-			$new_post[$key] = $value;
-		}
 	}
 	
 	foreach($_GET AS $key => $value)
@@ -25,10 +21,6 @@
 		if(!is_array($value))
 		{
 			$new_get[htmlspecialchars($key)] = htmlspecialchars($value);
-		}
-		else
-		{
-			$new_post[$key] = $value;
 		}
 	}
 	
