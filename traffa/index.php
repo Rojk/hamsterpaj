@@ -1,9 +1,15 @@
-<?php    
+<?php
 	require('../include/core/common.php');
 	$ui_options['menu_path'] = array('traeffa');
 	$ui_options['stylesheets'][] = 'traffa_index.css';
 	ui_top($ui_options);
 
+	require PATHS_INCLUDE . 'tools/GeoIP.inc.php';
+	$gi = geoip_open(PATHS_INCLUDE . 'tools/GeoIP.dat');
+	$country_code = geoip_country_code_by_addr($gi, $_SERVER['REMOTE_ADDR']);
+	if ('TR' == $country_code) {
+		die('No Turkeys! :D');
+	}
 	echo rounded_corners_top(array('color' => 'orange'));
 ?>
 
@@ -52,14 +58,10 @@
 		{
 			echo '<td>' . "\n";
 			echo '<form action="/traffa/index.php" method="post" class="chat_delete">' . "\n";
-			echo '
-<input type="hidden" value="delete" name="action"/>
-' . "\n";
-			echo '<input type="hidden" value="' . $data['timestamp'] . '" name="chat_timestamp"/>
-' . "\n";
+			echo '<input type="hidden" value="delete" name="action"/>' . "\n";
+			echo '<input type="hidden" value="' . $data['timestamp'] . '" name="chat_timestamp"/>' . "\n";
 			echo '<input type="submit" class="chat_delete" value="x"/>' . "\n";
-			echo '
-</form>';
+			echo '</form>';
 			echo '</td>';
 		}
 		echo '</tr>';
