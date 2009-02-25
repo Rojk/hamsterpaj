@@ -248,6 +248,7 @@
 			'EXgirl007.myhotpicss.com',
 			'EXgirl',
 			'myhotpicss'
+			'ihate'
 			);
 		foreach($banned_strings AS $banned)
 		{
