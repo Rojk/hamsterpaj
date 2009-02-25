@@ -247,7 +247,7 @@
 			'rivality.notlong',
 			'EXgirl007.myhotpicss.com',
 			'EXgirl',
-			'myhotpicss'
+			'myhotpicss',
 			'ihate'
 			);
 		foreach($banned_strings AS $banned)
