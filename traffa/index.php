@@ -4,11 +4,14 @@
 	$ui_options['stylesheets'][] = 'traffa_index.css';
 	ui_top($ui_options);
 
-	require PATHS_INCLUDE . 'tools/GeoIP.inc.php';
-	$gi = geoip_open(PATHS_INCLUDE . 'tools/GeoIP.dat');
-	$country_code = geoip_country_code_by_addr($gi, $_SERVER['REMOTE_ADDR']);
-	if ('TR' == $country_code) {
-		die('No Turkeys! :D');
+	require_once(PATHS_VENDORS . 'geoip/GeoIP.inc.php');
+	$geoip_database = geoip_open(PATHS_VENDORS . 'geoip/GeoIP.dat');
+	$country_code = geoip_country_code_by_addr($geoip_database, $_SERVER['REMOTE_ADDR']);
+	if($country_code == 'TR')
+	{
+		echo 'Araştırmak, or fisk as we say in sweden. =D Turkiet är blockerat för träffas startsida om du undrar. :)';
+		ui_bottom();
+		exit;
 	}
 	echo rounded_corners_top(array('color' => 'orange'));
 ?>
