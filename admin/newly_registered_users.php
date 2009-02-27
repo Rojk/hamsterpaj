@@ -38,7 +38,8 @@
 	
 	if (is_numeric($_GET['offset']) && $_GET['offset'] > 99) {
 		$out .= '<a href="?offset=' . ($_GET['offset'] - 100) . '">Framåt</a>' . "\n";
-	} elseif (is_numeric($_GET['offset'])) {
+	} 
+	if (is_numeric($_GET['offset'])) {
 		$out .= '<a href="?offset=' . ($_GET['offset'] + 100) . '">Bakåt</a>' . "\n";
 	} else {
 		$out .= '<a href="?offset=100">Bakåt</a>' . "\n";
