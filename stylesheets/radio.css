@@ -319,6 +319,7 @@
 		background: #393939;
 		color: #fff;
 		font: 20px Tahoma;
+		text-align: center;
 	}
 	
 	.radio_schedule_mon {background-image: url(http://images.hamsterpaj.net/radio/schedule_monday.png);}
