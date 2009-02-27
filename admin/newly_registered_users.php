@@ -13,10 +13,17 @@
 	
 	$one_week_ago = time() - 60 * 60 * 24 * 7;
 	
+	if (is_numeric($_GET['offset'])) {
+		$offset = (int)$_GET['offset'];
+	} else {
+		$offset = 0;
+	}
+	
 	$query = 'SELECT l.id, l.regtimestamp, l.username, u.last_warning, l.quality_level, l.quality_level_expire, t.guestbook_entries, u.forum_posts';
 	$query .= ' FROM login l, userinfo u, traffa t';
 	$query .= ' WHERE l.id = t.userid AND l.id = u.userid AND l.regtimestamp > ' . $one_week_ago;
 	$query .= ' ORDER BY l.regtimestamp DESC';
+	$query .= ' LIMIT ' . $offset . ', ' . ($offset + 99) . '';
 	$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 	$out = '<div style="font: 12px monospace;">
 	<style>
@@ -27,8 +34,18 @@
 		margin: 0;
 		padding: 0;
 	}
-	</style>
-	<table id="newly_registered_users" style="width: 638px;">
+	</style>';
+	
+	if (is_numeric($_GET['offset']) && $_GET['offset'] > 99) {
+		$out .= '<a href="?offset=' . ($_GET['offset'] - 100) . '">Framåt</a>' . "\n";
+	} elseif (is_numeric($_GET['offset'])) {
+		$out .= '<a href="?offset=' . ($_GET['offset'] + 100) . '">Bakåt</a>' . "\n";
+	} else {
+		$out .= '<a href="?offset=100">Bakåt</a>' . "\n";
+	}
+	$out .= '' . "\n";
+	
+	$out .= '<table id="newly_registered_users" style="width: 638px;">
 	<tr>
 		<th>Registrerad</th>
 		<th>Användarnamn</th>
