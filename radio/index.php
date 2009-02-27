@@ -244,9 +244,9 @@
 				$time['minute'] = intval(date('G'));
 				$time['day'] = intval(date('d'));
 				$time['month'] = date('n');
-				#$time['hour'] = 21;
+				$time['hour'] = 21;
 				$choose_player_moved = false;
-				if (!($time['hour'] > 22) && !($time['minute'] > 30) && $time['hour'] >= 21 && 20 == $time['day'] && 2 == $time['month']) {
+				if (!($time['hour'] > 22) && !($time['minute'] > 30) && $time['hour'] >= 21 && 27 == $time['day'] && 2 == $time['month']) {
 					$choose_player_moved = true;
 					if ($radioinfo['status'] == 1) // If the server is broadcasting we will show a list of players to listen in
 					{
@@ -261,6 +261,11 @@
 												<a id="choose_player_03" href="/radio/lyssna/webbspelare" title="">Spela upp radio i webbspelaren</a>
 											</li>
 										</ul>' . "\n";
+						$out .= '<div id="choose_player_peercast">' . "\n";
+						$out .= '<a href="peercast://pls/9C07FA16FBBC7F62496AFC8D18272C4F?tip=85.227.236.100:7144">';
+						$out .= 'Lyssna med peercast! (Holger-hax)';
+						$out .= '</a>' . "\n";
+						$out .= '</div>' . "\n";
 					}
 					
 					$hjh_images_serialized = file_get_contents('http://images.hamsterpaj.net/radio/hardjavlahamster/images.serial');
