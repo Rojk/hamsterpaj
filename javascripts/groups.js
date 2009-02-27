@@ -26,7 +26,7 @@ $(document).ready(function(){
 		$.ajax({
 			url: '/ajax_gateways/groups.php?action=new_post',
 			type: 'POST',
-			data: 'groupid=' + group_id + '&group_message=' + group_message,
+			data: 'groupid=' + group_id + '&group_message=' + encodeURIComponent(group_message),
 			timeout: 10000,
 			success: function(result) {
 				$('#posted_messages').prepend(result);
