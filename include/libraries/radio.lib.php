@@ -1,28 +1,20 @@
 <?php
 	function radio_shoutcast_fetch()
 	{
-		$scs = &new ShoutcastInfo(RADIO_SERVER);
-		$scs2 = &new ShoutcastInfo(RADIO_SERVER2);
-		if($scs->connect())
+		foreach(unserialize(RADIO_SERVERS) as $server)
 		{
-			$scs->send();
-			$data = $scs->parse();
-			$scs->close();
-			
-			return $data;
+			$server_socket = &new ShoutcastInfo($server);
+			if($server_socket->connect())
+			{
+				$server_socket->send();
+				$data = $server_socket->parse();
+				$server_socket->close();
+				
+				return $data;
+			}
 		}
-		elseif($scs2->connect())
-		{
-			$scs2->send();
-			$data = $scs2->parse();
-			$scs2->close();
-			
-			return $data;
-		}
-		else
-		{
-			return false;
-		}
+		
+		return false;
 	}
 	
 	function radio_schedule_fetch($options)

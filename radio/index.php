@@ -357,28 +357,32 @@
 					case 'pls': // If address is lyssna/pls it will download pls playlist
 						header('Content-Type: audio/scpls');
 						header('Content-Disposition: attachment;filename="lyssna.pls"');
-						echo '[playlist]
-NumberOfEntries=2
-File1=http://' . RADIO_SERVER . '
-Title1=HamsterRadio - Server 1
-Length1=-1
-File2=http://' . RADIO_SERVER2 . '
-Title2=HamsterRadio - Server 2
-Length2=-1
-Version=2';
+						
+						echo '[playlist]' . "\n";
+						echo 'NumberOfEntries=' . count(unserialize(RADIO_SERVERS)) . "\n";
+						$server_index = 1;
+						foreach(unserialize(RADIO_SERVERS) as $server)
+						{
+							echo 'File' . $server_index . '=http://' . $server . '' . "\n";
+							echo 'Title' . $server_index . '=HamsterRadio - Server ' . $server_index . "\n";
+							echo 'Length' . $server_index . '=-1' . "\n";
+							$server_index++;
+						}
+						echo 'Version=2';
+						
 						die();
 					break;
 					case 'asx': // If address is lyssna/asx it will download asx playlist
-						header('Content-Type: video/x-ms-asf');
-						header('Content-Disposition: attachment;filename="lyssna.asx"');
-						echo '<ASX version = "3.0">
-<Entry>
-<REF HREF="http://' . RADIO_SERVER . '" />
-</Entry>
-<Entry>
-<REF HREF="http://' . RADIO_SERVER2 . '" />
-</Entry>
-</ASX>';
+						//header('Content-Type: video/x-ms-asf');
+						//header('Content-Disposition: attachment;filename="lyssna.asx"');
+						echo '<ASX version = "3.0">' . "\n";
+						foreach(unserialize(RADIO_SERVERS) as $server)
+						{
+							echo '<Entry>' . "\n";
+							echo '<REF HREF="http://' . $server . '" />' . "\n";
+							echo '</Entry>' . "\n";
+						}
+						echo '</ASX>';
 						die();
 					break;
 					case 'webbspelare': // If address is lyssna/webbspelaren it will open the webplayer in a popup-window
