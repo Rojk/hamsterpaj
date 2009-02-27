@@ -373,8 +373,8 @@
 						die();
 					break;
 					case 'asx': // If address is lyssna/asx it will download asx playlist
-						//header('Content-Type: video/x-ms-asf');
-						//header('Content-Disposition: attachment;filename="lyssna.asx"');
+						header('Content-Type: video/x-ms-asf');
+						header('Content-Disposition: attachment;filename="lyssna.asx"');
 						echo '<ASX version = "3.0">' . "\n";
 						foreach(unserialize(RADIO_SERVERS) as $server)
 						{
