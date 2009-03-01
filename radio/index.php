@@ -244,7 +244,6 @@
 				$time['minute'] = intval(date('G'));
 				$time['day'] = intval(date('d'));
 				$time['month'] = date('n');
-				$time['hour'] = 21;
 				$choose_player_moved = false;
 				if (!($time['hour'] > 22) && !($time['minute'] > 30) && $time['hour'] >= 21 && 27 == $time['day'] && 2 == $time['month']) {
 					$choose_player_moved = true;
