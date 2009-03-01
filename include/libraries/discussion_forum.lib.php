@@ -327,6 +327,10 @@
 				{
 					$author_post_count = '';
 				}
+				elseif($data['author'] == 299825)
+				{
+					$author_post_count = '666 hatiska inlägg';
+				}
 				else
 				{
 			 		$author_post_count = cute_number($data['author_post_count']);
