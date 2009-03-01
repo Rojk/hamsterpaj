@@ -53,6 +53,13 @@
 		$menu['mattan']['children']['snyggve'] = array('label' => 'Snyggve', 'url' => '/mattan/snyggve.php');
 		$menu['mattan']['children']['collage_illusion'] = array('label' => 'Kollageapparaten', 'url' => '/mattan/collage_illusion.php');
 		$menu['mattan']['children']['fruit_vernissage'] = array('label' => 'Fruktvernissage', 'url' => 'http://www.hamsterpaj.net/artiklar/?action=show&id=95');
+		$menu['mattan']['children']['piraja'] = array('label' => 'Piraja', 'url' => '/piraja/', 'index_label' => 'Piraja');
+			$menu['mattan']['children']['piraja']['children']['allt'] = array('label' => 'Allt från Piraja', 'url' => '/piraja/');
+			$menu['mattan']['children']['piraja']['children']['finn_fem_fel'] = array('label' => 'Finn fem fel', 'url' => '/piraja/five_errors.php?fffid=hfred');
+			$menu['mattan']['children']['piraja']['children']['hyvlar'] = array('label' => 'Test av rakhyvlar', 'url' => '/piraja/hyvlar.php');
+			$menu['mattan']['children']['piraja']['children']['haarsprej'] = array('label' => 'Test av hårsprej', 'url' => '/piraja/haarsprej.php');		
+			$menu['mattan']['children']['piraja']['children']['prylar'] = array('label' => 'Prylar', 'url' => '/piraja/prylar.php');
+
 
 
 	$menu['traeffa'] = array('label' => 'Träffa', 'url' => '/traffa/');
@@ -95,15 +102,7 @@
 		if(is_privilegied('articles_admin'))
 		{
 			$menu['artiklar']['children']['admin'] = array('label' => 'Admin', 'url' => '/artiklar/?action=admin');
-		}
-		
-	$menu['piraja'] = array('label' => 'Piraja', 'url' => '/piraja/', 'index_label' => 'Piraja');
-		$menu['piraja']['children']['allt'] = array('label' => 'Allt från Piraja', 'url' => '/piraja/');
-		$menu['piraja']['children']['finn_fem_fel'] = array('label' => 'Finn fem fel', 'url' => '/piraja/five_errors.php?fffid=hfred');
-		$menu['piraja']['children']['hyvlar'] = array('label' => 'Test av rakhyvlar', 'url' => '/piraja/hyvlar.php');
-		$menu['piraja']['children']['haarsprej'] = array('label' => 'Test av hårsprej', 'url' => '/piraja/haarsprej.php');		
-		$menu['piraja']['children']['prylar'] = array('label' => 'Prylar', 'url' => '/piraja/prylar.php');
-		
+		}		
 
 /*
 	$menu['taevlingar'] = array('label' => 'Tävlingar', 'url' => '/taevlingar/');
