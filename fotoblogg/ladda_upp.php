@@ -29,25 +29,22 @@
 					Upload form
 				########################################################
 			*/
-			$upload_ticket = md5(uniqid(rand()));
-			$_SESSION['photoblog']['upload']['upload_tickets'][$upload_ticket] = array();
 				$out .= '<div id="photoblog_upload_wrapper">' . "\n";
 				$out .= '<div id="photoblog_upload_upload_flash_objectarea">&nbsp;</div>' . "\n";
 				$out .= '<script type="text/javascript">
-		   		var so = new SWFObject("/fotoblogg/upload.swf", "photoblog_upload_flash_upload", "100", "20", "8", "#ffffff");
+		   		var so = new SWFObject("/swfs/photoblog_upload.swf", "photoblog_upload_flash_upload", "635", "200", "8", "#ffffff");
 		 		  so.addParam("wmode", "transparent");
-		 		  so.addParam("flashVars", "PHPSESSID=" + document.cookie.split("PHPSESSID=")[1].split("&")[0] + "&upload_ticket=' . $upload_ticket . '");
+		 		  so.addParam("flashVars", "PHPSESSID=" + document.cookie.split("PHPSESSID=")[1].split("&")[0]);
 		 		  so.write("photoblog_upload_upload_flash_objectarea");
 				</script>' . "\n";
-				$out .= '<span>Fungerar inte flashklienten? Tyvärr finns inget annat för tillfället, men vi jobbar på det!</span><div style="clear: both;"></div>' . "\n";
-			$out .= '</div>' . "\n";
+				$out .= '<br style="clear: both" />';
+				$out .= '</div>' . "\n";
 				/*
 				########################################################
 					Uploaded photos setting
 				########################################################
 			*/
 		$out .= '<form action="/fotoblogg/ladda_upp/sortering" method="post">' . "\n";
-		$out .= '<input type="hidden" value="' . $upload_ticket . '" id="photoblog_upload_ticket" name="photoblog_upload_ticket" />';
 			$out .= '<div id="photoblog_photo_properties_container">&nbsp;</div>' . "\n";
 			$out .= '<input type="submit" value="Vidare &raquo;" class="button_80" id="photoblog_photo_properties_save" />' . "\n";
 		$out .= '</form>' . "\n";
@@ -71,48 +68,45 @@
 		break;
 		case 'sortering':
 			$photo_ids = array();
-			if(isset($_POST['photoblog_upload_ticket']) && isset($_SESSION['photoblog']['upload']['upload_tickets'][$_POST['photoblog_upload_ticket']]))
+			foreach($_POST as $key => $value)
 			{
-				foreach($_POST as $key => $value)
-			{
-					if(preg_match('/^photoblog_photo_properties_(\d+)_description$/', $key, $matches))
+				if(preg_match('/^photoblog_photo_properties_(\d+)_description$/', $key, $matches))
+				{
+					$matches['photo_id'] = $matches[1];
+					if(isset($_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_autodate']))
 					{
-						$matches['photo_id'] = $matches[1];
-						if(isset($_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_autodate']))
-						{
-							$data['date'] = ('Y-m-d');
-						}
-						elseif(isset($_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_date']) && strtolower($_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_date']) == 'idag')
-						{
-							$data['date'] = date('Y-m-d');
-						}
-						elseif(isset($_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_date']) && preg_match('/^20(\d{2})-(\d{1,2})-(\d{1,2})$/', $_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_date']))
-						{
-							$data['date'] = $_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_date'];
-						}
-						else
-						{
-							throw new Exception('Invalid date!');
-						}
-
-						if(isset($_SESSION['photoblog']['upload']['upload_tickets'][$_POST['photoblog_upload_ticket']][$matches['photo_id']]))
-						{
-							$data['id'] = $_SESSION['photoblog']['upload']['upload_tickets'][$_POST['photoblog_upload_ticket']][$matches['photo_id']];
-						}
-						else
-						{
-							throw new Exception('Photo does not exist in upload ticket!');
-						}
-							$data['description'] = $_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_description'];
-						photoblog_photos_update($data);
-						$photo_ids[] = $data['id'];
+						$data['date'] = ('Y-m-d');
 					}
+					elseif(isset($_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_date']) && strtolower($_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_date']) == 'idag')
+					{
+						$data['date'] = date('Y-m-d');
+					}
+					elseif(isset($_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_date']) && preg_match('/^20(\d{2})-(\d{1,2})-(\d{1,2})$/', $_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_date']))
+					{
+						$data['date'] = $_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_date'];
+					}
+					else
+					{
+						throw new Exception('Invalid date!');
+					}
+					
+					if(isset($_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_photo_id']) && is_numeric($_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_photo_id']))
+					{
+						$data['id'] = $_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_photo_id'];
+					}
+					else
+					{
+						throw new Exception('No or invalid photo id!');
+					}
+					
+					$data['description'] = $_POST['photoblog_photo_properties_' . $matches['photo_id'] . '_description'];
+					
+					photoblog_photos_update($data);
+					
+					$photo_ids[] = $data['id'];
 				}
 			}
-			else
-			{
-				throw new Exception('No ticket id specified or ticket id expired.');
-			}
+			
 			if(empty($photo_ids))
 			{
 				$out .= 'Något gick lite snett, vi hittade inga av dina foton du just laddade upp.';
