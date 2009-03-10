@@ -492,9 +492,9 @@
 		$offset = date('N', $date);
 		$rows = 1;
 		$out .= '<div id="photoblog_calendar_month" class="date-' . $year . $format_month . '">' . "\n";
-			$out.= $prev_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&laquo;</a>', $prev_year, $prev_month) . "\n" : '';
+			$out.= $prev_has ? sprintf('<a class="photoblog_calendar_date" href="#month-%s%02s">&laquo;</a>', $prev_year, $prev_month) . "\n" : '';
 				$out .= '<span>' . date('F', $date) . ', ' . $year . '</span>' . "\n";
-			$out.= $next_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&raquo;</a>', $next_year, $next_month) . "\n" : '';
+			$out.= $next_has ? sprintf('<a class="photoblog_calendar_date" href="#month-%s%02s">&raquo;</a>', $next_year, $next_month) . "\n" : '';
 		$out .= '</div>' . "\n";
 		$out .= '<table>' . "\n";
 		$out .= '<tr><th>M</th><th>T</th><th>O</th><th>T</th><th>F</th><th>L</th><th>S</th></tr>' . "\n";
@@ -522,8 +522,8 @@
 		$out .= '</tr>' . "\n";
 		$out .= '</table>' . "\n";
 		$out .= '<div id="photoblog_calendar_year">' . "\n";
-		$out .= '<span class="photoblog_calendar_year_pre">' . (($prev_year_has) ? sprintf('<a href="#month-%s%s">%s</a>', ($year - 1), $prev_year_month, ($year - 1)) : '') . '</span>';
-		$out .= '<span class="photoblog_calendar_year_after">' . (($next_year_has) ? sprintf('<a href="#month-%s%s">%s</a>', ($year + 1), $next_year_month, ($year + 1)) : '')  . '</span>' . "\n";
+		$out .= '<span class="photoblog_calendar_year_pre">' . (($prev_year_has) ? sprintf('<a class="photoblog_calendar_date" href="#month-%s%s">%s</a>', ($year - 1), $prev_year_month, ($year - 1)) : '') . '</span>';
+		$out .= '<span class="photoblog_calendar_year_after">' . (($next_year_has) ? sprintf('<a class="photoblog_calendar_date" href="#month-%s%s">%s</a>', ($year + 1), $next_year_month, ($year + 1)) : '')  . '</span>' . "\n";
 		$out .= '</div>' . "\n";
 		return $out;
 	}
