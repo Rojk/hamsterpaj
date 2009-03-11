@@ -130,6 +130,8 @@ function ui_top($options = array())
 	$output .= '</script>' . "\n";
 	$output .= '<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>' . "\n";
 	
+	$output .= '<a href="http://click.double.net/?27424;229;4366" target="_top"><img style="margin: 10px 0 0 10px;" src="http://imp.double.net/imp.html?a27424p229g4366" width="468" height="60" border="0" alt=""></a>' . "\n";
+	
 	if(isset($_SESSION['user_message']))
 	{
 		$output .= jscript_alert($_SESSION['user_message'], true) . "\n";
