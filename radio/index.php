@@ -348,10 +348,10 @@
 												<a id="choose_player_01" href="/radio/lyssna/pls" title="Den här länken fungerar i de flesta spelare. Exempelvis: iTunes, Real player, Winamp, VLC, foobar.">Spela upp radio i normala spelare</a>
 											</li>
 											<li>
-												<a id="choose_player_02" href="/radio/lyssna/asx" title="">Spela upp radio i Windows Media Player</a>
+												<a id="choose_player_02" href="/radio/lyssna/asx" title="Spela upp radio i Windows Media Player">Spela upp radio i Windows Media Player</a>
 											</li>
 											<li>
-												<a id="choose_player_03" href="/radio/lyssna/webbspelare" title="">Spela upp radio i webbspelaren</a>
+												<a id="choose_player_03" href="/radio/lyssna/webbspelare" title="Spela upp radio i webbspelaren">Spela upp radio i webbspelaren</a>
 											</li>
 										</ul>' . "\n";
 					}

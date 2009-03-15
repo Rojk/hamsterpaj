@@ -497,6 +497,17 @@
 					float: left;
 				}
 
+body #ui_module_photoblog_calendar td.photoblog_calendar_active {
+	background: <?php echo $detail_color; ?>;
+	font-weight: bold;
+}
+
+	#ui_module_photoblog_calendar td.photoblog_calendar_active a {
+		color: <?php echo $main_color; ?>;
+	}
+	
+#photoblog_calendar_year a { color: <?php echo $detail_color; ?>; }
+
 /*
 	################################################################
 		Photoblog_albums
@@ -527,10 +538,6 @@
 		color: <?php echo $detail_color; ?>;
 	}
 	
-.photoblog_calendar_active {
-	font-weight: bold;
-	color: <?php echo $detail_color; ?>;
-}
 
 #photoblog_sort {
 	background: <?php echo $main_color; ?>;

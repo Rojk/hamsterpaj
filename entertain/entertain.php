@@ -139,6 +139,11 @@ $ui_options['adtoma_category'] = $entertain_adtoma_categories[$request['entertai
 
 //preint_r($request);
 
+$output .= rounded_corners_top(array('color' => 'red'));
+$output .= 'Kan du inte se filmen? Prova att uppdatera Flash!' . "\n";
+$output .= '<a href="http://get.adobe.com/flashplayer/">Uppdatera &raquo;</a>';
+$output .= rounded_corners_bottom(array('color' => 'red'));
+
 
 $output .= '<div class="entertain">' . "\n";
 echo rounded_corners_top(array('color' => 'orange'));

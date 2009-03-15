@@ -427,9 +427,12 @@ function ui_bottom($options = array())
 	
 	if ( is_array($_SESSION['module_order']) && $options['ui_modules_hide'] == false )
 	{
-		foreach ( $_SESSION['module_order'] as $handle )
+		// Merging together all coded modules and those in the SESSION so no modules are missed
+		$show_modules = array_merge(array_flip($_SESSION['module_order']), $modules);
+		
+		foreach ($show_modules as $handle => $order)
 		{
-			if ( isset($modules[$handle]) )
+			if (isset($modules[$handle]))
 			{
 				$output .= ui_module_render(ui_module_fetch(array(
 					'header' => $modules[$handle],
