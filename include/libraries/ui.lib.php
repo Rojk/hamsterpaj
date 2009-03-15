@@ -130,6 +130,8 @@ function ui_top($options = array())
 	$output .= '</script>' . "\n";
 	$output .= '<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>' . "\n";
 	
+	$output .= '<a href="http://click.double.net/?27424;399;8910" target="_blank"><img style="margin: 10px 0 0 10px;" src="http://imp.double.net/imp.html?a27424p399g8910" width="728" height="90" border="0" alt=""></a>' . "\n";
+
 	if(isset($_SESSION['user_message']))
 	{
 		$output .= jscript_alert($_SESSION['user_message'], true) . "\n";
@@ -461,6 +463,7 @@ function ui_bottom($options = array())
 	$output .= '</div>' . "\n";
 	
 	$output .= '<div id="fiskpinne" style="background: none;">' . "\n";
+	$output .= '<a href="http://click.double.net/?27424;229;4368" target="_blank"><img src="http://imp.double.net/imp.html?a27424p229g4368" width="160" height="350" border="0" alt=""></a>' . "\n";
 	$output .= '<script type="text/javascript" src="http://www.adtrade.net/ad/p/?id=hamsterpaj_1&size=140x350&ad=001" charset="iso-8859-1"></script>';
 	$output .= '</div>' . "\n";
 	

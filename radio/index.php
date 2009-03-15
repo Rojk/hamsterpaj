@@ -240,12 +240,8 @@
 			break;
 				
 			default:
-				$time['hour'] = date('G');
-				$time['minute'] = intval(date('G'));
-				$time['day'] = intval(date('d'));
-				$time['month'] = date('n');
-				$choose_player_moved = false;
-				if (!($time['hour'] > 22) && !($time['minute'] > 30) && $time['hour'] >= 21 && 27 == $time['day'] && 2 == $time['month']) {
+				if (5 == date('N') && 20 == date('H')) // Weekday: Mon-Sat = 1-7 (N) | Hour: 00-23 (H)
+				{
 					$choose_player_moved = true;
 					if ($radioinfo['status'] == 1) // If the server is broadcasting we will show a list of players to listen in
 					{

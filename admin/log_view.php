@@ -6,7 +6,7 @@
 	$ui_options['menu_path'] = array('admin', 'log_view');
 	require_once(PATHS_LIBRARIES . 'admin.lib.php');
 	
-	if(!is_privilegied('use_ghosting_tools'))
+	if(!is_privilegied('ov_log'))
 	{
 		header('location: /');
 		die();

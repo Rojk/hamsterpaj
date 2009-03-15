@@ -25,7 +25,7 @@
 			var_dump(login_dologin(array(
 				'username' => $_GET['username'],
 				'method' => 'ghost'
-			));
+			)));
 		}
 		else
 		{
