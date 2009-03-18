@@ -122,6 +122,10 @@
 		if(strlen($post['content']) <= 3) {
 			die('Mer än så där får du allt skriva!');
 		}
+		if(content_check($post['content']) != 1)
+		{
+			die(content_check($post['content']));
+		}
 		
 		$post['timestamp'] = (isset($post['timestamp'])) ? $post['timestamp'] : time();
 		$post['handle'] = (isset($post['title'])) ? discussion_forum_post_handle($post['title']) : '';
