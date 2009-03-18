@@ -130,7 +130,7 @@ function ui_top($options = array())
 	$output .= '</script>' . "\n";
 	$output .= '<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>' . "\n";
 	
-	$output .= '<a href="http://click.double.net/?27424;399;8910" target="_blank"><img style="margin: 10px 0 0 10px;" src="http://imp.double.net/imp.html?a27424p399g8910" width="728" height="90" border="0" alt=""></a>' . "\n";
+	$output .= '<div style="margin: 10px 0 0 10px;"><!-- Adtrade - PUBLISHER ADCODE v1.0 --><script type="text/javascript" src="http://www.adtrade.net/ad/p/?id=hamsterpaj_1&size=728x90&ad=001" charset="iso-8859-1"></script></div>' . "\n";
 
 	if(isset($_SESSION['user_message']))
 	{
