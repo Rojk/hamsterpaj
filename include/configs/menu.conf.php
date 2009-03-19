@@ -1,11 +1,10 @@
 <?php
-	$menu['hamsterpaj'] = array('label' => 'Hamsterpaj', 'url' => '/', 'index_label' => 'Förstasidan');
+	$menu['hamsterpaj'] = array('label' => 'Hamsterpaj', 'url' => '/', 'index_label');
 		$menu['hamsterpaj']['children']['nytt'] = array('label' => 'Senaste nytt', 'url' => '/hamsterpaj/nytt.php');
 		$menu['hamsterpaj']['children']['utvecklarblogg'] = array('label' => 'Utvecklarblogg', 'url' => '/hamsterpaj/utvecklarblogg.php');
 		$menu['hamsterpaj']['children']['om_hamsterpaj'] = array('label' => 'Om Hamsterpaj', 'url' => '/hamsterpaj/about.php');
 		$menu['hamsterpaj']['children']['annonsera'] = array('label' => 'Annonsera', 'url' => '/hamsterpaj/annonsera.php');
 		$menu['hamsterpaj']['children']['crew'] = array('label' => 'Vi som gör sidan', 'url' => '/hamsterpaj/crew.php');
-		$menu['hamsterpaj']['children']['pedofilpolicy'] = array('label' => 'Pedofilpolicy', 'url' => '/hamsterpaj/pedofilpolicy.php');
 		$menu['hamsterpaj']['children']['foerslag'] = array('label' => 'Förslag', 'url' => '/hamsterpaj/suggestions.php');
 		$menu['hamsterpaj']['children']['rules_and_policies'] = array('label' => 'Regler och policies', 'url' => '/hamsterpaj/rules_and_policies.php');
 		$menu['hamsterpaj']['children']['tillbakablickar'] = array('label' => 'Tillbakablickar', 'url' => '/hamsterpaj/tillbakablickar.php');
