@@ -1,9 +1,9 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE  . 'libraries/photos.lib.php');
-	require(PATHS_INCLUDE  . 'libraries/entertain.lib.php');
-	require(PATHS_INCLUDE  . 'libraries/rank.lib.php');
-	require(PATHS_INCLUDE . 'libraries/fp_modules.lib.php');
+	require(PATHS_LIBRARIES . 'photos.lib.php');
+	require(PATHS_LIBRARIES . 'entertain.lib.php');
+	require(PATHS_LIBRARIES . 'rank.lib.php');
+	require(PATHS_LIBRARIES . 'fp_modules.lib.php');
 
 	$ui_options['javascripts'][] = 'fp_common_modules.js';
 
@@ -25,7 +25,7 @@
 		$module_hide = false;
 		if($module['code_mode'] == 'php')
 		{
-			include(PATHS_INCLUDE . 'fp_modules/' . $module['id'] . '.php');
+			include(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $module['id'] . '.php');
 			if($module_hide == true)
 			{
 				continue;
@@ -33,7 +33,7 @@
 		}
 		else
 		{
-			$o = file_get_contents(PATHS_INCLUDE . 'fp_modules/' . $module['id'] . '.php');
+			$o = file_get_contents(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $module['id'] . '.php');
 		}
 
 		if($module['commenting'] == 'true' || $module['published'] == 'true' || $module['grading'] == 'true')

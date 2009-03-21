@@ -552,29 +552,6 @@ function getElementsByClassName(oElm, strTagName, strClassName)
 }
 
 
-/* Makes user avatars clickable */
-function user_avatars()
-{
-	var avatars = getElementsByClassName(document, 'img', 'user_avatar');
-	
-	for(var i = 0; i < avatars.length; i++)
-	{
-		avatars[i].onclick = avatar_popup;
-	}
-}
-
-function avatar_popup()
-{
-	/* Quite ugly, but very easy, replace everything with null, except the user id */
-	var user_id = this.src.replace('http://images.hamsterpaj.net/images/users/thumb/', '');
-	user_id = user_id.replace('.jpg', '');
-	user_id = (user_id.indexOf('?') != -1) ? user_id.substring(0, user_id.indexOf('?')) : user_id; 
-
-	window.open('http://www.hamsterpaj.net/avatar.php?id=' + user_id, 'full_avatar_' + user_id, 'toolbar=no, location=no, directories=no, scrollbars=no, resizable=yes, width=420, height=600');
-}
-
-womAdd('user_avatars()');
-
 function hide_ie6_warning()
 {
 	document.getElementById('ie6_warning').style.display = 'none';	

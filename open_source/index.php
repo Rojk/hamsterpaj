@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/open_source.lib.php');
+	require(PATHS_LIBRARIES . 'open_source.lib.php');
   /* OPEN_SOURCE */
 
 	$file_structure = array(

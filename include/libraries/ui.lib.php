@@ -32,19 +32,6 @@ function ui_top($options = array())
 	$output .= '<html xmlns="http://www.w3.org/1999/xhtml">' . "\n";
 	$output .= '	<head>' . "\n";
 	
-	if(ENVIRONMENT == 'production')
-	{	
-		$output .= '<script type="text/javascript">' . "\n";
-		$output .= 'var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");' . "\n";
-		$output .= 'document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));' . "\n";
-		$output .= '</script>' . "\n";
-		$output .= '<script type="text/javascript">' . "\n";
-		$output .= 'try {' . "\n";
-		$output .= 'var pageTracker = _gat._getTracker("UA-7112144-1");' . "\n";
-		$output .= 'pageTracker._trackPageview();' . "\n";
-		$output .= '} catch(err) {}</script>' . "\n";
-	}
-	
 	$output .=  '<meta name="description" content="' . $options['meta_description'] . '" />' . "\n";
 	$output .=  '<meta name="keywords" content="' . $options['meta_keywords'] . '" />' . "\n";
 	$output .=  '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' . "\n";
@@ -85,9 +72,11 @@ function ui_top($options = array())
 	
 	$options['javascripts'] = (isset($options['javascripts']) && is_array($options['javascripts'])) ? $options['javascripts'] : array();
 	$javascripts_path = PATHS_WEBROOT . 'javascripts/';
+	
+	global $js_compress_important_files; // standard_javascripts.conf.php
+	
 	if(ENVIRONMENT == 'development')
 	{
-		global $js_compress_important_files; // standard_javascripts.conf.php
 		foreach($js_compress_important_files as $javascript)
 		{
 			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/' . $javascript . '?version=' . filemtime(PATHS_WEBROOT . 'javascripts/' . $javascript) . '"></script>' . "\n";
@@ -99,11 +88,16 @@ function ui_top($options = array())
 	}
 	else
 	{
-		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/merged.js') . '.js"></script>' . "\n";
+		$output .= '<script type="text/javascript" language="javascript" src="/javascripts/merge_' . filemtime(PATHS_STATIC . 'javascripts/merged.js') . '.js"></script>' . "\n";
+		
 		$options['javascripts'] = array_unique($options['javascripts']);
 		foreach($options['javascripts'] as $javascript)
 		{
-			$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime(PATHS_WEBROOT . 'tmp/javascripts/specified/' . $javascript) . '.js"></script>' . "\n";
+			$internal_path = PATHS_STATIC . 'javascripts/specified/' . $javascript;
+			if(!in_array($javascript, $js_compress_important_files) && file_exists($internal_path))
+			{
+				$output .= '<script type="text/javascript" language="javascript" src="/javascripts/compressed_' . (preg_replace('/\.js$/i', '', $javascript)) . '_' . filemtime($internal_path) . '.js"></script>' . "\n";
+			}
 		}
 	}
 	
@@ -123,6 +117,13 @@ function ui_top($options = array())
 	$output .= '</script>' . "\n";
 	$output .= '<script language="JavaScript" type="text/javascript" src="http://ad.adtoma.com/adam/cm8adam_1_call.js"></script>' . "\n";
 	
+	$output .= '<div style="margin: 10px 0 0 10px;"><!-- Adtrade - PUBLISHER ADCODE v1.0 --><script type="text/javascript" src="http://www.adtrade.net/ad/p/?id=hamsterpaj_1&size=728x90&ad=001" charset="iso-8859-1"></script></div>' . "\n";
+
+	if(isset($_SESSION['user_message']))
+	{
+		$output .= jscript_alert($_SESSION['user_message'], true) . "\n";
+		unset($_SESSION['user_message']);
+	}
 	
 	// A big notice-bar shown on top, 60px height.
 /*	
@@ -200,9 +201,10 @@ function ui_top($options = array())
 		$output .= '			</div>' . "\n";
 		
 		$output .= '			<div id="ui_statusbar">' . "\n";
-		$output .= '				<a href="#">' . "\n";
-		$output .= '					<img src="' . IMAGE_URL . 'images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
-		$output .= '				</a>' . "\n";
+		//$output .= '				<a href="#">' . "\n";
+		//$output .= '					<img src="' . IMAGE_URL . 'images/users/thumb/' . $_SESSION['login']['id'] . '.jpg" alt="" onclick="window.open(\'/avatar.php?id=' . $_SESSION['login']['id'] . '\',\'' . rand() . '\',\'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=410, height=600\')"/>' . "\n";
+		$output .= '					' . ui_avatar($_SESSION['login']['id']) . "\n";
+		//$output .= '				</a>' . "\n";
 		$output .= '				<div id="ui_statusbar_username">' . "\n";
 		$output .= '					<a href="/traffa/profile.php?user_id=' . $_SESSION['login']['id'] . '"><strong>' . $_SESSION['login']['username'] . '</strong></a><span> | </span><a href="/login/logout.php">Logga ut</a><br />' . "\n";
 		$output .= '				</div>' . "\n";
@@ -376,6 +378,14 @@ function ui_bottom($options = array())
 	}
 	else
 	{
+		$modules['google_adsense'] = 'Överlevnadsmodul';
+		
+		$query = 'SELECT rs.id FROM radio_schedule AS rs, login AS l, radio_programs AS rp WHERE l.id = rp.user_id AND rp.id = rs.program_id AND NOW() BETWEEN rs.starttime AND rs.endtime ORDER BY rs.starttime DESC LIMIT 0, 1';
+		$ui_module_radio_sending = query_cache(array('query' => $query, 'max_delay' => 60));
+		if(count($ui_module_radio_sending) > 0)
+		{
+			$modules['radio_sending'] = 'Radio';
+		}
 		$modules['multisearch'] = 'Multi-sök';
 		
 		if ( login_checklogin() )
@@ -407,9 +417,12 @@ function ui_bottom($options = array())
 	
 	if ( is_array($_SESSION['module_order']) && $options['ui_modules_hide'] == false )
 	{
-		foreach ( $_SESSION['module_order'] as $handle )
+		// Merging together all coded modules and those in the SESSION so no modules are missed
+		$show_modules = array_merge(array_flip($_SESSION['module_order']), $modules);
+		
+		foreach ($show_modules as $handle => $order)
 		{
-			if ( isset($modules[$handle]) )
+			if (isset($modules[$handle]))
 			{
 				$output .= ui_module_render(ui_module_fetch(array(
 					'header' => $modules[$handle],
@@ -438,6 +451,7 @@ function ui_bottom($options = array())
 	$output .= '</div>' . "\n";
 	
 	$output .= '<div id="fiskpinne" style="background: none;">' . "\n";
+	$output .= '<a href="http://click.double.net/?27424;229;4368" target="_blank"><img src="http://imp.double.net/imp.html?a27424p229g4368" width="160" height="350" border="0" alt=""></a>' . "\n";
 	$output .= '<script type="text/javascript" src="http://www.adtrade.net/ad/p/?id=hamsterpaj_1&size=140x350&ad=001" charset="iso-8859-1"></script>';
 	$output .= '</div>' . "\n";
 	
@@ -465,9 +479,23 @@ function ui_bottom($options = array())
 		}
 		else
 		{
-			$output .= file_get_contents(PATHS_INCLUDE . 'tiny_reg_form.html');
+			$output .= login_tiny_reg_form_generate();
 		}
 		$output .= '</div>' . "\n";	
+	}
+	
+	if(ENVIRONMENT == 'production')
+	{
+		$output .= '<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src=\'" + gaJsHost + "google-analytics.com/ga.js\' type=\'text/javascript\'%3E%3C/script%3E"));
+			</script>
+			<script type="text/javascript">
+			try {
+			var pageTracker = _gat._getTracker("UA-7987100-1");
+			pageTracker._trackPageview();
+			} catch(err) {}
+		</script>';
 	}
 	
 	$output .= '</body>' . "\n";
@@ -755,8 +783,13 @@ function ui_module_render($options)
 		return $content;
 	}
 	
-	function ui_avatar($user_id, $options)
+	function ui_avatar($user_id, $options = array())
 	{
+		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$chars_strlen = strlen($chars);
+		for ($i = 1; $i <= 6; $i++) {
+			$random_string .= substr($chars, rand(0, $chars_strlen - 1), 1);
+		}
 		if(!is_numeric($user_id) && $options['show_nothing'] != true)
 		{
 			return 'Avatar id not numeric, aborting...';
@@ -766,11 +799,11 @@ function ui_module_render($options)
 		$size = (isset($options['size'])) ? $options['size'] : 'mini';
 		if (file_exists($img_path))
 		{
-			return '<img src="' . IMAGE_URL . 'images/users/thumb/' . $user_id . '.jpg?cache_prevention=' . filemtime($img_path) . '" class="user_avatar"' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . 'images/users/thumb/' . $user_id . '.jpg?cache_prevention=' . filemtime($img_path) . '" class="user_avatar" id="' . $random_string . '_' . $user_id . '"' . $style . ' />' . "\n";
 		}
 		else
 		{
-			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" class="user_avatar"' . $style . ' />' . "\n";
+			return '<img src="' . IMAGE_URL . '/images/users/no_image_' . $size . '.png" id="' . $random_string . '_no_avatar" class="user_avatar" ' . $style . ' />' . "\n";
 		}
 	}
 	

@@ -1,7 +1,7 @@
 <?php
 	function cache_load($handle)
 	{
-		$serialized = file_get_contents(PATHS_INCLUDE . 'cache/' . $handle . '.phpserialized');
+		$serialized = file_get_contents(PATHS_CACHE . $handle . '.phpserialized');
 		$data = unserialize($serialized);
 		return $data;
 	}
@@ -9,14 +9,14 @@
 	function cache_save($handle, $data)
 	{
 		$serialized = serialize($data);
-		$file = fopen(PATHS_INCLUDE . 'cache/' . $handle . '.phpserialized', 'w');
+		$file = fopen(PATHS_CACHE . $handle . '.phpserialized', 'w');
 		fwrite($file, $serialized);
 		fclose($file);
 	}
 
 	function cache_last_update($handle)
 	{
-		return filemtime(PATHS_INCLUDE . 'cache/' . $handle . '.phpserialized');
+		return filemtime(PATHS_CACHE . $handle . '.phpserialized');
 	}
 
 	$QUERY_CACHE_CACHE = array();
@@ -31,16 +31,16 @@
 		$options['category'] = (isset($options['category'])) ? $options['category'] : 'other';
 		$options['max_delay'] = (isset($options['max_delay'])) ? $options['max_delay'] : 300;
 		
-		if (!is_dir(PATHS_INCLUDE . 'cache/'))
+		if (!is_dir(PATHS_CACHE))
 		{
-			mkdir(PATHS_INCLUDE . 'cache/');
+			mkdir(PATHS_CACHE);
 		}
-		if (!is_dir(PATHS_INCLUDE . 'cache/query_cache/'))
+		if (!is_dir(PATHS_CACHE . 'query_cache/'))
 		{
-			mkdir(PATHS_INCLUDE . 'cache/query_cache/');
+			mkdir(PATHS_CACHE . 'query_cache/');
 		}
 		
-		$path = PATHS_INCLUDE . 'cache/query_cache/' . $options['category'] . '/';
+		$path = PATHS_CACHE . 'query_cache/' . $options['category'] . '/';
 		$filename = md5($options['query']) . '.phpserialized';
 		
 		

@@ -1,7 +1,7 @@
 <?php
 	require('../include/core/common.php');
-	require_once(PATHS_INCLUDE . 'libraries/sex_and_sense.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/schedule.lib.php');
+	require_once(PATHS_LIBRARIES . 'sex_and_sense.lib.php');
+	require_once(PATHS_LIBRARIES . 'schedule.lib.php');
 
 	$ui_options['menu_path'] = array('sex_sense');
 	$ui_options['title'] = 'Sex och sinne';

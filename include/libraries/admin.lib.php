@@ -23,11 +23,6 @@ function ov_check_info($user_id)
 
 function admin_report_event($username, $action, $resource_id)
 {
-/*	global $hp_includepath;
-	$log_text = date('Y-m-d H:i:s') . "\t" . $username . "\t" . $action . "\t" . $resource_id . "\n";
-	$logfile = fopen($hp_includepath . 'admin_logs/' . date('Y-m-d') . '.log', 'a');
-	fwrite($logfile, $log_text);
-	fclose($logfile);*/
 	log_admin_event('report event', $action , $_SESSION['login']['id'], $username, $resource_id);
 }
 

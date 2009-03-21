@@ -1,5 +1,5 @@
 <?php
-$serialized = file_get_contents(PATHS_INCLUDE . 'cache/live_stats.phpserialized');
+$serialized = file_get_contents(PATHS_CACHE . 'live_stats.phpserialized');
 $info = unserialize($serialized); 
 
 $options['output'] .= '<h4>Besökare</h4>' . "\n";

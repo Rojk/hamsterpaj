@@ -1,6 +1,6 @@
 <?php
 	require('/home/www/standard.php');
-	require(PATHS_INCLUDE . 'libraries/films.lib.php');
+	require(PATHS_LIBRARIES . 'films.lib.php');
 	$ui_options['menu_path'] = array('hamsterpaj', 'policies', 'noejesavdelning');
 	$ui_options['title'] = 'Hamsterpajs digitala nöjesavdelningar';
 

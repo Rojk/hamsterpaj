@@ -1,9 +1,18 @@
-<?php    
+<?php
 	require('../include/core/common.php');
 	$ui_options['menu_path'] = array('traeffa');
 	$ui_options['stylesheets'][] = 'traffa_index.css';
 	ui_top($ui_options);
 
+	require_once(PATHS_VENDORS . 'geoip/GeoIP.inc.php');
+	$geoip_database = geoip_open(PATHS_VENDORS . 'geoip/GeoIP.dat');
+	$country_code = geoip_country_code_by_addr($geoip_database, $_SERVER['REMOTE_ADDR']);
+	if($country_code == 'TR')
+	{
+		echo 'Araştırmak, or fisk as we say in sweden. =D Turkiet är blockerat för träffas startsida om du undrar. :)';
+		ui_bottom();
+		exit;
+	}
 	echo rounded_corners_top(array('color' => 'orange'));
 ?>
 
@@ -52,14 +61,10 @@
 		{
 			echo '<td>' . "\n";
 			echo '<form action="/traffa/index.php" method="post" class="chat_delete">' . "\n";
-			echo '
-<input type="hidden" value="delete" name="action"/>
-' . "\n";
-			echo '<input type="hidden" value="' . $data['timestamp'] . '" name="chat_timestamp"/>
-' . "\n";
+			echo '<input type="hidden" value="delete" name="action"/>' . "\n";
+			echo '<input type="hidden" value="' . $data['timestamp'] . '" name="chat_timestamp"/>' . "\n";
 			echo '<input type="submit" class="chat_delete" value="x"/>' . "\n";
-			echo '
-</form>';
+			echo '</form>';
 			echo '</td>';
 		}
 		echo '</tr>';
@@ -131,7 +136,7 @@
 		{
 			foreach(array(14, 16, 18, 20, 22) AS $age)
 			{
-				$unserialized = file_get_contents(PATHS_INCLUDE . 'cache/online_people/' . $gender . $age . '.phpserialized');
+				$unserialized = file_get_contents(PATHS_CACHE . 'online_people/' . $gender . $age . '.phpserialized');
 				$people = unserialize($unserialized);
 				foreach($people AS $data)
 				{

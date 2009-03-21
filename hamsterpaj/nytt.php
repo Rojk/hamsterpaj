@@ -2,7 +2,7 @@
 	/* OPEN_SOURCE */
 
   require('../include/core/common.php');
-	require_once(PATHS_INCLUDE . 'libraries/msnbot.lib.php');
+	require_once(PATHS_LIBRARIES . 'msnbot.lib.php');
 
 	$ui_options['menu_path'] = array('hamsterpaj', 'nytt');
   $ui_options['enable_rte'] = true;

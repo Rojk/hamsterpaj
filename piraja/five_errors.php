@@ -1,9 +1,9 @@
 <?php
 	require('../include/core/common.php');
-	require_once(PATHS_INCLUDE  . 'libraries/entertain.lib.php');
-	require_once(PATHS_INCLUDE  . 'libraries/rank.lib.php');
-	require_once(PATHS_INCLUDE  . 'libraries/photos.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/fp_modules.lib.php');
+	require_once(PATHS_LIBRARIES . 'entertain.lib.php');
+	require_once(PATHS_LIBRARIES . 'rank.lib.php');
+	require_once(PATHS_LIBRARIES . 'photos.lib.php');
+	require_once(PATHS_LIBRARIES . 'fp_modules.lib.php');
 
 	$ui_options['javascripts'][] = 'fp_common_modules.js';
 

@@ -1,6 +1,6 @@
 <?php
 
-	require_once(PATHS_INCLUDE . 'libraries/schedule.lib.php');
+	require_once(PATHS_LIBRARIES . 'schedule.lib.php');
 
 	function sex_sense_parse_request($options)
 	{

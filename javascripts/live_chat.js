@@ -229,11 +229,11 @@ function live_chat_render_entry(chatroom, entry)
 	
 
 	var user_photo = document.createElement('img');
-	user_photo.className = 'user_photo';
+	user_photo.className = 'user_avatar';
 	if(entry.user_photo)
 	{
 		user_photo.src = 'http://images.hamsterpaj.net/images/users/thumb/' + entry.user_photo + '.jpg';
-		user_photo.onclick = avatar_popup;
+		hp.ui.avatar.enable_new();
 	}
 	else
 	{

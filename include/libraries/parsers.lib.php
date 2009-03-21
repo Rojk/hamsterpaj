@@ -19,9 +19,45 @@
 	
 		return $handle;
 	}
+	
+	function fix_future_time($timestamp, $day_relative = true, $short_day = false) {
+		if($short_day == 'true')
+		{
+			$days = array('Sön', 'Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör');
+		}
+		else
+		{
+			$days = array('Söndag', 'Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag');
+		}
+		
+		if(date('Y-m-d') == date("Y-m-d", $timestamp) && $day_relative == true)
+		{
+			return 'Idag ' . date('H:i', $timestamp);
+		}
+		elseif(date('Y-m-d', time() + 86400) == date('Y-m-d', $timestamp) && $day_relative == true)
+		{
+			return 'I morgon ' . date('H:i',$timestamp);
+		}
+		elseif($timestamp > time() + 86400*5)
+		{
+			return 'På ' . $days[date('w', $timestamp)] . ' ' . date('H:i', $timestamp);
+		}
+		elseif(date('Y', $timestamp) == date('Y'))
+		{
+			return $days[date('w', $timestamp)] . ' ' . date('j/n H:i',$timestamp);
+		}
+		else
+		{
+			return date('Y-m-d H:i', $timestamp);
+		}
+	}
 
 	function fix_time($timestamp, $day_relative = true, $short_day = false)
 	{
+		if ($timestamp > time())
+		{
+			return fix_future_time($timestamp, $day_relative, $short_day);
+		}
 		if($short_day == 'true')
 		{
 			$days = array('Sön', 'Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör');
@@ -200,8 +236,19 @@
 			'/skiten/lur.php?id=',
 			'sexyemilie',
 			'sexye.milie',
+			'sexy.emilie',
+			'sexy*emilie',
+			'milie.com/?id=',
+			'sexy-emilie',
+			'emilie.com',
+			'emilie,com',
 			'www.rivality.notlong.com',
-			'rivality.com/'
+			'rivality.com',
+			'rivality.notlong',
+			'EXgirl007.myhotpicss.com',
+			'EXgirl',
+			'myhotpicss',
+			'ihate'
 			);
 		foreach($banned_strings AS $banned)
 		{

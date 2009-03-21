@@ -1,6 +1,6 @@
 <?php
 	require('/storage/www/standard.php');
-	require(PATHS_INCLUDE . 'libraries/knowledge_database.lib.php');
+	require(PATHS_LIBRARIES . 'knowledge_database.lib.php');
 		
 	$knowledge_database_config['database'] = 'hamsterpaj';
 	$knowledge_database_config['url'] = $_SERVER['REQUEST_URI'];

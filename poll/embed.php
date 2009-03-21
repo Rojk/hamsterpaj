@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE  . 'libraries/poll.lib.php');
+	require(PATHS_LIBRARIES . 'poll.lib.php');
 	header('Content-type: application/javascript');
 
 	echo 'document.write(\'<script type="text/javascript" language="javascript" src="http://www.hamsterpaj.net/javascripts/womlib.js"></script>\');' . "\n\n";

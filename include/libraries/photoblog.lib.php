@@ -273,7 +273,11 @@
 		{
 			while($data = mysql_fetch_assoc($result))
 			{
-				if(strlen($data['name']) > 0)
+				if ( isset($options['id_index']) && $options['id_index'] == true )
+				{
+					$categories[$data['id']] = $data;
+				}
+				else
 				{
 					$categories[] = $data;
 				}
@@ -457,7 +461,6 @@
 		}
 	}
 
-
 	function photoblog_calendar($user_id, $month, $year)
 	{
 		$format_month = sprintf('%02s', $month);
@@ -476,17 +479,22 @@
 		$prev_year = ($prev_month == 12) ? $year -1 : $year;
 		$prev_has = $used_dates != $dates_first;
 		
-		
 		$next_month = ($month == 12) ? 1 : $month + 1;
 		$next_year = ($next_month == 1) ? $year + 1 : $year;
 		$next_has = $used_dates != $dates_last;
 		
+		$prev_year_has = isset($dates[$year - 1]);
+		$next_year_has = isset($dates[$year + 1]);
+		
+		$prev_year_month = $prev_year_has ? end(array_keys($dates[$year - 1])) : false;
+		$next_year_month = $next_year_has ? reset(array_keys($dates[$year + 1])) : false;
+		
 		$offset = date('N', $date);
 		$rows = 1;
-		$out .= '<div id="photoblog_calendar_month">' . "\n";
-			$out.= $prev_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&laquo;</a>', $prev_year, $prev_month) . "\n" : '';
+		$out .= '<div id="photoblog_calendar_month" class="date-' . $year . $format_month . '">' . "\n";
+			$out.= $prev_has ? sprintf('<a class="photoblog_calendar_date" href="#month-%s%02s">&laquo;</a>', $prev_year, $prev_month) . "\n" : '';
 				$out .= '<span>' . date('F', $date) . ', ' . $year . '</span>' . "\n";
-			$out.= $next_has ? sprintf('<a class="photoblog_calendar_date" href="#%s-%s">&raquo;</a>', $next_year, $next_month) . "\n" : '';
+			$out.= $next_has ? sprintf('<a class="photoblog_calendar_date" href="#month-%s%02s">&raquo;</a>', $next_year, $next_month) . "\n" : '';
 		$out .= '</div>' . "\n";
 		$out .= '<table>' . "\n";
 		$out .= '<tr><th>M</th><th>T</th><th>O</th><th>T</th><th>F</th><th>L</th><th>S</th></tr>' . "\n";
@@ -514,8 +522,60 @@
 		$out .= '</tr>' . "\n";
 		$out .= '</table>' . "\n";
 		$out .= '<div id="photoblog_calendar_year">' . "\n";
-		$out .= '<span class="photoblog_calendar_year_pre">' . ((int)$year - 1) . '</span><span class="photoblog_calendar_year_after">' . ((int)$year + 1) . '</span>' . "\n";
+		$out .= '<span class="photoblog_calendar_year_pre">' . (($prev_year_has) ? sprintf('<a class="photoblog_calendar_date" href="#month-%s%s">%s</a>', ($year - 1), $prev_year_month, ($year - 1)) : '') . '</span>';
+		$out .= '<span class="photoblog_calendar_year_after">' . (($next_year_has) ? sprintf('<a class="photoblog_calendar_date" href="#month-%s%s">%s</a>', ($year + 1), $next_year_month, ($year + 1)) : '')  . '</span>' . "\n";
 		$out .= '</div>' . "\n";
 		return $out;
+	}
+	
+	function photoblog_sort_save($data)
+	{
+		$sort_arrays = array();
+		$sql_parts = array();
+		foreach ( $data as $category_id => $photos )
+		{
+			if ( ! is_numeric($category_id) )
+			{
+				throw new Exception('Erronous category ID:s, aborting.');
+			}
+			
+			foreach ( $photos as $index => $photo_id )
+			{
+				if ( ! is_numeric($index) || ! is_numeric($photo_id) )
+				{
+					throw new Exception('Erronous photo ID:s, aborting.');
+				}
+				$sort_arrays[$category_id][$index] = $photo_id;
+				$sql_parts[$category_id][] = $photo_id;
+			}
+		}
+		
+		foreach ( $sort_arrays as $id => $arr )
+		{
+			// $id == 0 == no category, no order?
+			if ( $id == 0 )
+			{
+				continue;
+			}
+			
+			$query = 'UPDATE user_photo_categories';
+			$query .= ' SET sorted_photos = "' . mysql_real_escape_string(serialize($arr)) .  '"';
+			$query .= ' WHERE id = ' . $id;
+			$query .= ' LIMIT 1';
+			
+			mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+			
+			// update
+			
+			if ( count($sql_parts[$id]) )
+			{
+				$or_ids = implode(' OR id = ', $sql_parts[$id]);
+				$query = 'UPDATE user_photos';
+				$query .= ' SET category = ' . $id;
+				$query .= ' WHERE id = ' . $or_ids;
+			}
+			
+			mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+		}
 	}
 ?>

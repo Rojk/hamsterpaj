@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/photos.lib.php');
+	require(PATHS_LIBRARIES . 'photos.lib.php');
 
 	$ui_options['stylesheets'][] = 'photos.css';
 	$ui_options['menu_path'] = array('traeffa', 'new_photos');

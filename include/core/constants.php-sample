@@ -18,7 +18,8 @@
 	$paths_images_old			= '/mnt/images/images/';	// File path to images. This is the old images/images on hamsterpaj.
 	$paths_images 				= '/mnt/images/';	// File path to the current images directory.
 	$paths_static				= '/mnt/static/';	// File path to static, containing Images and compressed JS and CSS.
-	$url_images					= 'http://images.hamsterpaj.net/';	// URL to the images server.
+	$url_images_old			= 'http://images.hamsterpaj.net/';	// URL to the old images folder d.v.s images.hamsterpaj.net
+	$url_images					= 'http://static.hamsterpaj.net/images/'; // URL to images folder. This content is fetched from the hamsterpaj_images repository. I would recommend to set this content in a static/images folder. Which is gitignored.
 	$url_static					= 'http://static.hamsterpaj.net/';	// URL to the static server.
 	
 	$environment				= 'development';	//Set to 'development', 'production' or 'test' depending on which environment you want to use.
@@ -28,19 +29,23 @@
 	$db_password				= ''; // Database password, leave empty if not configed
 	$db_database				= ''; // Database name
 	
+	$msnbot_salt				= ''; // Msnbot salt, only used in production at the moment.
+	
 /*
 	################################################################
 	This is if you wish to create a more secure password. In 
 	development environment that seems quite unnecessary to me. 
 	And u can keep it as it is. If you edit this, the
 	example users for your development-environment won't be working.
+	Also note: This is used as the old password system in the prod/
+	live environment. Removing it will create problems for old users.
 	################################################################
 */
-	$salt_password			=	'exempelsalt'; 
+	$password_salt			=	'exempelsalt'; 
 
 	function hamsterpaj_password($password, $version = 1)
 	{
-		$password_hash = sha1($password . SALT_PASSWORD);
+		$password_hash = sha1($password . PASSWORD_SALT);
 		return $password_hash;
 	}
 	
@@ -55,17 +60,25 @@
 	
 	################################################################
 */
-	define('PATHS_WEBROOT', $_SERVER['DOCUMENT_ROOT'] . '/');
-	define('PATHS_INCLUDE', PATHS_WEBROOT . 'include/');
-	define('PATHS_CACHE', PATHS_INCLUDE . 'cache/');
+	define('PATHS_SCRIPTROOT', substr(substr(substr(__FILE__, 0, strrpos(__FILE__, '/')), 0, strrpos(substr(__FILE__, 0, strrpos(__FILE__, '/')), '/')), 0, strrpos(substr(substr(__FILE__, 0, strrpos(__FILE__, '/')), 0, strrpos(substr(__FILE__, 0, strrpos(__FILE__, '/')), '/')), '/') + 1));// Easy, ugly fix giving most people a hard headache. What it does? It finds the webroot even if used from command line (cron)! :D
+	define('PATHS_WEBROOT', PATHS_SCRIPTROOT);// This is about to change when we introduce public/
+	define('PATHS_INCLUDE', PATHS_SCRIPTROOT . 'include/');
+	define('PATHS_LIBRARIES', PATHS_INCLUDE . 'libraries/');
+	define('PATHS_VENDORS', PATHS_INCLUDE . 'vendors/');
+	define('PATHS_CONFIGS', PATHS_INCLUDE . 'configs/');
+	define('PATHS_CRON', PATHS_INCLUDE . 'cron/');
+	define('PATHS_CACHE', PATHS_SCRIPTROOT . 'cache/');
 	define('PATHS_LOGS', $paths_logs);
+	define('PATHS_DYNAMIC_CONTENT', PATHS_SCRIPTROOT . 'dynamic_content/');
 	define('PATHS_IMAGES', $paths_images_old);
 	define('PATHS_STATIC', $paths_static);
 	define('IMAGE_PATH', $paths_images);
-	define('IMAGE_URL', $url_images);
+	define('IMAGE_URL', $url_images_old);
+	define('URL_IMAGES',  $url_images);
 	define('STATIC_URL', $url_static);
-	define('ENVIRONMENT', $environment); 
-	define('SALT_PASSWORD', $salt_password); 
+	define('ENVIRONMENT', $environment);
+	define('PASSWORD_SALT', $password_salt);
+	define('MSNBOT_SALT', $msnbot_salt);
 	
 /*
 	################################################################
@@ -75,7 +88,6 @@
 */
 
 	$hp_path = $_SERVER['DOCUMENT_ROOT'] . '/'; // This is the server path to your application
-	$hp_includepath = PATHS_INCLUDE;
 	$hp_url = 'http://' . $_SERVER['SERVER_NAME'] . '/';
 
 /*

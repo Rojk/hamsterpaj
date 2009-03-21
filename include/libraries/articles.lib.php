@@ -87,9 +87,9 @@
 		
 		if(isset($name))
 		{
-			if(file_exists(PATHS_INCLUDE . 'article_authors/' . $name . '.php'))
+			if(file_exists(PATHS_DYNAMIC_CONTENT . 'article_authors/' . $name . '.php'))
 			{
-				include(PATHS_INCLUDE . 'article_authors/' . $name . '.php');
+				include(PATHS_DYNAMIC_CONTENT . 'article_authors/' . $name . '.php');
 			}
 		}
 
@@ -162,7 +162,7 @@
 		$id = mysql_insert_id();
 
 		$content = html_entity_decode(stripslashes($content['content']));
-		$file = fopen(PATHS_INCLUDE . 'articles/' . $id . '.php', 'w');
+		$file = fopen(PATHS_DYNAMIC_CONTENT . 'articles/' . $id . '.php', 'w');
 		fwrite($file, $content);
 		fclose($file);
 		jscript_location('/artiklar/?action=show&id=' . $id);
@@ -208,7 +208,7 @@
 		mysql_query($query) or die(report_sql_error($query));
 		
 		$content = html_entity_decode(stripslashes($content['content']));
-		$file = fopen(PATHS_INCLUDE . 'articles/' . $id . '.php', 'w');
+		$file = fopen(PATHS_DYNAMIC_CONTENT . 'articles/' . $id . '.php', 'w');
 		fwrite($file, $content);
 		fclose($file);
 		jscript_location('/artiklar/?action=show&id=' . $id);
@@ -317,10 +317,10 @@
 	
 	function include_article($id)
 	{
-		if (is_file(PATHS_INCLUDE . 'articles/' . $id . '.php')) // If the file exists.
+		if (is_file(PATHS_DYNAMIC_CONTENT . 'articles/' . $id . '.php')) // If the file exists.
 		{ 
 			ob_start();
-			include PATHS_INCLUDE . 'articles/' . $id . '.php';
+			include PATHS_DYNAMIC_CONTENT . 'articles/' . $id . '.php';
 			$content .= ob_get_contents();
 			ob_end_clean();
 		}
@@ -343,7 +343,7 @@
 	
 		if(isset($article['id']))
 		{
-			$output .= '<textarea name="content" style="width: 99%; height: 400px;">' . file_get_contents(PATHS_INCLUDE . 'articles/' . $article['id'] . '.php') . '</textarea>' . "\n";
+			$output .= '<textarea name="content" style="width: 99%; height: 400px;">' . file_get_contents(PATHS_DYNAMIC_CONTENT . 'articles/' . $article['id'] . '.php') . '</textarea>' . "\n";
 		}
 		else
 		{
@@ -372,7 +372,7 @@
 		$output .= '<label for="author">Författare</label>' . "\n";
 		$output .= '<select name="author">' . "\n";
 		$output .= '<option value="">Anonym</option>' . "\n";
-		$handle = opendir(PATHS_INCLUDE . 'article_authors/');
+		$handle = opendir(PATHS_DYNAMIC_CONTENT . 'article_authors/');
 		while (false !== ($file = readdir($handle))) 
 		{
 			if ($file != "." && $file != "..") 

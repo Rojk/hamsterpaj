@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/movie_compability.lib.php');
+	require(PATHS_LIBRARIES . 'movie_compability.lib.php');
 	$ui_options['menu_path'] = array('dev', 'visa_sessionsdata');
 	ui_top($ui_options);
 

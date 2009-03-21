@@ -1,11 +1,11 @@
 <?php
 // Schedule library
 
-require_once(PATHS_INCLUDE . 'libraries/contests.lib.php');
-require_once(PATHS_INCLUDE . 'libraries/fun_images.lib.php');
-require_once(PATHS_INCLUDE . 'libraries/poll.lib.php');
-//require_once(PATHS_INCLUDE . 'libraries/sex_and_sense.lib.php');
-require_once(PATHS_INCLUDE . 'libraries/sex_sense.lib.php');
+require_once(PATHS_LIBRARIES . 'contests.lib.php');
+require_once(PATHS_LIBRARIES . 'fun_images.lib.php');
+require_once(PATHS_LIBRARIES . 'poll.lib.php');
+//require_once(PATHS_LIBRARIES . 'sex_and_sense.lib.php');
+require_once(PATHS_LIBRARIES . 'sex_sense.lib.php');
 
 function schedule_event_add($options)
 {
@@ -195,14 +195,8 @@ function schedule_releases_do($options)
 				$label = $data['title'];
 				break;
 			case 'poll':
-								// Fulhaxx...
-								$old_session_id = isset($_SESSION['login']['id']) ? $_SESSION['login']['id'] : 0;
-								$_SESSION['login']['id'] = 2348;
-
 				$poll_handle = poll_create($data);
-
-								if($old_session_id == 0){ $_SESSION['login']['id'] = 0;unset($_SESSION['login']['id']); }else{ $_SESSION['login']['id'] = $old_session_id; }
-
+				
 				$poll = poll_fetch(array('handle' => $poll_handle));
 				
 				$post['content'] = '[poll:' . $poll[0]['id'] . ']';

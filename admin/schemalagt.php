@@ -1,7 +1,7 @@
 <?php
 
 require('../include/core/common.php');
-require_once(PATHS_INCLUDE . '/libraries/schedule.lib.php');
+require_once(PATHS_LIBRARIES . 'schedule.lib.php');
 $ui_options['menu_path'] = array('admin', 'schemalagt');
 $ui_options['stylesheets'][] = 'schedule_list.css';
 if(!is_privilegied('schedule_admin'))

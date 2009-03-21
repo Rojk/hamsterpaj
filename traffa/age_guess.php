@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require_once(PATHS_INCLUDE . 'libraries/age_guess.lib.php');
+	require_once(PATHS_LIBRARIES . 'age_guess.lib.php');
 	$ui_options['menu_path'] = array('traeffa', 'age_guess');
 	$ui_options['title'] = 'Gissa åldern på Hamsterpaj';
 	$ui_options['javascripts'][] = 'age_guess.js';

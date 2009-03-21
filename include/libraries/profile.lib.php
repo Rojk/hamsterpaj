@@ -178,6 +178,9 @@
 		
 		$profile_modules['my_visitors']['label'] = 'Besökare';
 		$profile_modules['my_visitors']['url'] = '/traffa/my_visitors.php?user_id=%USERID%';
+		
+		$profile_modules['photoblog']['label'] = 'Fotoblogg (beta)';
+		$profile_modules['photoblog']['url'] = '/fotoblogg/%USERNAME%';
 			
 		$out .= '<div class="navigation">' . "\n";
 		$out .= '<ul>' . "\n";
@@ -186,7 +189,7 @@
 			$class = ($handle == $params['active_tab']) ? ' class="active"' : '';
 			if(isset($module['url']))
 			{
-				$out .= '<li' . $class . '><a href="' . str_replace('%USERID%', $params['user_id'], $module['url']) . '">' . $module['label'] . '</a></li>' . "\n";
+				$out .= '<li' . $class . '><a href="' . str_replace(array('%USERID%', '%USERNAME%'), array($params['user_id'], $params['username']), $module['url']) . '">' . $module['label'] . '</a></li>' . "\n";
 			}
 			else
 			{

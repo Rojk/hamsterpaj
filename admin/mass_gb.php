@@ -3,9 +3,11 @@
 	$ui_options['title'] = 'GB-massutskick - Hamsterpaj.net';
 	$ui_options['stylesheets'][] = 'forms.css';
 	
-	if ( !is_privilegied('igotgodmode') )
+	if(!is_privilegied('mass_gb'))
 	{
-		die('Wortwortwort!');
+		jscript_alert('Du har inga rättigheter till mass-gb utskick (Kanske har du blivit utloggad?)');
+		jscript_location('/');
+		die('Du har inga rättigheter till mass-gb utskick (Kanske har du blivit utloggad?)');
 	}
 	/*
 	Array

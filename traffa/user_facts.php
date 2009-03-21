@@ -1,8 +1,8 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
-	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
-	require(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
+	require_once(PATHS_LIBRARIES . 'profile.lib.php');
+	require_once(PATHS_LIBRARIES . 'userblock.lib.php');
+	require_once(PATHS_LIBRARIES . 'guestbook.lib.php');
 	$ui_options['stylesheets'][] = 'user_profile.css';
 	$ui_options['stylesheets'][] = 'rounded_corners_tabs.css';
 	$ui_options['stylesheets'][] = 'discussion_forum.css';

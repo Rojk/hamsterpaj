@@ -6,9 +6,9 @@
 	}
 	require('../include/core/common.php');
 	
-	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
-	require(PATHS_INCLUDE . 'libraries/photos.lib.php');
-	require(PATHS_INCLUDE . 'libraries/userblock.lib.php');
+	require(PATHS_LIBRARIES . 'profile.lib.php');
+	require(PATHS_LIBRARIES . 'photos.lib.php');
+	require(PATHS_LIBRARIES . 'userblock.lib.php');
 
 	$ui_options['javascripts'][] = 'user_flags.js';
 	
@@ -110,7 +110,6 @@
 	
 	
 	/* User flags */
-	include(PATHS_INCLUDE . 'user_flags.php');
 	$query = 'SELECT ufl.* FROM user_flags AS uf, user_flags_list AS ufl WHERE user = "' . 
 	$params['user_id'] . '" AND ufl.id = uf.flag';
 	$result = mysql_query($query) or die(report_sql_error($query));

@@ -11,7 +11,7 @@ if(!is_privilegied('backgrounds_admin'))
 {
 	die('Does not compute');
 }
-	require(PATHS_INCLUDE.'libraries/wallpaper_admin.lib.php');
+	require(PATHS_LIBRARIES . 'wallpaper_admin.lib.php');
 	if(isset($_GET['action']))
 	{
 		if($_GET['action'] == 'resize_wallpapers')

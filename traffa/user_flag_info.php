@@ -1,6 +1,5 @@
 <?php
 	require('../include/core/common.php');
-	include(PATHS_INCLUDE . 'configs/user_flags.php');
 	
 	if($_GET['action'] == 'common_users')
 	{

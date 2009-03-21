@@ -1,6 +1,4 @@
 <?php
-	define('PHOTO_UPLOAD_TEMP_PATH', '/storage/www/www.hamsterpaj.net/data/photo_upload_temp/');
-	define('PHOTO_UPLOAD_TEMP_URL', 'http://www.hamsterpaj.net/photo_upload_temp/');
 	define('PHOTO_UPLOAD_MAX_IMAGES', 5);
 
 	define('PHOTO_FULL_IMAGE_PATH', '/mnt/images/photos/full/');

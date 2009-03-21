@@ -5,8 +5,8 @@
 	
 	ob_start();
 	require('../include/core/common.php');
-	require_once(PATHS_INCLUDE . 'libraries/discussion_forum.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/groups_active.lib.php');
+	require_once(PATHS_LIBRARIES . 'discussion_forum.lib.php');
+	require_once(PATHS_LIBRARIES . 'groups_active.lib.php');
 
 	$ui_options['menu_path'] = array('traeffa', 'grupper');
 	$ui_options['admtoma_category'] = 'groups';

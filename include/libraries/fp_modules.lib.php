@@ -33,7 +33,8 @@
 		$query .= (isset($options['launch_min'])) ? ' AND launch >= "' . $options['launch_min'] . '"' : '';
 		$query .= (isset($options['launch_max'])) ? ' AND launch <= "' . $options['launch_max'] . '"' : '';
 		$query .= (isset($options['id'])) ? ' AND id = "' . $options['id'] . '"' : '';
-		$query .= (isset($options['piraja'])) ? ' AND piraja = 1' : '';
+		$query .= (isset($options['piraja'])) ? ' AND piraja = "true"' : '';
+		$query .= (isset($options['gadget'])) ? ' AND gadget = "true"' : '';
 
 
 		$query .= (isset($options['order-by'])) ? ' ORDER BY ' . $options['order-by'] : ' ORDER BY priority';		
@@ -98,13 +99,21 @@
 								<option value="2_3"' . (($module['format'] == '2_3') ? ' selected="true"' : '') . '>Två-tredjedels</option>
 							</select>
 						</li>
+						<li>
+							<input type="checkbox" name="piraja" id="module_piraja" value="true"' . (($module['piraja'] == 'true') ? ' checked="checked"' : '') . ' />
+							<label for="module_piraja">Piraja</label>
+						</li>
+						<li>
+							<input type="checkbox" name="published" id="module_gadget" value="true"' . (($module['gadget'] == 'true') ? ' checked="checked"' : '') . ' />
+							<label for="module_gadget">Pryl</label>
+						</li>
 					</ul>' . "\n";
 
 	
 		$o .= '<label class="fp_admin_code_label">Kod</label>' . "\n";
 		if($module['id'] > 0 && !isset($module['code']))
 		{
-			$code = htmlspecialchars(file_get_contents(PATHS_INCLUDE . 'fp_modules/' . $module['id'] . '.php'));
+			$code = htmlspecialchars(file_get_contents(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $module['id'] . '.php'));
 		}
 		else
 		{

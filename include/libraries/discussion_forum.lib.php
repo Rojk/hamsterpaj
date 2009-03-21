@@ -119,6 +119,13 @@
 		{
 			die('Fatal error at line #' . __LINE__ . ', no title set');
 		}
+		if(strlen($post['content']) <= 3) {
+			die('Mer än så där får du allt skriva!');
+		}
+		if(content_check($post['content']) != 1)
+		{
+			die(content_check($post['content']));
+		}
 		
 		$post['timestamp'] = (isset($post['timestamp'])) ? $post['timestamp'] : time();
 		$post['handle'] = (isset($post['title'])) ? discussion_forum_post_handle($post['title']) : '';
@@ -127,13 +134,14 @@
 		$post['child_count'] = ($post['mode'] == 'new_thread') ? 1 : 0;
 		$post['anonymous'] = ($post['anonymous'] == 1) ? 1 : 0;
 
+		$post['fp_module_id'] = (isset($post['fp_module_id'])) ? $post['fp_module_id'] : 0;
 		
 		$query = 'INSERT INTO forum_posts (handle, author, timestamp, parent_post, forum_id, forum_type';
-		$query .= ', title, content, child_count, anonymous)';
+		$query .= ', title, content, child_count, anonymous, fp_module_id)';
 		$query .= ' VALUES("' . $post['handle'] . '", "' . $post['author'] . '", "' . $post['timestamp'] . '"';
 		$query .= ', "' . $post['parent_post'] . '", "' . $post['forum_id'] . '", "' . $post['forum_type'] . '"';
 		$query .= ', "' . $post['title'] . '", "' . $post['content'] . '", "' . $post['child_count'] . '"';
-		$query .= ', "' . $post['anonymous'] . '")';
+		$query .= ', "' . $post['anonymous'] . '", "' . $post['fp_module_id'] . '")';
 		
 		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 		
@@ -251,10 +259,6 @@
 			$return .= ($data['author'] == 2) ? '&nbsp;<a href="/diskussionsforum/hamsterpaj/veckans_ros/" title="Veckans ros"><img src="http://images.hamsterpaj.net/ros.png" alt="Ros" style="width: 11px; height: 17px;border:0;" /></a><br style="clear: both;" />' . "\n" : '';
 			$return .= '<div class="passepartout">' . "\n";
 			$return .= ui_avatar($data['author']);
-			if($data['author'] == 625058)
-			{
-				$return .= '<img class="bars" src="http://images.hamsterpaj.net/discussion_forum/bars.gif" />' . "\n";
-			}
 			$return .= '</div>' . "\n";
 			if($data['gender'] == 'f')
 			{
@@ -326,6 +330,10 @@
 				elseif($data['author'] == 891711)
 				{
 					$author_post_count = '';
+				}
+				elseif($data['author'] == 299825)
+				{
+					$author_post_count = '666 hatiska inlägg';
 				}
 				else
 				{

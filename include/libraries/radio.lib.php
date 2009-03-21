@@ -1,19 +1,20 @@
 <?php
 	function radio_shoutcast_fetch()
 	{
-		$scs = &new ShoutcastInfo(RADIO_SERVER);
-		if($scs->connect())
+		foreach(unserialize(RADIO_SERVERS) as $server)
 		{
-			$scs->send();
-			$data = $scs->parse();
-			$scs->close();
-			
-			return $data;
+			$server_socket = &new ShoutcastInfo($server);
+			if($server_socket->connect())
+			{
+				$server_socket->send();
+				$data = $server_socket->parse();
+				$server_socket->close();
+				
+				return $data;
+			}
 		}
-		else
-		{
-			return false;
-		}
+		
+		return false;
 	}
 	
 	function radio_schedule_fetch($options)
@@ -23,32 +24,61 @@
 		$options['offset'] = (isset($options['offset']) && is_numeric($options['offset'])) ? $options['offset'] : 0;
 		$options['limit'] = (isset($options['limit']) && is_numeric($options['limit'])) ? $options['limit'] : 9999;
 		
-		$query = 'SELECT rs.*, l.username, rp.*';
+		$query = 'SELECT rs.*, l.username, rp.*, rs.id AS id';
 		$query .= ' FROM radio_schedule AS rs, login AS l, radio_programs AS rp';
 		$query .= ' WHERE l.id = rp.user_id';
 		$query .= ' AND rp.id = rs.program_id';
 		$query .= (isset($options['id'])) ? ' AND rs.id IN("' . implode('", "', $options['id']) . '")' : '';
 		$query .= (isset($options['user'])) ? ' AND rp.user_id  = "' . $options['user'] . '"' : '';
-		$query .= ($options['broadcasting']) ? ' AND NOW() BETWEEN rs.starttime AND rs.endtime' : ' AND NOW() NOT BETWEEN rs.starttime AND rs.endtime';
-		$query .= (!$options['show_sent']) ? ' AND NOW() < rs.starttime ' : ''; // Show programs that already been sent?
+		$query .= ($options['broadcasting']) ? ' AND NOW() BETWEEN rs.starttime AND rs.endtime' : '';
+		$query .= ($options['show_from_today'] && !$options['broadcasting']) ? ' AND "' . date('Y-m-d 00:00') . '" <= rs.starttime ' : ''; // Show programs from today
+		$query .= (!$options['show_sent'] && !$options['broadcasting'] && !$options['show_from_today']) ? ' AND NOW() < rs.starttime ' : ''; // Show programs that already been sent?
 		$query .= ' ORDER BY ' . $options['order-by'] . ' ' . $options['order-direction'] . ' LIMIT ' . $options['offset'] . ', ' . $options['limit'];
-			
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
-		$schedule = array();
-		while($data = mysql_fetch_assoc($result))
+		if($options['sort-by-day'] === true && isset($options['sort-by-day']))
 		{
-			$schedule[] = $data;
-			$found_something = true;
-		}
-		
-		if ($found_something)
-		{
+			$schedule = array();
+			while($data = mysql_fetch_assoc($result))
+			{
+				$startday = substr($data['starttime'], 0, 10);
+				$schedule[$startday][] = $data;
+			}
 			return $schedule;
 		}
 		else
 		{
+			$schedule = array();
+			while($data = mysql_fetch_assoc($result))
+			{
+				$schedule[] = $data;
+			}
+			return $schedule;
+		}
+		
+		if(empty($data))
+		{
 			return false;
 		}
+	}
+	
+	function radio_schedule_add($options)
+	{	
+		if(!is_numeric($options['program_id']))
+		{
+			throw new Exception('Id is not numerical');
+		}
+		$query = 'INSERT INTO radio_schedule (program_id, starttime, endtime) VALUES("' . implode('", "', array($options['program_id'], $options['starttime'], $options['endtime'])) . '")';
+		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+	}
+	
+	function radio_schedule_remove($options)
+	{	
+		if(!is_numeric($options['id']))
+		{
+			throw new Exception('Id is not numerical');
+		}
+		$query = 'DELETE FROM radio_schedule WHERE id = ' . $options['id'] . ' LIMIT 1';
+		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 	}
 	
 	function radio_djs_fetch($options)
@@ -90,19 +120,28 @@
 			throw new Exception('User ID not numeric');
 		}
 
-		$radio_djs_add_sql = 'INSERT INTO radio_djs (information, user_id) VALUES("' . $dj_information . '", ' . $dj_user_id . ')';
-		if (!mysql_query($radio_djs_add_sql))
-		{
-			report_sql_error($radio_djs_add_sql, __FILE__, __LINE__);
-			throw new Exception('Något gick fel i ett MySQL-query.<br />' . mysql_error() . '');
-		}
+		$query = 'INSERT INTO radio_djs (information, user_id) VALUES("' . $dj_information . '", ' . $dj_user_id . ')';
+		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
 		
-		$radio_privilegies_add_sql = 'INSERT INTO privilegies (privilegie, value, user) VALUES ("radio_sender", 0, ' . $dj_user_id . ')'; // NOT WORKING
-		if (!mysql_query($radio_privilegies_add_sql))
+		$query = 'INSERT INTO privilegies (privilegie, value, user) VALUES ("radio_sender", 0, ' . $dj_user_id . ')';
+		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
+		
+		return true;
+	}
+	
+	function radio_dj_remove($options)
+	{
+		if(!is_numeric($options['user_id']))
 		{
-			report_sql_error($radio_privilegies_add_sql, __FILE__, __LINE__);
-			throw new Exception('Något gick fel när privilegien skulle läggas till<br />' . mysql_error() . '');
+			throw new Exception('User ID not numeric');
 		}
+
+		$query = 'DELETE FROM radio_djs WHERE user_id = ' . $options['user_id'] . '';
+		$result = mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
+		
+		$query = 'DELETE FROM privilegies WHERE user = ' . $options['user_id'] . ' AND privilegie = "radio_sender"';
+		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
+		
 		return true;
 	}
 	
@@ -150,14 +189,51 @@
 		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 	}
 	
-	function radio_schedule_add($options)
-	{		
-		$query = 'INSERT INTO radio_schedule (program_id, starttime, endtime) VALUES("' . implode('", "', array($options['program_id'], $options['starttime'], $options['endtime'])) . '")';
-		mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
+	function radio_program_remove($options)
+	{
+		if(!is_numeric($options['id']))
+		{
+			throw new Exception('Id is not numeric');
+		}
+		
+		$query = 'DELETE FROM radio_programs WHERE id = ' . $options['id'] . '';
+		$result = mysql_query($query) or report_sql_error($query, __FILE__, __LINE__);
 	}
 	
 	function radio_sending_fetch()
 	{
 		return true;
+	}
+	
+	function radio_chat_url_render()
+	{
+		$url = 'http://ved.hamsterpaj.net/chatt/index.php?';
+		if(login_checklogin())
+		{
+			$url .= 'nick=';
+			/* Please comment this if you understand the following lines */
+			/* Ask Joel, he can explain it. /Joel */
+			if (!preg_match("/^[A-Za-z]$/i",substr($_SESSION['login']['username'],0,1)))
+			{
+				$url.= substr($_SESSION['login']['username'],1,strlen($_SESSION['login']['username']));
+			}
+			else
+			{
+				$url .= $_SESSION['login']['username'];
+			}
+			$url .= '&amp;realname=';
+			$ageArray = date_get_age($_SESSION['userinfo']['birthday']); 
+			$url .= urlencode($ageArray . ';');
+			$url .= urlencode($_SESSION['userinfo']['gender'] . ';');
+			$url .= urlencode($_SESSION['userinfo']['location'] . ';');
+			$url .= urlencode($_SESSION['login']['id'] . ';');
+			$url .= urlencode($_SESSION['userinfo']['image'] . ';');
+		}
+		else
+		{
+			$url .= 'guest';
+		}
+		$url .= '&amp;chan=hamsterradio' . ',\'' . rand() . '\'';
+		return $url;
 	}
 ?>

@@ -18,9 +18,10 @@
 	#photoblog_upload_upload_flash_objectarea {
 		float: left;
 	}
-	#photoblog_upload_hq {
+	#photoblog_upload_wrapper span {
 		float: left;
-		margin-left: 20px;
+		margin-left: 10px;
+		margin-top: 3px;
 	}
 
 #photoblog_photo_properties_save
@@ -482,6 +483,9 @@
 			  height: 19px;
 			  padding: 2px;
 			}
+			#ui_module_photoblog_calendar td a {
+			  color: <?php echo $detail_color; ?>;
+			}
 			#photoblog_calendar_year {
 				color: <?php echo $detail_color; ?>;
 				padding: 10px 15px 0 15px;
@@ -492,6 +496,17 @@
 				.photoblog_calendar_year_pre {
 					float: left;
 				}
+
+body #ui_module_photoblog_calendar td.photoblog_calendar_active {
+	background: <?php echo $detail_color; ?>;
+	font-weight: bold;
+}
+
+	#ui_module_photoblog_calendar td.photoblog_calendar_active a {
+		color: <?php echo $main_color; ?>;
+	}
+	
+#photoblog_calendar_year a { color: <?php echo $detail_color; ?>; }
 
 /*
 	################################################################
@@ -523,7 +538,61 @@
 		color: <?php echo $detail_color; ?>;
 	}
 	
-.photoblog_calendar_active {
-	font-weight: bold;
+
+#photoblog_sort {
+	background: <?php echo $main_color; ?>;
+	padding: 10px;
 	color: <?php echo $detail_color; ?>;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
 }
+
+#photoblog_sort ul {
+	clear: both;
+	background: #fff;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+}
+
+	#photoblog_sort li {
+		float: left;
+		padding: 5px;
+		list-style: none;
+		text-align: center;
+		cursor: move;
+	}
+	
+		#photoblog_sort img {
+			border: 2px solid <?php echo $main_color; ?>;
+		}
+	
+		#photoblog_sort li input {
+			position: relative;
+			z-index: 5;
+		}
+	
+	#photoblog_sort ul:after {
+		clear: both;
+		display: block;
+		content: ".";
+		visibility: hidden;
+		height: 0;
+	}
+	
+	.sort-ghost {
+		opacity: .6;
+		filter: alpha(opacity=60);
+		cursor: move;
+	}
+	
+	.sort-active {
+		visibility: hidden;
+	}
+	
+	.jquery_sort_graveyard  {
+		list-style: none;
+	}

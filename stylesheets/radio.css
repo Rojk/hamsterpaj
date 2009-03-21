@@ -109,8 +109,8 @@
 		}
 		#radio_sending .radio_about span, #radio_sending .radio_about strong {
 			color: #adadad;
-			top: 35px;
-			left: 70px;
+			top: 40px;
+			left: 40px;
 			position: relative;
 		}
 		
@@ -154,8 +154,8 @@
 		}
 		#radio_next_program .radio_about span,#radio_next_program .radio_about strong {
 			color: #adadad;
-			top: 35px;
-			left: 70px;
+			top: 40px;
+			left: 40px;
 			position: relative;
 		}
 #radio_next_program_inactive {
@@ -164,6 +164,41 @@
 	height: 120px;
 	float: left;
 	margin-bottom: 10px;
+}
+.radio_program {
+	background-image: url(http://images.hamsterpaj.net/radio/program_template.png);
+	width: 314px;
+	height: 120px;
+	float: left;
+	margin-bottom: 10px;
+}
+.even {
+	margin-right: 10px;
+}
+	.radio_program .radio_about {
+		margin-left: 97px;
+	}
+		.radio_program img {
+			margin-left: 11px;
+			margin-top: 11px;
+			float: left;
+			width: 75px;
+		}
+		.radio_program .radio_about h2 {
+			color: orange;
+			top: 15px;
+			position: relative;
+		}
+		.radio_program .radio_about span, .radio_program .radio_about strong {
+			color: #adadad;
+			top: 35px;
+			left: 78px;
+			position: relative;
+		}
+.program_remove {
+	top: 10px;
+	left: 150px;
+	position: relative;
 }
 		 
 #choose_player {
@@ -216,6 +251,7 @@
 		position: relative;
 		top: 30px;
 		left: 23px;
+		width: 75px;
 	}
 	.radio_crew h2 {
 		position: relative;
@@ -230,6 +266,7 @@
 		top: 28px;
 		left: 55px;
 		font-size: 1.1em;
+		width: 555px;
 	}
 	.radio_crew .admin_tools {
 		position: relative;
@@ -240,3 +277,55 @@
 		.radio_crew .admin_tools a {
 			color: #fff;
 		}
+.radio_schedule_day {
+	width: 206px;
+	height: 269px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	float: left;
+}
+.radio_schedule_day_marginfix {
+	margin-right: 0px;
+}
+	.radio_schedule_day h2 {
+		position: relative;
+		left: 153px;
+		top: 7px;
+		color: #fff;
+		margin: 0;
+	}
+	.radio_schedule_day table {
+		padding: 25px;
+		width: 206px;
+		margin-top: 10px;
+	}
+		.radio_schedule_day table .radio_schedule_program_name {
+			width: 100px;
+		}
+	
+	#hardjavlahamster_header {
+		margin: 5px 0 5px 0;
+	}
+	#hardjavlahamster_images {
+		margin: 5px 0 5px 0;
+	}
+	.hardjavlahamster_live_image {
+		width:310px;
+		margin: 4px 3px 4px 4px;
+	}
+	#choose_player_peercast, #choose_player_peercast a, #choose_player_peercast a:visited {
+		padding: 4px;
+		-moz-border-radius: 5px;
+		background: #393939;
+		color: #fff;
+		font: 20px Tahoma;
+		text-align: center;
+	}
+	
+	.radio_schedule_mon {background-image: url(http://images.hamsterpaj.net/radio/schedule_monday.png);}
+	.radio_schedule_tue {background-image: url(http://images.hamsterpaj.net/radio/schedule_tuesday.png);}
+	.radio_schedule_wed {background-image: url(http://images.hamsterpaj.net/radio/schedule_wednesday.png);}
+	.radio_schedule_thu {background-image: url(http://images.hamsterpaj.net/radio/schedule_thursday.png);}
+	.radio_schedule_fri {background-image: url(http://images.hamsterpaj.net/radio/schedule_friday.png);}
+	.radio_schedule_sat {background-image: url(http://images.hamsterpaj.net/radio/schedule_saturday.png);}
+	.radio_schedule_sun {background-image: url(http://images.hamsterpaj.net/radio/schedule_sunday.png);}

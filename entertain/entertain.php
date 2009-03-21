@@ -7,11 +7,11 @@
 */
 
 	require('../include/core/common.php');
-	require_once(PATHS_INCLUDE . 'libraries/movie_compability.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/entertain.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/schedule.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/rank.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/comments.lib.php');
+	require_once(PATHS_LIBRARIES . 'movie_compability.lib.php');
+	require_once(PATHS_LIBRARIES . 'entertain.lib.php');
+	require_once(PATHS_LIBRARIES . 'schedule.lib.php');
+	require_once(PATHS_LIBRARIES . 'rank.lib.php');
+	require_once(PATHS_LIBRARIES . 'comments.lib.php');
 
 	define(ENTERTAINMENT_ITEMS_PER_PAGE, 24);
 
@@ -138,6 +138,11 @@ global $entertain_adtoma_categories;
 $ui_options['adtoma_category'] = $entertain_adtoma_categories[$request['entertain_type']]; 
 
 //preint_r($request);
+
+$output .= rounded_corners_top(array('color' => 'red'));
+$output .= 'Kan du inte se filmen? Prova att uppdatera Flash!' . "\n";
+$output .= '<a href="http://get.adobe.com/flashplayer/">Uppdatera &raquo;</a>';
+$output .= rounded_corners_bottom(array('color' => 'red'));
 
 
 $output .= '<div class="entertain">' . "\n";

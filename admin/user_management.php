@@ -1,6 +1,6 @@
 <?php
 	require('../include/core/common.php');
-	require_once(PATHS_INCLUDE . 'libraries/guestbook.lib.php');
+	require_once(PATHS_LIBRARIES . 'guestbook.lib.php');
 	$ui_options['menu_path'] = array('admin', 'user_management');
 	$ui_options['title'] = 'User Management - Hamsterpaj.net';
 	

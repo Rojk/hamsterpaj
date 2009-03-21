@@ -3,8 +3,8 @@
 		$menu['hamsterpaj']['children']['nytt'] = array('label' => 'Senaste nytt', 'url' => '/hamsterpaj/nytt.php');
 		$menu['hamsterpaj']['children']['utvecklarblogg'] = array('label' => 'Utvecklarblogg', 'url' => '/hamsterpaj/utvecklarblogg.php');
 		$menu['hamsterpaj']['children']['om_hamsterpaj'] = array('label' => 'Om Hamsterpaj', 'url' => '/hamsterpaj/about.php');
+		$menu['hamsterpaj']['children']['annonsera'] = array('label' => 'Annonsera', 'url' => '/hamsterpaj/annonsera.php');
 		$menu['hamsterpaj']['children']['crew'] = array('label' => 'Vi som gör sidan', 'url' => '/hamsterpaj/crew.php');
-		$menu['hamsterpaj']['children']['pedofilpolicy'] = array('label' => 'Pedofilpolicy', 'url' => '/hamsterpaj/pedofilpolicy.php');
 		$menu['hamsterpaj']['children']['foerslag'] = array('label' => 'Förslag', 'url' => '/hamsterpaj/suggestions.php');
 		$menu['hamsterpaj']['children']['rules_and_policies'] = array('label' => 'Regler och policies', 'url' => '/hamsterpaj/rules_and_policies.php');
 		$menu['hamsterpaj']['children']['tillbakablickar'] = array('label' => 'Tillbakablickar', 'url' => '/hamsterpaj/tillbakablickar.php');
@@ -22,7 +22,7 @@
 		}
 		$menu['forum']['children']['new_threads'] = array('label' => 'Nya trådar', 'url' => '/diskussionsforum/nya_traadar.php');
 		$menu['forum']['children']['search'] = array('label' => 'Sök', 'url' => '/diskussionsforum/soek.php');
-		$menu['forum']['children']['rules'] = array('label' => 'Regler', 'url' => '/artiklar/?action=show&id=75');
+		$menu['forum']['children']['rules'] = array('label' => 'Regler', 'url' => '/hamsterpaj/rules_and_policies.php');
 	
 	$menu['sex_sense'] = array('label' => 'Sex &amp; sinne', 'url' => '/sex_och_sinne/', 'index_label' => 'Start');
 		$menu['sex_sense']['children']['latest'] = array('label' => 'Senaste frågorna', 'url' => '/sex_och_sinne/senaste_fraagorna.html');
@@ -53,6 +53,13 @@
 		$menu['mattan']['children']['snyggve'] = array('label' => 'Snyggve', 'url' => '/mattan/snyggve.php');
 		$menu['mattan']['children']['collage_illusion'] = array('label' => 'Kollageapparaten', 'url' => '/mattan/collage_illusion.php');
 		$menu['mattan']['children']['fruit_vernissage'] = array('label' => 'Fruktvernissage', 'url' => 'http://www.hamsterpaj.net/artiklar/?action=show&id=95');
+		$menu['mattan']['children']['piraja'] = array('label' => 'Piraja', 'url' => '/piraja/', 'index_label' => 'Piraja');
+			$menu['mattan']['children']['piraja']['children']['allt'] = array('label' => 'Allt från Piraja', 'url' => '/piraja/');
+			$menu['mattan']['children']['piraja']['children']['finn_fem_fel'] = array('label' => 'Finn fem fel', 'url' => '/piraja/five_errors.php?fffid=hfred');
+			$menu['mattan']['children']['piraja']['children']['hyvlar'] = array('label' => 'Test av rakhyvlar', 'url' => '/piraja/hyvlar.php');
+			$menu['mattan']['children']['piraja']['children']['haarsprej'] = array('label' => 'Test av hårsprej', 'url' => '/piraja/haarsprej.php');		
+			$menu['mattan']['children']['piraja']['children']['prylar'] = array('label' => 'Prylar', 'url' => '/piraja/prylar.php');
+
 
 
 	$menu['traeffa'] = array('label' => 'Träffa', 'url' => '/traffa/');
@@ -61,7 +68,7 @@
 		$menu['traeffa']['children']['galleriet'] = array('label' => 'Galleriet', 'url' => '/traffa/gallery.php');
 		$menu['traeffa']['children']['grupper'] = array('label' => 'Grupper', 'url' => '/traffa/groups.php');
 		$menu['traeffa']['children']['digga'] = array('label' => 'Digga', 'url' => '/traffa/digga.php');		
-		$menu['traeffa']['children']['besoeksloggen'] = array('label' => 'Besöksloggen', 'url' => '/traffa/my_visitors_joel.php');
+		$menu['traeffa']['children']['besoeksloggen'] = array('label' => 'Besöksloggen', 'url' => '/traffa/my_visitors.php');
 		$menu['traeffa']['children']['age_guess'] = array('label' => 'Gissa Åldern', 'url' => '/traffa/age_guess.php');
 		$menu['traeffa']['children']['gamla_klotterplanket'] = array('label' => 'Gamla klotterplanket', 'url' => '/traffa/klotterplank.php');
 		$menu['traeffa']['children']['tester'] = array('label' => 'Tester', 'url' => '/tests/index.php');
@@ -82,7 +89,7 @@
 	
 	$menu['artiklar'] = array('label' => 'Artiklar', 'url' => '/artiklar/');
 	
-		$menu['artiklar']['children']['all'] = array('label' => 'Visa alla', 'url' => '/artiklar/?action=list');
+		$menu['artiklar']['children']['search'] = array('label' => 'Visa alla', 'url' => '/artiklar/?action=list');
 			$menu['artiklar']['children']['search']['children']['4'] = array('label' => 'Debatt', 'url' => '/artiklar/?action=list&category=4');
 			$menu['artiklar']['children']['search']['children']['6'] = array('label' => 'Guider', 'url' => '/artiklar/?action=list&category=6');
 			$menu['artiklar']['children']['search']['children']['1'] = array('label' => 'Hamsterpaj', 'url' => '/artiklar/?action=list&category=1');
@@ -95,7 +102,7 @@
 		if(is_privilegied('articles_admin'))
 		{
 			$menu['artiklar']['children']['admin'] = array('label' => 'Admin', 'url' => '/artiklar/?action=admin');
-		}
+		}		
 
 /*
 	$menu['taevlingar'] = array('label' => 'Tävlingar', 'url' => '/taevlingar/');
@@ -118,7 +125,7 @@
 	}
  /* Administration */
   $admin_privilegies = array('warnings_admin', 'use_statistic_tools', 'schedule_admin', 'ip_ban_admin', 'register_suspend_admin', 'ov_admin', 'entertain_add', 'privilegies_admin', 'use_ghosting_tools', 'backgrounds_admin', 'music_guess_admin', 'avatar_admin', 'user_management_admin');
-	$menu['admin'] = array('label' => 'Adm', 'url' => 'javascript:void(0)', 'is_privilegied' => $admin_privilegies, 'index_label' => 'Adminstart (ej klar)');
+	$menu['admin'] = array('label' => 'A', 'url' => 'javascript:void(0)', 'is_privilegied' => $admin_privilegies, 'index_label' => 'Adminstart (ej klar)');
 		$menu['admin']['children']['anvaendare'] = array('label' => 'Användare', 'url' => 'javascript:void(0)', 'is_privilegied' => array('avatar_admin', 'ip_ban_admin', 'forum_userlabel_admin', 'warnings_admin', 'user_management_admin', 'use_ghosting_tools'));
 			$menu['admin']['children']['anvaendare']['children']['avatarer'] = array('label' => 'Visningsbilder', 'url' => '/admin/avatarer.php', 'is_privilegied' => 'avatar_admin');
 			$menu['admin']['children']['anvaendare']['children']['ban'] = array('label' => 'IP-ban', 'url' => '/admin/ip_ban_admin.php', 'is_privilegied' => 'ip_ban_admin');
@@ -126,20 +133,23 @@
 			$menu['admin']['children']['anvaendare']['children']['warnings'] = array('label' => 'Varningar', 'url' => '/admin/warnings.php');
 			$menu['admin']['children']['anvaendare']['children']['user_management'] = array('label' => 'User management', 'url' => '/admin/user_management.php', 'is_privilegied' => 'user_management_admin');
 			$menu['admin']['children']['anvaendare']['children']['pm_hack'] = array('label' => 'PM-hack', 'url' => '/admin/pm_hack.php', 'is_privilegied' => 'use_ghosting_tools');
-			$menu['admin']['children']['anvaendare']['children']['guestbook_hack'] = array('label' => 'Gästbokshack', 'url' => '/admin/guestbook_hack.php', 'is_privilegied' => 'use_ghosting_tools');
+			$menu['admin']['children']['anvaendare']['children']['guestbook_hack'] = array('label' => 'GB-hack', 'url' => '/admin/guestbook_hack.php', 'is_privilegied' => 'use_ghosting_tools');
 			$menu['admin']['children']['anvaendare']['children']['user_ghost'] = array('label' => 'Ghosta', 'url' => '/admin/user_ghost.php', 'is_privilegied' => 'use_ghosting_tools');
 			$menu['admin']['children']['anvaendare']['children']['user_logins'] = array('label' => 'User Logins', 'url' => '/admin/user_logins.php', 'is_privilegied' => 'ip_ban_admin');
+			$menu['admin']['children']['anvaendare']['children']['newly_registered_users'] = array('label' => 'Nyregistrerade användare', 'url' => '/admin/newly_registered_users.php', 'is_privilegied' => 'remove_user');
+			$menu['admin']['children']['anvaendare']['children']['user_flag'] = array('label' => 'Användarflaggor', 'url' => '/admin/user_flag.php', 'is_privilegied' => 'user_flag_admin');
 		$menu['admin']['children']['crew-folk'] = array('label' => 'Crew-folk', 'url' => 'javascript:void(0)', 'is_privilegied' => $admin_privilegies);
 			$menu['admin']['children']['crew-folk']['children']['admins'] = array('label' => 'Besättning', 'url' => '/admin/admins.php');
 			$menu['admin']['children']['crew-folk']['children']['ov_reg'] = array('label' => 'OV Registrering', 'url' => '/admin/ov_reg.php', 'userlevel' => 3);
 			$menu['admin']['children']['crew-folk']['children']['ov_watch'] = array('label' => 'OV Statistik', 'url' => '/admin/ov_watch.php', 'is_privilegied' => 'ov_admin');
 			$menu['admin']['children']['crew-folk']['children']['ov_list'] = array('label' => 'OV Kontaktuppgifter', 'url' => '/admin/ov_list.php', 'userlevel' => 3);
-			$menu['admin']['children']['crew-folk']['children']['log_view'] = array('label' => 'Administrativ logg', 'url' => '/admin/log_view.php', 'is_privilegied' => 'ov_admin');
-			$menu['admin']['children']['crew-folk']['children']['mass_gb'] = array('label' => 'Mass-GB', 'url' => '/admin/mass_gb.php', 'is_privilegied' => 'igotgodmode');
+			$menu['admin']['children']['crew-folk']['children']['log_view'] = array('label' => 'Administrativ logg', 'url' => '/admin/log_view.php', 'is_privilegied' => 'ov_log');
+			$menu['admin']['children']['crew-folk']['children']['mass_gb'] = array('label' => 'Mass-GB', 'url' => '/admin/mass_gb.php', 'is_privilegied' => 'mass_gb');
 			$menu['admin']['children']['crew-folk']['children']['privilegies_admin'] = array('label' => 'Privilegier', 'url' => '/admin/privilegies_admin.php', 'is_privilegied' => 'privilegies_admin');
+			$menu['admin']['children']['crew-folk']['children']['user_message'] = array('label' => 'Skicka JS-meddelande (h4xx)', 'url' => '/admin/user_message.php', 'is_privilegied' => 'user_message');
 	
 	$site_admin_privilegies = array('fp_module_rearrange', 'schedule_admin', 'use_statistic_tools', 'register_suspend_admin', 'entertain_add', 'backgrounds_admin', 'music_guess_admin', 'open_search');
-	$menu['site_admin'] = array('label' => 'Site adm', 'url' => 'javascript:void(0)', 'is_privilegied' => $site_admin_privilegies);
+	$menu['site_admin'] = array('label' => 'SA', 'url' => 'javascript:void(0)', 'is_privilegied' => $site_admin_privilegies);
 		$menu['site_admin']['children']['fp_admin'] = array('label' => 'Ordna startsidan', 'url' => '/admin/fp_module_list.php', 'is_privilegied' => 'fp_module_rearrange');
 		$menu['site_admin']['children']['schemalagt'] = array('label' => 'Schemalagt', 'url' => '/admin/schemalagt.php', 'is_privilegied' => 'schedule_admin');
 		$menu['site_admin']['children']['statistik'] = array('label' => 'Statistik', 'url' => '/admin/event_log.php', 'is_privilegied' => 'use_statistic_tools');
@@ -153,7 +163,7 @@
 			$menu['site_admin']['children']['dev']['children']['handy'] = array('label' => 'Handy <i>(riktig)</i>', 'url' => '/handy.php', 'is_privilegied' => 'use_debug_tools');
 			$menu['site_admin']['children']['dev']['children']['visa_sessionsdata'] = array('label' => 'Visa sessionsdata', 'url' => '/admin/view_session.php', 'is_privilegied' => 'use_debug_tools');
 
-require_once(PATHS_INCLUDE . 'configs/entertain.conf.php');
+require_once(PATHS_CONFIGS . 'entertain.conf.php');
 // this is just to make sure that the entertain configs are available at this point
 $handles = array('game', 'flash', 'clip', 'image');
 foreach($handles as $handle)

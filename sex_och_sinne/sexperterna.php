@@ -1,8 +1,8 @@
 <?php
 	require('../include/core/common.php');
-	include_once(PATHS_INCLUDE . 'libraries/sex_sense.lib.php');
-	include_once(PATHS_INCLUDE . 'libraries/articles.lib.php');
-	include_once(PATHS_INCLUDE . 'libraries/sex_sense_ui.lib.php');
+	include_once(PATHS_LIBRARIES . 'sex_sense.lib.php');
+	include_once(PATHS_LIBRARIES . 'articles.lib.php');
+	include_once(PATHS_LIBRARIES . 'sex_sense_ui.lib.php');
 	$ui_options['stylesheets'][] = 'sex_sense.css';
 	$ui_options['title'] = 'Sex och Sinne - Hamsterpaj.net';
 	$ui_options['menu_path'] = array('sex_sense', 'sexpretterna');

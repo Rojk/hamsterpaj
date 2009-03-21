@@ -1,7 +1,15 @@
 <?php
-	function jscript_alert($message)
+	function jscript_alert($message, $return = false)
 	{
-		echo '<script>alert("' . str_replace(array('<br />', '"'), array('\n', '\\"'), $message) . '");</script>';
+		$out = '<script>alert("' . str_replace(array('<br />', '"'), array('\n', '\\"'), $message) . '");</script>';
+		if($return === true)
+		{
+			return $out;
+		}
+		else
+		{
+			echo $out;
+		}
 	}
 	
 	function jscript_location($target)

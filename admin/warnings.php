@@ -1,7 +1,7 @@
 <?
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE . 'libraries/profile.lib.php');
-	require(PATHS_INCLUDE . 'libraries/warnings.lib.php');
+	require(PATHS_LIBRARIES . 'profile.lib.php');
+	require(PATHS_LIBRARIES . 'warnings.lib.php');
 	
 	
 	//----------------------
@@ -11,7 +11,6 @@
 	$ui_options['stylesheets'][] = 'rounded_corners_tabs.css';
 	$ui_options['title'] = 'Varningar - Hamsterpaj.net';
 	
-	require(PATHS_INCLUDE . 'traffa-definitions.php');
 	
 	define(THIS_URI, $_SERVER["REQUEST_URI"]);
 	//-------------------

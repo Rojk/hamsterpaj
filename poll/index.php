@@ -1,7 +1,7 @@
 <?php
 	require('../include/core/common.php');
-	require(PATHS_INCLUDE  . 'libraries/comments.lib.php');
-	require(PATHS_INCLUDE  . 'libraries/schedule.lib.php');
+	require(PATHS_LIBRARIES . 'comments.lib.php');
+	require(PATHS_LIBRARIES . 'schedule.lib.php');
 	$ui_options['menu_path'] = array('chat', 'statistik');
 	$ui_options['title'] = 'Undersökningar på Hamsterpaj';
 	
@@ -59,6 +59,8 @@
 				$schedule['data'] = serialize($request['poll']);
 				$schedule['release'] = strtotime($request['poll']['release']);
 				$schedule['type'] = 'poll';
+				$schedule['url'] = 'javascript:alert(\'Pollen har inte skapats ännu... Den skapas när den släpps :)\');';
+				$schedule['title'] = $request['poll']['question'];
 				schedule_event_add($schedule);
 
 				$output .= '<h1>Undersökningen på plats! Seså, gör en till, tjockis!</h1>' . "\n";

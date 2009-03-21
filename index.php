@@ -1,9 +1,9 @@
 <?php
 	require('include/core/common.php');
-	require_once(PATHS_INCLUDE  . 'libraries/entertain.lib.php');
-	require_once(PATHS_INCLUDE  . 'libraries/rank.lib.php');
-	require_once(PATHS_INCLUDE  . 'libraries/photos.lib.php');
-	require_once(PATHS_INCLUDE . 'libraries/fp_modules.lib.php');
+	require_once(PATHS_LIBRARIES . 'entertain.lib.php');
+	require_once(PATHS_LIBRARIES . 'rank.lib.php');
+	require_once(PATHS_LIBRARIES . 'photos.lib.php');
+	require_once(PATHS_LIBRARIES . 'fp_modules.lib.php');
 
 	$ui_options['javascripts'][] = 'fp_common_modules.js';
 
@@ -27,7 +27,7 @@
 		$module_hide = false;
 		if($module['code_mode'] == 'php')
 		{
-			include(PATHS_INCLUDE . 'fp_modules/' . $module['id'] . '.php');
+			include(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $module['id'] . '.php');
 			if($module_hide == true)
 			{
 				continue;
@@ -35,7 +35,7 @@
 		}
 		else
 		{
-			$o = file_get_contents(PATHS_INCLUDE . 'fp_modules/' . $module['id'] . '.php');
+			$o = file_get_contents(PATHS_DYNAMIC_CONTENT . 'fp_modules/' . $module['id'] . '.php');
 		}
 
 		$class = ($module['commenting'] == 'true' || $module['published'] == 'true' || $module['grading'] == 'true') ? 'module' : 'module_noframe';
@@ -59,17 +59,39 @@
 			{
 				if($module['thread_id'] == 0)
 				{
-					$thread_options['forum_id'] = 114;
-					$thread_options['title'] = $module['name'];
-					$thread_options['content'] = 'Det här är en kommenteringstråd för modulen \\"' . $module['name'] . '\\" på förstasidan. Egentligen skall själva modulen visas här i forumet, typ ovanför tråden. Men det är vi inte klara med än, så tillsvidare får man kommentera utan att se modulen :)';
-					$thread_options['mode'] = 'new_thread';
-					$thread_options['author'] = 57100;
-					$module['thread_id'] = discussion_forum_post_create($thread_options);		
-					
-					$query = 'UPDATE fp_modules SET thread_id = "' . $module['thread_id'] . '" WHERE id = "' . $module['id'] . '"';
-					mysql_query($query);		
+					// We've got a problem with multiple instances reaching this point at the same time, causing
+					// several instances to create commenting threads, resulting in multiple commenting threads for
+					// a single module. Waiting a random amount of time and making a re-check against the DB lowers
+					// the risk of multiple entries.
+					// A better solution would be to use lockfiles, however they can be quite hard to maintain in
+					// different environments.
+					usleep(rand(50, 100000)); // 100 000 usec = 10% of a second
+					$query = 'SELECT thread_id FROM fp_modules WHERE id = "' . $module['id'] . '"';
+					$result = mysql_query($query);
+					$data = mysql_fetch_assoc($result);
+					if($data['thread_id'] > 0)
+					{
+						$module['thread_id'] = $data['thread_id'];
+					}
+					else
+					{
+						$thread_options['forum_id'] = 114;
+						$thread_options['title'] = $module['name'];
+						$thread_options['content'] = 'Det här är en kommenteringstråd för modulen \\"' . $module['name'] . '\\" på förstasidan. Egentligen skall själva modulen visas här i forumet, typ ovanför tråden. Men det är vi inte klara med än, så tillsvidare får man kommentera utan att se modulen :)';
+						$thread_options['mode'] = 'new_thread';
+						$thread_options['author'] = 57100;
+						$thread_options['fp_module_id'] = $module['id'];
+						$module['thread_id'] = discussion_forum_post_create($thread_options);		
+						
+						$query = 'UPDATE fp_modules SET thread_id = "' . $module['thread_id'] . '" WHERE id = "' . $module['id'] . '"';
+						mysql_query($query);
+					}
 				}
 				$out .= '<p style="margin-top: 2px;"><a style="color: #565656; text-decoration: underline;" href="' . forum_get_url_by_post($module['thread_id']) . '" class="fp_moudle_commenting">Kommentera i forumet</a></p>' . "\n";
+			}
+			if($module['piraja'] == 'true')
+			{
+				$out .= '<p style="margin-top: 2px;"><a style="color: #565656; text-decoration: underline;" href="/piraja/prylar.php">Flera prylar</a></p>' . "\n";
 			}
 
 		$out .= '<br style="font-size: 0px; height: 0px; clear: both; line-height: 0px;" />' . "\n";
