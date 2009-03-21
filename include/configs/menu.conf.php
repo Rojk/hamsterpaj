@@ -140,9 +140,7 @@
 			$menu['admin']['children']['anvaendare']['children']['user_flag'] = array('label' => 'Användarflaggor', 'url' => '/admin/user_flag.php', 'is_privilegied' => 'user_flag_admin');
 		$menu['admin']['children']['crew-folk'] = array('label' => 'Crew-folk', 'url' => 'javascript:void(0)', 'is_privilegied' => $admin_privilegies);
 			$menu['admin']['children']['crew-folk']['children']['admins'] = array('label' => 'Besättning', 'url' => '/admin/admins.php');
-			$menu['admin']['children']['crew-folk']['children']['ov_reg'] = array('label' => 'OV Registrering', 'url' => '/admin/ov_reg.php', 'userlevel' => 3);
 			$menu['admin']['children']['crew-folk']['children']['ov_watch'] = array('label' => 'OV Statistik', 'url' => '/admin/ov_watch.php', 'is_privilegied' => 'ov_admin');
-			$menu['admin']['children']['crew-folk']['children']['ov_list'] = array('label' => 'OV Kontaktuppgifter', 'url' => '/admin/ov_list.php', 'userlevel' => 3);
 			$menu['admin']['children']['crew-folk']['children']['log_view'] = array('label' => 'Administrativ logg', 'url' => '/admin/log_view.php', 'is_privilegied' => 'ov_log');
 			$menu['admin']['children']['crew-folk']['children']['mass_gb'] = array('label' => 'Mass-GB', 'url' => '/admin/mass_gb.php', 'is_privilegied' => 'mass_gb');
 			$menu['admin']['children']['crew-folk']['children']['privilegies_admin'] = array('label' => 'Privilegier', 'url' => '/admin/privilegies_admin.php', 'is_privilegied' => 'privilegies_admin');
