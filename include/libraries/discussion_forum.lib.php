@@ -260,14 +260,7 @@
 			$return .= '<div class="passepartout">' . "\n";
 			$return .= ui_avatar($data['author']);
 			$return .= '</div>' . "\n";
-			if($data['gender'] == 'f')
-			{
-				$return .= '<span class="gender">F</span>' . "\n";
-			}
-			elseif($data['gender'] == 'm')
-			{
-				$return .= '<span class="gender">P</span>' . "\n";
-			}
+			$return .= '<span class="gender">' . strtoupper( $data['gender'] ) . '</span>' . "\n";
 			if($data['birthday'] != '0000-00-00')
 			{
 				$return .= '<span class="age">' . date_get_age($data['birthday']) . '</span>' . "\n";
