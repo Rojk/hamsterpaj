@@ -33,7 +33,7 @@
 		{
 			$ui_options['title'] = 'Inloggningen misslyckades.';
 			ui_top($ui_options);
-			echo '<h1>Ett fel intr‰ffade n‰r du skulle logga in!</h1>' . "\n";
+			echo '<h1>Ett fel intr√§ffade n√§r du skulle logga in!</h1>' . "\n";
 			echo $error->getMessage();
 			ui_bottom();
 		}
