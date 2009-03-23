@@ -27,7 +27,7 @@ function open_search_make_box($id)
 		$out .= "\t".'<Description>'.$box['Description'].'</Description>'."\n";
 		$out .= "\t".'<Tags>'.$box['Tags'].'</Tags>'."\n";
 		$out .= "\t".'<Contact>waldemar.axdorph@gmail.com</Contact>'."\n";
-		$out .= "\t".'<Url type="text/html" method="get" template="http://hamsterpaj.net/open_search/?q={searchTerms}&amp;type='.$box['id'].'&amp;search=true"></Url>'."\n";
+		$out .= "\t".'<Url type="text/html" method="get" template="http://hamsterpaj.net/hamsterpaj/soeklaador.php?q={searchTerms}&amp;type='.$box['id'].'&amp;search=true"></Url>'."\n";
 		$out .= "\t".'<LongName>'.$box['LongName'].'</LongName>'."\n";
 		$out .= "\t".'<Image height="16" width="16" type="image/vnd.microsoft.icon">http://images.hamsterpaj.net/favicon.ico</Image>'."\n";
 		$out .= "\t".'<Image height="16" width="16" type="image/png">http://images.hamsterpaj.net/favicon.png</Image>'."\n";
@@ -66,10 +66,10 @@ function open_search_boxes_list()
 			$out .= "\t".'<li>';
 			$out .= rounded_corners_top(array('color' => 'blue_deluxe'), true);
 			$out .= '<br style="clear:both" />';
-			$out .= '<h3><span class="box_link" id="link_'.$boxes[$i]['id'].'"><img src="'.IMAGE_URL.'plus.gif" alt="Expandera/Kollapsa" id="image_'.$boxes[$i]['id'].'" /></span> <a href="javascript:window.external.AddSearchProvider(\'http://www.hamsterpaj.net/open_search/?type='.$boxes[$i]['id'].'\');">'.$boxes[$i]['name'].'</a></h3>';
+			$out .= '<h3><span class="box_link" id="link_'.$boxes[$i]['id'].'"><img src="'.IMAGE_URL.'plus.gif" alt="Expandera/Kollapsa" id="image_'.$boxes[$i]['id'].'" /></span> <a href="javascript:window.external.AddSearchProvider(\'http://www.hamsterpaj.net/hamsterpaj/soeklaador.php?type='.$boxes[$i]['id'].'\');">'.$boxes[$i]['name'].'</a></h3>';
 			$out .= '<div class="open_search_box_info" id="box_'.$boxes[$i]['id'].'">'."\n";
 			$out .= '<p>'.$boxes[$i]['Description'].'</p>'."\n";
-			$out .= 'Tillagd: '.fix_time($boxes[$i]['timestamp']).' <a href="javascript:window.external.AddSearchProvider(\'http://www.hamsterpaj.net/open_search/?type='.$boxes[$i]['id'].'\');">Lägg till bland dina sökmotorer</a>';
+			$out .= 'Tillagd: '.fix_time($boxes[$i]['timestamp']).' <a href="javascript:window.external.AddSearchProvider(\'http://www.hamsterpaj.net/hamsterpaj/soeklaador.php?type='.$boxes[$i]['id'].'\');">Lägg till bland dina sökmotorer</a>';
 			$out .= '</div>';
 			$out .= '<br style="clear:both" />';
 			$out .= rounded_corners_bottom(array('color' => 'blue_deluxe'), true);
@@ -92,7 +92,7 @@ function open_search_list_head()
 	{
 		$out .= '<link rel="search"
            type="application/opensearchdescription+xml" 
-           href="http://www.hamsterpaj.net/open_search/?type='.$boxes[$i]['id'].'"
+           href="http://www.hamsterpaj.net/hamsterpaj/soeklaador.php?type='.$boxes[$i]['id'].'"
            title="'.$boxes[$i]['ShortName'].'" />';
 	}
 	return $out;
@@ -308,7 +308,7 @@ function open_search_add_box_execute($input, $options = null)
 
 	$content = 'Söklådan har blivit tillagd!'."\n";
 	$content .= '<br /><br />'."\n";
-	$content .= 'Länk: <input type="text" value="http://hamsterpaj.net/open_search/#search_box_'.mysql_insert_id().'" /> <a href="/open_search/#search_box_'.mysql_insert_id().'">Öppna</a>'."\n";
+	$content .= 'Länk: <input type="text" value="http://hamsterpaj.net/hamsterpaj/soeklaador.php#search_box_'.mysql_insert_id().'" /> <a href="/hamsterpaj/soeklaador.php#search_box_'.mysql_insert_id().'">Öppna</a>'."\n";
 	if($options['json_encode'] == true)
 	{
 		return json_encode(array('h2'=>'Tillagt!', 'content'=>$content));
@@ -329,7 +329,7 @@ function open_search_edit_box_execute($input, $options = null)
 
 	$content = 'Söklådan har blivit uppdaterad!'."\n";
 	$content .= '<br /><br />'."\n";
-	$content .= 'Länk: <input type="text" value="http://hamsterpaj.net/open_search/#search_box_'.$id.'" /> <a href="/open_search/#search_box_'.$id.'">Öppna</a>'."\n";
+	$content .= 'Länk: <input type="text" value="http://hamsterpaj.net/hamsterpaj/soeklaador.php#search_box_'.$id.'" /> <a href="/hamsterpaj/soeklaador.php#search_box_'.$id.'">Öppna</a>'."\n";
 	if($options['json_encode'] == true)
 	{
 		return json_encode(array('h2'=>'Tillagt!', 'content'=>$content));
