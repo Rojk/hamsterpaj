@@ -1,6 +1,6 @@
 <?php
 
-	require('/home/www/standard.php');
+	require('../include/core/common.php');
 	require_once(PATHS_LIBRARIES . 'open_search.lib.php');
 
 	if(isset($_GET['type'], $_GET['q'], $_GET['search']))
