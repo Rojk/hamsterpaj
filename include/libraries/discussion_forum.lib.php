@@ -260,7 +260,7 @@
 			$return .= '<div class="passepartout">' . "\n";
 			$return .= ui_avatar($data['author']);
 			$return .= '</div>' . "\n";
-			$return .= '<span class="gender">' .  str_replace(array('m', 'f', 'u'), array('P', 'F', '') ) . '</span>' . "\n";
+			$return .= '<span class="gender">' .  str_replace(array('m', 'f', 'u'), array('P', 'F', ''), $data['gender'] ) . '</span>' . "\n";
 			if($data['birthday'] != '0000-00-00')
 			{
 				$return .= '<span class="age">' . date_get_age($data['birthday']) . '</span>' . "\n";
