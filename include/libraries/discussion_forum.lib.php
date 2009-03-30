@@ -416,7 +416,9 @@
 		}
 
 		$query = 'UPDATE userinfo SET forum_posts = "' . $new_posts . '" WHERE userid = "' . $data['author'] . '" LIMIT 1';
-		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));	
+		mysql_query($query) or die(report_sql_error($query, __FILE__, __LINE__));
+		
+		admin_action_count($_SESSION['login']['id'], 'post_removed');	
 	}
 	
 	function forum_security($options)
